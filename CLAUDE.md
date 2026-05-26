@@ -3,7 +3,7 @@
 
 **Project:** CalculoX - Premium Online Calculator Platform  
 **Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Launched 🚀  
-**Last Updated:** 2026-05-26 (Session 7: Input Validation & Clear Functionality)  
+**Last Updated:** 2026-05-26 (Session 8: Zero Default Values & Nullish Coalescing)  
 **Tech Stack:** Next.js 14 + TypeScript + Tailwind + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
@@ -25,6 +25,7 @@ CalculoX is a production-ready, SEO-optimized calculator platform for Indian use
 - **NEW:** Dual input methods (slider + direct number input) on all calculators
 - **NEW:** Modern gradient-based card design with emoji indicators
 - **NEW:** Color-coded inputs and interactive form elements
+- **NEW:** Zero default values with nullish coalescing (??) for proper number handling
 
 ---
 
@@ -1568,3 +1569,78 @@ After:   [Calculate Button] [Clear Button]  (50% width each, gap between)
 5. **Mobile Friendly:** Clear buttons with adequate touch targets (50% width)
 
 **Status:** All validation and clear functionality implemented ✅ | Build successful 🚀 | Ready for production deployment
+
+---
+
+## 🔧 SESSION 8: ZERO DEFAULT VALUES & NULLISH COALESCING (2026-05-26)
+
+### Objective
+Change all calculator default values from pre-filled amounts (e.g., 10000, 100000) to **zero (0)**, and use nullish coalescing (`??`) instead of logical OR (`||`) to properly handle zero values in form inputs.
+
+### Problem Identified
+- **Before:** Default values were pre-filled (SIP: 10000, EMI: 1000000, etc.)
+- **Issue:** When users typed a value, if the number was falsy (0), the `|| fallback` would display the old default instead
+- **Example:** Default 10000 → User types "5" → Input shows 10000 instead of 5
+
+### Solution Implemented
+✅ **All 10 Calculators Updated:**
+
+| Calculator | Changes |
+|------------|---------|
+| SIP | months: 0, years: 0, return: 0, stepUp: 0 |
+| BMI | weight: 0, height: 0 |
+| EMI | principal: 0, rate: 0, years: 0 |
+| Tax | income: 0 |
+| FD | principal: 0, rate: 0, years: 0 |
+| RD | deposit: 0, rate: 0, months: 0 |
+| Simple Interest | principal: 0, rate: 0, years: 0 |
+| GST | amount: 0 |
+| Percentage | valueA: 0, valueB: 0 |
+| CAGR | beginning: 0, ending: 0, years: 0 |
+
+### Technical Changes
+
+**1. Default Values Changed**
+```typescript
+// Before
+defaultValues: { monthlyInvestment: 10000, years: 10, annualReturn: 12 }
+
+// After
+defaultValues: { monthlyInvestment: 0, years: 0, annualReturn: 0 }
+```
+
+**2. Fallback Operator Updated**
+```typescript
+// Before - treats 0 as falsy, shows fallback
+value={watchValues.monthlyInvestment || 10000}
+
+// After - nullish coalescing allows 0
+value={watchValues.monthlyInvestment ?? 0}
+```
+
+### Key Benefits
+1. **Clean Start:** All inputs start empty (showing 0), not pre-filled
+2. **Proper Zero Handling:** Zero values display correctly without fallback
+3. **User Experience:** Users see input field as empty, can type any value
+4. **Consistency:** Same pattern across all 10 calculators
+5. **Form Clarity:** Users understand which fields are required
+
+### Build Status
+✅ Production build: **SUCCESS** (all 14 pages compiled)
+✅ Zero TypeScript errors
+✅ Zero ESLint warnings
+✅ Ready for deployment
+
+### Files Modified (10 Total)
+- app/sip-calculator/page.tsx
+- app/bmi-calculator/page.tsx
+- app/emi-calculator/page.tsx
+- app/tax-calculator/page.tsx
+- app/fd-calculator/page.tsx
+- app/rd-calculator/page.tsx
+- app/simple-interest-calculator/page.tsx
+- app/gst-calculator/page.tsx
+- app/percentage-calculator/page.tsx
+- app/cagr-calculator/page.tsx
+
+**Status:** Zero defaults implemented ✅ | Nullish coalescing applied ✅ | Build verified 🚀 | All inputs now properly handle zero values

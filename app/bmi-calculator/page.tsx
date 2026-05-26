@@ -190,7 +190,7 @@ export default function BMICalculatorPage() {
                   min="10"
                   max={unitSystem === 'metric' ? '500' : '1102'}
                   step="0.1"
-                  value={watchValues.weight || 70}
+                  value={watchValues.weight ?? 0}
                   onChange={(e) => handleInputChange('weight', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
@@ -202,7 +202,7 @@ export default function BMICalculatorPage() {
                     step="0.1"
                     min="10"
                     max={unitSystem === 'metric' ? '500' : '1102'}
-                    value={watchValues.weight || 70}
+                    value={watchValues.weight ?? 0}
                     onChange={(e) => handleInputChange('weight', Number(e.target.value))}
                     onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
                     className="w-24 px-6 py-2 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
@@ -226,7 +226,7 @@ export default function BMICalculatorPage() {
                   min="10"
                   max={unitSystem === 'metric' ? '300' : '118'}
                   step="0.1"
-                  value={watchValues.height || 170}
+                  value={watchValues.height ?? 0}
                   onChange={(e) => handleInputChange('height', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('height', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
@@ -238,7 +238,7 @@ export default function BMICalculatorPage() {
                     step="0.1"
                     min="10"
                     max={unitSystem === 'metric' ? '300' : '118'}
-                    value={watchValues.height || 170}
+                    value={watchValues.height ?? 0}
                     onChange={(e) => handleInputChange('height', Number(e.target.value))}
                     onBlur={(e) => handleValidateField('height', Number(e.target.value))}
                     className="w-24 px-6 py-2 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"

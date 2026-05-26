@@ -32,7 +32,7 @@ export default function GSTCalculatorPage() {
   } = useForm<GSTFormData>({
     resolver: zodResolver(GSTSchema),
     defaultValues: {
-      amount: 100000,
+      amount: 0,
       gstRate: '18',
       calculationType: 'add',
     },
@@ -120,7 +120,7 @@ export default function GSTCalculatorPage() {
                   min="100"
                   max="100000000"
                   step="100"
-                  value={watchValues.amount || 100000}
+                  value={watchValues.amount ?? 0}
                   onChange={(e) => handleAmountChange(Number(e.target.value))}
                   onBlur={(e) => handleValidateField('amount', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
@@ -130,7 +130,7 @@ export default function GSTCalculatorPage() {
                   min="100"
                   max="100000000"
                   step="100"
-                  value={watchValues.amount || 100000}
+                  value={watchValues.amount ?? 0}
                   onChange={(e) => handleAmountChange(Number(e.target.value))}
                   onBlur={(e) => handleValidateField('amount', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
