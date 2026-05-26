@@ -27,6 +27,7 @@ export default function GSTCalculatorPage() {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm<GSTFormData>({
     resolver: zodResolver(GSTSchema),
     defaultValues: {
@@ -36,8 +37,13 @@ export default function GSTCalculatorPage() {
     },
   });
 
+  const watchValues = watch();
   const calculationType = watch('calculationType');
   const gstRate = watch('gstRate');
+
+  const handleAmountChange = (value: number) => {
+    setValue('amount', value, { shouldValidate: true });
+  };
 
   const onSubmit = (data: GSTFormData) => {
     const result = calculateGST({
@@ -102,19 +108,22 @@ export default function GSTCalculatorPage() {
                   min="100"
                   max="100000000"
                   step="100"
-                  {...register('amount', { valueAsNumber: true })}
+                  value={watchValues.amount || 100000}
+                  onChange={(e) => handleAmountChange(Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
                   type="number"
-                  min={100}
-                  max={100000000}
-                  step={100}
-                  {...register('amount', { valueAsNumber: true })}
+                  min="100"
+                  max="100000000"
+                  step="100"
+                  value={watchValues.amount || 100000}
+                  onChange={(e) => handleAmountChange(Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.amount && <p className="text-red-500 text-sm">{errors.amount.message}</p>}
+              <p className="text-xs text-gray-500 dark:text-gray-400">₹100 to ₹10 Crore</p>
             </div>
 
             {/* GST Rate */}

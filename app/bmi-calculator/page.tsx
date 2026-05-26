@@ -67,7 +67,17 @@ export default function BMICalculatorPage() {
   const watchValues = watch();
 
   const onSubmit = (data: BMIFormData) => {
-    const result = calculateBMI(data);
+    // Convert imperial to metric if needed
+    let weightInKg = data.weight;
+    let heightInCm = data.height;
+
+    if (unitSystem === 'imperial') {
+      // Convert lbs to kg and inches to cm
+      weightInKg = data.weight / 2.205;
+      heightInCm = data.height * 2.54;
+    }
+
+    const result = calculateBMI({ weight: weightInKg, height: heightInCm });
     setResult(result);
   };
 

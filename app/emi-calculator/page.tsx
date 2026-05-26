@@ -96,7 +96,7 @@ export default function EMICalculatorPage() {
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
-                  min="100000"
+                  min="10000"
                   max="10000000"
                   step="10000"
                   value={watchValues.principal || 1000000}
@@ -107,7 +107,7 @@ export default function EMICalculatorPage() {
                   <span className="absolute left-2 top-2.5 text-blue-600 font-bold text-sm">₹</span>
                   <input
                     type="number"
-                    min="100000"
+                    min="10000"
                     max="10000000"
                     step="10000"
                     value={watchValues.principal || 1000000}
@@ -119,7 +119,7 @@ export default function EMICalculatorPage() {
               {errors.principal && (
                 <p className="text-red-500 text-sm">{errors.principal.message}</p>
               )}
-              <p className="text-xs text-gray-500 dark:text-gray-400">₹10L - ₹1Cr</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 - ₹1 Crore</p>
             </div>
 
             {/* Annual Rate */}

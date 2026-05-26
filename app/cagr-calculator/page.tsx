@@ -83,7 +83,7 @@ export default function CAGRCalculatorPage() {
                 />
               </div>
               {errors.beginningValue && <p className="text-red-500 text-sm">{errors.beginningValue.message}</p>}
-              <p className="text-xs text-gray-500 dark:text-gray-400">Initial investment amount</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 to ₹1 Crore</p>
             </div>
 
             {/* Ending Value */}
@@ -110,7 +110,7 @@ export default function CAGRCalculatorPage() {
                 />
               </div>
               {errors.endingValue && <p className="text-red-500 text-sm">{errors.endingValue.message}</p>}
-              <p className="text-xs text-gray-500 dark:text-gray-400">Final investment value</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 to ₹1 Crore</p>
             </div>
 
             {/* Years */}
@@ -137,7 +137,7 @@ export default function CAGRCalculatorPage() {
                 />
               </div>
               {errors.years && <p className="text-red-500 text-sm">{errors.years.message}</p>}
-              <p className="text-xs text-gray-500 dark:text-gray-400">Number of years of investment</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">1 to 50 years</p>
             </div>
 
             <button
