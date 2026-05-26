@@ -20,7 +20,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="font-bold text-2xl">
-            🧮 Calculators
+            🧮 CalculoX
           </Link>
 
           {/* Desktop Menu */}
