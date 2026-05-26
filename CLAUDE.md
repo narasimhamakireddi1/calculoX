@@ -2,8 +2,8 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete with UI/UX Enhancements ✅✨  
-**Last Updated:** 2026-05-26 (UI/UX Redesign)  
+**Project Status:** MVP Complete with UI/UX Enhancements ✅✨ | Vercel Build Fixed 🔧  
+**Last Updated:** 2026-05-26 (Build Fixes & Configuration Updates)  
 **Tech Stack:** Next.js 14 + TypeScript + Tailwind + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - FULLY IMPLEMENTED, TESTED & VISUALLY ENHANCED
@@ -937,22 +937,36 @@ Once domain purchased (calculox.in):
 3. Update registrar nameservers to Vercel's
 4. Wait 24-48 hours for DNS propagation
 
-**MVP Deployment Status (2026-05-26):** ✅ COMPLETE & LIVE
+**MVP Deployment Status (2026-05-26):** ✅ COMPLETE & LIVE | 🔧 BUILD FIXES APPLIED
+
+**Recent Fixes & Updates (2026-05-26 - Session 2):**
+- ✅ Updated navbar branding: "Calculators" → "🧮 CalculoX"
+- ✅ Fixed tsconfig.json configuration:
+  - Changed `moduleResolution` from "node" to "bundler" (Next.js 14 standard)
+  - Removed redundant path mappings (Next.js handles `@/*` automatically)
+  - Cleaned up unused compiler options (allowImportingTsExtensions, declarationMap, plugins)
+  - Added `forceConsistentCasingInFileNames` for cross-platform consistency
+- ✅ Fixed Vercel build error:
+  - Removed unused `watchValues` variable in EMI calculator (line 51)
+  - Removed unused `watch` import from useForm hook
+  - Build now passes TypeScript strict mode validation
 
 **Vercel Live Deployment:**
 - ✅ Project deployed to Vercel
 - ✅ Environment variables configured (NEXTAUTH_SECRET, NEXT_PUBLIC_SITE_URL)
 - ✅ All 4 MVP calculators live and accessible
 - ✅ SIP Calculator tested: ✅ Working
-- ✅ EMI Calculator tested: ✅ Working
+- ✅ EMI Calculator tested: ✅ Working (fixed and verified)
 - ✅ BMI Calculator tested: ✅ Working
 - ✅ Tax Calculator tested: ✅ Working
 - ✅ No console errors
 - ✅ Mobile responsive verified
 - ✅ Dark mode working
 - ✅ All forms and calculations functioning correctly
+- ✅ TypeScript strict mode: PASSING
+- ✅ Build configuration: OPTIMIZED
 
-🚀 **CalculoX MVP is now LIVE on Vercel!**
+🚀 **CalculoX MVP is now LIVE on Vercel with latest fixes applied!**
 
 ---
 
