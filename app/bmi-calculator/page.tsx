@@ -56,6 +56,7 @@ export default function BMICalculatorPage() {
     formState: { errors },
     watch,
     setValue,
+    reset,
   } = useForm<BMIFormData>({
     resolver: zodResolver(BMISchema),
     defaultValues: {
@@ -83,6 +84,43 @@ export default function BMICalculatorPage() {
 
   const handleInputChange = (fieldName: keyof BMIFormData, value: number) => {
     setValue(fieldName, value, { shouldValidate: true });
+  };
+
+  const handleValidateField = (fieldName: string, value: number) => {
+    let min = 10;
+    let max = 500;
+    let label = 'Weight';
+
+    if (fieldName === 'weight') {
+      if (unitSystem === 'metric') {
+        min = 10;
+        max = 500;
+        label = 'Weight (kg)';
+      } else {
+        min = 22;
+        max = 1102;
+        label = 'Weight (lbs)';
+      }
+    } else if (fieldName === 'height') {
+      if (unitSystem === 'metric') {
+        min = 10;
+        max = 300;
+        label = 'Height (cm)';
+      } else {
+        min = 4;
+        max = 118;
+        label = 'Height (inches)';
+      }
+    }
+
+    if (value < min || value > max) {
+      alert(`${label} must be between ${min} and ${max}`);
+    }
+  };
+
+  const handleReset = () => {
+    reset();
+    setResult(null);
   };
 
   const handleUnitChange = (unit: 'metric' | 'imperial') => {
@@ -154,6 +192,7 @@ export default function BMICalculatorPage() {
                   step="0.1"
                   value={watchValues.weight || 70}
                   onChange={(e) => handleInputChange('weight', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -165,6 +204,7 @@ export default function BMICalculatorPage() {
                     max={unitSystem === 'metric' ? '500' : '1102'}
                     value={watchValues.weight || 70}
                     onChange={(e) => handleInputChange('weight', Number(e.target.value))}
+                    onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
                     className="w-24 px-6 py-2 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                   />
                 </div>
@@ -188,6 +228,7 @@ export default function BMICalculatorPage() {
                   step="0.1"
                   value={watchValues.height || 170}
                   onChange={(e) => handleInputChange('height', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('height', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -199,6 +240,7 @@ export default function BMICalculatorPage() {
                     max={unitSystem === 'metric' ? '300' : '118'}
                     value={watchValues.height || 170}
                     onChange={(e) => handleInputChange('height', Number(e.target.value))}
+                    onBlur={(e) => handleValidateField('height', Number(e.target.value))}
                     className="w-24 px-6 py-2 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
                   />
                 </div>
@@ -211,12 +253,21 @@ export default function BMICalculatorPage() {
               </p>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-            >
-              ⚖️ Calculate BMI
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              >
+                ⚖️ Calculate BMI
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              >
+                🗑️ Clear
+              </button>
+            </div>
           </form>
         </div>
 

@@ -39,6 +39,7 @@ export default function EMICalculatorPage() {
     formState: { errors },
     watch,
     setValue,
+    reset,
   } = useForm<EMIFormData>({
     resolver: zodResolver(EMISchema),
     defaultValues: {
@@ -50,8 +51,28 @@ export default function EMICalculatorPage() {
 
   const watchValues = watch();
 
+  const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
+    principal: { min: 10000, max: 100000000, label: 'Loan Amount (₹)' },
+    annualRate: { min: 0, max: 50, label: 'Annual Rate (%)' },
+    years: { min: 1, max: 50, label: 'Years' },
+  };
+
   const handleInputChange = (fieldName: keyof EMIFormData, value: number) => {
     setValue(fieldName, value, { shouldValidate: true });
+  };
+
+  const handleValidateField = (fieldName: string, value: number) => {
+    const range = fieldRanges[fieldName];
+    if (range && (value < range.min || value > range.max)) {
+      alert(`${range.label} must be between ${range.min} and ${range.max}`);
+    }
+  };
+
+  const handleReset = () => {
+    reset();
+    setResult(null);
+    setSchedule([]);
+    setShowFullSchedule(false);
   };
 
   const onSubmit = (data: EMIFormData) => {
@@ -101,6 +122,7 @@ export default function EMICalculatorPage() {
                   step="10000"
                   value={watchValues.principal || 1000000}
                   onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -112,6 +134,7 @@ export default function EMICalculatorPage() {
                     step="10000"
                     value={watchValues.principal || 1000000}
                     onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+                    onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
                     className="w-32 px-6 py-2 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                   />
                 </div>
@@ -133,6 +156,7 @@ export default function EMICalculatorPage() {
                   step="0.1"
                   value={watchValues.annualRate || 8}
                   onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -144,6 +168,7 @@ export default function EMICalculatorPage() {
                     max="30"
                     value={watchValues.annualRate || 8}
                     onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+                    onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                     className="w-20 px-3 py-2 pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                   />
                 </div>
@@ -164,6 +189,7 @@ export default function EMICalculatorPage() {
                   max="30"
                   value={watchValues.years || 10}
                   onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
@@ -172,6 +198,7 @@ export default function EMICalculatorPage() {
                   max="30"
                   step="1"
                   value={watchValues.years || 10}
+                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   onChange={(e) => handleInputChange('years', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg text-center font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
                 />
@@ -182,12 +209,21 @@ export default function EMICalculatorPage() {
               <p className="text-xs text-gray-500 dark:text-gray-400">1 - 30 years</p>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-            >
-              💳 Calculate EMI
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              >
+                💳 Calculate EMI
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              >
+                🗑️ Clear
+              </button>
+            </div>
           </form>
         </div>
 

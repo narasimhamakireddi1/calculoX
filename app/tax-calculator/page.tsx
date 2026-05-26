@@ -41,6 +41,7 @@ export default function TaxCalculatorPage() {
     formState: { errors },
     watch,
     setValue,
+    reset,
   } = useForm<TaxFormData>({
     resolver: zodResolver(TaxSchema),
     defaultValues: {
@@ -54,6 +55,19 @@ export default function TaxCalculatorPage() {
 
   const handleIncomeChange = (value: number) => {
     setValue('income', value, { shouldValidate: true });
+  };
+
+  const handleValidateField = (fieldName: string, value: number) => {
+    if (fieldName === 'income' && (value < 0 || value > 100000000)) {
+      alert('Income must be between ₹0 and ₹10 Crore');
+    }
+  };
+
+  const handleReset = () => {
+    reset();
+    setResult(null);
+    setComparisonData([]);
+    setBreakdowns([]);
   };
 
   const onSubmit = (data: TaxFormData) => {
@@ -100,6 +114,7 @@ export default function TaxCalculatorPage() {
                   step="10000"
                   value={watchValues.income || 1000000}
                   onChange={(e) => handleIncomeChange(Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('income', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -111,6 +126,7 @@ export default function TaxCalculatorPage() {
                     step="10000"
                     value={watchValues.income || 1000000}
                     onChange={(e) => handleIncomeChange(Number(e.target.value))}
+                    onBlur={(e) => handleValidateField('income', Number(e.target.value))}
                     className="w-32 px-6 py-2 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                   />
                 </div>
@@ -179,12 +195,21 @@ export default function TaxCalculatorPage() {
               </p>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-            >
-              🧮 Calculate Tax
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              >
+                🧮 Calculate Tax
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              >
+                🗑️ Clear
+              </button>
+            </div>
           </form>
 
           {/* Info Box */}

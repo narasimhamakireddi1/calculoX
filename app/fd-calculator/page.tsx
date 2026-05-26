@@ -34,6 +34,7 @@ export default function FDCalculatorPage() {
     formState: { errors },
     watch,
     setValue,
+    reset,
   } = useForm<FDFormData>({
     resolver: zodResolver(FDSchema),
     defaultValues: {
@@ -45,8 +46,27 @@ export default function FDCalculatorPage() {
 
   const watchValues = watch();
 
+  const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
+    principal: { min: 10000, max: 100000000, label: 'Principal (₹)' },
+    annualRate: { min: 0, max: 20, label: 'Annual Rate (%)' },
+    years: { min: 1, max: 30, label: 'Years' },
+  };
+
   const handleInputChange = (fieldName: keyof FDFormData, value: number) => {
     setValue(fieldName, value, { shouldValidate: true });
+  };
+
+  const handleValidateField = (fieldName: string, value: number) => {
+    const range = fieldRanges[fieldName];
+    if (range && (value < range.min || value > range.max)) {
+      alert(`${range.label} must be between ${range.min} and ${range.max}`);
+    }
+  };
+
+  const handleReset = () => {
+    reset();
+    setResult(null);
+    setProjections([]);
   };
 
   const onSubmit = (data: FDFormData) => {
@@ -85,6 +105,7 @@ export default function FDCalculatorPage() {
                   step="10000"
                   value={watchValues.principal || 500000}
                   onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
@@ -94,6 +115,7 @@ export default function FDCalculatorPage() {
                   step="10000"
                   value={watchValues.principal || 500000}
                   onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
@@ -112,6 +134,7 @@ export default function FDCalculatorPage() {
                   step="0.1"
                   value={watchValues.annualRate || 6.5}
                   onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
@@ -121,6 +144,7 @@ export default function FDCalculatorPage() {
                   step="0.1"
                   value={watchValues.annualRate || 6.5}
                   onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
@@ -139,6 +163,7 @@ export default function FDCalculatorPage() {
                   step="1"
                   value={watchValues.years || 5}
                   onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
                 <input
@@ -147,6 +172,7 @@ export default function FDCalculatorPage() {
                   max="30"
                   value={watchValues.years || 5}
                   onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                 />
               </div>
@@ -154,12 +180,21 @@ export default function FDCalculatorPage() {
               <p className="text-xs text-gray-500 dark:text-gray-400">1 to 30 years</p>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
-            >
-              🏦 Calculate Maturity
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              >
+                🏦 Calculate Maturity
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              >
+                🗑️ Clear
+              </button>
+            </div>
           </form>
         </div>
 

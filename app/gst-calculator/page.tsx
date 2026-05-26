@@ -28,6 +28,7 @@ export default function GSTCalculatorPage() {
     formState: { errors },
     watch,
     setValue,
+    reset,
   } = useForm<GSTFormData>({
     resolver: zodResolver(GSTSchema),
     defaultValues: {
@@ -43,6 +44,17 @@ export default function GSTCalculatorPage() {
 
   const handleAmountChange = (value: number) => {
     setValue('amount', value, { shouldValidate: true });
+  };
+
+  const handleValidateField = (fieldName: string, value: number) => {
+    if (fieldName === 'amount' && (value < 100 || value > 100000000)) {
+      alert('Amount must be between ₹100 and ₹10 Crore');
+    }
+  };
+
+  const handleReset = () => {
+    reset();
+    setResult(null);
   };
 
   const onSubmit = (data: GSTFormData) => {
@@ -110,6 +122,7 @@ export default function GSTCalculatorPage() {
                   step="100"
                   value={watchValues.amount || 100000}
                   onChange={(e) => handleAmountChange(Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('amount', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
@@ -119,6 +132,7 @@ export default function GSTCalculatorPage() {
                   step="100"
                   value={watchValues.amount || 100000}
                   onChange={(e) => handleAmountChange(Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('amount', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
@@ -151,12 +165,21 @@ export default function GSTCalculatorPage() {
               {errors.gstRate && <p className="text-red-500 text-sm">{errors.gstRate.message}</p>}
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
-            >
-              🧮 Calculate GST
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              >
+                🧮 Calculate GST
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              >
+                🗑️ Clear
+              </button>
+            </div>
           </form>
         </div>
 

@@ -25,6 +25,7 @@ export default function CAGRCalculatorPage() {
     formState: { errors },
     watch,
     setValue,
+    reset,
   } = useForm<CAGRFormData>({
     resolver: zodResolver(CAGRSchema),
     defaultValues: {
@@ -36,8 +37,26 @@ export default function CAGRCalculatorPage() {
 
   const watchValues = watch();
 
+  const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
+    beginningValue: { min: 10000, max: 100000000, label: 'Beginning Value (₹)' },
+    endingValue: { min: 10000, max: 100000000, label: 'Ending Value (₹)' },
+    years: { min: 1, max: 50, label: 'Years' },
+  };
+
   const handleInputChange = (fieldName: keyof CAGRFormData, value: number) => {
     setValue(fieldName, value, { shouldValidate: true });
+  };
+
+  const handleValidateField = (fieldName: string, value: number) => {
+    const range = fieldRanges[fieldName];
+    if (range && (value < range.min || value > range.max)) {
+      alert(`${range.label} must be between ${range.min} and ${range.max}`);
+    }
+  };
+
+  const handleReset = () => {
+    reset();
+    setResult(null);
   };
 
   const onSubmit = (data: CAGRFormData) => {
@@ -70,6 +89,7 @@ export default function CAGRCalculatorPage() {
                   step="10000"
                   value={watchValues.beginningValue || 100000}
                   onChange={(e) => handleInputChange('beginningValue', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('beginningValue', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
@@ -79,6 +99,7 @@ export default function CAGRCalculatorPage() {
                   step="1000"
                   value={watchValues.beginningValue || 100000}
                   onChange={(e) => handleInputChange('beginningValue', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('beginningValue', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
@@ -97,6 +118,7 @@ export default function CAGRCalculatorPage() {
                   step="10000"
                   value={watchValues.endingValue || 300000}
                   onChange={(e) => handleInputChange('endingValue', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('endingValue', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
@@ -106,6 +128,7 @@ export default function CAGRCalculatorPage() {
                   step="1000"
                   value={watchValues.endingValue || 300000}
                   onChange={(e) => handleInputChange('endingValue', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('endingValue', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
@@ -124,6 +147,7 @@ export default function CAGRCalculatorPage() {
                   step="1"
                   value={watchValues.years || 5}
                   onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
                 <input
@@ -133,6 +157,7 @@ export default function CAGRCalculatorPage() {
                   step="1"
                   value={watchValues.years || 5}
                   onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                 />
               </div>
@@ -140,12 +165,21 @@ export default function CAGRCalculatorPage() {
               <p className="text-xs text-gray-500 dark:text-gray-400">1 to 50 years</p>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
-            >
-              📈 Calculate CAGR
-            </button>
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              >
+                📈 Calculate CAGR
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              >
+                🗑️ Clear
+              </button>
+            </div>
           </form>
         </div>
 

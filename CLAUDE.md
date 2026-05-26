@@ -3,7 +3,7 @@
 
 **Project:** CalculoX - Premium Online Calculator Platform  
 **Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Launched 🚀  
-**Last Updated:** 2026-05-26 (Session 6: Calculator Functionality & UX Improvements)  
+**Last Updated:** 2026-05-26 (Session 7: Input Validation & Clear Functionality)  
 **Tech Stack:** Next.js 14 + TypeScript + Tailwind + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
@@ -1461,3 +1461,110 @@ find app -name "page.tsx" -path "*-calculator*" -exec sed -i 's/className="w-20 
 4. Ready for deployment to Vercel
 
 **Status:** All calculators operational, validation fixed, ready for deployment 🚀
+
+---
+
+## 🔧 SESSION 7: INPUT VALIDATION & CLEAR FUNCTIONALITY (2026-05-26)
+
+### Objective
+Implement custom validation alerts and clear/reset button functionality across all 10 calculators for improved user experience.
+
+### Features Implemented
+
+✅ **Custom Validation Alerts**
+- Popup alerts when users enter invalid numbers outside the valid range
+- Alerts show field name and valid min/max values
+- Triggered on blur (when user leaves the input field)
+- Example: "Monthly Investment (₹) must be between 100 and 10,00,000"
+
+✅ **Clear/Reset Button**
+- Red "🗑️ Clear" button next to the "Calculate" button on every calculator
+- Clears all input fields back to default values
+- Resets result and chart data
+- Works seamlessly with form state management
+
+### Implementation Pattern
+
+For each calculator, added three key functions:
+
+```typescript
+// 1. Define field ranges
+const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
+  fieldName: { min: 100, max: 1000000, label: 'Field Label' },
+};
+
+// 2. Validation function
+const handleValidateField = (fieldName: string, value: number) => {
+  const range = fieldRanges[fieldName];
+  if (range && (value < range.min || value > range.max)) {
+    alert(`${range.label} must be between ${range.min} and ${range.max}`);
+  }
+};
+
+// 3. Reset function
+const handleReset = () => {
+  reset();
+  setResult(null);
+  setChartData([]);
+  // ... reset other state
+};
+```
+
+### Validation Applied to All Inputs
+
+- **SIP Calculator:** Monthly Investment, Years, Annual Return, Step Up %
+- **BMI Calculator:** Weight, Height (with unit-aware ranges)
+- **EMI Calculator:** Principal, Annual Rate, Years
+- **Tax Calculator:** Gross Income
+- **FD Calculator:** Principal, Annual Rate, Years
+- **RD Calculator:** Monthly Deposit, Annual Rate, Months
+- **Simple Interest Calculator:** Principal, Annual Rate, Years
+- **GST Calculator:** Amount
+- **Percentage Calculator:** Value A, Value B
+- **CAGR Calculator:** Beginning Value, Ending Value, Years
+
+### UI/UX Improvements
+
+**Button Layout:**
+```
+Before:  [Full-width Calculate Button]
+After:   [Calculate Button] [Clear Button]  (50% width each, gap between)
+```
+
+**Colors:**
+- Calculate: Blue gradient (primary action)
+- Clear: Red gradient (destructive action, secondary)
+
+**Behavior:**
+- Both buttons scale on hover (1.02x)
+- Clear button clears form and results immediately
+- Validation happens on blur, allowing instant feedback
+
+### Build Verification
+- ✅ `npm run build` passed successfully
+- ✅ All 14 pages compiled without errors
+- ✅ Zero TypeScript errors
+- ✅ Zero ESLint warnings
+- ✅ Build size optimized
+
+### Files Modified (10 Total)
+1. app/sip-calculator/page.tsx
+2. app/bmi-calculator/page.tsx
+3. app/emi-calculator/page.tsx
+4. app/tax-calculator/page.tsx
+5. app/fd-calculator/page.tsx
+6. app/rd-calculator/page.tsx
+7. app/simple-interest-calculator/page.tsx
+8. app/gst-calculator/page.tsx
+9. app/percentage-calculator/page.tsx
+10. app/cagr-calculator/page.tsx
+
+### Key Benefits for Users
+
+1. **Input Validation:** Immediate feedback when entering invalid values
+2. **Easy Reset:** One-click to clear all fields and start over
+3. **Better UX:** Alerts guide users on valid input ranges
+4. **Consistency:** Same validation pattern across all calculators
+5. **Mobile Friendly:** Clear buttons with adequate touch targets (50% width)
+
+**Status:** All validation and clear functionality implemented ✅ | Build successful 🚀 | Ready for production deployment
