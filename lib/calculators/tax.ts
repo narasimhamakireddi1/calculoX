@@ -1,5 +1,5 @@
 /**
- * Income Tax Calculator Logic (India FY 2024-25)
+ * Income Tax Calculator Logic (India FY 2025-26)
  * Accurate calculation based on official government tax rates, surcharge, and rebates
  * Sources: incometax.gov.in, CBDT, ClearTax
  */
@@ -39,12 +39,13 @@ function calculateNewRegimeTax(taxableIncome: number): { tax: number; breakdowns
   let tax = 0;
 
   const slabs = [
-    { min: 0, max: 300000, rate: 0 },
-    { min: 300000, max: 600000, rate: 5 },
-    { min: 600000, max: 900000, rate: 10 },
-    { min: 900000, max: 1200000, rate: 15 },
-    { min: 1200000, max: 1500000, rate: 20 },
-    { min: 1500000, max: Infinity, rate: 30 },
+    { min: 0, max: 400000, rate: 0 },
+    { min: 400000, max: 800000, rate: 5 },
+    { min: 800000, max: 1200000, rate: 10 },
+    { min: 1200000, max: 1600000, rate: 15 },
+    { min: 1600000, max: 2000000, rate: 20 },
+    { min: 2000000, max: 2400000, rate: 25 },
+    { min: 2400000, max: Infinity, rate: 30 },
   ];
 
   for (const slab of slabs) {
@@ -118,15 +119,15 @@ function calculateOldRegimeTax(
   return { tax, breakdowns };
 }
 
-// Calculate Section 87A Rebate (FY 2024-25)
+// Calculate Section 87A Rebate (FY 2025-26)
 function calculateRebate(taxAmount: number, taxableIncome: number, regime: 'old' | 'new'): number {
   if (regime === 'new') {
-    // New regime: ₹25,000 rebate for taxable income ≤ ₹7,00,000
-    if (taxableIncome <= 700000) {
-      return Math.min(25000, taxAmount);
+    // New regime: ₹60,000 rebate for taxable income ≤ ₹12,00,000 (makes income up to ₹12L tax-free)
+    if (taxableIncome <= 1200000) {
+      return Math.min(60000, taxAmount);
     }
   } else {
-    // Old regime: ₹12,500 rebate for taxable income ≤ ₹5,00,000
+    // Old regime: ₹12,500 rebate for taxable income ≤ ₹5,00,000 (makes income up to ₹5L tax-free)
     if (taxableIncome <= 500000) {
       return Math.min(12500, taxAmount);
     }
@@ -134,7 +135,7 @@ function calculateRebate(taxAmount: number, taxableIncome: number, regime: 'old'
   return 0;
 }
 
-// Calculate Surcharge (FY 2024-25)
+// Calculate Surcharge (FY 2025-26)
 function calculateSurcharge(taxAmount: number, grossIncome: number): number {
   if (grossIncome <= 5000000) {
     return 0; // No surcharge up to ₹50 lakh

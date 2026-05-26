@@ -1,66 +1,100 @@
-import type { Metadata } from 'next';
-import Script from 'next/script';
-import './globals.css';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/seo/schemas';
+import type { Metadata } from "next";
+import Script from "next/script";
+import "./globals.css";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import {
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+} from "@/lib/seo/schemas";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://calculo-j0blqmgpy-narasimha-project135.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'CalculoX - Free Online Calculators for India | SIP, EMI, BMI, Tax',
-    template: '%s | CalculoX',
+    default:
+      "CalculoX - Free Online Calculators for India | SIP, EMI, BMI, Tax",
+    template: "%s | CalculoX",
   },
-  description: 'CalculoX offers free premium online calculators for Indian users. Calculate SIP returns, loan EMI, BMI, income tax (FY 2024-25), and more. Fast, accurate & mobile-friendly.',
+  description:
+    "CalculoX offers free premium online calculators for Indian users. Calculate SIP returns, loan EMI, BMI, income tax (FY 2024-25), and more. Fast, accurate & mobile-friendly.",
   keywords: [
-    'calculator', 'online calculator', 'free calculator India',
-    'SIP calculator', 'EMI calculator', 'BMI calculator', 'tax calculator',
-    'income tax calculator India', 'loan calculator', 'investment calculator',
-    'financial calculator India', 'SIP return calculator', 'home loan EMI calculator',
-    'body mass index calculator', 'income tax 2024-25', 'FD calculator',
-    'RD calculator', 'GST calculator', 'percentage calculator', 'CAGR calculator',
-    'CalculoX', 'calculox.in',
+    "calculator",
+    "online calculator",
+    "free calculator India",
+    "SIP calculator",
+    "EMI calculator",
+    "BMI calculator",
+    "tax calculator",
+    "income tax calculator India",
+    "loan calculator",
+    "investment calculator",
+    "financial calculator India",
+    "SIP return calculator",
+    "home loan EMI calculator",
+    "body mass index calculator",
+    "income tax 2024-25",
+    "FD calculator",
+    "RD calculator",
+    "GST calculator",
+    "percentage calculator",
+    "CAGR calculator",
+    "CalculoX",
+    "calculox.in",
   ],
-  authors: [{ name: 'CalculoX Team', url: BASE_URL }],
-  creator: 'CalculoX',
-  publisher: 'CalculoX',
-  category: 'Finance',
+  authors: [{ name: "CalculoX Team", url: BASE_URL }],
+  creator: "CalculoX",
+  publisher: "CalculoX",
+  category: "Finance",
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large', 'max-video-preview': -1 },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
   alternates: { canonical: BASE_URL },
   openGraph: {
-    type: 'website',
-    locale: 'en_IN',
+    type: "website",
+    locale: "en_IN",
     url: BASE_URL,
-    siteName: 'CalculoX',
-    title: 'CalculoX - Free Online Calculators for India',
-    description: 'Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more. Fast, accurate & mobile-friendly.',
+    siteName: "CalculoX",
+    title: "CalculoX - Free Online Calculators for India",
+    description:
+      "Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more. Fast, accurate & mobile-friendly.",
   },
   twitter: {
-    card: 'summary_large_image',
-    site: '@calculox',
-    creator: '@calculox',
-    title: 'CalculoX - Free Online Calculators for India',
-    description: 'Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more.',
+    card: "summary_large_image",
+    site: "@calculox",
+    creator: "@calculox",
+    title: "CalculoX - Free Online Calculators for India",
+    description:
+      "Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more.",
   },
   icons: {
-    icon: '/icon.svg',
-    apple: '/icon.svg',
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || '',
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "",
   },
   other: {
-    'google-adsense-account': process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || '',
+    "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const orgSchema = generateOrganizationSchema();
   const siteSchema = generateWebSiteSchema();
 
@@ -88,9 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
         <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
     </html>

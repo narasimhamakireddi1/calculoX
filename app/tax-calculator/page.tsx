@@ -216,10 +216,9 @@ export default function TaxCalculatorPage() {
           </form>
 
           {/* Info Box */}
-          <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+          <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500" suppressHydrationWarning>
             <p className="text-sm text-blue-700 dark:text-blue-400">
-              <strong>Note:</strong> This calculator includes surcharge (10-15% for high incomes), Section 87A rebate, and 4% Health & Education Cess for accurate results.
-              For individual tax advice, consult a CA.
+              <strong>Note:</strong> This calculator includes surcharge (10-15% for high incomes), Section 87A rebate, and 4% Health & Education Cess for accurate results. For individual tax advice, consult a CA.
             </p>
           </div>
         </div>
