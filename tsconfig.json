@@ -18,6 +18,7 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "types": ["node"],
     "declaration": true,
     "sourceMap": true,
     "jsx": "preserve",
