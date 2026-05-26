@@ -40,6 +40,7 @@ export default function TaxCalculatorPage() {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm<TaxFormData>({
     resolver: zodResolver(TaxSchema),
     defaultValues: {
@@ -50,6 +51,10 @@ export default function TaxCalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const handleIncomeChange = (value: number) => {
+    setValue('income', value, { shouldValidate: true });
+  };
 
   const onSubmit = (data: TaxFormData) => {
     const result = calculateTax(data);
@@ -93,7 +98,8 @@ export default function TaxCalculatorPage() {
                   min="0"
                   max="10000000"
                   step="10000"
-                  {...register('income', { valueAsNumber: true })}
+                  value={watchValues.income || 1000000}
+                  onChange={(e) => handleIncomeChange(Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -103,7 +109,8 @@ export default function TaxCalculatorPage() {
                     min="0"
                     max="10000000"
                     step="10000"
-                    {...register('income', { valueAsNumber: true })}
+                    value={watchValues.income || 1000000}
+                    onChange={(e) => handleIncomeChange(Number(e.target.value))}
                     className="w-32 px-6 py-2 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                   />
                 </div>
