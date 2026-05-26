@@ -40,7 +40,6 @@ export const metadata: Metadata = {
     siteName: 'CalculoX',
     title: 'CalculoX - Free Online Calculators for India',
     description: 'Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more. Fast, accurate & mobile-friendly.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CalculoX - Free Online Calculators for India' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -48,7 +47,10 @@ export const metadata: Metadata = {
     creator: '@calculox',
     title: 'CalculoX - Free Online Calculators for India',
     description: 'Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more.',
-    images: ['/og-image.png'],
+  },
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || '',
