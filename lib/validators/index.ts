@@ -31,19 +31,19 @@ export const TaxSchema = z.object({
 
 export const FDSchema = z.object({
   principal: z.number().positive('Principal must be greater than 0').max(100000000),
-  annualRate: z.number().min(0.01).max(20),
+  annualRate: z.number().min(0).max(20),
   years: z.number().int().min(1).max(30),
 });
 
 export const RDSchema = z.object({
   monthlyDeposit: z.number().positive('Monthly deposit must be greater than 0').max(10000000),
-  annualRate: z.number().min(0.01).max(20),
+  annualRate: z.number().min(0).max(20),
   months: z.number().int().min(1).max(600),
 });
 
 export const SimpleInterestSchema = z.object({
   principal: z.number().positive('Principal must be greater than 0').max(100000000),
-  annualRate: z.number().min(0.01).max(50),
+  annualRate: z.number().min(0).max(50),
   years: z.number().int().min(1).max(50),
 });
 

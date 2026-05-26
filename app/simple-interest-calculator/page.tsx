@@ -107,7 +107,7 @@ export default function SimpleInterestCalculatorPage() {
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
-                  min="0.01"
+                  min="0"
                   max="50"
                   step="0.1"
                   value={watchValues.annualRate || 8}
@@ -116,7 +116,7 @@ export default function SimpleInterestCalculatorPage() {
                 />
                 <input
                   type="number"
-                  min="0.01"
+                  min="0"
                   max="50"
                   step="0.1"
                   value={watchValues.annualRate || 8}

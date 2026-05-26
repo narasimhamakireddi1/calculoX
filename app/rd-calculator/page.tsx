@@ -108,7 +108,7 @@ export default function RDCalculatorPage() {
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
-                  min="0.01"
+                  min="0"
                   max="20"
                   step="0.1"
                   value={watchValues.annualRate || 6.5}
@@ -117,7 +117,7 @@ export default function RDCalculatorPage() {
                 />
                 <input
                   type="number"
-                  min="0.01"
+                  min="0"
                   max="20"
                   step="0.1"
                   value={watchValues.annualRate || 6.5}
