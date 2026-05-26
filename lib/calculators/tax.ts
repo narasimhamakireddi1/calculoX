@@ -1,6 +1,7 @@
 /**
  * Income Tax Calculator Logic (India FY 2024-25)
- * Calculate income tax based on Indian tax slabs
+ * Accurate calculation based on official government tax rates, surcharge, and rebates
+ * Sources: incometax.gov.in, CBDT, ClearTax
  */
 
 export interface TaxInput {
@@ -14,6 +15,8 @@ export interface TaxResult {
   standardDeduction: number;
   taxableIncome: number;
   taxAmount: number;
+  rebate: number;
+  surcharge: number;
   cess: number;
   totalTax: number;
   effectiveRate: number;
@@ -27,13 +30,14 @@ export interface TaxBreakdown {
   tax: number;
 }
 
-const STANDARD_DEDUCTION = 50000;
+// Standard deduction varies by regime (FY 2024-25)
+const STANDARD_DEDUCTION_NEW = 75000; // New regime: ₹75,000
+const STANDARD_DEDUCTION_OLD = 50000; // Old regime: ₹50,000
 
 function calculateNewRegimeTax(taxableIncome: number): { tax: number; breakdowns: TaxBreakdown[] } {
   const breakdowns: TaxBreakdown[] = [];
   let tax = 0;
 
-  // New Tax Regime Slabs (FY 2024-25)
   const slabs = [
     { min: 0, max: 300000, rate: 0 },
     { min: 300000, max: 600000, rate: 5 },
@@ -87,7 +91,6 @@ function calculateOldRegimeTax(
       { min: 1000000, max: Infinity, rate: 30 },
     ];
   } else {
-    // above80
     slabs = [
       { min: 0, max: 500000, rate: 0 },
       { min: 500000, max: 1000000, rate: 20 },
@@ -115,24 +118,67 @@ function calculateOldRegimeTax(
   return { tax, breakdowns };
 }
 
+// Calculate Section 87A Rebate (FY 2024-25)
+function calculateRebate(taxAmount: number, taxableIncome: number, regime: 'old' | 'new'): number {
+  if (regime === 'new') {
+    // New regime: ₹25,000 rebate for taxable income ≤ ₹7,00,000
+    if (taxableIncome <= 700000) {
+      return Math.min(25000, taxAmount);
+    }
+  } else {
+    // Old regime: ₹12,500 rebate for taxable income ≤ ₹5,00,000
+    if (taxableIncome <= 500000) {
+      return Math.min(12500, taxAmount);
+    }
+  }
+  return 0;
+}
+
+// Calculate Surcharge (FY 2024-25)
+function calculateSurcharge(taxAmount: number, grossIncome: number): number {
+  if (grossIncome <= 5000000) {
+    return 0; // No surcharge up to ₹50 lakh
+  } else if (grossIncome <= 10000000) {
+    // 10% surcharge for ₹50L - ₹1Cr
+    return (taxAmount * 10) / 100;
+  } else {
+    // 15% surcharge for above ₹1Cr
+    return (taxAmount * 15) / 100;
+  }
+}
+
+// Calculate Health & Education Cess (4% on tax + surcharge)
+function calculateCess(taxAmount: number, surchargeAmount: number): number {
+  return ((taxAmount + surchargeAmount) * 4) / 100;
+}
+
 export function calculateTax(input: TaxInput): TaxResult {
   const { income, regime, age } = input;
 
-  const standardDeduction = income > 0 ? STANDARD_DEDUCTION : 0;
+  // Determine standard deduction based on regime
+  const standardDeduction = income > 0 ? (regime === 'new' ? STANDARD_DEDUCTION_NEW : STANDARD_DEDUCTION_OLD) : 0;
   const taxableIncome = Math.max(0, income - standardDeduction);
 
+  // Calculate income tax based on slabs
   let taxAmount = 0;
   if (regime === 'new') {
-    const result = calculateNewRegimeTax(taxableIncome);
-    taxAmount = result.tax;
+    taxAmount = calculateNewRegimeTax(taxableIncome).tax;
   } else {
-    const result = calculateOldRegimeTax(taxableIncome, age);
-    taxAmount = result.tax;
+    taxAmount = calculateOldRegimeTax(taxableIncome, age).tax;
   }
 
-  // Health and Education Cess: 4% on income tax
-  const cess = (taxAmount * 4) / 100;
-  const totalTax = taxAmount + cess;
+  // Apply Section 87A Rebate
+  const rebate = calculateRebate(taxAmount, taxableIncome, regime);
+  const taxAfterRebate = Math.max(0, taxAmount - rebate);
+
+  // Calculate Surcharge (on tax after rebate)
+  const surcharge = calculateSurcharge(taxAfterRebate, income);
+
+  // Calculate Health & Education Cess (4% on tax + surcharge)
+  const cess = calculateCess(taxAfterRebate, surcharge);
+
+  // Total tax liability
+  const totalTax = taxAfterRebate + surcharge + cess;
   const effectiveRate = income > 0 ? (totalTax / income) * 100 : 0;
 
   return {
@@ -140,6 +186,8 @@ export function calculateTax(input: TaxInput): TaxResult {
     standardDeduction,
     taxableIncome,
     taxAmount: parseFloat(taxAmount.toFixed(2)),
+    rebate: parseFloat(rebate.toFixed(2)),
+    surcharge: parseFloat(surcharge.toFixed(2)),
     cess: parseFloat(cess.toFixed(2)),
     totalTax: parseFloat(totalTax.toFixed(2)),
     effectiveRate: parseFloat(effectiveRate.toFixed(2)),
@@ -149,7 +197,8 @@ export function calculateTax(input: TaxInput): TaxResult {
 
 export function getTaxBreakdown(input: TaxInput): TaxBreakdown[] {
   const { income, regime, age } = input;
-  const taxableIncome = Math.max(0, income - STANDARD_DEDUCTION);
+  const standardDeduction = regime === 'new' ? STANDARD_DEDUCTION_NEW : STANDARD_DEDUCTION_OLD;
+  const taxableIncome = Math.max(0, income - standardDeduction);
 
   if (regime === 'new') {
     return calculateNewRegimeTax(taxableIncome).breakdowns;

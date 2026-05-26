@@ -20,6 +20,8 @@ interface TaxResultData {
   standardDeduction: number;
   taxableIncome: number;
   taxAmount: number;
+  rebate: number;
+  surcharge: number;
   cess: number;
   totalTax: number;
   effectiveRate: number;
@@ -216,8 +218,8 @@ export default function TaxCalculatorPage() {
           {/* Info Box */}
           <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
             <p className="text-sm text-blue-700 dark:text-blue-400">
-              <strong>Note:</strong> This calculator applies a standard deduction of ₹50,000 and 4% Health & Education Cess.
-              For accurate results, consult a tax professional.
+              <strong>Note:</strong> This calculator includes surcharge (10-15% for high incomes), Section 87A rebate, and 4% Health & Education Cess for accurate results.
+              For individual tax advice, consult a CA.
             </p>
           </div>
         </div>
@@ -261,11 +263,31 @@ export default function TaxCalculatorPage() {
                   </p>
                 </div>
 
+                {/* Rebate (Section 87A) */}
+                {result.rebate > 0 && (
+                  <div className="bg-gradient-to-br from-lime-50 to-green-50 dark:from-lime-900/30 dark:to-green-900/30 p-5 rounded-lg border border-lime-300 dark:border-lime-700 shadow-sm hover:shadow-md transition-shadow">
+                    <p className="text-lime-700 dark:text-lime-300 text-xs uppercase tracking-wide font-semibold mb-2">✨ Section 87A Rebate</p>
+                    <p className="text-3xl font-bold text-lime-700 dark:text-lime-400">
+                      -{formatCurrency(result.rebate)}
+                    </p>
+                  </div>
+                )}
+
+                {/* Surcharge */}
+                {result.surcharge > 0 && (
+                  <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/30 dark:to-orange-900/30 p-5 rounded-lg border border-yellow-300 dark:border-yellow-700 shadow-sm hover:shadow-md transition-shadow">
+                    <p className="text-yellow-700 dark:text-yellow-300 text-xs uppercase tracking-wide font-semibold mb-2">⚠️ Surcharge (High Income)</p>
+                    <p className="text-3xl font-bold text-yellow-700 dark:text-yellow-400">
+                      +{formatCurrency(result.surcharge)}
+                    </p>
+                  </div>
+                )}
+
                 {/* Cess */}
                 <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-5 rounded-lg border border-purple-300 dark:border-purple-700 shadow-sm hover:shadow-md transition-shadow">
                   <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">🏥 Health & Education Cess</p>
                   <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
-                    {formatCurrency(result.cess)}
+                    +{formatCurrency(result.cess)}
                   </p>
                 </div>
 
@@ -409,7 +431,13 @@ export default function TaxCalculatorPage() {
               <span className="transition-transform group-open:rotate-180">▼</span>
             </summary>
             <p className="pb-4 text-gray-600 dark:text-gray-400">
-              Standard deduction is ₹50,000 for FY 2024-25. It&apos;s a fixed amount deducted from your gross income before calculating tax, available in both old and new regimes.
+              Standard deduction is a fixed amount deducted from gross income before calculating tax.
+              <br />
+              <strong>New Regime:</strong> ₹75,000 (FY 2024-25)
+              <br />
+              <strong>Old Regime:</strong> ₹50,000 (FY 2024-25)
+              <br />
+              It&apos;s available for salaried employees and pensioners in both regimes.
             </p>
           </details>
 
@@ -439,11 +467,43 @@ export default function TaxCalculatorPage() {
 
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
+              What is Section 87A Rebate?
+              <span className="transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p className="pb-4 text-gray-600 dark:text-gray-400">
+              Section 87A Rebate is a government benefit that reduces income tax for lower-income earners.
+              <br />
+              <strong>New Regime:</strong> ₹25,000 rebate for taxable income ≤ ₹7,00,000 (can make income up to ₹7.75L tax-free)
+              <br />
+              <strong>Old Regime:</strong> ₹12,500 rebate for taxable income ≤ ₹5,00,000 (can make income up to ₹5.5L tax-free)
+              <br />
+              The new regime rebate is better, making it favorable for most salaried employees.
+            </p>
+          </details>
+
+          <details className="group border-b border-gray-200 dark:border-gray-700">
+            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
+              What is Surcharge?
+              <span className="transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p className="pb-4 text-gray-600 dark:text-gray-400">
+              Surcharge is an additional tax for very high earners.
+              <br />
+              <strong>10% Surcharge:</strong> Applicable when gross income is between ₹50 Lakh and ₹1 Crore
+              <br />
+              <strong>15% Surcharge:</strong> Applicable when gross income exceeds ₹1 Crore
+              <br />
+              Surcharge is applied on top of regular income tax and increases your total tax liability.
+            </p>
+          </details>
+
+          <details className="group border-b border-gray-200 dark:border-gray-700">
+            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
               How is effective tax rate calculated?
               <span className="transition-transform group-open:rotate-180">▼</span>
             </summary>
             <p className="pb-4 text-gray-600 dark:text-gray-400">
-              Effective tax rate = (Total Tax / Gross Income) × 100. It shows what percentage of your total income goes towards taxes. A lower effective rate is better.
+              Effective tax rate = (Total Tax / Gross Income) × 100. It shows what percentage of your total income goes towards taxes, including income tax, surcharge, and health & education cess. A lower effective rate is better.
             </p>
           </details>
         </div>
