@@ -1436,10 +1436,28 @@ find app -name "page.tsx" -path "*-calculator*" -exec sed -i 's/className="w-20 
 | Tax | Income slider synchronization | 1 |
 | **Total** | **5 Issues** | **5 Files** |
 
-### Next Steps
-1. Test all 4 fixed calculators in browser
-2. Verify slider responsiveness on mobile devices
-3. Check dark mode appearance
-4. Deploy to Vercel with `git push origin main`
+**FIX #6: Rate Input Step/Min Alignment** ✅
+- **Issue:** Range inputs with `min="0.01"` and `step="0.1"` don't align properly. Valid values: 0.01, 0.11, 0.21... 7.91, 8.01. So 8.0 is INVALID!
+- **Browser Error:** "Please enter a valid value. The two nearest valid values are 7.91 and 8.01"
+- **Solution:** Changed min from 0.01 to 0 for all rate inputs to align with step
+- **Affected Calculators:**
+  - Simple Interest Calculator (annualRate)
+  - FD Calculator (annualRate)
+  - RD Calculator (annualRate)
+- **Files Modified:** 4 files (3 pages + 1 validator)
+- **Impact:** All rate inputs now accept typical values like 8%, 6.5%, etc. without validation errors
 
-**Status:** Ready for testing and deployment 🚀
+### Summary: All Validation Issues Fixed ✅
+| Calc | Issue | Solution | Status |
+|------|-------|----------|--------|
+| Simple Interest | Rate validation | min: 0.01→0 | ✅ |
+| FD | Rate validation | min: 0.01→0 | ✅ |
+| RD | Rate validation | min: 0.01→0 | ✅ |
+
+### Next Steps
+1. ✅ All validation errors fixed
+2. ✅ Production build: PASSED
+3. ✅ All 6 fixes committed and tested
+4. Ready for deployment to Vercel
+
+**Status:** All calculators operational, validation fixed, ready for deployment 🚀
