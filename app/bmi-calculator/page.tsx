@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
+import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 
 type BMIFormData = {
   weight: number;
@@ -392,6 +393,19 @@ export default function BMICalculatorPage() {
           </div>
         </div>
       </div>
+
+      {/* Affiliate Banner */}
+      <AffiliateBanner
+        icon="🥗"
+        headline="Achieve Your Ideal Weight with Expert Guidance"
+        subtext="Get a personalized diet plan & fitness routine from certified coaches based on your BMI."
+        note="AI-powered nutrition · Certified coaches · 3 Crore+ users in India"
+        gradient="bg-gradient-to-r from-pink-500 to-rose-600"
+        links={[
+          { label: 'Get Free Diet Plan →', href: 'https://www.healthifyme.com', primary: true },
+          { label: 'Start Free Trial', href: 'https://www.healthifyme.com' },
+        ]}
+      />
 
       {/* FAQ Section */}
       <div className="card">

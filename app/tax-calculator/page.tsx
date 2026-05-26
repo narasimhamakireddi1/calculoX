@@ -7,6 +7,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { calculateTax, getTaxBreakdown } from '@/lib/calculators/tax';
 import { TaxSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 
 type TaxFormData = {
   income: number;
@@ -372,6 +373,19 @@ export default function TaxCalculatorPage() {
           </div>
         </div>
       )}
+
+      {/* Affiliate Banner */}
+      <AffiliateBanner
+        icon="📋"
+        headline="File Your ITR for Free — FY 2024-25"
+        subtext="India's #1 tax filing platform. File ITR in minutes with auto-filled data from Form 16."
+        note="New & Old regime support · CA assistance available · 6 Crore+ ITRs filed"
+        gradient="bg-gradient-to-r from-orange-500 to-amber-600"
+        links={[
+          { label: 'File ITR Free on ClearTax →', href: 'https://cleartax.in', primary: true },
+          { label: 'Get CA Assistance', href: 'https://cleartax.in/ca-assisted-filing' },
+        ]}
+      />
 
       {/* FAQ Section */}
       <div className="card">

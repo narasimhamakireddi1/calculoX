@@ -7,6 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { calculateSIP } from '@/lib/calculators/sip';
 import { SIPSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 
 type SIPFormData = {
   monthlyInvestment: number;
@@ -464,6 +465,19 @@ export default function SIPCalculatorPage() {
           </ResponsiveContainer>
         </div>
       )}
+
+      {/* Affiliate Banner */}
+      <AffiliateBanner
+        icon="📈"
+        headline="Ready to Start Your SIP Investment?"
+        subtext="Open a free demat account and start SIP from ₹500/month in top mutual funds."
+        note="Free account · ₹0 AMC · 5-minute setup · 1 Crore+ investors"
+        gradient="bg-gradient-to-r from-green-600 to-emerald-700"
+        links={[
+          { label: 'Start SIP on Groww →', href: 'https://groww.in', primary: true },
+          { label: 'Open Zerodha Account', href: 'https://zerodha.com' },
+        ]}
+      />
 
       {/* FAQ Section */}
       <div className="card">

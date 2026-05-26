@@ -7,6 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/emi';
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 
 type EMIFormData = {
   principal: number;
@@ -379,6 +380,19 @@ export default function EMICalculatorPage() {
           </p>
         </div>
       )}
+
+      {/* Affiliate Banner */}
+      <AffiliateBanner
+        icon="🏦"
+        headline="Get the Lowest Loan Rate for Your EMI"
+        subtext="Compare home loan, car loan & personal loan rates from 20+ banks instantly."
+        note="Free comparison · No credit score impact · Instant eligibility check"
+        gradient="bg-gradient-to-r from-blue-600 to-blue-800"
+        links={[
+          { label: 'Compare Loan Rates →', href: 'https://www.bankbazaar.com/home-loan.html', primary: true },
+          { label: 'Check Eligibility', href: 'https://www.paisabazaar.com/home-loan/' },
+        ]}
+      />
 
       {/* FAQ Section */}
       <div className="card">

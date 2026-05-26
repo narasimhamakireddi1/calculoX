@@ -1859,9 +1859,12 @@ When Phase 2 Batch 1 is ready to launch:
 Implement production-grade SEO across all pages to rank on Google for Indian finance keywords. Domain: `calculox.in` (DNS propagation pending 48h). All files use `NEXT_PUBLIC_SITE_URL` env var — switch to custom domain instantly by updating one Vercel env variable.
 
 ### Domain Strategy
-- **Current URL:** `https://calculo-j0blqmgpy-narasimha-project135.vercel.app`
-- **Target domain:** `https://www.calculox.in` (DNS editing available after 48h from GoDaddy)
-- **To switch domain:** Set `NEXT_PUBLIC_SITE_URL=https://www.calculox.in` in Vercel Environment Variables → Redeploy → Done
+- **Live URL:** `https://www.calculox.in` ✅ LIVE
+- **Root redirect:** `https://calculox.in` → redirects to www ✅
+- **Old Vercel URL:** `https://calculo-j0blqmgpy-narasimha-project135.vercel.app` (still works)
+- **DNS Records configured in GoDaddy:**
+  - A record: `@` → `216.198.79.1` (root domain)
+  - CNAME record: `www` → `54e34be02b2e9a45.vercel-dns-017.com`
 
 ### Files Created (15 New Files)
 
@@ -1948,12 +1951,14 @@ Implement production-grade SEO across all pages to rank on Google for Indian fin
 - ✅ All routes verified: `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`
 
 ### Next Steps After Domain DNS Propagates (48h)
-1. Set `NEXT_PUBLIC_SITE_URL=https://www.calculox.in` in Vercel → Environment Variables
-2. Redeploy (`git push origin main` or click Redeploy in Vercel)
-3. Submit sitemap to **Google Search Console**: `https://www.calculox.in/sitemap.xml`
-4. Submit sitemap to **Bing Webmaster Tools**
-5. Apply for **Google AdSense** (Privacy Policy page is now live)
-6. Verify site with Google Search Console verification meta tag (add `NEXT_PUBLIC_GOOGLE_VERIFICATION=<code>` in Vercel env vars)
+1. ✅ Deployed to Vercel — `git push origin main` done
+2. ✅ `NEXT_PUBLIC_SITE_URL=https://www.calculox.in` set in Vercel Environment Variables
+3. ✅ DNS configured in GoDaddy — A record (216.198.79.1) + CNAME (www) set
+4. ✅ `www.calculox.in` connected to Vercel
+5. ✅ Google Search Console verified — `NEXT_PUBLIC_GOOGLE_VERIFICATION` set in Vercel env vars
+6. ⏳ Submit sitemap in Google Search Console: `https://www.calculox.in/sitemap.xml`
+7. ⏳ Submit sitemap to **Bing Webmaster Tools**
+8. ✅ Applied for **Google AdSense** — site: `calculox.in` | Country: India | Awaiting approval (1-2 weeks)
 
 ### Monetization Readiness (Post-SEO)
 - ✅ Privacy Policy page live → Apply for Google AdSense
