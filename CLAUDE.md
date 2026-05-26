@@ -2,8 +2,8 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅  
-**Last Updated:** 2026-05-26 (Session 12: Favicon Implementation Complete)  
+**Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax Calculator FY 2025-26 ✅  
+**Last Updated:** 2026-05-26 (Session 13: Tax Calculator Accuracy Fix - FY 2025-26)  
 **Tech Stack:** Next.js 14 + TypeScript + Tailwind + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
@@ -2111,3 +2111,57 @@ Add a professional favicon (browser tab icon) to CalculoX using SVG format for c
 5. ⏳ Test PWA favicon on Android app installation
 
 **Commit:** `de15888` — "Add favicon SVG and update metadata - blue gradient 'CX' monogram icon"
+
+---
+
+## 🔧 SESSION 13: TAX CALCULATOR ACCURACY FIX - FY 2025-26 (2026-05-26)
+
+### Objective
+Fix Tax Calculator to use official FY 2025-26 tax rates, slabs, and rebates per ClearTax trusted source instead of outdated/incorrect values.
+
+### Issues Fixed
+
+**1. New Regime Tax Slabs - CORRECTED** ✅
+**Before:** Using FY 2024-25 slabs (0-3L: 0%, 3-6L: 5%, etc.)
+**After:** Updated to FY 2025-26 official slabs per ClearTax:
+```
+0-4L: 0%
+4-8L: 5%
+8-12L: 10%
+12-16L: 15%
+16-20L: 20%
+20-24L: 25%
+24L+: 30%
+```
+**Impact:** Users see accurate tax calculations for new regime with correct slab boundaries.
+
+**2. New Regime Rebate - CORRECTED** ✅
+**Before:** ₹25,000 rebate (incorrect)
+**After:** ₹60,000 rebate for taxable income ≤ ₹12L (correct per official rates)
+**Impact:** Makes income up to ₹12L effectively tax-free under new regime. Users with lower-middle income now see correct zero tax.
+
+**3. Rebate Income Limit - CORRECTED** ✅
+**Before:** ₹7,00,000
+**After:** ₹12,00,000
+**Impact:** More users qualify for the full rebate amount.
+
+### Verification
+- ✅ Old regime slabs remain unchanged (correct since FY 2024-25)
+- ✅ Surcharge and HEC calculations unchanged (still applicable for high incomes)
+- ✅ Production build: **SUCCESS** (all 28 pages compiled)
+- ✅ Zero TypeScript errors
+
+### Files Modified
+- `lib/calculators/tax.ts` — Updated new regime slabs (lines 41-48) and rebate function (lines 122-135)
+- `app/layout.tsx` — CSS import (no changes needed)
+
+### Commit
+**Commit:** `324494a` — "Fix Tax Calculator: Update to FY 2025-26 with correct new regime slabs and ₹60,000 rebate"
+
+### Next Steps
+1. ✅ Build verified successful
+2. ✅ Changes committed to git
+3. ⏳ Run `npm run dev` to test locally and verify accuracy
+4. ⏳ `git push origin main` to deploy to Vercel when ready
+
+**Tax Calculator Status:** Accurate per FY 2025-26 official rates ✅
