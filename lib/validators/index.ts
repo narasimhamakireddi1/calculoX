@@ -9,6 +9,7 @@ export const SIPSchema = z.object({
   monthlyInvestment: z.number().positive('Must be greater than 0').max(100000000),
   years: z.number().int().min(1).max(50),
   annualReturn: z.number().min(0).max(100),
+  stepUpPercent: z.number().min(0).max(50).optional().default(0),
 });
 
 export const EMISchema = z.object({

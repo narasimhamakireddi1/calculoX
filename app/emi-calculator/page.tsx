@@ -87,67 +87,96 @@ export default function EMICalculatorPage() {
           <h2 className="text-2xl font-bold mb-6">Loan Details</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Principal */}
-            <div>
-              <label className="block text-sm font-semibold mb-2">Loan Amount (₹)</label>
-              <div className="relative">
-                <span className="absolute left-3 top-3 text-gray-500">₹</span>
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Loan Amount (₹)</label>
+              <div className="flex gap-3 items-center">
                 <input
-                  type="number"
-                  placeholder="1000000"
+                  type="range"
+                  min="100000"
+                  max="10000000"
+                  step="10000"
                   {...register('principal', { valueAsNumber: true })}
-                  className="w-full pl-7 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
+                <div className="relative flex-shrink-0">
+                  <span className="absolute left-2 top-2.5 text-blue-600 font-bold text-sm">₹</span>
+                  <input
+                    type="number"
+                    min="100000"
+                    max="10000000"
+                    step="10000"
+                    {...register('principal', { valueAsNumber: true })}
+                    className="w-32 px-6 py-2 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
+                  />
+                </div>
               </div>
               {errors.principal && (
-                <p className="text-red-500 text-sm mt-1">{errors.principal.message}</p>
+                <p className="text-red-500 text-sm">{errors.principal.message}</p>
               )}
+              <p className="text-xs text-gray-500 dark:text-gray-400">₹10L - ₹1Cr</p>
             </div>
 
             {/* Annual Rate */}
-            <div>
-              <label className="block text-sm font-semibold mb-2">Annual Interest Rate (%)</label>
-              <div className="flex items-center gap-4">
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Annual Interest Rate (%)</label>
+              <div className="flex gap-3 items-center">
                 <input
-                  type="number"
+                  type="range"
+                  min="0"
+                  max="30"
                   step="0.1"
-                  placeholder="8"
                   {...register('annualRate', { valueAsNumber: true })}
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
-                <span className="text-lg font-bold text-blue-600 min-w-fit">{(watchValues.annualRate || 8).toFixed(2)}%</span>
+                <div className="relative flex-shrink-0">
+                  <span className="absolute right-3 top-2.5 text-orange-600 font-bold text-sm">%</span>
+                  <input
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    max="30"
+                    {...register('annualRate', { valueAsNumber: true })}
+                    className="w-20 px-3 py-2 pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
+                  />
+                </div>
               </div>
               {errors.annualRate && (
-                <p className="text-red-500 text-sm mt-1">{errors.annualRate.message}</p>
+                <p className="text-red-500 text-sm">{errors.annualRate.message}</p>
               )}
-              <p className="text-xs text-gray-500 mt-1">Current typical rate: 6-10%</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Typical: 6-10%</p>
             </div>
 
             {/* Loan Tenure */}
-            <div>
-              <label className="block text-sm font-semibold mb-2">Loan Tenure (Years)</label>
-              <div className="flex items-center gap-4">
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Loan Tenure (Years)</label>
+              <div className="flex gap-3 items-center">
                 <input
                   type="range"
                   min="1"
                   max="30"
                   {...register('years', { valueAsNumber: true })}
-                  className="flex-1"
+                  className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
-                <div className="text-lg font-bold text-blue-600 min-w-fit">
-                  {watchValues.years || 10} years
-                </div>
+                <input
+                  type="number"
+                  min="1"
+                  max="30"
+                  step="1"
+                  {...register('years', { valueAsNumber: true })}
+                  className="w-20 px-3 py-2 border-2 border-green-400 rounded-lg text-center font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
+                />
               </div>
               {errors.years && (
-                <p className="text-red-500 text-sm mt-1">{errors.years.message}</p>
+                <p className="text-red-500 text-sm">{errors.years.message}</p>
               )}
-              <p className="text-xs text-gray-500 mt-1">1 to 30 years</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">1 - 30 years</p>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
             >
-              Calculate EMI
+              💳 Calculate EMI
             </button>
           </form>
         </div>
@@ -158,36 +187,36 @@ export default function EMICalculatorPage() {
             <div className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Loan Summary</h2>
 
-              <div className="space-y-4">
-                {/* Monthly EMI */}
-                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-2 border-blue-200 dark:border-blue-800">
-                  <p className="text-blue-700 dark:text-blue-400 text-sm mb-1">Monthly EMI</p>
-                  <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">
+              <div className="grid grid-cols-1 gap-4">
+                {/* Monthly EMI - Highlighted */}
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-lg hover:shadow-xl transition-all">
+                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">💰 Monthly EMI</p>
+                  <p className="text-4xl font-bold text-blue-700 dark:text-blue-400">
                     {formatCurrency(result.emi)}
                   </p>
                 </div>
 
                 {/* Total Amount */}
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-1">Total Amount Payable</p>
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-5 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-gray-600 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2">Total Payable</p>
                   <p className="text-3xl font-bold text-gray-900 dark:text-white">
                     {formatCurrency(result.totalAmount)}
                   </p>
                 </div>
 
                 {/* Total Interest */}
-                <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-2 border-red-200 dark:border-red-800">
-                  <p className="text-red-700 dark:text-red-400 text-sm mb-1">Total Interest Payable</p>
+                <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-lg transition-shadow">
+                  <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-2">📊 Total Interest</p>
                   <p className="text-3xl font-bold text-red-700 dark:text-red-400">
                     {formatCurrency(result.totalInterest)}
                   </p>
                 </div>
 
                 {/* Duration */}
-                <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
-                  <p className="text-purple-700 dark:text-purple-400 text-sm mb-1">Loan Duration</p>
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-5 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">Duration</p>
                   <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
-                    {result.numberOfMonths} months
+                    {result.numberOfMonths} <span className="text-xl">months</span>
                   </p>
                 </div>
               </div>

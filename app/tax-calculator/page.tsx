@@ -85,52 +85,71 @@ export default function TaxCalculatorPage() {
           <h2 className="text-2xl font-bold mb-6">Your Income Details</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Gross Income */}
-            <div>
-              <label className="block text-sm font-semibold mb-2">Gross Annual Income (₹)</label>
-              <div className="relative">
-                <span className="absolute left-3 top-3 text-gray-500">₹</span>
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Gross Annual Income (₹)</label>
+              <div className="flex gap-3 items-center">
                 <input
-                  type="number"
-                  placeholder="1000000"
+                  type="range"
+                  min="0"
+                  max="10000000"
+                  step="10000"
                   {...register('income', { valueAsNumber: true })}
-                  className="w-full pl-7 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
+                <div className="relative flex-shrink-0">
+                  <span className="absolute left-2 top-2.5 text-blue-600 font-bold text-sm">₹</span>
+                  <input
+                    type="number"
+                    min="0"
+                    max="10000000"
+                    step="10000"
+                    {...register('income', { valueAsNumber: true })}
+                    className="w-32 px-6 py-2 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
+                  />
+                </div>
               </div>
               {errors.income && (
-                <p className="text-red-500 text-sm mt-1">{errors.income.message}</p>
+                <p className="text-red-500 text-sm">{errors.income.message}</p>
               )}
+              <p className="text-xs text-gray-500 dark:text-gray-400">₹0 - ₹1Cr</p>
             </div>
 
             {/* Tax Regime */}
             <div>
               <label className="block text-sm font-semibold mb-3">Tax Regime</label>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-2 cursor-pointer">
+              <div className="flex gap-2 bg-gray-100 dark:bg-gray-700/30 p-1 rounded-lg">
+                <label className="flex-1 flex items-center gap-3 px-4 py-3 rounded-md cursor-pointer transition-all duration-200" style={{
+                  backgroundColor: watchValues.regime === 'new' ? 'rgb(59, 130, 246)' : 'transparent',
+                  color: watchValues.regime === 'new' ? 'white' : 'inherit'
+                }}>
                   <input
                     type="radio"
                     value="new"
                     {...register('regime')}
                     className="w-4 h-4"
                   />
-                  <span className="text-gray-700 dark:text-gray-300">New Regime (2023-24 onwards)</span>
+                  <span className={`font-semibold ${watchValues.regime === 'new' ? 'text-white' : 'text-gray-700 dark:text-gray-300'}`}>📉 New Regime</span>
                 </label>
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex-1 flex items-center gap-3 px-4 py-3 rounded-md cursor-pointer transition-all duration-200" style={{
+                  backgroundColor: watchValues.regime === 'old' ? 'rgb(239, 68, 68)' : 'transparent',
+                  color: watchValues.regime === 'old' ? 'white' : 'inherit'
+                }}>
                   <input
                     type="radio"
                     value="old"
                     {...register('regime')}
                     className="w-4 h-4"
                   />
-                  <span className="text-gray-700 dark:text-gray-300">Old Regime</span>
+                  <span className={`font-semibold ${watchValues.regime === 'old' ? 'text-white' : 'text-gray-700 dark:text-gray-300'}`}>📈 Old Regime</span>
                 </label>
               </div>
               {errors.regime && (
-                <p className="text-red-500 text-sm mt-1">{errors.regime.message}</p>
+                <p className="text-red-500 text-sm mt-2">{errors.regime.message}</p>
               )}
               <p className="text-xs text-gray-500 mt-2">
                 {watchValues.regime === 'new'
-                  ? 'Lower tax rates but no deductions (except standard deduction)'
-                  : 'Allows all deductions like 80C, 80D, etc. but higher tax rates'}
+                  ? 'Lower rates, minimal deductions'
+                  : 'Allows 80C, 80D, 80E deductions'}
               </p>
             </div>
 
@@ -139,14 +158,14 @@ export default function TaxCalculatorPage() {
               <label className="block text-sm font-semibold mb-3">Age Group</label>
               <select
                 {...register('age')}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-semibold bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20"
               >
-                <option value="below60">Below 60 years</option>
-                <option value="between60to80">60-80 years (Senior Citizen)</option>
-                <option value="above80">Above 80 years (Super Senior)</option>
+                <option value="below60">👤 Below 60 years</option>
+                <option value="between60to80">👴 60-80 years (Senior Citizen)</option>
+                <option value="above80">👨‍🦳 Above 80 years (Super Senior)</option>
               </select>
               {errors.age && (
-                <p className="text-red-500 text-sm mt-1">{errors.age.message}</p>
+                <p className="text-red-500 text-sm mt-2">{errors.age.message}</p>
               )}
               <p className="text-xs text-gray-500 mt-2">
                 Age affects the tax slab exemptions. Senior citizens get higher deduction limits.
@@ -155,9 +174,9 @@ export default function TaxCalculatorPage() {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
             >
-              Calculate Tax
+              🧮 Calculate Tax
             </button>
           </form>
 
@@ -176,59 +195,59 @@ export default function TaxCalculatorPage() {
             <div className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Tax Calculation Results</h2>
 
-              <div className="space-y-3">
+              <div className="grid grid-cols-1 gap-4">
                 {/* Gross Income */}
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-1">Gross Income</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-5 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-gray-600 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2">Gross Income</p>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
                     {formatCurrency(result.grossIncome)}
                   </p>
                 </div>
 
                 {/* Standard Deduction */}
-                <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
-                  <p className="text-green-700 dark:text-green-400 text-sm mb-1">Standard Deduction</p>
-                  <p className="text-2xl font-bold text-green-700 dark:text-green-400">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 p-5 rounded-lg border border-green-300 dark:border-green-700 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">✂️ Standard Deduction</p>
+                  <p className="text-3xl font-bold text-green-700 dark:text-green-400">
                     {formatCurrency(result.standardDeduction)}
                   </p>
                 </div>
 
                 {/* Taxable Income */}
-                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-2 border-blue-200 dark:border-blue-800">
-                  <p className="text-blue-700 dark:text-blue-400 text-sm mb-1">Taxable Income</p>
-                  <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
+                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">📊 Taxable Income</p>
+                  <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">
                     {formatCurrency(result.taxableIncome)}
                   </p>
                 </div>
 
                 {/* Tax Amount */}
-                <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
-                  <p className="text-orange-700 dark:text-orange-400 text-sm mb-1">Income Tax</p>
-                  <p className="text-2xl font-bold text-orange-700 dark:text-orange-400">
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/30 dark:to-amber-900/30 p-5 rounded-lg border border-orange-300 dark:border-orange-700 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2">💰 Income Tax</p>
+                  <p className="text-3xl font-bold text-orange-700 dark:text-orange-400">
                     {formatCurrency(result.taxAmount)}
                   </p>
                 </div>
 
                 {/* Cess */}
-                <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
-                  <p className="text-purple-700 dark:text-purple-400 text-sm mb-1">Health & Education Cess (4%)</p>
-                  <p className="text-2xl font-bold text-purple-700 dark:text-purple-400">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-5 rounded-lg border border-purple-300 dark:border-purple-700 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">🏥 Health & Education Cess</p>
+                  <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
                     {formatCurrency(result.cess)}
                   </p>
                 </div>
 
-                {/* Total Tax */}
-                <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-2 border-red-200 dark:border-red-800">
-                  <p className="text-red-700 dark:text-red-400 text-sm mb-1">Total Tax Payable</p>
-                  <p className="text-3xl font-bold text-red-700 dark:text-red-400">
+                {/* Total Tax - Highlighted */}
+                <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/30 dark:to-rose-900/30 p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-lg hover:shadow-xl transition-all">
+                  <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-2">🚨 Total Tax Payable</p>
+                  <p className="text-4xl font-bold text-red-700 dark:text-red-400">
                     {formatCurrency(result.totalTax)}
                   </p>
                 </div>
 
                 {/* Effective Rate */}
-                <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
-                  <p className="text-indigo-700 dark:text-indigo-400 text-sm mb-1">Effective Tax Rate</p>
-                  <p className="text-2xl font-bold text-indigo-700 dark:text-indigo-400">
+                <div className="bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-indigo-900/30 dark:to-violet-900/30 p-5 rounded-lg border border-indigo-300 dark:border-indigo-700 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-indigo-700 dark:text-indigo-300 text-xs uppercase tracking-wide font-semibold mb-2">📈 Effective Rate</p>
+                  <p className="text-3xl font-bold text-indigo-700 dark:text-indigo-400">
                     {result.effectiveRate.toFixed(2)}%
                   </p>
                 </div>

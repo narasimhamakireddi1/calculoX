@@ -12,6 +12,7 @@ type SIPFormData = {
   monthlyInvestment: number;
   years: number;
   annualReturn: number;
+  stepUpPercent: number;
 };
 
 interface SIPResultData {
@@ -26,9 +27,17 @@ interface ChartDataPoint {
   value: number;
 }
 
+interface YearlyProjection {
+  year: number;
+  monthlyInvestment: number;
+  annualInvestment: number;
+  cumulativeInvestment: number;
+}
+
 export default function SIPCalculatorPage() {
   const [result, setResult] = useState<SIPResultData | null>(null);
   const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
+  const [projections, setProjections] = useState<YearlyProjection[]>([]);
 
   const {
     register,
@@ -41,6 +50,7 @@ export default function SIPCalculatorPage() {
       monthlyInvestment: 10000,
       years: 10,
       annualReturn: 12,
+      stepUpPercent: 0,
     },
   });
 
@@ -50,22 +60,51 @@ export default function SIPCalculatorPage() {
     const result = calculateSIP(data);
     setResult(result);
 
+    // Generate yearly projection data
+    const yearlyProj: YearlyProjection[] = [];
+    let cumulativeInvestment = 0;
+    const stepUpRate = (data.stepUpPercent || 0) / 100;
+
+    for (let year = 1; year <= data.years; year++) {
+      const monthlyInvestment = data.monthlyInvestment * Math.pow(1 + stepUpRate, year - 1);
+      const annualInvestment = monthlyInvestment * 12;
+      cumulativeInvestment += annualInvestment;
+
+      yearlyProj.push({
+        year,
+        monthlyInvestment: Math.round(monthlyInvestment),
+        annualInvestment: Math.round(annualInvestment),
+        cumulativeInvestment: Math.round(cumulativeInvestment),
+      });
+    }
+
+    setProjections(yearlyProj);
+
     // Generate chart data showing growth over time
     const data_points: ChartDataPoint[] = [];
     const monthlyReturn = (data.annualReturn / 12) / 100;
 
     for (let month = 0; month <= result.numberOfMonths; month++) {
-      const invested = data.monthlyInvestment * month;
-
       if (month === 0) {
         data_points.push({ month: 0, invested: 0, value: 0 });
       } else {
+        // Calculate invested amount considering step-up
+        let invested = 0;
+        let currentMonthlyAmount = data.monthlyInvestment;
+
+        for (let m = 1; m <= month; m++) {
+          if (m > 1 && (m - 1) % 12 === 0) {
+            currentMonthlyAmount = currentMonthlyAmount * (1 + stepUpRate);
+          }
+          invested += currentMonthlyAmount;
+        }
+
         const rPlusOne = 1 + monthlyReturn;
         const rPowerN = Math.pow(rPlusOne, month);
         const value = data.monthlyInvestment * ((rPowerN - 1) / monthlyReturn);
         data_points.push({
           month: month,
-          invested: invested,
+          invested: Math.round(invested),
           value: Math.round(value),
         });
       }
@@ -89,77 +128,126 @@ export default function SIPCalculatorPage() {
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Monthly Investment */}
-            <div>
-              <label className="block text-sm font-semibold mb-2">
-                Monthly Investment (₹)
-              </label>
-              <div className="relative">
-                <span className="absolute left-3 top-3 text-gray-500">₹</span>
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Monthly Investment (₹)</label>
+              <div className="flex gap-3 items-center">
                 <input
-                  type="number"
-                  placeholder="10000"
+                  type="range"
+                  min="100"
+                  max="1000000"
+                  step="100"
                   {...register('monthlyInvestment', { valueAsNumber: true })}
-                  className="w-full pl-7 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
+                <div className="relative flex-shrink-0">
+                  <span className="absolute left-2 top-2.5 text-green-600 font-bold text-sm">₹</span>
+                  <input
+                    type="number"
+                    min="100"
+                    max="1000000"
+                    step="100"
+                    {...register('monthlyInvestment', { valueAsNumber: true })}
+                    className="w-28 px-6 py-2 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
+                  />
+                </div>
               </div>
               {errors.monthlyInvestment && (
-                <p className="text-red-500 text-sm mt-1">{errors.monthlyInvestment.message}</p>
+                <p className="text-red-500 text-sm">{errors.monthlyInvestment.message}</p>
               )}
-              <p className="text-xs text-gray-500 mt-1">Minimum ₹100, Maximum ₹1 Crore</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">₹100 - ₹10,00,000</p>
             </div>
 
             {/* Years */}
-            <div>
-              <label className="block text-sm font-semibold mb-2">
-                Investment Duration
-              </label>
-              <div className="flex items-center gap-4">
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Investment Duration (Years)</label>
+              <div className="flex gap-3 items-center">
                 <input
                   type="range"
                   min="1"
                   max="50"
                   {...register('years', { valueAsNumber: true })}
-                  className="flex-1"
+                  className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
-                <div className="text-lg font-bold text-blue-600 min-w-fit">
-                  {watchValues.years || 10} years
-                </div>
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="1"
+                  {...register('years', { valueAsNumber: true })}
+                  className="w-20 px-3 py-2 border-2 border-blue-400 rounded-lg text-center font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
+                />
               </div>
               {errors.years && (
-                <p className="text-red-500 text-sm mt-1">{errors.years.message}</p>
+                <p className="text-red-500 text-sm">{errors.years.message}</p>
               )}
-              <p className="text-xs text-gray-500 mt-1">1 to 50 years</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">1 - 50 years</p>
             </div>
 
             {/* Annual Return */}
-            <div>
-              <label className="block text-sm font-semibold mb-2">
-                Expected Annual Return (%)
-              </label>
-              <div className="flex items-center gap-4">
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Expected Annual Return (%)</label>
+              <div className="flex gap-3 items-center">
                 <input
                   type="range"
                   min="0"
                   max="100"
                   step="0.1"
                   {...register('annualReturn', { valueAsNumber: true })}
-                  className="flex-1"
+                  className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
-                <div className="text-lg font-bold text-blue-600 min-w-fit">
-                  {(watchValues.annualReturn || 12).toFixed(1)}%
+                <div className="relative flex-shrink-0">
+                  <span className="absolute right-3 top-2.5 text-orange-600 font-bold text-sm">%</span>
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    {...register('annualReturn', { valueAsNumber: true })}
+                    className="w-20 px-3 py-2 pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
+                  />
                 </div>
               </div>
               {errors.annualReturn && (
-                <p className="text-red-500 text-sm mt-1">{errors.annualReturn.message}</p>
+                <p className="text-red-500 text-sm">{errors.annualReturn.message}</p>
               )}
-              <p className="text-xs text-gray-500 mt-1">Typical: 8-15% for stock markets</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Typical: 8-15% for stock markets</p>
+            </div>
+
+            {/* Step Up Percentage */}
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Annual Step Up (%)</label>
+              <div className="flex gap-3 items-center">
+                <input
+                  type="range"
+                  min="0"
+                  max="50"
+                  step="0.5"
+                  {...register('stepUpPercent', { valueAsNumber: true })}
+                  className="flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                />
+                <div className="relative flex-shrink-0">
+                  <span className="absolute right-3 top-2.5 text-purple-600 font-bold text-sm">%</span>
+                  <input
+                    type="number"
+                    min="0"
+                    max="50"
+                    step="0.5"
+                    {...register('stepUpPercent', { valueAsNumber: true })}
+                    className="w-20 px-3 py-2 pr-6 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
+                  />
+                </div>
+              </div>
+              {errors.stepUpPercent && (
+                <p className="text-red-500 text-sm">{errors.stepUpPercent.message}</p>
+              )}
+              <p className="text-xs text-gray-500 dark:text-gray-400">Increase investment by this % each year (0-50%)</p>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
             >
-              Calculate SIP
+              📊 Calculate SIP
             </button>
           </form>
         </div>
@@ -170,34 +258,34 @@ export default function SIPCalculatorPage() {
             <div className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Investment Results</h2>
 
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-4">
                 {/* Total Investment */}
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-1">Total Investment</p>
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-5 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-gray-600 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2">Total Invested</p>
                   <p className="text-3xl font-bold text-gray-900 dark:text-white">
                     {formatCurrency(result.totalInvestment)}
                   </p>
                 </div>
 
-                {/* Future Value */}
-                <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-2 border-green-200 dark:border-green-800">
-                  <p className="text-green-700 dark:text-green-400 text-sm mb-1">Future Value (Maturity Amount)</p>
-                  <p className="text-3xl font-bold text-green-700 dark:text-green-400">
+                {/* Future Value - Highlighted */}
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-lg hover:shadow-xl transition-all">
+                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">🎯 Future Value (Maturity)</p>
+                  <p className="text-4xl font-bold text-green-700 dark:text-green-400">
                     {formatCurrency(result.futureValue)}
                   </p>
                 </div>
 
                 {/* Gain Amount */}
-                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-2 border-blue-200 dark:border-blue-800">
-                  <p className="text-blue-700 dark:text-blue-400 text-sm mb-1">Total Gain (Returns)</p>
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
+                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">📈 Total Gains (Returns)</p>
                   <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">
                     {formatCurrency(result.gainedAmount)}
                   </p>
                 </div>
 
                 {/* Return Percentage */}
-                <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
-                  <p className="text-purple-700 dark:text-purple-400 text-sm mb-1">Return on Investment</p>
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-5 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm hover:shadow-md transition-shadow">
+                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">Return Rate (%)</p>
                   <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
                     {((result.gainedAmount / result.totalInvestment) * 100).toFixed(1)}%
                   </p>
@@ -222,10 +310,71 @@ export default function SIPCalculatorPage() {
         </div>
       </div>
 
+      {/* Income Projection Section */}
+      {projections.length > 0 && (
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-6">📈 Investment Projection</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6">Year-wise breakdown of your SIP journey with step-up increments</p>
+
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
+                  <th className="px-4 py-4 text-left font-bold text-gray-900 dark:text-white">Year</th>
+                  <th className="px-4 py-4 text-right font-bold text-blue-700 dark:text-blue-400">Monthly Investment</th>
+                  <th className="px-4 py-4 text-right font-bold text-green-700 dark:text-green-400">Annual Investment</th>
+                  <th className="px-4 py-4 text-right font-bold text-purple-700 dark:text-purple-400">Cumulative Invested</th>
+                </tr>
+              </thead>
+              <tbody>
+                {projections.map((proj, idx) => (
+                  <tr
+                    key={proj.year}
+                    className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
+                      idx % 2 === 0
+                        ? 'bg-white dark:bg-gray-800/50'
+                        : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    <td className="px-4 py-4 font-semibold text-gray-900 dark:text-white">
+                      Year {proj.year}
+                    </td>
+                    <td className="px-4 py-4 text-right">
+                      <div className="font-semibold text-blue-600 dark:text-blue-400">
+                        ₹{proj.monthlyInvestment.toLocaleString('en-IN')}
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-right">
+                      <div className="font-semibold text-green-600 dark:text-green-400">
+                        ₹{proj.annualInvestment.toLocaleString('en-IN')}
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-right">
+                      <div className="font-bold text-purple-600 dark:text-purple-400 text-lg">
+                        ₹{proj.cumulativeInvestment.toLocaleString('en-IN')}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Step-up Info Card */}
+          {(watchValues.stepUpPercent || 0) > 0 && (
+            <div className="mt-6 p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 rounded-lg">
+              <p className="text-sm text-purple-900 dark:text-purple-300">
+                <span className="font-semibold">Step-up Active:</span> Your monthly investment increases by <span className="font-bold text-lg">{(watchValues.stepUpPercent || 0).toFixed(1)}%</span> each year. This helps your SIP grow with your income!
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Chart Section */}
       {chartData.length > 0 && (
         <div className="card">
-          <h2 className="text-2xl font-bold mb-6">Growth Visualization</h2>
+          <h2 className="text-2xl font-bold mb-6">📊 Growth Visualization</h2>
           <ResponsiveContainer width="100%" height={400}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -296,6 +445,16 @@ export default function SIPCalculatorPage() {
             </summary>
             <p className="pb-4 text-gray-600 dark:text-gray-400">
               Most mutual funds allow SIPs starting from ₹100-500 per month. Some funds have no minimum. Higher amounts don&apos;t necessarily give better returns, but consistent investing does.
+            </p>
+          </details>
+
+          <details className="group border-b border-gray-200 dark:border-gray-700">
+            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
+              What is Step Up in SIP?
+              <span className="transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p className="pb-4 text-gray-600 dark:text-gray-400">
+              Step Up SIP allows you to increase your monthly investment by a fixed percentage each year. For example, with 10% step-up on a ₹10,000 SIP: Year 1 = ₹10,000/month, Year 2 = ₹11,000/month, Year 3 = ₹12,100/month, etc. This is ideal as your income grows and you can afford higher investments.
             </p>
           </details>
         </div>
