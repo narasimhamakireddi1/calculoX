@@ -38,7 +38,6 @@ export default function EMICalculatorPage() {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<EMIFormData>({
     resolver: zodResolver(EMISchema),
     defaultValues: {
@@ -47,8 +46,6 @@ export default function EMICalculatorPage() {
       years: 10,
     },
   });
-
-  const watchValues = watch();
 
   const onSubmit = (data: EMIFormData) => {
     const result = calculateEMI(data);
