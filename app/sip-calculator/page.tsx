@@ -40,10 +40,10 @@ export default function SIPCalculatorPage() {
   const [projections, setProjections] = useState<YearlyProjection[]>([]);
 
   const {
-    register,
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm<SIPFormData>({
     resolver: zodResolver(SIPSchema),
     defaultValues: {
@@ -55,6 +55,10 @@ export default function SIPCalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const handleInputChange = (fieldName: keyof SIPFormData, value: number) => {
+    setValue(fieldName, value, { shouldValidate: true });
+  };
 
   const onSubmit = (data: SIPFormData) => {
     const result = calculateSIP(data);
@@ -136,7 +140,8 @@ export default function SIPCalculatorPage() {
                   min="100"
                   max="1000000"
                   step="100"
-                  {...register('monthlyInvestment', { valueAsNumber: true })}
+                  value={watchValues.monthlyInvestment || 10000}
+                  onChange={(e) => handleInputChange('monthlyInvestment', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -146,7 +151,8 @@ export default function SIPCalculatorPage() {
                     min="100"
                     max="1000000"
                     step="100"
-                    {...register('monthlyInvestment', { valueAsNumber: true })}
+                    value={watchValues.monthlyInvestment || 10000}
+                    onChange={(e) => handleInputChange('monthlyInvestment', Number(e.target.value))}
                     className="w-28 px-6 py-2 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
                   />
                 </div>
@@ -165,7 +171,8 @@ export default function SIPCalculatorPage() {
                   type="range"
                   min="1"
                   max="50"
-                  {...register('years', { valueAsNumber: true })}
+                  value={watchValues.years || 10}
+                  onChange={(e) => handleInputChange('years', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
@@ -173,8 +180,9 @@ export default function SIPCalculatorPage() {
                   min="1"
                   max="50"
                   step="1"
-                  {...register('years', { valueAsNumber: true })}
-                  className="w-20 px-3 py-2 border-2 border-blue-400 rounded-lg text-center font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
+                  value={watchValues.years || 10}
+                  onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg text-center font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                 />
               </div>
               {errors.years && (
@@ -192,7 +200,8 @@ export default function SIPCalculatorPage() {
                   min="0"
                   max="100"
                   step="0.1"
-                  {...register('annualReturn', { valueAsNumber: true })}
+                  value={watchValues.annualReturn || 12}
+                  onChange={(e) => handleInputChange('annualReturn', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -202,7 +211,8 @@ export default function SIPCalculatorPage() {
                     min="0"
                     max="100"
                     step="0.1"
-                    {...register('annualReturn', { valueAsNumber: true })}
+                    value={watchValues.annualReturn || 12}
+                    onChange={(e) => handleInputChange('annualReturn', Number(e.target.value))}
                     className="w-20 px-3 py-2 pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                   />
                 </div>
@@ -222,7 +232,8 @@ export default function SIPCalculatorPage() {
                   min="0"
                   max="50"
                   step="0.5"
-                  {...register('stepUpPercent', { valueAsNumber: true })}
+                  value={watchValues.stepUpPercent || 0}
+                  onChange={(e) => handleInputChange('stepUpPercent', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
                 />
                 <div className="relative flex-shrink-0">
@@ -232,7 +243,8 @@ export default function SIPCalculatorPage() {
                     min="0"
                     max="50"
                     step="0.5"
-                    {...register('stepUpPercent', { valueAsNumber: true })}
+                    value={watchValues.stepUpPercent || 0}
+                    onChange={(e) => handleInputChange('stepUpPercent', Number(e.target.value))}
                     className="w-20 px-3 py-2 pr-6 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
                   />
                 </div>

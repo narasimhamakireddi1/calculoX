@@ -61,10 +61,23 @@ h3 {
 }
 
 /* Forms */
-input,
+input:not([type="range"]),
 textarea,
 select {
   @apply px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500;
+}
+
+/* Range input specific styling */
+input[type="range"] {
+  @apply w-full cursor-pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-5 h-5 bg-gradient-to-r rounded-full cursor-pointer shadow-md;
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply w-5 h-5 bg-gradient-to-r rounded-full cursor-pointer shadow-md border-0;
 }
 
 button {

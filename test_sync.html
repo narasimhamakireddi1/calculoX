@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slider Sync Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .test { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        .result { margin-top: 10px; padding: 10px; background: #f0f0f0; }
+        input[type="range"] { width: 200px; }
+        input[type="number"] { width: 100px; }
+    </style>
+</head>
+<body>
+    <h1>Slider Synchronization Test</h1>
+
+    <div class="test">
+        <h2>Test 1: Simple HTML (No JS)</h2>
+        <p>Slider:</p>
+        <input type="range" id="slider1" min="100" max="1000000" step="100" value="10000">
+        <p>Number Input (Same Name):</p>
+        <input type="number" id="number1" min="100" max="1000000" step="100" value="10000" name="test1">
+        <div class="result">
+            <p>Slider Value: <span id="slider1val">10000</span></p>
+            <p>Number Value: <span id="number1val">10000</span></p>
+            <p>Status: <strong id="status1">Not synchronized - manual JS needed</strong></p>
+        </div>
+    </div>
+
+    <div class="test">
+        <h2>Test 2: HTML with onChange JavaScript</h2>
+        <p>Slider:</p>
+        <input type="range" id="slider2" min="100" max="1000000" step="100" value="10000">
+        <p>Number Input:</p>
+        <input type="number" id="number2" min="100" max="1000000" step="100" value="10000">
+        <div class="result">
+            <p>Slider Value: <span id="slider2val">10000</span></p>
+            <p>Number Value: <span id="number2val">10000</span></p>
+            <p>Status: <strong id="status2">Checking...</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Test 2: Synchronization with onChange
+        const slider2 = document.getElementById('slider2');
+        const number2 = document.getElementById('number2');
+        const slider2val = document.getElementById('slider2val');
+        const number2val = document.getElementById('number2val');
+        const status2 = document.getElementById('status2');
+
+        // Sync slider to number
+        slider2.addEventListener('input', (e) => {
+            number2.value = e.target.value;
+            updateDisplay2();
+        });
+
+        // Sync number to slider
+        number2.addEventListener('input', (e) => {
+            slider2.value = e.target.value;
+            updateDisplay2();
+        });
+
+        function updateDisplay2() {
+            slider2val.textContent = slider2.value;
+            number2val.textContent = number2.value;
+
+            if (slider2.value === number2.value) {
+                status2.textContent = '✅ Synchronized!';
+                status2.style.color = 'green';
+            } else {
+                status2.textContent = '❌ Not synchronized';
+                status2.style.color = 'red';
+            }
+        }
+
+        // Initial display update
+        updateDisplay2();
+
+        // Test 1: Show values without sync
+        document.getElementById('slider1').addEventListener('input', () => {
+            document.getElementById('slider1val').textContent = document.getElementById('slider1').value;
+        });
+        document.getElementById('number1').addEventListener('input', () => {
+            document.getElementById('number1val').textContent = document.getElementById('number1').value;
+        });
+    </script>
+
+    <p style="margin-top: 40px; padding: 10px; background: #ffffcc;">
+        <strong>Instructions:</strong> Try dragging the sliders and typing in the number inputs to see synchronization behavior.
+    </p>
+</body>
+</html>
