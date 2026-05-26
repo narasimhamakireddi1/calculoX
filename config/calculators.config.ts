@@ -62,7 +62,7 @@ export const calculators: CalculatorConfig[] = [
     tags: ['tax', 'finance', 'india'],
   },
 
-  // Phase 2: Batch 1 - Simple Formula Calculators (Active)
+  // Phase 2: Batch 1 - Simple Formula Calculators (Coming Soon - Under Development)
   {
     id: 'fd',
     title: 'FD Calculator',
@@ -71,7 +71,7 @@ export const calculators: CalculatorConfig[] = [
     icon: '🏦',
     category: 'Finance',
     href: '/fd-calculator',
-    status: 'active',
+    status: 'coming-soon',
     tags: ['investment', 'finance', 'fixed-deposit'],
   },
   {
@@ -82,7 +82,7 @@ export const calculators: CalculatorConfig[] = [
     icon: '💳',
     category: 'Finance',
     href: '/rd-calculator',
-    status: 'active',
+    status: 'coming-soon',
     tags: ['investment', 'finance', 'recurring-deposit'],
   },
   {
@@ -93,7 +93,7 @@ export const calculators: CalculatorConfig[] = [
     icon: '📊',
     category: 'Finance',
     href: '/simple-interest-calculator',
-    status: 'active',
+    status: 'coming-soon',
     tags: ['finance', 'interest', 'investment'],
   },
   {
@@ -104,7 +104,7 @@ export const calculators: CalculatorConfig[] = [
     icon: '🧮',
     category: 'Finance',
     href: '/gst-calculator',
-    status: 'active',
+    status: 'coming-soon',
     tags: ['tax', 'finance', 'india', 'gst'],
   },
   {
@@ -115,7 +115,7 @@ export const calculators: CalculatorConfig[] = [
     icon: '📈',
     category: 'Utility',
     href: '/percentage-calculator',
-    status: 'active',
+    status: 'coming-soon',
     tags: ['math', 'utility', 'calculation'],
   },
   {
@@ -126,7 +126,7 @@ export const calculators: CalculatorConfig[] = [
     icon: '📊',
     category: 'Finance',
     href: '/cagr-calculator',
-    status: 'active',
+    status: 'coming-soon',
     tags: ['investment', 'finance', 'growth-rate'],
   },
 

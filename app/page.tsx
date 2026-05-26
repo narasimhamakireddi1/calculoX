@@ -1,143 +1,15 @@
 import { CalculatorCard } from "@/components/ui/CalculatorCard";
-
-const calculators = [
-  // Phase 1: MVP
-  {
-    title: "SIP Calculator",
-    description:
-      "Calculate your Systematic Investment Plan returns and projected wealth.",
-    href: "/sip-calculator",
-    icon: "📊",
-    category: "Finance",
-  },
-  {
-    title: "EMI Calculator",
-    description:
-      "Calculate your loan EMI, total interest, and amortization schedule.",
-    href: "/emi-calculator",
-    icon: "🏦",
-    category: "Finance",
-  },
-  {
-    title: "BMI Calculator",
-    description: "Calculate your Body Mass Index and check your health status.",
-    href: "/bmi-calculator",
-    icon: "⚖️",
-    category: "Health",
-  },
-  {
-    title: "Income Tax Calculator",
-    description: "Calculate your income tax liability and tax deductions.",
-    href: "/tax-calculator",
-    icon: "💰",
-    category: "Finance",
-  },
-  // Phase 2: Batch 1 - Simple Formula Calculators
-  {
-    title: "FD Calculator",
-    description: "Calculate Fixed Deposit maturity amount and interest earned.",
-    href: "/fd-calculator",
-    icon: "🏦",
-    category: "Finance",
-  },
-  {
-    title: "RD Calculator",
-    description: "Calculate Recurring Deposit maturity and interest earned.",
-    href: "/rd-calculator",
-    icon: "💳",
-    category: "Finance",
-  },
-  {
-    title: "Simple Interest Calculator",
-    description: "Calculate simple interest using SI = P × R × T / 100.",
-    href: "/simple-interest-calculator",
-    icon: "📊",
-    category: "Finance",
-  },
-  {
-    title: "GST Calculator",
-    description: "Add or remove GST at 5%, 12%, 18%, or 28% rates.",
-    href: "/gst-calculator",
-    icon: "🧮",
-    category: "Finance",
-  },
-  {
-    title: "Percentage Calculator",
-    description:
-      "Calculate percentage of, percentage change, and what percentage.",
-    href: "/percentage-calculator",
-    icon: "📈",
-    category: "Utility",
-  },
-  {
-    title: "CAGR Calculator",
-    description: "Calculate Compound Annual Growth Rate for your investments.",
-    href: "/cagr-calculator",
-    icon: "📊",
-    category: "Finance",
-  },
-  // Phase 2: Batch 2 & 3 - Coming Soon
-  {
-    title: "Inflation Calculator",
-    description:
-      "Calculate the real value of money after accounting for inflation.",
-    href: "/inflation-calculator",
-    icon: "💵",
-    category: "Finance",
-  },
-  {
-    title: "PPF Calculator",
-    description: "Calculate Public Provident Fund maturity over 15 years.",
-    href: "/ppf-calculator",
-    icon: "🏛️",
-    category: "Finance",
-  },
-  {
-    title: "HRA Calculator",
-    description: "Calculate House Rent Allowance exemption for income tax.",
-    href: "/hra-calculator",
-    icon: "🏠",
-    category: "Finance",
-  },
-  {
-    title: "Loan Eligibility Calculator",
-    description: "Calculate maximum loan you can get based on your income.",
-    href: "/loan-eligibility-calculator",
-    icon: "💰",
-    category: "Finance",
-  },
-  {
-    title: "Retirement Calculator",
-    description: "Calculate the corpus needed to retire comfortably.",
-    href: "/retirement-calculator",
-    icon: "🎯",
-    category: "Finance",
-  },
-  {
-    title: "Age Calculator",
-    description:
-      "Calculate exact age from date of birth in years, months, days.",
-    href: "/age-calculator",
-    icon: "🎂",
-    category: "Utility",
-  },
-  {
-    title: "Unit Converter",
-    description: "Convert length, weight, temperature, and area units.",
-    href: "/unit-converter",
-    icon: "⚖️",
-    category: "Conversion",
-  },
-  {
-    title: "Currency Converter",
-    description: "Convert Indian Rupees to USD, EUR, GBP and other currencies.",
-    href: "/currency-converter",
-    icon: "💱",
-    category: "Conversion",
-  },
-];
+import { getActiveCalculators } from "@/config/calculators.config";
 
 export default function Home() {
+  // Get only active calculators (MVP: SIP, EMI, BMI, Tax)
+  const calculators = getActiveCalculators().map((calc) => ({
+    title: calc.title,
+    description: calc.description,
+    href: calc.href,
+    icon: calc.icon,
+    category: calc.category,
+  }));
   return (
     <div className="space-y-12">
       {/* Hero Section */}

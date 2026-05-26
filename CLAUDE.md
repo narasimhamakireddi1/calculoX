@@ -2,12 +2,12 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Launched 🚀  
-**Last Updated:** 2026-05-26 (Session 8: Zero Default Values & Nullish Coalescing)  
+**Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄  
+**Last Updated:** 2026-05-26 (Session 9: Hide Phase 2 Batch 1 from Homepage)  
 **Tech Stack:** Next.js 14 + TypeScript + Tailwind + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
-**Phase 2 Status:** Batch 1 (6 Calculators) - ✅ IMPLEMENTED | Batch 2 & 3 (8 Calculators) - 🔄 PLANNED
+**Phase 2 Status:** Batch 1 (6 Calculators) - ✅ IMPLEMENTED (Hidden from homepage) | Batch 2 & 3 (8 Calculators) - 🔄 PLANNED
 
 ---
 
@@ -1763,3 +1763,90 @@ All 10 calculators fully implemented, tested, and ready for deployment. Build ve
 **Latest Commit:** Session 8 - Zero default values & nullish coalescing (3daca9d)  
 **Last Updated:** 2026-05-26  
 **Status:** ✅ COMPLETE | 🚀 READY FOR DEPLOYMENT
+
+---
+
+## 🔧 SESSION 9: HIDE PHASE 2 BATCH 1 FROM HOMEPAGE (2026-05-26)
+
+### Objective
+Hide Phase 2 Batch 1 calculators (FD, RD, Simple Interest, GST, Percentage, CAGR) from the homepage while keeping only the 4 MVP calculators visible (SIP, EMI, BMI, Tax). Phase 2 calculators remain fully developed and functional but marked for future release.
+
+### Changes Made
+
+**1. Updated Calculator Configuration**
+- File: `config/calculators.config.ts`
+- Changed Phase 2 Batch 1 status from `'active'` to `'coming-soon'`
+- FD Calculator: active → coming-soon
+- RD Calculator: active → coming-soon
+- Simple Interest Calculator: active → coming-soon
+- GST Calculator: active → coming-soon
+- Percentage Calculator: active → coming-soon
+- CAGR Calculator: active → coming-soon
+
+**2. Updated Homepage**
+- File: `app/page.tsx`
+- Replaced hardcoded calculator list with dynamic import from config
+- Added: `import { getActiveCalculators } from "@/config/calculators.config"`
+- Now filters to show only calculators with `status === 'active'`
+- Result: Only 4 MVP calculators displayed on homepage
+
+### Impact
+
+**Homepage Display (Before):**
+- 10 active calculators (4 MVP + 6 Phase 2 Batch 1)
+- Full calculator grid with all 10 options visible
+
+**Homepage Display (After):**
+- 4 active calculators (MVP only: SIP, EMI, BMI, Tax)
+- Cleaner, focused homepage
+- Phase 2 calculators still accessible via direct URL but not advertised
+
+### Routes Still Accessible
+✅ All calculator routes remain functional:
+- `/fd-calculator` - Still works, just not on homepage
+- `/rd-calculator` - Still works, just not on homepage
+- `/simple-interest-calculator` - Still works, just not on homepage
+- `/gst-calculator` - Still works, just not on homepage
+- `/percentage-calculator` - Still works, just not on homepage
+- `/cagr-calculator` - Still works, just not on homepage
+
+### Future Development
+When Phase 2 Batch 1 is ready to launch:
+1. Change `status: 'coming-soon'` → `status: 'active'` in config
+2. Calculators automatically appear on homepage (no code changes needed)
+3. All features already implemented and tested
+
+### Files Modified (2 Total)
+- `config/calculators.config.ts` - Changed 6 calculator statuses
+- `app/page.tsx` - Replaced hardcoded list with dynamic filtering
+
+**Status:** Phase 2 Batch 1 hidden from homepage ✅ | All routes still accessible ✅ | Ready for future launch 🚀
+
+---
+
+## 📊 CURRENT WEBSITE STATUS (2026-05-26)
+
+### MVP Calculators - LIVE & VISIBLE ✅
+1. ✅ **SIP Calculator** - `/sip-calculator` - LIVE
+2. ✅ **EMI Calculator** - `/emi-calculator` - LIVE
+3. ✅ **BMI Calculator** - `/bmi-calculator` - LIVE
+4. ✅ **Tax Calculator** - `/tax-calculator` - LIVE
+
+### Phase 2 Batch 1 - DEVELOPED BUT HIDDEN 🔄
+6 calculators fully implemented but marked as "coming-soon" (not displayed on homepage):
+1. 🔄 **FD Calculator** - `/fd-calculator` - Hidden
+2. 🔄 **RD Calculator** - `/rd-calculator` - Hidden
+3. 🔄 **Simple Interest Calculator** - `/simple-interest-calculator` - Hidden
+4. 🔄 **GST Calculator** - `/gst-calculator` - Hidden
+5. 🔄 **Percentage Calculator** - `/percentage-calculator` - Hidden
+6. 🔄 **CAGR Calculator** - `/cagr-calculator` - Hidden
+
+### Phase 2 Batch 2 & 3 - PLACEHOLDERS 📋
+8 calculators marked as "coming-soon":
+- Inflation, PPF, HRA, Loan Eligibility, Retirement, Age, Unit Converter, Currency Converter
+
+### Why This Approach?
+- **Focus:** Website highlights only the most important 4 calculators
+- **Clean UX:** Less overwhelming for users
+- **Development Ready:** Phase 2 Batch 1 is fully functional and can be launched anytime
+- **Scalable:** Easy to toggle visibility as more calculators are added
