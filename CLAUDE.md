@@ -1420,14 +1420,21 @@ find app -name "page.tsx" -path "*-calculator*" -exec sed -i 's/className="w-20 
 - ✅ Zero ESLint warnings
 - ✅ Build size optimized
 
+**FIX #5: Tax Calculator - Income Slider Synchronization** ✅
+- **Issue:** Income input was using `register('income', { valueAsNumber: true })` which doesn't work properly for range inputs (they return strings)
+- **Solution:** Converted to watch/setValue pattern with explicit handleIncomeChange function
+- **Impact:** Income slider now properly syncs with number input in real-time
+- **File Modified:** app/tax-calculator/page.tsx
+
 ### Summary of Changes
 | Calculator | Issues Fixed | Files Changed |
 |------------|-------------|---------------|
 | BMI | Imperial units calculation | 1 |
-| EMI | Minimum loan amount | 1 |
+| EMI | Minimum loan amount + range hint | 1 |
 | CAGR | Range hints specificity | 1 |
-| GST | Range hint + synchronization | 1 |
-| **Total** | **4 Issues** | **4 Files** |
+| GST | Range hint + slider synchronization | 1 |
+| Tax | Income slider synchronization | 1 |
+| **Total** | **5 Issues** | **5 Files** |
 
 ### Next Steps
 1. Test all 4 fixed calculators in browser
