@@ -17,7 +17,7 @@ interface AffiliateBannerProps {
 
 export function AffiliateBanner({ icon, headline, subtext, note, links, gradient }: AffiliateBannerProps) {
   return (
-    <div className={`my-8 rounded-2xl p-6 ${gradient}`}>
+    <div className={`my-8 rounded-2xl p-6 bg-gradient-to-r ${gradient}`}>
       <div className="flex flex-col md:flex-row md:items-center gap-5">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
