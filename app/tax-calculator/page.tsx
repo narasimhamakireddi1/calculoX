@@ -326,7 +326,7 @@ export default function ComprehensiveTaxCalculator() {
                   min="0"
                   max="100000000"
                   step="10000"
-                  value={watchValues.grossSalary === 0 ? '' : watchValues.grossSalary}
+                  value={watchValues.grossSalary ?? 0}
                   onChange={(e) => handleInputChange('grossSalary', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('Gross Salary', Number(e.target.value), 0, 100000000)}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
@@ -338,7 +338,7 @@ export default function ComprehensiveTaxCalculator() {
                     min="0"
                     max="100000000"
                     step="10000"
-                    value={watchValues.grossSalary === 0 ? '' : watchValues.grossSalary}
+                    value={watchValues.grossSalary ?? 0}
                     onChange={(e) => handleInputChange('grossSalary', Number(e.target.value))}
                     className="w-32 px-6 py-2 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                   />
@@ -356,7 +356,7 @@ export default function ComprehensiveTaxCalculator() {
                   min="0"
                   max="100000000"
                   step="10000"
-                  value={watchValues.basicSalary === 0 ? '' : watchValues.basicSalary}
+                  value={watchValues.basicSalary ?? 0}
                   onChange={(e) => handleInputChange('basicSalary', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
@@ -367,7 +367,7 @@ export default function ComprehensiveTaxCalculator() {
                     min="0"
                     max="100000000"
                     step="10000"
-                    value={watchValues.basicSalary === 0 ? '' : watchValues.basicSalary}
+                    value={watchValues.basicSalary ?? 0}
                     onChange={(e) => handleInputChange('basicSalary', Number(e.target.value))}
                     className="w-32 px-6 py-2 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
                   />
@@ -386,7 +386,7 @@ export default function ComprehensiveTaxCalculator() {
                     min="0"
                     max="50000000"
                     step="5000"
-                    value={watchValues.hraReceived === 0 ? '' : watchValues.hraReceived}
+                    value={watchValues.hraReceived ?? 0}
                     onChange={(e) => handleInputChange('hraReceived', Number(e.target.value))}
                     className="flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
                   />
@@ -397,7 +397,7 @@ export default function ComprehensiveTaxCalculator() {
                       min="0"
                       max="50000000"
                       step="5000"
-                      value={watchValues.hraReceived === 0 ? '' : watchValues.hraReceived}
+                      value={watchValues.hraReceived ?? 0}
                       onChange={(e) => handleInputChange('hraReceived', Number(e.target.value))}
                       className="w-32 px-6 py-2 pl-7 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
                     />
@@ -413,7 +413,7 @@ export default function ComprehensiveTaxCalculator() {
                     min="0"
                     max="50000000"
                     step="5000"
-                    value={watchValues.rentPaid === 0 ? '' : watchValues.rentPaid}
+                    value={watchValues.rentPaid ?? 0}
                     onChange={(e) => handleInputChange('rentPaid', Number(e.target.value))}
                     className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                   />
@@ -424,7 +424,7 @@ export default function ComprehensiveTaxCalculator() {
                       min="0"
                       max="50000000"
                       step="5000"
-                      value={watchValues.rentPaid === 0 ? '' : watchValues.rentPaid}
+                      value={watchValues.rentPaid ?? 0}
                       onChange={(e) => handleInputChange('rentPaid', Number(e.target.value))}
                       className="w-32 px-6 py-2 pl-7 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                     />
@@ -461,7 +461,7 @@ export default function ComprehensiveTaxCalculator() {
                   min="0"
                   max="10000000"
                   step="5000"
-                  value={watchValues.lta === 0 ? '' : watchValues.lta}
+                  value={watchValues.lta ?? 0}
                   onChange={(e) => handleInputChange('lta', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-cyan-300 to-cyan-600 rounded-lg appearance-none cursor-pointer accent-cyan-600"
                 />
@@ -472,7 +472,7 @@ export default function ComprehensiveTaxCalculator() {
                     min="0"
                     max="10000000"
                     step="5000"
-                    value={watchValues.lta === 0 ? '' : watchValues.lta}
+                    value={watchValues.lta ?? 0}
                     onChange={(e) => handleInputChange('lta', Number(e.target.value))}
                     className="w-32 px-6 py-2 pl-7 border-2 border-cyan-400 rounded-lg text-right font-bold text-cyan-700 bg-cyan-50 dark:bg-gray-700 dark:border-cyan-600 dark:text-cyan-400"
                   />
@@ -489,7 +489,7 @@ export default function ComprehensiveTaxCalculator() {
                   min="0"
                   max="100000"
                   step="1000"
-                  value={watchValues.epfEmployee === 0 ? '' : watchValues.epfEmployee}
+                  value={watchValues.epfEmployee ?? 0}
                   onChange={(e) => handleInputChange('epfEmployee', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-red-300 to-red-600 rounded-lg appearance-none cursor-pointer accent-red-600"
                 />
@@ -500,7 +500,7 @@ export default function ComprehensiveTaxCalculator() {
                     min="0"
                     max="100000"
                     step="1000"
-                    value={watchValues.epfEmployee === 0 ? '' : watchValues.epfEmployee}
+                    value={watchValues.epfEmployee ?? 0}
                     onChange={(e) => {
                       const value = Number(e.target.value);
                       handleInputChange('epfEmployee', value);
