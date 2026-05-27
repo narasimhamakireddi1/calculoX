@@ -70,11 +70,15 @@ export default function RDCalculatorPage() {
     setProjections([]);
   };
 
-  // Auto-calculate when inputs change
+  // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
-    if (watchValues.monthlyDeposit && watchValues.annualRate !== undefined && watchValues.months) {
-      calculateResults(watchValues);
-    }
+    const timer = setTimeout(() => {
+      if (watchValues.monthlyDeposit && watchValues.annualRate !== undefined && watchValues.months) {
+        calculateResults(watchValues);
+      }
+    }, 300); // 300ms debounce delay
+
+    return () => clearTimeout(timer);
   }, [watchValues]);
 
   const calculateResults = (data: RDFormData) => {

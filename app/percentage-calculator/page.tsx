@@ -56,11 +56,15 @@ export default function PercentageCalculatorPage() {
     setResult(null);
   };
 
-  // Auto-calculate when inputs change
+  // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
-    if (watchValues.valueA && watchValues.valueB) {
-      calculateResults(watchValues);
-    }
+    const timer = setTimeout(() => {
+      if (watchValues.valueA && watchValues.valueB) {
+        calculateResults(watchValues);
+      }
+    }, 300); // 300ms debounce delay
+
+    return () => clearTimeout(timer);
   }, [watchValues, calculationType]);
 
   const calculateResults = (data: PercentageFormData) => {

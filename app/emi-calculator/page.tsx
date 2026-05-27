@@ -75,11 +75,15 @@ export default function EMICalculatorPage() {
     setShowFullSchedule(false);
   };
 
-  // Auto-calculate when inputs change
+  // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
-    if (watchValues.principal && watchValues.annualRate !== undefined && watchValues.years) {
-      calculateResults(watchValues);
-    }
+    const timer = setTimeout(() => {
+      if (watchValues.principal && watchValues.annualRate !== undefined && watchValues.years) {
+        calculateResults(watchValues);
+      }
+    }, 300); // 300ms debounce delay
+
+    return () => clearTimeout(timer);
   }, [watchValues]);
 
   const calculateResults = (data: EMIFormData) => {

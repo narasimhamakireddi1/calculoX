@@ -82,11 +82,15 @@ export default function SIPCalculatorPage() {
     setProjections([]);
   };
 
-  // Auto-calculate when inputs change
+  // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
-    if (watchValues.monthlyInvestment && watchValues.years && watchValues.annualReturn !== undefined) {
-      calculateResults(watchValues);
-    }
+    const timer = setTimeout(() => {
+      if (watchValues.monthlyInvestment && watchValues.years && watchValues.annualReturn !== undefined) {
+        calculateResults(watchValues);
+      }
+    }, 300); // 300ms debounce delay
+
+    return () => clearTimeout(timer);
   }, [watchValues]);
 
   const calculateResults = (data: SIPFormData) => {

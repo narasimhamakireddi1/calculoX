@@ -56,11 +56,15 @@ export default function GSTCalculatorPage() {
     setResult(null);
   };
 
-  // Auto-calculate when inputs change
+  // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
-    if (watchValues.amount && watchValues.gstRate) {
-      calculateResults(watchValues);
-    }
+    const timer = setTimeout(() => {
+      if (watchValues.amount && watchValues.gstRate) {
+        calculateResults(watchValues);
+      }
+    }, 300); // 300ms debounce delay
+
+    return () => clearTimeout(timer);
   }, [watchValues]);
 
   const calculateResults = (data: GSTFormData) => {

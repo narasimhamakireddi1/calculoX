@@ -67,11 +67,15 @@ export default function BMICalculatorPage() {
 
   const watchValues = watch();
 
-  // Auto-calculate when inputs or unit system change
+  // Auto-calculate when inputs or unit system change (with debounce)
   useEffect(() => {
-    if (watchValues.weight && watchValues.height) {
-      calculateResults(watchValues);
-    }
+    const timer = setTimeout(() => {
+      if (watchValues.weight && watchValues.height) {
+        calculateResults(watchValues);
+      }
+    }, 300); // 300ms debounce delay
+
+    return () => clearTimeout(timer);
   }, [watchValues, unitSystem]);
 
   const calculateResults = (data: BMIFormData) => {
