@@ -19,6 +19,13 @@ export interface SalaryIncome {
   cityType: 'metro' | 'non-metro'; // Metro cities: Mumbai, Delhi, Kolkata, Chennai
   lta: number; // Leave Travel Allowance claimed
   epfEmployee: number; // Employee EPF contribution (goes into 80C)
+
+  // Additional Income Sources
+  incomeHouseProperty?: number; // Net rental income (after 30% standard deduction)
+  incomeOtherSources?: number; // FD interest, capital gains, etc.
+
+  // NPS Employer Contribution (80CCD(2) - allowed in both regimes)
+  npsEmployerContribution?: number; // Employer NPS contribution (allowed in both old & new regime)
 }
 
 // All Deduction Components

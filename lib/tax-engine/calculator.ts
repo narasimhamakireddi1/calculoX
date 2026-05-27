@@ -71,20 +71,27 @@ function calculateRegimeTax(regime: 'old' | 'new', input: ComprehensiveTaxInput)
 
   // Extract inputs
   const { salary, deductions, profile } = input;
-  const { grossSalary } = salary;
+  const { grossSalary, incomeHouseProperty = 0, incomeOtherSources = 0, npsEmployerContribution = 0 } = salary;
 
-  // Step 1: Calculate exemptions (HRA, LTA)
-  const { hraExemption, ltaExemption } = calculateSalaryExemptions(salary);
+  // Step 1: Calculate exemptions (HRA, LTA) - only for Old Regime
+  let hraExemption = 0;
+  let ltaExemption = 0;
+
+  if (regime === 'old') {
+    const exemptions = calculateSalaryExemptions(salary);
+    hraExemption = exemptions.hraExemption;
+    ltaExemption = exemptions.ltaExemption;
+  }
 
   trace.push({
     step: 'HRA Exemption',
-    description: `HRA exemption calculated: ₹${hraExemption.toLocaleString('en-IN')}`,
+    description: `HRA exemption (${regime === 'old' ? 'Old' : 'New'} regime): ₹${hraExemption.toLocaleString('en-IN')}`,
     value: hraExemption,
   });
 
   trace.push({
     step: 'LTA Exemption',
-    description: `LTA exemption claimed: ₹${ltaExemption.toLocaleString('en-IN')}`,
+    description: `LTA exemption (${regime === 'old' ? 'Old' : 'New'} regime): ₹${ltaExemption.toLocaleString('en-IN')}`,
     value: ltaExemption,
   });
 
@@ -98,23 +105,26 @@ function calculateRegimeTax(regime: 'old' | 'new', input: ComprehensiveTaxInput)
   });
 
   // Step 3: Calculate Gross Total Income (GTI)
-  // GTI = Gross Salary - HRA Exemption - LTA Exemption - Standard Deduction
-  const grossTotalIncome = Math.max(0, grossSalary - hraExemption - ltaExemption - standardDeduction);
+  // GTI = Gross Salary + House Property + Other Sources - HRA Exemption - LTA Exemption - Standard Deduction
+  const grossTotalIncome = Math.max(
+    0,
+    grossSalary + incomeHouseProperty + incomeOtherSources - hraExemption - ltaExemption - standardDeduction
+  );
 
   trace.push({
     step: 'Gross Total Income',
-    description: `Gross Salary - Exemptions - Standard Deduction = ₹${grossTotalIncome.toLocaleString(
+    description: `Gross Salary + Other Income - Exemptions - Standard Deduction = ₹${grossTotalIncome.toLocaleString(
       'en-IN'
     )}`,
     value: grossTotalIncome,
   });
 
-  // Step 4: Calculate Deductions (only for old regime)
+  // Step 4: Calculate Deductions (old regime allows Chapter VIA; new regime allows 80CCD(2) only)
   let totalDeductions = 0;
 
   if (regime === 'old') {
     const deductionsResult = calculateTotalDeductions(deductions, profile);
-    totalDeductions = deductionsResult.totalDeductions;
+    totalDeductions = deductionsResult.totalDeductions + npsEmployerContribution;
 
     trace.push({
       step: 'Deductions (80C, 80D, etc.)',
@@ -122,11 +132,24 @@ function calculateRegimeTax(regime: 'old' | 'new', input: ComprehensiveTaxInput)
       value: totalDeductions,
     });
   } else {
-    trace.push({
-      step: 'Deductions (80C, 80D, etc.)',
-      description: `New regime: No deductions allowed (only standard deduction)`,
-      value: 0,
-    });
+    // New regime: only 80CCD(2) employer NPS is allowed
+    totalDeductions = npsEmployerContribution;
+
+    if (npsEmployerContribution > 0) {
+      trace.push({
+        step: 'Deductions (80CCD(2) only)',
+        description: `New regime: Only employer NPS contribution (80CCD(2)) allowed: ₹${npsEmployerContribution.toLocaleString(
+          'en-IN'
+        )}`,
+        value: npsEmployerContribution,
+      });
+    } else {
+      trace.push({
+        step: 'Deductions (80CCD(2) only)',
+        description: `New regime: No deductions allowed (only standard deduction and employer NPS)`,
+        value: 0,
+      });
+    }
   }
 
   // Step 5: Calculate Taxable Income
@@ -161,8 +184,8 @@ function calculateRegimeTax(regime: 'old' | 'new', input: ComprehensiveTaxInput)
     value: rebateResult.rebate,
   });
 
-  // Step 8: Calculate Surcharge
-  const surchargeResult = calculateSurcharge(rebateResult.taxAfterRebate, grossSalary, regime);
+  // Step 8: Calculate Surcharge (based on gross total income threshold)
+  const surchargeResult = calculateSurcharge(rebateResult.taxAfterRebate, grossTotalIncome, regime);
 
   trace.push({
     step: 'Surcharge',

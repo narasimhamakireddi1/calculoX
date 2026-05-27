@@ -81,6 +81,13 @@ export const ComprehensiveTaxSchema = z.object({
   lta: z.number().nonnegative('LTA must be non-negative'),
   epfEmployee: z.number().nonnegative('EPF must be non-negative'),
 
+  // Additional Income Sources
+  incomeHouseProperty: z.number().nonnegative('House property income must be non-negative').optional().default(0),
+  incomeOtherSources: z.number().nonnegative('Other income must be non-negative').optional().default(0),
+
+  // NPS Employer Contribution (80CCD(2) - both regimes)
+  npsEmployerContribution: z.number().nonnegative('NPS employer contribution must be non-negative').optional().default(0),
+
   // Deductions - Section 80C (max ₹1.5L)
   epf: z.number().nonnegative(),
   ppf: z.number().nonnegative(),
