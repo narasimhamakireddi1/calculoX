@@ -2,8 +2,8 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax Calculator FY 2025-26 ✅ | Next.js 16.2.6 ✅  
-**Last Updated:** 2026-05-27 (Session 13: Next.js 16.2.6 Upgrade + Tax Calculator Accuracy + Hydration Fix)  
+**Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax Calculator FY 2025-26 ✅ | Next.js 16.2.6 ✅ | Web Vitals Monitoring ✅  
+**Last Updated:** 2026-05-27 (Session 13: Next.js 16.2.6 + Tax Accuracy + Hydration Fix + SpeedInsights)  
 **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
@@ -2360,3 +2360,41 @@ This tells React to suppress hydration warnings for the root `<html>` element, w
 Run `git push origin main` to deploy all Session 13 improvements to Vercel production 🚀
 
 **CalculoX is now optimized, accurate, and production-ready with Next.js 16.2.6!**
+
+---
+
+## 🚀 WEB VITALS MONITORING: @VERCEL/SPEED-INSIGHTS (2026-05-27)
+
+### Implementation
+- ✅ Installed: `@vercel/speed-insights@2.0.0`
+- ✅ Imported: `import { SpeedInsights } from "@vercel/speed-insights/next"`
+- ✅ Integrated: `<SpeedInsights />` component in root layout (app/layout.tsx)
+- ✅ Placement: Inside `<body>` tag, before closing tag, for optimal performance
+
+### Monitoring Capabilities
+**Real-time Web Vitals tracked:**
+- 📊 **LCP** (Largest Contentful Paint) - Page loading performance
+- 📊 **FID** (First Input Delay) - User interaction responsiveness  
+- 📊 **CLS** (Cumulative Layout Shift) - Visual stability score
+
+**Data Delivery:**
+- 📈 Sends metrics to Vercel Analytics Dashboard
+- 🔍 Monitor performance trends in real-time
+- 🎯 Identify optimization opportunities
+- 📱 Track mobile vs desktop performance
+
+### Build Verification
+- ✅ Build: SUCCESS (12.3s, all 30 routes)
+- ✅ Dev server: Running with SpeedInsights
+- ✅ Zero errors or warnings
+- ✅ Production-ready
+
+### Files Modified
+- `app/layout.tsx` — Added SpeedInsights import and component
+- `package.json` — @vercel/speed-insights added to dependencies
+
+### Commits
+- `9f4f626` — Add @vercel/speed-insights package
+- `6dfba8b` — Integrate SpeedInsights component in Next.js layout
+
+**Status:** ✅ Web Vitals monitoring active | Ready for Vercel deployment
