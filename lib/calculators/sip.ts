@@ -1,20 +1,24 @@
 /**
- * SIP Calculator Logic - Production Grade Accuracy
- * Implements step-up SIP calculation matching AngelOne precision
+ * SIP Calculator Logic - Angel One Accurate Implementation
+ * Implements step-up SIP calculation with exact Angel One precision
  *
  * Standard SIP Formula: FV = PMT × (((1 + r)^n - 1) / r) × (1 + r)
  * Where:
  * - FV = Future Value (maturity amount)
- * - PMT = Monthly investment amount
+ * - PMT = Monthly investment amount (increases yearly by step-up %)
  * - r = Monthly return rate (annual rate / 12 / 100)
  * - n = Number of months
  *
- * Step-Up SIP: Each year, monthly investment increases by step-up percentage
- * - Year 1: P, P, P, ..., P (12 months)
- * - Year 2: P×(1+g), P×(1+g), ..., P×(1+g) (12 months)
- * - Year k: P×(1+g)^(k-1) for all 12 months
+ * Step-Up SIP Logic:
+ * - Each month, contribution amount = BaseSIP × (1 + stepUp%)^yearIndex
+ * - yearIndex = floor((month - 1) / 12)
+ * - Month 1-12: yearIndex = 0 → BaseSIP
+ * - Month 13-24: yearIndex = 1 → BaseSIP × (1 + stepUp%)
+ * - Month 25-36: yearIndex = 2 → BaseSIP × (1 + stepUp%)^2
  *
- * Calculation: Month-by-month compounding for maximum accuracy
+ * Calculation: Month-by-month compounding for remaining months
+ * FV_month = CurrentSIP × (1 + r)^remainingMonths
+ * TotalFV = Sum of all monthly FVs
  */
 
 import Decimal from 'decimal.js';
@@ -38,48 +42,33 @@ export function calculateSIP(input: SIPInput): SIPResult {
   const { monthlyInvestment, years, annualReturn, stepUpPercent = 0 } = input;
 
   const numberOfMonths = years * 12;
-  const monthlyReturn = new Decimal(annualReturn).dividedBy(12).dividedBy(100);
+  const monthlyRate = new Decimal(annualReturn).dividedBy(12).dividedBy(100);
   const stepUpRate = new Decimal(stepUpPercent).dividedBy(100);
 
   let totalInvestment = new Decimal(0);
   let futureValue = new Decimal(0);
 
-  if (stepUpPercent === 0 || stepUpPercent < 0.01) {
-    // No step-up: use standard SIP formula for maximum precision
-    const monthlyInv = new Decimal(monthlyInvestment);
-    totalInvestment = monthlyInv.times(numberOfMonths);
+  // Month-by-month calculation for both standard and step-up SIP
+  for (let month = 1; month <= numberOfMonths; month++) {
+    // Calculate which year we're in (0-based)
+    const currentYear = Math.floor((month - 1) / 12);
 
-    const rPlusOne = monthlyReturn.plus(1);
-    const rPowerN = rPlusOne.pow(numberOfMonths);
-    const numerator = rPowerN.minus(1);
+    // SIP amount for this month after applying step-up
+    const stepUpMultiplier = new Decimal(1).plus(stepUpRate).pow(currentYear);
+    const currentSIP = new Decimal(monthlyInvestment).times(stepUpMultiplier);
 
-    // FV = PMT × (((1 + r)^n - 1) / r) × (1 + r)
-    futureValue = monthlyInv.times(numerator.dividedBy(monthlyReturn)).times(rPlusOne);
-  } else {
-    // With step-up: year-by-year calculation for accuracy matching AngelOne
-    let currentMonthlyAmount = new Decimal(monthlyInvestment);
-    const stepUpMultiplier = new Decimal(1).plus(stepUpRate);
+    // Add to total investment
+    totalInvestment = totalInvestment.plus(currentSIP);
 
-    for (let year = 1; year <= years; year++) {
-      // For each month in this year
-      for (let monthInYear = 1; monthInYear <= 12; monthInYear++) {
-        const monthIndex = (year - 1) * 12 + monthInYear;
+    // Calculate remaining months for compounding
+    const remainingMonths = numberOfMonths - month;
 
-        totalInvestment = totalInvestment.plus(currentMonthlyAmount);
+    // Future value of this month's investment
+    const monthlyCompounding = monthlyRate.plus(1).pow(remainingMonths);
+    const monthlyFV = currentSIP.times(monthlyCompounding);
 
-        // Calculate months remaining after this investment
-        const monthsRemaining = numberOfMonths - monthIndex;
-
-        // Compound this investment for remaining months
-        const compoundingFactor = monthlyReturn.plus(1).pow(monthsRemaining);
-        futureValue = futureValue.plus(currentMonthlyAmount.times(compoundingFactor));
-      }
-
-      // Increase monthly investment for next year (after 12 months complete)
-      if (year < years) {
-        currentMonthlyAmount = currentMonthlyAmount.times(stepUpMultiplier);
-      }
-    }
+    // Add to total future value
+    futureValue = futureValue.plus(monthlyFV);
   }
 
   const gainedAmount = futureValue.minus(totalInvestment);
@@ -88,7 +77,7 @@ export function calculateSIP(input: SIPInput): SIPResult {
     totalInvestment: parseFloat(totalInvestment.toFixed(2)),
     futureValue: parseFloat(futureValue.toFixed(2)),
     gainedAmount: parseFloat(gainedAmount.toFixed(2)),
-    monthlyReturn: parseFloat(monthlyReturn.toFixed(8)),
+    monthlyReturn: parseFloat(monthlyRate.toFixed(8)),
     numberOfMonths: numberOfMonths,
   };
 }
