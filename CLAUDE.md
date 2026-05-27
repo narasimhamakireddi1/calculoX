@@ -2241,3 +2241,49 @@ Update outdated Next.js 14.0.0 to latest stable version Next.js 16.2.6 for secur
 - `2a261c7` — Fix next.config.js for Next.js 16 compatibility
 
 **Status:** ✅ Next.js 16.2.6 fully operational | Ready for production deployment
+
+---
+
+## 🔧 SESSION 13 FINAL: REACT HYDRATION ERROR FIX (2026-05-27)
+
+### Issue
+React hydration mismatch on `<html>` tag caused by browser extension adding `data-qb-installed="true"` attribute to the DOM, which didn't match server-rendered HTML.
+
+**Error Message:**
+```
+A tree hydrated but some attributes of the server rendered HTML didn't match the client properties.
+- suppresshydrationwarning="true"
+- data-qb-installed="true" (added by browser extension)
+```
+
+### Root Cause
+- Browser extension (Qbuffer or similar) modifying the `<html>` tag in the DOM
+- Server-rendered HTML didn't include this extension-added attribute
+- React couldn't match server and client HTML exactly
+
+### Solution
+Added `suppressHydrationWarning` React prop to the `<html>` tag in `app/layout.tsx`:
+
+```typescript
+// Before
+<html lang="en-IN">
+
+// After
+<html lang="en-IN" suppressHydrationWarning>
+```
+
+This tells React to suppress hydration warnings for the root `<html>` element, which is safe since:
+1. Only visual attributes (not functional) are modified by extensions
+2. The HTML structure and content still match
+3. This is a standard pattern for SSR + extensions scenario
+
+### Verification
+✅ Dev server running on `http://localhost:3006`
+✅ Homepage loads without hydration errors
+✅ All calculator pages accessible
+✅ No console errors reported
+
+### Commit
+**Commit:** `33f97b5` — "Fix React hydration error: Add suppressHydrationWarning to html tag for browser extension compatibility"
+
+**Status:** ✅ Hydration error resolved | Ready for deployment
