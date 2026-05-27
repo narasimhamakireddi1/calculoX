@@ -2,8 +2,8 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete ✅ | Comprehensive Tax Engine ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax FY 2025-26 Production-Grade ✅ | Next.js 16.2.6 ✅ | Web Vitals ✅ | Auto-Calculate ✅ | Navbar Redesigned ✅ | Navigation Responsiveness Fixed ✅ | SIP Calculator AngelOne-Accurate ✅  
-**Last Updated:** 2026-05-27 (Session 16: Navigation Fix & SIP AngelOne-Accuracy Implementation)  
+**Project Status:** MVP Complete ✅ | Comprehensive Tax Engine ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax FY 2025-26 Production-Grade ✅ | Next.js 16.2.6 ✅ | Web Vitals ✅ | Auto-Calculate ✅ | Navbar Redesigned ✅ | Navigation Responsiveness Fixed ✅ | SIP Calculator AngelOne-Accurate ✅ | BMI Calculator Refactored ✅  
+**Last Updated:** 2026-05-27 (Session 17: BMI Calculator Refactoring - Separate Metric/Imperial Sections)  
 **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
@@ -2923,3 +2923,76 @@ For each month (1 to totalMonths):
 **Commit:** `94b4c82` — "Implement Angel One exact Step-Up SIP calculation methodology"
 
 **Status:** ✅ SIP CALCULATOR EXACT MATCH | ✅ ANGEL ONE METHODOLOGY | Ready for production 🚀
+
+---
+
+## 🔧 SESSION 17: BMI CALCULATOR REFACTORING - SEPARATE METRIC/IMPERIAL SECTIONS (2026-05-27)
+
+### Objective
+Refactor the BMI Calculator to provide separate, simplified Metric and Imperial sections with individual Calculate buttons, plus comprehensive educational content about BMI formulas, categories, use cases, and common mistakes.
+
+### Changes Implemented
+
+**1. Structure Refactoring** ✅
+- **Before:** Unified form with unit toggle button, auto-calculate on every keystroke
+- **After:** Separate Metric and Imperial sections with individual Calculate buttons
+- **Impact:** Clearer user flow, reduced complexity, manual calculation control
+
+**2. Form Simplification** ✅
+- Removed dual input sliders (range + number input)
+- Kept simple number inputs only for each unit system
+- Separate buttons for "Calculate Metric BMI" and "Calculate Imperial BMI"
+- Cleaner, more focused form layout
+
+**3. Calculation Accuracy Verification** ✅
+All formulas verified mathematically:
+| Formula | Verification | Status |
+|---------|--------------|--------|
+| Metric: BMI = kg / m² | 68 kg, 172 cm = 22.99 ✓ | Accurate |
+| Imperial: BMI = 703 × lbs / in² | 150 lbs, 68 in = 22.8 ✓ | Accurate |
+| Height conversion: cm ÷ 100 = m | Correct | ✓ |
+| Category boundaries | <18.5, 18.5-25, 25-30, ≥30 | ✓ Correct |
+
+**4. Educational Sections Added** ✅
+- **Formula Section:** Displays both metric and imperial equations with clear labels
+- **Categories Table:** Shows all 4 BMI ranges (Underweight, Normal, Overweight, Obesity)
+- **Important Limitation Box:** Yellow warning about BMI limitations (muscle mass, athletes, etc.)
+- **Use Cases:** Lists 3 practical applications (self-screening, classroom, habit tracking)
+- **Worked Examples:** 3 detailed examples with step-by-step calculations
+- **Common Mistakes:** 3 frequent errors users should avoid
+- **FAQ Section:** 4 questions maintained from previous version
+
+**5. UI/UX Improvements** ✅
+- Color-coded calculate buttons (Blue for Metric, Orange for Imperial)
+- Responsive design with gradient backgrounds
+- Dark mode support throughout
+- Clear visual separation between sections
+- Organized, easy-to-follow layout
+
+### Files Modified
+- `app/bmi-calculator/page.tsx` — Complete refactoring (167 insertions, 355 deletions)
+
+### Build Status
+- ✅ Production build: **SUCCESS** (27 pages compiled in 14.6s)
+- ✅ TypeScript validation: **PASS**
+- ✅ Zero build warnings
+- ✅ Dev server: **RUNNING** on port 3001
+
+### Verification Testing
+**Metric Test Case:**
+- Input: 68 kg, 172 cm
+- Expected: BMI 22.99 (Normal Weight)
+- Result: ✅ Correct
+
+**Imperial Test Case:**
+- Input: 150 lbs, 68 inches
+- Expected: BMI 22.8 (Normal Weight)
+- Result: ✅ Correct
+
+### Commit
+- `5ccd6af` — "Refactor BMI Calculator: Separate metric/imperial sections with formulas and educational content"
+
+**Status:** ✅ BMI CALCULATOR REFACTORED | ✅ ACCURACY VERIFIED | ✅ EDUCATIONAL CONTENT ADDED | Ready for production 🚀
+
+**Impact:** BMI Calculator now offers clearer user experience with comprehensive educational content and verified calculation accuracy!
+
