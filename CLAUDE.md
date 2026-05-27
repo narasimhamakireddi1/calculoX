@@ -2,8 +2,8 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete ✅ | Comprehensive Tax Engine ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax FY 2025-26 Production-Grade ✅ | Next.js 16.2.6 ✅ | Web Vitals ✅ | Auto-Calculate ✅ | Navbar Redesigned ✅ | Navigation Responsiveness Fixed ✅ | SIP Calculator AngelOne-Accurate ✅ | BMI Calculator Refactored ✅  
-**Last Updated:** 2026-05-27 (Session 17: BMI Calculator Refactoring - Separate Metric/Imperial Sections)  
+**Project Status:** MVP Complete ✅ | Comprehensive Tax Engine ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax FY 2025-26 Production-Grade ✅ | Next.js 16.2.6 ✅ | Web Vitals ✅ | Auto-Calculate ✅ | Navbar Redesigned ✅ | Navigation Responsiveness Fixed ✅ | SIP Calculator AngelOne-Accurate ✅ | BMI Calculator Refactored ✅ | Default Values Added ✅  
+**Last Updated:** 2026-05-27 (Session 18: Meaningful Default Values for All 10 Calculators)  
 **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
@@ -3082,4 +3082,77 @@ All formulas verified mathematically:
 **Final Status:** ✅ BMI CALCULATOR REFACTORED | ✅ ACCURACY VERIFIED | ✅ MODERN UI IMPLEMENTED | ✅ VISUAL PROJECTIONS ADDED | ✅ PUSHED TO GITHUB | Ready for production 🚀
 
 **Impact:** BMI Calculator now delivers premium user experience matching CalculoX's design standards. Auto-calculate removes friction while visual projections provide clarity on health status. Contextual health tips add educational value beyond simple calculations!
+
+---
+
+## 🎯 SESSION 18: MEANINGFUL DEFAULT VALUES FOR ALL 10 CALCULATORS (2026-05-27)
+
+### Objective
+Add relevant, realistic default values to all 10 calculators while keeping them clearable by user backspace.
+
+### Implementation
+
+**Default Values Added by Calculator:**
+
+| Calculator | Default Values | Purpose |
+|------------|----------------|---------|
+| **SIP** | Monthly: ₹10,000 | Years: 10 | Return: 12% | StepUp: 5% | Realistic SIP scenario |
+| **EMI** | Principal: ₹10,00,000 | Rate: 8.5% | Years: 5 | Typical loan example |
+| **BMI** | Weight: 70 kg | Height: 175 cm | Average adult example |
+| **Tax** | Gross: ₹5,00,000 | Basic: ₹3,00,000 | HRA: ₹1,00,000 + realistic deductions | Middle-income example |
+| **FD** | Principal: ₹1,00,000 | Rate: 6.5% | Years: 3 | Common FD scenario |
+| **RD** | Monthly: ₹5,000 | Rate: 6% | Months: 36 (3 years) | Standard RD plan |
+| **Simple Interest** | Principal: ₹1,00,000 | Rate: 8% | Years: 2 | Basic interest scenario |
+| **GST** | Amount: ₹1,00,000 | Rate: 18% (default) | Common invoice amount |
+| **Percentage** | Value A: 20 | Value B: 100 | Examples: 20% of 100 = 20 |
+| **CAGR** | Beginning: ₹1,00,000 | Ending: ₹2,00,000 | Years: 5 | Common growth scenario |
+
+**Input Display Behavior:**
+- ✅ Default values show when calculator loads (e.g., "10000" for SIP monthly investment)
+- ✅ Users can see realistic examples immediately without needing to enter values
+- ✅ Users can modify defaults by typing or dragging sliders
+- ✅ Users can completely clear fields by backspacing (shows empty input when value = 0)
+- ✅ Form validation runs in real-time with auto-calculate enabled
+
+**Technical Implementation:**
+- Pattern: `value={watchValues.field === 0 ? '' : watchValues.field}` for all number inputs
+- Shows empty string when value is 0 (after backspace)
+- Shows actual value when field has a number
+- `placeholder="0"` provides visual hint when input is empty
+- Works seamlessly with React Hook Form watch/setValue pattern
+- 300ms debounce ensures smooth UX without excessive re-renders
+
+### Files Modified (10 Total)
+1. ✅ `app/sip-calculator/page.tsx` — Monthly: 10000, Years: 10, Return: 12, StepUp: 5
+2. ✅ `app/emi-calculator/page.tsx` — Principal: 1000000, Rate: 8.5, Years: 5
+3. ✅ `app/bmi-calculator/page.tsx` — Weight: 70, Height: 175
+4. ✅ `app/tax-calculator/page.tsx` — Gross: 500000 + realistic salary breakdown + deductions
+5. ✅ `app/fd-calculator/page.tsx` — Principal: 100000, Rate: 6.5, Years: 3
+6. ✅ `app/rd-calculator/page.tsx` — Monthly: 5000, Rate: 6, Months: 36
+7. ✅ `app/simple-interest-calculator/page.tsx` — Principal: 100000, Rate: 8, Years: 2
+8. ✅ `app/gst-calculator/page.tsx` — Amount: 100000, Rate: 18 (was 0)
+9. ✅ `app/percentage-calculator/page.tsx` — ValueA: 20, ValueB: 100 (was 0, 0)
+10. ✅ `app/cagr-calculator/page.tsx` — Beginning: 100000, Ending: 200000, Years: 5
+
+### Build Status
+- ✅ Production build: **SUCCESS** (11.0s compilation, Next.js 16.2.6)
+- ✅ TypeScript validation: **PASS** (9.7s type checking)
+- ✅ All 27 pages compiled without errors
+- ✅ Static page generation: 1140ms (7 workers)
+- ✅ Zero warnings, zero errors
+
+### User Experience Benefits
+1. **Instant Examples:** Users see realistic calculations immediately on page load
+2. **Learning Aid:** Default values serve as examples of how to use the calculator
+3. **Faster Completion:** Users can adjust defaults instead of entering from scratch
+4. **Full Control:** Users can clear all values and start fresh if they want
+5. **Mobile Friendly:** Large input fields with defaults make mobile input easier
+6. **Engagement:** Seeing results immediately encourages users to explore different values
+
+### Commits
+- Updated `CLAUDE.md` with Session 18 documentation
+
+**Status:** ✅ DEFAULT VALUES ADDED TO ALL 10 CALCULATORS | ✅ BUILD SUCCESSFUL | ✅ READY FOR DEPLOYMENT
+
+**Next Step:** `git push origin main` to deploy meaningful defaults to production 🚀
 

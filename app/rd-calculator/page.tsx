@@ -39,9 +39,9 @@ export default function RDCalculatorPage() {
   } = useForm<RDFormData>({
     resolver: zodResolver(RDSchema),
     defaultValues: {
-      monthlyDeposit: 0,
-      annualRate: 0,
-      months: 0,
+      monthlyDeposit: 5000,
+      annualRate: 6,
+      months: 36,
     },
   });
 
@@ -115,17 +115,17 @@ export default function RDCalculatorPage() {
                   min="1000"
                   max="1000000"
                   step="1000"
-                  value={watchValues.monthlyDeposit ?? 0}
+                  value={watchValues.monthlyDeposit === 0 ? '' : watchValues.monthlyDeposit}
                   onChange={(e) => handleInputChange('monthlyDeposit', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyDeposit', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
-                  type="number"
+                  type="number" placeholder="0"
                   min="1000"
                   max="1000000"
                   step="1000"
-                  value={watchValues.monthlyDeposit ?? 0}
+                  value={watchValues.monthlyDeposit === 0 ? '' : watchValues.monthlyDeposit}
                   onChange={(e) => handleInputChange('monthlyDeposit', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyDeposit', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
@@ -143,17 +143,17 @@ export default function RDCalculatorPage() {
                   min="0"
                   max="20"
                   step="0.1"
-                  value={watchValues.annualRate ?? 0}
+                  value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
                   onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
-                  type="number"
+                  type="number" placeholder="0"
                   min="0"
                   max="20"
                   step="0.1"
-                  value={watchValues.annualRate ?? 0}
+                  value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
                   onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
@@ -171,17 +171,17 @@ export default function RDCalculatorPage() {
                   min="1"
                   max="600"
                   step="1"
-                  value={watchValues.months ?? 0}
+                  value={watchValues.months === 0 ? '' : watchValues.months}
                   onChange={(e) => handleInputChange('months', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('months', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
                 <input
-                  type="number"
+                  type="number" placeholder="0"
                   min="1"
                   max="600"
                   step="1"
-                  value={watchValues.months ?? 0}
+                  value={watchValues.months === 0 ? '' : watchValues.months}
                   onChange={(e) => handleInputChange('months', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('months', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"

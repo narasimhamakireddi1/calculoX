@@ -28,9 +28,9 @@ export default function CAGRCalculatorPage() {
   } = useForm<CAGRFormData>({
     resolver: zodResolver(CAGRSchema),
     defaultValues: {
-      beginningValue: 0,
-      endingValue: 0,
-      years: 0,
+      beginningValue: 100000,
+      endingValue: 200000,
+      years: 5,
     },
   });
 
@@ -97,17 +97,17 @@ export default function CAGRCalculatorPage() {
                   min="10000"
                   max="10000000"
                   step="10000"
-                  value={watchValues.beginningValue ?? 0}
+                  value={watchValues.beginningValue === 0 ? '' : watchValues.beginningValue}
                   onChange={(e) => handleInputChange('beginningValue', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('beginningValue', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
-                  type="number"
+                  type="number" placeholder="0"
                   min="10000"
                   max="10000000"
                   step="1000"
-                  value={watchValues.beginningValue ?? 0}
+                  value={watchValues.beginningValue === 0 ? '' : watchValues.beginningValue}
                   onChange={(e) => handleInputChange('beginningValue', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('beginningValue', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
@@ -126,17 +126,17 @@ export default function CAGRCalculatorPage() {
                   min="10000"
                   max="10000000"
                   step="10000"
-                  value={watchValues.endingValue ?? 0}
+                  value={watchValues.endingValue === 0 ? '' : watchValues.endingValue}
                   onChange={(e) => handleInputChange('endingValue', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('endingValue', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
-                  type="number"
+                  type="number" placeholder="0"
                   min="10000"
                   max="10000000"
                   step="1000"
-                  value={watchValues.endingValue ?? 0}
+                  value={watchValues.endingValue === 0 ? '' : watchValues.endingValue}
                   onChange={(e) => handleInputChange('endingValue', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('endingValue', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
@@ -155,17 +155,17 @@ export default function CAGRCalculatorPage() {
                   min="1"
                   max="50"
                   step="1"
-                  value={watchValues.years ?? 0}
+                  value={watchValues.years === 0 ? '' : watchValues.years}
                   onChange={(e) => handleInputChange('years', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
                 <input
-                  type="number"
+                  type="number" placeholder="0"
                   min="1"
                   max="50"
                   step="1"
-                  value={watchValues.years ?? 0}
+                  value={watchValues.years === 0 ? '' : watchValues.years}
                   onChange={(e) => handleInputChange('years', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"

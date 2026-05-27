@@ -30,8 +30,8 @@ export default function PercentageCalculatorPage() {
   } = useForm<PercentageFormData>({
     resolver: zodResolver(PercentageSchema),
     defaultValues: {
-      valueA: 0,
-      valueB: 0,
+      valueA: 20,
+      valueB: 100,
       calculationType: 'percent-of',
     },
   });
@@ -152,17 +152,17 @@ export default function PercentageCalculatorPage() {
                   min="0"
                   max="1000"
                   step="1"
-                  value={watchValues.valueA ?? 0}
+                  value={watchValues.valueA === 0 ? '' : watchValues.valueA}
                   onChange={(e) => handleInputChange('valueA', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('valueA', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
-                  type="number"
+                  type="number" placeholder="0"
                   min="0"
                   max="1000"
                   step="0.01"
-                  value={watchValues.valueA ?? 0}
+                  value={watchValues.valueA === 0 ? '' : watchValues.valueA}
                   onChange={(e) => handleInputChange('valueA', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('valueA', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
@@ -180,17 +180,17 @@ export default function PercentageCalculatorPage() {
                   min="0"
                   max="1000"
                   step="1"
-                  value={watchValues.valueB ?? 0}
+                  value={watchValues.valueB === 0 ? '' : watchValues.valueB}
                   onChange={(e) => handleInputChange('valueB', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('valueB', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
-                  type="number"
+                  type="number" placeholder="0"
                   min="0"
                   max="1000"
                   step="0.01"
-                  value={watchValues.valueB ?? 0}
+                  value={watchValues.valueB === 0 ? '' : watchValues.valueB}
                   onChange={(e) => handleInputChange('valueB', Number(e.target.value))}
                   onBlur={(e) => handleValidateField('valueB', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
