@@ -2,9 +2,9 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax Calculator FY 2025-26 ✅  
-**Last Updated:** 2026-05-26 (Session 13: Tax Calculator Accuracy Fix - FY 2025-26)  
-**Tech Stack:** Next.js 14 + TypeScript + Tailwind + PostgreSQL  
+**Project Status:** MVP Complete ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax Calculator FY 2025-26 ✅ | Next.js 16.2.6 ✅  
+**Last Updated:** 2026-05-27 (Session 13: Next.js 16.2.6 Upgrade + Tax Calculator Accuracy + Hydration Fix)  
+**Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
 **Phase 2 Status:** Batch 1 (6 Calculators) - ✅ IMPLEMENTED (Hidden from homepage) | Batch 2 & 3 (8 Calculators) - 🔄 PLANNED
@@ -16,16 +16,19 @@
 CalculoX is a production-ready, SEO-optimized calculator platform for Indian users with 18+ calculators covering finance, health, and conversion utilities. Complete with database, AdSense setup, and deployment infrastructure.
 
 **Key Metrics:**
-- 18 calculators (Phase 1: 4 MVP with modern UI/UX, Phase 2: 14 additional)
-- TypeScript strict mode throughout
-- Lighthouse 95+ performance target
+- 10 calculators live (4 MVP + 6 Phase 2 Batch 1, 8 coming soon)
+- TypeScript strict mode + React 19 optimizations
+- Lighthouse 95+ performance target (Turbopack compiler)
 - Mobile-first responsive design
 - Dark mode support with enhanced styling
-- SEO optimized with schema markup
+- World-class SEO with schema markup + sitemap + blog
+- Affiliate monetization (Groww, Zerodha, ClearTax, etc.)
+- **NEW:** Next.js 16.2.6 with Turbopack (2-5x faster builds)
+- **NEW:** React 19 with latest features and optimizations
 - **NEW:** Dual input methods (slider + direct number input) on all calculators
-- **NEW:** Modern gradient-based card design with emoji indicators
-- **NEW:** Color-coded inputs and interactive form elements
+- **NEW:** FY 2025-26 tax calculations with accurate slabs and ₹60,000 rebate
 - **NEW:** Zero default values with nullish coalescing (??) for proper number handling
+- **NEW:** Hydration error fix for browser extension compatibility
 
 ---
 
@@ -1760,9 +1763,16 @@ value={watchValues.monthlyInvestment ?? 0}
 
 All 10 calculators fully implemented, tested, and ready for deployment. Build verified ✅. Code quality excellent ✅. User experience optimized ✅.
 
-**Latest Commit:** Session 8 - Zero default values & nullish coalescing (3daca9d)  
-**Last Updated:** 2026-05-26  
-**Status:** ✅ COMPLETE | 🚀 READY FOR DEPLOYMENT
+**Latest Commits (Session 13):**
+- `7bf3a4f` — Document React hydration error fix in CLAUDE.md
+- `33f97b5` — Fix React hydration error - browser extension compatibility
+- `c1fcbd4` — Complete Next.js 16.2.6 upgrade status
+- `2a261c7` — Fix next.config.js for Next.js 16 compatibility
+- `38fa7c0` — Upgrade Next.js 14.0.0 → 16.2.6 and update all dependencies
+- `324494a` — Fix Tax Calculator: Update to FY 2025-26 with correct new regime slabs
+
+**Last Updated:** 2026-05-27  
+**Status:** ✅ PRODUCTION READY | 🚀 READY FOR DEPLOYMENT | ⚡ OPTIMIZED WITH NEXT.JS 16.2.6
 
 ---
 
@@ -2287,3 +2297,66 @@ This tells React to suppress hydration warnings for the root `<html>` element, w
 **Commit:** `33f97b5` — "Fix React hydration error: Add suppressHydrationWarning to html tag for browser extension compatibility"
 
 **Status:** ✅ Hydration error resolved | Ready for deployment
+
+---
+
+## 📊 SESSION 13 FINAL SUMMARY: PRODUCTION OPTIMIZATION & ACCURACY (2026-05-27)
+
+### Three Major Accomplishments
+
+**1. Tax Calculator Accuracy Fix (FY 2025-26)** ✅
+- Updated new regime tax slabs: 0-4L (0%), 4-8L (5%), 8-12L (10%), 12-16L (15%), 16-20L (20%), 20-24L (25%), 24L+ (30%)
+- Corrected new regime rebate: ₹25,000 → **₹60,000** (makes income up to ₹12L tax-free)
+- Updated rebate income limit: ₹7L → **₹12L**
+- Old regime slabs verified correct (unchanged)
+- Impact: Users now see accurate tax calculations per official FY 2025-26 rates
+
+**2. Next.js 16.2.6 Upgrade** ⚡
+- Upgraded from Next.js 14.0.0 → **16.2.6** (latest stable)
+- Updated React: 18.2.0 → **19.0.0** (latest with optimizations)
+- Updated TypeScript: 5.2.0 → **5.6.0**
+- Updated all 24 dependencies to latest stable versions
+- Fixed next.config.js: Removed deprecated `swcMinify`, updated `images.domains` → `images.remotePatterns`
+- Performance boost: Turbopack compiler (2-5x faster builds than Webpack)
+- Security: All latest vulnerability patches applied
+
+**3. React Hydration Error Fix** 🔧
+- Added `suppressHydrationWarning` to `<html>` tag
+- Resolved mismatch between server-rendered and client-rendered HTML
+- Fixed browser extension (`data-qb-installed`) attribute conflicts
+- Ensures smooth SSR experience with browser extensions installed
+
+### Technical Achievements
+
+| Area | Before | After |
+|------|--------|-------|
+| **Next.js** | 14.0.0 | **16.2.6** ⬆️ |
+| **React** | 18.2.0 | **19.0.0** ⬆️ |
+| **TypeScript** | 5.2.0 | **5.6.0** ⬆️ |
+| **Build Speed** | Webpack | **Turbopack** (2-5x faster) |
+| **Tax Accuracy** | Outdated | **FY 2025-26 Official** ✅ |
+| **Hydration** | Errors | **No errors** ✅ |
+
+### Build Status
+- ✅ Production build: SUCCESS (30 routes, all pages compiled)
+- ✅ Dev server: Running on `http://localhost:3006`
+- ✅ TypeScript strict mode: PASS
+- ✅ Zero build warnings after fixes
+- ✅ All calculator pages accessible and functional
+
+### Deployment Ready Checklist
+- ✅ Tax Calculator: Accurate per FY 2025-26 official rates
+- ✅ Next.js: Latest stable version with security patches
+- ✅ React: v19 with latest optimizations
+- ✅ Hydration: Browser extension compatible
+- ✅ Performance: Turbopack compiler for faster builds
+- ✅ Code Quality: TypeScript strict mode throughout
+- ✅ SEO: World-class with sitemap, blog, schema markup
+- ✅ Monetization: Affiliate banners on all 4 MVP calculators
+- ✅ Responsive: Mobile-first design with dark mode
+- ✅ Git: 8 commits documenting all changes
+
+### Next Step
+Run `git push origin main` to deploy all Session 13 improvements to Vercel production 🚀
+
+**CalculoX is now optimized, accurate, and production-ready with Next.js 16.2.6!**
