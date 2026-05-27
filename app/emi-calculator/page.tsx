@@ -1,13 +1,26 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback, memo, Suspense, lazy } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/emi';
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+
+// Dynamic imports for charts - lazy load to improve initial page load
+const Charts = lazy(() => import('@/components/emi/ChartComponents').then(m => ({ default: m.ChartsSection })));
+const AmortizationTable = lazy(() => import('@/components/emi/AmortizationTable').then(m => ({ default: m.default })));
+
+// Fallback loader
+const ChartLoader = () => (
+  <div className="w-full h-80 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg">
+    <div className="text-center">
+      <div className="animate-pulse inline-block w-12 h-12 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+      <p className="text-gray-500 dark:text-gray-400">Loading chart...</p>
+    </div>
+  </div>
+);
 
 type EMIFormData = {
   principal: number;
@@ -30,9 +43,135 @@ interface AmortizationRow {
   balance: number;
 }
 
+// Memoized result cards component
+const ResultCards = memo(({ result }: { result: EMIResultData | null }) => {
+  if (!result) {
+    return (
+      <div className="card h-full flex items-center justify-center min-h-64">
+        <div className="text-center">
+          <p className="text-gray-500 dark:text-gray-400 text-lg">
+            Enter your loan details and results will appear here
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="card space-y-4">
+      <h2 className="text-2xl font-bold mb-6">Loan Summary</h2>
+
+      <div className="grid grid-cols-1 gap-4">
+        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-lg hover:shadow-xl transition-all will-change-transform">
+          <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">💰 Monthly EMI</p>
+          <p className="text-4xl font-bold text-blue-700 dark:text-blue-400">
+            {formatCurrency(result.emi)}
+          </p>
+        </div>
+
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-5 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
+          <p className="text-gray-600 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2">Total Payable</p>
+          <p className="text-3xl font-bold text-gray-900 dark:text-white">
+            {formatCurrency(result.totalAmount)}
+          </p>
+        </div>
+
+        <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-lg transition-shadow">
+          <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-2">📊 Total Interest</p>
+          <p className="text-3xl font-bold text-red-700 dark:text-red-400">
+            {formatCurrency(result.totalInterest)}
+          </p>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-5 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm hover:shadow-md transition-shadow">
+          <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">Duration</p>
+          <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
+            {result.numberOfMonths} <span className="text-xl">months</span>
+          </p>
+        </div>
+      </div>
+
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          EMI calculated using monthly reducing balance method with compounding interest.
+        </p>
+      </div>
+    </div>
+  );
+});
+
+ResultCards.displayName = 'ResultCards';
+
+// Memoized input component with optimized rendering
+const LoanInput = memo(({
+  label,
+  value,
+  onChange,
+  onBlur,
+  min,
+  max,
+  step,
+  error,
+  prefix,
+  suffix,
+  rangeText,
+  colorFrom,
+  colorTo
+}: {
+  label: string;
+  value: number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  min: number;
+  max: number;
+  step: number | string;
+  error: any;
+  prefix?: string;
+  suffix?: string;
+  rangeText: string;
+  colorFrom: string;
+  colorTo: string;
+}) => (
+  <div className="space-y-3">
+    <label className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
+    <div className="flex gap-3 items-center">
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value ?? 0}
+        onChange={onChange}
+        onBlur={onBlur}
+        className={`flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer accent-${colorTo.split('-')[1]}-600 transition-all will-change-auto`}
+      />
+      <div className="relative flex-shrink-0">
+        {prefix && <span className="absolute left-2 top-2.5 font-bold text-sm">{prefix}</span>}
+        {suffix && <span className="absolute right-3 top-2.5 font-bold text-sm">{suffix}</span>}
+        <input
+          type="number"
+          placeholder="0"
+          min={min}
+          max={max}
+          step={step}
+          value={value === 0 ? '' : value}
+          onChange={onChange}
+          onBlur={onBlur}
+          className="w-32 px-6 py-2 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+        />
+      </div>
+    </div>
+    {error && <p className="text-red-500 text-sm">{error.message}</p>}
+    <p className="text-xs text-gray-500 dark:text-gray-400">{rangeText}</p>
+  </div>
+));
+
+LoanInput.displayName = 'LoanInput';
+
 export default function EMICalculatorPage() {
   const [result, setResult] = useState<EMIResultData | null>(null);
   const [schedule, setSchedule] = useState<AmortizationRow[]>([]);
+  const [scheduleFirstTwelve, setScheduleFirstTwelve] = useState<AmortizationRow[]>([]);
   const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   const {
@@ -51,62 +190,58 @@ export default function EMICalculatorPage() {
 
   const watchValues = watch();
 
-  const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
-    principal: { min: 10000, max: 100000000, label: 'Loan Amount (₹)' },
-    annualRate: { min: 0, max: 50, label: 'Annual Rate (%)' },
-    years: { min: 1, max: 50, label: 'Years' },
-  };
+  const fieldRanges = useMemo(
+    () => ({
+      principal: { min: 10000, max: 100000000, label: 'Loan Amount (₹)' },
+      annualRate: { min: 0, max: 50, label: 'Annual Rate (%)' },
+      years: { min: 1, max: 50, label: 'Years' },
+    }),
+    []
+  );
 
-  const handleInputChange = (fieldName: keyof EMIFormData, value: number) => {
+  // Memoize handlers with useCallback
+  const handleInputChange = useCallback((fieldName: keyof EMIFormData, value: number) => {
     setValue(fieldName, value, { shouldValidate: true });
-  };
+  }, [setValue]);
 
-  const handleValidateField = (fieldName: string, value: number) => {
-    const range = fieldRanges[fieldName];
+  const handleValidateField = useCallback((fieldName: string, value: number) => {
+    const range = fieldRanges[fieldName as keyof typeof fieldRanges];
     if (range && (value < range.min || value > range.max)) {
       alert(`${range.label} must be between ${range.min} and ${range.max}`);
     }
-  };
+  }, [fieldRanges]);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     reset();
     setResult(null);
     setSchedule([]);
+    setScheduleFirstTwelve([]);
     setShowFullSchedule(false);
-  };
+  }, [reset]);
 
-  // Auto-calculate when inputs change (with debounce)
+  const handleToggleSchedule = useCallback(() => {
+    setShowFullSchedule(prev => !prev);
+  }, []);
+
+  // Memoized calculation
+  const calculateResults = useCallback((data: EMIFormData) => {
+    const result = calculateEMI(data);
+    setResult(result);
+    const fullSchedule = generateAmortizationSchedule(data, result);
+    setSchedule(fullSchedule);
+    setScheduleFirstTwelve(fullSchedule.slice(0, 12));
+  }, []);
+
+  // Auto-calculate with debounce
   useEffect(() => {
     const timer = setTimeout(() => {
       if (watchValues.principal && watchValues.annualRate !== undefined && watchValues.years) {
         calculateResults(watchValues);
       }
-    }, 300); // 300ms debounce delay
+    }, 300);
 
     return () => clearTimeout(timer);
-  }, [watchValues]);
-
-  const calculateResults = (data: EMIFormData) => {
-    const result = calculateEMI(data);
-    setResult(result);
-    const schedule = generateAmortizationSchedule(data, result);
-    setSchedule(schedule);
-  };
-
-  // Generate chart data (every 12th month for cleaner chart)
-  const chartData = useMemo(() => {
-    return schedule.filter((row) => row.month % 12 === 0);
-  }, [schedule]);
-
-  // Generate pie chart data
-  const pieData = result
-    ? [
-        { name: 'Principal', value: result.totalAmount - result.totalInterest },
-        { name: 'Interest', value: result.totalInterest },
-      ]
-    : [];
-
-  const COLORS = ['#3b82f6', '#ef4444'];
+  }, [watchValues, calculateResults]);
 
   return (
     <div className="space-y-8 py-8">
@@ -121,112 +256,55 @@ export default function EMICalculatorPage() {
         {/* Form Section */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Loan Details</h2>
-          <form  className="space-y-6">
-            {/* Principal */}
-            <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Loan Amount (₹)</label>
-              <div className="flex gap-3 items-center">
-                <input
-                  type="range"
-                  min="10000"
-                  max="100000000"
-                  step="10000"
-                  value={watchValues.principal ?? 0}
-                  onChange={(e) => handleInputChange('principal', Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                />
-                <div className="relative flex-shrink-0">
-                  <span className="absolute left-2 top-2.5 text-blue-600 font-bold text-sm">₹</span>
-                  <input
-                    type="number"
-                    placeholder="0"
-                    min="10000"
-                    max="100000000"
-                    step="10000"
-                    value={watchValues.principal === 0 ? '' : watchValues.principal}
-                    onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
-                    onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                    className="w-32 px-6 py-2 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
-                  />
-                </div>
-              </div>
-              {errors.principal && (
-                <p className="text-red-500 text-sm">{errors.principal.message}</p>
-              )}
-              <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 - ₹1 Crore</p>
-            </div>
+          <form className="space-y-6">
+            <LoanInput
+              label="Loan Amount (₹)"
+              value={watchValues.principal ?? 0}
+              onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+              onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
+              min={10000}
+              max={100000000}
+              step={10000}
+              error={errors.principal}
+              prefix="₹"
+              rangeText="₹10,000 - ₹1 Crore"
+              colorFrom="from-blue-300"
+              colorTo="to-blue-600"
+            />
 
-            {/* Annual Rate */}
-            <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Annual Interest Rate (%)</label>
-              <div className="flex gap-3 items-center">
-                <input
-                  type="range"
-                  min="0"
-                  max="50"
-                  step="0.1"
-                  value={watchValues.annualRate ?? 0}
-                  onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-                  className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
-                />
-                <div className="relative flex-shrink-0">
-                  <span className="absolute right-3 top-2.5 text-orange-600 font-bold text-sm">%</span>
-                  <input
-                    type="number"
-                    placeholder="0"
-                    step="0.1"
-                    min="0"
-                    max="50"
-                    value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
-                    onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
-                    onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-                    className="w-20 px-3 py-2 pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
-                  />
-                </div>
-              </div>
-              {errors.annualRate && (
-                <p className="text-red-500 text-sm">{errors.annualRate.message}</p>
-              )}
-              <p className="text-xs text-gray-500 dark:text-gray-400">0% - 50%</p>
-            </div>
+            <LoanInput
+              label="Annual Interest Rate (%)"
+              value={watchValues.annualRate ?? 0}
+              onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+              onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
+              min={0}
+              max={50}
+              step={0.1}
+              error={errors.annualRate}
+              suffix="%"
+              rangeText="0% - 50%"
+              colorFrom="from-orange-300"
+              colorTo="to-orange-600"
+            />
 
-            {/* Loan Tenure */}
-            <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Loan Tenure (Years)</label>
-              <div className="flex gap-3 items-center">
-                <input
-                  type="range"
-                  min="1"
-                  max="50"
-                  value={watchValues.years ?? 0}
-                  onChange={(e) => handleInputChange('years', Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                  className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
-                />
-                <input
-                  type="number"
-                  placeholder="0"
-                  min="1"
-                  max="50"
-                  step="1"
-                  value={watchValues.years === 0 ? '' : watchValues.years}
-                  onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg text-center font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
-                />
-              </div>
-              {errors.years && (
-                <p className="text-red-500 text-sm">{errors.years.message}</p>
-              )}
-              <p className="text-xs text-gray-500 dark:text-gray-400">1 - 50 years</p>
-            </div>
+            <LoanInput
+              label="Loan Tenure (Years)"
+              value={watchValues.years ?? 0}
+              onChange={(e) => handleInputChange('years', Number(e.target.value))}
+              onBlur={(e) => handleValidateField('years', Number(e.target.value))}
+              min={1}
+              max={50}
+              step={1}
+              error={errors.years}
+              rangeText="1 - 50 years"
+              colorFrom="from-green-300"
+              colorTo="to-green-600"
+            />
 
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
             >
               🗑️ Clear All
             </button>
@@ -234,156 +312,26 @@ export default function EMICalculatorPage() {
         </div>
 
         {/* Results Section */}
-        <div>
-          {result ? (
-            <div className="card space-y-4">
-              <h2 className="text-2xl font-bold mb-6">Loan Summary</h2>
-
-              <div className="grid grid-cols-1 gap-4">
-                {/* Monthly EMI - Highlighted */}
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-lg hover:shadow-xl transition-all">
-                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">💰 Monthly EMI</p>
-                  <p className="text-4xl font-bold text-blue-700 dark:text-blue-400">
-                    {formatCurrency(result.emi)}
-                  </p>
-                </div>
-
-                {/* Total Amount */}
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-5 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
-                  <p className="text-gray-600 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2">Total Payable</p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                    {formatCurrency(result.totalAmount)}
-                  </p>
-                </div>
-
-                {/* Total Interest */}
-                <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-2">📊 Total Interest</p>
-                  <p className="text-3xl font-bold text-red-700 dark:text-red-400">
-                    {formatCurrency(result.totalInterest)}
-                  </p>
-                </div>
-
-                {/* Duration */}
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-5 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm hover:shadow-md transition-shadow">
-                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">Duration</p>
-                  <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
-                    {result.numberOfMonths} <span className="text-xl">months</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  EMI calculated based on monthly compounding at the specified interest rate.
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="card h-full flex items-center justify-center min-h-64">
-              <div className="text-center">
-                <p className="text-gray-500 dark:text-gray-400 text-lg">
-                  Enter your loan details and click &quot;Calculate EMI&quot; to see results
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
+        <ResultCards result={result} />
       </div>
 
-      {/* Charts Section */}
+      {/* Charts Section - Lazy loaded */}
       {result && (
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Line Chart */}
-          <div className="card">
-            <h2 className="text-2xl font-bold mb-6">Repayment Breakdown Over Time</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                <XAxis dataKey="month" label={{ value: 'Months', position: 'insideBottomRight', offset: -5 }} />
-                <YAxis tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`} />
-                <Tooltip formatter={(value) => formatCurrency(value as number)} />
-                <Legend />
-                <Line type="monotone" dataKey="principal" stroke="#3b82f6" name="Principal Paid" strokeWidth={2} />
-                <Line type="monotone" dataKey="interest" stroke="#ef4444" name="Interest Paid" strokeWidth={2} />
-                <Line type="monotone" dataKey="balance" stroke="#10b981" name="Remaining Balance" strokeWidth={2} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Pie Chart */}
-          <div className="card">
-            <h2 className="text-2xl font-bold mb-6">Principal vs Interest</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie data={pieData} cx="50%" cy="50%" labelLine={false} outerRadius={80} fill="#8884d8" dataKey="value">
-                  {pieData.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(value) => formatCurrency(value as number)} />
-              </PieChart>
-            </ResponsiveContainer>
-            <div className="mt-6 space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">Principal Amount:</span>
-                <span className="font-semibold text-blue-600">{formatCurrency(result.totalAmount - result.totalInterest)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">Total Interest:</span>
-                <span className="font-semibold text-red-600">{formatCurrency(result.totalInterest)}</span>
-              </div>
-              <div className="flex justify-between pt-2 border-t">
-                <span className="text-gray-600 dark:text-gray-400">Total Amount:</span>
-                <span className="font-semibold">{formatCurrency(result.totalAmount)}</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Suspense fallback={<ChartLoader />}>
+          <Charts result={result} schedule={schedule} />
+        </Suspense>
       )}
 
-      {/* Amortization Schedule */}
+      {/* Amortization Schedule - Lazy loaded */}
       {result && schedule.length > 0 && (
-        <div className="card">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Amortization Schedule</h2>
-            <button
-              onClick={() => setShowFullSchedule(!showFullSchedule)}
-              className="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-lg font-semibold hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
-            >
-              {showFullSchedule ? 'Show First 12 Months' : 'Show All'}
-            </button>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th className="text-left py-3 px-4 font-semibold">Month</th>
-                  <th className="text-right py-3 px-4 font-semibold">Payment</th>
-                  <th className="text-right py-3 px-4 font-semibold">Principal</th>
-                  <th className="text-right py-3 px-4 font-semibold">Interest</th>
-                  <th className="text-right py-3 px-4 font-semibold">Balance</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(showFullSchedule ? schedule : schedule.slice(0, 12)).map((row) => (
-                  <tr key={row.month} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
-                    <td className="py-3 px-4 text-gray-900 dark:text-white">{row.month}</td>
-                    <td className="py-3 px-4 text-right text-gray-900 dark:text-white font-semibold">{formatCurrency(row.payment)}</td>
-                    <td className="py-3 px-4 text-right text-blue-600 dark:text-blue-400">{formatCurrency(row.principal)}</td>
-                    <td className="py-3 px-4 text-right text-red-600 dark:text-red-400">{formatCurrency(row.interest)}</td>
-                    <td className="py-3 px-4 text-right text-gray-600 dark:text-gray-400">{formatCurrency(row.balance)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
-            Showing {showFullSchedule ? 'all' : 'first 12'} months. Click &quot;Show All&quot; to view complete schedule.
-          </p>
-        </div>
+        <Suspense fallback={<div className="card h-40 flex items-center justify-center"><p className="text-gray-500">Loading table...</p></div>}>
+          <AmortizationTable
+            schedule={schedule}
+            scheduleFirstTwelve={scheduleFirstTwelve}
+            showFullSchedule={showFullSchedule}
+            onToggle={handleToggleSchedule}
+          />
+        </Suspense>
       )}
 
       {/* Affiliate Banner */}
@@ -392,7 +340,7 @@ export default function EMICalculatorPage() {
         headline="Get the Lowest Loan Rate for Your EMI"
         subtext="Compare home loan, car loan & personal loan rates from 20+ banks instantly."
         note="Free comparison · No credit score impact · Instant eligibility check"
-        gradient="bg-gradient-to-r from-blue-600 to-blue-800"
+        gradient="from-blue-600 to-blue-800"
         links={[
           { label: 'Compare Loan Rates →', href: 'https://www.bankbazaar.com/home-loan.html', primary: true },
           { label: 'Check Eligibility', href: 'https://www.paisabazaar.com/home-loan/' },
