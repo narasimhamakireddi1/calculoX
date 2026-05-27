@@ -2,65 +2,94 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const links = [
-    { href: '/', label: 'Home' },
-    { href: '/sip-calculator', label: 'SIP' },
-    { href: '/emi-calculator', label: 'EMI' },
-    { href: '/bmi-calculator', label: 'BMI' },
-    { href: '/tax-calculator', label: 'Tax' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/about', label: 'About' },
+    { href: '/', label: 'Home', icon: '🏠' },
+    { href: '/sip-calculator', label: 'SIP', icon: '📈' },
+    { href: '/emi-calculator', label: 'EMI', icon: '💳' },
+    { href: '/bmi-calculator', label: 'BMI', icon: '⚖️' },
+    { href: '/tax-calculator', label: 'Tax', icon: '🧮' },
+    { href: '/blog', label: 'Blog', icon: '📝' },
+    { href: '/about', label: 'About', icon: 'ℹ️' },
   ];
 
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
+
   return (
-    <nav className="bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200/30 dark:border-gray-800/30 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="font-bold text-2xl">
-            🧮 CalculoX
+          {/* Logo - Enhanced */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-bold text-2xl bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
+          >
+            <span className="text-3xl">🧮</span>
+            <span>CalculoX</span>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-primary-600 transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+          {/* Desktop Menu - Enhanced */}
+          <div className="hidden md:flex gap-2 items-center">
+            {links.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium text-sm flex items-center gap-1.5 transform hover:scale-105 ${
+                    active
+                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
+                  }`}
+                >
+                  <span>{link.icon}</span>
+                  <span>{link.label}</span>
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Enhanced */}
           <button
-            className="md:hidden"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? '✕' : '☰'}
+            <span className="text-2xl font-bold">
+              {isOpen ? '✕' : '☰'}
+            </span>
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Enhanced */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block py-2 hover:text-primary-600"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="md:hidden pb-4 space-y-2 animate-in fade-in slide-in-from-top-2">
+            {links.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`block px-4 py-3 rounded-lg transition-all duration-200 font-medium flex items-center gap-2 ${
+                    active
+                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="text-xl">{link.icon}</span>
+                  <span>{link.label}</span>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
