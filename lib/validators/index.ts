@@ -64,3 +64,55 @@ export const CAGRSchema = z.object({
   endingValue: z.number().positive('Ending value must be greater than 0'),
   years: z.number().int().min(1).max(100),
 });
+
+// Comprehensive Tax Calculator Schema (FY 2025-26)
+export const ComprehensiveTaxSchema = z.object({
+  // Personal Profile
+  age: z.enum(['below60', 'between60to80', 'above80']),
+  residentialStatus: z.enum(['resident', 'nri']),
+  employerType: z.enum(['government', 'private']),
+
+  // Salary Income
+  grossSalary: z.number().nonnegative('Gross salary must be non-negative'),
+  basicSalary: z.number().nonnegative('Basic salary must be non-negative'),
+  hraReceived: z.number().nonnegative('HRA must be non-negative'),
+  rentPaid: z.number().nonnegative('Rent paid must be non-negative'),
+  cityType: z.enum(['metro', 'non-metro']),
+  lta: z.number().nonnegative('LTA must be non-negative'),
+  epfEmployee: z.number().nonnegative('EPF must be non-negative'),
+
+  // Deductions - Section 80C (max ₹1.5L)
+  epf: z.number().nonnegative(),
+  ppf: z.number().nonnegative(),
+  elss: z.number().nonnegative(),
+  lifeInsurance: z.number().nonnegative(),
+  homeRepayment: z.number().nonnegative(),
+  ssy: z.number().nonnegative(),
+  nsc: z.number().nonnegative(),
+  taxSaverFD: z.number().nonnegative(),
+  tuitionFees: z.number().nonnegative(),
+
+  // Deductions - 80CCD1B (max ₹50K)
+  npsAdditional: z.number().nonnegative(),
+
+  // Deductions - 80D (Health Insurance)
+  healthInsuranceSelf: z.number().nonnegative(),
+  healthInsuranceParents: z.number().nonnegative(),
+  parentsAge: z.enum(['below60', 'above60']),
+
+  // Deductions - 80E (Education Loan Interest)
+  educationLoanInterest: z.number().nonnegative(),
+
+  // Deductions - 80G (Donations)
+  donations100: z.number().nonnegative(),
+  donations50: z.number().nonnegative(),
+
+  // Deductions - 80TTA/TTB (Savings Interest)
+  savingsInterest: z.number().nonnegative(),
+
+  // Deductions - 24(b) (Home Loan Interest, max ₹2L)
+  homeLoanInterest: z.number().nonnegative(),
+
+  // Tax Regime
+  regime: z.enum(['old', 'new', 'auto']),
+});
