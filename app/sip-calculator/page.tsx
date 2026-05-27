@@ -173,8 +173,8 @@ export default function SIPCalculatorPage() {
                   min="100"
                   max="1000000"
                   step="100"
-                  value={watchValues.monthlyInvestment ?? 0}
-                  onChange={(e) => handleInputChange('monthlyInvestment', Number(e.target.value))}
+                  value={watchValues.monthlyInvestment === 0 ? "" : watchValues.monthlyInvestment}
+                  onChange={(e) => handleInputChange('monthlyInvestment', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyInvestment', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
@@ -185,8 +185,8 @@ export default function SIPCalculatorPage() {
                     min="100"
                     max="1000000"
                     step="100"
-                    value={watchValues.monthlyInvestment ?? 0}
-                    onChange={(e) => handleInputChange('monthlyInvestment', Number(e.target.value))}
+                    value={watchValues.monthlyInvestment === 0 ? "" : watchValues.monthlyInvestment}
+                    onChange={(e) => handleInputChange('monthlyInvestment', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('monthlyInvestment', Number(e.target.value))}
                     className="w-28 px-6 py-2 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
                   />
@@ -206,8 +206,8 @@ export default function SIPCalculatorPage() {
                   type="range"
                   min="1"
                   max="50"
-                  value={watchValues.years ?? 0}
-                  onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  value={watchValues.years === 0 ? "" : watchValues.years}
+                  onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
@@ -216,8 +216,8 @@ export default function SIPCalculatorPage() {
                   min="0"
                   max="50"
                   step="1"
-                  value={watchValues.years ?? 0}
-                  onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  value={watchValues.years === 0 ? "" : watchValues.years}
+                  onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg text-center font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                 />
@@ -237,8 +237,8 @@ export default function SIPCalculatorPage() {
                   min="0"
                   max="100"
                   step="0.1"
-                  value={watchValues.annualReturn ?? 0}
-                  onChange={(e) => handleInputChange('annualReturn', Number(e.target.value))}
+                  value={watchValues.annualReturn === 0 ? "" : watchValues.annualReturn}
+                  onChange={(e) => handleInputChange('annualReturn', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualReturn', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
@@ -249,8 +249,8 @@ export default function SIPCalculatorPage() {
                     min="0"
                     max="100"
                     step="0.1"
-                    value={watchValues.annualReturn ?? 0}
-                    onChange={(e) => handleInputChange('annualReturn', Number(e.target.value))}
+                    value={watchValues.annualReturn === 0 ? "" : watchValues.annualReturn}
+                    onChange={(e) => handleInputChange('annualReturn', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('annualReturn', Number(e.target.value))}
                     className="w-20 px-3 py-2 pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                   />
@@ -271,8 +271,8 @@ export default function SIPCalculatorPage() {
                   min="0"
                   max="50"
                   step="0.5"
-                  value={watchValues.stepUpPercent ?? 0}
-                  onChange={(e) => handleInputChange('stepUpPercent', Number(e.target.value))}
+                  value={watchValues.stepUpPercent === 0 ? "" : watchValues.stepUpPercent}
+                  onChange={(e) => handleInputChange('stepUpPercent', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('stepUpPercent', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
                 />
@@ -283,8 +283,8 @@ export default function SIPCalculatorPage() {
                     min="0"
                     max="50"
                     step="0.5"
-                    value={watchValues.stepUpPercent ?? 0}
-                    onChange={(e) => handleInputChange('stepUpPercent', Number(e.target.value))}
+                    value={watchValues.stepUpPercent === 0 ? "" : watchValues.stepUpPercent}
+                    onChange={(e) => handleInputChange('stepUpPercent', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('stepUpPercent', Number(e.target.value))}
                     className="w-20 px-3 py-2 pr-6 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
                   />
@@ -529,3 +529,4 @@ export default function SIPCalculatorPage() {
     </div>
   );
 }
+

@@ -162,8 +162,8 @@ export default function BMICalculatorPage() {
                   min="10"
                   max={unitSystem === 'metric' ? '500' : '1102'}
                   step="0.1"
-                  value={watchValues.weight ?? 0}
-                  onChange={(e) => handleInputChange('weight', Number(e.target.value))}
+                  value={watchValues.weight === 0 ? "" : watchValues.weight}
+                  onChange={(e) => handleInputChange('weight', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
@@ -172,8 +172,8 @@ export default function BMICalculatorPage() {
                   step="0.1"
                   min="10"
                   max={unitSystem === 'metric' ? '500' : '1102'}
-                  value={watchValues.weight ?? 0}
-                  onChange={(e) => handleInputChange('weight', Number(e.target.value))}
+                  value={watchValues.weight === 0 ? "" : watchValues.weight}
+                  onChange={(e) => handleInputChange('weight', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
@@ -190,8 +190,8 @@ export default function BMICalculatorPage() {
                   min="10"
                   max={unitSystem === 'metric' ? '300' : '118'}
                   step="0.1"
-                  value={watchValues.height ?? 0}
-                  onChange={(e) => handleInputChange('height', Number(e.target.value))}
+                  value={watchValues.height === 0 ? "" : watchValues.height}
+                  onChange={(e) => handleInputChange('height', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('height', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
@@ -200,8 +200,8 @@ export default function BMICalculatorPage() {
                   step="0.1"
                   min="10"
                   max={unitSystem === 'metric' ? '300' : '118'}
-                  value={watchValues.height ?? 0}
-                  onChange={(e) => handleInputChange('height', Number(e.target.value))}
+                  value={watchValues.height === 0 ? "" : watchValues.height}
+                  onChange={(e) => handleInputChange('height', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('height', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
@@ -400,3 +400,4 @@ export default function BMICalculatorPage() {
     </div>
   );
 }
+

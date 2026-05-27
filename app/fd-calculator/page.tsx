@@ -113,8 +113,8 @@ export default function FDCalculatorPage() {
                   min="10000"
                   max="100000000"
                   step="10000"
-                  value={watchValues.principal ?? 0}
-                  onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+                  value={watchValues.principal === 0 ? "" : watchValues.principal}
+                  onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
@@ -123,8 +123,8 @@ export default function FDCalculatorPage() {
                   min="10000"
                   max="100000000"
                   step="10000"
-                  value={watchValues.principal ?? 0}
-                  onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+                  value={watchValues.principal === 0 ? "" : watchValues.principal}
+                  onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
@@ -142,8 +142,8 @@ export default function FDCalculatorPage() {
                   min="0"
                   max="20"
                   step="0.1"
-                  value={watchValues.annualRate ?? 0}
-                  onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+                  value={watchValues.annualRate === 0 ? "" : watchValues.annualRate}
+                  onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
@@ -152,8 +152,8 @@ export default function FDCalculatorPage() {
                   min="0"
                   max="20"
                   step="0.1"
-                  value={watchValues.annualRate ?? 0}
-                  onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+                  value={watchValues.annualRate === 0 ? "" : watchValues.annualRate}
+                  onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
@@ -171,8 +171,8 @@ export default function FDCalculatorPage() {
                   min="1"
                   max="30"
                   step="1"
-                  value={watchValues.years ?? 0}
-                  onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  value={watchValues.years === 0 ? "" : watchValues.years}
+                  onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
@@ -180,8 +180,8 @@ export default function FDCalculatorPage() {
                   type="number" placeholder="0"
                   min="1"
                   max="30"
-                  value={watchValues.years ?? 0}
-                  onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                  value={watchValues.years === 0 ? "" : watchValues.years}
+                  onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                 />
@@ -355,3 +355,4 @@ export default function FDCalculatorPage() {
     </div>
   );
 }
+
