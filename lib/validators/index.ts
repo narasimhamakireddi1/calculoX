@@ -19,8 +19,8 @@ export const EMISchema = z.object({
 });
 
 export const BMISchema = z.object({
-  weight: z.number().positive().max(500),
-  height: z.number().positive().max(300),
+  weight: z.number().positive().max(1102), // Max for imperial (500 kg = 1102 lbs)
+  height: z.number().positive().max(300),  // Max for metric; imperial max (118") is ~300cm
 });
 
 export const TaxSchema = z.object({
