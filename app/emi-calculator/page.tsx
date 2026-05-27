@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
@@ -36,7 +36,6 @@ export default function EMICalculatorPage() {
   const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   const {
-    handleSubmit,
     formState: { errors },
     watch,
     setValue,
@@ -76,7 +75,14 @@ export default function EMICalculatorPage() {
     setShowFullSchedule(false);
   };
 
-  const onSubmit = (data: EMIFormData) => {
+  // Auto-calculate when inputs change
+  useEffect(() => {
+    if (watchValues.principal && watchValues.annualRate !== undefined && watchValues.years) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues]);
+
+  const calculateResults = (data: EMIFormData) => {
     const result = calculateEMI(data);
     setResult(result);
     const schedule = generateAmortizationSchedule(data, result);
@@ -111,7 +117,7 @@ export default function EMICalculatorPage() {
         {/* Form Section */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Loan Details</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form  className="space-y-6">
             {/* Principal */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Loan Amount (₹)</label>
@@ -210,21 +216,13 @@ export default function EMICalculatorPage() {
               <p className="text-xs text-gray-500 dark:text-gray-400">1 - 30 years</p>
             </div>
 
-            <div className="flex gap-3">
-              <button
-                type="submit"
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-              >
-                💳 Calculate EMI
-              </button>
-              <button
-                type="button"
-                onClick={handleReset}
-                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-              >
-                🗑️ Clear
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+            >
+              🗑️ Clear All
+            </button>
           </form>
         </div>
 

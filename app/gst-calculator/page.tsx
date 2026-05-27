@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { calculateGST } from '@/lib/calculators/gst';
@@ -24,7 +24,6 @@ export default function GSTCalculatorPage() {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
     watch,
     setValue,
@@ -57,7 +56,14 @@ export default function GSTCalculatorPage() {
     setResult(null);
   };
 
-  const onSubmit = (data: GSTFormData) => {
+  // Auto-calculate when inputs change
+  useEffect(() => {
+    if (watchValues.amount && watchValues.gstRate) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues]);
+
+  const calculateResults = (data: GSTFormData) => {
     const result = calculateGST({
       amount: data.amount,
       gstRate: parseFloat(data.gstRate),
@@ -79,7 +85,7 @@ export default function GSTCalculatorPage() {
         {/* Form */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">GST Details</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form  className="space-y-6">
             {/* Calculation Type */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Operation Type</label>

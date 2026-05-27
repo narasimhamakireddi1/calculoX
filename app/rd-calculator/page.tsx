@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -32,7 +32,6 @@ export default function RDCalculatorPage() {
   const [projections, setProjections] = useState<MonthlyProjection[]>([]);
 
   const {
-    handleSubmit,
     formState: { errors },
     watch,
     setValue,
@@ -71,7 +70,14 @@ export default function RDCalculatorPage() {
     setProjections([]);
   };
 
-  const onSubmit = (data: RDFormData) => {
+  // Auto-calculate when inputs change
+  useEffect(() => {
+    if (watchValues.monthlyDeposit && watchValues.annualRate !== undefined && watchValues.months) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues]);
+
+  const calculateResults = (data: RDFormData) => {
     const result = calculateRD(data);
     setResult(result);
     const projections = generateRDProjection(data);
@@ -95,7 +101,7 @@ export default function RDCalculatorPage() {
         {/* Form */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Deposit Details</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form  className="space-y-6">
             {/* Monthly Deposit */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Monthly Deposit (₹)</label>

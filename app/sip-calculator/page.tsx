@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -41,7 +41,6 @@ export default function SIPCalculatorPage() {
   const [projections, setProjections] = useState<YearlyProjection[]>([]);
 
   const {
-    handleSubmit,
     formState: { errors },
     watch,
     setValue,
@@ -83,7 +82,14 @@ export default function SIPCalculatorPage() {
     setProjections([]);
   };
 
-  const onSubmit = (data: SIPFormData) => {
+  // Auto-calculate when inputs change
+  useEffect(() => {
+    if (watchValues.monthlyInvestment && watchValues.years && watchValues.annualReturn !== undefined) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues]);
+
+  const calculateResults = (data: SIPFormData) => {
     const result = calculateSIP(data);
     setResult(result);
 
@@ -153,7 +159,7 @@ export default function SIPCalculatorPage() {
         {/* Form Section */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form className="space-y-6">
             {/* Monthly Investment */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Monthly Investment (₹)</label>
@@ -286,21 +292,13 @@ export default function SIPCalculatorPage() {
               <p className="text-xs text-gray-500 dark:text-gray-400">Increase investment by this % each year (0-50%)</p>
             </div>
 
-            <div className="flex gap-3">
-              <button
-                type="submit"
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-              >
-                📊 Calculate SIP
-              </button>
-              <button
-                type="button"
-                onClick={handleReset}
-                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-              >
-                🗑️ Clear
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+            >
+              🗑️ Clear All
+            </button>
           </form>
         </div>
 

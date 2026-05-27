@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -65,7 +65,6 @@ export default function ComprehensiveTaxCalculator() {
 
   const {
     register,
-    handleSubmit,
     watch,
     setValue,
     reset,
@@ -121,7 +120,14 @@ export default function ComprehensiveTaxCalculator() {
     setResult(null);
   };
 
-  const onSubmit = (data: FormData) => {
+  // Auto-calculate when inputs change
+  useEffect(() => {
+    if (watchValues.grossSalary && watchValues.basicSalary) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues]);
+
+  const calculateResults = (data: FormData) => {
     try {
       const input: ComprehensiveTaxInput = {
         profile: {
@@ -193,7 +199,7 @@ export default function ComprehensiveTaxCalculator() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form  className="space-y-6">
         {/* PERSONAL PROFILE SECTION */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Personal Profile</h2>
@@ -746,7 +752,7 @@ export default function ComprehensiveTaxCalculator() {
         {/* CALCULATE & RESET BUTTONS */}
         <div className="flex gap-3">
           <button
-            type="submit"
+            type="button" onClick={handleReset}
             className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
           >
             🧮 Calculate Tax

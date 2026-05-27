@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -30,7 +30,6 @@ export default function FDCalculatorPage() {
   const [projections, setProjections] = useState<YearlyProjection[]>([]);
 
   const {
-    handleSubmit,
     formState: { errors },
     watch,
     setValue,
@@ -69,7 +68,14 @@ export default function FDCalculatorPage() {
     setProjections([]);
   };
 
-  const onSubmit = (data: FDFormData) => {
+  // Auto-calculate when inputs change
+  useEffect(() => {
+    if (watchValues.principal && watchValues.annualRate !== undefined && watchValues.years) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues]);
+
+  const calculateResults = (data: FDFormData) => {
     const result = calculateFD(data);
     setResult(result);
     const projections = generateFDProjection(data);
@@ -93,7 +99,7 @@ export default function FDCalculatorPage() {
         {/* Form */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form  className="space-y-6">
             {/* Principal */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Principal Amount (₹)</label>

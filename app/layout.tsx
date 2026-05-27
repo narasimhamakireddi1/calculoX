@@ -46,6 +46,7 @@ export const metadata: Metadata = {
     "CAGR calculator",
     "CalculoX",
     "calculox.in",
+    "calculox",
   ],
   authors: [{ name: "CalculoX Team", url: BASE_URL }],
   creator: "CalculoX",

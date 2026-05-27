@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { calculatePercentage } from '@/lib/calculators/percentage';
@@ -23,7 +23,6 @@ export default function PercentageCalculatorPage() {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
     watch,
     setValue,
@@ -57,7 +56,14 @@ export default function PercentageCalculatorPage() {
     setResult(null);
   };
 
-  const onSubmit = (data: PercentageFormData) => {
+  // Auto-calculate when inputs change
+  useEffect(() => {
+    if (watchValues.valueA && watchValues.valueB) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues, calculationType]);
+
+  const calculateResults = (data: PercentageFormData) => {
     const result = calculatePercentage(data);
     setResult(result);
   };
@@ -87,7 +93,7 @@ export default function PercentageCalculatorPage() {
         {/* Form */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Percentage Calculation</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form  className="space-y-6">
             {/* Calculation Type */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Calculation Type</label>

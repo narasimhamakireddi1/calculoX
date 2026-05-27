@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { calculateBMI } from '@/lib/calculators/bmi';
@@ -53,7 +53,6 @@ export default function BMICalculatorPage() {
   const [unitSystem, setUnitSystem] = useState<'metric' | 'imperial'>('metric');
 
   const {
-    handleSubmit,
     formState: { errors },
     watch,
     setValue,
@@ -68,7 +67,14 @@ export default function BMICalculatorPage() {
 
   const watchValues = watch();
 
-  const onSubmit = (data: BMIFormData) => {
+  // Auto-calculate when inputs or unit system change
+  useEffect(() => {
+    if (watchValues.weight && watchValues.height) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues, unitSystem]);
+
+  const calculateResults = (data: BMIFormData) => {
     // Convert imperial to metric if needed
     let weightInKg = data.weight;
     let heightInCm = data.height;
@@ -181,7 +187,7 @@ export default function BMICalculatorPage() {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form className="space-y-6">
             {/* Weight */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Weight ({unitSystem === 'metric' ? 'kg' : 'lbs'})</label>
@@ -254,21 +260,13 @@ export default function BMICalculatorPage() {
               </p>
             </div>
 
-            <div className="flex gap-3">
-              <button
-                type="submit"
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-              >
-                ⚖️ Calculate BMI
-              </button>
-              <button
-                type="button"
-                onClick={handleReset}
-                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
-              >
-                🗑️ Clear
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+            >
+              🗑️ Clear All
+            </button>
           </form>
         </div>
 

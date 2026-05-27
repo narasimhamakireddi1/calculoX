@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { calculateCAGR } from '@/lib/calculators/cagr';
@@ -21,7 +21,6 @@ export default function CAGRCalculatorPage() {
   const [result, setResult] = useState<CAGRResultData | null>(null);
 
   const {
-    handleSubmit,
     formState: { errors },
     watch,
     setValue,
@@ -59,7 +58,14 @@ export default function CAGRCalculatorPage() {
     setResult(null);
   };
 
-  const onSubmit = (data: CAGRFormData) => {
+  // Auto-calculate when inputs change
+  useEffect(() => {
+    if (watchValues.beginningValue && watchValues.endingValue && watchValues.years) {
+      calculateResults(watchValues);
+    }
+  }, [watchValues]);
+
+  const calculateResults = (data: CAGRFormData) => {
     const result = calculateCAGR(data);
     setResult(result);
   };
@@ -77,7 +83,7 @@ export default function CAGRCalculatorPage() {
         {/* Form */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form  className="space-y-6">
             {/* Beginning Value */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Beginning Value (₹)</label>
