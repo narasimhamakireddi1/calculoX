@@ -2,8 +2,8 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete ✅ | Comprehensive Tax Engine ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax FY 2025-26 Production-Grade ✅ | Next.js 16.2.6 ✅ | Web Vitals ✅ | Auto-Calculate ✅ | Navbar Redesigned ✅ | Navigation Responsiveness Fixed ✅ | SIP Calculator AngelOne-Accurate ✅ | BMI Calculator Refactored ✅ | Default Values Added ✅ | Imperial Unit Validation Fixed ✅ | SIP Iterative Monthly Loop ✅ | All Sliders Zero-Position Fix ✅  
-**Last Updated:** 2026-05-27 (Session 19 Continued: All Slider Zero-Position Fix)  
+**Project Status:** MVP Complete ✅ | Comprehensive Tax Engine ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax FY 2025-26 Production-Grade ✅ | Next.js 16.2.6 ✅ | Web Vitals ✅ | Auto-Calculate ✅ | Navbar Redesigned ✅ | Navigation Responsiveness Fixed ✅ | SIP Calculator AngelOne-Accurate ✅ | BMI Calculator Refactored ✅ | Default Values Added ✅ | Imperial Unit Validation Fixed ✅ | SIP Iterative Monthly Loop ✅ | All Sliders Zero-Position Fix ✅ | EMI Calculator Industry-Standard ✅  
+**Last Updated:** 2026-05-27 (EMI Calculator: Industry-Standard Monthly Reducing Balance Method)  
 **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
@@ -207,18 +207,28 @@ git push origin main          # Auto-deploys to Vercel
 - Categories: Underweight (<18.5), Normal (18.5-25), Overweight (25-30), Obese (>30)
 - Status: **LIVE, TESTED & VISUALLY ENHANCED** ✨
 
-✅ **EMI Calculator** - FULLY IMPLEMENTED & ENHANCED  
-- File: `lib/calculators/emi.ts` - Complete calculation + amortization schedule generator
+✅ **EMI Calculator** - INDUSTRY-STANDARD IMPLEMENTATION  
+- File: `lib/calculators/emi.ts` - Monthly Reducing Balance Method (matches HDFC/Axis/SBI/Kotak standard)
 - File: `app/emi-calculator/page.tsx` - Modern UI with dual input methods
-- Formula: EMI = [P × R × (1 + R)^N] / [(1 + R)^N - 1]
-- **NEW UI Features:**
+- **Mathematical Framework:**
+  - Formula: EMI = [P × r × (1 + r)^N] / [(1 + r)^N - 1] (Amortization formula)
+  - Where: P = Principal, r = monthly rate (annual/12/100), N = tenure in months
+  - Edge Case: 0% loans use simple division (principal/months)
+  - Rounding: Last month principal adjusted to exactly clear remaining balance
+- **Verification:** Tested against ₹10L @ 12% for 5 years
+  - Calculated EMI: ₹22,244.45 (expected ₹22,244) ✓
+  - Total Interest: ₹3,34,666.86 ✓
+  - Amortization schedule precision: Month 1 interest ₹10,000 exactly ✓
+- **UI Features:**
   - ✨ Dual inputs: Gradient sliders + direct number entry (Principal, Rate, Years)
   - ✨ Color-coded sliders (blue for principal, orange for rate, green for tenure)
-  - ✨ Modern result cards with gradient backgrounds and emoji indicators
-  - ✨ Prominent monthly EMI display (4xl font) with gradient highlighting
-  - ✨ Gradient button with hover effects (💳 icon)
-- Features: 3 dual-input sliders, monthly EMI display, total amount/interest, line chart, pie chart, amortization table (toggle all/first-12), FAQ
-- Status: **LIVE, TESTED & VISUALLY ENHANCED** ✨
+  - ✨ Monthly EMI display (4xl font) with EMI breakdown (interest + principal)
+  - ✨ Total payment visualization: Principal + Interest comparison
+  - ✨ Line chart: Month-by-month principal reduction over tenure
+  - ✨ Pie chart: Total Principal vs Total Interest paid
+  - ✨ Amortization table: First 12 months + toggle for full 60-month schedule
+- Features: Real-time auto-calculate with 300ms debounce, responsive design, dark mode support, affiliate banner
+- Status: **PRODUCTION-READY, VERIFIED AGAINST INDUSTRY STANDARD** ✅
 
 ✅ **Income Tax Calculator (India) - PRODUCTION-GRADE COMPREHENSIVE** - FULLY IMPLEMENTED ✅  
 **FY 2025-26 Complete Tax Intelligence System**
