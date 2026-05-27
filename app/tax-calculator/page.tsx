@@ -272,6 +272,31 @@ export default function ComprehensiveTaxCalculator() {
               </label>
             ))}
           </div>
+
+          {/* Info message based on selected regime */}
+          {watchValues.regime === 'new' && (
+            <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
+              <p className="text-sm text-blue-700 dark:text-blue-300">
+                <strong>ℹ️ New Regime:</strong> Deductions section is hidden as the new regime doesn't allow them. You get a fixed ₹75,000 standard deduction instead.
+              </p>
+            </div>
+          )}
+
+          {watchValues.regime === 'old' && (
+            <div className="mt-4 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border-l-4 border-purple-500">
+              <p className="text-sm text-purple-700 dark:text-purple-300">
+                <strong>ℹ️ Old Regime:</strong> You can claim deductions (80C, 80D, 80E, etc.) in the Deductions section below.
+              </p>
+            </div>
+          )}
+
+          {watchValues.regime === 'auto' && (
+            <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border-l-4 border-green-500">
+              <p className="text-sm text-green-700 dark:text-green-300">
+                <strong>ℹ️ Auto Mode:</strong> Fill deductions below. We'll calculate both regimes and recommend the one that saves you more tax.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* SALARY INCOME SECTION */}
@@ -480,21 +505,22 @@ export default function ComprehensiveTaxCalculator() {
           </div>
         </details>
 
-        {/* DEDUCTIONS SECTION */}
-        <details className="card cursor-pointer group">
-          <summary className="flex justify-between items-center font-bold text-lg mb-6 hover:text-blue-600">
-            <span>💰 Deductions</span>
-            <span className="transition-transform group-open:rotate-180">▼</span>
-          </summary>
+        {/* DEDUCTIONS SECTION - Only visible for Old Regime or Auto */}
+        {(watchValues.regime === 'old' || watchValues.regime === 'auto') && (
+          <details className="card cursor-pointer group">
+            <summary className="flex justify-between items-center font-bold text-lg mb-6 hover:text-blue-600">
+              <span>💰 Deductions {watchValues.regime === 'auto' && '(Old Regime Only)'}</span>
+              <span className="transition-transform group-open:rotate-180">▼</span>
+            </summary>
 
-          <div className="space-y-6">
-            {watchValues.regime === 'new' && (
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border-l-4 border-yellow-500">
-                <p className="text-sm text-yellow-700 dark:text-yellow-300">
-                  <strong>Note:</strong> New regime doesn't allow these deductions (except standard deduction). Fill these only if comparing with old regime or if regime is "Auto".
-                </p>
-              </div>
-            )}
+            <div className="space-y-6">
+              {watchValues.regime === 'auto' && (
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                  <p className="text-sm text-blue-700 dark:text-blue-300">
+                    <strong>Note:</strong> These deductions apply only to the <strong>Old Regime</strong>. The New Regime uses only the standard deduction (₹75,000) without these deductions.
+                  </p>
+                </div>
+              )}
 
             {/* SECTION 80C */}
             <div className="space-y-4">
@@ -714,7 +740,8 @@ export default function ComprehensiveTaxCalculator() {
               <p className="text-xs text-gray-500">Home loan interest for self-occupied property</p>
             </div>
           </div>
-        </details>
+          </details>
+        )}
 
         {/* CALCULATE & RESET BUTTONS */}
         <div className="flex gap-3">
