@@ -2,8 +2,8 @@
 ## Developer Documentation & Quick Reference
 
 **Project:** CalculoX - Premium Online Calculator Platform  
-**Project Status:** MVP Complete ✅ | Comprehensive Tax Engine ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax FY 2025-26 Production-Grade ✅ | Next.js 16.2.6 ✅ | Web Vitals ✅ | Auto-Calculate ✅ | Navbar Redesigned ✅  
-**Last Updated:** 2026-05-27 (Session 15: Real-time Auto-Calculate, Navbar Redesign, Regime-Specific UI)  
+**Project Status:** MVP Complete ✅ | Comprehensive Tax Engine ✅ | Phase 2 - Batch 1 Developed (Hidden) 🔄 | World-Class SEO ✅ | Affiliate Monetization ✅ | Favicon ✅ | Tax FY 2025-26 Production-Grade ✅ | Next.js 16.2.6 ✅ | Web Vitals ✅ | Auto-Calculate ✅ | Navbar Redesigned ✅ | Navigation Responsiveness Fixed ✅  
+**Last Updated:** 2026-05-27 (Session 16: Navigation Responsiveness Fix - 300ms Debounce)  
 **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + PostgreSQL  
 **Target Revenue:** ₹100K-200K/month in 12 weeks  
 **Phase 1 Status:** All 4 MVP Calculators - ✅ COMPLETE & LIVE  
@@ -2726,3 +2726,71 @@ Enhance user experience by:
 **Status:** ✅ AUTO-CALCULATE WORKING | ✅ NAVBAR REDESIGNED | ✅ REGIME-SPECIFIC UI ACTIVE | Ready for deployment 🚀
 
 **Impact:** Website now provides seamless, modern user experience with zero-friction interactions and smart guidance based on user choices!
+
+---
+
+## 🔧 SESSION 16: NAVIGATION RESPONSIVENESS FIX (2026-05-27)
+
+### Objective
+Fix navbar navigation lag when calculations were running. Users complained they couldn't click Home or other nav links while auto-calculate was active.
+
+### Issue Identified
+The `useEffect` hook with `watchValues` dependency was **re-running on every keystroke**, causing heavy re-renders that blocked the main thread and made the navbar unresponsive.
+
+**Problem Code:**
+```typescript
+useEffect(() => {
+  if (watchValues.monthlyInvestment && watchValues.years && watchValues.annualReturn !== undefined) {
+    calculateResults(watchValues);
+  }
+}, [watchValues]); // Runs EVERY keystroke ❌
+```
+
+### Solution Applied
+Added **300ms debounce** to prevent constant re-calculations while keeping auto-calculate responsive.
+
+**Fixed Code:**
+```typescript
+useEffect(() => {
+  const timer = setTimeout(() => {
+    if (watchValues.monthlyInvestment && watchValues.years && watchValues.annualReturn !== undefined) {
+      calculateResults(watchValues);
+    }
+  }, 300); // 300ms debounce delay ✅
+
+  return () => clearTimeout(timer);
+}, [watchValues]);
+```
+
+### All 10 Calculators Fixed ✅
+1. ✅ SIP Calculator
+2. ✅ BMI Calculator
+3. ✅ EMI Calculator
+4. ✅ Tax Calculator
+5. ✅ FD Calculator
+6. ✅ RD Calculator
+7. ✅ Simple Interest Calculator
+8. ✅ GST Calculator
+9. ✅ Percentage Calculator
+10. ✅ CAGR Calculator
+
+### Benefits
+- 🎯 **Navbar stays interactive** — Users can click Home, Blog, About anytime
+- ⚡ **Smooth UX** — Results still update in real-time with minimal delay
+- 🚀 **Better performance** — Reduces unnecessary recalculations and re-renders
+- 📱 **Mobile friendly** — Prevents lag on slower devices
+- ♿ **Accessible** — All navigation remains fully functional
+
+### Build Status
+- ✅ Production build: **SUCCESS** (27 pages compiled)
+- ✅ TypeScript validation: **PASS**
+- ✅ Zero build warnings
+- ✅ Dev server running: http://localhost:3000
+- ✅ All calculators responsive
+
+### Commit
+- `fed8e92` — "Fix navbar navigation responsiveness: Add 300ms debounce to auto-calculate"
+
+**Status:** ✅ NAVIGATION FIXED | ✅ ALL 10 CALCULATORS DEBOUNCED | Ready for deployment 🚀
+
+**Impact:** Website is now fully responsive with zero navigation lag during calculations!
