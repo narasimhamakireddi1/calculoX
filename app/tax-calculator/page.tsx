@@ -232,7 +232,7 @@ export default function TaxCalculator() {
               <div className="space-y-4">
                 {/* Gross Salary */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wide font-semibold text-blue-700 dark:text-blue-400 mb-2">
+                  <label htmlFor="gross-salary" className="block text-xs uppercase tracking-wide font-semibold text-blue-700 dark:text-blue-400 mb-2">
                     Gross Salary
                   </label>
                   <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
@@ -248,6 +248,7 @@ export default function TaxCalculator() {
                     <div className="w-full md:w-auto relative flex-shrink-0">
                       <span className="absolute left-2 top-2.5 text-blue-600 dark:text-blue-400 font-bold text-sm">₹</span>
                       <input
+                        id="gross-salary"
                         type="number"
                         min="0"
                         value={watchValues.grossSalary === 0 ? '' : watchValues.grossSalary}
@@ -256,7 +257,7 @@ export default function TaxCalculator() {
                           const val = Number(e.target.value);
                           if (val < 100000) alert('Gross Salary must be at least ₹1,00,000');
                         }}
-                        className="w-full md:w-28 px-3 py-2 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-28 px-3 py-3 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="0"
                       />
                     </div>
@@ -312,7 +313,7 @@ export default function TaxCalculator() {
               <div className="space-y-4 mt-4">
                 {/* Basic Salary */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wide font-semibold text-green-700 dark:text-green-400 mb-2">
+                  <label htmlFor="basic-salary" className="block text-xs uppercase tracking-wide font-semibold text-green-700 dark:text-green-400 mb-2">
                     Basic Salary
                   </label>
                   <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
@@ -328,11 +329,12 @@ export default function TaxCalculator() {
                     <div className="w-full md:w-auto relative flex-shrink-0">
                       <span className="absolute left-2 top-2.5 text-green-600 dark:text-green-400 font-bold text-sm">₹</span>
                       <input
+                        id="basic-salary"
                         type="number"
                         min="0"
                         value={watchValues.basicSalary === 0 ? '' : watchValues.basicSalary}
                         onChange={(e) => handleInputChange('basicSalary', e.target.value === '' ? 0 : Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-2 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 dark:bg-gray-700 dark:border-green-600 dark:text-green-400 focus:outline-none"
+                        className="w-full md:w-28 px-3 py-3 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 dark:bg-gray-700 dark:border-green-600 dark:text-green-400 focus:outline-none"
                         placeholder="0"
                       />
                     </div>
