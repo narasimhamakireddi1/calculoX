@@ -7,6 +7,7 @@ import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/em
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+import ExportButton from '@/components/ui/ExportButton';
 
 // Dynamic imports for charts - lazy load to improve initial page load
 const Charts = lazy(() => import('@/components/emi/ChartComponents').then(m => ({ default: m.ChartsSection })));
@@ -58,7 +59,7 @@ const ResultCards = memo(({ result }: { result: EMIResultData | null }) => {
   }
 
   return (
-    <div className="card space-y-4">
+    <div id="emi-results" className="card space-y-4">
       <h2 className="text-2xl font-bold mb-6">Loan Summary</h2>
 
       <div className="grid grid-cols-1 gap-4">
@@ -95,6 +96,14 @@ const ResultCards = memo(({ result }: { result: EMIResultData | null }) => {
         <p className="text-xs text-gray-500 dark:text-gray-400">
           EMI calculated using monthly reducing balance method with compounding interest.
         </p>
+      </div>
+
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
+        <ExportButton
+          fileName="EMI_Loan_Summary"
+          calculatorName="EMI Calculator Results"
+          resultElementId="emi-results"
+        />
       </div>
     </div>
   );

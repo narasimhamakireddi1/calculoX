@@ -7,6 +7,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateGST } from '@/lib/calculators/gst';
 import { GSTSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import ExportButton from '@/components/ui/ExportButton';
 
 type GSTFormData = {
   amount: number;
@@ -197,7 +198,7 @@ export default function GSTCalculatorPage() {
         {/* Results */}
         <div>
           {result ? (
-            <div className="card space-y-4">
+            <div id="gst-results" className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">GST Breakdown</h2>
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/30 dark:to-gray-800/20 p-5 rounded-lg border-2 border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow">
@@ -226,6 +227,13 @@ export default function GSTCalculatorPage() {
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   <strong>Calculation:</strong> {calculationType === 'add' ? 'Total = Base + (Base × Rate / 100)' : 'Base = Total / (1 + Rate / 100)'}
                 </p>
+              </div>
+              <div className="mt-6">
+                <ExportButton
+                  fileName="GST_Results"
+                  calculatorName="GST Breakdown"
+                  resultElementId="gst-results"
+                />
               </div>
             </div>
           ) : (

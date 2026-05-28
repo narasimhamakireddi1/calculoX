@@ -8,6 +8,7 @@ import { calculateSIP } from '@/lib/calculators/sip';
 import { SIPSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+import ExportButton from '@/components/ui/ExportButton';
 
 type SIPFormData = {
   monthlyInvestment: number;
@@ -309,7 +310,7 @@ export default function SIPCalculatorPage() {
         {/* Results Section */}
         <div>
           {result ? (
-            <div className="card space-y-4">
+            <div id="sip-results" className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Investment Results</h2>
 
               <div className="grid grid-cols-1 gap-4">
@@ -350,6 +351,14 @@ export default function SIPCalculatorPage() {
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   This calculation assumes regular monthly investments and consistent returns. Actual returns may vary based on market conditions.
                 </p>
+              </div>
+
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
+                <ExportButton
+                  fileName="SIP_Investment_Results"
+                  calculatorName="SIP Calculator Results"
+                  resultElementId="sip-results"
+                />
               </div>
             </div>
           ) : (

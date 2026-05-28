@@ -7,6 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { calculateFD, generateFDProjection, type PayoutType } from '@/lib/calculators/fd';
 import { FDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import ExportButton from '@/components/ui/ExportButton';
 
 type FDFormData = {
   principal: number;
@@ -367,7 +368,7 @@ export default function FDCalculatorPage() {
         {/* Results */}
         <div>
           {result ? (
-            <div className="card space-y-4">
+            <div id="fd-results" className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Maturity Details</h2>
 
               {/* Tenure Info */}
@@ -407,6 +408,13 @@ export default function FDCalculatorPage() {
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
                   <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.
                 </p>
+              </div>
+              <div className="mt-6">
+                <ExportButton
+                  fileName="FD_Results"
+                  calculatorName="Fixed Deposit Results"
+                  resultElementId="fd-results"
+                />
               </div>
             </div>
           ) : (

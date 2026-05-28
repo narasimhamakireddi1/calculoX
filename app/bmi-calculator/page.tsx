@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
+import ExportButton from '@/components/ui/ExportButton';
 
 type BMIFormData = {
   weight: number;
@@ -223,7 +224,7 @@ export default function BMICalculatorPage() {
         {/* Results Section */}
         <div>
           {result ? (
-            <div className={`card border-2 ${colors.bg} ${colors.border}`}>
+            <div id="bmi-results" className={`card border-2 ${colors.bg} ${colors.border}`}>
               <h2 className="text-2xl font-bold mb-6">Your Results</h2>
 
               <div className="space-y-6">
@@ -263,6 +264,14 @@ export default function BMICalculatorPage() {
                     <span className="flex-1 text-right">Obese</span>
                   </div>
                 </div>
+              </div>
+
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
+                <ExportButton
+                  fileName="BMI_Calculator_Results"
+                  calculatorName="BMI Calculator Results"
+                  resultElementId="bmi-results"
+                />
               </div>
             </div>
           ) : (

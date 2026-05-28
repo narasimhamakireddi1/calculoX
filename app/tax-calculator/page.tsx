@@ -9,6 +9,7 @@ import { calculateComprehensiveTax } from '@/lib/tax-engine/calculator';
 import { ComprehensiveTaxInput, ComprehensiveTaxResult } from '@/lib/tax-engine/types';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+import ExportButton from '@/components/ui/ExportButton';
 
 type FormData = {
   age: 'below60' | 'between60to80' | 'above80';
@@ -615,7 +616,7 @@ export default function TaxCalculator() {
               )}
 
               {/* Regime Comparison */}
-              <div className="card bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700">
+              <div id="tax-results" className="card bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700">
                 <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">📊 Regime Comparison</h3>
 
                 <div className="grid sm:grid-cols-2 gap-4 mb-6">
@@ -651,6 +652,13 @@ export default function TaxCalculator() {
                     </p>
                   </div>
                 )}
+                <div className="mt-6">
+                  <ExportButton
+                    fileName="Income_Tax_Results"
+                    calculatorName="Income Tax Results"
+                    resultElementId="tax-results"
+                  />
+                </div>
               </div>
 
               {/* Income Breakup Pie Chart */}

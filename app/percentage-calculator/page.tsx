@@ -7,6 +7,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculatePercentage } from '@/lib/calculators/percentage';
 import { PercentageSchema } from '@/lib/validators';
 import { formatNumber } from '@/lib/utils/format';
+import ExportButton from '@/components/ui/ExportButton';
 
 type PercentageFormData = {
   valueA: number;
@@ -221,7 +222,7 @@ export default function PercentageCalculatorPage() {
         {/* Results */}
         <div>
           {result ? (
-            <div className="card space-y-4">
+            <div id="percentage-results" className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Result</h2>
               <div className="space-y-4">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
@@ -238,6 +239,13 @@ export default function PercentageCalculatorPage() {
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">📝 Description</p>
                   <p className="text-lg font-semibold text-purple-700 dark:text-purple-400">{result.description}</p>
+                </div>
+                <div className="mt-6">
+                  <ExportButton
+                    fileName="Percentage_Results"
+                    calculatorName="Percentage Calculation Results"
+                    resultElementId="percentage-results"
+                  />
                 </div>
               </div>
             </div>

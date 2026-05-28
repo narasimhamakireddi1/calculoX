@@ -7,6 +7,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateCAGR } from '@/lib/calculators/cagr';
 import { CAGRSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import ExportButton from '@/components/ui/ExportButton';
 
 type CAGRFormData = {
   beginningValue: number;
@@ -198,7 +199,7 @@ export default function CAGRCalculatorPage() {
         {/* Results */}
         <div>
           {result ? (
-            <div className="card space-y-4">
+            <div id="cagr-results" className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">CAGR Results</h2>
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
@@ -221,6 +222,13 @@ export default function CAGRCalculatorPage() {
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   <strong>Formula:</strong> CAGR = (Ending Value / Beginning Value)^(1/Years) - 1
                 </p>
+              </div>
+              <div className="mt-6">
+                <ExportButton
+                  fileName="CAGR_Results"
+                  calculatorName="CAGR Results"
+                  resultElementId="cagr-results"
+                />
               </div>
             </div>
           ) : (

@@ -7,6 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { calculateSimpleInterest, generateSimpleInterestProjection, type TenureType } from '@/lib/calculators/simple-interest';
 import { SimpleInterestSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import ExportButton from '@/components/ui/ExportButton';
 
 type SIFormData = {
   principal: number;
@@ -324,7 +325,7 @@ export default function SimpleInterestCalculatorPage() {
         {/* Results Section */}
         <div>
           {result ? (
-            <div className="card space-y-4">
+            <div id="simple-interest-results" className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Maturity Details</h2>
 
               <div className="grid grid-cols-1 gap-4">
@@ -360,6 +361,13 @@ export default function SimpleInterestCalculatorPage() {
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
                   <strong>Disclaimer:</strong> This calculation assumes constant interest rates and regular calculations. Actual amounts may vary based on lender terms and conditions.
                 </p>
+              </div>
+              <div className="mt-6">
+                <ExportButton
+                  fileName="Simple_Interest_Results"
+                  calculatorName="Simple Interest Results"
+                  resultElementId="simple-interest-results"
+                />
               </div>
             </div>
           ) : (

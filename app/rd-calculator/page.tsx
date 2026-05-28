@@ -7,6 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { calculateRD, generateRDProjection } from '@/lib/calculators/rd';
 import { RDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import ExportButton from '@/components/ui/ExportButton';
 
 type RDFormData = {
   monthlyDeposit: number;
@@ -212,7 +213,7 @@ export default function RDCalculatorPage() {
         {/* Results */}
         <div>
           {result ? (
-            <div className="card space-y-4">
+            <div id="rd-results" className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Maturity Details</h2>
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
@@ -241,6 +242,13 @@ export default function RDCalculatorPage() {
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
                   <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.
                 </p>
+              </div>
+              <div className="mt-6">
+                <ExportButton
+                  fileName="RD_Results"
+                  calculatorName="Recurring Deposit Results"
+                  resultElementId="rd-results"
+                />
               </div>
             </div>
           ) : (
