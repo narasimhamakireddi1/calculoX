@@ -1,14 +1,43 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { getActiveCalculators } from '@/config/calculators.config';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const activeCalculators = getActiveCalculators();
+
+  // Check if scrollable content exists and update arrow visibility
+  useEffect(() => {
+    const checkScroll = () => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+        setCanScrollRight(scrollWidth > clientWidth && scrollLeft < scrollWidth - clientWidth - 10);
+      }
+    };
+
+    checkScroll();
+    const resizeObserver = new ResizeObserver(checkScroll);
+    if (scrollContainerRef.current) {
+      resizeObserver.observe(scrollContainerRef.current);
+    }
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  const handleScrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 200,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   const links = [
     { href: '/', label: 'Home', icon: '🏠' },
@@ -40,8 +69,18 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Menu - Horizontally Scrollable */}
-          <div className="hidden md:flex gap-2 items-center overflow-x-auto flex-1 mx-4 scrollbar-hide">
-            <div className="flex gap-2 flex-nowrap">
+          <div className="hidden md:flex gap-2 items-center flex-1 mx-4">
+            <div
+              ref={scrollContainerRef}
+              className="overflow-x-auto flex-1 scrollbar-hide"
+              onScroll={() => {
+                if (scrollContainerRef.current) {
+                  const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+                  setCanScrollRight(scrollWidth > clientWidth && scrollLeft < scrollWidth - clientWidth - 10);
+                }
+              }}
+            >
+              <div className="flex gap-2 flex-nowrap">
               {links.map((link) => {
                 const active = isActive(link.href);
                 return (
@@ -60,7 +99,20 @@ export function Navbar() {
                   </Link>
                 );
               })}
+              </div>
             </div>
+
+            {/* Right Arrow Scroll Indicator */}
+            {canScrollRight && (
+              <button
+                onClick={handleScrollRight}
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-200 transform hover:scale-110 flex-shrink-0 shadow-lg shadow-blue-500/30"
+                aria-label="Scroll navbar right"
+                title="Scroll to see more calculators"
+              >
+                <span className="text-lg font-bold">→</span>
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button - Enhanced */}
