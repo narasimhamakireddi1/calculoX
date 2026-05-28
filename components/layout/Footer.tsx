@@ -4,24 +4,62 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 text-white mt-20">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h2 className="font-bold text-lg mb-3">🧮 calculox</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              className="w-8 h-8 mb-2"
+            >
+              <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#1d4ed8', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <rect width="32" height="32" rx="6" fill="url(#grad)" />
+              <text
+                x="16"
+                y="22"
+                fontFamily="Arial, sans-serif"
+                fontSize="14"
+                fontWeight="bold"
+                fill="white"
+                textAnchor="middle"
+                letterSpacing="-0.5"
+              >
+                CX
+              </text>
+            </svg>
+            <h2 className="font-bold text-lg mb-3">calculox</h2>
             <p className="text-gray-400 text-sm leading-relaxed">
               Free premium online calculators for Indian users – finance, health & utility tools.
             </p>
             <p className="text-gray-500 text-xs mt-3">Made with ❤️ for India</p>
           </div>
 
-          {/* Calculators */}
+          {/* Calculators - Column 1 */}
           <div>
-            <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-gray-300">Calculators</h3>
+            <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-gray-300">Finance</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li><Link href="/sip-calculator" className="hover:text-white transition-colors">SIP Calculator</Link></li>
               <li><Link href="/emi-calculator" className="hover:text-white transition-colors">EMI Calculator</Link></li>
+              <li><Link href="/fd-calculator" className="hover:text-white transition-colors">FD Calculator</Link></li>
+              <li><Link href="/rd-calculator" className="hover:text-white transition-colors">RD Calculator</Link></li>
+              <li><Link href="/simple-interest-calculator" className="hover:text-white transition-colors">Simple Interest</Link></li>
+              <li><Link href="/cagr-calculator" className="hover:text-white transition-colors">CAGR Calculator</Link></li>
+            </ul>
+          </div>
+
+          {/* Calculators - Column 2 */}
+          <div>
+            <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-gray-300">Other Tools</h3>
+            <ul className="space-y-2 text-gray-400 text-sm">
               <li><Link href="/bmi-calculator" className="hover:text-white transition-colors">BMI Calculator</Link></li>
               <li><Link href="/tax-calculator" className="hover:text-white transition-colors">Tax Calculator</Link></li>
+              <li><Link href="/gst-calculator" className="hover:text-white transition-colors">GST Calculator</Link></li>
+              <li><Link href="/percentage-calculator" className="hover:text-white transition-colors">Percentage Calculator</Link></li>
               <li><Link href="/scientific-calculator" className="hover:text-white transition-colors">Scientific Calculator</Link></li>
             </ul>
           </div>
@@ -30,6 +68,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-gray-300">Company</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
+              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
