@@ -192,20 +192,31 @@ git push origin main        # Auto-deploys to Vercel
 - **Daily Accrual:** Shows per-day interest `(P × R) / DaysInYear` for quick estimation on any tenure
 - **Implementation:** Decimal.js (28 decimal places) for financial precision. Verified against 3 test cases (Years: ₹1,35,000 ✓, Months: ₹39,375 ✓, Days: ₹1,600 ✓)
 
-**PDF Export & Clipboard Sharing (All 10 Calculators):**
-- **Components:** `lib/utils/pdf-export.ts` (PDF generation utility) + `components/ui/ExportButton.tsx` (reusable button)
-- **Features:** Export complete calculation context (inputs + results) as PDF with professional formatting; Copy results to clipboard for quick sharing
-- **PDF Contents:** Full calculation workflow including:
-  - Header: Calculator name + generated timestamp
-  - Input Values: All user inputs used for calculation (styled summary)
-  - Results: Calculator-specific results (currency-formatted, dark-mode cleaned)
-  - Explanations: Disclaimers and calculation notes
-  - Footer: CalculoX branding + website URL
-- **Implementation:** html2pdf.js library with dynamic imports to prevent SSR (server-side rendering) errors. Each calculator has:
-  - `inputElementId`: Captures user inputs section
-  - `resultElementId`: Captures results section
-- **UX:** Dual-button layout (Export PDF + Copy), loading states, visual feedback (button text changes on success)
-- **All Calculators Supported:** Export buttons on results cards across SIP, EMI, BMI, Tax, FD, Simple Interest, RD, GST, CAGR, Percentage with complete context
+**PDF Export & Clipboard Sharing (All 10 Calculators - Production-Grade):**
+- **Components:** `lib/utils/pdf-export.ts` (PDF generation) + `components/ui/ExportButton.tsx` (dual-button UI) + `lib/utils/pdf-input-formatter.ts` (helper utilities)
+- **Professional Layout:**
+  - Header: Gradient background (purple→violet), emoji icon, calculator name, timestamp
+  - Input Parameters: Extracted label-value pairs with professional formatting (clean labels, formatted values)
+  - Results: Calculator-specific results in styled containers with visual hierarchy
+  - Disclaimer: Professional warning box encouraging user consultation with experts
+  - Footer: CalculoX branding with website URL
+- **Explicit Input Data Pattern:**
+  - Each calculator creates `inputsData: FormattedInput[]` using `useMemo()`
+  - Extracts values from React Hook Form's `watchValues`
+  - Pre-formats with `formatCurrency()` for money, percentage formatting, natural date/time strings
+  - Passed directly to ExportButton via `inputsData` prop
+  - All 10 calculators implemented: SIP, EMI, BMI, Tax, FD, RD, Simple Interest, GST, CAGR, Percentage
+- **Implementation Details:**
+  - html2pdf.js library with dynamic imports (prevents SSR errors)
+  - Dual-button layout: "Export as PDF" + "Copy to clipboard"
+  - Loading states and visual feedback (button text changes on success for 2 seconds)
+  - Fallback: If explicit inputsData not provided, attempts DOM extraction
+  - TypeScript strict mode: `FormattedInput` interface ensures type safety
+- **Quality Standards:**
+  - Professional typography and spacing throughout PDF
+  - Dark mode awareness: removes dark: classes for consistent PDF appearance
+  - Responsive design considerations for all screen sizes
+  - Accessible and shareable format for users to send results to advisors/peers
 
 ---
 
