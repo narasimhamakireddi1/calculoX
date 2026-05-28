@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateGST } from '@/lib/calculators/gst';
 import { GSTSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -234,6 +235,55 @@ export default function GSTCalculatorPage() {
           )}
         </div>
       </div>
+
+      {/* GST Breakup Pie Chart */}
+      {result && (
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-6">📊 GST Distribution</h2>
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={[
+                    { name: 'Base Amount', value: result.baseAmount },
+                    { name: 'GST Amount', value: result.gstAmount },
+                  ]}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={100}
+                  dataKey="value"
+                  isAnimationActive={false}
+                >
+                  <Cell fill="#3b82f6" />
+                  <Cell fill="#f97316" />
+                </Pie>
+                <Tooltip formatter={(v) => formatCurrency(v as number)} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-blue-500" />
+                  <span className="text-gray-600 dark:text-gray-400">Base Amount</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{formatCurrency(result.baseAmount)}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-700">
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-orange-500" />
+                  <span className="text-gray-600 dark:text-gray-400">GST ({gstRate}%)</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{formatCurrency(result.gstAmount)}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border-t-2 border-green-300 dark:border-green-700 mt-2 pt-4">
+                <span className="text-gray-600 dark:text-gray-400 font-semibold">Total Amount</span>
+                <span className="font-bold text-gray-900 dark:text-white text-lg">{formatCurrency(result.totalAmount)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* GST Rate Info */}
       <div className="card">

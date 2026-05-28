@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateCAGR } from '@/lib/calculators/cagr';
 import { CAGRSchema } from '@/lib/validators';
+import { formatCurrency } from '@/lib/utils/format';
 
 type CAGRFormData = {
   beginningValue: number;
@@ -228,6 +230,59 @@ export default function CAGRCalculatorPage() {
           )}
         </div>
       </div>
+
+      {/* CAGR Value Breakup Pie Chart */}
+      {result && (
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-6">📊 Value Growth Breakup</h2>
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={[
+                    { name: 'Initial Investment', value: watchValues.beginningValue },
+                    { name: 'Total Growth', value: watchValues.endingValue - watchValues.beginningValue },
+                  ]}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={100}
+                  dataKey="value"
+                  isAnimationActive={false}
+                >
+                  <Cell fill="#3b82f6" />
+                  <Cell fill="#10b981" />
+                </Pie>
+                <Tooltip formatter={(v) => formatCurrency(v as number)} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-blue-500" />
+                  <span className="text-gray-600 dark:text-gray-400">Initial Investment</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{formatCurrency(watchValues.beginningValue)}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700">
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-green-500" />
+                  <span className="text-gray-600 dark:text-gray-400">Total Growth</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{formatCurrency(watchValues.endingValue - watchValues.beginningValue)}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg border-t-2 border-blue-300 dark:border-blue-700 mt-2 pt-4">
+                <span className="text-gray-600 dark:text-gray-400 font-semibold">Final Value</span>
+                <span className="font-bold text-gray-900 dark:text-white text-lg">{formatCurrency(watchValues.endingValue)}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-700 mt-2">
+                <span className="text-gray-600 dark:text-gray-400 font-semibold">CAGR Return</span>
+                <span className="font-bold text-amber-700 dark:text-amber-300 text-lg">{result.cagrPercentage.toFixed(2)}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Comparison Section */}
       <div className="card">

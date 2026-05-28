@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculatePercentage } from '@/lib/calculators/percentage';
 import { PercentageSchema } from '@/lib/validators';
 import { formatNumber } from '@/lib/utils/format';
@@ -247,6 +248,55 @@ export default function PercentageCalculatorPage() {
           )}
         </div>
       </div>
+
+      {/* Percentage Breakup Pie Chart (only for percent-of mode) */}
+      {result && calculationType === 'percent-of' && (
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-6">📊 Percentage Breakup</h2>
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={[
+                    { name: `${watchValues.valueA}% Portion`, value: result.result },
+                    { name: 'Remainder', value: watchValues.valueB - result.result },
+                  ]}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={100}
+                  dataKey="value"
+                  isAnimationActive={false}
+                >
+                  <Cell fill="#3b82f6" />
+                  <Cell fill="#e5e7eb" />
+                </Pie>
+                <Tooltip formatter={(v) => formatNumber(v as number, 2)} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-blue-500" />
+                  <span className="text-gray-600 dark:text-gray-400">{watchValues.valueA}% Portion</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{formatNumber(result.result, 2)}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg border border-gray-200 dark:border-gray-700">
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-gray-400" />
+                  <span className="text-gray-600 dark:text-gray-400">Remainder</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{formatNumber(watchValues.valueB - result.result, 2)}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-gray-50 dark:from-blue-900/20 dark:to-gray-900/20 rounded-lg border-t-2 border-blue-300 dark:border-blue-700 mt-2 pt-4">
+                <span className="text-gray-600 dark:text-gray-400 font-semibold">Total Base Value</span>
+                <span className="font-bold text-gray-900 dark:text-white text-lg">{formatNumber(watchValues.valueB, 2)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Examples */}
       <div className="card">
