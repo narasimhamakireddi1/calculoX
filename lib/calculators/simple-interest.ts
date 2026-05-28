@@ -62,24 +62,6 @@ function getDaysInYear(startDate?: Date, endDate?: Date): number {
   return totalDays;
 }
 
-function calculateTimeFactor(
-  tenureValue: number,
-  tenureType: TenureType,
-  startDate?: Date,
-  endDate?: Date
-): number {
-  switch (tenureType) {
-    case 'years':
-      return tenureValue;
-    case 'months':
-      return tenureValue / 12;
-    case 'days':
-      const daysInYear = getDaysInYear(startDate, endDate);
-      return tenureValue / daysInYear;
-    default:
-      return 0;
-  }
-}
 
 export function calculateSimpleInterest(input: SimpleInterestInput): SimpleInterestResult {
   const { principal, annualRate, tenureValue, tenureType, startDate, endDate } = input;

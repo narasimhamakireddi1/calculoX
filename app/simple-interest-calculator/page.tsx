@@ -1,9 +1,8 @@
 ﻿'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { calculateSimpleInterest, generateSimpleInterestProjection, type TenureType } from '@/lib/calculators/simple-interest';
 import { SimpleInterestSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -38,7 +37,6 @@ export default function SimpleInterestCalculatorPage() {
   const [projections, setProjections] = useState<any[]>([]);
 
   const {
-    formState: { errors },
     watch,
     setValue,
     reset,
@@ -169,7 +167,7 @@ export default function SimpleInterestCalculatorPage() {
                     key={type}
                     type="button"
                     onClick={() => handleTenureTypeChange(type)}
-                    className={py-2 rounded-lg text-sm font-semibold capitalize }
+                    className={`py-2 rounded-lg text-sm font-semibold capitalize ${watchValues.tenureType === type ? 'bg-indigo-600 text-white' : 'bg-gray-200'}`}
                   >
                     {type}
                   </button>
@@ -225,6 +223,32 @@ export default function SimpleInterestCalculatorPage() {
           )}
         </div>
       </div>
+
+      {projections.length > 0 && (
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">📊 Projection</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-blue-500 text-white">
+                  <th className="px-4 py-2 text-left">Period</th>
+                  <th className="px-4 py-2 text-right">Interest (₹)</th>
+                  <th className="px-4 py-2 text-right">Total (₹)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {projections.slice(0, 12).map((proj, idx) => (
+                  <tr key={idx} className="border-b">
+                    <td className="px-4 py-2">{proj.period}</td>
+                    <td className="px-4 py-2 text-right">{formatCurrency(proj.interest)}</td>
+                    <td className="px-4 py-2 text-right">{formatCurrency(proj.totalAmount)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
