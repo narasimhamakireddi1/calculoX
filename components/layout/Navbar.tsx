@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { getActiveCalculators } from '@/config/calculators.config';
+import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -230,23 +231,36 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button - Enhanced */}
-          <button
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 flex-shrink-0"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-          >
-            <span className="text-2xl font-bold">
-              {isOpen ? '✕' : '☰'}
-            </span>
-          </button>
+          {/* Theme Switcher + Mobile Menu Button */}
+          <div className="flex items-center gap-3">
+            {/* Theme Switcher */}
+            <div className="hidden sm:block">
+              <ThemeSwitcher />
+            </div>
+
+            {/* Mobile Menu Button - Enhanced */}
+            <button
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 flex-shrink-0"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+            >
+              <span className="text-2xl font-bold">
+                {isOpen ? '✕' : '☰'}
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu - Enhanced */}
         {isOpen && (
-          <div id="mobile-menu" className="md:hidden pb-4 space-y-2 animate-in fade-in slide-in-from-top-2">
+          <div id="mobile-menu" className="md:hidden pb-4 space-y-3 animate-in fade-in slide-in-from-top-2">
+            {/* Theme Switcher for Mobile */}
+            <div className="sm:hidden px-4 py-2">
+              <ThemeSwitcher />
+            </div>
+
             {links.map((link) => {
               const active = isActive(link.href);
               return (
