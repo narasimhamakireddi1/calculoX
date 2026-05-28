@@ -23,13 +23,24 @@ export function Navbar() {
   };
 
   useEffect(() => {
-    checkScroll();
+    // Delay to ensure DOM has rendered with correct dimensions
+    const timer = setTimeout(() => {
+      checkScroll();
+    }, 100);
+
     const resizeObserver = new ResizeObserver(checkScroll);
     if (scrollContainerRef.current) {
       resizeObserver.observe(scrollContainerRef.current);
     }
 
-    return () => resizeObserver.disconnect();
+    // Also check on window resize
+    window.addEventListener('resize', checkScroll);
+
+    return () => {
+      clearTimeout(timer);
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', checkScroll);
+    };
   }, []);
 
   const handleScrollLeft = () => {
