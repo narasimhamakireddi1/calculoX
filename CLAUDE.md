@@ -1,7 +1,7 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Complete | ✅ Icon Consistency Fixed | ✅ Rendering Fixed | ✅ Heading Consistency Fixed | ✅ Emoji Rendering Fixed | ✅ Navbar Scroll Indicator | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-28 (Added right arrow scroll indicator to navbar: appears when horizontal scrolling is available, smoothly scrolls to reveal more calculators. Fixed emoji rendering by removing text-transparent CSS. All 11 calculators with proper icon display) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Complete | ✅ Icon Consistency Fixed | ✅ Rendering Fixed | ✅ Heading Consistency Fixed | ✅ Emoji Rendering Fixed | ✅ Navbar Scroll Indicator | ✅ Navbar Drag-to-Scroll | 🚀 Production Ready | Vercel Deployed  
+**Last Updated:** 2026-05-28 (Navbar enhancements: Removed horizontal scrollbar from entire page (overflow-x: hidden on html/body), improved scroll detection with delay + window resize listener, added drag-to-scroll functionality (mouse drag + touch swipe), fixed navbar scroll layout with proper flex constraints (minWidth: 0), replaced navbar emoji icon with matching favicon SVG icon for consistent branding) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
 
 **📈 IMPROVEMENTS COMPLETED:**
 - ✅ **Phase 1 (Mobile + SEO):** Responsive design fixed, 6 layout files added, OG image created, font optimization
@@ -17,7 +17,11 @@
 - ✅ **Heading Consistency:** Standardized all 11 calculator page headings with consistent colors (text-gradient), spacing (mb-4), and description styling (max-w-2xl mx-auto text-lg). Fixed Tax calculator color scheme from gray to gradient, Fixed Scientific calculator spacing.
 - ✅ **Emoji Rendering Fix:** Removed `text-transparent` CSS from `.text-gradient` class which was breaking emoji display. Changed to solid blue color (text-blue-600 dark:text-blue-400) ensuring all emoji icons display correctly instead of as blue squares.
 - ✅ **Navbar Bidirectional Scroll Arrows:** Added left (←) and right (→) arrow buttons for horizontal scrolling control. Left arrow shows when scrolled away from start, right arrow shows when more content available. Both arrows trigger smooth 200px scrolls. Enhanced scrollbar hiding with !important CSS flags to completely eliminate horizontal scrollbar on all browsers.
-- 📊 **Expected Results:** SEO 9.0+/10, Lighthouse 85-92, +30-50% organic traffic, +40-60% user engagement, AdSense approval ready, complete calculator discoverability, all emojis rendering correctly, consistent UI across all calculators, improved navbar UX
+- ✅ **Navbar Drag-to-Scroll (Complete):** Added full drag-to-scroll functionality with mouse and touch support. Users can click-and-drag or swipe horizontally to scroll through all calculators. Includes dynamic cursor feedback (🖐️ grab / ✊ grabbing), text selection prevention during drag, smooth scrolling integration. Supports both desktop (mouse drag) and mobile (touch swipe).
+- ✅ **Horizontal Scrollbar Removal (Complete):** Added `overflow-x: hidden` to html and body elements in globals.css to completely remove horizontal scrollbars from the entire page and footer.
+- ✅ **Improved Navbar Scroll Detection:** Enhanced scroll detection with 100ms DOM render delay, window resize listener, and timeout-based arrow state updates after smooth scroll animations. Uses CSS flexbox trick (`minWidth: 0`) to force content overflow.
+- ✅ **Navbar Icon Update:** Replaced emoji icon (🧮) with matching favicon SVG icon (blue gradient "CX" monogram) for consistent branding. Icon properly sized at 8×8 px.
+- 📊 **Expected Results:** SEO 9.0+/10, Lighthouse 85-92, +30-50% organic traffic, +40-60% user engagement, AdSense approval ready, complete calculator discoverability, all emojis rendering correctly, consistent UI across all calculators, improved navbar UX with premium scroll experience
 
 ---
 
@@ -826,4 +830,70 @@ cfcf712 a11y: Scientific Calculator - responsive buttons, aria-live result, aria
 
 ---
 
-**Status:** ✅ PRODUCTION READY | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | WCAG 2.1 AA (85-90%) | All 11 calculators mobile-optimized | Deployed to Vercel | 92/100 AdSense Readiness 🚀
+## 🎯 NAVBAR ENHANCEMENT (Complete - 2026-05-28)
+
+### **✅ Horizontal Scrollbar Removal (DONE)**
+- [x] Added `overflow-x: hidden` to html and body elements in `app/globals.css`
+- [x] Completely removes horizontal scrollbar from entire page and footer
+- **Impact:** Cleaner UI, no scrollbar interference
+
+### **✅ Improved Scroll Detection (DONE)**
+- [x] Added 100ms delay to allow DOM to render with correct dimensions
+- [x] Added window resize listener to recalculate arrows on viewport changes
+- [x] Added timeout callbacks after scroll animations to update arrow state
+- [x] Uses CSS flexbox trick (`minWidth: 0`) to force content overflow
+- **Impact:** Scroll arrows appear/disappear correctly on all screen sizes
+
+### **✅ Drag-to-Scroll Functionality (DONE)**
+- [x] Added mouse drag support (click and drag to scroll)
+- [x] Added touch support (swipe on mobile/tablet)
+- [x] Dynamic cursor feedback: 🖐️ grab when hovering, ✊ grabbing when dragging
+- [x] Text selection prevention during drag
+- [x] Smooth scrolling integration with existing arrow buttons
+- **Implementation:** Mouse event handlers (mouseDown, mouseMove, mouseUp, mouseLeave) + Touch event handlers (touchStart, touchMove, touchEnd)
+- **Impact:** Premium user experience, multiple ways to navigate
+
+### **✅ Fixed Navbar Scroll Layout (DONE)**
+- [x] Changed scroll container from `flex-1` class to `style={{ flex: 1, minWidth: 0 }}`
+- [x] Fixed flexbox constraints to force content overflow (CSS flexbox trick)
+- [x] Ensures buttons overflow container and create scrollable area
+- [x] Removed `min-w-min` from inner flex container
+- **Impact:** Horizontal scrolling now works reliably
+
+### **✅ Navbar Icon Update (DONE)**
+- [x] Replaced emoji icon (🧮) with matching favicon SVG icon
+- [x] Blue gradient "CX" monogram now displays in navbar
+- [x] Icon properly sized at 8×8 px (w-8 h-8 Tailwind classes)
+- [x] Consistent branding between navbar, favicon, and throughout site
+- **Impact:** Professional appearance, consistent visual identity
+
+### **Build Status & Verification**
+- ✅ `npm run build`: SUCCESS (33 pages prerendered, 0 TypeScript errors)
+- ✅ All changes committed and pushed to GitHub
+- ✅ No TypeScript errors or warnings
+- ✅ Production-ready deployment
+
+### **Commit History (Navbar Enhancements)**
+```bash
+7782ab0 feat: Replace navbar emoji icon with matching favicon SVG icon
+4225cf4 fix: Correct navbar scroll layout with proper flex constraints to enable overflow scrolling
+05ef448 fix: Enhance navbar scrolling with improved scroll detection and styling
+ab5baef feat: Add drag-to-scroll functionality to navbar for seamless horizontal navigation
+39c2d3e fix: Improve navbar scroll detection with delay and window resize listener
+155d5db fix: Remove horizontal scrollbar from entire page by adding overflow-x: hidden to html and body
+```
+
+### **Navbar Features Summary**
+| Feature | Status | Desktop | Mobile |
+|---------|--------|---------|--------|
+| **Arrow Button Scroll** | ✅ | ← → arrows | N/A (buttons hidden) |
+| **Drag-to-Scroll** | ✅ | Mouse drag | Touch swipe |
+| **Auto-detect Overflow** | ✅ | Show arrows when needed | ✅ |
+| **Smooth Scrolling** | ✅ | CSS scroll-smooth | ✅ |
+| **Scrollbar Hiding** | ✅ | No horizontal bar | ✅ |
+| **All 13 Items Visible** | ✅ | Scroll to see all | Scroll to see all |
+| **Icon Branding** | ✅ | Blue CX favicon icon | ✅ |
+
+---
+
+**Status:** ✅ PRODUCTION READY | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Navbar Enhanced | WCAG 2.1 AA (85-90%) | All 11 calculators mobile-optimized | Deployed to Vercel | 92/100 AdSense Readiness 🚀
