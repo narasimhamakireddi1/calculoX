@@ -8,11 +8,37 @@ export interface PDFExportOptions {
   resultsSectionId?: string;
 }
 
+const extractInputValues = (element: HTMLElement): Array<{ label: string; value: string }> => {
+  const pairs: Array<{ label: string; value: string }> = [];
+
+  const inputs = element.querySelectorAll('input[type="number"], select');
+  inputs.forEach((input) => {
+    const label = (input as any).placeholder || (input as any).name || '';
+    const value = (input as any).value || '';
+    if (label && value && !label.includes('range')) {
+      pairs.push({ label, value });
+    }
+  });
+
+  const labels = element.querySelectorAll('label');
+  labels.forEach((label) => {
+    const text = label.textContent?.trim() || '';
+    const input = label.querySelector('input, select') as HTMLInputElement;
+    if (input && text) {
+      const value = input.value || '';
+      if (value && !pairs.find(p => p.label === text)) {
+        pairs.push({ label: text, value });
+      }
+    }
+  });
+
+  return pairs.slice(0, 6);
+};
+
 export const exportResultsAsPDF = (
   elementId: string,
   options: PDFExportOptions
 ) => {
-  // If custom sections provided, use them; otherwise fall back to single element
   const resultsElement = options.resultsSectionId
     ? document.getElementById(options.resultsSectionId)
     : document.getElementById(elementId);
@@ -35,65 +61,93 @@ export const exportResultsAsPDF = (
   });
 
   const pdfOptions: any = {
-    margin: [10, 10, 10, 10],
+    margin: [12, 12, 12, 12],
     filename: `${options.fileName}.pdf`,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
     jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
     pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
   };
 
   const headerHTML = `
-    <div style="text-align: center; margin-bottom: 20px; border-bottom: 2px solid #3b82f6; padding-bottom: 15px;">
-      <h1 style="margin: 0; color: #1f2937; font-size: 24px; font-weight: bold;">
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 8px; margin-bottom: 25px; text-align: center;">
+      <div style="font-size: 32px; font-weight: bold; margin-bottom: 8px;">🧮</div>
+      <h1 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 700;">
         ${options.calculatorName}
       </h1>
-      ${options.timestamp ? `<p style="margin: 8px 0 0 0; color: #6b7280; font-size: 12px;">Generated on ${timestamp}</p>` : ''}
+      ${options.timestamp ? `<p style="margin: 0; font-size: 12px; opacity: 0.9;">Generated on ${timestamp}</p>` : ''}
     </div>
   `;
 
-  const footerHTML = `
-    <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #e5e7eb; font-size: 10px; color: #9ca3af;">
-      <p style="margin: 5px 0;">CalculoX - Premium Financial Calculators</p>
-      <p style="margin: 5px 0;">www.calculox.in</p>
-    </div>
-  `;
-
-  // Clone inputs if available
   let inputsHTML = '';
   if (inputsElement) {
-    const inputsClone = inputsElement.cloneNode(true) as HTMLElement;
-    inputsClone.style.padding = '0';
-    inputsClone.style.backgroundColor = '#ffffff';
+    const inputPairs = extractInputValues(inputsElement);
+    const inputRows = inputPairs
+      .map(
+        (pair, idx) =>
+          `<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; ${
+            idx !== inputPairs.length - 1 ? 'border-bottom: 1px solid #e5e7eb;' : ''
+          }">
+            <span style="color: #6b7280; font-size: 13px; font-weight: 500;">${pair.label}</span>
+            <span style="color: #1f2937; font-size: 13px; font-weight: 600;">${pair.value}</span>
+          </div>`
+      )
+      .join('');
+
     inputsHTML = `
-      <div style="margin-bottom: 20px;">
-        <h2 style="margin: 0 0 15px 0; color: #1f2937; font-size: 16px; font-weight: bold; border-bottom: 2px solid #dbeafe; padding-bottom: 10px;">
-          📋 Input Values
+      <div style="margin-bottom: 25px;">
+        <h2 style="margin: 0 0 12px 0; color: #1f2937; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 18px;">📝</span> Input Parameters
         </h2>
-        <div style="background-color: #f0f9ff; padding: 15px; border-radius: 8px; border: 1px solid #bfdbfe;">
-          ${inputsClone.innerHTML}
+        <div style="background-color: #f9fafb; padding: 16px; border-radius: 6px; border: 1px solid #e5e7eb;">
+          ${inputRows}
         </div>
       </div>
     `;
   }
 
-  // Create a clone of the results element with styling preserved
   const resultsClone = resultsElement.cloneNode(true) as HTMLElement;
   resultsClone.style.padding = '0';
   resultsClone.style.backgroundColor = '#ffffff';
   resultsClone.style.color = '#000000';
-
-  // Remove dark mode classes
   resultsClone.classList.remove('dark');
   resultsClone.querySelectorAll('[class*="dark:"]').forEach((el) => {
     el.className = el.className.replace(/dark:\S+/g, '');
   });
 
-  // Create container with header, inputs, results, and footer
+  const resultsHTML = `
+    <div style="margin-bottom: 25px;">
+      <h2 style="margin: 0 0 12px 0; color: #1f2937; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 18px;">📊</span> Calculation Results
+      </h2>
+      <div style="background-color: #f9fafb; padding: 16px; border-radius: 6px; border: 1px solid #e5e7eb;">
+        ${resultsClone.innerHTML}
+      </div>
+    </div>
+  `;
+
+  const disclaimerHTML = `
+    <div style="margin-bottom: 20px; background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px; border-radius: 4px;">
+      <p style="margin: 0; color: #92400e; font-size: 11px; line-height: 1.5;">
+        <strong>Disclaimer:</strong> These calculations are for informational purposes only. Actual amounts may vary based on various factors. Please consult a financial advisor for accurate guidance.
+      </p>
+    </div>
+  `;
+
+  const footerHTML = `
+    <div style="border-top: 2px solid #e5e7eb; padding-top: 15px; margin-top: 25px; text-align: center;">
+      <p style="margin: 5px 0; color: #1f2937; font-weight: 600; font-size: 12px;">CalculoX</p>
+      <p style="margin: 5px 0; color: #6b7280; font-size: 11px;">Premium Financial Calculators</p>
+      <p style="margin: 5px 0; color: #9ca3af; font-size: 10px;">www.calculox.in</p>
+    </div>
+  `;
+
   const container = document.createElement('div');
   container.style.padding = '20px';
   container.style.backgroundColor = '#ffffff';
-  container.innerHTML = headerHTML + inputsHTML + resultsClone.innerHTML + footerHTML;
+  container.style.fontFamily = 'system-ui, -apple-system, sans-serif';
+  container.innerHTML =
+    headerHTML + inputsHTML + resultsHTML + disclaimerHTML + footerHTML;
 
   html2pdf().set(pdfOptions).from(container).save();
 };
