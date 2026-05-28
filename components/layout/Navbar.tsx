@@ -3,18 +3,20 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { getActiveCalculators } from '@/config/calculators.config';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const activeCalculators = getActiveCalculators();
 
   const links = [
     { href: '/', label: 'Home', icon: '🏠' },
-    { href: '/sip-calculator', label: 'SIP', icon: '📈' },
-    { href: '/emi-calculator', label: 'EMI', icon: '💳' },
-    { href: '/bmi-calculator', label: 'BMI', icon: '⚖️' },
-    { href: '/tax-calculator', label: 'Tax', icon: '🧮' },
-    { href: '/scientific-calculator', label: 'Scientific', icon: '🔬' },
+    ...activeCalculators.map((calc) => ({
+      href: calc.href,
+      label: calc.title.replace(' Calculator', ''),
+      icon: calc.icon,
+    })),
     { href: '/blog', label: 'Blog', icon: '📖' },
     { href: '/about', label: 'About', icon: 'ℹ️' },
   ];
@@ -31,37 +33,39 @@ export function Navbar() {
           {/* Logo - Enhanced */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-bold text-2xl bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
+            className="flex items-center gap-2 font-bold text-2xl bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 flex-shrink-0"
           >
             <span className="text-3xl">🧮</span>
             <span>calculox</span>
           </Link>
 
-          {/* Desktop Menu - Enhanced */}
-          <div className="hidden md:flex gap-2 items-center">
-            {links.map((link) => {
-              const active = isActive(link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? 'page' : undefined}
-                  className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium text-sm flex items-center gap-1.5 transform hover:scale-105 ${
-                    active
-                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
-                  }`}
-                >
-                  <span>{link.icon}</span>
-                  <span>{link.label}</span>
-                </Link>
-              );
-            })}
+          {/* Desktop Menu - Horizontally Scrollable */}
+          <div className="hidden md:flex gap-2 items-center overflow-x-auto flex-1 mx-4 scrollbar-hide">
+            <div className="flex gap-2 flex-nowrap">
+              {links.map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={active ? 'page' : undefined}
+                    className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium text-sm flex items-center gap-1.5 transform hover:scale-105 whitespace-nowrap flex-shrink-0 ${
+                      active
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
+                    }`}
+                  >
+                    <span>{link.icon}</span>
+                    <span>{link.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
 
           {/* Mobile Menu Button - Enhanced */}
           <button
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 flex-shrink-0"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
@@ -98,6 +102,16 @@ export function Navbar() {
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </nav>
   );
 }
