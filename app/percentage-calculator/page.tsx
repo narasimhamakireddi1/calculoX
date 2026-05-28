@@ -9,394 +9,568 @@ import { PercentageSchema } from '@/lib/validators';
 import { formatNumber } from '@/lib/utils/format';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
+type CalculationType = 'hike-discount' | 'percent-of' | 'what-percent' | 'percent-change' | 'reverse-percent' | 'sequential';
+
 type PercentageFormData = {
   valueA: number;
   valueB: number;
-  calculationType: 'percent-of' | 'percent-change' | 'what-percent';
+  percentC: number;
+  hikeDirection: 'hike' | 'discount';
+  calculationType: CalculationType;
 };
 
 interface PercentageResultData {
   result: number;
   description: string;
+  direction?: 'increase' | 'decrease' | 'unchanged';
+  breakdown?: { label: string; value: number }[];
 }
+
+const TRACKS = [
+  {
+    id: 'hike-discount' as CalculationType,
+    icon: '📈',
+    name: 'Hike / Discount',
+    desc: 'Apply % increase or decrease',
+    example: '₹50K + 12% hike = ₹56K',
+  },
+  {
+    id: 'percent-of' as CalculationType,
+    icon: '🎯',
+    name: 'X% of Y',
+    desc: 'Find value from a percentage',
+    example: '20% of 500 = 100',
+  },
+  {
+    id: 'what-percent' as CalculationType,
+    icon: '📊',
+    name: 'What % of',
+    desc: 'A is what percent of B',
+    example: '450 of 600 = 75%',
+  },
+  {
+    id: 'percent-change' as CalculationType,
+    icon: '🔄',
+    name: '% Change',
+    desc: 'Percentage change from A to B',
+    example: '1,20,000 → 1,44,200 = +20.17%',
+  },
+  {
+    id: 'reverse-percent' as CalculationType,
+    icon: '🔍',
+    name: 'Reverse %',
+    desc: 'X is Y% of what total?',
+    example: '₹9K is 18% → base = ₹50K',
+  },
+  {
+    id: 'sequential' as CalculationType,
+    icon: '🔢',
+    name: 'Sequential',
+    desc: 'Apply two % steps in sequence',
+    example: '₹10K + 10% + 4% = ₹11,440',
+  },
+] as const;
+
+const PIE_COLORS: Record<string, string[]> = {
+  'hike-discount': ['#3b82f6', '#10b981'],
+  'percent-of': ['#3b82f6', '#e5e7eb'],
+  'reverse-percent': ['#3b82f6', '#a78bfa'],
+};
 
 export default function PercentageCalculatorPage() {
   const [result, setResult] = useState<PercentageResultData | null>(null);
+  const [calcError, setCalcError] = useState<string | null>(null);
 
-  const {
-    register,
-    formState: { errors },
-    watch,
-    setValue,
-    reset,
-  } = useForm<PercentageFormData>({
+  const { watch, setValue, reset } = useForm<PercentageFormData>({
     resolver: zodResolver(PercentageSchema),
     defaultValues: {
       valueA: 20,
-      valueB: 100,
+      valueB: 500,
+      percentC: 4,
+      hikeDirection: 'hike',
       calculationType: 'percent-of',
     },
   });
 
   const watchValues = watch();
-  const calculationType = watch('calculationType');
+  const { calculationType, hikeDirection, valueA, valueB, percentC } = watchValues;
 
-  const getLabelA = () => {
-    if (calculationType === 'percent-of') return 'Percentage (%)';
-    if (calculationType === 'percent-change') return 'Old Value';
-    return 'First Value';
+  const getLabels = (): { a: string; b: string; c?: string } => {
+    switch (calculationType) {
+      case 'hike-discount': return { a: 'Original Value', b: 'Change %' };
+      case 'percent-of':    return { a: 'Percentage (%)', b: 'Base Value' };
+      case 'what-percent':  return { a: 'Obtained Value', b: 'Total Value' };
+      case 'percent-change':return { a: 'Initial Value',  b: 'Final Value' };
+      case 'reverse-percent':return { a: 'Given Value',   b: 'Percentage (%)' };
+      case 'sequential':    return { a: 'Base Value',     b: 'First %', c: 'Second %' };
+    }
   };
 
-  const getLabelB = () => {
-    if (calculationType === 'percent-of') return 'Base Value';
-    if (calculationType === 'percent-change') return 'New Value';
-    return 'Second Value';
+  const getSentence = (): string => {
+    const a = valueA ?? '__';
+    const b = valueB ?? '__';
+    const c = percentC ?? '__';
+    switch (calculationType) {
+      case 'hike-discount':
+        return hikeDirection === 'hike'
+          ? `Apply a ${b}% hike on ${a}`
+          : `Apply a ${b}% discount on ${a}`;
+      case 'percent-of':    return `What is ${a}% of ${b}?`;
+      case 'what-percent':  return `${a} is what % of ${b}?`;
+      case 'percent-change':return `% change from ${a} to ${b}?`;
+      case 'reverse-percent':return `${a} is ${b}% of what total?`;
+      case 'sequential':    return `${a} → apply ${b}%, then ${c}%`;
+    }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      try {
+        setCalcError(null);
+        const res = calculatePercentage({
+          valueA: valueA ?? 0,
+          valueB: valueB ?? 0,
+          percentC: percentC ?? 0,
+          hikeDirection: hikeDirection ?? 'hike',
+          calculationType,
+        });
+        setResult(res);
+      } catch (e) {
+        setCalcError(e instanceof Error ? e.message : 'Calculation error');
+        setResult(null);
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [watchValues]);
+
+  const labels = getLabels();
 
   const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.valueA !== undefined) {
-      data.push({ label: getLabelA(), value: formatNumber(watchValues.valueA, 2) });
+    const data: FormattedInput[] = [
+      { label: labels.a, value: formatNumber(valueA ?? 0, 2) },
+      { label: labels.b, value: formatNumber(valueB ?? 0, 2) },
+    ];
+    if (calculationType === 'sequential') {
+      data.push({ label: labels.c ?? 'Second %', value: formatNumber(percentC ?? 0, 2) });
     }
-    if (watchValues.valueB !== undefined) {
-      data.push({ label: getLabelB(), value: formatNumber(watchValues.valueB, 2) });
+    if (calculationType === 'hike-discount') {
+      data.push({ label: 'Direction', value: hikeDirection === 'hike' ? 'Hike (Increase)' : 'Discount (Decrease)' });
     }
-    if (calculationType) {
-      const typeLabels = {
-        'percent-of': 'What is A% of B?',
-        'percent-change': 'Percentage Change from A to B',
-        'what-percent': 'A is what % of B?',
-      };
-      data.push({ label: 'Calculation Type', value: typeLabels[calculationType] });
-    }
+    data.push({ label: 'Calculation Type', value: TRACKS.find(t => t.id === calculationType)?.name ?? calculationType });
     return data;
-  }, [watchValues, calculationType]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchValues]);
 
-  const handleInputChange = (fieldName: keyof PercentageFormData, value: number) => {
-    setValue(fieldName, value, { shouldValidate: true });
-  };
-
-  const handleValidateField = (fieldName: string, value: number) => {
-    if (fieldName === 'valueA' && (value < 0 || value > 1000)) {
-      alert('Value A must be between 0 and 1000');
-    } else if (fieldName === 'valueB' && (value <= 0 || value > 1000000)) {
-      alert('Value B must be between 1 and 10,00,000');
-    }
-  };
+  const isResultPercent = ['what-percent', 'percent-change'].includes(calculationType);
+  const showPie = result?.breakdown && result.breakdown.length >= 2 && ['hike-discount', 'percent-of', 'reverse-percent'].includes(calculationType);
+  const pieColors = PIE_COLORS[calculationType] ?? ['#3b82f6', '#10b981'];
 
   const handleReset = () => {
     reset();
     setResult(null);
+    setCalcError(null);
   };
 
-  // Auto-calculate when inputs change (with debounce)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (watchValues.valueA && watchValues.valueB) {
-        calculateResults(watchValues);
-      }
-    }, 300); // 300ms debounce delay
-
-    return () => clearTimeout(timer);
-  }, [watchValues, calculationType]);
-
-  const calculateResults = (data: PercentageFormData) => {
-    const result = calculatePercentage(data);
-    setResult(result);
+  const switchTrack = (id: CalculationType) => {
+    setValue('calculationType', id);
+    setResult(null);
+    setCalcError(null);
   };
 
   return (
     <div className="space-y-8 py-8">
+      {/* Header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-gradient">📊 Percentage Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-          Calculate percentage of, percentage change, and what percentage calculations
+          6 calculation modes — salary hike, discounts, GST reverse, sequential compounding &amp; more
         </p>
+      </div>
+
+      {/* Track Selector */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        {TRACKS.map((track) => (
+          <button
+            key={track.id}
+            onClick={() => switchTrack(track.id)}
+            className={`p-3 rounded-xl border-2 text-left transition-all hover:scale-105 active:scale-95 ${
+              calculationType === track.id
+                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-md ring-2 ring-blue-300 dark:ring-blue-700'
+                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 bg-white dark:bg-gray-800'
+            }`}
+          >
+            <div className="text-2xl mb-1">{track.icon}</div>
+            <div className="font-bold text-xs text-gray-900 dark:text-white leading-tight">{track.name}</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-tight">{track.desc}</div>
+          </button>
+        ))}
+      </div>
+
+      {/* Dynamic Sentence Banner */}
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-700 text-center">
+        <p className="text-lg font-semibold text-blue-800 dark:text-blue-200">{getSentence()}</p>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form */}
         <div id="percentage-inputs" className="card">
-          <h2 className="text-2xl font-bold mb-6">Percentage Calculation</h2>
-          <form  className="space-y-6">
-            {/* Calculation Type */}
-            <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Calculation Type</label>
-              <div className="space-y-2">
-                <label className="flex items-center gap-3 cursor-pointer p-3 rounded-lg border-2 border-gray-300 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-600 transition-colors" >
-                  <input
-                    type="radio"
-                    value="percent-of"
-                    {...register('calculationType')}
-                    className="w-4 h-4 accent-blue-600"
-                  />
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">What is A% of B?</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Find percentage of a value</p>
-                  </div>
-                </label>
+          <h2 className="text-2xl font-bold mb-6">
+            {TRACKS.find(t => t.id === calculationType)?.icon}{' '}
+            {TRACKS.find(t => t.id === calculationType)?.name}
+          </h2>
 
-                <label className="flex items-center gap-3 cursor-pointer p-3 rounded-lg border-2 border-gray-300 dark:border-gray-700 hover:border-orange-400 dark:hover:border-orange-600 transition-colors">
-                  <input
-                    type="radio"
-                    value="percent-change"
-                    {...register('calculationType')}
-                    className="w-4 h-4 accent-orange-600"
-                  />
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Percentage Change from A to B</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Calculate percentage increase or decrease</p>
-                  </div>
-                </label>
-
-                <label className="flex items-center gap-3 cursor-pointer p-3 rounded-lg border-2 border-gray-300 dark:border-gray-700 hover:border-green-400 dark:hover:border-green-600 transition-colors">
-                  <input
-                    type="radio"
-                    value="what-percent"
-                    {...register('calculationType')}
-                    className="w-4 h-4 accent-green-600"
-                  />
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">A is what % of B?</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Find what percentage a value is of another</p>
-                  </div>
-                </label>
+          <div className="space-y-5">
+            {/* Hike / Discount toggle */}
+            {calculationType === 'hike-discount' && (
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setValue('hikeDirection', 'hike')}
+                  className={`flex-1 py-2 px-4 rounded-lg font-bold border-2 transition-all ${
+                    hikeDirection === 'hike'
+                      ? 'bg-green-500 border-green-500 text-white shadow-md'
+                      : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-green-400'
+                  }`}
+                >
+                  📈 Hike (Increase)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setValue('hikeDirection', 'discount')}
+                  className={`flex-1 py-2 px-4 rounded-lg font-bold border-2 transition-all ${
+                    hikeDirection === 'discount'
+                      ? 'bg-red-500 border-red-500 text-white shadow-md'
+                      : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-red-400'
+                  }`}
+                >
+                  📉 Discount (Decrease)
+                </button>
               </div>
-            </div>
+            )}
 
             {/* Value A */}
-            <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">{getLabelA()}</label>
+            <div className="space-y-2">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">{labels.a}</label>
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
                   min="0"
-                  max="1000"
-                  step="1"
-                  value={watchValues.valueA === 0 ? "" : watchValues.valueA}
-                  onChange={(e) => handleInputChange('valueA', e.target.value === '' ? 0 : Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('valueA', Number(e.target.value))}
+                  max={['percent-of', 'reverse-percent'].includes(calculationType) ? '100' : '1000000'}
+                  step={['percent-of', 'reverse-percent'].includes(calculationType) ? '1' : '1000'}
+                  value={String(valueA ?? 0)}
+                  onChange={(e) => setValue('valueA', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
-                  type="number" placeholder="0"
-                  min="0"
-                  max="1000"
-                  step="0.01"
-                  value={watchValues.valueA === 0 ? "" : watchValues.valueA}
-                  onChange={(e) => handleInputChange('valueA', e.target.value === '' ? 0 : Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('valueA', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  type="number"
+                  placeholder="0"
+                  value={valueA === 0 ? '' : valueA}
+                  onChange={(e) => setValue('valueA', e.target.value === '' ? 0 : Number(e.target.value))}
+                  className="w-32 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
-              {errors.valueA && <p className="text-red-500 text-sm">{errors.valueA.message}</p>}
             </div>
 
             {/* Value B */}
-            <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">{getLabelB()}</label>
+            <div className="space-y-2">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">{labels.b}</label>
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
                   min="0"
-                  max="1000"
-                  step="1"
-                  value={watchValues.valueB === 0 ? "" : watchValues.valueB}
-                  onChange={(e) => handleInputChange('valueB', e.target.value === '' ? 0 : Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('valueB', Number(e.target.value))}
+                  max={['hike-discount', 'what-percent', 'sequential', 'reverse-percent'].includes(calculationType) ? '200' : '1000000'}
+                  step={['hike-discount', 'what-percent', 'sequential', 'reverse-percent'].includes(calculationType) ? '0.5' : '1000'}
+                  value={String(valueB ?? 0)}
+                  onChange={(e) => setValue('valueB', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
-                  type="number" placeholder="0"
-                  min="0"
-                  max="1000"
-                  step="0.01"
-                  value={watchValues.valueB === 0 ? "" : watchValues.valueB}
-                  onChange={(e) => handleInputChange('valueB', e.target.value === '' ? 0 : Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('valueB', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  type="number"
+                  placeholder="0"
+                  value={valueB === 0 ? '' : valueB}
+                  onChange={(e) => setValue('valueB', e.target.value === '' ? 0 : Number(e.target.value))}
+                  className="w-32 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
-              {errors.valueB && <p className="text-red-500 text-sm">{errors.valueB.message}</p>}
             </div>
 
-            <div className="flex gap-3">
-              <button
-                type="submit"
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
-              >
-                📊 Calculate
-              </button>
-              <button
-                type="button"
-                onClick={handleReset}
-                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
-              >
-                🗑️ Clear
-              </button>
-            </div>
-          </form>
+            {/* Percent C — only for Sequential */}
+            {calculationType === 'sequential' && (
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-gray-900 dark:text-white">{labels.c ?? 'Second %'}</label>
+                <div className="flex gap-3 items-center">
+                  <input
+                    type="range"
+                    min="0"
+                    max="200"
+                    step="0.5"
+                    value={String(percentC ?? 0)}
+                    onChange={(e) => setValue('percentC', Number(e.target.value))}
+                    className="flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  />
+                  <input
+                    type="number"
+                    placeholder="0"
+                    value={percentC === 0 ? '' : percentC}
+                    onChange={(e) => setValue('percentC', e.target.value === '' ? 0 : Number(e.target.value))}
+                    className="w-32 px-3 py-2 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                  />
+                </div>
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={handleReset}
+              className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-lg transition-all hover:scale-105 active:scale-95"
+            >
+              🗑️ Clear All
+            </button>
+          </div>
         </div>
 
         {/* Results */}
         <div>
-          {result ? (
+          {calcError ? (
+            <div className="card h-full flex items-center justify-center min-h-64">
+              <div className="text-center">
+                <p className="text-4xl mb-3">⚠️</p>
+                <p className="text-red-500 font-semibold">{calcError}</p>
+              </div>
+            </div>
+          ) : result ? (
             <div id="percentage-results" className="card space-y-4">
-              <h2 className="text-2xl font-bold mb-6">Result</h2>
-              <div className="space-y-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">📈 Result</p>
-                  <p className="text-4xl font-bold text-blue-700 dark:text-blue-400">
-                    {calculationType === 'percent-change'
-                      ? `${result.result.toFixed(2)}%`
-                      : calculationType === 'what-percent'
-                        ? `${result.result.toFixed(2)}%`
-                        : formatNumber(result.result, 2)}
+              <h2 className="text-2xl font-bold mb-4">Result</h2>
+
+              {/* Main result */}
+              <div className={`p-5 rounded-xl border-2 ${
+                calculationType === 'percent-change' && result.direction === 'decrease'
+                  ? 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
+                  : calculationType === 'percent-change' && result.direction === 'increase'
+                  ? 'bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-700'
+                  : 'bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700'
+              }`}>
+                <p className="text-xs uppercase tracking-wide font-semibold mb-2 text-gray-500">Result</p>
+                <div className="flex items-center gap-3">
+                  {calculationType === 'percent-change' && (
+                    <span className={`text-4xl font-bold ${
+                      result.direction === 'increase' ? 'text-green-500' :
+                      result.direction === 'decrease' ? 'text-red-500' : 'text-gray-400'
+                    }`}>
+                      {result.direction === 'increase' ? '↑' : result.direction === 'decrease' ? '↓' : '→'}
+                    </span>
+                  )}
+                  <p className={`text-5xl font-bold ${
+                    calculationType === 'percent-change' && result.direction === 'decrease'
+                      ? 'text-red-600 dark:text-red-400'
+                      : calculationType === 'percent-change' && result.direction === 'increase'
+                      ? 'text-green-600 dark:text-green-400'
+                      : 'text-blue-700 dark:text-blue-400'
+                  }`}>
+                    {isResultPercent
+                      ? `${formatNumber(result.result, 2)}%`
+                      : formatNumber(result.result, 2)
+                    }
                   </p>
                 </div>
+                {calculationType === 'percent-change' && result.direction && (
+                  <p className={`text-sm font-bold mt-2 ${
+                    result.direction === 'increase' ? 'text-green-600 dark:text-green-400' :
+                    result.direction === 'decrease' ? 'text-red-600 dark:text-red-400' : 'text-gray-500'
+                  }`}>
+                    {result.direction === 'increase' ? '▲ Increased by' :
+                     result.direction === 'decrease' ? '▼ Decreased by' : 'No change —'}{' '}
+                    {formatNumber(result.result, 2)}%
+                  </p>
+                )}
+              </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">📝 Description</p>
-                  <p className="text-lg font-semibold text-purple-700 dark:text-purple-400">{result.description}</p>
+              {/* Explanation */}
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-xl border border-purple-200 dark:border-purple-700">
+                <p className="text-xs uppercase tracking-wide font-semibold mb-1 text-purple-500">Explanation</p>
+                <p className="text-purple-800 dark:text-purple-300 font-medium">{result.description}</p>
+              </div>
+
+              {/* Breakdown rows */}
+              {result.breakdown && result.breakdown.length > 0 && (
+                <div className="space-y-1">
+                  {result.breakdown.map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex justify-between items-center py-2 px-3 rounded-lg odd:bg-gray-50 dark:odd:bg-gray-800/50"
+                    >
+                      <span className="text-gray-600 dark:text-gray-400 text-sm">{item.label}</span>
+                      <span className={`font-bold ${item.label === 'Total Change' && item.value < 0 ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'}`}>
+                        {item.label === 'Total Change' && item.value >= 0 ? '+' : ''}{formatNumber(item.value, 2)}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-                <div className="mt-6">
-                  <ExportButton
-                    fileName="Percentage_Results"
-                    calculatorName="Percentage Calculation Results"
-                    resultElementId="percentage-results"
-                    inputElementId="percentage-inputs"
-                    inputsData={inputsData}
-                  />
-                </div>
+              )}
+
+              <div className="mt-2">
+                <ExportButton
+                  fileName="Percentage_Results"
+                  calculatorName="Percentage Calculator Results"
+                  resultElementId="percentage-results"
+                  inputElementId="percentage-inputs"
+                  inputsData={inputsData}
+                />
               </div>
             </div>
           ) : (
             <div className="card h-full flex items-center justify-center min-h-64">
-              <p className="text-gray-500 dark:text-gray-400">Enter values and click Calculate</p>
+              <p className="text-gray-500 dark:text-gray-400">Enter values to see results</p>
             </div>
           )}
         </div>
       </div>
 
-      {/* Percentage Breakup Pie Chart (only for percent-of mode) */}
-      {result && calculationType === 'percent-of' && (
+      {/* Pie Chart — Tracks 1, 2, 5 */}
+      {showPie && result?.breakdown && (
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">📊 Percentage Breakup</h2>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
-                  data={[
-                    { name: `${watchValues.valueA}% Portion`, value: result.result },
-                    { name: 'Remainder', value: watchValues.valueB - result.result },
-                  ]}
+                  data={result.breakdown.slice(0, 2)}
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
-                  outerRadius={100}
+                  innerRadius={65}
+                  outerRadius={110}
                   dataKey="value"
                   isAnimationActive={false}
                 >
-                  <Cell fill="#3b82f6" />
-                  <Cell fill="#e5e7eb" />
+                  {result.breakdown.slice(0, 2).map((_, i) => (
+                    <Cell key={i} fill={pieColors[i] ?? '#94a3b8'} />
+                  ))}
                 </Pie>
                 <Tooltip formatter={(v) => formatNumber(v as number, 2)} />
               </PieChart>
             </ResponsiveContainer>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full inline-block bg-blue-500" />
-                  <span className="text-gray-600 dark:text-gray-400">{watchValues.valueA}% Portion</span>
+              {result.breakdown.slice(0, 2).map((item, i) => (
+                <div
+                  key={i}
+                  className="flex justify-between items-center p-3 rounded-lg border"
+                  style={{ borderColor: (pieColors[i] ?? '#94a3b8') + '60', backgroundColor: (pieColors[i] ?? '#94a3b8') + '15' }}
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: pieColors[i] ?? '#94a3b8' }} />
+                    <span className="text-gray-700 dark:text-gray-300">{item.label}</span>
+                  </span>
+                  <span className="font-bold text-gray-900 dark:text-white">{formatNumber(item.value, 2)}</span>
+                </div>
+              ))}
+              <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border-t-2 border-gray-300 dark:border-gray-600">
+                <span className="font-semibold text-gray-600 dark:text-gray-400">Total</span>
+                <span className="font-bold text-gray-900 dark:text-white text-lg">
+                  {formatNumber(result.breakdown.slice(0, 2).reduce((s, d) => s + d.value, 0), 2)}
                 </span>
-                <span className="font-bold text-gray-900 dark:text-white">{formatNumber(result.result, 2)}</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900/20 rounded-lg border border-gray-200 dark:border-gray-700">
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full inline-block bg-gray-400" />
-                  <span className="text-gray-600 dark:text-gray-400">Remainder</span>
-                </span>
-                <span className="font-bold text-gray-900 dark:text-white">{formatNumber(watchValues.valueB - result.result, 2)}</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-gray-50 dark:from-blue-900/20 dark:to-gray-900/20 rounded-lg border-t-2 border-blue-300 dark:border-blue-700 mt-2 pt-4">
-                <span className="text-gray-600 dark:text-gray-400 font-semibold">Total Base Value</span>
-                <span className="font-bold text-gray-900 dark:text-white text-lg">{formatNumber(watchValues.valueB, 2)}</span>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Examples */}
+      {/* Sequential Steps Visual — Track 6 */}
+      {result && calculationType === 'sequential' && result.breakdown && (
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-6">🔢 Sequential Steps</h2>
+          <div className="flex flex-wrap items-center gap-4">
+            {result.breakdown.slice(0, 3).map((item, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <div className="text-center">
+                  <div className={`text-xs font-semibold mb-2 ${i === 0 ? 'text-blue-500' : i === 1 ? 'text-yellow-600' : 'text-green-600'}`}>
+                    {item.label}
+                  </div>
+                  <div className={`text-2xl font-bold px-5 py-4 rounded-xl ${
+                    i === 0 ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300' :
+                    i === 1 ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300' :
+                    'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300'
+                  }`}>
+                    {formatNumber(item.value, 2)}
+                  </div>
+                </div>
+                {i < 2 && <span className="text-gray-400 text-2xl font-bold">→</span>}
+              </div>
+            ))}
+            {result.breakdown[3] && (
+              <div className="ml-auto text-right">
+                <div className="text-xs font-semibold text-gray-500 mb-2">Total Change</div>
+                <div className={`text-xl font-bold px-4 py-3 rounded-xl ${
+                  result.breakdown[3].value >= 0
+                    ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-2 border-green-300 dark:border-green-700'
+                    : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-2 border-red-300 dark:border-red-700'
+                }`}>
+                  {result.breakdown[3].value >= 0 ? '+' : ''}{formatNumber(result.breakdown[3].value, 2)}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Quick Examples */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">📋 Percentage Calculation Examples</h2>
-        <div className="grid md:grid-cols-3 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-4 rounded-lg border border-blue-300 dark:border-blue-700">
-            <p className="font-bold text-blue-700 dark:text-blue-300 mb-3">What is A% of B?</p>
-            <p className="text-sm text-blue-600 dark:text-blue-400 mb-3">Example: What&apos;s 20% of 500?</p>
-            <p className="font-mono text-sm bg-white dark:bg-gray-800 p-2 rounded border border-blue-200 dark:border-blue-700">Result = 100</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 p-4 rounded-lg border border-orange-300 dark:border-orange-700">
-            <p className="font-bold text-orange-700 dark:text-orange-300 mb-3">Percentage Change</p>
-            <p className="text-sm text-orange-600 dark:text-orange-400 mb-3">Example: From 100 to 150?</p>
-            <p className="font-mono text-sm bg-white dark:bg-gray-800 p-2 rounded border border-orange-200 dark:border-orange-700">Result = 50%</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-4 rounded-lg border border-green-300 dark:border-green-700">
-            <p className="font-bold text-green-700 dark:text-green-300 mb-3">A is what % of B?</p>
-            <p className="text-sm text-green-600 dark:text-green-400 mb-3">Example: 25 is what % of 500?</p>
-            <p className="font-mono text-sm bg-white dark:bg-gray-800 p-2 rounded border border-green-200 dark:border-green-700">Result = 5%</p>
-          </div>
+        <h2 className="text-2xl font-bold mb-6">📋 Quick Examples</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {TRACKS.map((track) => (
+            <button
+              key={track.id}
+              onClick={() => switchTrack(track.id)}
+              className={`text-left p-4 rounded-xl border-2 transition-all hover:shadow-md hover:scale-102 ${
+                calculationType === track.id
+                  ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                  : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+              }`}
+            >
+              <div className="text-2xl mb-2">{track.icon}</div>
+              <p className="font-bold text-gray-900 dark:text-white mb-1">{track.name}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{track.desc}</p>
+              <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">{track.example}</p>
+            </button>
+          ))}
         </div>
       </div>
 
       {/* FAQ */}
       <div className="card">
         <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          <details className="group border-b border-gray-200 dark:border-gray-700">
-            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
-              How to calculate percentage?
-              <span className="transition-transform group-open:rotate-180">▼</span>
-            </summary>
-            <p className="pb-4 text-gray-600 dark:text-gray-400">
-              To calculate percentage: (Part / Whole) × 100. For example, 25 is what % of 100? Answer: (25/100) × 100 = 25%.
-            </p>
-          </details>
-
-          <details className="group border-b border-gray-200 dark:border-gray-700">
-            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
-              How to find percentage of a number?
-              <span className="transition-transform group-open:rotate-180">▼</span>
-            </summary>
-            <p className="pb-4 text-gray-600 dark:text-gray-400">
-              To find X% of Y: (X/100) × Y. For example, 15% of 200 = (15/100) × 200 = 30.
-            </p>
-          </details>
-
-          <details className="group border-b border-gray-200 dark:border-gray-700">
-            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
-              How to calculate percentage change?
-              <span className="transition-transform group-open:rotate-180">▼</span>
-            </summary>
-            <p className="pb-4 text-gray-600 dark:text-gray-400">
-              Percentage Change = ((New Value - Old Value) / Old Value) × 100. For example, from 100 to 150: ((150-100)/100) × 100 = 50%.
-            </p>
-          </details>
-
-          <details className="group border-b border-gray-200 dark:border-gray-700">
-            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
-              What is percentage increase vs decrease?
-              <span className="transition-transform group-open:rotate-180">▼</span>
-            </summary>
-            <p className="pb-4 text-gray-600 dark:text-gray-400">
-              If result is positive, it&apos;s a percentage increase. If result is negative, it&apos;s a percentage decrease. For example, 100 to 80 is -20% (decrease).
-            </p>
-          </details>
+        <div className="space-y-1">
+          {[
+            {
+              q: 'How to calculate salary hike percentage?',
+              a: 'Use Track 1 (Hike/Discount): Enter current salary as Original Value and the hike % as Change %. E.g., ₹50,000 with 12% hike = ₹50,000 × 1.12 = ₹56,000.',
+            },
+            {
+              q: 'What is reverse percentage? How to find base price before GST?',
+              a: 'Reverse percentage (Track 5) finds the whole when you know a part and its percentage. If ₹9,000 is 18% GST, base price = ₹9,000 × 100 ÷ 18 = ₹50,000.',
+            },
+            {
+              q: 'How does sequential compounding differ from simple addition?',
+              a: 'Sequential (Track 6) applies each % on the running total. ₹10,000 with 10% then 4%: ₹10,000 × 1.10 = ₹11,000, then × 1.04 = ₹11,440. Adding 14% directly gives only ₹11,400 — a ₹40 difference.',
+            },
+            {
+              q: 'How to calculate percentage change (increase or decrease)?',
+              a: 'Track 4: % Change = ((Final − Initial) ÷ Initial) × 100. A positive result shows an increase (shown in green ↑). A negative result shows a decrease (shown in red ↓).',
+            },
+            {
+              q: 'What is "A is what % of B"?',
+              a: 'Track 3 (Fraction Converter): Calculates what fraction A is of B, expressed as a percentage. E.g., scored 450 out of 600 marks → (450 ÷ 600) × 100 = 75%.',
+            },
+          ].map(({ q, a }) => (
+            <details key={q} className="group border-b border-gray-200 dark:border-gray-700">
+              <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
+                {q}
+                <span className="transition-transform group-open:rotate-180 text-gray-400 ml-4 flex-shrink-0">▼</span>
+              </summary>
+              <p className="pb-4 text-gray-600 dark:text-gray-400 pr-6">{a}</p>
+            </details>
+          ))}
         </div>
       </div>
     </div>
   );
 }
-

@@ -62,9 +62,18 @@ export const GSTSchema = z.object({
 });
 
 export const PercentageSchema = z.object({
-  valueA: z.number().nonnegative(),
-  valueB: z.number().positive('Value must be greater than 0'),
-  calculationType: z.enum(['percent-of', 'percent-change', 'what-percent']),
+  valueA: z.number(),
+  valueB: z.number(),
+  percentC: z.number().optional().default(0),
+  hikeDirection: z.enum(['hike', 'discount']).optional().default('hike'),
+  calculationType: z.enum([
+    'percent-of',
+    'what-percent',
+    'percent-change',
+    'hike-discount',
+    'reverse-percent',
+    'sequential',
+  ]),
 });
 
 export const CAGRSchema = z.object({
