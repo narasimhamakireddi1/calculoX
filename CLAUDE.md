@@ -1,7 +1,7 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Complete | ✅ Icon Consistency Fixed | ✅ Rendering Fixed | ✅ Heading Consistency Fixed | ✅ Emoji Rendering Fixed | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-28 (Fixed emoji rendering issue: text-transparent CSS was preventing emojis from displaying. Changed text-gradient class to use solid blue color (text-blue-600) instead of transparent gradient. All 11 calculator page headings now display emojis correctly) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Complete | ✅ Icon Consistency Fixed | ✅ Rendering Fixed | ✅ Heading Consistency Fixed | ✅ Emoji Rendering Fixed | ✅ Navbar Scroll Indicator | 🚀 Production Ready | Vercel Deployed  
+**Last Updated:** 2026-05-28 (Added right arrow scroll indicator to navbar: appears when horizontal scrolling is available, smoothly scrolls to reveal more calculators. Fixed emoji rendering by removing text-transparent CSS. All 11 calculators with proper icon display) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
 
 **📈 IMPROVEMENTS COMPLETED:**
 - ✅ **Phase 1 (Mobile + SEO):** Responsive design fixed, 6 layout files added, OG image created, font optimization
@@ -16,7 +16,8 @@
 - ✅ **Rendering Fix:** Fixed corrupted emoji/special characters in Scientific Calculator (📋 History, 📬 Affiliate Banner, 📊 Statistics Analysis, · middle dots, → arrows, μ/σ Greek letters, fancy quotes)
 - ✅ **Heading Consistency:** Standardized all 11 calculator page headings with consistent colors (text-gradient), spacing (mb-4), and description styling (max-w-2xl mx-auto text-lg). Fixed Tax calculator color scheme from gray to gradient, Fixed Scientific calculator spacing.
 - ✅ **Emoji Rendering Fix:** Removed `text-transparent` CSS from `.text-gradient` class which was breaking emoji display. Changed to solid blue color (text-blue-600 dark:text-blue-400) ensuring all emoji icons display correctly instead of as blue squares.
-- 📊 **Expected Results:** SEO 9.0+/10, Lighthouse 85-92, +30-50% organic traffic, +40-60% user engagement, AdSense approval ready, complete calculator discoverability, all emojis rendering correctly, consistent UI across all calculators
+- ✅ **Navbar Scroll Indicator:** Added right arrow button (→) at end of navbar to indicate horizontal scrolling. Arrow appears dynamically when content is scrollable and triggers smooth scroll. Uses ResizeObserver for responsive detection.
+- 📊 **Expected Results:** SEO 9.0+/10, Lighthouse 85-92, +30-50% organic traffic, +40-60% user engagement, AdSense approval ready, complete calculator discoverability, all emojis rendering correctly, consistent UI across all calculators, improved navbar UX
 
 ---
 
