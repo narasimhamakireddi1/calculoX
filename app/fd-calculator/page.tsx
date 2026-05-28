@@ -7,7 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { calculateFD, generateFDProjection, type PayoutType } from '@/lib/calculators/fd';
 import { FDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type FDFormData = {
   principal: number;
@@ -62,6 +62,32 @@ export default function FDCalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.principal) {
+      data.push({ label: 'Principal Amount', value: formatCurrency(watchValues.principal) });
+    }
+    if (watchValues.annualRate !== undefined) {
+      const rateWithBonus = watchValues.seniorCitizen ? watchValues.annualRate + 0.5 : watchValues.annualRate;
+      data.push({ label: 'Annual Interest Rate', value: `${rateWithBonus.toFixed(2)}%` });
+    }
+    if (watchValues.years || watchValues.months || watchValues.days) {
+      const parts = [];
+      if (watchValues.years > 0) parts.push(`${watchValues.years}Y`);
+      if (watchValues.months > 0) parts.push(`${watchValues.months}M`);
+      if (watchValues.days > 0) parts.push(`${watchValues.days}D`);
+      data.push({ label: 'Tenure', value: parts.length > 0 ? parts.join(' ') : '0 days' });
+    }
+    if (watchValues.payoutType) {
+      const payoutLabels = { cumulative: 'Cumulative', quarterly: 'Quarterly', monthly: 'Monthly' };
+      data.push({ label: 'Payout Type', value: payoutLabels[watchValues.payoutType] });
+    }
+    if (watchValues.seniorCitizen) {
+      data.push({ label: 'Senior Citizen', value: 'Yes (+0.50%)' });
+    }
+    return data;
+  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     principal: { min: 10000, max: 100000000, label: 'Principal (₹)' },
@@ -415,6 +441,7 @@ export default function FDCalculatorPage() {
                   calculatorName="Fixed Deposit Results"
                   resultElementId="fd-results"
                   inputElementId="fd-inputs"
+                  inputsData={inputsData}
                 />
               </div>
             </div>

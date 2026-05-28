@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type BMIFormData = {
   weight: number;
@@ -44,6 +44,17 @@ export default function BMICalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.weight) {
+      data.push({ label: `Weight (${unitSystem === 'metric' ? 'kg' : 'lbs'})`, value: watchValues.weight.toString() });
+    }
+    if (watchValues.height) {
+      data.push({ label: `Height (${unitSystem === 'metric' ? 'cm' : 'inches'})`, value: watchValues.height.toString() });
+    }
+    return data;
+  }, [watchValues, unitSystem]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -272,6 +283,7 @@ export default function BMICalculatorPage() {
                   calculatorName="BMI Calculator Results"
                   resultElementId="bmi-results"
                   inputElementId="bmi-inputs"
+                  inputsData={inputsData}
                 />
               </div>
             </div>

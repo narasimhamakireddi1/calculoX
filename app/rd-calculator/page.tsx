@@ -7,7 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { calculateRD, generateRDProjection } from '@/lib/calculators/rd';
 import { RDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type RDFormData = {
   monthlyDeposit: number;
@@ -47,6 +47,23 @@ export default function RDCalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.monthlyDeposit) {
+      data.push({ label: 'Monthly Deposit', value: formatCurrency(watchValues.monthlyDeposit) });
+    }
+    if (watchValues.annualRate !== undefined) {
+      data.push({ label: 'Annual Interest Rate', value: `${watchValues.annualRate}%` });
+    }
+    if (watchValues.months) {
+      const years = Math.floor(watchValues.months / 12);
+      const months = watchValues.months % 12;
+      const tenureStr = years > 0 ? `${years}Y ${months}M` : `${months}M`;
+      data.push({ label: 'Tenure', value: tenureStr });
+    }
+    return data;
+  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     monthlyDeposit: { min: 1000, max: 10000000, label: 'Monthly Deposit (₹)' },
@@ -249,6 +266,7 @@ export default function RDCalculatorPage() {
                   calculatorName="Recurring Deposit Results"
                   resultElementId="rd-results"
                   inputElementId="rd-inputs"
+                  inputsData={inputsData}
                 />
               </div>
             </div>

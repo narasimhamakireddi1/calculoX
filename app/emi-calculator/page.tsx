@@ -7,7 +7,7 @@ import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/em
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 // Dynamic imports for charts - lazy load to improve initial page load
 const Charts = lazy(() => import('@/components/emi/ChartComponents').then(m => ({ default: m.ChartsSection })));
@@ -45,7 +45,7 @@ interface AmortizationRow {
 }
 
 // Memoized result cards component
-const ResultCards = memo(({ result }: { result: EMIResultData | null }) => {
+const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null; inputsData: FormattedInput[] }) => {
   if (!result) {
     return (
       <div className="card h-full flex items-center justify-center min-h-64">
@@ -104,6 +104,7 @@ const ResultCards = memo(({ result }: { result: EMIResultData | null }) => {
           calculatorName="EMI Calculator Results"
           resultElementId="emi-results"
           inputElementId="emi-inputs"
+          inputsData={inputsData}
         />
       </div>
     </div>
@@ -199,6 +200,20 @@ export default function EMICalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.principal) {
+      data.push({ label: 'Loan Amount', value: formatCurrency(watchValues.principal) });
+    }
+    if (watchValues.annualRate !== undefined) {
+      data.push({ label: 'Annual Interest Rate', value: `${watchValues.annualRate}%` });
+    }
+    if (watchValues.years) {
+      data.push({ label: 'Loan Duration', value: `${watchValues.years} Year(s)` });
+    }
+    return data;
+  }, [watchValues]);
 
   const fieldRanges = useMemo(
     () => ({
@@ -322,7 +337,7 @@ export default function EMICalculatorPage() {
         </div>
 
         {/* Results Section */}
-        <ResultCards result={result} />
+        <ResultCards result={result} inputsData={inputsData} />
       </div>
 
       {/* Charts Section - Lazy loaded */}

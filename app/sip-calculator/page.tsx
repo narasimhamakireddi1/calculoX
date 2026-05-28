@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
@@ -8,7 +8,7 @@ import { calculateSIP } from '@/lib/calculators/sip';
 import { SIPSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type SIPFormData = {
   monthlyInvestment: number;
@@ -57,6 +57,23 @@ export default function SIPCalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.monthlyInvestment) {
+      data.push({ label: 'Monthly Investment', value: formatCurrency(watchValues.monthlyInvestment) });
+    }
+    if (watchValues.years) {
+      data.push({ label: 'Investment Duration', value: `${watchValues.years} Year(s)` });
+    }
+    if (watchValues.annualReturn !== undefined) {
+      data.push({ label: 'Expected Annual Return', value: `${watchValues.annualReturn}%` });
+    }
+    if (watchValues.stepUpPercent) {
+      data.push({ label: 'Annual Step-Up', value: `${watchValues.stepUpPercent}%` });
+    }
+    return data;
+  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     monthlyInvestment: { min: 100, max: 1000000, label: 'Monthly Investment (₹)' },
@@ -359,6 +376,7 @@ export default function SIPCalculatorPage() {
                   calculatorName="SIP Calculator Results"
                   resultElementId="sip-results"
                   inputElementId="sip-inputs"
+                  inputsData={inputsData}
                 />
               </div>
             </div>

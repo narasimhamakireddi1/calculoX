@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateGST } from '@/lib/calculators/gst';
 import { GSTSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type GSTFormData = {
   amount: number;
@@ -42,6 +42,20 @@ export default function GSTCalculatorPage() {
   const watchValues = watch();
   const calculationType = watch('calculationType');
   const gstRate = watch('gstRate');
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.amount) {
+      data.push({ label: calculationType === 'add' ? 'Amount (Without GST)' : 'Amount (With GST)', value: formatCurrency(watchValues.amount) });
+    }
+    if (watchValues.gstRate) {
+      data.push({ label: 'GST Rate', value: `${watchValues.gstRate}%` });
+    }
+    if (calculationType) {
+      data.push({ label: 'Operation Type', value: calculationType === 'add' ? 'Add GST' : 'Remove GST' });
+    }
+    return data;
+  }, [watchValues, calculationType]);
 
   const handleAmountChange = (value: number) => {
     setValue('amount', value, { shouldValidate: true });
@@ -234,6 +248,7 @@ export default function GSTCalculatorPage() {
                   calculatorName="GST Breakdown"
                   resultElementId="gst-results"
                   inputElementId="gst-inputs"
+                  inputsData={inputsData}
                 />
               </div>
             </div>

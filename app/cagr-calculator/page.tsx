@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateCAGR } from '@/lib/calculators/cagr';
 import { CAGRSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type CAGRFormData = {
   beginningValue: number;
@@ -38,6 +38,20 @@ export default function CAGRCalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.beginningValue) {
+      data.push({ label: 'Beginning Value', value: formatCurrency(watchValues.beginningValue) });
+    }
+    if (watchValues.endingValue) {
+      data.push({ label: 'Ending Value', value: formatCurrency(watchValues.endingValue) });
+    }
+    if (watchValues.years) {
+      data.push({ label: 'Time Period', value: `${watchValues.years} Year(s)` });
+    }
+    return data;
+  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     beginningValue: { min: 10000, max: 100000000, label: 'Beginning Value (₹)' },
@@ -229,6 +243,7 @@ export default function CAGRCalculatorPage() {
                   calculatorName="CAGR Results"
                   resultElementId="cagr-results"
                   inputElementId="cagr-inputs"
+                  inputsData={inputsData}
                 />
               </div>
             </div>

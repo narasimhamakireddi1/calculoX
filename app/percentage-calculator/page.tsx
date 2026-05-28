@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculatePercentage } from '@/lib/calculators/percentage';
 import { PercentageSchema } from '@/lib/validators';
 import { formatNumber } from '@/lib/utils/format';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type PercentageFormData = {
   valueA: number;
@@ -41,6 +41,37 @@ export default function PercentageCalculatorPage() {
   const watchValues = watch();
   const calculationType = watch('calculationType');
 
+  const getLabelA = () => {
+    if (calculationType === 'percent-of') return 'Percentage (%)';
+    if (calculationType === 'percent-change') return 'Old Value';
+    return 'First Value';
+  };
+
+  const getLabelB = () => {
+    if (calculationType === 'percent-of') return 'Base Value';
+    if (calculationType === 'percent-change') return 'New Value';
+    return 'Second Value';
+  };
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.valueA !== undefined) {
+      data.push({ label: getLabelA(), value: formatNumber(watchValues.valueA, 2) });
+    }
+    if (watchValues.valueB !== undefined) {
+      data.push({ label: getLabelB(), value: formatNumber(watchValues.valueB, 2) });
+    }
+    if (calculationType) {
+      const typeLabels = {
+        'percent-of': 'What is A% of B?',
+        'percent-change': 'Percentage Change from A to B',
+        'what-percent': 'A is what % of B?',
+      };
+      data.push({ label: 'Calculation Type', value: typeLabels[calculationType] });
+    }
+    return data;
+  }, [watchValues, calculationType]);
+
   const handleInputChange = (fieldName: keyof PercentageFormData, value: number) => {
     setValue(fieldName, value, { shouldValidate: true });
   };
@@ -72,18 +103,6 @@ export default function PercentageCalculatorPage() {
   const calculateResults = (data: PercentageFormData) => {
     const result = calculatePercentage(data);
     setResult(result);
-  };
-
-  const getLabelA = () => {
-    if (calculationType === 'percent-of') return 'Percentage (%)';
-    if (calculationType === 'percent-change') return 'Old Value';
-    return 'First Value';
-  };
-
-  const getLabelB = () => {
-    if (calculationType === 'percent-of') return 'Base Value';
-    if (calculationType === 'percent-change') return 'New Value';
-    return 'Second Value';
   };
 
   return (
@@ -246,6 +265,7 @@ export default function PercentageCalculatorPage() {
                     calculatorName="Percentage Calculation Results"
                     resultElementId="percentage-results"
                     inputElementId="percentage-inputs"
+                    inputsData={inputsData}
                   />
                 </div>
               </div>

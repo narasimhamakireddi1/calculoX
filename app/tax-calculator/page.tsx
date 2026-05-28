@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
@@ -9,7 +9,7 @@ import { calculateComprehensiveTax } from '@/lib/tax-engine/calculator';
 import { ComprehensiveTaxInput, ComprehensiveTaxResult } from '@/lib/tax-engine/types';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type FormData = {
   age: 'below60' | 'between60to80' | 'above80';
@@ -88,6 +88,32 @@ export default function TaxCalculator() {
   });
 
   const watchValues = watch();
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.grossSalary) {
+      data.push({ label: 'Gross Salary', value: formatCurrency(watchValues.grossSalary) });
+    }
+    if (watchValues.basicSalary) {
+      data.push({ label: 'Basic Salary', value: formatCurrency(watchValues.basicSalary) });
+    }
+    if (watchValues.hraReceived) {
+      data.push({ label: 'HRA Received', value: formatCurrency(watchValues.hraReceived) });
+    }
+    if (watchValues.rentPaid) {
+      data.push({ label: 'Rent Paid', value: formatCurrency(watchValues.rentPaid) });
+    }
+    if (watchValues.lta) {
+      data.push({ label: 'LTA Claimed', value: formatCurrency(watchValues.lta) });
+    }
+    if (watchValues.incomeHouseProperty) {
+      data.push({ label: 'House Property Income', value: formatCurrency(watchValues.incomeHouseProperty) });
+    }
+    if (watchValues.incomeOtherSources) {
+      data.push({ label: 'Other Sources Income', value: formatCurrency(watchValues.incomeOtherSources) });
+    }
+    return data;
+  }, [watchValues]);
 
   const calculateResults = (data: FormData) => {
     const input: ComprehensiveTaxInput = {
@@ -658,6 +684,7 @@ export default function TaxCalculator() {
                     calculatorName="Income Tax Results"
                     resultElementId="tax-results"
                     inputElementId="tax-inputs"
+                    inputsData={inputsData}
                   />
                 </div>
               </div>
