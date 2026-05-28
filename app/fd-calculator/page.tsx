@@ -373,21 +373,13 @@ export default function FDCalculatorPage() {
               </p>
             </div>
 
-            <div className="flex gap-3 pt-2">
-              <button
-                type="submit"
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
-              >
-                🧮 Calculate Maturity
-              </button>
-              <button
-                type="button"
-                onClick={handleReset}
-                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
-              >
-                🗑️ Clear
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+            >
+              🗑️ Clear
+            </button>
           </form>
         </div>
 
