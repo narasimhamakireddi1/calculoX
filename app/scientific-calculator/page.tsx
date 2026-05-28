@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { evaluate, computeRegression, computeStats, matrixDet, matrixMul, matrixAdd, matrixTranspose, matrixInverse } from '@/lib/calculators/scientific';
-import type { AngleUnit, EngineMode, CalcContext } from '@/lib/calculators/scientific';
+import type { AngleUnit, EngineMode } from '@/lib/calculators/scientific';
 
 interface HistoryItem {
   expr: string;
@@ -33,14 +33,9 @@ export default function ScientificCalculatorPage() {
   const [statData, setStatData] = useState<StatDataPoint[]>([{ x: 0, y: 0 }]);
   const [statModalOpen, setStatModalOpen] = useState(false);
 
-  // Live evaluation
-  useEffect(() => {
-    if (!input) {
-      setLiveResult('');
-      return;
-    }
-
-    const ctx: CalcContext = {
+  // Memoized calculation context
+  const calcContext = useMemo(
+    () => ({
       angleUnit,
       memory,
       ans,
@@ -48,15 +43,24 @@ export default function ScientificCalculatorPage() {
       matrixB,
       statX: statData.map(d => d.x),
       statY: statData.map(d => d.y),
-    };
+    }),
+    [angleUnit, memory, ans, matrixA, matrixB, statData]
+  );
 
-    const result = evaluate(input, ctx);
+  // Live evaluation
+  useEffect(() => {
+    if (!input) {
+      setLiveResult('');
+      return;
+    }
+
+    const result = evaluate(input, calcContext);
     if (!result.error && result.display) {
       setLiveResult(result.display);
     } else {
       setLiveResult('');
     }
-  }, [input, angleUnit, memory, ans, matrixA, matrixB, statData]);
+  }, [input, calcContext]);
 
   const handleKey = useCallback((key: string) => {
     if (key === 'AC') {
