@@ -1,4 +1,4 @@
-﻿import html2pdf from 'html2pdf.js';
+import html2pdf from 'html2pdf.js';
 
 export interface FormattedInput {
   label: string;
@@ -85,7 +85,7 @@ export const exportResultsAsPDF = (
 
   const headerHTML = `
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 8px; margin-bottom: 25px; text-align: center;">
-      <div style="font-size: 32px; font-weight: bold; margin-bottom: 8px;">ðŸ§®</div>
+      <div style="font-size: 32px; font-weight: bold; margin-bottom: 8px;">🧮</div>
       <h1 style="margin: 0 0 8px 0; font-size: 28px; font-weight: 700;">
         ${options.calculatorName}
       </h1>
@@ -117,7 +117,7 @@ export const exportResultsAsPDF = (
     inputsHTML = `
       <div style="margin-bottom: 25px;">
         <h2 style="margin: 0 0 12px 0; color: #1f2937; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 18px;">ðŸ“</span> Input Parameters
+          <span style="font-size: 18px;">📋</span> Input Parameters
         </h2>
         <div style="background-color: #f9fafb; padding: 16px; border-radius: 6px; border: 1px solid #e5e7eb;">
           ${inputRows}
@@ -138,7 +138,7 @@ export const exportResultsAsPDF = (
   const resultsHTML = `
     <div style="margin-bottom: 25px;">
       <h2 style="margin: 0 0 12px 0; color: #1f2937; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-        <span style="font-size: 18px;">ðŸ“Š</span> Calculation Results
+        <span style="font-size: 18px;">📊</span> Calculation Results
       </h2>
       <div style="background-color: #f9fafb; padding: 16px; border-radius: 6px; border: 1px solid #e5e7eb;">
         ${resultsClone.innerHTML}
@@ -187,4 +187,3 @@ export const copyResultsToClipboard = async (elementId: string) => {
     return false;
   }
 };
-
