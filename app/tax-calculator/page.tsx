@@ -3,12 +3,13 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { ComprehensiveTaxSchema } from '@/lib/validators';
 import { calculateComprehensiveTax } from '@/lib/tax-engine/calculator';
 import { ComprehensiveTaxInput, ComprehensiveTaxResult } from '@/lib/tax-engine/types';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type FormData = {
@@ -694,26 +695,14 @@ export default function TaxCalculator() {
                 <div className="card">
                   <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">💰 Income Breakup ({result.recommended === 'new' ? 'New' : 'Old'} Regime)</h3>
                   <div className="grid lg:grid-cols-2 gap-8 items-center">
-                    <ResponsiveContainer width="100%" height={300}>
-                      <PieChart>
-                        <Pie
-                          data={[
-                            { name: 'Take-Home Pay', value: getRegimeResult()!.grossSalary - getRegimeResult()!.totalTax },
-                            { name: 'Tax Payable', value: getRegimeResult()!.totalTax },
-                          ]}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={100}
-                          dataKey="value"
-                          isAnimationActive={false}
-                        >
-                          <Cell fill="#10b981" />
-                          <Cell fill="#ef4444" />
-                        </Pie>
-                        <Tooltip formatter={(v) => formatCurrency(v as number)} />
-                      </PieChart>
-                    </ResponsiveContainer>
+                    <MemoizedPieChart
+                      data={[
+                        { name: 'Take-Home Pay', value: getRegimeResult()!.grossSalary - getRegimeResult()!.totalTax },
+                        { name: 'Tax Payable', value: getRegimeResult()!.totalTax },
+                      ]}
+                      colors={['#10b981', '#ef4444']}
+                      height={300}
+                    />
                     <div className="space-y-3 text-sm">
                       <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700">
                         <span className="flex items-center gap-2">
@@ -847,6 +836,48 @@ export default function TaxCalculator() {
                   ))}
                 </div>
               </div>
+
+              {/* Related Calculators */}
+              <RelatedCalculators
+                calculators={[
+                  {
+                    title: 'GST Calculator',
+                    description: 'Calculate GST tax on products/services',
+                    icon: '📊',
+                    href: '/gst-calculator',
+                  },
+                  {
+                    title: 'Percentage Calculator',
+                    description: 'Quick percentage and ratio calculations',
+                    icon: '🔢',
+                    href: '/percentage-calculator',
+                  },
+                  {
+                    title: 'Simple Interest Calculator',
+                    description: 'Calculate simple interest on loans/deposits',
+                    icon: '💵',
+                    href: '/simple-interest-calculator',
+                  },
+                  {
+                    title: 'SIP Calculator',
+                    description: 'Plan your systematic investment returns',
+                    icon: '📈',
+                    href: '/sip-calculator',
+                  },
+                  {
+                    title: 'BMI Calculator',
+                    description: 'Check your Body Mass Index and health category',
+                    icon: '⚖️',
+                    href: '/bmi-calculator',
+                  },
+                  {
+                    title: 'CAGR Calculator',
+                    description: 'Measure your investment growth rate annually',
+                    icon: '📈',
+                    href: '/cagr-calculator',
+                  },
+                ]}
+              />
 
               {/* Affiliate Banner */}
               <AffiliateBanner

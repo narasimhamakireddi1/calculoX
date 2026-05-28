@@ -3,11 +3,13 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateSIP } from '@/lib/calculators/sip';
 import { SIPSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type SIPFormData = {
@@ -501,26 +503,14 @@ export default function SIPCalculatorPage() {
           {result && (
             <div className="card">
               <h2 className="text-2xl font-bold mb-6">💰 SIP Breakup</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={[
-                      { name: 'Total Invested', value: result.totalInvestment },
-                      { name: 'Returns Gained', value: result.gainedAmount },
-                    ]}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={100}
-                    dataKey="value"
-                    isAnimationActive={false}
-                  >
-                    <Cell fill="#3b82f6" />
-                    <Cell fill="#10b981" />
-                  </Pie>
-                  <Tooltip formatter={(v) => formatCurrency(v as number)} />
-                </PieChart>
-              </ResponsiveContainer>
+              <MemoizedPieChart
+                data={[
+                  { name: 'Total Invested', value: result.totalInvestment },
+                  { name: 'Returns Gained', value: result.gainedAmount },
+                ]}
+                colors={['#3b82f6', '#10b981']}
+                height={300}
+              />
               <div className="space-y-2 text-sm px-4 mt-2">
                 <div className="flex justify-between items-center">
                   <span className="flex items-center gap-2">
@@ -541,6 +531,48 @@ export default function SIPCalculatorPage() {
           )}
         </div>
       )}
+
+      {/* Related Calculators */}
+      <RelatedCalculators
+        calculators={[
+          {
+            title: 'EMI Calculator',
+            description: 'Calculate loan EMI and amortization schedules',
+            icon: '🏦',
+            href: '/emi-calculator',
+          },
+          {
+            title: 'FD Calculator',
+            description: 'Calculate fixed deposit maturity and returns',
+            icon: '💳',
+            href: '/fd-calculator',
+          },
+          {
+            title: 'CAGR Calculator',
+            description: 'Measure your investment growth rate annually',
+            icon: '📊',
+            href: '/cagr-calculator',
+          },
+          {
+            title: 'RD Calculator',
+            description: 'Calculate recurring deposit interest earnings',
+            icon: '💰',
+            href: '/rd-calculator',
+          },
+          {
+            title: 'Percentage Calculator',
+            description: 'Quick percentage and ratio calculations',
+            icon: '🔢',
+            href: '/percentage-calculator',
+          },
+          {
+            title: 'Tax Calculator',
+            description: 'Calculate income tax liability (New/Old Regime)',
+            icon: '🧾',
+            href: '/tax-calculator',
+          },
+        ]}
+      />
 
       {/* Affiliate Banner */}
       <AffiliateBanner
