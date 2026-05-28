@@ -21,7 +21,7 @@ export function CalculatorCard({
         <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
           {icon}
         </div>
-        <div className="text-sm text-primary-600 font-semibold mb-2">{category}</div>
+        <div className="text-sm text-gray-700 dark:text-gray-300 font-semibold mb-2">{category}</div>
         <h3 className="text-xl font-bold mb-2 group-hover:text-primary-600 transition-colors">
           {title}
         </h3>
