@@ -32,7 +32,11 @@ export const TaxSchema = z.object({
 export const FDSchema = z.object({
   principal: z.number().positive('Principal must be greater than 0').max(100000000),
   annualRate: z.number().min(0).max(20),
-  years: z.number().int().min(1).max(30),
+  years: z.number().int().min(0).max(30),
+  months: z.number().int().min(0).max(11).optional().default(0),
+  days: z.number().int().min(0).max(31).optional().default(0),
+  payoutType: z.enum(['cumulative', 'quarterly', 'monthly']).optional().default('cumulative'),
+  seniorCitizen: z.boolean().optional().default(false),
 });
 
 export const RDSchema = z.object({
@@ -44,7 +48,11 @@ export const RDSchema = z.object({
 export const SimpleInterestSchema = z.object({
   principal: z.number().positive('Principal must be greater than 0').max(100000000),
   annualRate: z.number().min(0).max(50),
-  years: z.number().int().min(1).max(50),
+  tenureValue: z.number().positive('Tenure must be greater than 0'),
+  tenureType: z.enum(['years', 'months', 'days']),
+  years: z.number().int().min(0).max(50).optional().default(0),
+  months: z.number().int().min(0).max(11).optional().default(0),
+  days: z.number().int().min(0).max(31).optional().default(0),
 });
 
 export const GSTSchema = z.object({

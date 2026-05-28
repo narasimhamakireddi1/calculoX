@@ -3,8 +3,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { calculateFD, generateFDProjection } from '@/lib/calculators/fd';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { calculateFD, generateFDProjection, type PayoutType } from '@/lib/calculators/fd';
 import { FDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 
@@ -12,22 +12,35 @@ type FDFormData = {
   principal: number;
   annualRate: number;
   years: number;
+  months: number;
+  days: number;
+  payoutType: PayoutType;
+  seniorCitizen: boolean;
 };
 
 interface FDResultData {
   maturityAmount: number;
   totalInterest: number;
+  periodicPayout?: number;
+  tenure: {
+    years: number;
+    months: number;
+    days: number;
+    totalMonths: number;
+    totalDays: number;
+  };
 }
 
-interface YearlyProjection {
-  year: number;
+interface ProjectionRow {
+  month: number;
   amount: number;
   interest: number;
+  payout: number;
 }
 
 export default function FDCalculatorPage() {
   const [result, setResult] = useState<FDResultData | null>(null);
-  const [projections, setProjections] = useState<YearlyProjection[]>([]);
+  const [projections, setProjections] = useState<ProjectionRow[]>([]);
 
   const {
     formState: { errors },
@@ -39,7 +52,11 @@ export default function FDCalculatorPage() {
     defaultValues: {
       principal: 100000,
       annualRate: 6.5,
-      years: 3,
+      years: 2,
+      months: 0,
+      days: 0,
+      payoutType: 'cumulative',
+      seniorCitizen: false,
     },
   });
 
@@ -48,11 +65,21 @@ export default function FDCalculatorPage() {
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     principal: { min: 10000, max: 100000000, label: 'Principal (₹)' },
     annualRate: { min: 0, max: 20, label: 'Annual Rate (%)' },
-    years: { min: 1, max: 30, label: 'Years' },
+    years: { min: 0, max: 30, label: 'Years' },
+    months: { min: 0, max: 11, label: 'Months' },
+    days: { min: 0, max: 31, label: 'Days' },
   };
 
-  const handleInputChange = (fieldName: keyof FDFormData, value: number) => {
-    setValue(fieldName, value, { shouldValidate: true });
+  const handleInputChange = (fieldName: keyof FDFormData, value: number | boolean) => {
+    setValue(fieldName as keyof Omit<FDFormData, 'payoutType' | 'seniorCitizen'>, value as number, { shouldValidate: true });
+  };
+
+  const handlePayoutChange = (value: PayoutType) => {
+    setValue('payoutType', value, { shouldValidate: true });
+  };
+
+  const handleSeniorCitizenChange = (value: boolean) => {
+    setValue('seniorCitizen', value, { shouldValidate: true });
   };
 
   const handleValidateField = (fieldName: string, value: number) => {
@@ -71,10 +98,13 @@ export default function FDCalculatorPage() {
   // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (watchValues.principal && watchValues.annualRate !== undefined && watchValues.years) {
-        calculateResults(watchValues);
+      if (watchValues.principal && watchValues.annualRate !== undefined) {
+        const totalMonths = watchValues.years * 12 + watchValues.months;
+        if (totalMonths > 0 || watchValues.days > 0) {
+          calculateResults(watchValues);
+        }
       }
-    }, 300); // 300ms debounce delay
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [watchValues]);
@@ -87,15 +117,26 @@ export default function FDCalculatorPage() {
   };
 
   const chartData = useMemo(() => {
-    return projections;
+    return projections.length > 0 ? projections.slice(0, Math.min(projections.length, 24)) : [];
   }, [projections]);
+
+  const isShortTerm = !!(
+    watchValues.years === 0 &&
+    watchValues.months < 6
+  );
+
+  const payoutLabel = {
+    cumulative: '🔄 Cumulative (Reinvested)',
+    quarterly: '📊 Quarterly Payout',
+    monthly: '📅 Monthly Payout',
+  };
 
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">🏦 FD Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient">🏦 Fixed Deposit (FD) Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-          Calculate maturity amount and interest earned on your fixed deposits
+          RBI-compliant FD calculator with support for multiple payout types (Cumulative, Quarterly, Monthly)
         </p>
       </div>
 
@@ -103,7 +144,7 @@ export default function FDCalculatorPage() {
         {/* Form */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
-          <form  className="space-y-6">
+          <form className="space-y-6">
             {/* Principal */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Principal Amount (₹)</label>
@@ -113,20 +154,21 @@ export default function FDCalculatorPage() {
                   min="10000"
                   max="100000000"
                   step="10000"
-                  value={watchValues.principal === 0 ? "" : watchValues.principal}
+                  value={watchValues.principal === 0 ? '' : watchValues.principal}
                   onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
+                  className="flex-1 h-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-lg appearance-none cursor-pointer accent-emerald-600"
                 />
                 <input
-                  type="number" placeholder="0"
+                  type="number"
+                  placeholder="0"
                   min="10000"
                   max="100000000"
                   step="10000"
-                  value={watchValues.principal === 0 ? "" : watchValues.principal}
+                  value={watchValues.principal === 0 ? '' : watchValues.principal}
                   onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-28 px-3 py-2 border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700"
                 />
               </div>
               {errors.principal && <p className="text-red-500 text-sm">{errors.principal.message}</p>}
@@ -135,24 +177,28 @@ export default function FDCalculatorPage() {
 
             {/* Annual Rate */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Annual Interest Rate (%)</label>
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">
+                Annual Interest Rate (%)
+                {watchValues.seniorCitizen && <span className="text-yellow-600 dark:text-yellow-400"> +0.5% (Senior)</span>}
+              </label>
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
                   min="0"
                   max="20"
                   step="0.1"
-                  value={watchValues.annualRate === 0 ? "" : watchValues.annualRate}
+                  value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
                   onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
-                  type="number" placeholder="0"
+                  type="number"
+                  placeholder="0"
                   min="0"
                   max="20"
                   step="0.1"
-                  value={watchValues.annualRate === 0 ? "" : watchValues.annualRate}
+                  value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
                   onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
                   className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
@@ -162,40 +208,150 @@ export default function FDCalculatorPage() {
               <p className="text-xs text-gray-500 dark:text-gray-400">0.01% to 20%</p>
             </div>
 
-            {/* Years */}
+            {/* Tenure - Years, Months, Days */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure (Years)</label>
-              <div className="flex gap-3 items-center">
-                <input
-                  type="range"
-                  min="1"
-                  max="30"
-                  step="1"
-                  value={watchValues.years === 0 ? "" : watchValues.years}
-                  onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                  className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
-                />
-                <input
-                  type="number" placeholder="0"
-                  min="1"
-                  max="30"
-                  value={watchValues.years === 0 ? "" : watchValues.years}
-                  onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
-                  onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
-                />
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure</label>
+              <div className="grid grid-cols-3 gap-3">
+                {/* Years */}
+                <div>
+                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years</label>
+                  <div className="flex gap-1 items-center">
+                    <input
+                      type="range"
+                      min="0"
+                      max="30"
+                      step="1"
+                      value={watchValues.years === 0 ? '' : watchValues.years}
+                      onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
+                      onBlur={(e) => handleValidateField('years', Number(e.target.value))}
+                      className="flex-1 h-2 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                    />
+                    <input
+                      type="number"
+                      placeholder="0"
+                      min="0"
+                      max="30"
+                      value={watchValues.years === 0 ? '' : watchValues.years}
+                      onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
+                      onBlur={(e) => handleValidateField('years', Number(e.target.value))}
+                      className="w-14 px-2 py-1 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Months */}
+                <div>
+                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months</label>
+                  <div className="flex gap-1 items-center">
+                    <input
+                      type="range"
+                      min="0"
+                      max="11"
+                      step="1"
+                      value={watchValues.months === 0 ? '' : watchValues.months}
+                      onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
+                      onBlur={(e) => handleValidateField('months', Number(e.target.value))}
+                      className="flex-1 h-2 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                    />
+                    <input
+                      type="number"
+                      placeholder="0"
+                      min="0"
+                      max="11"
+                      value={watchValues.months === 0 ? '' : watchValues.months}
+                      onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
+                      onBlur={(e) => handleValidateField('months', Number(e.target.value))}
+                      className="w-14 px-2 py-1 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Days */}
+                <div>
+                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days</label>
+                  <div className="flex gap-1 items-center">
+                    <input
+                      type="range"
+                      min="0"
+                      max="31"
+                      step="1"
+                      value={watchValues.days === 0 ? '' : watchValues.days}
+                      onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
+                      onBlur={(e) => handleValidateField('days', Number(e.target.value))}
+                      className="flex-1 h-2 bg-gradient-to-r from-pink-300 to-pink-600 rounded-lg appearance-none cursor-pointer accent-pink-600"
+                    />
+                    <input
+                      type="number"
+                      placeholder="0"
+                      min="0"
+                      max="31"
+                      value={watchValues.days === 0 ? '' : watchValues.days}
+                      onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
+                      onBlur={(e) => handleValidateField('days', Number(e.target.value))}
+                      className="w-14 px-2 py-1 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-pink-900/20 dark:text-pink-400 dark:border-pink-700"
+                    />
+                  </div>
+                </div>
               </div>
               {errors.years && <p className="text-red-500 text-sm">{errors.years.message}</p>}
-              <p className="text-xs text-gray-500 dark:text-gray-400">1 to 30 years</p>
+              {errors.months && <p className="text-red-500 text-sm">{errors.months.message}</p>}
+              {errors.days && <p className="text-red-500 text-sm">{errors.days.message}</p>}
+              {isShortTerm && (
+                <p className="text-yellow-600 dark:text-yellow-400 text-xs font-semibold">
+                  ⚠️ Short-term FD (under 6 months) calculated using Simple Interest method
+                </p>
+              )}
             </div>
 
-            <div className="flex gap-3">
+            {/* Payout Type */}
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Payout Type</label>
+              <div className="grid grid-cols-3 gap-2">
+                {(['cumulative', 'quarterly', 'monthly'] as const).map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => handlePayoutChange(type)}
+                    className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all ${
+                      watchValues.payoutType === type
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    {type === 'cumulative' && '🔄'}
+                    {type === 'quarterly' && '📊'}
+                    {type === 'monthly' && '📅'}
+                    <span className="ml-1 text-xs capitalize">{type}</span>
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{payoutLabel[watchValues.payoutType]}</p>
+            </div>
+
+            {/* Senior Citizen */}
+            <div className="space-y-3">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={watchValues.seniorCitizen}
+                  onChange={(e) => handleSeniorCitizenChange(e.target.checked)}
+                  className="w-5 h-5 cursor-pointer accent-yellow-500"
+                />
+                <span className="text-sm font-bold text-gray-900 dark:text-white">Senior Citizen (Age 60+)</span>
+              </label>
+              <p className="text-xs text-yellow-600 dark:text-yellow-400 font-semibold">
+                {watchValues.seniorCitizen
+                  ? `✅ +0.50% bonus rate applied to ${(watchValues.annualRate + 0.5).toFixed(2)}%`
+                  : 'Eligible senior citizens get an additional 0.50% interest rate'}
+              </p>
+            </div>
+
+            <div className="flex gap-3 pt-2">
               <button
                 type="submit"
                 className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
               >
-                🏦 Calculate Maturity
+                🧮 Calculate Maturity
               </button>
               <button
                 type="button"
@@ -213,6 +369,15 @@ export default function FDCalculatorPage() {
           {result ? (
             <div className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">Maturity Details</h2>
+
+              {/* Tenure Info */}
+              <div className="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg border-l-4 border-indigo-500">
+                <p className="text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-1">📅 Tenure</p>
+                <p className="text-indigo-900 dark:text-indigo-100 font-bold">
+                  {result.tenure.years}Y {result.tenure.months}M {result.tenure.days}D ({result.tenure.totalDays} days)
+                </p>
+              </div>
+
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">
@@ -227,9 +392,18 @@ export default function FDCalculatorPage() {
                   </p>
                   <p className="text-3xl font-bold text-green-700 dark:text-green-400">{formatCurrency(result.totalInterest)}</p>
                 </div>
+
+                {result.periodicPayout !== undefined && result.periodicPayout > 0 && (
+                  <div className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/20 p-5 rounded-lg border-2 border-amber-300 dark:border-amber-700 shadow-md hover:shadow-lg transition-shadow">
+                    <p className="text-amber-700 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-2">
+                      {watchValues.payoutType === 'quarterly' ? '📊 Per Quarter Payout' : '📅 Per Month Payout'}
+                    </p>
+                    <p className="text-3xl font-bold text-amber-700 dark:text-amber-400">{formatCurrency(result.periodicPayout)}</p>
+                  </div>
+                )}
               </div>
 
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mt-4">
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
                   <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.
                 </p>
@@ -237,7 +411,7 @@ export default function FDCalculatorPage() {
             </div>
           ) : (
             <div className="card h-full flex items-center justify-center min-h-64">
-              <p className="text-gray-500 dark:text-gray-400">Enter your FD details and click Calculate to see results</p>
+              <p className="text-gray-500 dark:text-gray-400">Enter your FD details to see maturity amount and returns</p>
             </div>
           )}
         </div>
@@ -246,54 +420,81 @@ export default function FDCalculatorPage() {
       {/* Projection Table */}
       {projections.length > 0 && (
         <div className="card">
-          <h2 className="text-2xl font-bold mb-6">📊 Year-by-Year Projection</h2>
+          <h2 className="text-2xl font-bold mb-6">📊 Projection Schedule</h2>
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-                  <th className="px-4 py-3 text-left font-semibold">Year</th>
-                  <th className="px-4 py-3 text-right font-semibold">Amount (₹)</th>
-                  <th className="px-4 py-3 text-right font-semibold">Interest Earned (₹)</th>
+                  <th className="px-4 py-3 text-left font-semibold">Month</th>
+                  {watchValues.payoutType === 'cumulative' && (
+                    <>
+                      <th className="px-4 py-3 text-right font-semibold">Amount (₹)</th>
+                      <th className="px-4 py-3 text-right font-semibold">Interest (₹)</th>
+                    </>
+                  )}
+                  {(watchValues.payoutType === 'quarterly' || watchValues.payoutType === 'monthly') && (
+                    <>
+                      <th className="px-4 py-3 text-right font-semibold">Periodic Payout (₹)</th>
+                      <th className="px-4 py-3 text-right font-semibold">Total Earned (₹)</th>
+                    </>
+                  )}
                 </tr>
               </thead>
               <tbody>
                 {projections.map((proj, idx) => (
-                  <tr
-                    key={idx}
-                    className={`${idx % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50'} border-b border-gray-200 dark:border-gray-700`}
-                  >
-                    <td className="px-4 py-3 font-semibold">{proj.year}</td>
-                    <td className="px-4 py-3 text-right font-mono">{formatCurrency(proj.amount)}</td>
-                    <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">
-                      {formatCurrency(proj.interest)}
-                    </td>
+                  <tr key={idx} className={`${idx % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50'} border-b border-gray-200 dark:border-gray-700`}>
+                    <td className="px-4 py-3 font-semibold">{proj.month}</td>
+                    {watchValues.payoutType === 'cumulative' && (
+                      <>
+                        <td className="px-4 py-3 text-right font-mono">{formatCurrency(proj.amount)}</td>
+                        <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">{formatCurrency(proj.interest)}</td>
+                      </>
+                    )}
+                    {(watchValues.payoutType === 'quarterly' || watchValues.payoutType === 'monthly') && (
+                      <>
+                        <td className="px-4 py-3 text-right font-mono text-amber-600 dark:text-amber-400 font-semibold">{formatCurrency(proj.payout)}</td>
+                        <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">{formatCurrency(proj.interest)}</td>
+                      </>
+                    )}
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
+            Showing first {Math.min(projections.length, 24)} months. {projections.length > 24 && `(${projections.length - 24} more months omitted)`}
+          </p>
         </div>
       )}
 
       {/* Chart */}
       {chartData.length > 0 && (
         <div className="card">
-          <h2 className="text-2xl font-bold mb-6">📈 FD Growth Visualization</h2>
-          <ResponsiveContainer width="100%" height={400}>
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-              <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
-              <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }}
-                formatter={(v) => formatCurrency(v as number)}
-                labelFormatter={(l) => `Year ${l}`}
-              />
-              <Legend />
-              <Line type="monotone" dataKey="amount" stroke="#3b82f6" name="Total Amount" dot={false} strokeWidth={2} />
-              <Line type="monotone" dataKey="interest" stroke="#10b981" name="Interest Earned" dot={false} strokeWidth={2} />
-            </LineChart>
-          </ResponsiveContainer>
+          <h2 className="text-2xl font-bold mb-6">📈 Growth Visualization</h2>
+          {watchValues.payoutType === 'cumulative' ? (
+            <ResponsiveContainer width="100%" height={400}>
+              <LineChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
+                <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
+                <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }} formatter={(v) => formatCurrency(v as number)} labelFormatter={(l) => `Month ${l}`} />
+                <Legend />
+                <Line type="monotone" dataKey="amount" stroke="#3b82f6" name="Total Amount" dot={false} strokeWidth={2} />
+                <Line type="monotone" dataKey="interest" stroke="#10b981" name="Interest Earned" dot={false} strokeWidth={2} />
+              </LineChart>
+            </ResponsiveContainer>
+          ) : (
+            <ResponsiveContainer width="100%" height={400}>
+              <BarChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
+                <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}K`} />
+                <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }} formatter={(v) => formatCurrency(v as number)} labelFormatter={(l) => `Month ${l}`} />
+                <Legend />
+                <Bar dataKey="payout" fill="#f59e0b" name={watchValues.payoutType === 'quarterly' ? 'Quarterly Payout' : 'Monthly Payout'} />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
         </div>
       )}
 
@@ -303,41 +504,43 @@ export default function FDCalculatorPage() {
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
-              What is a Fixed Deposit?
+              What&apos;s the difference between Cumulative, Quarterly, and Monthly payouts?
               <span className="transition-transform group-open:rotate-180">▼</span>
             </summary>
             <p className="pb-4 text-gray-600 dark:text-gray-400">
-              A Fixed Deposit (FD) is a financial investment where you deposit a lump sum amount with a bank or financial institution for a fixed period at a predetermined interest rate. The money cannot be withdrawn before maturity without penalties.
+              <strong>Cumulative:</strong> Interest is reinvested, compounded quarterly. Principal + all interest paid at maturity. <br />
+              <strong>Quarterly:</strong> Interest paid every 3 months. Principal returned at maturity. <br />
+              <strong>Monthly:</strong> Interest paid monthly at a discounted rate. Principal returned at maturity.
             </p>
           </details>
 
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
-              How is FD interest calculated?
+              Why is monthly payout less than quarterly?
               <span className="transition-transform group-open:rotate-180">▼</span>
             </summary>
             <p className="pb-4 text-gray-600 dark:text-gray-400">
-              FD interest is calculated using compound interest formula: A = P(1 + r)^t, where P is principal, r is annual rate, and t is time in years. Interest compounds annually in most cases.
+              Banks pay monthly interest at a discounted rate to account for early payout. Since interest hasn&apos;t had the full quarter to mature, the monthly rate is slightly lower to maintain mathematical equivalence to the quarterly rate.
             </p>
           </details>
 
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
-              What is the minimum and maximum FD amount?
+              What is a short-term FD?
               <span className="transition-transform group-open:rotate-180">▼</span>
             </summary>
             <p className="pb-4 text-gray-600 dark:text-gray-400">
-              Minimum and maximum amounts vary by bank. Most banks have minimum FD of ₹1,000 to ₹10,000 and no fixed maximum. Check with your bank for their specific limits.
+              FDs with tenure less than 181 days (approximately 6 months) are short-term FDs. These are calculated using Simple Interest method instead of compound interest, as per RBI guidelines.
             </p>
           </details>
 
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
-              Can I withdraw from FD before maturity?
+              Do senior citizens get higher interest rates?
               <span className="transition-transform group-open:rotate-180">▼</span>
             </summary>
             <p className="pb-4 text-gray-600 dark:text-gray-400">
-              Most banks allow premature withdrawal, but with penalties. You may lose interest or get reduced interest. Some senior citizen accounts have more flexible rules.
+              Yes! Most Indian banks provide an additional 0.50% interest rate for senior citizens (age 60+). This calculator automatically adds this bonus when you check the Senior Citizen checkbox.
             </p>
           </details>
 
@@ -347,7 +550,17 @@ export default function FDCalculatorPage() {
               <span className="transition-transform group-open:rotate-180">▼</span>
             </summary>
             <p className="pb-4 text-gray-600 dark:text-gray-400">
-              Yes, FD interest is taxable income and should be declared in your income tax return. If interest exceeds ₹40,000 (or ₹50,000 for senior citizens) in a year, Form 15G/15H must be submitted.
+              Yes, FD interest is taxable income. If interest exceeds ₹40,000 (or ₹50,000 for senior citizens) in a financial year, Form 15G/15H must be submitted to your bank.
+            </p>
+          </details>
+
+          <details className="group border-b border-gray-200 dark:border-gray-700">
+            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">
+              What if I need to withdraw before maturity?
+              <span className="transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <p className="pb-4 text-gray-600 dark:text-gray-400">
+              Most banks allow premature withdrawal with a penalty. The penalty is typically a reduction in interest rate (0.5% to 1% less than the original rate) or loss of interest. Check your bank&apos;s specific policy.
             </p>
           </details>
         </div>
@@ -355,4 +568,3 @@ export default function FDCalculatorPage() {
     </div>
   );
 }
-
