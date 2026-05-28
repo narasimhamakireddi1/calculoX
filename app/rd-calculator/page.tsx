@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { calculateRD, generateRDProjection } from '@/lib/calculators/rd';
 import { RDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -253,23 +253,69 @@ export default function RDCalculatorPage() {
 
       {/* Chart */}
       {chartData.length > 0 && (
-        <div className="card">
-          <h2 className="text-2xl font-bold mb-6">📈 RD Growth Over Time</h2>
-          <ResponsiveContainer width="100%" height={400}>
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-              <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
-              <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }}
-                formatter={(v) => formatCurrency(v as number)}
-                labelFormatter={(l) => `Month ${l}`}
-              />
-              <Legend />
-              <Line type="monotone" dataKey="amount" stroke="#3b82f6" name="Total Amount" dot={false} strokeWidth={2} />
-              <Line type="monotone" dataKey="interest" stroke="#10b981" name="Interest Earned" dot={false} strokeWidth={2} />
-            </LineChart>
-          </ResponsiveContainer>
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Line Chart */}
+          <div className="card">
+            <h2 className="text-2xl font-bold mb-6">📈 RD Growth Over Time</h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <LineChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
+                <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }}
+                  formatter={(v) => formatCurrency(v as number)}
+                  labelFormatter={(l) => `Month ${l}`}
+                />
+                <Legend />
+                <Line type="monotone" dataKey="amount" stroke="#3b82f6" name="Total Amount" dot={false} strokeWidth={2} />
+                <Line type="monotone" dataKey="interest" stroke="#10b981" name="Interest Earned" dot={false} strokeWidth={2} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Pie Chart */}
+          {result && (
+            <div className="card">
+              <h2 className="text-2xl font-bold mb-6">💰 RD Breakup</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={[
+                      { name: 'Total Deposited', value: result.totalDeposits },
+                      { name: 'Interest Earned', value: result.totalInterest },
+                    ]}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={100}
+                    dataKey="value"
+                    isAnimationActive={false}
+                  >
+                    <Cell fill="#3b82f6" />
+                    <Cell fill="#10b981" />
+                  </Pie>
+                  <Tooltip formatter={(v) => formatCurrency(v as number)} />
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="space-y-2 text-sm px-4 mt-2">
+                <div className="flex justify-between items-center">
+                  <span className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full inline-block bg-blue-500" />
+                    <span className="text-gray-600 dark:text-gray-400">Total Deposited</span>
+                  </span>
+                  <span className="font-bold">{formatCurrency(result.totalDeposits)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full inline-block bg-emerald-500" />
+                    <span className="text-gray-600 dark:text-gray-400">Interest Earned</span>
+                  </span>
+                  <span className="font-bold">{formatCurrency(result.totalInterest)}</span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

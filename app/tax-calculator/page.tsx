@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { ComprehensiveTaxSchema } from '@/lib/validators';
 import { calculateComprehensiveTax } from '@/lib/tax-engine/calculator';
 import { ComprehensiveTaxInput, ComprehensiveTaxResult } from '@/lib/tax-engine/types';
@@ -651,6 +652,59 @@ export default function TaxCalculator() {
                   </div>
                 )}
               </div>
+
+              {/* Income Breakup Pie Chart */}
+              {getRegimeResult() && (
+                <div className="card">
+                  <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">💰 Income Breakup ({result.recommended === 'new' ? 'New' : 'Old'} Regime)</h3>
+                  <div className="grid lg:grid-cols-2 gap-8 items-center">
+                    <ResponsiveContainer width="100%" height={300}>
+                      <PieChart>
+                        <Pie
+                          data={[
+                            { name: 'Take-Home Pay', value: getRegimeResult()!.grossSalary - getRegimeResult()!.totalTax },
+                            { name: 'Tax Payable', value: getRegimeResult()!.totalTax },
+                          ]}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={60}
+                          outerRadius={100}
+                          dataKey="value"
+                          isAnimationActive={false}
+                        >
+                          <Cell fill="#10b981" />
+                          <Cell fill="#ef4444" />
+                        </Pie>
+                        <Tooltip formatter={(v) => formatCurrency(v as number)} />
+                      </PieChart>
+                    </ResponsiveContainer>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700">
+                        <span className="flex items-center gap-2">
+                          <span className="w-3 h-3 rounded-full inline-block bg-green-500" />
+                          <span className="text-gray-600 dark:text-gray-400">Take-Home Pay</span>
+                        </span>
+                        <span className="font-bold text-gray-900 dark:text-white">{formatCurrency(getRegimeResult()!.grossSalary - getRegimeResult()!.totalTax)}</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-700">
+                        <span className="flex items-center gap-2">
+                          <span className="w-3 h-3 rounded-full inline-block bg-red-500" />
+                          <span className="text-gray-600 dark:text-gray-400">Tax Payable</span>
+                        </span>
+                        <span className="font-bold text-gray-900 dark:text-white">{formatCurrency(getRegimeResult()!.totalTax)}</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-gradient-to-r from-green-50 to-red-50 dark:from-green-900/20 dark:to-red-900/20 rounded-lg border-t-2 border-gray-300 dark:border-gray-700 mt-2 pt-4">
+                        <span className="text-gray-600 dark:text-gray-400 font-semibold">Gross Income</span>
+                        <span className="font-bold text-gray-900 dark:text-white text-lg">{formatCurrency(getRegimeResult()!.grossSalary)}</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700 mt-2">
+                        <span className="text-gray-600 dark:text-gray-400 font-semibold">Effective Tax Rate</span>
+                        <span className="font-bold text-blue-700 dark:text-blue-400 text-lg">{getRegimeResult()!.effectiveRate.toFixed(2)}%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Slab Breakdown */}
               <details className="card bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 cursor-pointer group" open>

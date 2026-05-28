@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
 
@@ -273,6 +274,73 @@ export default function BMICalculatorPage() {
           )}
         </div>
       </div>
+
+      {/* BMI Category Range Donut Chart */}
+      {result && (
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-6">📊 BMI Spectrum Distribution</h2>
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={[
+                    { name: 'Underweight (<18.5)', value: 18.5 },
+                    { name: 'Normal (18.5-25)', value: 6.5 },
+                    { name: 'Overweight (25-30)', value: 5 },
+                    { name: 'Obese (>30)', value: 10 },
+                  ]}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={100}
+                  dataKey="value"
+                  isAnimationActive={false}
+                >
+                  <Cell fill="#3b82f6" opacity={result.category === 'underweight' ? 1 : 0.4} />
+                  <Cell fill="#10b981" opacity={result.category === 'normal' ? 1 : 0.4} />
+                  <Cell fill="#f59e0b" opacity={result.category === 'overweight' ? 1 : 0.4} />
+                  <Cell fill="#ef4444" opacity={result.category === 'obese' ? 1 : 0.4} />
+                </Pie>
+                <Tooltip formatter={(v) => `BMI Range: ${v}`} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="space-y-3 text-sm">
+              <div className={`flex justify-between items-center p-3 rounded-lg border ${result.category === 'underweight' ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700 shadow-lg' : 'bg-gray-50 dark:bg-gray-700/30 border-gray-200 dark:border-gray-600 opacity-60'}`}>
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-blue-500" />
+                  <span className="text-gray-600 dark:text-gray-400">Underweight (&lt;18.5)</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{result.category === 'underweight' ? result.bmi.toFixed(1) : '—'}</span>
+              </div>
+              <div className={`flex justify-between items-center p-3 rounded-lg border ${result.category === 'normal' ? 'bg-green-50 dark:bg-green-900/30 border-green-300 dark:border-green-700 shadow-lg' : 'bg-gray-50 dark:bg-gray-700/30 border-gray-200 dark:border-gray-600 opacity-60'}`}>
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-green-500" />
+                  <span className="text-gray-600 dark:text-gray-400">Normal (18.5-25)</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{result.category === 'normal' ? result.bmi.toFixed(1) : '—'}</span>
+              </div>
+              <div className={`flex justify-between items-center p-3 rounded-lg border ${result.category === 'overweight' ? 'bg-orange-50 dark:bg-orange-900/30 border-orange-300 dark:border-orange-700 shadow-lg' : 'bg-gray-50 dark:bg-gray-700/30 border-gray-200 dark:border-gray-600 opacity-60'}`}>
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-orange-500" />
+                  <span className="text-gray-600 dark:text-gray-400">Overweight (25-30)</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{result.category === 'overweight' ? result.bmi.toFixed(1) : '—'}</span>
+              </div>
+              <div className={`flex justify-between items-center p-3 rounded-lg border ${result.category === 'obese' ? 'bg-red-50 dark:bg-red-900/30 border-red-300 dark:border-red-700 shadow-lg' : 'bg-gray-50 dark:bg-gray-700/30 border-gray-200 dark:border-gray-600 opacity-60'}`}>
+                <span className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full inline-block bg-red-500" />
+                  <span className="text-gray-600 dark:text-gray-400">Obese (&gt;30)</span>
+                </span>
+                <span className="font-bold text-gray-900 dark:text-white">{result.category === 'obese' ? result.bmi.toFixed(1) : '—'}</span>
+              </div>
+              <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-red-50 dark:from-blue-900/20 dark:to-red-900/20 rounded-lg border-t-2 border-gray-300 dark:border-gray-700 mt-2 pt-4">
+                <span className="text-gray-600 dark:text-gray-400 font-semibold">Your BMI</span>
+                <span className="font-bold text-gray-900 dark:text-white text-lg">{result.bmi.toFixed(1)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Health Tips */}
       {result && (
