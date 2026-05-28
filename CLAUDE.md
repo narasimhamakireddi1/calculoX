@@ -1,15 +1,16 @@
 # 🧮 CalculoX - CLAUDE.md
 
 **Status:** ✅ MVP Complete | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-29 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+**Last Updated:** 2026-05-28 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
 
 ---
 
 ## 📊 PROJECT STATUS
 
-**10 Calculators Live:**
+**11 Calculators Live:**
 - **MVP (6, Visible):** SIP, EMI, BMI, Income Tax, FD, Simple Interest
 - **Phase 2 Batch 1 (4, Visible):** RD, GST, Percentage (6-track), CAGR
+- **Phase 2 Batch 3 (1, Visible):** Scientific Calculator (Casio ClassWiz-style)
 
 **Key Features:** Real-time auto-calculate | Dual inputs (slider + number) | Color-coded sliders | Responsive design | Dark mode | PDF export & clipboard sharing | Pie charts for all calculators | World-class SEO | Affiliate monetization | Performance optimized
 
@@ -42,7 +43,7 @@ components/
 └── ui/                        # Shared UI components
 
 lib/
-├── calculators/               # 10 calculation logic files
+├── calculators/               # 11 calculation logic files (incl. scientific.ts)
 ├── tax-engine/                # 9-module tax system
 ├── validators/index.ts        # Zod schemas
 └── seo/schemas.ts             # JSON-LD generators
@@ -68,6 +69,7 @@ config/
 | **GST** | Amount | Add/Remove @ 5%/12%/18%/28% | Breakdown, pie chart |
 | **Percentage** | Values (varies by track) | 6 independent engines: hike/discount, X% of Y, what % of, % change, reverse %, sequential | 6-track switcher, live sentence banner, pie charts, directional indicators |
 | **CAGR** | Beginning Value, Ending Value, Years | CAGR = (Ending/Beginning)^(1/Years) - 1 | Year-over-year breakdown, projections, pie chart |
+| **Scientific** | Expression input or button clicks | Tokenizer → Shunting-Yard → RPN Evaluator | 4 engines (Standard, Complex, Matrix, Statistics), 8 button rows, dual display, DEG/RAD, memory registers, keyboard support |
 
 ---
 
@@ -206,7 +208,41 @@ git push origin main        # Auto-deploys to Vercel
 - **Daily Accrual:** Shows per-day interest `(P × R) / DaysInYear` for quick estimation on any tenure
 - **Implementation:** Decimal.js (28 decimal places) for financial precision. Verified against 3 test cases (Years: ₹1,35,000 ✓, Months: ₹39,375 ✓, Days: ₹1,600 ✓)
 
-**PDF Export & Clipboard Sharing (All 10 Calculators - Production-Grade):**
+**Scientific Calculator - Casio ClassWiz-Style Full-Featured:**
+- **Architecture:** Custom Tokenizer → Shunting-Yard → RPN Evaluator pipeline (no external math libraries beyond Decimal.js)
+- **Expression Parsing:** Tokenizes input into typed tokens (NUMBER, OPERATOR, FUNCTION, LPAREN, RPAREN, CONSTANT, VARIABLE, COMMA). Handles implicit multiplication (2π → 2*π, 2(3) → 2*(3)), scientific notation, and multi-char identifiers
+- **Operator Precedence:** Shunting-Yard algorithm enforces PEMDAS with proper associativity (LEFT for +−*÷%, RIGHT for ^). Converts infix to RPN for evaluation
+- **RPN Evaluator:** Stack-based evaluation with proper type promotion (number ↔ ComplexNumber). Angle conversion applied before trig (DEG→RAD) and on inverse trig (RAD→DEG when angleUnit='DEG')
+- **Supported Functions:** sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, log (log₁₀), ln (natural log), log₂, exp, sqrt, cbrt, abs, ceil, floor, round, factorial (!), nCr, nPr
+- **Constants:** π / pi, e, i (imaginary unit), Ans (previous result), M (memory)
+- **4 Computation Engines:**
+  - **Standard:** All arithmetic & scientific functions with real numbers
+  - **Complex:** Parse a+bi notation; all operations in complex domain; display as a+bi
+  - **Matrix:** 2×2 and 3×3 grid input modals; det(A), inv(A), T(A), A+B, A×B operations
+  - **Statistical:** X/Y data entry (up to 20 rows); computes n, mean, stddev, linear regression (y = mx + b), R² coefficient
+- **UI Layout (8 Button Rows):**
+  - Row 1 (Gray): SHIFT, MODE, DEG/RAD, M+, M-, MC, DEL, AC
+  - Row 2 (Purple): x², x^y, √x, sin/asin, cos/acos, tan/atan, log/10^x, ln/e^x (SHIFT toggles labels)
+  - Row 3 (Indigo): π, e, (, ), MR, Ans, sinh, cosh
+  - Row 4 (Teal): 3√x, log₂, x!, nCr, nPr, det/Mat A, inv/Mat B, T(A)/Stat
+  - Rows 5-7 (White/Blue): Numeric keypad (0-9, .), operators (×, ÷, +, −, %), advanced functions
+  - Row 8 (Gradient): Execute (=) spans dual-width with blue→purple brand gradient
+- **Dual Display Panel:** Dark bg-gray-900 screen inside white card. Status badges (engine, angle unit, memory, modifiers), input line (gray-400), result line (white bold)
+- **Interactive Features:**
+  - Physical keyboard support: 0-9, operators, Enter/Backspace/Escape
+  - Live evaluation: useEffect on input continuously evaluates via RPN, updates liveResult silently on error
+  - History panel: last 10 calculations persisted in state
+  - SHIFT modifier: toggles between primary/secondary function labels (sin↔asin, log↔10^x)
+  - Memory registers: M+/M-/MC/MR track M, MR appends to input, M usable in expressions
+  - Matrix modals: Inline components with 2×2/3×3 size toggle, grid inputs for matrix A/B
+  - Stat panel: Table with X/Y columns, +Add Row, ×Remove Row; auto-computes regression on update
+  - Matrix result display: Shows last operation result as formatted matrix grid
+  - Statistics result card: Shows n, mean, σ for X and Y; regression equation y = mx + b with R²
+- **Keyboard Mapping:** Enters digits/operators directly; Enter finalizes to history; Backspace removes last char; Escape clears all
+- **Files:** `lib/calculators/scientific.ts` (500 lines, math engine), `app/scientific-calculator/page.tsx` (600 lines, UI + state), `app/scientific-calculator/layout.tsx` (SEO)
+- **Pattern Difference:** Unlike form-based calculators, scientific uses button-driven state (not React Hook Form) with continuous live evaluation instead of debounced auto-calculate
+
+**PDF Export & Clipboard Sharing (All 11 Calculators - Production-Grade):**
 - **Components:** `lib/utils/pdf-export.ts` (PDF generation) + `components/ui/ExportButton.tsx` (dual-button UI) + `lib/utils/pdf-input-formatter.ts` (helper utilities)
 - **Professional Layout:**
   - Header: Gradient background (purple→violet), emoji icon, calculator name, timestamp
@@ -273,4 +309,4 @@ Keep it concise: This is a reference guide, not detailed documentation. Point to
 
 ---
 
-**Status:** ✅ PRODUCTION READY | All 10 calculators functional | Deployed to Vercel | Ready for scale 🚀
+**Status:** ✅ PRODUCTION READY | All 11 calculators functional | Scientific Calculator live | Deployed to Vercel | Ready for scale 🚀
