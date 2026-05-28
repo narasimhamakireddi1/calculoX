@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Contact Us - CalculoX',
-  description: 'Contact the CalculoX team. Report bugs, suggest new calculators, or give feedback. We respond within 24 hours.',
+  title: 'Contact Us - calculox',
+  description: 'Contact the calculox team. Report bugs, suggest new calculators, or give feedback. We respond within 24 hours.',
   alternates: { canonical: `${BASE_URL}/contact` },
 };
 
@@ -25,10 +25,10 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {[
-          { icon: '📧', title: 'Email Us', desc: 'For general questions and support', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com' },
-          { icon: '🐛', title: 'Report a Bug', desc: 'Found an issue with a calculator?', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Bug Report' },
-          { icon: '💡', title: 'Suggest a Calculator', desc: 'Want us to build a new calculator?', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Calculator Suggestion' },
-          { icon: '🤝', title: 'Partnerships', desc: 'Business & advertising inquiries', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Partnership Inquiry' },
+          { icon: 'ðŸ“§', title: 'Email Us', desc: 'For general questions and support', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com' },
+          { icon: 'ðŸ›', title: 'Report a Bug', desc: 'Found an issue with a calculator?', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Bug Report' },
+          { icon: 'ðŸ’¡', title: 'Suggest a Calculator', desc: 'Want us to build a new calculator?', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Calculator Suggestion' },
+          { icon: 'ðŸ¤', title: 'Partnerships', desc: 'Business & advertising inquiries', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Partnership Inquiry' },
         ].map((item) => (
           <a
             key={item.title}
@@ -52,3 +52,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

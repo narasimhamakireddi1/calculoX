@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
 import { generateOrganizationSchema } from '@/lib/seo/schemas';
@@ -6,12 +6,12 @@ import { generateOrganizationSchema } from '@/lib/seo/schemas';
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'About CalculoX - Free Online Calculators for India',
-  description: 'CalculoX is India\'s premium free calculator platform. We provide accurate, fast, and mobile-friendly calculators for finance, health & utility. Learn our mission and values.',
+  title: 'About calculox - Free Online Calculators for India',
+  description: 'calculox is India\'s premium free calculator platform. We provide accurate, fast, and mobile-friendly calculators for finance, health & utility. Learn our mission and values.',
   alternates: { canonical: `${BASE_URL}/about` },
   openGraph: {
-    title: 'About CalculoX - Free Online Calculators for India',
-    description: 'Learn about CalculoX - India\'s premium free calculator platform for finance, health & utility calculations.',
+    title: 'About calculox - Free Online Calculators for India',
+    description: 'Learn about calculox - India\'s premium free calculator platform for finance, health & utility calculations.',
     url: `${BASE_URL}/about`,
     type: 'website',
   },
@@ -42,10 +42,10 @@ export default function AboutPage() {
         {/* Hero */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            About CalculoX
+            About calculox
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            India&apos;s premium free calculator platform — built for accuracy, speed & simplicity.
+            India&apos;s premium free calculator platform â€” built for accuracy, speed & simplicity.
           </p>
         </div>
 
@@ -53,8 +53,8 @@ export default function AboutPage() {
         <section className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8 mb-10">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h2>
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-            At CalculoX, our mission is to make financial and health calculations accessible to every Indian.
-            We believe that accurate financial tools should be free, fast, and easy to use — whether you&apos;re
+            At calculox, our mission is to make financial and health calculations accessible to every Indian.
+            We believe that accurate financial tools should be free, fast, and easy to use â€” whether you&apos;re
             planning your first SIP investment, calculating a home loan EMI, or checking your BMI.
           </p>
         </section>
@@ -78,17 +78,17 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Why CalculoX */}
+        {/* Why calculox */}
         <section className="mb-10">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Why Choose CalculoX?</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Why Choose calculox?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: '⚡', title: 'Lightning Fast', desc: 'Instant calculations with no delays or loading screens.' },
-              { icon: '🎯', title: '100% Accurate', desc: 'Verified formulas used by financial professionals.' },
-              { icon: '📱', title: 'Mobile Friendly', desc: 'Works perfectly on all devices — phone, tablet, desktop.' },
-              { icon: '🆓', title: 'Completely Free', desc: 'All calculators are free forever. No registration needed.' },
-              { icon: '🇮🇳', title: 'Made for India', desc: 'Tailored for Indian tax laws, RBI rates & financial norms.' },
-              { icon: '🌙', title: 'Dark Mode', desc: 'Easy on the eyes with full dark mode support.' },
+              { icon: 'âš¡', title: 'Lightning Fast', desc: 'Instant calculations with no delays or loading screens.' },
+              { icon: 'ðŸŽ¯', title: '100% Accurate', desc: 'Verified formulas used by financial professionals.' },
+              { icon: 'ðŸ“±', title: 'Mobile Friendly', desc: 'Works perfectly on all devices â€” phone, tablet, desktop.' },
+              { icon: 'ðŸ†“', title: 'Completely Free', desc: 'All calculators are free forever. No registration needed.' },
+              { icon: 'ðŸ‡®ðŸ‡³', title: 'Made for India', desc: 'Tailored for Indian tax laws, RBI rates & financial norms.' },
+              { icon: 'ðŸŒ™', title: 'Dark Mode', desc: 'Easy on the eyes with full dark mode support.' },
             ].map((item) => (
               <div key={item.title} className="p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
                 <div className="text-3xl mb-3">{item.icon}</div>
@@ -116,3 +116,4 @@ export default function AboutPage() {
     </>
   );
 }
+

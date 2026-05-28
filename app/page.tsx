@@ -1,4 +1,4 @@
-import { CalculatorCard } from "@/components/ui/CalculatorCard";
+﻿import { CalculatorCard } from "@/components/ui/CalculatorCard";
 import { getActiveCalculators } from "@/config/calculators.config";
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="text-center py-12 md:py-20">
         <h1 className="text-5xl md:text-6xl font-bold mb-6">
-          <span className="text-gradient">CalculoX</span>
+          <span className="text-gradient">calculox</span>
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
           Premium online calculators for your financial, health, and daily
@@ -40,21 +40,21 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
-            <div className="text-4xl mb-4">⚡</div>
+            <div className="text-4xl mb-4">âš¡</div>
             <h3 className="text-xl font-semibold mb-2">Fast & Accurate</h3>
             <p className="text-gray-600 dark:text-gray-400">
               Get instant results with high precision calculations
             </p>
           </div>
           <div className="text-center">
-            <div className="text-4xl mb-4">🔒</div>
+            <div className="text-4xl mb-4">ðŸ”’</div>
             <h3 className="text-xl font-semibold mb-2">Secure & Private</h3>
             <p className="text-gray-600 dark:text-gray-400">
               Your data is never stored or shared with anyone
             </p>
           </div>
           <div className="text-center">
-            <div className="text-4xl mb-4">📱</div>
+            <div className="text-4xl mb-4">ðŸ“±</div>
             <h3 className="text-xl font-semibold mb-2">Mobile Friendly</h3>
             <p className="text-gray-600 dark:text-gray-400">
               Works perfectly on any device - desktop, tablet, or phone
@@ -99,3 +99,4 @@ export default function Home() {
     </div>
   );
 }
+

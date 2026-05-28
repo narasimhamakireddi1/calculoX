@@ -1,10 +1,10 @@
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
+﻿const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export function generateOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'CalculoX',
+    name: 'calculox',
     url: BASE_URL,
     logo: `${BASE_URL}/logo.png`,
     description: 'Premium free online calculators for Indian users - Finance, Health & Utility',
@@ -20,7 +20,7 @@ export function generateWebSiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'CalculoX',
+    name: 'calculox',
     url: BASE_URL,
     description: 'Premium free online calculators for Indian users',
     inLanguage: 'en-IN',
@@ -50,7 +50,7 @@ export function generateWebApplicationSchema(opts: {
     inLanguage: 'en-IN',
     isAccessibleForFree: true,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
-    provider: { '@type': 'Organization', name: 'CalculoX', url: BASE_URL },
+    provider: { '@type': 'Organization', name: 'calculox', url: BASE_URL },
   };
 }
 
@@ -95,10 +95,10 @@ export function generateArticleSchema(post: {
     url: `${BASE_URL}/blog/${post.slug}`,
     datePublished: post.date,
     dateModified: post.date,
-    author: { '@type': 'Organization', name: post.author || 'CalculoX Team', url: BASE_URL },
+    author: { '@type': 'Organization', name: post.author || 'calculox Team', url: BASE_URL },
     publisher: {
       '@type': 'Organization',
-      name: 'CalculoX',
+      name: 'calculox',
       url: BASE_URL,
       logo: { '@type': 'ImageObject', url: `${BASE_URL}/logo.png` },
     },
@@ -127,3 +127,4 @@ export function generateHowToSchema(opts: {
     })),
   };
 }
+

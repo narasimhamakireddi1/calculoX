@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
@@ -144,10 +144,10 @@ export default function ScientificCalculatorPage() {
       } catch (e) {
         setLiveResult('Error: Size mismatch');
       }
-    } else if (key === 'A×B') {
+    } else if (key === 'AÃ—B') {
       try {
         const prod = matrixMul(matrixA, matrixB);
-        setMatrixLastOp('A×B');
+        setMatrixLastOp('AÃ—B');
         setMatrixLastResult(prod);
         setLiveResult('Multiplication computed');
       } catch (e) {
@@ -166,7 +166,7 @@ export default function ScientificCalculatorPage() {
         setIsShift(false);
       }
 
-      if (key === 'π') toAppend = 'π';
+      if (key === 'Ï€') toAppend = 'Ï€';
       if (key === 'e') toAppend = 'e';
 
       setInput(prev => prev + toAppend + (FUNCTIONS.has(toAppend) ? '(' : ''));
@@ -209,7 +209,7 @@ export default function ScientificCalculatorPage() {
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gradient mb-2">Scientific Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Casio ClassWiz-style · Standard · Complex · Matrix · Statistics
+          Casio ClassWiz-style Â· Standard Â· Complex Â· Matrix Â· Statistics
         </p>
       </div>
 
@@ -238,7 +238,7 @@ export default function ScientificCalculatorPage() {
         {/* History Panel */}
         {history.length > 0 && (
           <div className="card">
-            <h3 className="text-xl font-bold mb-4">📋 History</h3>
+            <h3 className="text-xl font-bold mb-4">ðŸ“‹ History</h3>
             <div className="space-y-2 max-h-[200px] overflow-y-auto">
               {[...history].reverse().map((item, i) => (
                 <div key={i} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -291,19 +291,19 @@ export default function ScientificCalculatorPage() {
 
       {/* Affiliate Banner */}
       <AffiliateBanner
-        icon="🔬"
+        icon="ðŸ”¬"
         headline="Advanced Scientific Computing"
-        subtext="Use CalculoX for precise mathematical calculations with professional accuracy"
+        subtext="Use calculox for precise mathematical calculations with professional accuracy"
         note="Perfect for engineers, scientists, and students"
         gradient="from-indigo-500 to-purple-600"
         links={[
-          { label: 'Learn More →', href: '#', primary: true },
+          { label: 'Learn More â†’', href: '#', primary: true },
         ]}
       />
 
       {/* FAQ */}
       <div className="max-w-3xl mx-auto card">
-        <h3 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h3>
+        <h3 className="text-2xl font-bold mb-6">â“ Frequently Asked Questions</h3>
         <div className="space-y-4">
           <details className="group cursor-pointer">
             <summary className="font-semibold text-gray-900 dark:text-gray-100 group-open:text-blue-600">
@@ -328,7 +328,7 @@ export default function ScientificCalculatorPage() {
               How do I use Matrix mode?
             </summary>
             <p className="text-gray-600 dark:text-gray-400 mt-2 ml-4">
-              Switch to MATRIX engine via the MODE button. Click "Mat A" or "Mat B" to enter matrix values (2×2 or 3×3). Then use operations: det(A), inv(A), T(A), A+B, A×B to compute results.
+              Switch to MATRIX engine via the MODE button. Click "Mat A" or "Mat B" to enter matrix values (2Ã—2 or 3Ã—3). Then use operations: det(A), inv(A), T(A), A+B, AÃ—B to compute results.
             </p>
           </details>
 
@@ -346,7 +346,7 @@ export default function ScientificCalculatorPage() {
               What functions are supported?
             </summary>
             <p className="text-gray-600 dark:text-gray-400 mt-2 ml-4">
-              All standard scientific functions: sin, cos, tan, log, ln, sqrt, exp, abs, nCr, nPr, factorial (!), plus constants π and e. Use parentheses for grouping: 2*(3+4). Order of operations (PEMDAS) is respected.
+              All standard scientific functions: sin, cos, tan, log, ln, sqrt, exp, abs, nCr, nPr, factorial (!), plus constants Ï€ and e. Use parentheses for grouping: 2*(3+4). Order of operations (PEMDAS) is respected.
             </p>
           </details>
 
@@ -474,9 +474,9 @@ function ButtonGrid({
 
       {/* Row 2 - Power/Trig */}
       <div className="grid grid-cols-8 gap-1">
-        <Button label="x²" onClick={() => onKey('^')} className={buttonClasses.function} />
+        <Button label="xÂ²" onClick={() => onKey('^')} className={buttonClasses.function} />
         <Button label="x^y" onClick={() => onKey('^')} className={buttonClasses.function} />
-        <Button label="√x" onClick={() => onKey('sqrt(')} className={buttonClasses.function} />
+        <Button label="âˆšx" onClick={() => onKey('sqrt(')} className={buttonClasses.function} />
         <Button label={isShift ? 'asin' : 'sin'} onClick={() => onKey(isShift ? 'asin(' : 'sin(')} className={buttonClasses.function} />
         <Button label={isShift ? 'acos' : 'cos'} onClick={() => onKey(isShift ? 'acos(' : 'cos(')} className={buttonClasses.function} />
         <Button label={isShift ? 'atan' : 'tan'} onClick={() => onKey(isShift ? 'atan(' : 'tan(')} className={buttonClasses.function} />
@@ -486,7 +486,7 @@ function ButtonGrid({
 
       {/* Row 3 - Constants/Memory */}
       <div className="grid grid-cols-8 gap-1">
-        <Button label="π" onClick={() => onKey('π')} className={buttonClasses.function} />
+        <Button label="Ï€" onClick={() => onKey('Ï€')} className={buttonClasses.function} />
         <Button label="e" onClick={() => onKey('e')} className={buttonClasses.function} />
         <Button label="(" onClick={() => onKey('(')} className={buttonClasses.operator} />
         <Button label=")" onClick={() => onKey(')')} className={buttonClasses.operator} />
@@ -498,8 +498,8 @@ function ButtonGrid({
 
       {/* Row 4 - Advanced */}
       <div className="grid grid-cols-8 gap-1">
-        <Button label="3√x" onClick={() => onKey('cbrt(')} className={buttonClasses.advanced} />
-        <Button label="log₂" onClick={() => onKey('log2(')} className={buttonClasses.advanced} />
+        <Button label="3âˆšx" onClick={() => onKey('cbrt(')} className={buttonClasses.advanced} />
+        <Button label="logâ‚‚" onClick={() => onKey('log2(')} className={buttonClasses.advanced} />
         <Button label="x!" onClick={() => onKey('fact(')} className={buttonClasses.advanced} />
         <Button label="nCr" onClick={() => onKey('nCr(')} className={buttonClasses.advanced} />
         <Button label="nPr" onClick={() => onKey('nPr(')} className={buttonClasses.advanced} />
@@ -523,7 +523,7 @@ function ButtonGrid({
         <Button label="7" onClick={() => onKey('7')} className={buttonClasses.number} />
         <Button label="8" onClick={() => onKey('8')} className={buttonClasses.number} />
         <Button label="9" onClick={() => onKey('9')} className={buttonClasses.number} />
-        <Button label="÷" onClick={() => onKey('/')} className={buttonClasses.operator} />
+        <Button label="Ã·" onClick={() => onKey('/')} className={buttonClasses.operator} />
         <Button label="%" onClick={() => onKey('%')} className={buttonClasses.operator} />
         <Button label="abs" onClick={() => onKey('abs(')} className={buttonClasses.function} />
         <Button label="tanh" onClick={() => onKey('tanh(')} className={buttonClasses.function} />
@@ -534,7 +534,7 @@ function ButtonGrid({
         <Button label="4" onClick={() => onKey('4')} className={buttonClasses.number} />
         <Button label="5" onClick={() => onKey('5')} className={buttonClasses.number} />
         <Button label="6" onClick={() => onKey('6')} className={buttonClasses.number} />
-        <Button label="×" onClick={() => onKey('*')} className={buttonClasses.operator} />
+        <Button label="Ã—" onClick={() => onKey('*')} className={buttonClasses.operator} />
         <Button label="^" onClick={() => onKey('^')} className={buttonClasses.operator} />
         <Button label="floor" onClick={() => onKey('floor(')} className={buttonClasses.function} />
         <Button label="ceil" onClick={() => onKey('ceil(')} className={buttonClasses.function} />
@@ -547,9 +547,9 @@ function ButtonGrid({
         <Button label="3" onClick={() => onKey('3')} className={buttonClasses.number} />
         <Button label="-" onClick={() => onKey('-')} className={buttonClasses.operator} />
         <Button label="+" onClick={() => onKey('+')} className={buttonClasses.operator} />
-        <Button label="√3" onClick={() => onKey('cbrt(')} className={buttonClasses.function} />
+        <Button label="âˆš3" onClick={() => onKey('cbrt(')} className={buttonClasses.function} />
         <Button label="i" onClick={() => onKey('i')} className={buttonClasses.function} />
-        <Button label="±" onClick={() => onKey('*-1')} className={buttonClasses.operator} />
+        <Button label="Â±" onClick={() => onKey('*-1')} className={buttonClasses.operator} />
       </div>
 
       {/* Row 8 - Execute & Extras */}
@@ -560,7 +560,7 @@ function ButtonGrid({
         {engine === 'MATRIX' ? (
           <>
             <Button label="A+B" onClick={() => onKey('A+B')} className={buttonClasses.advanced} />
-            <Button label="A×B" onClick={() => onKey('A×B')} className={buttonClasses.advanced} />
+            <Button label="AÃ—B" onClick={() => onKey('AÃ—B')} className={buttonClasses.advanced} />
             <Button label="Mat A" onClick={() => onKey('Mat A')} className={buttonClasses.advanced} />
             <Button label="Mat B" onClick={() => onKey('Mat B')} className={buttonClasses.advanced} />
           </>
@@ -616,7 +616,7 @@ function MatrixInputModal({
             onClick={handleSizeToggle}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            {size.r}×{size.c} (Click to toggle 2×2/3×3)
+            {size.r}Ã—{size.c} (Click to toggle 2Ã—2/3Ã—3)
           </button>
         </div>
 
@@ -723,7 +723,7 @@ function StatInputModal({
                 onClick={() => handleRemoveRow(i)}
                 className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
               >
-                ×
+                Ã—
               </button>
             </div>
           ))}
@@ -767,20 +767,20 @@ function StatResultCard({ statData }: { statData: StatDataPoint[] }) {
 
   return (
     <div className="card">
-      <h3 className="text-xl font-bold mb-4">📊 Statistical Analysis</h3>
+      <h3 className="text-xl font-bold mb-4">ðŸ“Š Statistical Analysis</h3>
 
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <p className="text-sm text-gray-600 dark:text-gray-400 uppercase font-semibold">X Data</p>
           <p className="text-2xl font-bold">n={stats.n}</p>
-          <p className="text-sm mt-1">μ={stats.mean.toFixed(4)}</p>
-          <p className="text-sm">σ={stats.stddev.toFixed(4)}</p>
+          <p className="text-sm mt-1">Î¼={stats.mean.toFixed(4)}</p>
+          <p className="text-sm">Ïƒ={stats.stddev.toFixed(4)}</p>
         </div>
         <div>
           <p className="text-sm text-gray-600 dark:text-gray-400 uppercase font-semibold">Y Data</p>
           <p className="text-2xl font-bold">n={statsY.n}</p>
-          <p className="text-sm mt-1">μ={statsY.mean.toFixed(4)}</p>
-          <p className="text-sm">σ={statsY.stddev.toFixed(4)}</p>
+          <p className="text-sm mt-1">Î¼={statsY.mean.toFixed(4)}</p>
+          <p className="text-sm">Ïƒ={statsY.stddev.toFixed(4)}</p>
         </div>
       </div>
 
@@ -790,9 +790,10 @@ function StatResultCard({ statData }: { statData: StatDataPoint[] }) {
           y = {reg.slope.toFixed(6)}x + {reg.intercept.toFixed(6)}
         </p>
         <p className="text-sm mt-2 text-blue-700 dark:text-blue-300">
-          r² = {(reg.r * reg.r).toFixed(6)}
+          rÂ² = {(reg.r * reg.r).toFixed(6)}
         </p>
       </div>
     </div>
   );
 }
+

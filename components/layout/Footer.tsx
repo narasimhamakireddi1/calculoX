@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -7,11 +7,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h2 className="font-bold text-lg mb-3">🧮 CalculoX</h2>
+            <h2 className="font-bold text-lg mb-3">ðŸ§® calculox</h2>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Free premium online calculators for Indian users — finance, health & utility tools.
+              Free premium online calculators for Indian users â€” finance, health & utility tools.
             </p>
-            <p className="text-gray-500 text-xs mt-3">Made with ❤️ for India</p>
+            <p className="text-gray-500 text-xs mt-3">Made with â¤ï¸ for India</p>
           </div>
 
           {/* Calculators */}
@@ -54,10 +54,11 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-gray-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} CalculoX. All rights reserved. Made with ❤️ for India</p>
-          <p className="text-xs">⚠️ Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
+          <p>&copy; {new Date().getFullYear()} calculox. All rights reserved. Made with â¤ï¸ for India</p>
+          <p className="text-xs">âš ï¸ Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
         </div>
       </div>
     </footer>
   );
 }
+

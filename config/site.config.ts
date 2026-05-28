@@ -1,13 +1,13 @@
-/**
+﻿/**
  * Site Configuration
  * Centralized configuration for the entire site
  */
 
 export const siteConfig = {
-  name: 'CalculoX',
+  name: 'calculox',
   description: 'Premium online calculators for Indian users - SIP, EMI, BMI, Tax & 14+ more',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-  author: 'CalculoX',
+  author: 'calculox',
   email: 'supportcalculox@gmail.com',
 
   // SEO
@@ -66,3 +66,4 @@ export const siteConfig = {
     clientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID,
   },
 };
+

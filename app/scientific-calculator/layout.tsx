@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import {
   generateWebApplicationSchema,
@@ -26,15 +26,15 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${BASE_URL}/scientific-calculator` },
   openGraph: {
-    title: 'Scientific Calculator - Advanced Math & Complex Numbers | CalculoX',
+    title: 'Scientific Calculator - Advanced Math & Complex Numbers | calculox',
     description: 'Free Scientific Calculator: Trigonometry, complex numbers, matrices, statistics, and advanced math operations. Perfect for engineering and scientific calculations.',
     url: `${BASE_URL}/scientific-calculator`,
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Scientific Calculator - CalculoX' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Scientific Calculator - calculox' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Scientific Calculator - Advanced Math & Complex Numbers | CalculoX',
+    title: 'Scientific Calculator - Advanced Math & Complex Numbers | calculox',
     description: 'Free Scientific Calculator with trigonometry, complex numbers, matrices & statistics. Perfect for engineers and scientists.',
     images: ['/og-image.png'],
   },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: 'What functions does this scientific calculator support?',
-    answer: 'This calculator supports all standard scientific functions including trigonometry (sin, cos, tan, inverse), logarithms (log, ln, log₂), exponentials, factorials, permutations (nPr), combinations (nCr), and more. It also supports complex numbers, matrix operations, and statistical analysis.',
+    answer: 'This calculator supports all standard scientific functions including trigonometry (sin, cos, tan, inverse), logarithms (log, ln, logâ‚‚), exponentials, factorials, permutations (nPr), combinations (nCr), and more. It also supports complex numbers, matrix operations, and statistical analysis.',
   },
   {
     question: 'How do I use DEG vs RAD mode?',
@@ -55,7 +55,7 @@ const faqs = [
   },
   {
     question: 'How do I use Matrix operations?',
-    answer: 'Switch to MATRIX mode via the MODE button. Click "Mat A" or "Mat B" to enter 2×2 or 3×3 matrices. Then use operations like det(A) for determinant, inv(A) for inverse, T(A) for transpose, and A+B or A×B for arithmetic operations.',
+    answer: 'Switch to MATRIX mode via the MODE button. Click "Mat A" or "Mat B" to enter 2Ã—2 or 3Ã—3 matrices. Then use operations like det(A) for determinant, inv(A) for inverse, T(A) for transpose, and A+B or AÃ—B for arithmetic operations.',
   },
   {
     question: 'How does the SHIFT key work?',
@@ -110,3 +110,4 @@ export default function ScientificCalculatorLayout({ children }: { children: Rea
     </>
   );
 }
+

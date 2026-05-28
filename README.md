@@ -1,4 +1,4 @@
-# 🧮 CalculoX - Premium Calculator Platform
+# 🧮 calculox - Premium Calculator Platform
 
 A production-ready, SEO-optimized calculator platform for Indian users targeting ₹100K-200K/month revenue.
 

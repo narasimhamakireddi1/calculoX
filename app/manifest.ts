@@ -1,9 +1,9 @@
-import { MetadataRoute } from 'next';
+﻿import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'CalculoX - Premium Online Calculators',
-    short_name: 'CalculoX',
+    name: 'calculox - Premium Online Calculators',
+    short_name: 'calculox',
     description: 'Free online calculators for Indian users - SIP, EMI, BMI, Tax & more',
     start_url: '/',
     display: 'standalone',
@@ -23,3 +23,4 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   };
 }
+

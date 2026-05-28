@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - CalculoX',
-  description: 'Read the CalculoX Privacy Policy. Learn how we collect, use, and protect your information when you use our free online calculators.',
+  title: 'Privacy Policy - calculox',
+  description: 'Read the calculox Privacy Policy. Learn how we collect, use, and protect your information when you use our free online calculators.',
   alternates: { canonical: `${BASE_URL}/privacy-policy` },
   robots: { index: true, follow: true },
 };
@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">1. Introduction</h2>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Welcome to CalculoX (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;). We are committed to protecting your personal information
+            Welcome to calculox (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;). We are committed to protecting your personal information
             and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard
             your information when you visit our website at <strong>calculox.in</strong> and use our free online calculators.
           </p>
@@ -77,9 +77,9 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">5. Third-Party Services</h2>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">We use the following third-party services:</p>
           <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mt-3">
-            <li><strong>Google Analytics</strong> — Website traffic analysis</li>
-            <li><strong>Google AdSense</strong> — Display advertising</li>
-            <li><strong>Vercel</strong> — Website hosting and deployment</li>
+            <li><strong>Google Analytics</strong> â€” Website traffic analysis</li>
+            <li><strong>Google AdSense</strong> â€” Display advertising</li>
+            <li><strong>Vercel</strong> â€” Website hosting and deployment</li>
           </ul>
         </section>
 
@@ -128,3 +128,4 @@ export default function PrivacyPolicyPage() {
     </div>
   );
 }
+

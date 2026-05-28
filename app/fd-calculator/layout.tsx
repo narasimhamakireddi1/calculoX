@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import {
   generateWebApplicationSchema,
@@ -18,15 +18,15 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${BASE_URL}/fd-calculator` },
   openGraph: {
-    title: 'FD Calculator - Fixed Deposit Interest Calculator | CalculoX',
+    title: 'FD Calculator - Fixed Deposit Interest Calculator | calculox',
     description: 'Free FD Calculator: Calculate maturity amount, interest earned & projections for all FD schemes instantly.',
     url: `${BASE_URL}/fd-calculator`,
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FD Calculator - CalculoX' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FD Calculator - calculox' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FD Calculator - Fixed Deposit Interest Calculator | CalculoX',
+    title: 'FD Calculator - Fixed Deposit Interest Calculator | calculox',
     description: 'Free FD Calculator: Calculate maturity amount & interest instantly for all FD schemes.',
     images: ['/og-image.png'],
   },
@@ -61,3 +61,4 @@ export default function FDCalculatorLayout({ children }: { children: React.React
     </>
   );
 }
+

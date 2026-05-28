@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo/schemas';
 
@@ -10,15 +10,15 @@ export const metadata: Metadata = {
   keywords: ['CAGR calculator', 'compound annual growth rate calculator', 'CAGR formula', 'investment growth calculator', 'mutual fund returns calculator'],
   alternates: { canonical: `${BASE_URL}/cagr-calculator` },
   openGraph: {
-    title: 'CAGR Calculator - Calculate Compound Annual Growth Rate | CalculoX',
+    title: 'CAGR Calculator - Calculate Compound Annual Growth Rate | calculox',
     description: 'Free CAGR Calculator: Calculate compound annual growth rate & investment returns instantly.',
     url: `${BASE_URL}/cagr-calculator`,
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CAGR Calculator - CalculoX' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'CAGR Calculator - calculox' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CAGR Calculator - Calculate CAGR | CalculoX',
+    title: 'CAGR Calculator - Calculate CAGR | calculox',
     description: 'Free CAGR Calculator to calculate compound annual growth rate for investments.',
     images: ['/og-image.png'],
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: 'What is CAGR and why is it important?', answer: 'CAGR (Compound Annual Growth Rate) is the mean annual growth rate of an investment over a period longer than one year. It shows the smoothed annual return, accounting for compounding effects. It\'s crucial for comparing investments.' },
-  { question: 'What is the CAGR formula?', answer: 'CAGR = (Ending Value / Beginning Value)^(1/Number of Years) - 1. For example, if you invested ₹1,00,000 that grew to ₹2,00,000 in 5 years, CAGR = (2,00,000/1,00,000)^(1/5) - 1 = 14.87%.' },
+  { question: 'What is the CAGR formula?', answer: 'CAGR = (Ending Value / Beginning Value)^(1/Number of Years) - 1. For example, if you invested â‚¹1,00,000 that grew to â‚¹2,00,000 in 5 years, CAGR = (2,00,000/1,00,000)^(1/5) - 1 = 14.87%.' },
   { question: 'How is CAGR different from average annual return?', answer: 'Average return is simple arithmetic mean, while CAGR accounts for compounding. CAGR is more accurate for multi-year investments as it shows the consistent growth rate.' },
   { question: 'Can CAGR be negative?', answer: 'Yes, if the ending value is less than the beginning value, CAGR will be negative, indicating investment loss over the period.' },
   { question: 'What investments can I use CAGR for?', answer: 'CAGR applies to any investment: stocks, mutual funds, real estate, bonds, savings, FDs, gold, etc. It\'s universally used to compare investment performance across time periods.' },
@@ -50,3 +50,4 @@ export default function CAGRCalculatorLayout({ children }: { children: React.Rea
     </>
   );
 }
+

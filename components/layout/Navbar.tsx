@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { useState } from 'react';
@@ -9,14 +9,14 @@ export function Navbar() {
   const pathname = usePathname();
 
   const links = [
-    { href: '/', label: 'Home', icon: '🏠' },
-    { href: '/sip-calculator', label: 'SIP', icon: '📈' },
-    { href: '/emi-calculator', label: 'EMI', icon: '💳' },
-    { href: '/bmi-calculator', label: 'BMI', icon: '⚖️' },
-    { href: '/tax-calculator', label: 'Tax', icon: '🧮' },
-    { href: '/scientific-calculator', label: 'Scientific', icon: '🔬' },
-    { href: '/blog', label: 'Blog', icon: '📝' },
-    { href: '/about', label: 'About', icon: 'ℹ️' },
+    { href: '/', label: 'Home', icon: 'ðŸ ' },
+    { href: '/sip-calculator', label: 'SIP', icon: 'ðŸ“ˆ' },
+    { href: '/emi-calculator', label: 'EMI', icon: 'ðŸ’³' },
+    { href: '/bmi-calculator', label: 'BMI', icon: 'âš–ï¸' },
+    { href: '/tax-calculator', label: 'Tax', icon: 'ðŸ§®' },
+    { href: '/scientific-calculator', label: 'Scientific', icon: 'ðŸ”¬' },
+    { href: '/blog', label: 'Blog', icon: 'ðŸ“' },
+    { href: '/about', label: 'About', icon: 'â„¹ï¸' },
   ];
 
   const isActive = (href: string) => {
@@ -33,8 +33,8 @@ export function Navbar() {
             href="/"
             className="flex items-center gap-2 font-bold text-2xl bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
           >
-            <span className="text-3xl">🧮</span>
-            <span>CalculoX</span>
+            <span className="text-3xl">ðŸ§®</span>
+            <span>calculox</span>
           </Link>
 
           {/* Desktop Menu - Enhanced */}
@@ -68,7 +68,7 @@ export function Navbar() {
             aria-controls="mobile-menu"
           >
             <span className="text-2xl font-bold">
-              {isOpen ? '✕' : '☰'}
+              {isOpen ? 'âœ•' : 'â˜°'}
             </span>
           </button>
         </div>
@@ -101,3 +101,4 @@ export function Navbar() {
     </nav>
   );
 }
+

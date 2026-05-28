@@ -1,4 +1,4 @@
-# 🧮 CalculoX - CLAUDE.md
+# 🧮 calculox - CLAUDE.md
 
 **Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D In Progress | ✅ AdSense Compliance Ready | 🚀 Production Ready | Vercel Deployed  
 **Last Updated:** 2026-05-28 (AdSense Compliance: Email update, enhanced disclaimer, author credentials) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
@@ -327,7 +327,7 @@ git push origin main        # Auto-deploys to Vercel
   - Input Parameters: Extracted label-value pairs with professional formatting (clean labels, formatted values)
   - Results: Calculator-specific results in styled containers with visual hierarchy
   - Disclaimer: Professional warning box encouraging user consultation with experts
-  - Footer: CalculoX branding with website URL
+  - Footer: calculox branding with website URL
 - **Explicit Input Data Pattern:**
   - Each calculator creates `inputsData: FormattedInput[]` using `useMemo()`
   - Extracts values from React Hook Form's `watchValues`
@@ -389,7 +389,7 @@ Keep it concise: This is a reference guide, not detailed documentation. Point to
 - **Impact:** Mobile UX fixed - no horizontal scroll, full-width inputs at <640px
 
 ### **✅ Step 2: SEO Infrastructure (DONE)**
-- [x] Created `/public/og-image.svg` (1200×630px, blue gradient + CalculoX branding)
+- [x] Created `/public/og-image.svg` (1200×630px, blue gradient + calculox branding)
 - [x] Created `app/fd-calculator/layout.tsx` (metadata, 5 FAQs, JSON-LD schemas)
 - [x] Created `app/rd-calculator/layout.tsx`
 - [x] Created `app/gst-calculator/layout.tsx`

@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service - CalculoX',
-  description: 'Read the CalculoX Terms of Service. Understand the terms and conditions for using our free online calculator tools.',
+  title: 'Terms of Service - calculox',
+  description: 'Read the calculox Terms of Service. Understand the terms and conditions for using our free online calculator tools.',
   alternates: { canonical: `${BASE_URL}/terms-of-service` },
   robots: { index: true, follow: true },
 };
@@ -26,19 +26,19 @@ export default function TermsPage() {
         {[
           {
             title: '1. Acceptance of Terms',
-            content: 'By accessing and using CalculoX ("the Service"), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.',
+            content: 'By accessing and using calculox ("the Service"), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.',
           },
           {
             title: '2. Use of Calculators',
-            content: 'All calculators on CalculoX are provided for informational and educational purposes only. The results generated are estimates based on the inputs you provide and standard mathematical formulas. They do not constitute financial, medical, legal, or professional advice.',
+            content: 'All calculators on calculox are provided for informational and educational purposes only. The results generated are estimates based on the inputs you provide and standard mathematical formulas. They do not constitute financial, medical, legal, or professional advice.',
           },
           {
             title: '3. Accuracy Disclaimer',
-            content: 'While we strive to provide accurate calculations, CalculoX makes no warranties about the completeness, reliability, or accuracy of this information. Results may vary from actual outcomes due to real-world factors. Always consult a qualified professional for important financial decisions.',
+            content: 'While we strive to provide accurate calculations, calculox makes no warranties about the completeness, reliability, or accuracy of this information. Results may vary from actual outcomes due to real-world factors. Always consult a qualified professional for important financial decisions.',
           },
           {
             title: '4. Intellectual Property',
-            content: 'All content, design, code, and calculators on CalculoX are the intellectual property of CalculoX. You may not reproduce, distribute, or create derivative works without our express written permission.',
+            content: 'All content, design, code, and calculators on calculox are the intellectual property of calculox. You may not reproduce, distribute, or create derivative works without our express written permission.',
           },
           {
             title: '5. Prohibited Uses',
@@ -50,7 +50,7 @@ export default function TermsPage() {
           },
           {
             title: '7. Limitation of Liability',
-            content: 'CalculoX shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of or inability to use our calculators or services.',
+            content: 'calculox shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of or inability to use our calculators or services.',
           },
           {
             title: '8. Changes to Terms',
@@ -74,3 +74,4 @@ export default function TermsPage() {
     </div>
   );
 }
+

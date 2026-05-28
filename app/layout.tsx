@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default:
-      "CalculoX - Free Online Calculators for India | SIP, EMI, BMI, Tax",
-    template: "%s | CalculoX",
+      "calculox - Free Online Calculators for India | SIP, EMI, BMI, Tax",
+    template: "%s | calculox",
   },
   description:
-    "CalculoX offers free premium online calculators for Indian users. Calculate SIP returns, loan EMI, BMI, income tax (FY 2024-25), and more. Fast, accurate & mobile-friendly.",
+    "calculox offers free premium online calculators for Indian users. Calculate SIP returns, loan EMI, BMI, income tax (FY 2024-25), and more. Fast, accurate & mobile-friendly.",
   keywords: [
     "calculator",
     "online calculator",
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
     "GST calculator",
     "percentage calculator",
     "CAGR calculator",
-    "CalculoX",
+    "calculox",
     "calculox.in",
     "calculox",
   ],
-  authors: [{ name: "CalculoX Team", url: BASE_URL }],
-  creator: "CalculoX",
-  publisher: "CalculoX",
+  authors: [{ name: "calculox Team", url: BASE_URL }],
+  creator: "calculox",
+  publisher: "calculox",
   category: "Finance",
   robots: {
     index: true,
@@ -68,8 +68,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: BASE_URL,
-    siteName: "CalculoX",
-    title: "CalculoX - Free Online Calculators for India",
+    siteName: "calculox",
+    title: "calculox - Free Online Calculators for India",
     description:
       "Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more. Fast, accurate & mobile-friendly.",
   },
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@calculox",
     creator: "@calculox",
-    title: "CalculoX - Free Online Calculators for India",
+    title: "calculox - Free Online Calculators for India",
     description:
       "Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more.",
   },
@@ -131,3 +131,4 @@ export default function RootLayout({
     </html>
   );
 }
+

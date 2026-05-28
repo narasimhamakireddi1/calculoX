@@ -1,7 +1,7 @@
 {
   "name": "calculox",
   "version": "1.0.0",
-  "description": "CalculoX - Premium online calculators for Indian users",
+  "description": "calculox - Premium online calculators for Indian users",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

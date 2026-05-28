@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
 import { blogPosts } from '@/lib/blog/posts';
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   keywords: ['finance blog India', 'EMI guide', 'SIP guide', 'tax saving tips India', 'investment calculator guide', 'BMI health India'],
   alternates: { canonical: `${BASE_URL}/blog` },
   openGraph: {
-    title: 'Finance & Calculator Guides Blog | CalculoX',
+    title: 'Finance & Calculator Guides Blog | calculox',
     description: 'Free expert guides on EMI, SIP, income tax, BMI & CAGR for Indian users.',
     url: `${BASE_URL}/blog`,
     type: 'website',
@@ -29,7 +29,7 @@ export default function BlogPage() {
   const listSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'CalculoX Blog',
+    name: 'calculox Blog',
     url: `${BASE_URL}/blog`,
     description: 'Free guides on finance calculators, tax saving, investment strategies for Indian users',
     blogPost: blogPosts.map((post) => ({
@@ -57,7 +57,7 @@ export default function BlogPage() {
             Finance & Calculator Guides
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Expert articles on EMI, SIP, income tax, BMI & more — written for Indian users.
+            Expert articles on EMI, SIP, income tax, BMI & more â€” written for Indian users.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export default function BlogPage() {
                     {new Date(post.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </span>
                   <span className="text-sm text-blue-600 font-medium group-hover:underline">
-                    Read More →
+                    Read More â†’
                   </span>
                 </div>
               </div>
@@ -97,3 +97,4 @@ export default function BlogPage() {
     </>
   );
 }
+

@@ -1,8 +1,8 @@
-# CalculoX Tax Calculator - Official FY 2025-26 Verification
+# calculox Tax Calculator - Official FY 2025-26 Verification
 
 ## ✅ Verification Status: COMPLIANT WITH GOVERNMENT METHODOLOGY
 
-This document verifies that the CalculoX comprehensive tax calculator implementation matches the official Income Tax India FY 2025-26 calculation methodology.
+This document verifies that the calculox comprehensive tax calculator implementation matches the official Income Tax India FY 2025-26 calculation methodology.
 
 **Document Date:** 2026-05-27  
 **FY Covered:** 2025-26 (AY 2026-27)  
@@ -14,7 +14,7 @@ This document verifies that the CalculoX comprehensive tax calculator implementa
 
 ### 1. TAX REGIME STRUCTURE
 
-| Component | Official FY 2025-26 | CalculoX Implementation | Status |
+| Component | Official FY 2025-26 | calculox Implementation | Status |
 |-----------|-------------------|------------------------|--------|
 | **New Regime Default** | Yes, default option | Yes, implemented | ✅ |
 | **Old Regime Optional** | Yes, optional switch | Yes, both regimes calculated | ✅ |
@@ -34,7 +34,7 @@ This document verifies that the CalculoX comprehensive tax calculator implementa
 - ₹20,00,000 - ₹24,00,000: 25% tax
 - ₹24,00,000 and above: 30% tax
 
-**CalculoX Implementation:** [lib/tax-engine/rules.ts:110-118]
+**calculox Implementation:** [lib/tax-engine/rules.ts:110-118]
 ```typescript
 slabs: [
   { min: 0, max: 400000, rate: 0 },      // 0-4L
@@ -57,7 +57,7 @@ slabs: [
 - If taxable income ≤ ₹12,00,000: Full tax rebate up to ₹60,000 (makes income ≤ ₹12L effectively tax-free)
 - If taxable income > ₹12,00,000: Marginal relief applies (tax capped at excess income)
 
-**CalculoX Implementation:** [lib/tax-engine/rebate.ts]
+**calculox Implementation:** [lib/tax-engine/rebate.ts]
 ```typescript
 rebate87A: {
   maxTaxableIncome: 1200000,  // ₹12 Lakh
@@ -72,7 +72,7 @@ rebate87A: {
 
 ### 4. STANDARD DEDUCTION
 
-| Regime | Official | CalculoX | Status |
+| Regime | Official | calculox | Status |
 |--------|----------|----------|--------|
 | New Regime | ₹75,000 | ₹75,000 | ✅ |
 | Old Regime | ₹50,000 | ₹50,000 | ✅ |
@@ -85,7 +85,7 @@ rebate87A: {
 
 **Below 60 Years:**
 
-| Income Range | Official | CalculoX | Status |
+| Income Range | Official | calculox | Status |
 |--------------|----------|----------|--------|
 | ₹0 - ₹2,50,000 | 0% | 0% | ✅ |
 | ₹2,50,000 - ₹5,00,000 | 5% | 5% | ✅ |
@@ -94,7 +94,7 @@ rebate87A: {
 
 **Between 60-80 Years:**
 
-| Income Range | Official | CalculoX | Status |
+| Income Range | Official | calculox | Status |
 |--------------|----------|----------|--------|
 | ₹0 - ₹3,00,000 | 0% | 0% | ✅ |
 | ₹3,00,000 - ₹5,00,000 | 5% | 5% | ✅ |
@@ -103,7 +103,7 @@ rebate87A: {
 
 **Above 80 Years:**
 
-| Income Range | Official | CalculoX | Status |
+| Income Range | Official | calculox | Status |
 |--------------|----------|----------|--------|
 | ₹0 - ₹5,00,000 | 0% | 0% | ✅ |
 | ₹5,00,000 - ₹10,00,000 | 20% | 20% | ✅ |
@@ -118,7 +118,7 @@ rebate87A: {
 **Official Rule:**
 - If taxable income ≤ ₹5,00,000: Rebate up to ₹12,500
 
-**CalculoX Implementation:** [lib/tax-engine/rebate.ts]
+**calculox Implementation:** [lib/tax-engine/rebate.ts]
 ```typescript
 rebate87A: {
   maxTaxableIncome: 500000,   // ₹5 Lakh
@@ -141,7 +141,7 @@ rebate87A: {
 
 **Metro Cities:** Mumbai, Delhi, Kolkata, Chennai (50% of basic)
 
-**CalculoX Implementation:** [lib/tax-engine/exemptions.ts]
+**calculox Implementation:** [lib/tax-engine/exemptions.ts]
 ```typescript
 hraExemption: {
   metroPercent: 50,        // 50% of basic
@@ -170,7 +170,7 @@ HRA Exemption = min(
 - Leave Travel Allowance (LTA): Exempted for travel within India
 - Once in 4 years rule applies
 
-**CalculoX Implementation:** [lib/tax-engine/exemptions.ts]
+**calculox Implementation:** [lib/tax-engine/exemptions.ts]
 ```typescript
 ltaExemption: {
   onceInFourYears: true,
@@ -184,7 +184,7 @@ ltaExemption: {
 
 ### 9. DEDUCTION CAPS (SECTION 80C, 80D, etc.)
 
-| Deduction | Official Limit | CalculoX | Status |
+| Deduction | Official Limit | calculox | Status |
 |-----------|----------------|----------|--------|
 | **Section 80C** (overall) | ₹1,50,000 | ₹1,50,000 | ✅ |
 | - EPF | Included in 80C cap | Included | ✅ |
@@ -223,7 +223,7 @@ ltaExemption: {
 | ₹2,00,00,000 - ₹5,00,00,000 | 25% | 25% (capped) |
 | > ₹5,00,00,000 | 37% | 25% (capped) |
 
-**CalculoX Implementation:** [lib/tax-engine/rules.ts:159-168]
+**calculox Implementation:** [lib/tax-engine/rules.ts:159-168]
 ```typescript
 surcharge: {
   tiers: [
@@ -248,7 +248,7 @@ surcharge: {
 **Official Rule:**
 - 4% cess on (total tax after rebate + surcharge)
 
-**CalculoX Implementation:** [lib/tax-engine/rules.ts:170 & calculator.ts]
+**calculox Implementation:** [lib/tax-engine/rules.ts:170 & calculator.ts]
 ```typescript
 healthEducationCess: 4  // 4%
 ```
@@ -265,7 +265,7 @@ Total Tax = Tax After Rebate + Surcharge + Cess
 
 ### 12. EDGE CASES & SPECIAL LOGIC
 
-| Edge Case | Official Behavior | CalculoX Implementation | Status |
+| Edge Case | Official Behavior | calculox Implementation | Status |
 |-----------|------------------|------------------------|--------|
 | **Income ₹12L (New)** | Zero tax via 87A rebate | Rebate applies, tax = 0 | ✅ |
 | **Income ₹12.01L (New)** | Marginal relief: tax = ₹10,000 | Marginal relief applied | ✅ |
@@ -296,13 +296,13 @@ Total Tax = Tax After Rebate + Surcharge + Cess
 13. ✅ Compare both regimes and recommend
 14. ✅ Generate tax saving recommendations
 
-**CalculoX Implementation Location:** [lib/tax-engine/calculator.ts:28-223]
+**calculox Implementation Location:** [lib/tax-engine/calculator.ts:28-223]
 
 ---
 
 ## 📋 AUDIT TRAIL & TRANSPARENCY
 
-**CalculoX Advantage:** Full calculation trace with every step documented
+**calculox Advantage:** Full calculation trace with every step documented
 
 Each calculation includes:
 - Step name (e.g., "HRA Exemption", "Slab Tax")
@@ -404,7 +404,7 @@ Total Tax: ₹2,73,000 ✅
 
 ## ✅ FINAL VERDICT
 
-**CalculoX Tax Calculator for FY 2025-26 is COMPLIANT with official Income Tax India methodology.**
+**calculox Tax Calculator for FY 2025-26 is COMPLIANT with official Income Tax India methodology.**
 
 All calculations follow the official government formula with:
 - ✅ Correct tax slabs (new & old regimes)

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import {
   generateWebApplicationSchema,
@@ -19,26 +19,26 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${BASE_URL}/bmi-calculator` },
   openGraph: {
-    title: 'BMI Calculator - Check Body Mass Index Online Free | CalculoX',
+    title: 'BMI Calculator - Check Body Mass Index Online Free | calculox',
     description: 'Free BMI Calculator: Check your Body Mass Index, health category & get personalized health tips. Supports both metric & imperial units.',
     url: `${BASE_URL}/bmi-calculator`,
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BMI Calculator - CalculoX' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BMI Calculator - calculox' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BMI Calculator - Check Body Mass Index Online Free | CalculoX',
+    title: 'BMI Calculator - Check Body Mass Index Online Free | calculox',
     description: 'Free BMI Calculator: Check Body Mass Index, health category & personalized health tips.',
     images: ['/og-image.png'],
   },
 };
 
 const faqs = [
-  { question: 'What is BMI and how is it calculated?', answer: 'BMI (Body Mass Index) is a measure of body fat based on height and weight. It is calculated as: BMI = Weight(kg) / Height(m)². For example, a person weighing 70 kg and 1.75 m tall has a BMI of 22.9 (Normal weight).' },
+  { question: 'What is BMI and how is it calculated?', answer: 'BMI (Body Mass Index) is a measure of body fat based on height and weight. It is calculated as: BMI = Weight(kg) / Height(m)Â². For example, a person weighing 70 kg and 1.75 m tall has a BMI of 22.9 (Normal weight).' },
   { question: 'What is a normal BMI range for Indians?', answer: 'For Indians, the WHO-recommended BMI ranges are: Underweight: below 18.5, Normal weight: 18.5-22.9, Overweight: 23-27.4, Obese: 27.5 and above. Note that Indians have a higher health risk at lower BMI compared to Western populations.' },
   { question: 'Can BMI be inaccurate?', answer: 'Yes, BMI has limitations. It does not account for muscle mass, bone density, age, or gender differences. Athletes may have a high BMI due to muscle, while elderly people may have a normal BMI but high body fat.' },
   { question: 'How do I lower my BMI?', answer: 'To lower your BMI: 1) Follow a calorie-deficit diet, 2) Exercise regularly (150+ minutes/week), 3) Reduce processed food and sugar intake, 4) Increase protein intake, 5) Stay hydrated, 6) Get adequate sleep (7-8 hours).' },
-  { question: 'What is the difference between BMI in metric and imperial units?', answer: 'The BMI formula differs by unit system. Metric: BMI = kg/m². Imperial: BMI = (lbs × 703) / inches². Our calculator supports both systems and automatically converts for accurate results.' },
+  { question: 'What is the difference between BMI in metric and imperial units?', answer: 'The BMI formula differs by unit system. Metric: BMI = kg/mÂ². Imperial: BMI = (lbs Ã— 703) / inchesÂ². Our calculator supports both systems and automatically converts for accurate results.' },
 ];
 
 export default function BMILayout({ children }: { children: React.ReactNode }) {
@@ -62,3 +62,4 @@ export default function BMILayout({ children }: { children: React.ReactNode }) {
     </>
   );
 }
+
