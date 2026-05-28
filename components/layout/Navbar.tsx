@@ -9,7 +9,9 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const dragStartRef = useRef({ x: 0, scrollLeft: 0 });
   const pathname = usePathname();
   const activeCalculators = getActiveCalculators();
 
@@ -66,6 +68,47 @@ export function Navbar() {
     }
   };
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    dragStartRef.current = {
+      x: e.clientX,
+      scrollLeft: scrollContainerRef.current?.scrollLeft || 0,
+    };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+
+    const walkX = e.clientX - dragStartRef.current.x;
+    scrollContainerRef.current.scrollLeft = dragStartRef.current.scrollLeft - walkX;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    checkScroll();
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    dragStartRef.current = {
+      x: e.touches[0].clientX,
+      scrollLeft: scrollContainerRef.current?.scrollLeft || 0,
+    };
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+
+    const walkX = e.touches[0].clientX - dragStartRef.current.x;
+    scrollContainerRef.current.scrollLeft = dragStartRef.current.scrollLeft - walkX;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    checkScroll();
+  };
+
   const links = [
     { href: '/', label: 'Home', icon: '🏠' },
     ...activeCalculators.map((calc) => ({
@@ -113,7 +156,18 @@ export function Navbar() {
               ref={scrollContainerRef}
               className="overflow-x-auto flex-1 scrollbar-hide scroll-smooth"
               onScroll={checkScroll}
-              style={{ scrollBehavior: 'smooth' }}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              style={{
+                scrollBehavior: 'smooth',
+                cursor: isDragging ? 'grabbing' : 'grab',
+                userSelect: isDragging ? 'none' : 'auto',
+              }}
             >
               <div className="flex gap-2 flex-nowrap min-w-min">
               {links.map((link) => {
