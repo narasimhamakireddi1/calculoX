@@ -418,7 +418,7 @@ function DisplayPanel({
       </p>
 
       {/* Result line */}
-      <p className="text-white text-3xl font-bold text-right mt-2">
+      <p aria-live="polite" className="text-white text-3xl font-bold text-right mt-2">
         {result ? `= ${result}` : ' '}
       </p>
     </div>
@@ -452,7 +452,7 @@ function ButtonGrid({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`px-4 py-3 rounded-lg font-semibold transition-all ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`px-1 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm rounded-lg font-semibold transition-all ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
       {label}
     </button>
@@ -462,7 +462,7 @@ function ButtonGrid({
     <div className="space-y-2">
       {/* Row 1 - System */}
       <div className="grid grid-cols-8 gap-1">
-        <Button label="SHIFT" onClick={() => onKey('SHIFT')} className={buttonClasses.system + (isShift ? ' ring-2 ring-orange-400' : '')} />
+        <button aria-pressed={isShift} onClick={() => onKey('SHIFT')} className={`px-1 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm rounded-lg font-semibold transition-all ${buttonClasses.system} ${isShift ? ' ring-2 ring-orange-400' : ''}`}>SHIFT</button>
         <Button label="MODE" onClick={() => onKey('MODE')} className={buttonClasses.system} />
         <Button label="DEG/RAD" onClick={() => onKey('DEG/RAD')} className={buttonClasses.system} />
         <Button label="M+" onClick={() => onKey('M+')} className={buttonClasses.system} />
