@@ -1,7 +1,7 @@
 # 🧮 CalculoX - CLAUDE.md
 
 **Status:** ✅ MVP Complete | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-29 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4
+**Last Updated:** 2026-05-28 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4
 
 ---
 
@@ -165,6 +165,17 @@ git push origin main        # Auto-deploys to Vercel
 **Regime-Specific UI:** Tax calculator hides deductions section for New Regime (only standard deduction allowed). Old Regime shows full deduction form.
 
 **Component Memoization:** EMI calculator memoizes expensive components (charts, tables) to prevent unnecessary re-renders. Virtual scrolling for 60-month schedules.
+
+**Pie/Donut Charts Across All 9 Calculators:** Implemented consistent donut visualizations (innerRadius=60-70, outerRadius=100-110) to show proportional data breakdowns with manual legend rows. Each chart includes currency formatting, dark mode support, and responsive layout:
+- **GST:** Base Amount vs GST Amount (blue/orange)
+- **CAGR:** Initial Investment vs Total Growth (blue/green)
+- **Percentage:** Computed % vs Remainder (blue/gray, conditional for percent-of mode)
+- **SIP:** Total Invested vs Returns Gained (blue/green, lg:grid-cols-2 with line chart)
+- **FD:** Principal vs Interest Earned (blue/green, side-by-side with existing line/bar charts)
+- **RD:** Total Deposited vs Interest Earned (blue/green, side-by-side with line chart)
+- **Simple Interest:** Principal vs Interest Accrued (blue/green, side-by-side with line chart)
+- **Tax:** Take-Home Pay vs Tax Payable (green/red, displays effective tax rate)
+- **BMI:** 4-category spectrum donut (Underweight/Normal/Overweight/Obese) with opacity highlighting user's current category
 
 **FD Calculator - Four RBI-Compliant Tracks:**
 - **Cumulative:** Quarterly compounding (standard, reinvested): `P × (1+r/4)^q × (1+r×m/12)` for leftover months
