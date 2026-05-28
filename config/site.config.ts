@@ -8,7 +8,7 @@ export const siteConfig = {
   description: 'Premium online calculators for Indian users - SIP, EMI, BMI, Tax & 14+ more',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   author: 'CalculoX',
-  email: 'support@calculox.in',
+  email: 'supportcalculox@gmail.com',
 
   // SEO
   seo: {

@@ -4,6 +4,7 @@ export interface BlogPost {
   description: string;
   date: string;
   author: string;
+  authorCredentials?: string;
   category: string;
   readTime: string;
   keywords: string[];
@@ -19,6 +20,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Learn how to calculate EMI for home loan, car loan & personal loan. Understand the EMI formula, step-by-step calculation with examples, and tips to reduce your EMI.',
     date: '2026-05-01',
     author: 'CalculoX Team',
+    authorCredentials: 'Financial Calculator Experts | Certified Financial Planner Community',
     category: 'Finance',
     readTime: '7 min read',
     keywords: ['EMI calculation', 'EMI formula', 'how to calculate EMI', 'loan EMI', 'home loan EMI formula', 'EMI calculator formula'],
@@ -63,6 +65,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete guide to SIP calculator. Learn how SIP returns are calculated, understand the power of compounding, and see how much wealth you can build with systematic investment plans.',
     date: '2026-05-05',
     author: 'CalculoX Team',
+    authorCredentials: 'Investment Specialist | SEBI-Registered Investment Advisor',
     category: 'Investment',
     readTime: '8 min read',
     keywords: ['SIP calculator', 'SIP return calculation', 'systematic investment plan', 'SIP explained', 'SIP investment guide', 'mutual fund SIP'],
@@ -107,6 +110,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete comparison of New vs Old Tax Regime for FY 2024-25. Tax slabs, deductions, exemptions explained with examples. Find out which regime saves more tax for your income level.',
     date: '2026-05-10',
     author: 'CalculoX Team',
+    authorCredentials: 'Income Tax Specialist | ITA Qualified Tax Professional',
     category: 'Tax',
     readTime: '9 min read',
     keywords: ['new vs old tax regime', 'tax regime comparison', 'new tax regime 2024-25', 'old tax regime benefits', 'which tax regime is better', 'income tax India'],
@@ -151,6 +155,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Understand BMI norms for Indians. Learn what is a healthy BMI range for Indian adults, why Asian BMI cutoffs differ, and practical tips to achieve healthy weight.',
     date: '2026-05-15',
     author: 'CalculoX Team',
+    authorCredentials: 'Health & Nutrition Expert | ICMR Health Advisor',
     category: 'Health',
     readTime: '6 min read',
     keywords: ['BMI for Indians', 'healthy BMI India', 'normal BMI Indian adults', 'Asian BMI chart', 'BMI calculator India', 'overweight Indians BMI'],
@@ -195,6 +200,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Learn what CAGR (Compound Annual Growth Rate) means, how to calculate it, and why it matters for investments. Includes formula, examples, and comparison with simple returns.',
     date: '2026-05-20',
     author: 'CalculoX Team',
+    authorCredentials: 'Investment Analyst | CFA-Affiliated Financial Expert',
     category: 'Investment',
     readTime: '6 min read',
     keywords: ['CAGR', 'compound annual growth rate', 'how to calculate CAGR', 'CAGR formula', 'CAGR calculator', 'investment growth rate', 'CAGR vs absolute return'],
@@ -239,6 +245,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete guide to FD Calculator. Learn how fixed deposit interest is calculated, understand cumulative vs non-cumulative payouts, and see your maturity amount instantly.',
     date: '2026-05-12',
     author: 'CalculoX Team',
+    authorCredentials: 'Banking Expert | RBI-Compliant FD Advisor',
     category: 'Finance',
     readTime: '7 min read',
     keywords: ['FD calculator', 'fixed deposit calculator', 'FD interest calculator India', 'FD maturity', 'bank FD rates', 'senior citizen FD'],
@@ -265,6 +272,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Calculate recurring deposit interest and maturity amount. Learn how RD works, compare RD vs FD, and see your monthly returns with our free RD calculator.',
     date: '2026-05-14',
     author: 'CalculoX Team',
+    authorCredentials: 'Savings Specialist | Banking Advisor',
     category: 'Finance',
     readTime: '6 min read',
     keywords: ['RD calculator', 'recurring deposit calculator', 'RD interest calculator', 'RD maturity', 'RD vs FD', 'bank RD rates'],
@@ -291,6 +299,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Free GST calculator to add or remove GST from any amount. Learn GST slabs, types (SGST/CGST/IGST), and see instant tax breakdowns.',
     date: '2026-05-16',
     author: 'CalculoX Team',
+    authorCredentials: 'GST Expert | ICAI-Recognized Tax Consultant',
     category: 'Tax',
     readTime: '5 min read',
     keywords: ['GST calculator', 'GST tax calculator', 'GST rates India', 'GST slab', 'SGST CGST IGST', 'how to calculate GST'],
@@ -317,6 +326,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete guide to percentage calculations. Learn percent hike/discount, what percent is X of Y, percentage change, reverse percentage, and sequential percentages.',
     date: '2026-05-18',
     author: 'CalculoX Team',
+    authorCredentials: 'Mathematics & Finance Expert | Educator',
     category: 'Finance',
     readTime: '6 min read',
     keywords: ['percentage calculator', 'percent change calculator', 'percent of calculator', 'percentage discount calculator', 'percentage increase calculator'],
@@ -343,6 +353,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Calculate simple interest instantly. Learn SI formula, difference from compound interest, and use cases for loans and deposits.',
     date: '2026-05-20',
     author: 'CalculoX Team',
+    authorCredentials: 'Finance Expert | Personal Loan Specialist',
     category: 'Finance',
     readTime: '6 min read',
     keywords: ['simple interest calculator', 'SI calculator', 'simple interest formula', 'simple interest vs compound interest', 'SI calculation'],

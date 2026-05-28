@@ -44,8 +44,8 @@ export function Footer() {
               <li><Link href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link></li>
               <li>
                 <address className="not-italic mt-3 text-gray-500 text-xs">
-                  <a href="mailto:support@calculox.in" className="hover:text-gray-300 transition-colors">
-                    support@calculox.in
+                  <a href="mailto:supportcalculox@gmail.com" className="hover:text-gray-300 transition-colors">
+                    supportcalculox@gmail.com
                   </a>
                 </address>
               </li>
@@ -54,8 +54,8 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-gray-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} CalculoX. All rights reserved.</p>
-          <p className="text-xs">Results are estimates only. Not financial or medical advice.</p>
+          <p>&copy; {new Date().getFullYear()} CalculoX. All rights reserved. Made with ❤️ for India</p>
+          <p className="text-xs">⚠️ Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
         </div>
       </div>
     </footer>

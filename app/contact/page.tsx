@@ -25,10 +25,10 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {[
-          { icon: '📧', title: 'Email Us', desc: 'For general questions and support', value: 'support@calculox.in', href: 'mailto:support@calculox.in' },
-          { icon: '🐛', title: 'Report a Bug', desc: 'Found an issue with a calculator?', value: 'support@calculox.in', href: 'mailto:support@calculox.in?subject=Bug Report' },
-          { icon: '💡', title: 'Suggest a Calculator', desc: 'Want us to build a new calculator?', value: 'support@calculox.in', href: 'mailto:support@calculox.in?subject=Calculator Suggestion' },
-          { icon: '🤝', title: 'Partnerships', desc: 'Business & advertising inquiries', value: 'support@calculox.in', href: 'mailto:support@calculox.in?subject=Partnership Inquiry' },
+          { icon: '📧', title: 'Email Us', desc: 'For general questions and support', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com' },
+          { icon: '🐛', title: 'Report a Bug', desc: 'Found an issue with a calculator?', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Bug Report' },
+          { icon: '💡', title: 'Suggest a Calculator', desc: 'Want us to build a new calculator?', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Calculator Suggestion' },
+          { icon: '🤝', title: 'Partnerships', desc: 'Business & advertising inquiries', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Partnership Inquiry' },
         ].map((item) => (
           <a
             key={item.title}

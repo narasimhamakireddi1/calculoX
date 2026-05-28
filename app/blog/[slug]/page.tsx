@@ -92,6 +92,21 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </p>
         </header>
 
+        {/* Author Byline */}
+        {post.author && (
+          <div className="flex items-center gap-3 mb-10 pb-6 border-b border-gray-200 dark:border-gray-700">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+              {post.author.charAt(0)}
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">{post.author}</p>
+              {post.authorCredentials && (
+                <p className="text-xs text-gray-500 dark:text-gray-400">{post.authorCredentials}</p>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Related Calculator CTA */}
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 mb-10 flex items-center justify-between gap-4">
           <div>

@@ -8,7 +8,7 @@ export function generateOrganizationSchema() {
     url: BASE_URL,
     logo: `${BASE_URL}/logo.png`,
     description: 'Premium free online calculators for Indian users - Finance, Health & Utility',
-    email: 'support@calculox.in',
+    email: 'supportcalculox@gmail.com',
     foundingDate: '2024',
     areaServed: 'IN',
     knowsAbout: ['Financial Calculators', 'SIP', 'EMI', 'BMI', 'Income Tax', 'India Finance'],

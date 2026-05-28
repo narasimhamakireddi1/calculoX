@@ -62,7 +62,7 @@ export default function TermsPage() {
           },
           {
             title: '10. Contact',
-            content: 'For questions about these Terms, contact us at support@calculox.in.',
+            content: 'For questions about these Terms, contact us at supportcalculox@gmail.com.',
           },
         ].map((section) => (
           <section key={section.title}>

@@ -104,7 +104,7 @@ export default function PrivacyPolicyPage() {
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
             You have the right to access, correct, or delete your personal information. Since we don&apos;t store
             calculator inputs, there is no personal calculation data to request. For other inquiries, contact us
-            at <a href="mailto:support@calculox.in" className="text-blue-600 hover:underline">support@calculox.in</a>.
+            at <a href="mailto:supportcalculox@gmail.com" className="text-blue-600 hover:underline">supportcalculox@gmail.com</a>.
           </p>
         </section>
 
@@ -120,7 +120,7 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">10. Contact Us</h2>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
             For privacy-related questions, contact us at:<br />
-            <strong>Email:</strong> <a href="mailto:support@calculox.in" className="text-blue-600 hover:underline">support@calculox.in</a><br />
+            <strong>Email:</strong> <a href="mailto:supportcalculox@gmail.com" className="text-blue-600 hover:underline">supportcalculox@gmail.com</a><br />
             <strong>Website:</strong> <a href={BASE_URL} className="text-blue-600 hover:underline">calculox.in</a>
           </p>
         </section>

@@ -106,10 +106,10 @@ export default function AboutPage() {
             Have feedback, suggestions, or found a bug? We&apos;d love to hear from you.
           </p>
           <a
-            href="mailto:support@calculox.in"
+            href="mailto:supportcalculox@gmail.com"
             className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
           >
-            support@calculox.in
+            supportcalculox@gmail.com
           </a>
         </section>
       </div>
