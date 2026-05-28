@@ -74,11 +74,11 @@ export const metadata: Metadata = {
       "Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more. Fast, accurate & mobile-friendly.",
     images: [
       {
-        url: "/icon.svg",
+        url: "/logo.png",
         width: 512,
         height: 512,
         alt: "calculox Logo - Blue Gradient CX Icon",
-        type: "image/svg+xml",
+        type: "image/png",
       },
     ],
   },

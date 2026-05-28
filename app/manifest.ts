@@ -13,6 +13,10 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ['finance', 'utilities', 'productivity'],
     lang: 'en-IN',
     icons: [
+      { src: '/logo.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+      { src: '/logo.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+      { src: '/apple-icon.png', sizes: '192x192', type: 'image/png' },
+      { src: '/favicon.png', sizes: '32x32', type: 'image/png' },
       { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
     ],
     shortcuts: [
