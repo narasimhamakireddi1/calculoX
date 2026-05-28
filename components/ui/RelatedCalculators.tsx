@@ -15,8 +15,8 @@ interface RelatedCalculatorsProps {
 
 export function RelatedCalculators({ calculators }: RelatedCalculatorsProps) {
   return (
-    <div className="card">
-      <h2 className="text-2xl font-bold mb-6">🔗 Related Calculators</h2>
+    <nav aria-label="Related calculators" className="card">
+      <h2 className="text-2xl font-bold mb-6"><span aria-hidden="true">🔗</span> Related Calculators</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {calculators.map((calc) => (
           <Link
@@ -34,13 +34,13 @@ export function RelatedCalculators({ calculators }: RelatedCalculatorsProps) {
                   {calc.description}
                 </p>
               </div>
-              <span className="text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0">
+              <span aria-hidden="true" className="text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0">
                 →
               </span>
             </div>
           </Link>
         ))}
       </div>
-    </div>
+    </nav>
   );
 }
