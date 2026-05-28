@@ -132,9 +132,33 @@ export function Navbar() {
           {/* Logo - Enhanced */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-bold text-2xl bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 flex-shrink-0"
+            className="flex items-center gap-2 font-bold text-2xl text-blue-600 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 flex-shrink-0"
           >
-            <span className="text-3xl">🧮</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              className="w-8 h-8"
+            >
+              <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#1d4ed8', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <rect width="32" height="32" rx="6" fill="url(#grad)" />
+              <text
+                x="16"
+                y="22"
+                fontFamily="Arial, sans-serif"
+                fontSize="14"
+                fontWeight="bold"
+                fill="white"
+                textAnchor="middle"
+                letterSpacing="-0.5"
+              >
+                CX
+              </text>
+            </svg>
             <span>calculox</span>
           </Link>
 
