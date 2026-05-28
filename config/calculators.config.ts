@@ -189,6 +189,17 @@ export const calculators: CalculatorConfig[] = [
 
   // Phase 2: Batch 3 - Utility Calculators (Coming Soon)
   {
+    id: 'scientific',
+    title: 'Scientific Calculator',
+    description: 'Casio ClassWiz-style calculator with complex numbers, matrices, and statistics.',
+    slug: 'scientific-calculator',
+    icon: '🔬',
+    category: 'Utility',
+    href: '/scientific-calculator',
+    status: 'active',
+    tags: ['scientific', 'math', 'calculator', 'complex', 'matrix', 'statistics'],
+  },
+  {
     id: 'age',
     title: 'Age Calculator',
     description: 'Calculate exact age from date of birth in years, months, days.',

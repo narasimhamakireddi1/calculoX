@@ -22,6 +22,7 @@ export function Footer() {
               <li><Link href="/emi-calculator" className="hover:text-white transition-colors">EMI Calculator</Link></li>
               <li><Link href="/bmi-calculator" className="hover:text-white transition-colors">BMI Calculator</Link></li>
               <li><Link href="/tax-calculator" className="hover:text-white transition-colors">Tax Calculator</Link></li>
+              <li><Link href="/scientific-calculator" className="hover:text-white transition-colors">Scientific Calculator</Link></li>
             </ul>
           </div>
 

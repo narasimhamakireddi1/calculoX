@@ -14,6 +14,7 @@ export function Navbar() {
     { href: '/emi-calculator', label: 'EMI', icon: '💳' },
     { href: '/bmi-calculator', label: 'BMI', icon: '⚖️' },
     { href: '/tax-calculator', label: 'Tax', icon: '🧮' },
+    { href: '/scientific-calculator', label: 'Scientific', icon: '🔬' },
     { href: '/blog', label: 'Blog', icon: '📝' },
     { href: '/about', label: 'About', icon: 'ℹ️' },
   ];
