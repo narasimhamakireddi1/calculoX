@@ -186,7 +186,7 @@ export default function SIPCalculatorPage() {
           <form className="space-y-6">
             {/* Monthly Investment */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Monthly Investment (₹)</label>
+              <label htmlFor="monthly-investment" className="block text-sm font-bold text-gray-900 dark:text-white">Monthly Investment (₹)</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -201,6 +201,7 @@ export default function SIPCalculatorPage() {
                 <div className="w-full md:w-auto relative flex-shrink-0">
                   <span className="absolute left-2 top-2.5 text-green-600 font-bold text-sm">₹</span>
                   <input
+                    id="monthly-investment"
                     type="number" placeholder="0"
                     min="100"
                     max="1000000"
@@ -208,7 +209,7 @@ export default function SIPCalculatorPage() {
                     value={watchValues.monthlyInvestment === 0 ? "" : watchValues.monthlyInvestment}
                     onChange={(e) => handleInputChange('monthlyInvestment', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('monthlyInvestment', Number(e.target.value))}
-                    className="w-full md:w-28 px-6 py-2 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
+                    className="w-full md:w-28 px-6 py-3 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
                   />
                 </div>
               </div>
@@ -220,7 +221,7 @@ export default function SIPCalculatorPage() {
 
             {/* Years */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Investment Duration (Years)</label>
+              <label htmlFor="years" className="block text-sm font-bold text-gray-900 dark:text-white">Investment Duration (Years)</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -232,6 +233,7 @@ export default function SIPCalculatorPage() {
                   className="w-full md:flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
+                  id="years"
                   type="number" placeholder="0"
                   min="0"
                   max="50"
@@ -239,7 +241,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.years === 0 ? "" : watchValues.years}
                   onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-2 border-2 border-blue-400 rounded-lg text-center font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
+                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg text-center font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                 />
               </div>
               {errors.years && (
@@ -250,7 +252,7 @@ export default function SIPCalculatorPage() {
 
             {/* Annual Return */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Expected Annual Return (%)</label>
+              <label htmlFor="annual-return" className="block text-sm font-bold text-gray-900 dark:text-white">Expected Annual Return (%)</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -265,6 +267,7 @@ export default function SIPCalculatorPage() {
                 <div className="w-full md:w-auto relative flex-shrink-0">
                   <span className="absolute right-3 top-2.5 text-orange-600 font-bold text-sm">%</span>
                   <input
+                    id="annual-return"
                     type="number" placeholder="0"
                     min="0"
                     max="100"
@@ -272,7 +275,7 @@ export default function SIPCalculatorPage() {
                     value={watchValues.annualReturn === 0 ? "" : watchValues.annualReturn}
                     onChange={(e) => handleInputChange('annualReturn', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('annualReturn', Number(e.target.value))}
-                    className="w-full md:w-20 px-3 py-2 pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
+                    className="w-full md:w-20 px-3 py-3 pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                   />
                 </div>
               </div>
@@ -284,7 +287,7 @@ export default function SIPCalculatorPage() {
 
             {/* Step Up Percentage */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Annual Step Up (%)</label>
+              <label htmlFor="step-up" className="block text-sm font-bold text-gray-900 dark:text-white">Annual Step Up (%)</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -299,6 +302,7 @@ export default function SIPCalculatorPage() {
                 <div className="w-full md:w-auto relative flex-shrink-0">
                   <span className="absolute right-3 top-2.5 text-purple-600 font-bold text-sm">%</span>
                   <input
+                    id="step-up"
                     type="number" placeholder="0"
                     min="0"
                     max="50"
@@ -306,7 +310,7 @@ export default function SIPCalculatorPage() {
                     value={watchValues.stepUpPercent === 0 ? "" : watchValues.stepUpPercent}
                     onChange={(e) => handleInputChange('stepUpPercent', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('stepUpPercent', Number(e.target.value))}
-                    className="w-full md:w-20 px-3 py-2 pr-6 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
+                    className="w-full md:w-20 px-3 py-3 pr-6 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
                   />
                 </div>
               </div>

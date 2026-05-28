@@ -116,6 +116,7 @@ ResultCards.displayName = 'ResultCards';
 
 // Memoized input component with optimized rendering
 const LoanInput = memo(({
+  id,
   label,
   value,
   onChange,
@@ -130,6 +131,7 @@ const LoanInput = memo(({
   colorFrom,
   colorTo
 }: {
+  id: string;
   label: string;
   value: number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -145,7 +147,7 @@ const LoanInput = memo(({
   colorTo: string;
 }) => (
   <div className="space-y-3">
-    <label className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
+    <label htmlFor={id} className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
     <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
       <input
         type="range"
@@ -161,6 +163,7 @@ const LoanInput = memo(({
         {prefix && <span className="absolute left-2 top-2.5 font-bold text-sm">{prefix}</span>}
         {suffix && <span className="absolute right-3 top-2.5 font-bold text-sm">{suffix}</span>}
         <input
+          id={id}
           type="number"
           placeholder="0"
           min={min}
@@ -169,7 +172,7 @@ const LoanInput = memo(({
           value={value === 0 ? '' : value}
           onChange={onChange}
           onBlur={onBlur}
-          className="w-full md:w-32 px-6 py-2 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+          className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
         />
       </div>
     </div>
@@ -284,6 +287,7 @@ export default function EMICalculatorPage() {
           <h2 className="text-2xl font-bold mb-6">Loan Details</h2>
           <form className="space-y-6">
             <LoanInput
+              id="principal"
               label="Loan Amount (₹)"
               value={watchValues.principal ?? 0}
               onChange={(e) => handleInputChange('principal', Number(e.target.value))}
@@ -299,6 +303,7 @@ export default function EMICalculatorPage() {
             />
 
             <LoanInput
+              id="annual-rate"
               label="Annual Interest Rate (%)"
               value={watchValues.annualRate ?? 0}
               onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
@@ -314,6 +319,7 @@ export default function EMICalculatorPage() {
             />
 
             <LoanInput
+              id="loan-tenure"
               label="Loan Tenure (Years)"
               value={watchValues.years ?? 0}
               onChange={(e) => handleInputChange('years', Number(e.target.value))}
