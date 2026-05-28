@@ -1,7 +1,7 @@
 # 🧮 CalculoX - CLAUDE.md
 
 **Status:** ✅ MVP Complete | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-28 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js
+**Last Updated:** 2026-05-29 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts
 
 ---
 
@@ -9,7 +9,7 @@
 
 **10 Calculators Live:**
 - **MVP (6, Visible):** SIP, EMI, BMI, Income Tax, FD, Simple Interest
-- **Phase 2 Batch 1 (4, Hidden):** RD, GST, Percentage, CAGR
+- **Phase 2 Batch 1 (4, Visible):** RD, GST, Percentage (6-track), CAGR
 
 **Key Features:** Real-time auto-calculate | Dual inputs (slider + number) | Color-coded sliders | Responsive design | Dark mode | PDF export & clipboard sharing | Pie charts for all calculators | World-class SEO | Affiliate monetization | Performance optimized
 
@@ -64,9 +64,10 @@ config/
 | **Tax** | Income + 9 deductions | FY 2025-26 slabs + rebate 87A + surcharge | Regime comparison, breakdown, trace |
 | **FD** | Principal, Rate, Years/Months/Days, Payout Type | 4 tracks: Cumulative (Q-compound), Quarterly, Monthly (discounted), Short-term (SI) | RBI-compliant, Senior citizen +0.50%, Projections |
 | **Simple Interest** | Principal, Rate, Tenure (Years/Months/Days) | 3 tracks: Years (P×R×Y/100), Months (P×R×M/1200), Days (P×R×D/(100×DaysInYear)) | Auto leap-year detection, daily accrual, projections, precision (Decimal.js) |
-| **RD** | Monthly Deposit, Rate, Months | Compound interest (monthly) | Projection tables |
-| **GST** | Amount | Add/Remove @ 5%/12%/18%/28% | Breakdown |
-| **Others** | Various | Standard financial formulas | Charts/tables |
+| **RD** | Monthly Deposit, Rate, Months | Compound interest (monthly) | Projection tables, pie chart |
+| **GST** | Amount | Add/Remove @ 5%/12%/18%/28% | Breakdown, pie chart |
+| **Percentage** | Values (varies by track) | 6 independent engines: hike/discount, X% of Y, what % of, % change, reverse %, sequential | 6-track switcher, live sentence banner, pie charts, directional indicators |
+| **CAGR** | Beginning Value, Ending Value, Years | CAGR = (Ending/Beginning)^(1/Years) - 1 | Year-over-year breakdown, projections, pie chart |
 
 ---
 
@@ -166,16 +167,29 @@ git push origin main        # Auto-deploys to Vercel
 
 **Component Memoization:** EMI calculator memoizes expensive components (charts, tables) to prevent unnecessary re-renders. Virtual scrolling for 60-month schedules.
 
-**Pie/Donut Charts Across All 9 Calculators:** Implemented consistent donut visualizations (innerRadius=60-70, outerRadius=100-110) to show proportional data breakdowns with manual legend rows. Each chart includes currency formatting, dark mode support, and responsive layout:
+**Pie/Donut Charts Across All 10 Calculators:** Implemented consistent donut visualizations (innerRadius=65-70, outerRadius=110) to show proportional data breakdowns with manual legend rows. Each chart includes currency/number formatting, dark mode support, and responsive layout:
 - **GST:** Base Amount vs GST Amount (blue/orange)
 - **CAGR:** Initial Investment vs Total Growth (blue/green)
-- **Percentage:** Computed % vs Remainder (blue/gray, conditional for percent-of mode)
+- **Percentage (Tracks 1, 2, 5):** Component breakdown per calculation type (blue/green, blue/gray, etc.)
+  - Track 1 (Hike/Discount): Original vs Amount Added/Saved
+  - Track 2 (X% of Y): Percentage Portion vs Remainder
+  - Track 5 (Reverse %): Known Amount vs Remaining Amount
+  - Track 6 (Sequential): Step-by-step flow chart with total change indicator
 - **SIP:** Total Invested vs Returns Gained (blue/green, lg:grid-cols-2 with line chart)
 - **FD:** Principal vs Interest Earned (blue/green, side-by-side with existing line/bar charts)
 - **RD:** Total Deposited vs Interest Earned (blue/green, side-by-side with line chart)
 - **Simple Interest:** Principal vs Interest Accrued (blue/green, side-by-side with line chart)
 - **Tax:** Take-Home Pay vs Tax Payable (green/red, displays effective tax rate)
 - **BMI:** 4-category spectrum donut (Underweight/Normal/Overweight/Obese) with opacity highlighting user's current category
+
+**Percentage Calculator - 6 Independent Calculation Engines:**
+- **Track 1 (Hike/Discount):** Apply percentage increase/decrease — `V × (1 ± P/100)` with toggle for hike vs discount
+- **Track 2 (X% of Y):** Find value from percentage — `(P/100) × V`
+- **Track 3 (What % of):** Fraction as percentage — `(A/B) × 100` with zero-division guard
+- **Track 4 (% Change):** Percentage change with directional indicator — `((B−A)/A) × 100` showing ↑ increase (green) or ↓ decrease (red)
+- **Track 5 (Reverse %):** Find base when part and % known — `(V × 100) / P` (e.g., pre-GST price)
+- **Track 6 (Sequential):** Apply two percentages sequentially — `V × (1+P1/100) × (1+P2/100)` with step-by-step visual flow
+- **Features:** Dynamic sentence banner, live input field labels, track switcher with 6 quick-access buttons, error handling for division-by-zero, pie charts for tracks 1/2/5, breakdown tables, explicit PDF export with input data
 
 **FD Calculator - Four RBI-Compliant Tracks:**
 - **Cumulative:** Quarterly compounding (standard, reinvested): `P × (1+r/4)^q × (1+r×m/12)` for leftover months
