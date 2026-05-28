@@ -66,12 +66,12 @@ export const calculators: CalculatorConfig[] = [
   {
     id: 'fd',
     title: 'FD Calculator',
-    description: 'Calculate Fixed Deposit maturity amount and interest earned.',
+    description: 'Calculate Fixed Deposit maturity with RBI-compliant modes (Cumulative, Quarterly, Monthly payouts).',
     slug: 'fd-calculator',
     icon: '🏦',
     category: 'Finance',
     href: '/fd-calculator',
-    status: 'coming-soon',
+    status: 'active',
     tags: ['investment', 'finance', 'fixed-deposit'],
   },
   {
@@ -88,12 +88,12 @@ export const calculators: CalculatorConfig[] = [
   {
     id: 'simple-interest',
     title: 'Simple Interest Calculator',
-    description: 'Calculate simple interest using SI = P × R × T / 100.',
+    description: 'Calculate SI with Years, Months, or Days. Automatic leap year detection.',
     slug: 'simple-interest-calculator',
     icon: '📊',
     category: 'Finance',
     href: '/simple-interest-calculator',
-    status: 'coming-soon',
+    status: 'active',
     tags: ['finance', 'interest', 'investment'],
   },
   {

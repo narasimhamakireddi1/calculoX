@@ -8,8 +8,8 @@
 ## 📊 PROJECT STATUS
 
 **10 Calculators Live:**
-- **MVP (4, Visible):** SIP, EMI, BMI, Income Tax
-- **Phase 2 Batch 1 (6, Hidden):** FD, RD, Simple Interest, GST, Percentage, CAGR
+- **MVP (5, Visible):** SIP, EMI, BMI, Income Tax, FD
+- **Phase 2 Batch 1 (5, Hidden):** RD, Simple Interest, GST, Percentage, CAGR
 
 **Key Features:** Real-time auto-calculate | Dual inputs (slider + number) | Color-coded sliders | Responsive design | Dark mode | World-class SEO | Affiliate monetization | Performance optimized
 
