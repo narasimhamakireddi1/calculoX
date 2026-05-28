@@ -102,8 +102,9 @@ button:disabled {
   @apply max-w-7xl mx-auto px-4 py-12 md:py-16;
 }
 
+/* Text gradient - uses solid blue color to ensure emoji rendering */
 .text-gradient {
-  @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  @apply text-blue-600 dark:text-blue-400;
 }
 
 /* Responsive Grid */
