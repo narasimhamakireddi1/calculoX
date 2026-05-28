@@ -139,7 +139,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Menu - Horizontally Scrollable */}
-          <div className="hidden md:flex gap-2 items-center flex-1 mx-4">
+          <div className="hidden md:flex gap-2 items-center mx-4" style={{ flex: 1, minWidth: 0 }}>
             {/* Left Arrow Scroll Indicator */}
             {canScrollLeft && (
               <button
@@ -154,7 +154,7 @@ export function Navbar() {
 
             <div
               ref={scrollContainerRef}
-              className="overflow-x-auto flex-1 scrollbar-hide scroll-smooth"
+              className="overflow-x-auto scrollbar-hide scroll-smooth"
               onScroll={checkScroll}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
@@ -164,12 +164,14 @@ export function Navbar() {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
               style={{
+                flex: 1,
+                minWidth: 0,
                 scrollBehavior: 'smooth',
                 cursor: isDragging ? 'grabbing' : 'grab',
                 userSelect: isDragging ? 'none' : 'auto',
               }}
             >
-              <div className="flex gap-2 flex-nowrap min-w-min">
+              <div className="flex gap-2 flex-nowrap pb-1">
               {links.map((link) => {
                 const active = isActive(link.href);
                 return (
