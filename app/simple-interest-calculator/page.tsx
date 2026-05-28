@@ -163,7 +163,7 @@ export default function SimpleInterestCalculatorPage() {
           <form className="space-y-6">
             {/* Principal */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Principal Amount (₹)</label>
+              <label htmlFor="principal-si" className="block text-sm font-bold text-gray-900 dark:text-white">Principal Amount (₹)</label>
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
@@ -178,6 +178,7 @@ export default function SimpleInterestCalculatorPage() {
                 <div className="relative flex-shrink-0">
                   <span className="absolute left-2 top-2.5 text-emerald-600 font-bold text-sm">₹</span>
                   <input
+                    id="principal-si"
                     type="number"
                     placeholder="0"
                     min="10000"
@@ -186,7 +187,7 @@ export default function SimpleInterestCalculatorPage() {
                     value={watchValues.principal === 0 ? '' : watchValues.principal}
                     onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                    className="w-32 px-6 py-2 pl-7 border-2 border-emerald-400 rounded-lg text-right font-bold text-emerald-700 bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-emerald-600 dark:text-emerald-400"
+                    className="w-32 px-6 py-3 pl-7 border-2 border-emerald-400 rounded-lg text-right font-bold text-emerald-700 bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-emerald-600 dark:text-emerald-400"
                   />
                 </div>
               </div>
@@ -196,7 +197,7 @@ export default function SimpleInterestCalculatorPage() {
 
             {/* Annual Rate */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Annual Interest Rate (%)</label>
+              <label htmlFor="rate-si" className="block text-sm font-bold text-gray-900 dark:text-white">Annual Interest Rate (%)</label>
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
@@ -211,6 +212,7 @@ export default function SimpleInterestCalculatorPage() {
                 <div className="relative flex-shrink-0">
                   <span className="absolute right-3 top-2.5 text-blue-600 font-bold text-sm">%</span>
                   <input
+                    id="rate-si"
                     type="number"
                     placeholder="0"
                     min="0"
@@ -219,7 +221,7 @@ export default function SimpleInterestCalculatorPage() {
                     value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
                     onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-                    className="w-20 px-3 py-2 pr-6 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
+                    className="w-20 px-3 py-3 pr-6 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                   />
                 </div>
               </div>
@@ -258,7 +260,7 @@ export default function SimpleInterestCalculatorPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3">
                 {/* Years */}
                 <div>
-                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years</label>
+                  <label htmlFor="tenure-years-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -270,6 +272,7 @@ export default function SimpleInterestCalculatorPage() {
                       className="flex-1 h-2 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                     />
                     <input
+                      id="tenure-years-si"
                       type="number"
                       placeholder="0"
                       min="0"
@@ -277,14 +280,14 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                      className="w-14 px-2 py-1 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
+                      className="w-14 px-2 py-2 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                     />
                   </div>
                 </div>
 
                 {/* Months */}
                 <div>
-                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months</label>
+                  <label htmlFor="tenure-months-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -296,6 +299,7 @@ export default function SimpleInterestCalculatorPage() {
                       className="flex-1 h-2 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
                     />
                     <input
+                      id="tenure-months-si"
                       type="number"
                       placeholder="0"
                       min="0"
@@ -303,14 +307,14 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-14 px-2 py-1 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
+                      className="w-14 px-2 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
                     />
                   </div>
                 </div>
 
                 {/* Days */}
                 <div>
-                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days</label>
+                  <label htmlFor="tenure-days-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -322,6 +326,7 @@ export default function SimpleInterestCalculatorPage() {
                       className="flex-1 h-2 bg-gradient-to-r from-pink-300 to-pink-600 rounded-lg appearance-none cursor-pointer accent-pink-600"
                     />
                     <input
+                      id="tenure-days-si"
                       type="number"
                       placeholder="0"
                       min="0"
@@ -329,7 +334,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-14 px-2 py-1 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-gray-700 dark:border-pink-600 dark:text-pink-400"
+                      className="w-14 px-2 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-gray-700 dark:border-pink-600 dark:text-pink-400"
                     />
                   </div>
                 </div>

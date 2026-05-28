@@ -138,7 +138,7 @@ export default function GSTCalculatorPage() {
 
             {/* Amount */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">
+              <label htmlFor="gst-amount" className="block text-sm font-bold text-gray-900 dark:text-white">
                 {calculationType === 'add' ? 'Amount (Without GST) (₹)' : 'Amount (With GST) (₹)'}
               </label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
@@ -153,6 +153,7 @@ export default function GSTCalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
+                  id="gst-amount"
                   type="number" placeholder="0"
                   min="100"
                   max="100000000"
@@ -160,7 +161,7 @@ export default function GSTCalculatorPage() {
                   value={watchValues.amount === 0 ? "" : watchValues.amount}
                   onChange={(e) => handleAmountChange(Number(e.target.value))}
                   onBlur={(e) => handleValidateField('amount', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.amount && <p className="text-red-500 text-sm">{errors.amount.message}</p>}

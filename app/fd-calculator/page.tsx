@@ -175,7 +175,7 @@ export default function FDCalculatorPage() {
           <form className="space-y-6">
             {/* Principal */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Principal Amount (₹)</label>
+              <label htmlFor="principal-fd" className="block text-sm font-bold text-gray-900 dark:text-white">Principal Amount (₹)</label>
               <div className="flex gap-3 items-center">
                 <input
                   type="range"
@@ -188,6 +188,7 @@ export default function FDCalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-lg appearance-none cursor-pointer accent-emerald-600"
                 />
                 <input
+                  id="principal-fd"
                   type="number"
                   placeholder="0"
                   min="10000"
@@ -196,7 +197,7 @@ export default function FDCalculatorPage() {
                   value={watchValues.principal === 0 ? '' : watchValues.principal}
                   onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700"
+                  className="w-28 px-3 py-3 border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700"
                 />
               </div>
               {errors.principal && <p className="text-red-500 text-sm">{errors.principal.message}</p>}
@@ -205,7 +206,7 @@ export default function FDCalculatorPage() {
 
             {/* Annual Rate */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">
+              <label htmlFor="rate-fd" className="block text-sm font-bold text-gray-900 dark:text-white">
                 Annual Interest Rate (%)
                 {watchValues.seniorCitizen && <span className="text-yellow-600 dark:text-yellow-400"> +0.5% (Senior)</span>}
               </label>
@@ -221,6 +222,7 @@ export default function FDCalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
+                  id="rate-fd"
                   type="number"
                   placeholder="0"
                   min="0"
@@ -229,7 +231,7 @@ export default function FDCalculatorPage() {
                   value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
                   onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.annualRate && <p className="text-red-500 text-sm">{errors.annualRate.message}</p>}
@@ -242,7 +244,7 @@ export default function FDCalculatorPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3">
                 {/* Years */}
                 <div>
-                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years</label>
+                  <label htmlFor="tenure-years" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -255,6 +257,7 @@ export default function FDCalculatorPage() {
                       className="flex-1 h-2 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                     />
                     <input
+                      id="tenure-years"
                       type="number"
                       placeholder="0"
                       min="0"
@@ -262,14 +265,14 @@ export default function FDCalculatorPage() {
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                      className="w-14 px-2 py-1 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                      className="w-14 px-2 py-2 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                     />
                   </div>
                 </div>
 
                 {/* Months */}
                 <div>
-                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months</label>
+                  <label htmlFor="tenure-months" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -282,6 +285,7 @@ export default function FDCalculatorPage() {
                       className="flex-1 h-2 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
                     />
                     <input
+                      id="tenure-months"
                       type="number"
                       placeholder="0"
                       min="0"
@@ -289,14 +293,14 @@ export default function FDCalculatorPage() {
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-14 px-2 py-1 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                      className="w-14 px-2 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
                     />
                   </div>
                 </div>
 
                 {/* Days */}
                 <div>
-                  <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days</label>
+                  <label htmlFor="tenure-days" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -309,6 +313,7 @@ export default function FDCalculatorPage() {
                       className="flex-1 h-2 bg-gradient-to-r from-pink-300 to-pink-600 rounded-lg appearance-none cursor-pointer accent-pink-600"
                     />
                     <input
+                      id="tenure-days"
                       type="number"
                       placeholder="0"
                       min="0"
@@ -316,7 +321,7 @@ export default function FDCalculatorPage() {
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-14 px-2 py-1 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-pink-900/20 dark:text-pink-400 dark:border-pink-700"
+                      className="w-14 px-2 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-pink-900/20 dark:text-pink-400 dark:border-pink-700"
                     />
                   </div>
                 </div>

@@ -108,7 +108,7 @@ export default function CAGRCalculatorPage() {
           <form  className="space-y-6">
             {/* Beginning Value */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Beginning Value (₹)</label>
+              <label htmlFor="beginning-value" className="block text-sm font-bold text-gray-900 dark:text-white">Beginning Value (₹)</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -121,6 +121,7 @@ export default function CAGRCalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
+                  id="beginning-value"
                   type="number" placeholder="0"
                   min="10000"
                   max="10000000"
@@ -128,7 +129,7 @@ export default function CAGRCalculatorPage() {
                   value={watchValues.beginningValue === 0 ? "" : watchValues.beginningValue}
                   onChange={(e) => handleInputChange('beginningValue', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('beginningValue', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.beginningValue && <p className="text-red-500 text-sm">{errors.beginningValue.message}</p>}
@@ -137,7 +138,7 @@ export default function CAGRCalculatorPage() {
 
             {/* Ending Value */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Ending Value (₹)</label>
+              <label htmlFor="ending-value" className="block text-sm font-bold text-gray-900 dark:text-white">Ending Value (₹)</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -150,6 +151,7 @@ export default function CAGRCalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
+                  id="ending-value"
                   type="number" placeholder="0"
                   min="10000"
                   max="10000000"
@@ -157,7 +159,7 @@ export default function CAGRCalculatorPage() {
                   value={watchValues.endingValue === 0 ? "" : watchValues.endingValue}
                   onChange={(e) => handleInputChange('endingValue', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('endingValue', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full md:w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
               {errors.endingValue && <p className="text-red-500 text-sm">{errors.endingValue.message}</p>}
@@ -166,7 +168,7 @@ export default function CAGRCalculatorPage() {
 
             {/* Years */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Time Period (Years)</label>
+              <label htmlFor="cagr-years" className="block text-sm font-bold text-gray-900 dark:text-white">Time Period (Years)</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -179,6 +181,7 @@ export default function CAGRCalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
                 <input
+                  id="cagr-years"
                   type="number" placeholder="0"
                   min="1"
                   max="50"
@@ -186,7 +189,7 @@ export default function CAGRCalculatorPage() {
                   value={watchValues.years === 0 ? "" : watchValues.years}
                   onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                  className="w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                 />
               </div>
               {errors.years && <p className="text-red-500 text-sm">{errors.years.message}</p>}
