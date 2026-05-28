@@ -1,11 +1,17 @@
 import html2pdf from 'html2pdf.js';
 
+export interface FormattedInput {
+  label: string;
+  value: string;
+}
+
 export interface PDFExportOptions {
   fileName: string;
   calculatorName: string;
   timestamp?: boolean;
   inputsSectionId?: string;
   resultsSectionId?: string;
+  inputsData?: FormattedInput[];
 }
 
 const extractInputValues = (element: HTMLElement): Array<{ label: string; value: string }> => {
@@ -88,8 +94,14 @@ export const exportResultsAsPDF = (
   `;
 
   let inputsHTML = '';
-  if (inputsElement) {
-    const inputPairs = extractInputValues(inputsElement);
+
+  // Use provided inputsData if available, otherwise try to extract from DOM
+  let inputPairs: FormattedInput[] = options.inputsData || [];
+  if (inputPairs.length === 0 && inputsElement) {
+    inputPairs = extractInputValues(inputsElement);
+  }
+
+  if (inputPairs.length > 0) {
     const inputRows = inputPairs
       .map(
         (pair, idx) =>

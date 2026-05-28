@@ -2,11 +2,17 @@
 
 import { useState } from 'react';
 
+export interface FormattedInput {
+  label: string;
+  value: string;
+}
+
 interface ExportButtonProps {
   fileName: string;
   calculatorName: string;
   resultElementId: string;
   inputElementId?: string;
+  inputsData?: FormattedInput[];
   disabled?: boolean;
 }
 
@@ -15,6 +21,7 @@ export default function ExportButton({
   calculatorName,
   resultElementId,
   inputElementId,
+  inputsData,
   disabled = false,
 }: ExportButtonProps) {
   const [copied, setCopied] = useState(false);
@@ -30,6 +37,7 @@ export default function ExportButton({
         timestamp: true,
         inputsSectionId: inputElementId,
         resultsSectionId: resultElementId,
+        inputsData,
       });
     } catch (error) {
       console.error('Failed to export PDF:', error);

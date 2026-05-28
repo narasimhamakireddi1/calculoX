@@ -1,13 +1,13 @@
 ﻿'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { calculateSimpleInterest, generateSimpleInterestProjection, type TenureType } from '@/lib/calculators/simple-interest';
 import { SimpleInterestSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
-import ExportButton from '@/components/ui/ExportButton';
+import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type SIFormData = {
   principal: number;
@@ -58,6 +58,27 @@ export default function SimpleInterestCalculatorPage() {
   });
 
   const watchValues = watch();
+
+  const inputsData: FormattedInput[] = useMemo(() => {
+    const data: FormattedInput[] = [];
+    if (watchValues.principal) {
+      data.push({ label: 'Principal Amount', value: formatCurrency(watchValues.principal) });
+    }
+    if (watchValues.annualRate !== undefined) {
+      data.push({ label: 'Annual Interest Rate (%)', value: `${watchValues.annualRate}%` });
+    }
+    if (watchValues.tenureType === 'years' && watchValues.years) {
+      data.push({ label: 'Tenure', value: `${watchValues.years} Year(s)` });
+    } else if (watchValues.tenureType === 'months') {
+      const yrs = watchValues.years || 0;
+      const mths = watchValues.months || 0;
+      const display = yrs > 0 ? `${yrs}Y ${mths}M` : `${mths} Month(s)`;
+      data.push({ label: 'Tenure', value: display });
+    } else if (watchValues.tenureType === 'days' && watchValues.days) {
+      data.push({ label: 'Tenure', value: `${watchValues.days} Day(s)` });
+    }
+    return data;
+  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     principal: { min: 10000, max: 100000000, label: 'Principal (₹)' },
@@ -368,6 +389,7 @@ export default function SimpleInterestCalculatorPage() {
                   calculatorName="Simple Interest Results"
                   resultElementId="simple-interest-results"
                   inputElementId="simple-interest-inputs"
+                  inputsData={inputsData}
                 />
               </div>
             </div>

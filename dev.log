@@ -6,7 +6,7 @@
 ▲ Next.js 16.2.6 (Turbopack)
 - Local:         http://localhost:3001
 - Network:       http://192.168.1.53:3001
-✓ Ready in 998ms
+✓ Ready in 1002ms
 Warning: Custom Cache-Control headers detected for the following routes:
   - /_next/static/:path*
 
