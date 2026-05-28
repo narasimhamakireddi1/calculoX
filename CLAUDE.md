@@ -1,7 +1,7 @@
 # 🧮 CalculoX - CLAUDE.md
 
 **Status:** ✅ MVP Complete | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-29 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts
+**Last Updated:** 2026-05-29 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
 
 ---
 
@@ -85,7 +85,7 @@ npm run audit:performance # Lighthouse audit
 
 ## 🔧 KEY IMPLEMENTATION PATTERNS
 
-**Auto-Calculate (All Calculators):**
+**Auto-Calculate (All Calculators):** Results compute dynamically as users input values. No explicit "Calculate" button required — only Clear/Reset button provided.
 ```typescript
 const watchValues = watch();
 useEffect(() => {
@@ -93,7 +93,7 @@ useEffect(() => {
     if (watchValues.field1 && watchValues.field2 !== undefined) {
       calculateResults(watchValues);
     }
-  }, 300); // 300ms debounce
+  }, 300); // 300ms debounce prevents rapid recalculations while maintaining UX responsiveness
   return () => clearTimeout(timer);
 }, [watchValues]);
 ```
