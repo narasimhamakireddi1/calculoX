@@ -72,6 +72,15 @@ export const metadata: Metadata = {
     title: "calculox - Free Online Calculators for India",
     description:
       "Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more. Fast, accurate & mobile-friendly.",
+    images: [
+      {
+        url: "/icon.svg",
+        width: 512,
+        height: 512,
+        alt: "calculox Logo - Blue Gradient CX Icon",
+        type: "image/svg+xml",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -82,8 +91,18 @@ export const metadata: Metadata = {
       "Free premium online calculators for Indian users - SIP, EMI, BMI, Tax & more.",
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
+    icon: [
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
+      {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.ico",
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "",
@@ -111,6 +130,11 @@ export default function RootLayout({
         <meta name="language" content="English" />
         <meta name="revisit-after" content="7 days" />
         <meta name="rating" content="general" />
+        {/* Favicon - Multiple formats for maximum compatibility */}
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-50">
         <Script
