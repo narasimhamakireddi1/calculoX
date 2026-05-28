@@ -88,7 +88,7 @@ export default function CAGRCalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form */}
-        <div className="card">
+        <div id="cagr-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
           <form  className="space-y-6">
             {/* Beginning Value */}
@@ -228,6 +228,7 @@ export default function CAGRCalculatorPage() {
                   fileName="CAGR_Results"
                   calculatorName="CAGR Results"
                   resultElementId="cagr-results"
+                  inputElementId="cagr-inputs"
                 />
               </div>
             </div>

@@ -97,7 +97,7 @@ export default function PercentageCalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form */}
-        <div className="card">
+        <div id="percentage-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Percentage Calculation</h2>
           <form  className="space-y-6">
             {/* Calculation Type */}
@@ -245,6 +245,7 @@ export default function PercentageCalculatorPage() {
                     fileName="Percentage_Results"
                     calculatorName="Percentage Calculation Results"
                     resultElementId="percentage-results"
+                    inputElementId="percentage-inputs"
                   />
                 </div>
               </div>

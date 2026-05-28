@@ -162,7 +162,7 @@ export default function SIPCalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form Section */}
-        <div className="card">
+        <div id="sip-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
           <form className="space-y-6">
             {/* Monthly Investment */}
@@ -358,6 +358,7 @@ export default function SIPCalculatorPage() {
                   fileName="SIP_Investment_Results"
                   calculatorName="SIP Calculator Results"
                   resultElementId="sip-results"
+                  inputElementId="sip-inputs"
                 />
               </div>
             </div>

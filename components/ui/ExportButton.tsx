@@ -6,6 +6,7 @@ interface ExportButtonProps {
   fileName: string;
   calculatorName: string;
   resultElementId: string;
+  inputElementId?: string;
   disabled?: boolean;
 }
 
@@ -13,6 +14,7 @@ export default function ExportButton({
   fileName,
   calculatorName,
   resultElementId,
+  inputElementId,
   disabled = false,
 }: ExportButtonProps) {
   const [copied, setCopied] = useState(false);
@@ -26,6 +28,8 @@ export default function ExportButton({
         fileName,
         calculatorName,
         timestamp: true,
+        inputsSectionId: inputElementId,
+        resultsSectionId: resultElementId,
       });
     } catch (error) {
       console.error('Failed to export PDF:', error);

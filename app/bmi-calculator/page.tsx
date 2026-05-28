@@ -127,7 +127,7 @@ export default function BMICalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form Section */}
-        <div className="card">
+        <div id="bmi-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Your Measurements</h2>
 
           {/* Unit Toggle */}
@@ -271,6 +271,7 @@ export default function BMICalculatorPage() {
                   fileName="BMI_Calculator_Results"
                   calculatorName="BMI Calculator Results"
                   resultElementId="bmi-results"
+                  inputElementId="bmi-inputs"
                 />
               </div>
             </div>

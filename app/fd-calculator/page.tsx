@@ -143,7 +143,7 @@ export default function FDCalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form */}
-        <div className="card">
+        <div id="fd-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
           <form className="space-y-6">
             {/* Principal */}
@@ -414,6 +414,7 @@ export default function FDCalculatorPage() {
                   fileName="FD_Results"
                   calculatorName="Fixed Deposit Results"
                   resultElementId="fd-results"
+                  inputElementId="fd-inputs"
                 />
               </div>
             </div>

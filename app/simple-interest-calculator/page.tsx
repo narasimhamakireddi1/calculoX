@@ -135,7 +135,7 @@ export default function SimpleInterestCalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form Section */}
-        <div className="card">
+        <div id="simple-interest-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
           <form className="space-y-6">
             {/* Principal */}
@@ -367,6 +367,7 @@ export default function SimpleInterestCalculatorPage() {
                   fileName="Simple_Interest_Results"
                   calculatorName="Simple Interest Results"
                   resultElementId="simple-interest-results"
+                  inputElementId="simple-interest-inputs"
                 />
               </div>
             </div>

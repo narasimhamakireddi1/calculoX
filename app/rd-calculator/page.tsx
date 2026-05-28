@@ -104,7 +104,7 @@ export default function RDCalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form */}
-        <div className="card">
+        <div id="rd-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Deposit Details</h2>
           <form  className="space-y-6">
             {/* Monthly Deposit */}
@@ -248,6 +248,7 @@ export default function RDCalculatorPage() {
                   fileName="RD_Results"
                   calculatorName="Recurring Deposit Results"
                   resultElementId="rd-results"
+                  inputElementId="rd-inputs"
                 />
               </div>
             </div>

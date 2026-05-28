@@ -103,6 +103,7 @@ const ResultCards = memo(({ result }: { result: EMIResultData | null }) => {
           fileName="EMI_Loan_Summary"
           calculatorName="EMI Calculator Results"
           resultElementId="emi-results"
+          inputElementId="emi-inputs"
         />
       </div>
     </div>
@@ -263,7 +264,7 @@ export default function EMICalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form Section */}
-        <div className="card">
+        <div id="emi-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Loan Details</h2>
           <form className="space-y-6">
             <LoanInput

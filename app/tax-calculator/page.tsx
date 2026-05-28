@@ -173,7 +173,7 @@ export default function TaxCalculator() {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Form Section */}
-          <div className="lg:col-span-1 space-y-6">
+          <div id="tax-inputs" className="lg:col-span-1 space-y-6">
             {/* Personal Details */}
             <div className="card p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
               <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">👤 Personal Details</h2>
@@ -657,6 +657,7 @@ export default function TaxCalculator() {
                     fileName="Income_Tax_Results"
                     calculatorName="Income Tax Results"
                     resultElementId="tax-results"
+                    inputElementId="tax-inputs"
                   />
                 </div>
               </div>

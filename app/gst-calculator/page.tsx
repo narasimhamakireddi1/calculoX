@@ -89,7 +89,7 @@ export default function GSTCalculatorPage() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form */}
-        <div className="card">
+        <div id="gst-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">GST Details</h2>
           <form  className="space-y-6">
             {/* Calculation Type */}
@@ -233,6 +233,7 @@ export default function GSTCalculatorPage() {
                   fileName="GST_Results"
                   calculatorName="GST Breakdown"
                   resultElementId="gst-results"
+                  inputElementId="gst-inputs"
                 />
               </div>
             </div>

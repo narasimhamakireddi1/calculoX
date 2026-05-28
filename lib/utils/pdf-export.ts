@@ -4,14 +4,24 @@ export interface PDFExportOptions {
   fileName: string;
   calculatorName: string;
   timestamp?: boolean;
+  inputsSectionId?: string;
+  resultsSectionId?: string;
 }
 
 export const exportResultsAsPDF = (
   elementId: string,
   options: PDFExportOptions
 ) => {
-  const element = document.getElementById(elementId);
-  if (!element) {
+  // If custom sections provided, use them; otherwise fall back to single element
+  const resultsElement = options.resultsSectionId
+    ? document.getElementById(options.resultsSectionId)
+    : document.getElementById(elementId);
+
+  const inputsElement = options.inputsSectionId
+    ? document.getElementById(options.inputsSectionId)
+    : null;
+
+  if (!resultsElement) {
     console.error(`Element with ID "${elementId}" not found`);
     return;
   }
@@ -49,21 +59,41 @@ export const exportResultsAsPDF = (
     </div>
   `;
 
-  // Create a clone of the element with styling preserved
-  const clone = element.cloneNode(true) as HTMLElement;
-  clone.style.padding = '20px';
-  clone.style.backgroundColor = '#ffffff';
-  clone.style.color = '#000000';
+  // Clone inputs if available
+  let inputsHTML = '';
+  if (inputsElement) {
+    const inputsClone = inputsElement.cloneNode(true) as HTMLElement;
+    inputsClone.style.padding = '0';
+    inputsClone.style.backgroundColor = '#ffffff';
+    inputsHTML = `
+      <div style="margin-bottom: 20px;">
+        <h2 style="margin: 0 0 15px 0; color: #1f2937; font-size: 16px; font-weight: bold; border-bottom: 2px solid #dbeafe; padding-bottom: 10px;">
+          📋 Input Values
+        </h2>
+        <div style="background-color: #f0f9ff; padding: 15px; border-radius: 8px; border: 1px solid #bfdbfe;">
+          ${inputsClone.innerHTML}
+        </div>
+      </div>
+    `;
+  }
+
+  // Create a clone of the results element with styling preserved
+  const resultsClone = resultsElement.cloneNode(true) as HTMLElement;
+  resultsClone.style.padding = '0';
+  resultsClone.style.backgroundColor = '#ffffff';
+  resultsClone.style.color = '#000000';
 
   // Remove dark mode classes
-  clone.classList.remove('dark');
-  clone.querySelectorAll('[class*="dark:"]').forEach((el) => {
+  resultsClone.classList.remove('dark');
+  resultsClone.querySelectorAll('[class*="dark:"]').forEach((el) => {
     el.className = el.className.replace(/dark:\S+/g, '');
   });
 
-  // Create container with header and footer
+  // Create container with header, inputs, results, and footer
   const container = document.createElement('div');
-  container.innerHTML = headerHTML + clone.innerHTML + footerHTML;
+  container.style.padding = '20px';
+  container.style.backgroundColor = '#ffffff';
+  container.innerHTML = headerHTML + inputsHTML + resultsClone.innerHTML + footerHTML;
 
   html2pdf().set(pdfOptions).from(container).save();
 };
