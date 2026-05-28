@@ -25,11 +25,11 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: 'What is Simple Interest and the formula?', answer: 'Simple Interest is calculated only on the principal amount, not on accumulated interest. Formula: SI = (P Ã— R Ã— T) / 100, where P is principal, R is annual rate (%), and T is time (years).' },
+  { question: 'What is Simple Interest and the formula?', answer: 'Simple Interest is calculated only on the principal amount, not on accumulated interest. Formula: SI = (P × R × T) / 100, where P is principal, R is annual rate (%), and T is time (years).' },
   { question: 'How is Simple Interest different from Compound Interest?', answer: 'Simple Interest is calculated only on principal. Compound Interest is calculated on principal + accumulated interest. Compound Interest yields higher returns over longer periods.' },
-  { question: 'Can I calculate SI for months or days?', answer: 'Yes. For months: SI = (P Ã— R Ã— M) / 1200. For days: SI = (P Ã— R Ã— D) / 36500 (for 365-day year). This calculator supports all three.' },
+  { question: 'Can I calculate SI for months or days?', answer: 'Yes. For months: SI = (P × R × M) / 1200. For days: SI = (P × R × D) / 36500 (for 365-day year). This calculator supports all three.' },
   { question: 'Who uses Simple Interest?', answer: 'Simple Interest is used for short-term loans (personal loans, overdrafts), bonds, short-term deposits, and some traditional savings schemes.' },
-  { question: 'How do I calculate the principal if I know SI and rate?', answer: 'Rearranging the formula: P = (SI Ã— 100) / (R Ã— T). For example, if SI is â‚¹5,000 at 10% for 2 years, then P = (5,000 Ã— 100) / (10 Ã— 2) = â‚¹25,000.' },
+  { question: 'How do I calculate the principal if I know SI and rate?', answer: 'Rearranging the formula: P = (SI × 100) / (R × T). For example, if SI is ₹5,000 at 10% for 2 years, then P = (5,000 × 100) / (10 × 2) = ₹25,000.' },
 ];
 
 export default function SimpleInterestCalculatorLayout({ children }: { children: React.ReactNode }) {

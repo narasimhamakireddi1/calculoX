@@ -77,9 +77,9 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">5. Third-Party Services</h2>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">We use the following third-party services:</p>
           <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 mt-3">
-            <li><strong>Google Analytics</strong> â€” Website traffic analysis</li>
-            <li><strong>Google AdSense</strong> â€” Display advertising</li>
-            <li><strong>Vercel</strong> â€” Website hosting and deployment</li>
+            <li><strong>Google Analytics</strong> – Website traffic analysis</li>
+            <li><strong>Google AdSense</strong> – Display advertising</li>
+            <li><strong>Vercel</strong> – Website hosting and deployment</li>
           </ul>
         </section>
 

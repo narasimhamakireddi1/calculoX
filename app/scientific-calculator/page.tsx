@@ -144,10 +144,10 @@ export default function ScientificCalculatorPage() {
       } catch (e) {
         setLiveResult('Error: Size mismatch');
       }
-    } else if (key === 'AÃ—B') {
+    } else if (key === 'A×B') {
       try {
         const prod = matrixMul(matrixA, matrixB);
-        setMatrixLastOp('AÃ—B');
+        setMatrixLastOp('A×B');
         setMatrixLastResult(prod);
         setLiveResult('Multiplication computed');
       } catch (e) {
@@ -166,7 +166,7 @@ export default function ScientificCalculatorPage() {
         setIsShift(false);
       }
 
-      if (key === 'Ï€') toAppend = 'Ï€';
+      if (key === 'π') toAppend = 'π';
       if (key === 'e') toAppend = 'e';
 
       setInput(prev => prev + toAppend + (FUNCTIONS.has(toAppend) ? '(' : ''));
@@ -328,7 +328,7 @@ export default function ScientificCalculatorPage() {
               How do I use Matrix mode?
             </summary>
             <p className="text-gray-600 dark:text-gray-400 mt-2 ml-4">
-              Switch to MATRIX engine via the MODE button. Click "Mat A" or "Mat B" to enter matrix values (2Ã—2 or 3Ã—3). Then use operations: det(A), inv(A), T(A), A+B, AÃ—B to compute results.
+              Switch to MATRIX engine via the MODE button. Click "Mat A" or "Mat B" to enter matrix values (2×2 or 3×3). Then use operations: det(A), inv(A), T(A), A+B, A×B to compute results.
             </p>
           </details>
 
@@ -346,7 +346,7 @@ export default function ScientificCalculatorPage() {
               What functions are supported?
             </summary>
             <p className="text-gray-600 dark:text-gray-400 mt-2 ml-4">
-              All standard scientific functions: sin, cos, tan, log, ln, sqrt, exp, abs, nCr, nPr, factorial (!), plus constants Ï€ and e. Use parentheses for grouping: 2*(3+4). Order of operations (PEMDAS) is respected.
+              All standard scientific functions: sin, cos, tan, log, ln, sqrt, exp, abs, nCr, nPr, factorial (!), plus constants π and e. Use parentheses for grouping: 2*(3+4). Order of operations (PEMDAS) is respected.
             </p>
           </details>
 
@@ -474,9 +474,9 @@ function ButtonGrid({
 
       {/* Row 2 - Power/Trig */}
       <div className="grid grid-cols-8 gap-1">
-        <Button label="xÂ²" onClick={() => onKey('^')} className={buttonClasses.function} />
+        <Button label="x²" onClick={() => onKey('^')} className={buttonClasses.function} />
         <Button label="x^y" onClick={() => onKey('^')} className={buttonClasses.function} />
-        <Button label="âˆšx" onClick={() => onKey('sqrt(')} className={buttonClasses.function} />
+        <Button label="√x" onClick={() => onKey('sqrt(')} className={buttonClasses.function} />
         <Button label={isShift ? 'asin' : 'sin'} onClick={() => onKey(isShift ? 'asin(' : 'sin(')} className={buttonClasses.function} />
         <Button label={isShift ? 'acos' : 'cos'} onClick={() => onKey(isShift ? 'acos(' : 'cos(')} className={buttonClasses.function} />
         <Button label={isShift ? 'atan' : 'tan'} onClick={() => onKey(isShift ? 'atan(' : 'tan(')} className={buttonClasses.function} />
@@ -486,7 +486,7 @@ function ButtonGrid({
 
       {/* Row 3 - Constants/Memory */}
       <div className="grid grid-cols-8 gap-1">
-        <Button label="Ï€" onClick={() => onKey('Ï€')} className={buttonClasses.function} />
+        <Button label="π" onClick={() => onKey('π')} className={buttonClasses.function} />
         <Button label="e" onClick={() => onKey('e')} className={buttonClasses.function} />
         <Button label="(" onClick={() => onKey('(')} className={buttonClasses.operator} />
         <Button label=")" onClick={() => onKey(')')} className={buttonClasses.operator} />
@@ -498,8 +498,8 @@ function ButtonGrid({
 
       {/* Row 4 - Advanced */}
       <div className="grid grid-cols-8 gap-1">
-        <Button label="3âˆšx" onClick={() => onKey('cbrt(')} className={buttonClasses.advanced} />
-        <Button label="logâ‚‚" onClick={() => onKey('log2(')} className={buttonClasses.advanced} />
+        <Button label="3√x" onClick={() => onKey('cbrt(')} className={buttonClasses.advanced} />
+        <Button label="log₂" onClick={() => onKey('log2(')} className={buttonClasses.advanced} />
         <Button label="x!" onClick={() => onKey('fact(')} className={buttonClasses.advanced} />
         <Button label="nCr" onClick={() => onKey('nCr(')} className={buttonClasses.advanced} />
         <Button label="nPr" onClick={() => onKey('nPr(')} className={buttonClasses.advanced} />
@@ -523,7 +523,7 @@ function ButtonGrid({
         <Button label="7" onClick={() => onKey('7')} className={buttonClasses.number} />
         <Button label="8" onClick={() => onKey('8')} className={buttonClasses.number} />
         <Button label="9" onClick={() => onKey('9')} className={buttonClasses.number} />
-        <Button label="Ã·" onClick={() => onKey('/')} className={buttonClasses.operator} />
+        <Button label="÷" onClick={() => onKey('/')} className={buttonClasses.operator} />
         <Button label="%" onClick={() => onKey('%')} className={buttonClasses.operator} />
         <Button label="abs" onClick={() => onKey('abs(')} className={buttonClasses.function} />
         <Button label="tanh" onClick={() => onKey('tanh(')} className={buttonClasses.function} />
@@ -534,7 +534,7 @@ function ButtonGrid({
         <Button label="4" onClick={() => onKey('4')} className={buttonClasses.number} />
         <Button label="5" onClick={() => onKey('5')} className={buttonClasses.number} />
         <Button label="6" onClick={() => onKey('6')} className={buttonClasses.number} />
-        <Button label="Ã—" onClick={() => onKey('*')} className={buttonClasses.operator} />
+        <Button label="×" onClick={() => onKey('*')} className={buttonClasses.operator} />
         <Button label="^" onClick={() => onKey('^')} className={buttonClasses.operator} />
         <Button label="floor" onClick={() => onKey('floor(')} className={buttonClasses.function} />
         <Button label="ceil" onClick={() => onKey('ceil(')} className={buttonClasses.function} />
@@ -547,9 +547,9 @@ function ButtonGrid({
         <Button label="3" onClick={() => onKey('3')} className={buttonClasses.number} />
         <Button label="-" onClick={() => onKey('-')} className={buttonClasses.operator} />
         <Button label="+" onClick={() => onKey('+')} className={buttonClasses.operator} />
-        <Button label="âˆš3" onClick={() => onKey('cbrt(')} className={buttonClasses.function} />
+        <Button label="√3" onClick={() => onKey('cbrt(')} className={buttonClasses.function} />
         <Button label="i" onClick={() => onKey('i')} className={buttonClasses.function} />
-        <Button label="Â±" onClick={() => onKey('*-1')} className={buttonClasses.operator} />
+        <Button label="±" onClick={() => onKey('*-1')} className={buttonClasses.operator} />
       </div>
 
       {/* Row 8 - Execute & Extras */}
@@ -560,7 +560,7 @@ function ButtonGrid({
         {engine === 'MATRIX' ? (
           <>
             <Button label="A+B" onClick={() => onKey('A+B')} className={buttonClasses.advanced} />
-            <Button label="AÃ—B" onClick={() => onKey('AÃ—B')} className={buttonClasses.advanced} />
+            <Button label="A×B" onClick={() => onKey('A×B')} className={buttonClasses.advanced} />
             <Button label="Mat A" onClick={() => onKey('Mat A')} className={buttonClasses.advanced} />
             <Button label="Mat B" onClick={() => onKey('Mat B')} className={buttonClasses.advanced} />
           </>
@@ -616,7 +616,7 @@ function MatrixInputModal({
             onClick={handleSizeToggle}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            {size.r}Ã—{size.c} (Click to toggle 2Ã—2/3Ã—3)
+            {size.r}×{size.c} (Click to toggle 2×2/3×3)
           </button>
         </div>
 
@@ -723,7 +723,7 @@ function StatInputModal({
                 onClick={() => handleRemoveRow(i)}
                 className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
               >
-                Ã—
+                ×
               </button>
             </div>
           ))}

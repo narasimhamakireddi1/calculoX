@@ -32,15 +32,15 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: 'The EMI Formula',
-        content: 'The standard EMI formula is: EMI = [P Ã— R Ã— (1+R)^N] / [(1+R)^N â€“ 1]. Where: P = Principal loan amount, R = Monthly interest rate (Annual rate Ã· 12 Ã· 100), N = Number of monthly instalments (loan tenure in months). For example: A â‚¹10 lakh loan at 10% annual interest for 5 years gives: R = 10/12/100 = 0.00833, N = 60 months. EMI = [10,00,000 Ã— 0.00833 Ã— (1.00833)^60] / [(1.00833)^60 â€“ 1] = â‚¹21,247 per month.',
+        content: 'The standard EMI formula is: EMI = [P × R × (1+R)^N] / [(1+R)^N â€“ 1]. Where: P = Principal loan amount, R = Monthly interest rate (Annual rate ÷ 12 ÷ 100), N = Number of monthly instalments (loan tenure in months). For example: A ₹10 lakh loan at 10% annual interest for 5 years gives: R = 10/12/100 = 0.00833, N = 60 months. EMI = [10,00,000 × 0.00833 × (1.00833)^60] / [(1.00833)^60 â€“ 1] = ₹21,247 per month.',
       },
       {
         heading: 'Step-by-Step EMI Calculation',
-        content: 'Step 1: Convert annual interest rate to monthly â€” divide by 12 and then by 100. Step 2: Calculate (1 + R)^N using the monthly rate and total months. Step 3: Multiply P Ã— R Ã— (1+R)^N for the numerator. Step 4: Calculate (1+R)^N â€“ 1 for the denominator. Step 5: Divide numerator by denominator to get your monthly EMI.',
+        content: 'Step 1: Convert annual interest rate to monthly â€” divide by 12 and then by 100. Step 2: Calculate (1 + R)^N using the monthly rate and total months. Step 3: Multiply P × R × (1+R)^N for the numerator. Step 4: Calculate (1+R)^N â€“ 1 for the denominator. Step 5: Divide numerator by denominator to get your monthly EMI.',
       },
       {
         heading: 'EMI for Different Loan Types',
-        content: 'Home Loan: Typical rates 8.5-11%, tenure 5-30 years. On a â‚¹50 lakh home loan at 9% for 20 years, EMI = â‚¹44,986. Car Loan: Typical rates 8-14%, tenure 1-7 years. On a â‚¹8 lakh car loan at 10% for 5 years, EMI = â‚¹16,997. Personal Loan: Typical rates 10-24%, tenure 1-5 years. Higher rates mean significantly higher EMI.',
+        content: 'Home Loan: Typical rates 8.5-11%, tenure 5-30 years. On a ₹50 lakh home loan at 9% for 20 years, EMI = ₹44,986. Car Loan: Typical rates 8-14%, tenure 1-7 years. On a ₹8 lakh car loan at 10% for 5 years, EMI = ₹16,997. Personal Loan: Typical rates 10-24%, tenure 1-5 years. Higher rates mean significantly higher EMI.',
       },
       {
         heading: '5 Ways to Reduce Your EMI',
@@ -54,7 +54,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       { question: 'Does EMI change if RBI changes interest rates?', answer: 'For floating-rate loans, yes â€” when RBI changes the repo rate, banks adjust MCLR/EBLR rates, which affect your EMI or loan tenure. For fixed-rate loans, the EMI remains constant.' },
       { question: 'What is the maximum EMI I should pay?', answer: 'Financial advisors recommend keeping total EMI outgo below 40-50% of your monthly take-home salary to maintain financial health and emergency funds.' },
-      { question: 'Is it better to pay a higher EMI or longer tenure?', answer: 'A higher EMI with shorter tenure saves significantly on total interest. For a â‚¹30 lakh loan at 9%: 10-year tenure (EMI â‚¹38,016, total interest â‚¹15.6L) vs 20-year tenure (EMI â‚¹26,992, total interest â‚¹34.8L).' },
+      { question: 'Is it better to pay a higher EMI or longer tenure?', answer: 'A higher EMI with shorter tenure saves significantly on total interest. For a ₹30 lakh loan at 9%: 10-year tenure (EMI ₹38,016, total interest ₹15.6L) vs 20-year tenure (EMI ₹26,992, total interest ₹34.8L).' },
       { question: 'Can I change my EMI amount during the loan?', answer: 'Yes, you can request your bank to revise your EMI through: part prepayment (reduces outstanding principal), loan restructuring request, or balance transfer to another lender.' },
       { question: 'What happens to EMI if I make a prepayment?', answer: 'After a prepayment, banks typically offer two options: reduce your EMI amount (keeping tenure same) or reduce tenure (keeping EMI same). Reducing tenure saves more interest overall.' },
     ],
@@ -73,19 +73,19 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         heading: 'What is SIP (Systematic Investment Plan)?',
-        content: 'A Systematic Investment Plan (SIP) is a disciplined way of investing a fixed amount in mutual funds at regular intervals â€” weekly, monthly, or quarterly. SIP allows you to invest even small amounts (starting â‚¹500/month) and benefit from the power of compounding over time. It is the most popular investment method for retail investors in India.',
+        content: 'A Systematic Investment Plan (SIP) is a disciplined way of investing a fixed amount in mutual funds at regular intervals â€” weekly, monthly, or quarterly. SIP allows you to invest even small amounts (starting ₹500/month) and benefit from the power of compounding over time. It is the most popular investment method for retail investors in India.',
       },
       {
         heading: 'How SIP Returns are Calculated',
-        content: 'SIP returns use the Future Value formula: FV = PMT Ã— (((1 + r)^n â€“ 1) / r) Ã— (1 + r). Where: PMT = Monthly investment amount, r = Monthly return rate (Annual return % Ã· 12 Ã· 100), n = Total number of months. Example: â‚¹5,000/month for 10 years at 12% annual return gives: r = 0.01, n = 120. FV = 5000 Ã— (((1.01)^120 â€“ 1) / 0.01) Ã— 1.01 = â‚¹11,61,695. Total invested = â‚¹6,00,000. Total gain = â‚¹5,61,695.',
+        content: 'SIP returns use the Future Value formula: FV = PMT × (((1 + r)^n â€“ 1) / r) × (1 + r). Where: PMT = Monthly investment amount, r = Monthly return rate (Annual return % ÷ 12 ÷ 100), n = Total number of months. Example: ₹5,000/month for 10 years at 12% annual return gives: r = 0.01, n = 120. FV = 5000 × (((1.01)^120 â€“ 1) / 0.01) × 1.01 = ₹11,61,695. Total invested = ₹6,00,000. Total gain = ₹5,61,695.',
       },
       {
         heading: 'The Power of Starting Early',
-        content: 'Starting your SIP 10 years earlier can double or triple your final corpus. Consider: Person A invests â‚¹5,000/month from age 25 to 55 (30 years at 12%) = Final corpus: â‚¹1.75 crore (invested â‚¹18 lakh). Person B invests â‚¹5,000/month from age 35 to 55 (20 years at 12%) = Final corpus: â‚¹49.9 lakh (invested â‚¹12 lakh). Starting 10 years earlier gives 3.5x more wealth!',
+        content: 'Starting your SIP 10 years earlier can double or triple your final corpus. Consider: Person A invests ₹5,000/month from age 25 to 55 (30 years at 12%) = Final corpus: ₹1.75 crore (invested ₹18 lakh). Person B invests ₹5,000/month from age 35 to 55 (20 years at 12%) = Final corpus: ₹49.9 lakh (invested ₹12 lakh). Starting 10 years earlier gives 3.5x more wealth!',
       },
       {
         heading: 'What is Step-Up SIP?',
-        content: 'Step-Up SIP means increasing your monthly investment amount each year by a fixed percentage (typically 10-15%). This mirrors your income growth and dramatically boosts your final corpus. Example: Starting at â‚¹5,000/month with 10% step-up yearly for 15 years at 12% return gives â‚¹67.8 lakh â€” vs â‚¹25.2 lakh with a regular SIP of â‚¹5,000/month. Use our SIP calculator to compare both scenarios.',
+        content: 'Step-Up SIP means increasing your monthly investment amount each year by a fixed percentage (typically 10-15%). This mirrors your income growth and dramatically boosts your final corpus. Example: Starting at ₹5,000/month with 10% step-up yearly for 15 years at 12% return gives ₹67.8 lakh â€” vs ₹25.2 lakh with a regular SIP of ₹5,000/month. Use our SIP calculator to compare both scenarios.',
       },
       {
         heading: 'Best Mutual Funds for SIP in India',
@@ -93,13 +93,13 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: 'How to Use Our SIP Calculator',
-        content: 'Our free SIP Calculator makes it easy: 1. Enter your monthly investment amount (â‚¹500 to â‚¹10 lakh). 2. Set the investment duration (1 to 40 years). 3. Enter expected annual return (typically 10-15% for equity funds). 4. Optionally set Step-Up % to see accelerated growth. 5. Click Calculate to see total investment, future value, and growth chart.',
+        content: 'Our free SIP Calculator makes it easy: 1. Enter your monthly investment amount (₹500 to ₹10 lakh). 2. Set the investment duration (1 to 40 years). 3. Enter expected annual return (typically 10-15% for equity funds). 4. Optionally set Step-Up % to see accelerated growth. 5. Click Calculate to see total investment, future value, and growth chart.',
       },
     ],
     faqs: [
       { question: 'Is SIP safe for investment?', answer: 'SIP in mutual funds is subject to market risk. However, long-term SIPs (10+ years) in diversified equity funds have historically given positive returns in India. SIP reduces risk through rupee cost averaging.' },
       { question: 'Can I stop SIP anytime?', answer: 'Yes, SIPs are flexible. You can pause, stop, or modify your SIP at any time without any penalty (for most mutual funds). However, staying invested longer gives better returns.' },
-      { question: 'What is the minimum SIP amount?', answer: 'Most mutual funds allow SIP starting from â‚¹100-500 per month. Some funds allow â‚¹100/month. ELSS (tax-saving) funds typically start from â‚¹500/month.' },
+      { question: 'What is the minimum SIP amount?', answer: 'Most mutual funds allow SIP starting from ₹100-500 per month. Some funds allow ₹100/month. ELSS (tax-saving) funds typically start from ₹500/month.' },
       { question: 'What is NAV in mutual funds?', answer: 'NAV (Net Asset Value) is the per-unit price of a mutual fund. When you invest via SIP, your money buys units at the current NAV. As NAV grows over time, your investment value increases.' },
       { question: 'SIP vs Lump Sum â€” which is better?', answer: 'For most retail investors, SIP is better because it removes the need to time the market, averages out purchase costs, and enforces financial discipline. Lump sum can give better returns if you invest at market lows, but requires good market timing.' },
     ],
@@ -122,31 +122,31 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: 'New Tax Regime Slabs FY 2024-25',
-        content: 'Income up to â‚¹3 lakh: NIL. â‚¹3-7 lakh: 5%. â‚¹7-10 lakh: 10%. â‚¹10-12 lakh: 15%. â‚¹12-15 lakh: 20%. Above â‚¹15 lakh: 30%. Standard deduction: â‚¹75,000 for salaried. Section 87A rebate: Income up to â‚¹7 lakh (after standard deduction) = Zero tax effectively up to â‚¹7.75 lakh.',
+        content: 'Income up to ₹3 lakh: NIL. ₹3-7 lakh: 5%. ₹7-10 lakh: 10%. ₹10-12 lakh: 15%. ₹12-15 lakh: 20%. Above ₹15 lakh: 30%. Standard deduction: ₹75,000 for salaried. Section 87A rebate: Income up to ₹7 lakh (after standard deduction) = Zero tax effectively up to ₹7.75 lakh.',
       },
       {
         heading: 'Old Tax Regime Slabs FY 2024-25',
-        content: 'Income up to â‚¹2.5 lakh: NIL. â‚¹2.5-5 lakh: 5%. â‚¹5-10 lakh: 20%. Above â‚¹10 lakh: 30%. Standard deduction: â‚¹50,000. Section 87A rebate available up to â‚¹5 lakh income. Key deductions available: 80C (â‚¹1.5L), 80D (â‚¹25,000-â‚¹50,000), HRA, LTA, home loan interest (â‚¹2L).',
+        content: 'Income up to ₹2.5 lakh: NIL. ₹2.5-5 lakh: 5%. ₹5-10 lakh: 20%. Above ₹10 lakh: 30%. Standard deduction: ₹50,000. Section 87A rebate available up to ₹5 lakh income. Key deductions available: 80C (₹1.5L), 80D (₹25,000-₹50,000), HRA, LTA, home loan interest (₹2L).',
       },
       {
         heading: 'Which Regime Saves More Tax?',
-        content: 'New Regime wins when: Your total deductions are below â‚¹3.75 lakh, You have minimal investments/insurance, Income is below â‚¹7 lakh. Old Regime wins when: Total deductions exceed â‚¹3.75 lakh, You have home loan interest + 80C + HRA together, You are in the 30% tax bracket with maximum deductions.',
+        content: 'New Regime wins when: Your total deductions are below ₹3.75 lakh, You have minimal investments/insurance, Income is below ₹7 lakh. Old Regime wins when: Total deductions exceed ₹3.75 lakh, You have home loan interest + 80C + HRA together, You are in the 30% tax bracket with maximum deductions.',
       },
       {
         heading: 'Real Examples: Tax Savings Comparison',
-        content: 'Example 1 (â‚¹10 lakh income, minimal deductions): New Regime tax = â‚¹54,600. Old Regime tax = â‚¹75,000. Winner: New Regime (saves â‚¹20,400). Example 2 (â‚¹15 lakh income, max deductions of â‚¹4.5L): New Regime tax = â‚¹1,26,750. Old Regime tax = â‚¹93,600. Winner: Old Regime (saves â‚¹33,150). Use our Tax Calculator to find your own break-even point.',
+        content: 'Example 1 (₹10 lakh income, minimal deductions): New Regime tax = ₹54,600. Old Regime tax = ₹75,000. Winner: New Regime (saves ₹20,400). Example 2 (₹15 lakh income, max deductions of ₹4.5L): New Regime tax = ₹1,26,750. Old Regime tax = ₹93,600. Winner: Old Regime (saves ₹33,150). Use our Tax Calculator to find your own break-even point.',
       },
       {
         heading: 'How to Decide Which Regime to Choose',
-        content: 'Step 1: Calculate your total eligible deductions (80C + 80D + HRA + Home Loan + others). Step 2: Use our Tax Calculator to compute tax under both regimes. Step 3: Choose the regime with lower tax. Step 4: If difference is small (<â‚¹5,000), choose New Regime for simplicity. Remember: you can switch regimes every year (if you are salaried).',
+        content: 'Step 1: Calculate your total eligible deductions (80C + 80D + HRA + Home Loan + others). Step 2: Use our Tax Calculator to compute tax under both regimes. Step 3: Choose the regime with lower tax. Step 4: If difference is small (<₹5,000), choose New Regime for simplicity. Remember: you can switch regimes every year (if you are salaried).',
       },
     ],
     faqs: [
       { question: 'Can I switch between new and old tax regime every year?', answer: 'Salaried employees can switch between regimes every year when filing ITR. Business owners/professionals can switch only once from Old to New regime (and back once too).' },
       { question: 'Is HRA exempt in the new tax regime?', answer: 'No, HRA exemption is NOT available under the New Tax Regime. This is one of the major reasons why people with high HRA (living in metro cities) may benefit from the Old Regime.' },
-      { question: 'What is the standard deduction in new regime 2024-25?', answer: 'The standard deduction under the New Tax Regime was increased from â‚¹50,000 to â‚¹75,000 in Union Budget 2024. This is automatically available to salaried employees without any investment proof.' },
+      { question: 'What is the standard deduction in new regime 2024-25?', answer: 'The standard deduction under the New Tax Regime was increased from ₹50,000 to ₹75,000 in Union Budget 2024. This is automatically available to salaried employees without any investment proof.' },
       { question: 'Is Section 80C available in new regime?', answer: 'No, Section 80C deduction (PPF, ELSS, LIC, etc.) is NOT available under the New Tax Regime. However, employer contribution to NPS under Section 80CCD(2) is allowed.' },
-      { question: 'What is the surcharge in new tax regime?', answer: 'For income above â‚¹50 lakh, surcharge applies: 10% for â‚¹50L-1Cr, 15% for â‚¹1Cr-2Cr, 25% for â‚¹2Cr-5Cr, and 25% (reduced from 37%) for above â‚¹5Cr under new regime.' },
+      { question: 'What is the surcharge in new tax regime?', answer: 'For income above ₹50 lakh, surcharge applies: 10% for ₹50L-1Cr, 15% for ₹1Cr-2Cr, 25% for ₹2Cr-5Cr, and 25% (reduced from 37%) for above ₹5Cr under new regime.' },
     ],
   },
   {
@@ -163,7 +163,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         heading: 'What is BMI?',
-        content: 'Body Mass Index (BMI) is a simple numerical index calculated from your height and weight. The formula is: BMI = Weight (kg) Ã· HeightÂ² (mÂ²). While BMI is not a perfect measure of health, it is a widely-used screening tool to identify potential weight-related health risks.',
+        content: 'Body Mass Index (BMI) is a simple numerical index calculated from your height and weight. The formula is: BMI = Weight (kg) ÷ HeightÂ² (mÂ²). While BMI is not a perfect measure of health, it is a widely-used screening tool to identify potential weight-related health risks.',
       },
       {
         heading: 'Standard BMI Categories',
@@ -212,11 +212,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: 'The CAGR Formula',
-        content: 'CAGR = (Ending Value / Beginning Value)^(1/n) â€“ 1. Where n = Number of years. Example: You invested â‚¹1,00,000 in a mutual fund. After 5 years, it grew to â‚¹1,76,234. CAGR = (1,76,234 / 1,00,000)^(1/5) â€“ 1 = (1.76234)^0.2 â€“ 1 = 1.12 â€“ 1 = 0.12 = 12% CAGR. This means your investment grew at a compounded rate of 12% per year.',
+        content: 'CAGR = (Ending Value / Beginning Value)^(1/n) â€“ 1. Where n = Number of years. Example: You invested ₹1,00,000 in a mutual fund. After 5 years, it grew to ₹1,76,234. CAGR = (1,76,234 / 1,00,000)^(1/5) â€“ 1 = (1.76234)^0.2 â€“ 1 = 1.12 â€“ 1 = 0.12 = 12% CAGR. This means your investment grew at a compounded rate of 12% per year.',
       },
       {
         heading: 'CAGR vs Absolute Return vs Simple Interest',
-        content: 'Absolute Return: Total % gain/loss ignoring time. Example: â‚¹1L â†’ â‚¹2L = 100% absolute return (but over how long?). Simple Return/CAGR: 100% over 10 years = 7.18% CAGR (much less impressive!). 100% over 3 years = 26% CAGR (much better!). CAGR is always better for comparing investments of different durations.',
+        content: 'Absolute Return: Total % gain/loss ignoring time. Example: ₹1L â†’ ₹2L = 100% absolute return (but over how long?). Simple Return/CAGR: 100% over 10 years = 7.18% CAGR (much less impressive!). 100% over 3 years = 26% CAGR (much better!). CAGR is always better for comparing investments of different durations.',
       },
       {
         heading: 'Where CAGR is Used in Finance',
@@ -236,7 +236,7 @@ export const blogPosts: BlogPost[] = [
       { question: 'Is higher CAGR always better?', answer: 'Not necessarily. Higher CAGR often comes with higher risk and volatility. A 20% CAGR small-cap fund may have years of -40% returns, while a 12% CAGR large-cap fund is more stable. Consider risk-adjusted returns (Sharpe ratio) alongside CAGR.' },
       { question: 'What is the difference between CAGR and IRR?', answer: 'CAGR measures growth between two specific points in time (beginning and ending value). IRR (Internal Rate of Return) accounts for irregular cash flows at different time periods. For SIP investments with monthly contributions, IRR (or XIRR in Excel) is more appropriate than CAGR.' },
       { question: 'How is CAGR different from XIRR?', answer: 'CAGR works for lump sum investments (one beginning value, one ending value). XIRR is used for multiple cash flows at different dates â€” like monthly SIP investments. When evaluating SIP returns, always use XIRR for accuracy.' },
-      { question: 'Can CAGR be negative?', answer: 'Yes, if the ending value is less than the beginning value, CAGR will be negative. For example, if â‚¹1 lakh invested in 2020 became â‚¹80,000 by 2025, CAGR = (80,000/1,00,000)^(1/5) â€“ 1 = -4.3%. This means the investment lost value at 4.3% per year.' },
+      { question: 'Can CAGR be negative?', answer: 'Yes, if the ending value is less than the beginning value, CAGR will be negative. For example, if ₹1 lakh invested in 2020 became ₹80,000 by 2025, CAGR = (80,000/1,00,000)^(1/5) â€“ 1 = -4.3%. This means the investment lost value at 4.3% per year.' },
     ],
   },
   {
@@ -251,19 +251,19 @@ export const blogPosts: BlogPost[] = [
     keywords: ['FD calculator', 'fixed deposit calculator', 'FD interest calculator India', 'FD maturity', 'bank FD rates', 'senior citizen FD'],
     relatedCalculator: { name: 'FD Calculator', href: '/fd-calculator' },
     sections: [
-      { heading: 'What is a Fixed Deposit?', content: 'A Fixed Deposit (FD) is a financial instrument offered by banks where you deposit a lump sum amount for a fixed tenure at a predetermined interest rate. FDs are the safest investment option in India with DICGC insurance coverage up to â‚¹5 lakh. Interest is calculated quarterly and either reinvested (cumulative) or paid out periodically (non-cumulative).' },
-      { heading: 'How FD Interest is Calculated', content: 'For cumulative FDs: A = P Ã— (1 + r/4)^(4n) where P is principal, r is annual rate, n is years. For quarterly payout FDs: Interest each quarter = P Ã— (r/4) Ã— (1/100). Senior citizens get an additional 0.50% interest across most banks. Use our FD Calculator to compute exact maturity amounts for different tenures.' },
+      { heading: 'What is a Fixed Deposit?', content: 'A Fixed Deposit (FD) is a financial instrument offered by banks where you deposit a lump sum amount for a fixed tenure at a predetermined interest rate. FDs are the safest investment option in India with DICGC insurance coverage up to ₹5 lakh. Interest is calculated quarterly and either reinvested (cumulative) or paid out periodically (non-cumulative).' },
+      { heading: 'How FD Interest is Calculated', content: 'For cumulative FDs: A = P × (1 + r/4)^(4n) where P is principal, r is annual rate, n is years. For quarterly payout FDs: Interest each quarter = P × (r/4) × (1/100). Senior citizens get an additional 0.50% interest across most banks. Use our FD Calculator to compute exact maturity amounts for different tenures.' },
       { heading: 'Cumulative vs Non-Cumulative Payouts', content: 'Cumulative FD: Interest is reinvested, giving you the full compounded amount at maturity (best for long-term goals). Non-Cumulative FD: Interest is paid quarterly/monthly to your account (suitable for regular income needs during retirement). Shorter tenures and higher payout frequencies typically have slightly lower interest rates.' },
-      { heading: 'Senior Citizen FD Benefits', content: 'Senior citizens (age 60+) enjoy: 0.50% additional interest on FDs, special tenure options, higher deposit limits for tax benefits, tax advantages on interest (if below â‚¹50,000 in FY). Many banks also offer sweep-in FD facilities for seniors. Always compare senior citizen FD rates across banks before investing.' },
+      { heading: 'Senior Citizen FD Benefits', content: 'Senior citizens (age 60+) enjoy: 0.50% additional interest on FDs, special tenure options, higher deposit limits for tax benefits, tax advantages on interest (if below ₹50,000 in FY). Many banks also offer sweep-in FD facilities for seniors. Always compare senior citizen FD rates across banks before investing.' },
       { heading: 'FD Tenure Options & Lock-In', content: 'Typical FD tenures: 7 days to 10 years. Short-term FDs (< 6 months) use simple interest. Longer tenures (5-10 years) offer higher rates. Premature withdrawal is allowed but incurs interest penalty (0.5-1% below contracted rate). No-penalty FD option now available at some banks.' },
-      { heading: 'Tax on FD Interest', content: 'FD interest is added to your taxable income each FY. TDS of 20% is deducted if interest exceeds â‚¹40,000 (seniors: â‚¹50,000). You can submit Form 15G/15H to avoid TDS. Most banks offer Tax-saving FDs under Section 80C with 5-year lock-in (interest fully taxable but principal deductible).' },
+      { heading: 'Tax on FD Interest', content: 'FD interest is added to your taxable income each FY. TDS of 20% is deducted if interest exceeds ₹40,000 (seniors: ₹50,000). You can submit Form 15G/15H to avoid TDS. Most banks offer Tax-saving FDs under Section 80C with 5-year lock-in (interest fully taxable but principal deductible).' },
     ],
     faqs: [
       { question: 'What is the current FD interest rate in India?', answer: 'As of May 2024, FD rates range from 5.0-6.5% for 1-year FDs across major banks. Senior citizens get 0.50% additional. Compare rates across SBI, ICICI, HDFC, Axis, Kotak, IndusInd banks on our calculator.' },
-      { question: 'Is FD safer than mutual funds?', answer: 'Yes, FDs are backed by DICGC insurance (â‚¹5L coverage per bank) and have fixed returns. Mutual funds involve market risk but offer higher long-term returns (10-15% CAGR vs 5-7% FD). For emergency funds, FDs are safer. For wealth creation, diversify with both.' },
+      { question: 'Is FD safer than mutual funds?', answer: 'Yes, FDs are backed by DICGC insurance (₹5L coverage per bank) and have fixed returns. Mutual funds involve market risk but offer higher long-term returns (10-15% CAGR vs 5-7% FD). For emergency funds, FDs are safer. For wealth creation, diversify with both.' },
       { question: 'Should I choose cumulative or non-cumulative FD?', answer: 'Choose cumulative if you don\'t need regular income and want maximum maturity amount (best for long-term goals). Choose non-cumulative if you need regular interest payouts (retirees, income needs). Cumulative FDs typically have 0.25-0.50% higher rates.' },
       { question: 'Can I withdraw FD before maturity?', answer: 'Yes, premature withdrawal is allowed but incurs interest penalty of 0.50-1.00% below the contracted rate. Some "no-penalty FD" schemes allow penalty-free withdrawal after a lock-in period. Check terms with your bank before investing.' },
-      { question: 'Are senior citizen FDs worth it?', answer: 'Yes, the 0.50% additional interest is significant over 5-10 years. On a â‚¹10 lakh FD at 6.5% for 5 years: regular FD maturity â‚¹13.52L vs senior FD maturity â‚¹13.80L (â‚¹28K extra). Always compare senior rates across banks.' },
+      { question: 'Are senior citizen FDs worth it?', answer: 'Yes, the 0.50% additional interest is significant over 5-10 years. On a ₹10 lakh FD at 6.5% for 5 years: regular FD maturity ₹13.52L vs senior FD maturity ₹13.80L (₹28K extra). Always compare senior rates across banks.' },
     ],
   },
   {
@@ -278,17 +278,17 @@ export const blogPosts: BlogPost[] = [
     keywords: ['RD calculator', 'recurring deposit calculator', 'RD interest calculator', 'RD maturity', 'RD vs FD', 'bank RD rates'],
     relatedCalculator: { name: 'RD Calculator', href: '/rd-calculator' },
     sections: [
-      { heading: 'What is a Recurring Deposit (RD)?', content: 'An RD is a savings scheme where you deposit a fixed amount monthly for a set period (3 months to 10 years). At maturity, you receive the total deposits plus compounded interest. RDs are ideal for building discipline into savings and are safer than mutual funds. DICGC insurance covers up to â‚¹5 lakh.' },
-      { heading: 'How RD Interest is Calculated', content: 'RD uses compound interest calculated monthly: RD = PMT Ã— (((1 + r)^n â€“ 1) / r) Ã— (1 + r) where PMT is monthly deposit, r is monthly rate (annual rate/12/100), n is number of months. Example: â‚¹1,000/month for 5 years at 6% gives maturity of â‚¹65,300. Use our calculator for instant results.' },
-      { heading: 'RD vs FD: Which is Better?', content: 'FD: Lump sum investment, higher interest rate, fixed maturity amount, best if you have savings ready. RD: Monthly investment, slightly lower rates, enforces discipline, ideal if earning monthly salary. For 5-year investment of â‚¹5L: FD (â‚¹6.65L) slightly beats RD (â‚¹6.53L) but RD is better for salaried employees.' },
+      { heading: 'What is a Recurring Deposit (RD)?', content: 'An RD is a savings scheme where you deposit a fixed amount monthly for a set period (3 months to 10 years). At maturity, you receive the total deposits plus compounded interest. RDs are ideal for building discipline into savings and are safer than mutual funds. DICGC insurance covers up to ₹5 lakh.' },
+      { heading: 'How RD Interest is Calculated', content: 'RD uses compound interest calculated monthly: RD = PMT × (((1 + r)^n â€“ 1) / r) × (1 + r) where PMT is monthly deposit, r is monthly rate (annual rate/12/100), n is number of months. Example: ₹1,000/month for 5 years at 6% gives maturity of ₹65,300. Use our calculator for instant results.' },
+      { heading: 'RD vs FD: Which is Better?', content: 'FD: Lump sum investment, higher interest rate, fixed maturity amount, best if you have savings ready. RD: Monthly investment, slightly lower rates, enforces discipline, ideal if earning monthly salary. For 5-year investment of ₹5L: FD (₹6.65L) slightly beats RD (₹6.53L) but RD is better for salaried employees.' },
       { heading: 'RD Tenure & Maturity', content: 'RD tenures range from 3 months to 10 years. Shorter RDs (3-12 months) use simple interest. Interest increases with tenure. Senior citizens get 0.50% additional interest. Current RD rates across banks: 4.5-6.25% for 1-year RD, up to 6.75% for 10-year RD.' },
       { heading: 'RD Withdrawal & Premature Exit', content: 'After maturity, you receive the full amount. Premature withdrawal allowed after completing one quarter (3 months). Interest penalty: 1-1.5% below contracted rate. Some banks allow monthly withdrawal of interest while keeping principal intact.' },
-      { heading: 'RD for Wealth Building', content: 'RD builds discipline and wealth through consistent monthly investing. Starting â‚¹5,000/month RD at 25 years old: After 30 years at 6% = â‚¹37.4 lakh. Same in FD (single deposit) would require â‚¹1.2 lakh upfront. RDs make wealth building achievable for middle-income earners without large capital.' },
+      { heading: 'RD for Wealth Building', content: 'RD builds discipline and wealth through consistent monthly investing. Starting ₹5,000/month RD at 25 years old: After 30 years at 6% = ₹37.4 lakh. Same in FD (single deposit) would require ₹1.2 lakh upfront. RDs make wealth building achievable for middle-income earners without large capital.' },
     ],
     faqs: [
-      { question: 'What is the minimum monthly deposit for RD?', answer: 'Most banks allow RD starting from â‚¹100-500/month. Some banks offer RD in multiples (â‚¹100, â‚¹500, â‚¹1000). No upper limit â€” you can invest as much as you want.' },
+      { question: 'What is the minimum monthly deposit for RD?', answer: 'Most banks allow RD starting from ₹100-500/month. Some banks offer RD in multiples (₹100, ₹500, ₹1000). No upper limit â€” you can invest as much as you want.' },
       { question: 'Can I skip RD payments?', answer: 'Bank policies vary. Skipping 2-3 monthly payments usually requires paying penalty and interest. Some banks allow you to restart the RD after default. Check your bank\'s specific RD terms.' },
-      { question: 'Is RD interest taxable?', answer: 'Yes, RD interest is fully taxable as income. If total interest exceeds â‚¹40,000 (â‚¹50,000 for seniors) in a FY, TDS of 20% is deducted. Submit Form 15G/15H to avoid TDS if your total income is below tax threshold.' },
+      { question: 'Is RD interest taxable?', answer: 'Yes, RD interest is fully taxable as income. If total interest exceeds ₹40,000 (₹50,000 for seniors) in a FY, TDS of 20% is deducted. Submit Form 15G/15H to avoid TDS if your total income is below tax threshold.' },
       { question: 'Can I increase my RD monthly contribution?', answer: 'Most banks allow you to increase RD amount, but this is treated as a separate RD facility. Some new "flexible RD" schemes allow monthly increases without opening new deposits. Check with your bank.' },
       { question: 'Which bank offers the best RD rates?', answer: 'As of May 2024, RD rates vary from 4.5-6.75% across banks. Small Finance Banks often offer higher rates (6-7%) than PSU banks (5-6%). Compare rates and safety (DICGC coverage) before choosing.' },
     ],
@@ -306,14 +306,14 @@ export const blogPosts: BlogPost[] = [
     relatedCalculator: { name: 'GST Calculator', href: '/gst-calculator' },
     sections: [
       { heading: 'What is GST?', content: 'GST (Goods and Services Tax) is a single indirect tax levied on the supply of goods and services in India. Implemented on July 1, 2017, it replaced multiple taxes. GST is destination-based consumption tax â€” tax payable where goods are consumed. Current GST rates: 5%, 12%, 18%, and 28% depending on product type.' },
-      { heading: 'GST Slabs Explained', content: '5% GST: Essential items (groceries, medicines, books, edible oils). 12% GST: Mid-range items (processed foods, electronics components, textiles). 18% GST: Most goods and services (apparel, electrical appliances, restaurants, salon services). 28% GST: Luxury items (cars >â‚¹10L, premium alcohol, certain cosmetics, jewelry >â‚¹100K).' },
-      { heading: 'SGST vs CGST vs IGST', content: 'SGST: State GST (collected by state government) = 50% of GST. CGST: Central GST (collected by central government) = 50% of GST. IGST: Integrated GST for interstate supply = total GST. Example: â‚¹1000 item at 18% within state = â‚¹90 SGST + â‚¹90 CGST. Same item interstate = â‚¹180 IGST.' },
-      { heading: 'Calculating GST: Examples', content: 'Adding GST: Price â‚¹1000, apply 18% GST = â‚¹1000 + â‚¹180 = â‚¹1180. Removing GST: Price â‚¹1180 (inclusive), remove 18% = â‚¹1180 / 1.18 = â‚¹1000. Exclusive vs Inclusive: "â‚¹1000 + GST" = â‚¹1180 total. "â‚¹1000 inclusive of GST" = â‚¹1180 already (no additional tax).' },
-      { heading: 'GST Exemptions & Special Cases', content: 'Exempt from GST: Agricultural products from farmers, education (schools/colleges), healthcare (doctor consultations), financial services. Special cases: Zero-rated exports (0% GST), small businesses <â‚¹40L turnover (not mandated to register), e-commerce entities (additional marketplace IGST rules).' },
+      { heading: 'GST Slabs Explained', content: '5% GST: Essential items (groceries, medicines, books, edible oils). 12% GST: Mid-range items (processed foods, electronics components, textiles). 18% GST: Most goods and services (apparel, electrical appliances, restaurants, salon services). 28% GST: Luxury items (cars >₹10L, premium alcohol, certain cosmetics, jewelry >₹100K).' },
+      { heading: 'SGST vs CGST vs IGST', content: 'SGST: State GST (collected by state government) = 50% of GST. CGST: Central GST (collected by central government) = 50% of GST. IGST: Integrated GST for interstate supply = total GST. Example: ₹1000 item at 18% within state = ₹90 SGST + ₹90 CGST. Same item interstate = ₹180 IGST.' },
+      { heading: 'Calculating GST: Examples', content: 'Adding GST: Price ₹1000, apply 18% GST = ₹1000 + ₹180 = ₹1180. Removing GST: Price ₹1180 (inclusive), remove 18% = ₹1180 / 1.18 = ₹1000. Exclusive vs Inclusive: "₹1000 + GST" = ₹1180 total. "₹1000 inclusive of GST" = ₹1180 already (no additional tax).' },
+      { heading: 'GST Exemptions & Special Cases', content: 'Exempt from GST: Agricultural products from farmers, education (schools/colleges), healthcare (doctor consultations), financial services. Special cases: Zero-rated exports (0% GST), small businesses <₹40L turnover (not mandated to register), e-commerce entities (additional marketplace IGST rules).' },
       { heading: 'Use Our GST Calculator', content: 'Our free calculator instantly: Adds GST to any amount at 5%/12%/18%/28%. Removes GST from inclusive prices. Shows SGST/CGST/IGST breakdowns. No registration needed â€” calculate on the go.' },
     ],
     faqs: [
-      { question: 'What is the difference between GST-exclusive and GST-inclusive prices?', answer: 'â‚¹1000 exclusive of GST (18%) means you pay â‚¹1180 total (â‚¹1000 + â‚¹180 GST). â‚¹1000 inclusive of GST means you pay â‚¹1000 total, with â‚¹847 being product cost and â‚¹153 GST.' },
+      { question: 'What is the difference between GST-exclusive and GST-inclusive prices?', answer: '₹1000 exclusive of GST (18%) means you pay ₹1180 total (₹1000 + ₹180 GST). ₹1000 inclusive of GST means you pay ₹1000 total, with ₹847 being product cost and ₹153 GST.' },
       { question: 'Can I claim GST refund?', answer: 'Registered businesses can claim GST credits on purchases (input GST) against sales GST (output GST). Consumers generally cannot claim refunds unless you export goods. Some states offer GST refunds for exports.' },
       { question: 'What items have 5% GST?', answer: 'Essential items: Groceries, vegetables, wheat, rice, salt, non-branded books, newspapers, medicines (most), edible oils, biscuits, bread, milk.' },
       { question: 'Is restaurant bill taxed at 18% GST?', answer: 'Yes, restaurant dining (eating on premises) is taxed at 18% GST. However, takeaway food may be 5% GST depending on restaurant classification. Fast food chains typically charge 5% GST.' },
@@ -333,18 +333,18 @@ export const blogPosts: BlogPost[] = [
     relatedCalculator: { name: 'Percentage Calculator', href: '/percentage-calculator' },
     sections: [
       { heading: 'What is Percentage?', content: 'Percentage means "per hundred" â€” a way to express a number as a fraction of 100. Symbol: %. Example: 25% = 25/100 = 0.25. Percentages are used everywhere: discounts, salary increases, interest rates, test scores, inflation, profit margins.' },
-      { heading: 'Method 1: Percentage Hike/Discount', content: 'Formula: New Amount = Original Ã— (1 Â± P/100). Hike: â‚¹1000 + 20% increase = 1000 Ã— 1.20 = â‚¹1200. Discount: â‚¹1000 - 30% discount = 1000 Ã— 0.70 = â‚¹700. Example: Salary â‚¹50,000 gets 15% increment = â‚¹50,000 Ã— 1.15 = â‚¹57,500.' },
-      { heading: 'Method 2: What Percent of X is Y?', content: 'Formula: Percentage = (Y/X) Ã— 100. Example: What % of 400 is 100? = (100/400) Ã— 100 = 25%. Real use: Test score 75 out of 100 = 75% score. Profit â‚¹20,000 on cost â‚¹100,000 = 20% profit margin.' },
-      { heading: 'Method 3: Percentage Change', content: 'Formula: % Change = ((New â€“ Old) / Old) Ã— 100. Example: Stock price moved from â‚¹100 to â‚¹130 = ((130-100)/100) Ã— 100 = 30% increase. Loss: â‚¹150 to â‚¹120 = ((120-150)/150) Ã— 100 = -20% decrease. Useful for analyzing growth rates, inflation, population change.' },
-      { heading: 'Method 4: Reverse Percentage (Find Base)', content: 'Formula: Base = (Known Amount Ã— 100) / Percentage. Example: If 25% discount = â‚¹750 saved, original price = (750 Ã— 100) / 25 = â‚¹3000. Use case: When you know the discount/tax amount and percentage, find original price.' },
-      { heading: 'Method 5 & 6: Sequential Percentages', content: 'Two percentage increases: â‚¹1000 + 10% then + 20% = 1000 Ã— 1.10 Ã— 1.20 = â‚¹1320 (not 1300!). Common in: successive markups, multi-year compounding, sales with multiple discounts. Formula: New = Base Ã— (1+P1/100) Ã— (1+P2/100).' },
+      { heading: 'Method 1: Percentage Hike/Discount', content: 'Formula: New Amount = Original × (1 ± P/100). Hike: ₹1000 + 20% increase = 1000 × 1.20 = ₹1200. Discount: ₹1000 - 30% discount = 1000 × 0.70 = ₹700. Example: Salary ₹50,000 gets 15% increment = ₹50,000 × 1.15 = ₹57,500.' },
+      { heading: 'Method 2: What Percent of X is Y?', content: 'Formula: Percentage = (Y/X) × 100. Example: What % of 400 is 100? = (100/400) × 100 = 25%. Real use: Test score 75 out of 100 = 75% score. Profit ₹20,000 on cost ₹100,000 = 20% profit margin.' },
+      { heading: 'Method 3: Percentage Change', content: 'Formula: % Change = ((New â€“ Old) / Old) × 100. Example: Stock price moved from ₹100 to ₹130 = ((130-100)/100) × 100 = 30% increase. Loss: ₹150 to ₹120 = ((120-150)/150) × 100 = -20% decrease. Useful for analyzing growth rates, inflation, population change.' },
+      { heading: 'Method 4: Reverse Percentage (Find Base)', content: 'Formula: Base = (Known Amount × 100) / Percentage. Example: If 25% discount = ₹750 saved, original price = (750 × 100) / 25 = ₹3000. Use case: When you know the discount/tax amount and percentage, find original price.' },
+      { heading: 'Method 5 & 6: Sequential Percentages', content: 'Two percentage increases: ₹1000 + 10% then + 20% = 1000 × 1.10 × 1.20 = ₹1320 (not 1300!). Common in: successive markups, multi-year compounding, sales with multiple discounts. Formula: New = Base × (1+P1/100) × (1+P2/100).' },
     ],
     faqs: [
       { question: 'What is the difference between percent and percentage?', answer: 'They mean the same thing. "Percent" = the unit (5 percent). "Percentage" = the amount or relative value (a large percentage of people). Use them interchangeably.' },
-      { question: 'How to calculate discount percentage?', answer: 'Discount % = (Discount Amount / Original Price) Ã— 100. Example: â‚¹200 discount on â‚¹1000 item = (200/1000) Ã— 100 = 20% discount. Final price = â‚¹1000 - â‚¹200 = â‚¹800.' },
-      { question: 'How to calculate percentage increase?', answer: '% Increase = ((New Value â€“ Old Value) / Old Value) Ã— 100. Example: Salary increased from â‚¹40,000 to â‚¹50,000 = ((50000-40000)/40000) Ã— 100 = 25% increase.' },
+      { question: 'How to calculate discount percentage?', answer: 'Discount % = (Discount Amount / Original Price) × 100. Example: ₹200 discount on ₹1000 item = (200/1000) × 100 = 20% discount. Final price = ₹1000 - ₹200 = ₹800.' },
+      { question: 'How to calculate percentage increase?', answer: '% Increase = ((New Value â€“ Old Value) / Old Value) × 100. Example: Salary increased from ₹40,000 to ₹50,000 = ((50000-40000)/40000) × 100 = 25% increase.' },
       { question: 'Can a percentage be more than 100%?', answer: 'Yes. If value doubles, that\'s 100% increase (200% of original). If value triples, that\'s 200% increase (300% of original). Percentages above 100% indicate more than the original amount.' },
-      { question: 'How to apply multiple percentage changes?', answer: 'Multiply all factors: Amount Ã— (1+P1/100) Ã— (1+P2/100) Ã— ... Example: â‚¹1000 with +10% increase and then -20% discount = 1000 Ã— 1.10 Ã— 0.80 = â‚¹880.' },
+      { question: 'How to apply multiple percentage changes?', answer: 'Multiply all factors: Amount × (1+P1/100) × (1+P2/100) × ... Example: ₹1000 with +10% increase and then -20% discount = 1000 × 1.10 × 0.80 = ₹880.' },
     ],
   },
   {
@@ -359,19 +359,19 @@ export const blogPosts: BlogPost[] = [
     keywords: ['simple interest calculator', 'SI calculator', 'simple interest formula', 'simple interest vs compound interest', 'SI calculation'],
     relatedCalculator: { name: 'Simple Interest Calculator', href: '/simple-interest-calculator' },
     sections: [
-      { heading: 'What is Simple Interest?', content: 'Simple Interest (SI) is interest calculated only on the principal amount, not on previously earned interest. Formula: SI = (P Ã— R Ã— T) / 100, where P = principal, R = annual interest rate (%), T = time in years. Example: â‚¹10,000 at 5% for 3 years gives SI = (10000 Ã— 5 Ã— 3) / 100 = â‚¹1,500. Total amount = â‚¹11,500.' },
-      { heading: 'Simple Interest Formula & Calculation', content: 'SI = (P Ã— R Ã— T) / 100. Amount = P + SI = P(1 + RT/100). Example: â‚¹1 lakh at 8% for 2.5 years = (100000 Ã— 8 Ã— 2.5) / 100 = â‚¹20,000 interest. Total = â‚¹1,20,000. Works for personal loans, short-term savings, government schemes like post office savings.' },
-      { heading: 'Simple Interest vs Compound Interest', content: 'SI: Interest is fixed every year. â‚¹10,000 at 10% SI for 3 years = â‚¹1,000 + â‚¹1,000 + â‚¹1,000 = â‚¹3,000 interest. CI: Interest compounds yearly. Same â‚¹10,000 at 10% CI = â‚¹1,000 (yr1) + â‚¹1,100 (yr2) + â‚¹1,210 (yr3) = â‚¹3,310 interest. CI always gives more for longer durations. SI used for shorter terms (personal loans), CI used for investments (FD, mutual funds).' },
+      { heading: 'What is Simple Interest?', content: 'Simple Interest (SI) is interest calculated only on the principal amount, not on previously earned interest. Formula: SI = (P × R × T) / 100, where P = principal, R = annual interest rate (%), T = time in years. Example: ₹10,000 at 5% for 3 years gives SI = (10000 × 5 × 3) / 100 = ₹1,500. Total amount = ₹11,500.' },
+      { heading: 'Simple Interest Formula & Calculation', content: 'SI = (P × R × T) / 100. Amount = P + SI = P(1 + RT/100). Example: ₹1 lakh at 8% for 2.5 years = (100000 × 8 × 2.5) / 100 = ₹20,000 interest. Total = ₹1,20,000. Works for personal loans, short-term savings, government schemes like post office savings.' },
+      { heading: 'Simple Interest vs Compound Interest', content: 'SI: Interest is fixed every year. ₹10,000 at 10% SI for 3 years = ₹1,000 + ₹1,000 + ₹1,000 = ₹3,000 interest. CI: Interest compounds yearly. Same ₹10,000 at 10% CI = ₹1,000 (yr1) + ₹1,100 (yr2) + ₹1,210 (yr3) = ₹3,310 interest. CI always gives more for longer durations. SI used for shorter terms (personal loans), CI used for investments (FD, mutual funds).' },
       { heading: 'Where Simple Interest is Used', content: 'Personal loans: Most banks use SI for tenure < 3 years. Post office schemes: NSC, Kisan Vikas Patra use SI. Government schemes: Sukanya Samriddhi Scheme, PM schemes. Trade credit: Business borrowing often uses SI. Short-term deposits: Some short-term FD schemes use SI (< 6 months).' },
-      { heading: 'Simple Interest Calculation Methods', content: 'For Months: SI = (P Ã— R Ã— M) / 1200 (M = months). For Days: SI = (P Ã— R Ã— D) / (100 Ã— 365). Example for days: â‚¹50,000 at 6% for 90 days = (50000 Ã— 6 Ã— 90) / (36500) = â‚¹739.73.' },
+      { heading: 'Simple Interest Calculation Methods', content: 'For Months: SI = (P × R × M) / 1200 (M = months). For Days: SI = (P × R × D) / (100 × 365). Example for days: ₹50,000 at 6% for 90 days = (50000 × 6 × 90) / (36500) = ₹739.73.' },
       { heading: 'Use Our Simple Interest Calculator', content: 'Our free calculator instantly: Calculates SI for years, months, or days. Shows daily interest accrual. Handles fractional tenures (2 years 6 months). Accounts for leap years. Compare SI vs CI side-by-side.' },
     ],
     faqs: [
-      { question: 'What is the SI formula?', answer: 'SI = (P Ã— R Ã— T) / 100. P = Principal amount, R = Annual interest rate (%), T = Time in years. If time is in months, use SI = (P Ã— R Ã— M) / 1200.' },
-      { question: 'How is simple interest different from compound interest?', answer: 'SI: Interest calculated yearly on principal only. CI: Interest calculated on principal + accumulated interest. For â‚¹10,000 at 10% for 3 years: SI = â‚¹3000. CI = â‚¹3310. CI is always higher for periods > 1 year.' },
-      { question: 'What is the difference between SI and CI for 1 year?', answer: 'For 1 year, SI and CI are exactly the same! Both give P Ã— R/100. Difference emerges only from year 2 onwards when interest compounds.' },
+      { question: 'What is the SI formula?', answer: 'SI = (P × R × T) / 100. P = Principal amount, R = Annual interest rate (%), T = Time in years. If time is in months, use SI = (P × R × M) / 1200.' },
+      { question: 'How is simple interest different from compound interest?', answer: 'SI: Interest calculated yearly on principal only. CI: Interest calculated on principal + accumulated interest. For ₹10,000 at 10% for 3 years: SI = ₹3000. CI = ₹3310. CI is always higher for periods > 1 year.' },
+      { question: 'What is the difference between SI and CI for 1 year?', answer: 'For 1 year, SI and CI are exactly the same! Both give P × R/100. Difference emerges only from year 2 onwards when interest compounds.' },
       { question: 'Is Simple Interest used for mortgages/home loans?', answer: 'No, most home loans use reducing balance method (a form of CI) or EMI calculations. Short-term personal loans may use SI. Always ask your bank whether they use SI or reducing balance.' },
-      { question: 'What is daily interest accrual?', answer: 'Daily interest = (Principal Ã— Annual Rate Ã— 1) / 365. Example: â‚¹1 lakh at 6% = â‚¹100,000 Ã— 6 / 36500 = â‚¹16.44 daily interest. Used in savings accounts, overdrafts, and daily-balance method FDs.' },
+      { question: 'What is daily interest accrual?', answer: 'Daily interest = (Principal × Annual Rate × 1) / 365. Example: ₹1 lakh at 6% = ₹100,000 × 6 / 36500 = ₹16.44 daily interest. Used in savings accounts, overdrafts, and daily-balance method FDs.' },
     ],
   },
 ];

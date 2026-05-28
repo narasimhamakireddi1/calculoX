@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
 import { blogPosts } from '@/lib/blog/posts';
@@ -57,7 +57,7 @@ export default function BlogPage() {
             Finance & Calculator Guides
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Expert articles on EMI, SIP, income tax, BMI & more â€” written for Indian users.
+            Expert articles on EMI, SIP, income tax, BMI & more – written for Indian users.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export default function BlogPage() {
                     {new Date(post.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </span>
                   <span className="text-sm text-blue-600 font-medium group-hover:underline">
-                    Read More â†’
+                    Read More →
                   </span>
                 </div>
               </div>
@@ -97,4 +97,3 @@ export default function BlogPage() {
     </>
   );
 }
-

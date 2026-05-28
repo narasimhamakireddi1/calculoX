@@ -35,9 +35,9 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: 'What is SIP and how does it work?', answer: 'SIP (Systematic Investment Plan) is a method of investing a fixed amount in mutual funds at regular intervals (monthly/quarterly). It uses rupee-cost averaging to reduce the impact of market volatility on your investments.' },
-  { question: 'How is SIP return calculated?', answer: 'SIP returns are calculated using the formula: FV = PMT Ã— (((1 + r)^n - 1) / r) Ã— (1 + r), where PMT is monthly investment, r is monthly return rate, and n is total months.' },
+  { question: 'How is SIP return calculated?', answer: 'SIP returns are calculated using the formula: FV = PMT × (((1 + r)^n - 1) / r) × (1 + r), where PMT is monthly investment, r is monthly return rate, and n is total months.' },
   { question: 'What is a good SIP return rate to expect?', answer: 'Historically, equity mutual funds in India have delivered 12-15% annual returns over long periods. For conservative estimates, use 10-12% for long-term SIP calculations.' },
-  { question: 'What is the minimum SIP amount?', answer: 'Most mutual funds in India allow SIP with a minimum of â‚¹100-500 per month. Our SIP calculator allows you to start calculations from â‚¹100.' },
+  { question: 'What is the minimum SIP amount?', answer: 'Most mutual funds in India allow SIP with a minimum of ₹100-500 per month. Our SIP calculator allows you to start calculations from ₹100.' },
   { question: 'What is Step-Up SIP?', answer: 'Step-Up SIP is when you increase your monthly SIP amount by a fixed percentage each year (e.g., 10% annually). This is recommended to match your income growth and build wealth faster.' },
 ];
 
