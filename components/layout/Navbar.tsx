@@ -17,8 +17,9 @@ export function Navbar() {
   const checkScroll = () => {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollWidth > clientWidth && scrollLeft < scrollWidth - clientWidth - 10);
+      const hasHorizontalScroll = scrollWidth > clientWidth;
+      setCanScrollLeft(hasHorizontalScroll && scrollLeft > 5);
+      setCanScrollRight(hasHorizontalScroll && scrollLeft < scrollWidth - clientWidth - 5);
     }
   };
 
@@ -49,6 +50,8 @@ export function Navbar() {
         left: -200,
         behavior: 'smooth',
       });
+      // Check scroll state after animation
+      setTimeout(checkScroll, 300);
     }
   };
 
@@ -58,6 +61,8 @@ export function Navbar() {
         left: 200,
         behavior: 'smooth',
       });
+      // Check scroll state after animation
+      setTimeout(checkScroll, 300);
     }
   };
 
@@ -106,10 +111,11 @@ export function Navbar() {
 
             <div
               ref={scrollContainerRef}
-              className="overflow-x-auto flex-1 scrollbar-hide"
+              className="overflow-x-auto flex-1 scrollbar-hide scroll-smooth"
               onScroll={checkScroll}
+              style={{ scrollBehavior: 'smooth' }}
             >
-              <div className="flex gap-2 flex-nowrap">
+              <div className="flex gap-2 flex-nowrap min-w-min">
               {links.map((link) => {
                 const active = isActive(link.href);
                 return (
