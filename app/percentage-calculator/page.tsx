@@ -251,7 +251,7 @@ export default function PercentageCalculatorPage() {
             {/* Value A */}
             <div className="space-y-2">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">{labels.a}</label>
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
                   min="0"
@@ -266,7 +266,7 @@ export default function PercentageCalculatorPage() {
                   placeholder="0"
                   value={valueA === 0 ? '' : valueA}
                   onChange={(e) => setValue('valueA', e.target.value === '' ? 0 : Number(e.target.value))}
-                  className="w-32 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-32 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
             </div>
@@ -274,7 +274,7 @@ export default function PercentageCalculatorPage() {
             {/* Value B */}
             <div className="space-y-2">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">{labels.b}</label>
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
                   min="0"
@@ -289,7 +289,7 @@ export default function PercentageCalculatorPage() {
                   placeholder="0"
                   value={valueB === 0 ? '' : valueB}
                   onChange={(e) => setValue('valueB', e.target.value === '' ? 0 : Number(e.target.value))}
-                  className="w-32 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full md:w-32 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
             </div>
@@ -298,7 +298,7 @@ export default function PercentageCalculatorPage() {
             {calculationType === 'sequential' && (
               <div className="space-y-2">
                 <label className="block text-sm font-bold text-gray-900 dark:text-white">{labels.c ?? 'Second %'}</label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="0"
@@ -313,7 +313,7 @@ export default function PercentageCalculatorPage() {
                     placeholder="0"
                     value={percentC === 0 ? '' : percentC}
                     onChange={(e) => setValue('percentC', e.target.value === '' ? 0 : Number(e.target.value))}
-                    className="w-32 px-3 py-2 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                    className="w-full md:w-32 px-3 py-2 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
                   />
                 </div>
               </div>

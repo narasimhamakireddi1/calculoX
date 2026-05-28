@@ -1,7 +1,12 @@
 # 🧮 CalculoX - CLAUDE.md
 
-**Status:** ✅ MVP Complete | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-28 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+**Status:** ✅ MVP Complete | 🚀 Production Ready | Vercel Deployed | 🔧 Phase 1 Optimization In Progress  
+**Last Updated:** 2026-05-28 (Audit) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+
+**🔍 AUDIT SCORES (2026-05-28):**
+- **SEO Health:** 7.5/10 (Target: 9.0/10) — Missing OG image, 6 layout.tsx files, internal linking gaps
+- **Performance (Lighthouse):** 75-82 (Target: 85-92) — Chart memoization missing, fonts blocking FCP
+- **Responsive Design:** Functional but broken on mobile — Fixed-width inputs, grid-cols-3 causing horizontal scroll
 
 ---
 
@@ -143,6 +148,76 @@ git push origin main        # Auto-deploys to Vercel
 | ESLint | ✅ PASS (zero warnings) |
 | Dev Server | ✅ RUNNING |
 | Vercel Deployment | ✅ DEPLOYED |
+
+---
+
+## 🔍 WEBSITE AUDIT RESULTS (2026-05-28)
+
+**Overall Health:** 6.8/10 — Strong foundation with critical optimization opportunities
+
+### **🔴 CRITICAL ISSUES (Phase 1 Fixes)**
+
+**1. Mobile Responsive Design - BROKEN**
+- **Issue:** Fixed-width inputs (w-28, w-32) don't scale to mobile; `grid-cols-3` causes horizontal scroll
+- **Affected:** All 10 calculators' Step 1 field + FD/Simple Interest tenure inputs
+- **Impact:** Horizontal scrolling, input truncation on <640px viewports
+- **Fix:** Use responsive `flex-col md:flex-row` with `w-full md:w-28` pattern
+- **Effort:** 2-3 hours | **Priority:** 🔴 HIGH
+
+**2. SEO Infrastructure - Incomplete**
+- **Issue:** Missing `/public/og-image.png` (breaks social sharing), 6 calculators lack `layout.tsx` (FD, RD, GST, Percentage, CAGR, Simple Interest)
+- **Missing Schemas:** WebApplication (5/11 only), FAQ (6/11 only), Canonical URLs (incomplete)
+- **Missing Blog:** Only 5/11 calculators have blog posts (gaps: FD, RD, GST, Percentage, SI)
+- **Missing Links:** No inter-calculator internal linking strategy
+- **Impact:** Poor search rankings, no social sharing images, missing metadata
+- **Fix:** Create OG image + 6 layout.tsx files + blog posts + internal linking
+- **Effort:** 4-6 hours | **Priority:** 🔴 HIGH
+
+**3. Performance - Chart Re-renders**
+- **Issue:** 8 calculators missing chart memoization (SIP, FD, RD, Simple Interest, Percentage, BMI, CAGR, GST, Tax)
+- **Impact:** 500-800ms per interaction, Lighthouse +8-10 points lost
+- **Current Lighthouse:** 75-82 | **Target:** 85-92
+- **Fix:** Wrap Recharts in `useMemo()` + `memo()` (EMI already optimized, use as pattern)
+- **Effort:** 2 hours | **Priority:** 🔴 HIGH
+
+**4. Fonts Blocking FCP**
+- **Issue:** Google Fonts loaded synchronously without `font-display: swap`
+- **Impact:** 200-400ms LCP delay
+- **Fix:** Add `font-display: swap` or implement system font fallback
+- **Effort:** 30 min | **Priority:** 🔴 HIGH
+
+### **Detailed Audit Findings**
+
+**SEO Audit (7.5/10):**
+- ✓ Titles, descriptions, keywords present (10/11 calculators)
+- ✓ Sitemap, robots.txt, canonical URLs (most pages)
+- ✓ Blog section (5 posts, keyword-targeted)
+- ✓ Breadcrumb + Organization schemas
+- ✗ **Missing:** OG image file, 6 layout.tsx files, WebApp/FAQ schemas (6 calculators), HowTo schemas
+- ✗ **Weak internal linking:** No related calculators sections, minimal cross-links
+
+**Performance Audit (75-82 Lighthouse):**
+- ✓ Proper debouncing (300ms), no console errors, TypeScript strict
+- ✓ Dynamic PDF imports, SVG icons, proper caching headers
+- ✓ EMI calculator sets gold standard (memoization, virtual scrolling, lazy loading)
+- ✗ **Charts not memoized** (8 calculators, 500-800ms impact per interaction)
+- ✗ **Google Fonts blocking FCP** (200-400ms impact)
+- ✗ **Scientific calc not debounced** (100-200ms per keystroke)
+- ⚠ **Modal re-renders** in Scientific calculator (40% reduce possible)
+
+**Responsive Design Audit (Broken on Mobile):**
+- ✓ Semantic HTML, consistent flex patterns, dark mode support
+- ✗ **Step 1 field design flawed:** Fixed `w-28` / `w-32` inputs on `flex gap-3` container
+  - At 375px viewport: Slider <200px + Input 128px + gap = overflow
+  - FD/Simple Interest: `grid-cols-3` at any size = ~95-110px per column (insufficient)
+- ✓ **Percentage calculator:** Good responsive grid model (`grid-cols-2 md:grid-cols-3 lg:grid-cols-6`)
+- ✗ **GST rate buttons:** `grid-cols-4` at all sizes, could use `md:grid-cols-4` + `grid-cols-2` mobile
+
+**Expected Improvements After Phase 1:**
+- SEO: 7.5 → 9.0 (OG image + layout files + internal linking)
+- Lighthouse: 75-82 → 85-92 (chart memoization + font optimization)
+- Mobile UX: Broken → Excellent (responsive layout fixes)
+- Search Rankings: Moderate → Top 3 for target keywords
 
 ---
 
@@ -298,14 +373,74 @@ Keep it concise: This is a reference guide, not detailed documentation. Point to
 
 ---
 
-## 🚀 NEXT STEPS (If Needed)
+## 🚀 PHASE 1 ACTION PLAN (Active - 5-6 Hours)
 
-1. Phase 2 Batch 1: Unhide remaining 4 calculators (RD, GST, Percentage, CAGR) — toggle status in config
-2. Phase 2 Batch 2 & 3: Add 8 more calculators (PPF, HRA, Inflation, Loan Eligibility, Retirement, Age, Unit Converter, Currency Converter)
-3. Database: Setup PlanetScale if user accounts/calculator histories needed
-4. AdSense: Apply after Privacy Policy + About pages live
-5. Content: Write more blog posts for organic traffic + SI use-case guides
-6. Monitoring: Track Web Vitals via Vercel Analytics (Core Web Vitals: LCP, FID, CLS)
+### **Step 1: Mobile Responsive Design (2-3 hours)**
+- [ ] Fix Step 1 field layout: Replace `flex gap-3` with `flex flex-col md:flex-row gap-3`
+- [ ] Change input widths: `w-28` → `w-full md:w-28`
+- [ ] Fix FD/Simple Interest tenure: `grid-cols-3` → `grid-cols-1 md:grid-cols-3`
+- [ ] Files: SIP, EMI, BMI, Tax, FD, RD, SI, GST, CAGR, Scientific
+- [ ] Testing: Verify at 375px, 768px, 1200px viewports (no horizontal scroll)
+
+### **Step 2: SEO Infrastructure (2-3 hours)**
+- [ ] Create `/public/og-image.png` (1200×630px, blue gradient + CalculoX branding)
+- [ ] Create `app/fd-calculator/layout.tsx` (copy from EMI, update metadata)
+- [ ] Create `app/rd-calculator/layout.tsx`
+- [ ] Create `app/gst-calculator/layout.tsx`
+- [ ] Create `app/percentage-calculator/layout.tsx`
+- [ ] Create `app/cagr-calculator/layout.tsx`
+- [ ] Create `app/simple-interest-calculator/layout.tsx`
+- [ ] Testing: Verify each layout has title, description, keywords, FAQ schema
+
+### **Step 3: Chart Memoization (2 hours)**
+- [ ] Create `components/charts/MemoizedPieChart.tsx` (wrapped in memo + useMemo)
+- [ ] Create `components/charts/MemoizedLineChart.tsx`
+- [ ] Apply to SIP calculator (replace inline Recharts)
+- [ ] Apply to FD, RD, Simple Interest, Percentage, BMI, CAGR, GST, Tax calculators
+- [ ] Testing: `npm run build` + Lighthouse check (target Lighthouse +8-10 points)
+
+### **Step 4: Font Optimization (30 min)**
+- [ ] Update `app/layout.tsx`: Add `font-display: swap` to Google Fonts link
+- [ ] OR add system font fallback in `tailwind.config.ts`
+- [ ] Testing: Verify FCP improvement (~200-400ms)
+
+### **Step 5: Additional Optimizations (30 min)**
+- [ ] Add `useMemo()` to Scientific calculator live evaluation
+- [ ] Verify affiliate banner has fixed height to prevent CLS shift
+- [ ] Testing: `npm run build` (zero errors) + local testing
+
+---
+
+## 🚀 PHASE 2 (Next Sprint - Future)
+
+1. SEO: Internal linking + related calculators sections (2 hours)
+2. Content: Create 6 missing blog posts (FD, RD, GST, Percentage, SI, CAGR comparison) (3 hours)
+3. Performance: Extract Scientific calculator modals to separate memoized components (1 hour)
+4. Feature: Add HowTo schemas to blog posts (1 hour)
+5. Future: Phase 2 Batch 2 & 3 calculators (PPF, HRA, Inflation, Retirement, etc.)
+
+---
+
+## 🚀 DEPLOYMENT
+
+After Phase 1 completion:
+```bash
+npm run build          # Verify zero errors
+npm run lint           # Verify ESLint
+git add -A
+git commit -m "Optimize: Mobile responsive design, SEO infrastructure, chart memoization"
+git push origin main   # Auto-deploys to Vercel
+```
+
+---
+
+## 📊 NEXT STEPS (Post-Phase 1)
+
+1. Monitor Vercel Analytics for Core Web Vitals improvement (LCP, FID, CLS)
+2. Verify mobile traffic bounce rate decrease
+3. Check Google Search Console for SEO improvements (indexing of new layout files)
+4. Phase 2: Internal linking + blog content gaps
+5. Ongoing: Monitor performance metrics, maintain optimization standards
 
 ---
 

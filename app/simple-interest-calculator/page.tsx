@@ -252,7 +252,7 @@ export default function SimpleInterestCalculatorPage() {
             {/* Tenure - Years, Months, Days */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure Details</label>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3">
                 {/* Years */}
                 <div>
                   <label className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years</label>

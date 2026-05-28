@@ -145,7 +145,7 @@ const LoanInput = memo(({
 }) => (
   <div className="space-y-3">
     <label className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
-    <div className="flex gap-3 items-center">
+    <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
       <input
         type="range"
         min={min}
@@ -154,9 +154,9 @@ const LoanInput = memo(({
         value={value ?? 0}
         onChange={onChange}
         onBlur={onBlur}
-        className={`flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer accent-${colorTo.split('-')[1]}-600 transition-all will-change-auto`}
+        className={`w-full md:flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer accent-${colorTo.split('-')[1]}-600 transition-all will-change-auto`}
       />
-      <div className="relative flex-shrink-0">
+      <div className="w-full md:w-auto relative flex-shrink-0">
         {prefix && <span className="absolute left-2 top-2.5 font-bold text-sm">{prefix}</span>}
         {suffix && <span className="absolute right-3 top-2.5 font-bold text-sm">{suffix}</span>}
         <input
@@ -168,7 +168,7 @@ const LoanInput = memo(({
           value={value === 0 ? '' : value}
           onChange={onChange}
           onBlur={onBlur}
-          className="w-32 px-6 py-2 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+          className="w-full md:w-32 px-6 py-2 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
         />
       </div>
     </div>

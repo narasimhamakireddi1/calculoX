@@ -127,7 +127,7 @@ export default function RDCalculatorPage() {
             {/* Monthly Deposit */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Monthly Deposit (₹)</label>
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
                   min="1000"
@@ -146,7 +146,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.monthlyDeposit === 0 ? "" : watchValues.monthlyDeposit}
                   onChange={(e) => handleInputChange('monthlyDeposit', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyDeposit', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full md:w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
               {errors.monthlyDeposit && <p className="text-red-500 text-sm">{errors.monthlyDeposit.message}</p>}
@@ -155,7 +155,7 @@ export default function RDCalculatorPage() {
             {/* Annual Rate */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Annual Interest Rate (%)</label>
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
                   min="0"
@@ -174,7 +174,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.annualRate === 0 ? "" : watchValues.annualRate}
                   onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.annualRate && <p className="text-red-500 text-sm">{errors.annualRate.message}</p>}
@@ -183,7 +183,7 @@ export default function RDCalculatorPage() {
             {/* Months */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure (Months)</label>
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
                   min="1"
@@ -202,7 +202,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.months === 0 ? "" : watchValues.months}
                   onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                  className="w-full md:w-28 px-3 py-2 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                 />
               </div>
               {errors.months && <p className="text-red-500 text-sm">{errors.months.message}</p>}

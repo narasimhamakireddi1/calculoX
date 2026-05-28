@@ -140,7 +140,7 @@ export default function GSTCalculatorPage() {
               <label className="block text-sm font-bold text-gray-900 dark:text-white">
                 {calculationType === 'add' ? 'Amount (Without GST) (₹)' : 'Amount (With GST) (₹)'}
               </label>
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
                   min="100"
@@ -159,7 +159,7 @@ export default function GSTCalculatorPage() {
                   value={watchValues.amount === 0 ? "" : watchValues.amount}
                   onChange={(e) => handleAmountChange(Number(e.target.value))}
                   onBlur={(e) => handleValidateField('amount', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.amount && <p className="text-red-500 text-sm">{errors.amount.message}</p>}

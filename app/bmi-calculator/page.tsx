@@ -169,7 +169,7 @@ export default function BMICalculatorPage() {
             {/* Weight */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Weight ({unitSystem === 'metric' ? 'kg' : 'lbs'})</label>
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
                   min="10"
@@ -197,7 +197,7 @@ export default function BMICalculatorPage() {
             {/* Height */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Height ({unitSystem === 'metric' ? 'cm' : 'inches'})</label>
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
                   min="10"
