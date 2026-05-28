@@ -8,8 +8,8 @@
 ## 📊 PROJECT STATUS
 
 **10 Calculators Live:**
-- **MVP (5, Visible):** SIP, EMI, BMI, Income Tax, FD
-- **Phase 2 Batch 1 (5, Hidden):** RD, Simple Interest, GST, Percentage, CAGR
+- **MVP (6, Visible):** SIP, EMI, BMI, Income Tax, FD, Simple Interest
+- **Phase 2 Batch 1 (4, Hidden):** RD, GST, Percentage, CAGR
 
 **Key Features:** Real-time auto-calculate | Dual inputs (slider + number) | Color-coded sliders | Responsive design | Dark mode | World-class SEO | Affiliate monetization | Performance optimized
 
@@ -63,6 +63,7 @@ config/
 | **BMI** | Weight, Height (metric/imperial) | BMI = kg/(m²) or 703×lbs/(in²) | Category display, health tips |
 | **Tax** | Income + 9 deductions | FY 2025-26 slabs + rebate 87A + surcharge | Regime comparison, breakdown, trace |
 | **FD** | Principal, Rate, Years/Months/Days, Payout Type | 4 tracks: Cumulative (Q-compound), Quarterly, Monthly (discounted), Short-term (SI) | RBI-compliant, Senior citizen +0.50%, Projections |
+| **Simple Interest** | Principal, Rate, Tenure (Years/Months/Days) | 3 tracks: Years (P×R×Y/100), Months (P×R×M/1200), Days (P×R×D/(100×DaysInYear)) | Auto leap-year detection, daily accrual, projections, precision (Decimal.js) |
 | **RD** | Monthly Deposit, Rate, Months | Compound interest (monthly) | Projection tables |
 | **GST** | Amount | Add/Remove @ 5%/12%/18%/28% | Breakdown |
 | **Others** | Various | Standard financial formulas | Charts/tables |
@@ -172,6 +173,14 @@ git push origin main        # Auto-deploys to Vercel
 - **Short-term (< 6 months):** Simple interest: `P × (1 + r×days/365)` per RBI guidelines
 - **Features:** Fractional tenures (1Y 7M) split into full quarters + leftover months. Senior citizen +0.50% bonus. Projections with monthly/quarterly breakdown. Verified against SBI/ICICI standards.
 
+**Simple Interest Calculator - Three Precision Tracks:**
+- **Years Track:** `SI = (P × R × Years) / 100` — standard formula for long-term loans/investments
+- **Months Track:** `SI = (P × R × Months) / 1200` — medium-term arrangements (personal loans, P2P lending)
+- **Days Track:** `SI = (P × R × Days) / (100 × DaysInYear)` — daily precision for overdrafts, credit lines, bonds
+- **Leap Year Logic:** Automatic detection (`isLeapYear()`) adjusts denominator 365→366, preventing fractional under-crediting
+- **Daily Accrual:** Shows per-day interest `(P × R) / DaysInYear` for quick estimation on any tenure
+- **Implementation:** Decimal.js (28 decimal places) for financial precision. Verified against 3 test cases (Years: ₹1,35,000 ✓, Months: ₹39,375 ✓, Days: ₹1,600 ✓)
+
 ---
 
 ## 🎯 CODE CONVENTIONS
@@ -204,12 +213,12 @@ Keep it concise: This is a reference guide, not detailed documentation. Point to
 
 ## 🚀 NEXT STEPS (If Needed)
 
-1. Phase 2 Batch 1: Unhide 6 calculators (toggle in config)
-2. Phase 2 Batch 2 & 3: Add 8 more calculators
-3. Database: Setup PlanetScale if user accounts needed
+1. Phase 2 Batch 1: Unhide remaining 4 calculators (RD, GST, Percentage, CAGR) — toggle status in config
+2. Phase 2 Batch 2 & 3: Add 8 more calculators (PPF, HRA, Inflation, Loan Eligibility, Retirement, Age, Unit Converter, Currency Converter)
+3. Database: Setup PlanetScale if user accounts/calculator histories needed
 4. AdSense: Apply after Privacy Policy + About pages live
-5. Content: Write more blog posts for organic traffic
-6. Monitoring: Track Web Vitals via Vercel Analytics
+5. Content: Write more blog posts for organic traffic + SI use-case guides
+6. Monitoring: Track Web Vitals via Vercel Analytics (Core Web Vitals: LCP, FID, CLS)
 
 ---
 
