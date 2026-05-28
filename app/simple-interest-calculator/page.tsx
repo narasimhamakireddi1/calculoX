@@ -230,11 +230,12 @@ export default function SimpleInterestCalculatorPage() {
             {/* Tenure Type Selector */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure Type</label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {(['years', 'months', 'days'] as const).map((type) => (
                   <button
                     key={type}
                     type="button"
+                    aria-pressed={watchValues.tenureType === type}
                     onClick={() => handleTenureTypeChange(type)}
                     className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all capitalize ${
                       watchValues.tenureType === type

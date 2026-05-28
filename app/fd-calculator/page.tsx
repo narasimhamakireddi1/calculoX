@@ -334,11 +334,12 @@ export default function FDCalculatorPage() {
             {/* Payout Type */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">Payout Type</label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {(['cumulative', 'quarterly', 'monthly'] as const).map((type) => (
                   <button
                     key={type}
                     type="button"
+                    aria-pressed={watchValues.payoutType === type}
                     onClick={() => handlePayoutChange(type)}
                     className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all ${
                       watchValues.payoutType === type

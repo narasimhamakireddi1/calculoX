@@ -170,7 +170,7 @@ export default function GSTCalculatorPage() {
             {/* GST Rate */}
             <div className="space-y-3">
               <label className="block text-sm font-bold text-gray-900 dark:text-white">GST Rate (%)</label>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {['5', '12', '18', '28'].map((rate) => (
                   <label key={rate} className="relative">
                     <input
