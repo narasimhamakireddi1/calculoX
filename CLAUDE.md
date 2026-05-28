@@ -194,13 +194,18 @@ git push origin main        # Auto-deploys to Vercel
 
 **PDF Export & Clipboard Sharing (All 10 Calculators):**
 - **Components:** `lib/utils/pdf-export.ts` (PDF generation utility) + `components/ui/ExportButton.tsx` (reusable button)
-- **Features:** Export results as PDF with professional formatting (calculator name, timestamp, CalculoX branding); Copy results to clipboard for quick sharing
-- **Implementation:** html2pdf.js library with dynamic imports to prevent SSR (server-side rendering) errors. PDF includes:
+- **Features:** Export complete calculation context (inputs + results) as PDF with professional formatting; Copy results to clipboard for quick sharing
+- **PDF Contents:** Full calculation workflow including:
   - Header: Calculator name + generated timestamp
-  - Body: Calculator-specific results (currency-formatted, dark-mode cleaned)
+  - Input Values: All user inputs used for calculation (styled summary)
+  - Results: Calculator-specific results (currency-formatted, dark-mode cleaned)
+  - Explanations: Disclaimers and calculation notes
   - Footer: CalculoX branding + website URL
+- **Implementation:** html2pdf.js library with dynamic imports to prevent SSR (server-side rendering) errors. Each calculator has:
+  - `inputElementId`: Captures user inputs section
+  - `resultElementId`: Captures results section
 - **UX:** Dual-button layout (Export PDF + Copy), loading states, visual feedback (button text changes on success)
-- **All Calculators Supported:** Export buttons appear on results cards across SIP, EMI, BMI, Tax, FD, Simple Interest, RD, GST, CAGR, Percentage
+- **All Calculators Supported:** Export buttons on results cards across SIP, EMI, BMI, Tax, FD, Simple Interest, RD, GST, CAGR, Percentage with complete context
 
 ---
 
