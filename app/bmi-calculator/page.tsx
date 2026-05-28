@@ -169,7 +169,7 @@ export default function BMICalculatorPage() {
           <form className="space-y-6">
             {/* Weight */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Weight ({unitSystem === 'metric' ? 'kg' : 'lbs'})</label>
+              <label htmlFor="weight" className="block text-sm font-bold text-gray-900 dark:text-white">Weight ({unitSystem === 'metric' ? 'kg' : 'lbs'})</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -182,6 +182,7 @@ export default function BMICalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
+                  id="weight"
                   type="number" placeholder="0"
                   step="0.1"
                   min="10"
@@ -189,7 +190,7 @@ export default function BMICalculatorPage() {
                   value={watchValues.weight === 0 ? "" : watchValues.weight}
                   onChange={(e) => handleInputChange('weight', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.weight && <p className="text-red-500 text-sm">{errors.weight.message}</p>}
@@ -197,7 +198,7 @@ export default function BMICalculatorPage() {
 
             {/* Height */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Height ({unitSystem === 'metric' ? 'cm' : 'inches'})</label>
+              <label htmlFor="height" className="block text-sm font-bold text-gray-900 dark:text-white">Height ({unitSystem === 'metric' ? 'cm' : 'inches'})</label>
               <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   type="range"
@@ -210,6 +211,7 @@ export default function BMICalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <input
+                  id="height"
                   type="number" placeholder="0"
                   step="0.1"
                   min="10"
@@ -217,7 +219,7 @@ export default function BMICalculatorPage() {
                   value={watchValues.height === 0 ? "" : watchValues.height}
                   onChange={(e) => handleInputChange('height', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('height', Number(e.target.value))}
-                  className="w-28 px-3 py-2 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
               {errors.height && <p className="text-red-500 text-sm">{errors.height.message}</p>}
