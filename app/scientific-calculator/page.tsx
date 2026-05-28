@@ -209,7 +209,7 @@ export default function ScientificCalculatorPage() {
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gradient mb-2">🔬 Scientific Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Casio ClassWiz-style Â· Standard Â· Complex Â· Matrix Â· Statistics
+          Casio ClassWiz-style · Standard · Complex · Matrix · Statistics
         </p>
       </div>
 
@@ -238,7 +238,7 @@ export default function ScientificCalculatorPage() {
         {/* History Panel */}
         {history.length > 0 && (
           <div className="card">
-            <h3 className="text-xl font-bold mb-4">ðŸ“‹ History</h3>
+            <h3 className="text-xl font-bold mb-4">📋 History</h3>
             <div className="space-y-2 max-h-[200px] overflow-y-auto">
               {[...history].reverse().map((item, i) => (
                 <div key={i} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -291,19 +291,19 @@ export default function ScientificCalculatorPage() {
 
       {/* Affiliate Banner */}
       <AffiliateBanner
-        icon="ðŸ”¬"
+        icon="📬"
         headline="Advanced Scientific Computing"
         subtext="Use calculox for precise mathematical calculations with professional accuracy"
         note="Perfect for engineers, scientists, and students"
         gradient="from-indigo-500 to-purple-600"
         links={[
-          { label: 'Learn More â†’', href: '#', primary: true },
+          { label: 'Learn More →', href: '#', primary: true },
         ]}
       />
 
       {/* FAQ */}
       <div className="max-w-3xl mx-auto card">
-        <h3 className="text-2xl font-bold mb-6">â“ Frequently Asked Questions</h3>
+        <h3 className="text-2xl font-bold mb-6">â" Frequently Asked Questions</h3>
         <div className="space-y-4">
           <details className="group cursor-pointer">
             <summary className="font-semibold text-gray-900 dark:text-gray-100 group-open:text-blue-600">
@@ -767,20 +767,20 @@ function StatResultCard({ statData }: { statData: StatDataPoint[] }) {
 
   return (
     <div className="card">
-      <h3 className="text-xl font-bold mb-4">ðŸ“Š Statistical Analysis</h3>
+      <h3 className="text-xl font-bold mb-4">📊 Statistical Analysis</h3>
 
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <p className="text-sm text-gray-600 dark:text-gray-400 uppercase font-semibold">X Data</p>
           <p className="text-2xl font-bold">n={stats.n}</p>
-          <p className="text-sm mt-1">Î¼={stats.mean.toFixed(4)}</p>
-          <p className="text-sm">Ïƒ={stats.stddev.toFixed(4)}</p>
+          <p className="text-sm mt-1">μ={stats.mean.toFixed(4)}</p>
+          <p className="text-sm">σ={stats.stddev.toFixed(4)}</p>
         </div>
         <div>
           <p className="text-sm text-gray-600 dark:text-gray-400 uppercase font-semibold">Y Data</p>
           <p className="text-2xl font-bold">n={statsY.n}</p>
-          <p className="text-sm mt-1">Î¼={statsY.mean.toFixed(4)}</p>
-          <p className="text-sm">Ïƒ={statsY.stddev.toFixed(4)}</p>
+          <p className="text-sm mt-1">μ={statsY.mean.toFixed(4)}</p>
+          <p className="text-sm">σ={statsY.stddev.toFixed(4)}</p>
         </div>
       </div>
 
