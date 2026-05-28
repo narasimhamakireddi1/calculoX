@@ -182,7 +182,7 @@ export default function PercentageCalculatorPage() {
     <div className="space-y-8 py-8">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">📊 Percentage Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient">📈 Percentage Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           6 calculation modes — salary hike, discounts, GST reverse, sequential compounding &amp; more
         </p>

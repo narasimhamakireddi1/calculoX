@@ -173,7 +173,7 @@ export default function SIPCalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">SIP Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient">📊 SIP Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Calculate your Systematic Investment Plan (SIP) returns and projected wealth growth. See how regular monthly investments compound over time.
         </p>
