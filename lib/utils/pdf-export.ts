@@ -11,28 +11,36 @@ export interface PDFExportOptions {
 const extractInputValues = (element: HTMLElement): Array<{ label: string; value: string }> => {
   const pairs: Array<{ label: string; value: string }> = [];
 
-  const inputs = element.querySelectorAll('input[type="number"], select');
-  inputs.forEach((input) => {
-    const label = (input as any).placeholder || (input as any).name || '';
-    const value = (input as any).value || '';
-    if (label && value && !label.includes('range')) {
-      pairs.push({ label, value });
-    }
+  // Strategy: Find all direct div children that contain a label + input structure
+  const sections = Array.from(element.children).filter((child) => {
+    const label = child.querySelector('label');
+    const input = child.querySelector('input[type="number"], select');
+    return label && input;
   });
 
-  const labels = element.querySelectorAll('label');
-  labels.forEach((label) => {
-    const text = label.textContent?.trim() || '';
-    const input = label.querySelector('input, select') as HTMLInputElement;
-    if (input && text) {
-      const value = input.value || '';
-      if (value && !pairs.find(p => p.label === text)) {
-        pairs.push({ label: text, value });
+  sections.forEach((section) => {
+    const label = section.querySelector('label');
+    let input: HTMLInputElement | null = null;
+
+    // Find the last number input in this section (usually the actual value field, not the range)
+    const allInputs = Array.from(section.querySelectorAll('input[type="number"]'));
+    if (allInputs.length > 0) {
+      input = allInputs[allInputs.length - 1] as HTMLInputElement;
+    }
+
+    if (label && input) {
+      const labelText = label.textContent?.trim() || '';
+      const inputValue = input.value || '';
+
+      if (labelText && inputValue && inputValue !== '0') {
+        if (!pairs.find(p => p.label === labelText)) {
+          pairs.push({ label: labelText, value: inputValue });
+        }
       }
     }
   });
 
-  return pairs.slice(0, 6);
+  return pairs.slice(0, 10);
 };
 
 export const exportResultsAsPDF = (
