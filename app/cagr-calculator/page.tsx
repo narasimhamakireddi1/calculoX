@@ -3,10 +3,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateCAGR } from '@/lib/calculators/cagr';
 import { CAGRSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type CAGRFormData = {
@@ -252,26 +253,16 @@ export default function CAGRCalculatorPage() {
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">📊 Value Growth Breakup</h2>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={[
-                    { name: 'Initial Investment', value: watchValues.beginningValue },
-                    { name: 'Total Growth', value: watchValues.endingValue - watchValues.beginningValue },
-                  ]}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={100}
-                  dataKey="value"
-                  isAnimationActive={false}
-                >
-                  <Cell fill="#3b82f6" />
-                  <Cell fill="#10b981" />
-                </Pie>
-                <Tooltip formatter={(v) => formatCurrency(v as number)} />
-              </PieChart>
-            </ResponsiveContainer>
+            <div>
+              <MemoizedPieChart
+                data={[
+                  { name: 'Initial Investment', value: watchValues.beginningValue },
+                  { name: 'Total Growth', value: watchValues.endingValue - watchValues.beginningValue },
+                ]}
+                colors={['#3b82f6', '#10b981']}
+                height={300}
+              />
+            </div>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
                 <span className="flex items-center gap-2">
@@ -299,6 +290,18 @@ export default function CAGRCalculatorPage() {
           </div>
         </div>
       )}
+
+      {/* Related Calculators */}
+      <RelatedCalculators
+        calculators={[
+          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
+          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
+          { title: 'FD Calculator', description: 'Calculate Fixed Deposit maturity amount', icon: '🏦', href: '/fd-calculator' },
+          { title: 'RD Calculator', description: 'Calculate Recurring Deposit returns', icon: '💳', href: '/rd-calculator' },
+          { title: 'Simple Interest', description: 'Calculate simple interest on investments', icon: '💰', href: '/simple-interest-calculator' },
+          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
+        ]}
+      />
 
       {/* Comparison Section */}
       <div className="card">

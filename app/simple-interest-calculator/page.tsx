@@ -3,10 +3,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateSimpleInterest, generateSimpleInterestProjection, type TenureType } from '@/lib/calculators/simple-interest';
 import { SimpleInterestSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type SIFormData = {
@@ -482,26 +484,14 @@ export default function SimpleInterestCalculatorPage() {
           {result && (
             <div className="card">
               <h2 className="text-2xl font-bold mb-6">💰 SI Breakup</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={[
-                      { name: 'Principal', value: result.principalAmount },
-                      { name: 'Interest Accrued', value: result.interestAccrued },
-                    ]}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={100}
-                    dataKey="value"
-                    isAnimationActive={false}
-                  >
-                    <Cell fill="#3b82f6" />
-                    <Cell fill="#10b981" />
-                  </Pie>
-                  <Tooltip formatter={(v) => formatCurrency(v as number)} />
-                </PieChart>
-              </ResponsiveContainer>
+              <MemoizedPieChart
+                data={[
+                  { name: 'Principal', value: result.principalAmount },
+                  { name: 'Interest Accrued', value: result.interestAccrued },
+                ]}
+                colors={['#3b82f6', '#10b981']}
+                height={300}
+              />
               <div className="space-y-2 text-sm px-4 mt-2">
                 <div className="flex justify-between items-center">
                   <span className="flex items-center gap-2">
@@ -522,6 +512,18 @@ export default function SimpleInterestCalculatorPage() {
           )}
         </div>
       )}
+
+      {/* Related Calculators */}
+      <RelatedCalculators
+        calculators={[
+          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
+          { title: 'FD Calculator', description: 'Calculate Fixed Deposit maturity amount', icon: '🏦', href: '/fd-calculator' },
+          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
+          { title: 'RD Calculator', description: 'Calculate Recurring Deposit returns', icon: '💳', href: '/rd-calculator' },
+          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
+          { title: 'CAGR Calculator', description: 'Measure investment returns over time', icon: '📊', href: '/cagr-calculator' },
+        ]}
+      />
 
       {/* FAQ */}
       <div className="card">

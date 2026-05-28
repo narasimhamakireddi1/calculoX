@@ -3,10 +3,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculatePercentage } from '@/lib/calculators/percentage';
 import { PercentageSchema } from '@/lib/validators';
 import { formatNumber } from '@/lib/utils/format';
+import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type CalculationType = 'hike-discount' | 'percent-of' | 'what-percent' | 'percent-change' | 'reverse-percent' | 'sequential';
@@ -431,24 +432,11 @@ export default function PercentageCalculatorPage() {
         <div className="card">
           <h2 className="text-2xl font-bold mb-6">📊 Percentage Breakup</h2>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={result.breakdown.slice(0, 2)}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={65}
-                  outerRadius={110}
-                  dataKey="value"
-                  isAnimationActive={false}
-                >
-                  {result.breakdown.slice(0, 2).map((_, i) => (
-                    <Cell key={i} fill={pieColors[i] ?? '#94a3b8'} />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(v) => formatNumber(v as number, 2)} />
-              </PieChart>
-            </ResponsiveContainer>
+            <MemoizedPieChart
+              data={result.breakdown.slice(0, 2).map(item => ({ name: item.label, value: item.value }))}
+              colors={pieColors}
+              height={300}
+            />
             <div className="space-y-3 text-sm">
               {result.breakdown.slice(0, 2).map((item, i) => (
                 <div
@@ -534,6 +522,18 @@ export default function PercentageCalculatorPage() {
           ))}
         </div>
       </div>
+
+      {/* Related Calculators */}
+      <RelatedCalculators
+        calculators={[
+          { title: 'GST Calculator', description: 'Add or remove GST from any amount', icon: '🧮', href: '/gst-calculator' },
+          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
+          { title: 'Simple Interest', description: 'Calculate simple interest on investments', icon: '💰', href: '/simple-interest-calculator' },
+          { title: 'CAGR Calculator', description: 'Measure investment returns over time', icon: '📊', href: '/cagr-calculator' },
+          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
+          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
+        ]}
+      />
 
       {/* FAQ */}
       <div className="card">

@@ -3,10 +3,12 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateRD, generateRDProjection } from '@/lib/calculators/rd';
 import { RDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
+import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
 type RDFormData = {
@@ -297,26 +299,14 @@ export default function RDCalculatorPage() {
           {result && (
             <div className="card">
               <h2 className="text-2xl font-bold mb-6">💰 RD Breakup</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={[
-                      { name: 'Total Deposited', value: result.totalDeposits },
-                      { name: 'Interest Earned', value: result.totalInterest },
-                    ]}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={100}
-                    dataKey="value"
-                    isAnimationActive={false}
-                  >
-                    <Cell fill="#3b82f6" />
-                    <Cell fill="#10b981" />
-                  </Pie>
-                  <Tooltip formatter={(v) => formatCurrency(v as number)} />
-                </PieChart>
-              </ResponsiveContainer>
+              <MemoizedPieChart
+                data={[
+                  { name: 'Total Deposited', value: result.totalDeposits },
+                  { name: 'Interest Earned', value: result.totalInterest },
+                ]}
+                colors={['#3b82f6', '#10b981']}
+                height={300}
+              />
               <div className="space-y-2 text-sm px-4 mt-2">
                 <div className="flex justify-between items-center">
                   <span className="flex items-center gap-2">
@@ -337,6 +327,18 @@ export default function RDCalculatorPage() {
           )}
         </div>
       )}
+
+      {/* Related Calculators */}
+      <RelatedCalculators
+        calculators={[
+          { title: 'FD Calculator', description: 'Calculate Fixed Deposit maturity amount and interest', icon: '🏦', href: '/fd-calculator' },
+          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
+          { title: 'CAGR Calculator', description: 'Measure investment returns over time', icon: '📊', href: '/cagr-calculator' },
+          { title: 'Simple Interest', description: 'Calculate simple interest on investments', icon: '💰', href: '/simple-interest-calculator' },
+          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
+          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
+        ]}
+      />
 
       {/* FAQ */}
       <div className="card">
