@@ -8,31 +8,49 @@ export function ThemeSwitcher() {
   const [theme, setTheme] = useState<Theme>('system');
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    // Get saved theme from localStorage
-    const savedTheme = (localStorage.getItem('theme') as Theme) || 'system';
-    setTheme(savedTheme);
-    applyTheme(savedTheme);
-  }, []);
-
+  // Apply theme to HTML element
   const applyTheme = (selectedTheme: Theme) => {
-    const htmlElement = document.documentElement;
+    try {
+      const htmlElement = document.documentElement;
 
-    if (selectedTheme === 'system') {
-      // Use system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      htmlElement.classList.toggle('dark', prefersDark);
-    } else if (selectedTheme === 'dark') {
-      htmlElement.classList.add('dark');
-    } else {
-      htmlElement.classList.remove('dark');
+      if (selectedTheme === 'system') {
+        // Use system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+          htmlElement.classList.add('dark');
+        } else {
+          htmlElement.classList.remove('dark');
+        }
+      } else if (selectedTheme === 'dark') {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+    } catch (error) {
+      console.error('Error applying theme:', error);
     }
   };
 
+  useEffect(() => {
+    // Get saved theme from localStorage
+    try {
+      const savedTheme = (localStorage.getItem('theme') as Theme) || 'system';
+      setTheme(savedTheme);
+      applyTheme(savedTheme);
+    } catch (error) {
+      console.error('Error reading theme from localStorage:', error);
+      applyTheme('system');
+    }
+    setMounted(true);
+  }, []);
+
   const handleThemeChange = (newTheme: Theme) => {
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    try {
+      localStorage.setItem('theme', newTheme);
+    } catch (error) {
+      console.error('Error saving theme to localStorage:', error);
+    }
     applyTheme(newTheme);
   };
 
