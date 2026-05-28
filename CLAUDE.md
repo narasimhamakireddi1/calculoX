@@ -1,7 +1,7 @@
 # 🧮 CalculoX - CLAUDE.md
 
 **Status:** ✅ MVP Complete | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-28 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4
+**Last Updated:** 2026-05-28 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js
 
 ---
 
@@ -11,7 +11,7 @@
 - **MVP (6, Visible):** SIP, EMI, BMI, Income Tax, FD, Simple Interest
 - **Phase 2 Batch 1 (4, Hidden):** RD, GST, Percentage, CAGR
 
-**Key Features:** Real-time auto-calculate | Dual inputs (slider + number) | Color-coded sliders | Responsive design | Dark mode | World-class SEO | Affiliate monetization | Performance optimized
+**Key Features:** Real-time auto-calculate | Dual inputs (slider + number) | Color-coded sliders | Responsive design | Dark mode | PDF export & clipboard sharing | Pie charts for all calculators | World-class SEO | Affiliate monetization | Performance optimized
 
 ---
 
@@ -191,6 +191,16 @@ git push origin main        # Auto-deploys to Vercel
 - **Leap Year Logic:** Automatic detection (`isLeapYear()`) adjusts denominator 365→366, preventing fractional under-crediting
 - **Daily Accrual:** Shows per-day interest `(P × R) / DaysInYear` for quick estimation on any tenure
 - **Implementation:** Decimal.js (28 decimal places) for financial precision. Verified against 3 test cases (Years: ₹1,35,000 ✓, Months: ₹39,375 ✓, Days: ₹1,600 ✓)
+
+**PDF Export & Clipboard Sharing (All 10 Calculators):**
+- **Components:** `lib/utils/pdf-export.ts` (PDF generation utility) + `components/ui/ExportButton.tsx` (reusable button)
+- **Features:** Export results as PDF with professional formatting (calculator name, timestamp, CalculoX branding); Copy results to clipboard for quick sharing
+- **Implementation:** html2pdf.js library with dynamic imports to prevent SSR (server-side rendering) errors. PDF includes:
+  - Header: Calculator name + generated timestamp
+  - Body: Calculator-specific results (currency-formatted, dark-mode cleaned)
+  - Footer: CalculoX branding + website URL
+- **UX:** Dual-button layout (Export PDF + Copy), loading states, visual feedback (button text changes on success)
+- **All Calculators Supported:** Export buttons appear on results cards across SIP, EMI, BMI, Tax, FD, Simple Interest, RD, GST, CAGR, Percentage
 
 ---
 
