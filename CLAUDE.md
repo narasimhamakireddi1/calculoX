@@ -1,7 +1,7 @@
 # 🧮 CalculoX - CLAUDE.md
 
 **Status:** ✅ MVP Complete | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-28 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4
+**Last Updated:** 2026-05-29 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4
 
 ---
 
@@ -62,7 +62,8 @@ config/
 | **EMI** | Principal, Rate, Years | Monthly reducing balance method | Amortization table, virtual scrolling |
 | **BMI** | Weight, Height (metric/imperial) | BMI = kg/(m²) or 703×lbs/(in²) | Category display, health tips |
 | **Tax** | Income + 9 deductions | FY 2025-26 slabs + rebate 87A + surcharge | Regime comparison, breakdown, trace |
-| **FD/RD** | Principal, Rate, Years/Months | Compound interest (annually/monthly) | Projection tables |
+| **FD** | Principal, Rate, Years/Months/Days, Payout Type | 4 tracks: Cumulative (Q-compound), Quarterly, Monthly (discounted), Short-term (SI) | RBI-compliant, Senior citizen +0.50%, Projections |
+| **RD** | Monthly Deposit, Rate, Months | Compound interest (monthly) | Projection tables |
 | **GST** | Amount | Add/Remove @ 5%/12%/18%/28% | Breakdown |
 | **Others** | Various | Standard financial formulas | Charts/tables |
 
@@ -163,6 +164,13 @@ git push origin main        # Auto-deploys to Vercel
 **Regime-Specific UI:** Tax calculator hides deductions section for New Regime (only standard deduction allowed). Old Regime shows full deduction form.
 
 **Component Memoization:** EMI calculator memoizes expensive components (charts, tables) to prevent unnecessary re-renders. Virtual scrolling for 60-month schedules.
+
+**FD Calculator - Four RBI-Compliant Tracks:**
+- **Cumulative:** Quarterly compounding (standard, reinvested): `P × (1+r/4)^q × (1+r×m/12)` for leftover months
+- **Quarterly Payout:** Non-cumulative income mode: `P × r/4` per quarter, principal returned at maturity
+- **Monthly Payout:** Discounted rate formula: `(P×r) / (12×(1+r/4)^(1/3))` to account for early payout
+- **Short-term (< 6 months):** Simple interest: `P × (1 + r×days/365)` per RBI guidelines
+- **Features:** Fractional tenures (1Y 7M) split into full quarters + leftover months. Senior citizen +0.50% bonus. Projections with monthly/quarterly breakdown. Verified against SBI/ICICI standards.
 
 ---
 
