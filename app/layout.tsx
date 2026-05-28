@@ -104,8 +104,6 @@ export default function RootLayout({
   return (
     <html lang="en-IN" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <meta name="theme-color" content="#2563eb" />
         <meta name="geo.region" content="IN" />
         <meta name="geo.placename" content="India" />
