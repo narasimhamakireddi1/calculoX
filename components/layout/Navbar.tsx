@@ -25,7 +25,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200/30 dark:border-gray-800/30 shadow-lg">
+    <nav aria-label="Main navigation" className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200/30 dark:border-gray-800/30 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo - Enhanced */}
@@ -45,6 +45,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  aria-current={active ? 'page' : undefined}
                   className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium text-sm flex items-center gap-1.5 transform hover:scale-105 ${
                     active
                       ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30'
@@ -63,6 +64,8 @@ export function Navbar() {
             className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             <span className="text-2xl font-bold">
               {isOpen ? '✕' : '☰'}
@@ -72,13 +75,14 @@ export function Navbar() {
 
         {/* Mobile Menu - Enhanced */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2 animate-in fade-in slide-in-from-top-2">
+          <div id="mobile-menu" className="md:hidden pb-4 space-y-2 animate-in fade-in slide-in-from-top-2">
             {links.map((link) => {
               const active = isActive(link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
+                  aria-current={active ? 'page' : undefined}
                   className={`block px-4 py-3 rounded-lg transition-all duration-200 font-medium flex items-center gap-2 ${
                     active
                       ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30'
