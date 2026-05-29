@@ -197,6 +197,17 @@ export const calculators: CalculatorConfig[] = [
     status: 'active',
     tags: ['finance', 'home-loan', 'real-estate', 'buying', 'renting'],
   },
+  {
+    id: 'profit-margin',
+    title: 'Profit Margin & Markup Calculator',
+    description: 'Calculate profit margins, markups, and GST impact. 4 modes: Markup→Margin, Margin→Markup, Cost&Revenue, GST Analysis.',
+    slug: 'profit-margin-calculator',
+    icon: '💹',
+    category: 'Finance',
+    href: '/profit-margin-calculator',
+    status: 'active',
+    tags: ['finance', 'profit', 'markup', 'margin', 'business', 'gst'],
+  },
 
   // Phase 2: Batch 3 - Utility Calculators (Coming Soon)
   {

@@ -49,6 +49,7 @@ export function Footer() {
               <li><Link href="/rd-calculator" className="hover:text-white transition-colors">RD Calculator</Link></li>
               <li><Link href="/retirement-calculator" className="hover:text-white transition-colors">Retirement Calculator</Link></li>
               <li><Link href="/home-loan-vs-rent" className="hover:text-white transition-colors">Home Loan vs Rent</Link></li>
+              <li><Link href="/profit-margin-calculator" className="hover:text-white transition-colors">Profit Margin Calculator</Link></li>
               <li><Link href="/simple-interest-calculator" className="hover:text-white transition-colors">Simple Interest</Link></li>
               <li><Link href="/cagr-calculator" className="hover:text-white transition-colors">CAGR Calculator</Link></li>
             </ul>
