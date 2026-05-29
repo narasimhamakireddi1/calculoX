@@ -1,7 +1,7 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Enhanced | ✅ Theme Switcher | ✅ Beautiful Background | ✅ Footer Complete | ✅ PageSpeed Optimized (97/100) | ✅ Google Logo Schema Fixed | ✅ GSC Verified & Monitoring Live | ✅ **Content Expansion COMPLETE (16 Blog Posts)** | ✅ **Phase 3A Part 1 COMPLETE (2 Calculators)** | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-29 (Phase 3A Part 1 Complete: Retirement Corpus Calculator + Home Loan vs Rent Calculator launched. 49 total pages (46 baseline + 2 Phase 3A + 1 pending). Full SEO metadata, JSON-LD schemas, MemoizedPieChart optimization, RelatedCalculators cross-linking, ExportButton integration. Zero build errors. Phase 3A Part 2: Profit Margin & Markup Calculator in progress.) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Enhanced | ✅ Theme Switcher | ✅ Beautiful Background | ✅ Footer Complete | ✅ PageSpeed Optimized (97/100) | ✅ Google Logo Schema Fixed | ✅ GSC Verified & Monitoring Live | ✅ **Content Expansion COMPLETE (16 Blog Posts)** | ✅ **Phase 3A COMPLETE (3 Calculators)** | 🚀 Production Ready | Vercel Deployed  
+**Last Updated:** 2026-05-29 (Phase 3A Complete: All 3 calculators launched (Retirement Corpus, Home Loan vs Rent, Profit Margin & Markup). 50 total pages (46 baseline + 3 Phase 3A + 1 pending blog expansion). Full SEO metadata, JSON-LD schemas, MemoizedPieChart optimization, RelatedCalculators cross-linking, ExportButton integration. Zero build errors. Phase 3A Blog posts pending.) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
 
 **📈 IMPROVEMENTS COMPLETED:**
 - ✅ **Phase 1 (Mobile + SEO):** Responsive design fixed, 6 layout files added, OG image created, font optimization
@@ -55,11 +55,23 @@
    - ✅ **SEO:** Full metadata, keywords, FAQ schema, HowTo schema, breadcrumb schema, WebApplication schema
    - ✅ **RelatedCalculators:** EMI, SIP, Retirement, CAGR cross-linking
 
-**3. Configuration & Navigation Updates**
-   - ✅ Updated `config/calculators.config.ts`: Changed retirement-calculator from "coming-soon" → "active"
+**3. Profit Margin & Markup Calculator (COMPLETE)**
+   - ✅ **Features:** 4 calculation modes (Markup→Margin, Margin→Markup, Cost&Revenue, GST Impact)
+   - ✅ **Inputs:** Cost price, markup/margin %, selling price (varies by mode), GST rate, units per year
+   - ✅ **Outputs:** Profit per unit, markup %, margin %, GST amount, final price, profit after GST
+   - ✅ **Visualizations:** Profit breakdown pie chart, 5-year projection line chart, GST rate comparison table
+   - ✅ **GST Analysis:** 5 rate scenarios (0%, 5%, 12%, 18%, 28%) with detailed comparison table
+   - ✅ **SEO:** Full metadata, 10 keywords, FAQ schema (6 questions), HowTo schema (8 steps), WebApplication schema
+   - ✅ **RelatedCalculators:** GST, Percentage, Simple Interest, EMI cross-linking
+   - 📝 **Commit:** `98e75ba` — Phase 3A: Launch Profit Margin & Markup Calculator (3rd Calculator)
+   - 🧪 **Build Status:** ✅ Zero TypeScript errors, 50 pages prerendered
+
+**4. Configuration & Navigation Updates**
+   - ✅ Updated `config/calculators.config.ts`: Added profit-margin-calculator entry (active status)
+   - ✅ Updated retirement-calculator from "coming-soon" → "active"
    - ✅ Added home-loan-vs-rent to config as new active calculator
-   - ✅ Footer updated: Both calculators added to Finance section (7 items now)
-   - ✅ Navbar: Both calculators automatically appear via config (activeCalculators)
+   - ✅ Footer updated: All 3 Phase 3A calculators added to Finance section (9 items now)
+   - ✅ Navbar: All 3 calculators automatically appear via config (activeCalculators)
 
 **4. Technical Implementation**
    - ✅ **MemoizedPieChart Integration:** Both calculators use memoized pie charts for performance
@@ -74,24 +86,26 @@
 |---|---|---|---|---|
 | **Retirement Corpus** | ✅ Complete | 2 files (page + layout) | ✅ Full | ✅ Pass |
 | **Home Loan vs Rent** | ✅ Complete | 2 files (page + layout) | ✅ Full | ✅ Pass |
-| **Profit Margin & Markup** | 🔄 In Progress | Pending | Pending | Pending |
+| **Profit Margin & Markup** | ✅ Complete | 2 files (page + layout) | ✅ Full | ✅ Pass |
 
 ### **Metrics:**
-- **Pages Added:** 2 new calculators (Retirement + Home Loan vs Rent)
-- **Total Pages:** 33 (original) + 13 (blog) + 2 (Phase 3A) = **48 total pages**
-- **Build Status:** ✅ Zero errors, 49 pages prerendered (1 home + 11 calculators + 13 blogs + 10 legal)
-- **SEO Files Added:** 2 layout.tsx files with complete schema markup
-- **Config Updates:** 2 calculators added/updated in calculators.config.ts
+- **Pages Added:** 3 new calculators (Retirement + Home Loan vs Rent + Profit Margin & Markup)
+- **Total Pages:** 33 (original) + 13 (blog) + 3 (Phase 3A) = **49 total pages**
+- **Build Status:** ✅ Zero errors, 50 pages prerendered (1 home + 14 calculators + 13 blogs + 10 legal)
+- **SEO Files Added:** 3 layout.tsx files with complete schema markup
+- **Config Updates:** 3 calculators added/updated in calculators.config.ts
+- **Calculators Live:** 14 total (11 original MVP + 3 Phase 3A)
 
-### **Next Steps (Phase 3A Part 2):**
-1. Build Profit Margin & Markup Calculator (3rd of 3 Phase 3A calculators)
-2. Create 3 comprehensive blog posts (Retirement, Home Loan vs Rent, Profit Margin guides)
-3. Build, commit, and deploy Phase 3A to Vercel
-4. Plan Phase 3B: NPS, Property Appreciation, ROI calculators
+### **Next Steps (Phase 3A Blog Posts):**
+1. Create 3 comprehensive blog posts (Retirement, Home Loan vs Rent, Profit Margin guides)
+2. Deploy Phase 3A to Vercel
+3. Monitor GSC for organic search performance
+4. Plan Phase 3B: NPS, Property Appreciation, ROI calculators (5 more tools)
 
 ### **Commits This Session:**
 ```
 a1bfee1 Phase 3A: Launch Retirement Corpus & Home Loan vs Rent Calculators
+98e75ba Phase 3A: Launch Profit Margin & Markup Calculator (3rd Calculator)
 ```
 
 ---
