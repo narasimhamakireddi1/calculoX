@@ -36,7 +36,7 @@ export function Footer() {
             <p className="text-gray-400 text-sm leading-relaxed">
               Free premium online calculators for Indian users – finance, health & utility tools.
             </p>
-            <p className="text-gray-500 text-xs mt-3">Made with ❤️ for India</p>
+            <p className="text-gray-400 text-xs mt-3">Made with ❤️ for India</p>
           </div>
 
           {/* Calculators - Column 1 */}
@@ -82,8 +82,8 @@ export function Footer() {
               <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link></li>
               <li>
-                <address className="not-italic mt-3 text-gray-500 text-xs">
-                  <a href="mailto:supportcalculox@gmail.com" className="hover:text-gray-300 transition-colors">
+                <address className="not-italic mt-3 text-gray-400 text-xs">
+                  <a href="mailto:supportcalculox@gmail.com" className="hover:text-white transition-colors">
                     supportcalculox@gmail.com
                   </a>
                 </address>
@@ -92,7 +92,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-gray-500 text-sm">
+        <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-gray-400 text-sm">
           <p>&copy; {new Date().getFullYear()} calculox. All rights reserved. Made with ❤️ for India</p>
           <p className="text-xs">⚠️ Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
         </div>
