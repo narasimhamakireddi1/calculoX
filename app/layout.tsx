@@ -135,8 +135,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
-      </head>
-      <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-50">
         <Script
           id="schema-organization"
           type="application/ld+json"
@@ -147,6 +145,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
+      </head>
+      <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-50">
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
