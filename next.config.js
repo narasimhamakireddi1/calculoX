@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ['recharts', 'react-hook-form', 'decimal.js'],
+  },
   images: {
     remotePatterns: [
       {
@@ -29,6 +32,10 @@ const nextConfig = {
     {
       source: '/_next/static/:path*',
       headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+    },
+    {
+      source: '/_next/data/:path*',
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' }],
     },
     {
       source: '/robots.txt',
