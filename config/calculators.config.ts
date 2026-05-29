@@ -178,13 +178,24 @@ export const calculators: CalculatorConfig[] = [
   {
     id: 'retirement',
     title: 'Retirement Calculator',
-    description: 'Calculate the corpus needed to retire comfortably.',
+    description: 'Calculate the corpus needed to retire comfortably using the 25x rule. Plan your retirement with inflation-adjusted expenses.',
     slug: 'retirement-calculator',
     icon: '🎯',
     category: 'Finance',
     href: '/retirement-calculator',
-    status: 'coming-soon',
-    tags: ['finance', 'retirement', 'planning'],
+    status: 'active',
+    tags: ['finance', 'retirement', 'planning', 'corpus'],
+  },
+  {
+    id: 'home-loan-vs-rent',
+    title: 'Home Loan vs Rent Calculator',
+    description: 'Compare buying vs renting with EMI, cost analysis, and break-even point calculation.',
+    slug: 'home-loan-vs-rent',
+    icon: '🏠',
+    category: 'Finance',
+    href: '/home-loan-vs-rent',
+    status: 'active',
+    tags: ['finance', 'home-loan', 'real-estate', 'buying', 'renting'],
   },
 
   // Phase 2: Batch 3 - Utility Calculators (Coming Soon)
