@@ -1,7 +1,7 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Enhanced | ✅ Theme Switcher | ✅ Beautiful Background | ✅ Footer Complete | ✅ PageSpeed Optimized (97/100) | ✅ Google Logo Schema Fixed | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-29 (Google Logo Schema Fix: Moved JSON-LD scripts from body to head for proper Google detection. Environment variable NEXT_PUBLIC_SITE_URL configured for production logo URL. .env.local setup complete. Verification: Rich Results Test ready to show Organization + WebSite schemas with logo detection.) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Enhanced | ✅ Theme Switcher | ✅ Beautiful Background | ✅ Footer Complete | ✅ PageSpeed Optimized (97/100) | ✅ Google Logo Schema Fixed | ✅ GSC Verified & Monitoring Live | 🚀 Production Ready | Vercel Deployed  
+**Last Updated:** 2026-05-29 (Google Search Console: Domain verified, sitemap.xml live (33 pages), robots.txt configured, auto-indexing enabled. Performance monitoring active. Logo will appear in search results within 1-4 weeks. Tracking keywords: SIP/EMI/Tax calculators. Weekly monitoring via GSC Performance dashboard.) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
 
 **📈 IMPROVEMENTS COMPLETED:**
 - ✅ **Phase 1 (Mobile + SEO):** Responsive design fixed, 6 layout files added, OG image created, font optimization
@@ -1286,4 +1286,107 @@ After Vercel deployment (wait 2-3 minutes):
 
 ---
 
-**Status:** ✅ PRODUCTION READY | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Navbar Enhanced | ✅ UI/UX Polish Complete | ✅ PageSpeed 97/100 (87→97 achieved!) | ✅ Google Logo Schema Fixed | WCAG 2.1 AAA (100% Accessibility) | All 11 calculators mobile-optimized | Deployed to Vercel | 92/100 AdSense Readiness 🚀
+## 🎯 GOOGLE SEARCH CONSOLE SETUP (Complete - 2026-05-29)
+
+### **✅ GSC Verification Status**
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| **Domain Verification** | ✅ COMPLETE | calculox.in verified in GSC |
+| **Sitemap.xml** | ✅ LIVE | 33 pages submitted and crawled |
+| **robots.txt** | ✅ ACTIVE | Configured to allow all content + sitemap link |
+| **Auto-Indexing** | ✅ ENABLED | Google crawling sitemap automatically |
+| **Logo Tracking** | ✅ READY | Will monitor Rich Results enhancement |
+| **Performance Monitoring** | ✅ ACTIVE | Tracking clicks, impressions, position, CTR |
+
+### **🔍 Search Infrastructure**
+
+**Sitemap Configuration:**
+- File: `app/sitemap.ts` (auto-generated)
+- URL: `https://www.calculox.in/sitemap.xml`
+- Pages: 33 total (1 homepage + 11 calculators + 11 blog posts + 10 legal/info pages)
+- Last Updated: 2026-05-29T14:57:49.521Z
+- Update Frequency: Weekly for homepage, monthly for calculators
+
+**Robots.txt Configuration:**
+- File: `app/robots.ts` (auto-generated)
+- Allow: All public routes
+- Disallow: /api/, /admin/, /_next/
+- Host: https://www.calculox.in
+- Sitemap: https://www.calculox.in/sitemap.xml
+
+### **📊 Monitoring Dashboard Setup**
+
+**Performance Metrics (Real-time in GSC):**
+- 📈 **Total Clicks** — Organic visits to calculox.in
+- 👁️ **Total Impressions** — Times site appears in Google results
+- 🎯 **Average Position** — Current ranking positions (target: < 20)
+- 📊 **Average CTR** — Click-through rate % (target: > 5%)
+
+**Filter by:**
+- **Queries** — Which search terms drive traffic
+- **Pages** — Which calculator pages are ranking best
+- **Countries** — India (primary market) + other regions
+- **Devices** — Desktop vs mobile breakdown
+- **Search Type** — Web, Image, News, etc.
+
+### **📋 Indexing Status**
+
+**Expected Timeline:**
+- **Immediately:** Homepage + sitemap submitted
+- **3-7 days:** Calculator pages indexed (11 pages)
+- **1-2 weeks:** Blog posts appearing in results (11 posts)
+- **2-4 weeks:** Logo appears in search results
+- **1-3 months:** Organic traffic growing 30-50%
+
+**Target Keywords (Should Rank):**
+- Priority 1: "SIP calculator", "EMI calculator", "Income tax calculator"
+- Priority 2: "FD calculator", "RD calculator", "CAGR calculator"
+- Priority 3: "GST calculator", "Percentage calculator", "BMI calculator"
+- Long-tail: "SIP calculator for Indian investors", "EMI calculator with amortization"
+
+### **🔄 Weekly Tracking Metrics**
+
+| Week | Indexed Pages | Clicks | Impressions | Avg Position | Top Query |
+|------|---|---|---|---|---|
+| **Week 1-2** | 10-20 | 0-10 | 50-200 | 30-50 | "calculox" |
+| **Week 3-4** | 25-33 | 20-100 | 500-1000 | 15-30 | "SIP calculator" |
+| **Month 2** | 33 | 100-300 | 2000+ | 10-20 | Mixed queries |
+| **Month 3** | 33 | 300-500+ | 5000+ | 5-15 | Long-tail terms |
+
+**Success Indicators:**
+- ✅ Pages indexed: All 33 by week 4
+- ✅ Average position: < 20 by week 3-4
+- ✅ Click growth: Linear increase week-over-week
+- ✅ Logo appearance: By week 3-4 in top results
+
+### **🚀 GSC Features Enabled**
+
+- ✅ Sitemap monitoring (auto-crawl)
+- ✅ Coverage reports (track indexing)
+- ✅ Performance dashboard (monitor rankings)
+- ✅ Enhancements (Rich Results, Mobile Usability, Breadcrumbs)
+- ✅ Email alerts (critical issues)
+- ✅ URL inspection (manual indexing requests)
+
+### **📈 Expected Organic Growth**
+
+**Month 1-2:**
+- 0-50 clicks/week from organic search
+- Focus: Getting pages indexed + basic ranking
+
+**Month 3:**
+- 50-150 clicks/week
+- Focus: Improving position for target keywords
+
+**Month 4-6:**
+- 150-500 clicks/week
+- Focus: Expanding long-tail keyword ranking
+
+**Month 6+:**
+- 500-1000+ clicks/month
+- 30-50% of total traffic from organic search
+
+---
+
+**Status:** ✅ PRODUCTION READY | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Navbar Enhanced | ✅ UI/UX Polish Complete | ✅ PageSpeed 97/100 (87→97 achieved!) | ✅ Google Logo Schema Fixed | ✅ GSC Verified & Monitoring Live | WCAG 2.1 AAA (100% Accessibility) | All 11 calculators mobile-optimized | Deployed to Vercel | 92/100 AdSense Readiness 🚀
