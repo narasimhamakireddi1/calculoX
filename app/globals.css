@@ -51,7 +51,6 @@ body::after {
     radial-gradient(ellipse at -20% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
   pointer-events: none;
   z-index: -1;
-  animation: gradientShift 15s ease-in-out infinite;
 }
 
 @keyframes gradientShift {

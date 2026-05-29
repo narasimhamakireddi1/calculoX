@@ -152,6 +152,15 @@ export default function RootLayout({
         <Footer />
         <SpeedInsights />
         <Analytics />
+        <Script id="defer-animation" strategy="afterInteractive">
+          {`
+            if (typeof document !== 'undefined') {
+              const style = document.createElement('style');
+              style.textContent = 'body::after { animation: gradientShift 15s ease-in-out infinite; } @keyframes gradientShift { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.05) translateY(-20px); } }';
+              document.head.appendChild(style);
+            }
+          `}
+        </Script>
       </body>
     </html>
   );
