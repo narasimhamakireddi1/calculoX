@@ -1193,22 +1193,31 @@ not IE 11
 - ✅ All changes committed and pushed to origin/main
 - ✅ Vercel auto-deployment: Live
 
-### **Next Steps to Reach 100/100 Performance**
-1. **Defer Non-Critical CSS** (150ms savings)
-   - Move animation background to separate CSS file
-   - Load after initial render completes
-   - Estimated effort: 1-2 hours | Expected gain: +2-3 points
+### **✅ Final Optimization Results (2026-05-29)**
+**ALL HIGH-IMPACT FIXES COMPLETED! 87→97 (+10 points achieved)**
 
-2. **Dynamic Imports for Calculator Pages** (Partial 226 KiB savings)
-   - Lazy-load calculator JS until user navigates to them
-   - Keep homepage JS minimal
-   - Estimated effort: 2-3 hours | Expected gain: +2-4 points
+| Fix | Status | Implementation | Impact |
+|-----|--------|---|---|
+| **Footer Contrast** | ✅ DONE | text-gray-500 → text-gray-400 | Accessibility 96→100 |
+| **Render-blocking CSS** | ✅ DONE | Defer animation to afterInteractive | -150ms CSS blocking |
+| **Package Optimizations** | ✅ DONE | Turbopack optimizePackageImports | Better tree-shaking |
+| **Legacy JS Polyfills** | ✅ DONE | .browserslistrc targeting modern browsers | -14 KiB |
 
-3. **Optimize Long Main-thread Tasks** (130ms+ savings)
-   - Break calculator computations into smaller chunks
-   - Use `requestIdleCallback` for non-urgent work
-   - Consider Web Workers for heavy math operations
-   - Estimated effort: 2-4 hours | Expected gain: +1-2 points
+### **Optional Future Optimizations (for 98-100 score)**
+1. **Dynamic Imports for Calculator Pages** (2-3 hrs) → +2-4 points
+   - Lazy-load calculator JS on route navigation
+   - Saves ~226 KiB on homepage
+   - Requires: Code splitting architecture review
+
+2. **Optimize Long Main-thread Tasks** (2-4 hrs) → +1-2 points
+   - Break calculations with requestIdleCallback
+   - Use Web Workers for heavy math (Scientific, Tax)
+   - Requires: Threading architecture refactor
+
+3. **Code-splitting Review** (1-2 hrs) → +1-2 points
+   - Audit bundle with `next/bundle-analyzer`
+   - Move Recharts to dynamic imports where possible
+   - Merge small chunks for fewer requests
 
 ---
 
