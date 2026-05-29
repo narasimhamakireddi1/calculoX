@@ -74,6 +74,9 @@ Notice: Interest is ALWAYS ₹10/year, regardless of growing amount.
 ## Real Example: ₹1 Lakh Investment
 
 ### 5-Year FD with Compound Interest @ 7%
+
+Use our [FD calculator](/fd-calculator) for instant calculations on any amount and tenure.
+
 \`\`\`
 Year 1: ₹100,000 × 1.07 = ₹107,000
 Year 2: ₹107,000 × 1.07 = ₹114,490

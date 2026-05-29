@@ -56,6 +56,8 @@ SI = (10,000 × 8 × 2) / 100 = ₹1,600
 Total Amount = Principal + Interest = ₹10,000 + ₹1,600 = ₹11,600
 \`\`\`
 
+Use our [simple interest calculator](/simple-interest-calculator) to instantly compute SI for any principal, rate, and duration (years, months, or days).
+
 ---
 
 ## Three-Mode Simple Interest

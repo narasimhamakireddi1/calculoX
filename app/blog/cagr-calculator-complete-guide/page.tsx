@@ -80,6 +80,8 @@ CAGR = 1.1247 - 1
 CAGR = 0.1247 = **12.47% per year**
 \`\`\`
 
+Use our [CAGR calculator](/cagr-calculator) to instantly compute your investment growth rate for any starting value, ending value, and time period.
+
 ---
 
 ## Real Investment Examples

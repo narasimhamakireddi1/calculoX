@@ -65,10 +65,10 @@ export default function AllCalculatorComparison() {
 
 | Target | Calculator | Why |
 |--------|-----------|-----|
-| **Monthly Savings (₹10K+)** | SIP Calculator | Automatic wealth growth, 10-15% returns |
-| **Lump Sum Available** | FD Calculator | Safe, 6-7% guaranteed returns |
-| **Small Monthly Amounts (₹5K)** | RD Calculator | Better than savings account, 6.5% returns |
-| **10+ Year Goal** | CAGR Calculator | Understand investment growth rate |
+| **Monthly Savings (₹10K+)** | [SIP Calculator](/sip-calculator) | Automatic wealth growth, 10-15% returns |
+| **Lump Sum Available** | [FD Calculator](/fd-calculator) | Safe, 6-7% guaranteed returns |
+| **Small Monthly Amounts (₹5K)** | [RD Calculator](/rd-calculator) | Better than savings account, 6.5% returns |
+| **10+ Year Goal** | [CAGR Calculator](/cagr-calculator) | Understand investment growth rate |
 
 ---
 
@@ -78,10 +78,10 @@ export default function AllCalculatorComparison() {
 
 | Scenario | Calculator | Why |
 |----------|-----------|-----|
-| **Home Loan** | EMI Calculator | See monthly payment, total interest |
-| **Car Loan** | EMI Calculator | Calculate ₹5-25L loan payments |
-| **Personal Loan** | EMI Calculator | Short tenure, 3-5 year planning |
-| **Business Loan** | EMI Calculator | Custom tenure and amounts |
+| **Home Loan** | [EMI Calculator](/emi-calculator) | See monthly payment, total interest |
+| **Car Loan** | [EMI Calculator](/emi-calculator) | Calculate ₹5-25L loan payments |
+| **Personal Loan** | [EMI Calculator](/emi-calculator) | Short tenure, 3-5 year planning |
+| **Business Loan** | [EMI Calculator](/emi-calculator) | Custom tenure and amounts |
 
 ---
 
@@ -91,9 +91,9 @@ export default function AllCalculatorComparison() {
 
 | Situation | Calculator | Why |
 |-----------|-----------|-----|
-| **Salary ₹5-50L** | Income Tax Calculator | Find tax liability + deduction strategy |
-| **Business Pricing** | GST Calculator | Calculate tax-inclusive selling price |
-| **Loan Interest Tracking** | Simple Interest Calculator | Understand exact interest cost |
+| **Salary ₹5-50L** | [Income Tax Calculator](/tax-calculator) | Find tax liability + deduction strategy |
+| **Business Pricing** | [GST Calculator](/gst-calculator) | Calculate tax-inclusive selling price |
+| **Loan Interest Tracking** | [Simple Interest Calculator](/simple-interest-calculator) | Understand exact interest cost |
 
 ---
 

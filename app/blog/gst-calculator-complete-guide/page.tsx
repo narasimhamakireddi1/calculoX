@@ -69,6 +69,8 @@ Final Price: ₹100 + ₹18 = ₹118
 Formula: Final Price = Original × (1 + GST Rate/100)
 \`\`\`
 
+Use our [GST calculator](/gst-calculator) to instantly compute GST amounts for any price and rate (5%, 12%, 18%, or 28%).
+
 ### Method 2: Remove GST from Price (Businesses)
 \`\`\`
 Inclusive Price (consumer pays): ₹118

@@ -100,13 +100,14 @@ Different fund types offer different returns:
 - **Large-cap Funds:** 8-12% (stable, recommended for beginners)
 
 ### Step 4: Enter Values into SIP Calculator
+Ready to calculate? Use our [free SIP calculator](/sip-calculator) to input:
 - Monthly Investment: Your chosen amount
 - Annual Return Rate: Expected return %
 - Investment Period: Years or months
 - Step-Up Rate (optional): Annual increase in investment
 
 ### Step 5: Analyze Results
-The calculator shows:
+The [SIP calculator](/sip-calculator) shows:
 - **Total Invested Amount:** Sum of all your monthly investments
 - **Total Gains:** Returns earned through compounding
 - **Final Amount:** Total portfolio value
@@ -235,15 +236,18 @@ Age-wise SIP recommendations:
 - Emergency fund: 6-12 months of expenses
 
 ### Practice 2: Use Our SIP Calculator
+Use our [free SIP calculator](/sip-calculator):
 - Input your expected annual return (use 10% as default)
 - Adjust monthly investment based on goals
 - Review projections quarterly
+- Compare with [fixed deposits (FD)](/fd-calculator) or [recurring deposits (RD)](/rd-calculator)
 
 ### Practice 3: Diversify Your Portfolio
 - 40% Large-cap (stable, dividends)
 - 30% Mid-cap (growth potential)
 - 20% Small-cap (high growth, higher risk)
 - 10% International/Gold (diversification)
+- **Tip:** Use our [CAGR calculator](/cagr-calculator) to track your portfolio's compound annual growth rate annually
 
 ### Practice 4: Automate Your SIP
 - Set up automatic monthly debits

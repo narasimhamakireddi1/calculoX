@@ -71,6 +71,8 @@ Amount = Final maturity amount
 ### Real Example
 **Deposit:** ₹1,00,000 for 1 year at 6.5% p.a.
 
+Use our [FD calculator](/fd-calculator) to instantly compute your FD returns for any deposit amount and tenure.
+
 \`\`\`
 Amount = 1,00,000 × (1 + 6.5/100)^1
 Amount = 1,00,000 × 1.065

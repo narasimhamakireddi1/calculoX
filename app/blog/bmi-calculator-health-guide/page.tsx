@@ -52,6 +52,8 @@ BMI = 70 / 3.0625
 BMI = 22.86 (Normal weight category)
 \`\`\`
 
+Use our [BMI calculator](/bmi-calculator) to instantly compute your body mass index in both metric (kg/cm) and imperial (lbs/inches) modes.
+
 ---
 
 ## WHO Health Categories

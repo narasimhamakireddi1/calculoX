@@ -66,6 +66,8 @@ New Salary = ₹50,000 × 1.10
 New Salary = ₹55,000 (₹5,000 increase)
 \`\`\`
 
+Use our [percentage calculator](/percentage-calculator) to instantly compute percentage hikes, discounts, and changes for any values.
+
 **Real Example 2: Shop Discount**
 **Original Price: ₹1,000, Discount: 25%**
 

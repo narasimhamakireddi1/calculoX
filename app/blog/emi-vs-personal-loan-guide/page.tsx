@@ -44,6 +44,8 @@ export default function EMIVsPersonalLoan() {
 | **Approval Time** | 15-30 days | 3-7 days | 1-3 days |
 | **Best For** | Property investment, long-term | Vehicle purchase | Emergency funds, wedding, travel |
 
+**Need to calculate your EMI?** Use our [EMI calculator](/emi-calculator) to instantly compute monthly payments for any loan type.
+
 ---
 
 ## What is EMI?

@@ -81,6 +81,8 @@ Up to ₹3,00,000: ₹0 (nil tax)
 Total Tax: ₹82,500
 \`\`\`
 
+Use our [income tax calculator](/tax-calculator) to compute your exact tax liability for FY 2025-26 with all deductions and benefits applied.
+
 ### Step 3: Add Applicable Surcharge
 \`\`\`
 Income: ₹12,00,000 (no surcharge at this level)

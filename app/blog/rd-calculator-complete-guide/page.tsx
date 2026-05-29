@@ -47,6 +47,8 @@ Interest Earned: ₹7,938
 Final Amount: ₹1,27,938
 \`\`\`
 
+Use our [RD calculator](/rd-calculator) to instantly compute your recurring deposit returns for any monthly investment and tenure.
+
 ---
 
 ## RD Interest Calculation Formula

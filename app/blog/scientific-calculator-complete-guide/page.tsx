@@ -98,6 +98,8 @@ Steps: 1000 ÷ 100 = 10 | log(10) = 1 | 10 × 1 = 10
 \`\`\`
 Answer = 5! = 5 × 4 × 3 × 2 × 1 = 120
 
+Use our [scientific calculator](/scientific-calculator) to instantly perform all these calculations with support for DEG/RAD modes.
+
 Steps: 5 → [!] → 120
 \`\`\`
 

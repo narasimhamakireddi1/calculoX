@@ -58,7 +58,7 @@ Both **SIP (Systematic Investment Plan)** and **RD (Recurring Deposit)** are pop
 ## Deep Dive: How SIP Works
 
 ### SIP Mechanics
-**SIP invests in mutual funds:** Your ₹10,000/month buys fund units that grow based on market performance.
+**SIP invests in mutual funds:** Your ₹10,000/month buys fund units that grow based on market performance. Use our [advanced SIP calculator](/sip-calculator) to compute your potential returns.
 
 ### SIP Returns Example
 **Scenario:** ₹10,000/month SIP in balanced fund @ 10% annual return for 10 years
@@ -77,7 +77,7 @@ Return on Investment: 61% gain
 ## Deep Dive: How RD Works
 
 ### RD Mechanics
-**RD is a bank deposit:** You deposit fixed amounts regularly. Bank pays fixed interest on the total amount at maturity.
+**RD is a bank deposit:** You deposit fixed amounts regularly. Bank pays fixed interest on the total amount at maturity. Calculate your RD returns using our [RD calculator](/rd-calculator).
 
 ### RD Returns Example
 **Scenario:** ₹10,000/month RD @ 6% annual interest for 10 years

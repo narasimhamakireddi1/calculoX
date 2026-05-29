@@ -35,7 +35,7 @@ export default function StepUpSIPGuide() {
     content: `
 ## What is Step-Up SIP?
 
-**Step-Up SIP** (also called Progressive SIP or Escalation SIP) is an advanced investment strategy where your monthly SIP investment increases by a fixed percentage every year, typically matching your salary increments.
+**Step-Up SIP** (also called Progressive SIP or Escalation SIP) is an advanced investment strategy where your monthly SIP investment increases by a fixed percentage every year, typically matching your salary increments. Use our [SIP calculator with step-up feature](/sip-calculator) to compute your wealth projections.
 
 ### Simple Example
 \`\`\`
@@ -68,7 +68,7 @@ Year 4: ₹13,310/month (+10% increase)
 - Final Amount (@ 10%): ₹1,34,57,000
 - Gain: ₹94,31,000
 
-**Advantage:** +₹53,92,000 MORE wealth (67% additional gains!)
+**Advantage:** +₹53,92,000 MORE wealth (67% additional gains!) Try the [step-up SIP calculator](/sip-calculator) to see your personalized projections.
 
 ---
 

@@ -69,6 +69,8 @@ EMI = Equated Monthly Installment (monthly payment)
 - Annual Interest Rate: 8.5%
 - Loan Tenure: 20 years
 
+Use our [EMI calculator](/emi-calculator) to instantly compute this without manual calculations.
+
 **Calculation:**
 \`\`\`
 R = 8.5 ÷ 12 ÷ 100 = 0.00708
