@@ -5,8 +5,8 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'GST Calculator - Calculate GST Tax Instantly India Free',
-  description: 'Free GST Calculator to calculate GST tax quickly. Add or remove GST at 5%, 12%, 18%, 28% rates. Calculate tax breakdowns for all GST slabs instantly.',
+  title: 'GST Calculator India 2026 - Calculate GST Tax Online | calculox',
+  description: 'Advanced GST Calculator for India. Add/remove GST at all rates (5%, 12%, 18%, 28%). CGST & SGST breakdown. Input tax credit calculations. 100% accurate.',
   keywords: ['GST calculator', 'GST tax calculator', 'GST rate calculator', 'GST India', 'tax calculator India', 'GST breakdown calculator'],
   alternates: { canonical: `${BASE_URL}/gst-calculator` },
   openGraph: {
@@ -41,11 +41,51 @@ export default function GSTCalculatorLayout({ children }: { children: React.Reac
   const faqSchema = generateFAQSchema(faqs);
   const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', href: '/' }, { name: 'GST Calculator', href: '/gst-calculator' }]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate GST (Goods and Services Tax)",
+    "totalTime": "PT1M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Base Amount",
+        "text": "Enter the price of goods or services (before or after GST, depending on what you're calculating)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Select GST Rate",
+        "text": "Choose the applicable GST rate: 5% (essentials), 12% (standard), 18% (most goods), 28% (luxury items)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Choose Calculation Type",
+        "text": "Select whether you want to add GST to the base price or remove GST from the final price (reverse calculation)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "View Results",
+        "text": "Get GST amount, CGST & SGST breakdown (for intra-state), and final price with or without GST"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Track Input Tax Credit",
+        "text": "For businesses, track eligible input GST for ITC claims on your GST returns"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-gst-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-gst-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-gst-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-gst-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

@@ -9,8 +9,8 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Scientific Calculator - Advanced Math & Complex Numbers',
-  description: 'Free Scientific Calculator online. Full-featured Casio ClassWiz-style calculator with trigonometry, complex numbers, matrices, and statistical analysis. Perfect for engineers, scientists, and students.',
+  title: 'Scientific Calculator 2026 - Advanced Math, Complex Numbers, Matrices | calculox',
+  description: 'Professional Scientific Calculator with 4 engines: Standard (trig, logs), Complex numbers, Matrices, Statistics. DEG/RAD modes. Memory registers. Keyboard support.',
   keywords: [
     'scientific calculator',
     'scientific calculator online',
@@ -89,6 +89,45 @@ export default function ScientificCalculatorLayout({ children }: { children: Rea
     { name: 'Scientific Calculator', href: '/scientific-calculator' },
   ]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Use the Scientific Calculator",
+    "totalTime": "PT3M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Select Computation Mode",
+        "text": "Press MODE to switch between Standard (trigonometry, logarithms), Complex (a+bi numbers), Matrix (2×2/3×3), or Statistics mode"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Toggle Angle Mode",
+        "text": "Click DEG/RAD button to select degree or radian mode for trigonometric functions"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Enter Expression",
+        "text": "Type your mathematical expression using number keys, operation buttons, or physical keyboard. Use () for grouping."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Use SHIFT for Inverse Functions",
+        "text": "Press SHIFT to access inverse trigonometric functions (asin, acos, atan), exponentials (e^x), and other secondary functions"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Get Results",
+        "text": "Press = or Enter to calculate. View result on display. Use MR to recall stored values or continue calculations"
+      }
+    ]
+  };
+
   return (
     <>
       <Script
@@ -105,6 +144,11 @@ export default function ScientificCalculatorLayout({ children }: { children: Rea
         id="breadcrumb-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Script
+        id="howto-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
       {children}
     </>

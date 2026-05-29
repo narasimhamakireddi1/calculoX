@@ -9,8 +9,8 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Income Tax Calculator FY 2024-25 - New vs Old Regime India',
-  description: 'Free Income Tax Calculator for India FY 2024-25. Compare New vs Old tax regime, calculate exact tax liability with deductions & exemptions for salaried & business income. Updated for Budget 2024.',
+  title: 'Income Tax Calculator FY 2025-26 - New vs Old Regime India | calculox',
+  description: 'Advanced Income Tax Calculator for India FY 2025-26. Compare New vs Old regime, calculate exact tax with all deductions (80C, HRA, 80D, 80CCD). Real-time calculations.',
   keywords: [
     'income tax calculator', 'income tax calculator India', 'tax calculator 2024-25',
     'new tax regime calculator', 'old vs new tax regime', 'salary tax calculator India',
@@ -53,11 +53,51 @@ export default function TaxLayout({ children }: { children: React.ReactNode }) {
     { name: 'Tax Calculator', href: '/tax-calculator' },
   ]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Income Tax in India",
+    "totalTime": "PT3M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Your Annual Income",
+        "text": "Enter your gross annual income from salary, business, investments, and other sources for FY 2025-26"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Add Applicable Deductions",
+        "text": "Add deductions like Section 80C (PPF, ELSS, Insurance), HRA exemption, Section 80D (health insurance), Section 80CCD (NPS)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Choose Tax Regime",
+        "text": "Select between New Tax Regime (simpler, fewer deductions) or Old Regime (more deductions, higher threshold)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "View Calculated Tax",
+        "text": "Get your exact income tax liability, applicable slabs, surcharge, health & education cess breakdown"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Compare Regimes",
+        "text": "See side-by-side comparison of New vs Old regime tax amounts to choose the more beneficial one"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-tax-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-tax-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-tax-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-tax-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

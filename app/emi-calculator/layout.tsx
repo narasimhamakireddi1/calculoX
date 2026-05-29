@@ -9,8 +9,8 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'EMI Calculator - Calculate Loan EMI Instantly Free',
-  description: 'Free EMI Calculator for home loan, car loan & personal loan. Calculate monthly EMI, total interest payable & full amortization schedule. Enter loan amount, interest rate & tenure for instant results.',
+  title: 'EMI Calculator India 2026 - Home Loan, Car Loan & Personal Loan | calculox',
+  description: 'Advanced EMI Calculator with amortization schedule. Calculate home loan, car loan & personal loan EMI instantly. See month-by-month interest breakdown. 100% free & accurate. No registration needed.',
   keywords: [
     'EMI calculator', 'loan EMI calculator', 'home loan EMI calculator',
     'car loan calculator', 'personal loan EMI', 'EMI calculator India',
@@ -53,11 +53,52 @@ export default function EMILayout({ children }: { children: React.ReactNode }) {
     { name: 'EMI Calculator', href: '/emi-calculator' },
   ]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Loan EMI",
+    "description": "Step-by-step guide to calculate your monthly loan EMI using our advanced calculator",
+    "totalTime": "PT2M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Loan Amount",
+        "text": "Enter the principal amount you want to borrow (home loan, car loan, or personal loan)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter Annual Interest Rate",
+        "text": "Enter the annual interest rate offered by your bank or lender (typically 7-12% for loans)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Enter Loan Tenure",
+        "text": "Enter the loan tenure in years (typically 5-20 years for home loans, 1-7 years for personal loans)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "View Results",
+        "text": "Get instant results: monthly EMI amount, total interest payable, and complete amortization schedule"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Download Report",
+        "text": "Export the EMI schedule as PDF or copy results to share with financial advisors"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-emi-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-emi-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-emi-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-emi-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

@@ -9,8 +9,8 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'FD Calculator - Fixed Deposit Interest Calculator India Free',
-  description: 'Free Fixed Deposit Calculator for FD interest calculation. Calculate maturity amount, interest earned & projections for RBI-compliant FD schemes. Compare FD returns instantly.',
+  title: 'FD Calculator India 2026 - Fixed Deposit Interest Calculator | calculox',
+  description: 'Advanced FD Calculator with RBI-compliant rates. Calculate maturity amount, interest earned, senior citizen benefits. 4 payout types supported. 100% accurate, instant results.',
   keywords: [
     'FD calculator', 'fixed deposit calculator', 'FD interest calculator India',
     'FD calculator with interest rates', 'bank FD calculator', 'senior citizen FD',
@@ -52,11 +52,51 @@ export default function FDCalculatorLayout({ children }: { children: React.React
     { name: 'FD Calculator', href: '/fd-calculator' },
   ]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Fixed Deposit Maturity Amount",
+    "totalTime": "PT2M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Principal Amount",
+        "text": "Enter the amount you want to invest in the fixed deposit (minimum ₹1,000-5,000 depending on bank)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter Annual Interest Rate",
+        "text": "Enter the interest rate offered by your bank (typically 6-8% per annum for most banks)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Select Tenure",
+        "text": "Choose your FD tenure in years, months, or days (minimum 7 days, maximum 10 years for most banks)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Choose Payout Type",
+        "text": "Select between cumulative (compound), quarterly, monthly, or short-term (simple interest) payout options"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Get Results",
+        "text": "View maturity amount, total interest earned, and compare with other investment options"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-fd-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-fd-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-fd-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-fd-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

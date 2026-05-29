@@ -5,8 +5,8 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'CAGR Calculator - Calculate Compound Annual Growth Rate Instantly',
-  description: 'Free CAGR Calculator to calculate compound annual growth rate instantly. Calculate investment returns, growth rate & projections for stocks, mutual funds & investments.',
+  title: 'CAGR Calculator India 2026 - Compound Annual Growth Rate | calculox',
+  description: 'Advanced CAGR Calculator for investment analysis. Calculate compound annual growth rate for stocks, mutual funds, real estate. Compare investment returns accurately.',
   keywords: ['CAGR calculator', 'compound annual growth rate calculator', 'CAGR formula', 'investment growth calculator', 'mutual fund returns calculator'],
   alternates: { canonical: `${BASE_URL}/cagr-calculator` },
   openGraph: {
@@ -41,11 +41,51 @@ export default function CAGRCalculatorLayout({ children }: { children: React.Rea
   const faqSchema = generateFAQSchema(faqs);
   const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', href: '/' }, { name: 'CAGR Calculator', href: '/cagr-calculator' }]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate CAGR (Compound Annual Growth Rate)",
+    "totalTime": "PT2M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Beginning Value",
+        "text": "Enter the initial investment amount (starting value of your investment)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter Ending Value",
+        "text": "Enter the final value of your investment after the investment period"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Enter Number of Years",
+        "text": "Specify the duration of investment in years (can be decimal for months/days)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Get CAGR Result",
+        "text": "View calculated CAGR percentage, year-over-year growth breakdown, and investment growth chart"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Compare Investments",
+        "text": "Use CAGR to compare returns across different investments and time periods fairly"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-cagr-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-cagr-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-cagr-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-cagr-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

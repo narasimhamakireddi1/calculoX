@@ -5,8 +5,8 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Percentage Calculator - Calculate Percentages Instantly Free',
-  description: 'Free Percentage Calculator with 6 tools: percentage change, percentage of amount, reverse percentage, discount calculator & more. Calculate percentages instantly.',
+  title: 'Percentage Calculator India 2026 - 6-in-1 Percent Tool | calculox',
+  description: 'Advanced Percentage Calculator with 6 independent tools. Calculate discount, markup, percentage change, reverse %, sequential %. Real-time results for shopping, taxes, investments.',
   keywords: ['percentage calculator', 'percentage of calculator', 'discount calculator', 'percentage change calculator', 'markup calculator', 'percentage off calculator'],
   alternates: { canonical: `${BASE_URL}/percentage-calculator` },
   openGraph: {
@@ -41,11 +41,51 @@ export default function PercentageCalculatorLayout({ children }: { children: Rea
   const faqSchema = generateFAQSchema(faqs);
   const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', href: '/' }, { name: 'Percentage Calculator', href: '/percentage-calculator' }]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Percentages",
+    "totalTime": "PT2M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Choose Calculation Type",
+        "text": "Select which percentage calculation you need: hike/discount, X% of Y, percentage change, reverse %, or sequential percentages"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter Required Values",
+        "text": "Fill in the values based on your chosen calculation (original amount, percentage, new value, etc.)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Get Instant Results",
+        "text": "See calculated percentage value, percentage breakdown in pie chart, and natural language explanation"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Switch Calculation Types",
+        "text": "Use the quick-access buttons to switch between different percentage calculation methods"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Export Results",
+        "text": "Copy results to clipboard or download as PDF with input data for records"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-percentage-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-percentage-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-percentage-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-percentage-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

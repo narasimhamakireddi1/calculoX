@@ -9,8 +9,8 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'SIP Calculator - Calculate Monthly SIP Returns Free',
-  description: 'Free SIP Calculator online. Calculate Systematic Investment Plan returns, future value & total wealth. Enter monthly investment, years & return rate. Instant accurate results for Indian investors.',
+  title: 'SIP Calculator India 2026 - Systematic Investment Plan Returns | calculox',
+  description: 'Advanced SIP Calculator for mutual fund investors. Calculate SIP returns, future value & wealth growth. Monthly SIP, annual returns, step-up SIP support. 100% accurate for all mutual funds.',
   keywords: [
     'SIP calculator', 'SIP calculator online', 'systematic investment plan calculator',
     'SIP return calculator', 'monthly SIP calculator', 'SIP calculator India',
@@ -53,11 +53,52 @@ export default function SIPLayout({ children }: { children: React.ReactNode }) {
     { name: 'SIP Calculator', href: '/sip-calculator' },
   ]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate SIP Returns",
+    "description": "Step-by-step guide to calculate your Systematic Investment Plan returns using our advanced calculator",
+    "totalTime": "PT2M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Monthly Investment Amount",
+        "text": "Enter the amount you plan to invest monthly in mutual funds (minimum ₹100-500 for most funds)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter Expected Annual Return",
+        "text": "Enter the expected annual return rate (typically 10-15% for equity funds, 6-8% for debt funds)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Enter Investment Period",
+        "text": "Specify the number of years you plan to continue the SIP (5-40 years recommended for long-term wealth)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "View Results",
+        "text": "Get total invested amount, expected returns, final maturity value, and wealth growth projection"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Compare Scenarios",
+        "text": "Use sliders to adjust amounts and see how different monthly investments affect your future wealth"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-sip-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-sip-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-sip-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-sip-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

@@ -5,8 +5,8 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'RD Calculator - Recurring Deposit Calculator India Free',
-  description: 'Free Recurring Deposit Calculator for RD interest calculation. Calculate maturity amount, total interest & monthly deposits. Plan your RD investments instantly.',
+  title: 'RD Calculator India 2026 - Recurring Deposit Interest Calculator | calculox',
+  description: 'Advanced RD Calculator for recurring deposits. Calculate maturity amount, total interest, monthly deposits. Monthly, quarterly tenures. 100% accurate RBI-compliant calculations.',
   keywords: ['RD calculator', 'recurring deposit calculator', 'RD calculator India', 'bank RD calculator', 'RD maturity calculator', 'RD interest calculator'],
   alternates: { canonical: `${BASE_URL}/rd-calculator` },
   openGraph: {
@@ -41,11 +41,51 @@ export default function RDCalculatorLayout({ children }: { children: React.React
   const faqSchema = generateFAQSchema(faqs);
   const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', href: '/' }, { name: 'RD Calculator', href: '/rd-calculator' }]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Recurring Deposit Maturity Amount",
+    "totalTime": "PT2M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Monthly Deposit Amount",
+        "text": "Enter the fixed amount you plan to deposit every month (typically ₹100-1,00,000 depending on bank)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter Interest Rate",
+        "text": "Enter the annual interest rate offered by your bank (typically 6-7% per annum for RDs)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Enter Deposit Period",
+        "text": "Specify the duration in months or years (typical range: 6 months to 10 years)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "View RD Maturity Value",
+        "text": "Get total amount deposited, interest earned, and final maturity value with compound growth"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Compare with Other Options",
+        "text": "Compare RD returns with SIP, FD, and other investment options to choose the best savings plan"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-rd-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-rd-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-rd-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-rd-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

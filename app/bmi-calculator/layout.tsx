@@ -9,8 +9,8 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'BMI Calculator - Check Body Mass Index Online Free',
-  description: 'Free BMI Calculator to check your Body Mass Index instantly. Enter weight & height to calculate BMI, see health category (underweight/normal/overweight/obese) & get personalized tips. Supports metric & imperial.',
+  title: 'BMI Calculator India 2026 - Body Mass Index Health Check | calculox',
+  description: 'Advanced BMI Calculator for Indians. Check Body Mass Index, health category & ideal weight range. Metric & imperial support. WHO-standard health categories. 100% free & instant.',
   keywords: [
     'BMI calculator', 'body mass index calculator', 'BMI calculator India',
     'healthy BMI range', 'BMI check online', 'weight height calculator',
@@ -53,11 +53,45 @@ export default function BMILayout({ children }: { children: React.ReactNode }) {
     { name: 'BMI Calculator', href: '/bmi-calculator' },
   ]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Body Mass Index (BMI)",
+    "totalTime": "PT1M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Your Weight",
+        "text": "Enter your current weight in kilograms (metric) or pounds (imperial)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter Your Height",
+        "text": "Enter your height in meters or centimeters for metric, feet and inches for imperial"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "View Your BMI Results",
+        "text": "Get your BMI value and health category (underweight, normal, overweight, or obese)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Check Health Recommendations",
+        "text": "See personalized health tips and ideal weight range based on WHO standards"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-bmi-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-bmi-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-bmi-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-bmi-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );

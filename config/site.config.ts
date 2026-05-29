@@ -10,16 +10,75 @@ export const siteConfig = {
   author: 'calculox',
   email: 'supportcalculox@gmail.com',
 
-  // SEO
+  // SEO - Comprehensive keyword strategy for all calculators
   seo: {
     keywords: [
-      'calculator',
-      'SIP calculator',
+      // Primary High-Volume Keywords (Monthly searches: 4,000+)
       'EMI calculator',
+      'loan EMI calculator',
+      'home loan EMI calculator',
+      'car loan EMI calculator',
+      'personal loan calculator',
+      'SIP calculator',
+      'income tax calculator',
+      'GST calculator',
+      'FD calculator',
+      'RD calculator',
+      'CAGR calculator',
       'BMI calculator',
-      'tax calculator',
+      'percentage calculator',
+      'simple interest calculator',
+      'scientific calculator',
+
+      // Secondary Long-Tail Keywords (Monthly searches: 1,000-3,999)
+      'EMI calculator with amortization',
+      'how to calculate EMI',
+      'SIP calculator for Indian investors',
+      'income tax calculator FY 2026',
+      'GST calculator online',
+      'loan comparison calculator',
+      'best investment calculator',
+      'tax saving investment calculator',
+      'step-up SIP calculator',
+      'property loan calculator',
+      'fixed deposit calculator',
+      'recurring deposit calculator',
+      'personal loan EMI',
+      'home loan calculator',
+      'car loan EMI calculator',
+
+      // Comparison & How-To Keywords
+      'EMI vs personal loan',
+      'SIP vs RD comparison',
+      'FD vs simple interest',
+      'SIP vs mutual funds',
+      'home loan vs personal loan',
+      'loan comparison India',
+      'how to calculate percentage',
+      'how to calculate tax',
+      'investment calculator India',
+      'retirement planning calculator',
+
+      // Voice Search & Question-Based Keywords
+      'how do I calculate EMI',
+      'what is EMI calculator',
+      'best loan calculator in India',
+      'how to use SIP calculator',
+      'which is best investment',
+      'how much tax will I pay',
+      'can I calculate GST online',
+      'how to plan retirement',
+      'which is better EMI or loan',
+
+      // Brand & General Keywords
+      'calculator',
       'online calculator',
       'free calculator',
+      'financial calculator',
+      'financial calculator India',
+      'investment calculator India',
+      'tax calculator India',
+      'calculox',
     ],
     openGraph: {
       type: 'website',

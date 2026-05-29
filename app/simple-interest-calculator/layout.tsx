@@ -5,8 +5,8 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Simple Interest Calculator - Calculate SI Instantly India Free',
-  description: 'Free Simple Interest Calculator to calculate simple interest instantly. Calculate SI for years, months & days tenure. Find principal, interest rate & total amount easily.',
+  title: 'Simple Interest Calculator India 2026 - SI Calculator | calculox',
+  description: 'Advanced Simple Interest Calculator with year, month, day precision. Calculate SI, maturity amount, daily accrual. Loan interest, bond calculations. 100% accurate.',
   keywords: ['simple interest calculator', 'SI calculator', 'simple interest formula calculator', 'interest calculator', 'loan interest calculator'],
   alternates: { canonical: `${BASE_URL}/simple-interest-calculator` },
   openGraph: {
@@ -41,11 +41,51 @@ export default function SimpleInterestCalculatorLayout({ children }: { children:
   const faqSchema = generateFAQSchema(faqs);
   const breadcrumbSchema = generateBreadcrumbSchema([{ name: 'Home', href: '/' }, { name: 'Simple Interest Calculator', href: '/simple-interest-calculator' }]);
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Simple Interest",
+    "totalTime": "PT2M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Enter Principal Amount",
+        "text": "Enter the amount you want to borrow or invest (loan amount or savings amount)"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enter Annual Interest Rate",
+        "text": "Enter the annual interest rate (percentage per annum) offered by the lender or bank"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Select Time Period",
+        "text": "Choose whether to calculate for years, months, or days, and enter the duration"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Get Results",
+        "text": "View calculated simple interest amount, total amount due, and daily accrual breakdown"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Compare with Compound",
+        "text": "Compare simple interest results with compound interest to understand the difference"
+      }
+    ]
+  };
+
   return (
     <>
       <Script id="schema-si-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <Script id="schema-si-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-si-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <Script id="schema-si-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {children}
     </>
   );
