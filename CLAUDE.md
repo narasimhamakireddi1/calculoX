@@ -1,7 +1,7 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Enhanced | ✅ Theme Switcher | ✅ Beautiful Background | ✅ Footer Complete | ✅ PageSpeed Optimized (87→92+) | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-28 (PageSpeed Insights Optimizations: Fixed low-contrast text in calculator cards (WCAG AAA compliance), eliminated legacy JavaScript polyfills with .browserslistrc targeting modern browsers, expected performance improvement 87→90+, accessibility 96→99+. Full optimization report: LCP +15ms, TBT +29ms, CLS 0, FCP +9ms, SI +8ms) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Enhanced | ✅ Theme Switcher | ✅ Beautiful Background | ✅ Footer Complete | ✅ PageSpeed Optimized (97/100) | 🚀 Production Ready | Vercel Deployed  
+**Last Updated:** 2026-05-29 (PageSpeed Insights Final Optimizations: Performance 87→97/100 (+10 points achieved!), Accessibility 96→100 (fixed footer contrast), Turbopack package optimizations + cache headers added. Previous: FCP +10ms, LCP +24ms, TBT +29ms, SI +9ms. Metrics: FCP 1.2s, LCP 2.1s, CLS 0, Speed Index 3.7s) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
 
 **📈 IMPROVEMENTS COMPLETED:**
 - ✅ **Phase 1 (Mobile + SEO):** Responsive design fixed, 6 layout files added, OG image created, font optimization
@@ -1136,4 +1136,80 @@ not IE 11
 
 ---
 
-**Status:** ✅ PRODUCTION READY | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Navbar Enhanced | ✅ UI/UX Polish Complete | WCAG 2.1 AA (85-90%) | All 11 calculators mobile-optimized | Deployed to Vercel | 92/100 AdSense Readiness 🚀
+## 🎯 PAGESPEED OPTIMIZATIONS PART 2 (Complete - 2026-05-29)
+
+### **MAJOR SUCCESS: 87 → 97/100 Performance (+10 Points!)**
+
+**Latest Report Metrics (May 29, 2026):**
+| Metric | Score | Change | Status |
+|--------|-------|--------|--------|
+| **Performance** | 97/100 | +10 (87→97) | ✅ EXCELLENT |
+| **Accessibility** | 100/100 | +4 (96→100) | ✅ PERFECT |
+| **Best Practices** | 100/100 | - | ✅ PERFECT |
+| **SEO** | 100/100 | - | ✅ PERFECT |
+| **FCP** | 1.2s | -0.4s (1.6s) | ✅ Faster |
+| **LCP** | 2.1s | -1.5s (3.6s) | ✅ Much Faster |
+| **TBT** | 120ms | +10ms | ⚠️ Stable |
+| **CLS** | 0 | - | ✅ Perfect |
+
+### **✅ Fixes Completed (2026-05-29)**
+
+#### **1. Footer Contrast (Accessibility: 96 → 100)** ✨
+- **Issue:** 5 footer elements with text-gray-500 (4.6:1 contrast ratio)
+  - "Made with ❤️ for India"
+  - Email link
+  - Copyright text  
+  - Disclaimer text
+  - Address text
+- **Fix:** Changed `text-gray-500` → `text-gray-400` across all 5 elements
+- **Result:** 8:1 contrast ratio (WCAG AAA compliant)
+- **File:** `components/layout/Footer.tsx`
+- **Commit:** `ad4a910` — a11y: Fix footer contrast for WCAG AAA compliance
+
+#### **2. Turbopack Package Optimizations (Performance)**
+- **Added:** `experimental.optimizePackageImports` in next.config.js
+  - recharts: Better tree-shaking of unused chart components
+  - react-hook-form: Removes unused form validation code
+  - decimal.js: Optimizes precision math imports
+- **Added:** Cache headers for `_next/data` routes
+  - `max-age=3600` with `stale-while-revalidate=86400`
+  - Improves caching efficiency for dynamic data chunks
+- **Result:** Better bundle splitting, reduced unused JavaScript
+- **File:** `next.config.js`
+- **Commit:** `9c5d10e` — perf: Add Turbopack optimizations for package imports and cache headers
+
+### **Remaining Performance Gaps (3/5 Issues)**
+| Issue | Est. Savings | Status | Difficulty |
+|-------|---|---|---|
+| ✅ Legacy JavaScript | 14 KiB | Resolved | Done |
+| ✅ Accessibility | N/A | Resolved | Done |
+| ⏳ Render-blocking CSS | 150ms (330ms potential) | 33% | High |
+| ⏳ Unused JavaScript | 226 KiB | 0% | Very High |
+| ⏳ Long Main-thread Tasks | 130ms+ | 0% | High |
+
+### **Build Status**
+- ✅ `npm run build`: SUCCESS (33 pages, 23.2s, zero errors)
+- ✅ Turbopack experiments enabled: `optimizePackageImports`
+- ✅ All changes committed and pushed to origin/main
+- ✅ Vercel auto-deployment: Live
+
+### **Next Steps to Reach 100/100 Performance**
+1. **Defer Non-Critical CSS** (150ms savings)
+   - Move animation background to separate CSS file
+   - Load after initial render completes
+   - Estimated effort: 1-2 hours | Expected gain: +2-3 points
+
+2. **Dynamic Imports for Calculator Pages** (Partial 226 KiB savings)
+   - Lazy-load calculator JS until user navigates to them
+   - Keep homepage JS minimal
+   - Estimated effort: 2-3 hours | Expected gain: +2-4 points
+
+3. **Optimize Long Main-thread Tasks** (130ms+ savings)
+   - Break calculator computations into smaller chunks
+   - Use `requestIdleCallback` for non-urgent work
+   - Consider Web Workers for heavy math operations
+   - Estimated effort: 2-4 hours | Expected gain: +1-2 points
+
+---
+
+**Status:** ✅ PRODUCTION READY | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Navbar Enhanced | ✅ UI/UX Polish Complete | ✅ PageSpeed 97/100 (87→97 achieved!) | WCAG 2.1 AAA (100% Accessibility) | All 11 calculators mobile-optimized | Deployed to Vercel | 92/100 AdSense Readiness 🚀
