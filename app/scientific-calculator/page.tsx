@@ -303,7 +303,7 @@ export default function ScientificCalculatorPage() {
 
       {/* FAQ */}
       <div className="max-w-3xl mx-auto card">
-        <h3 className="text-2xl font-bold mb-6">â" Frequently Asked Questions</h3>
+        <h3 className="text-2xl font-bold mb-6">📋 Frequently Asked Questions</h3>
         <div className="space-y-4">
           <details className="group cursor-pointer">
             <summary className="font-semibold text-gray-900 dark:text-gray-100 group-open:text-blue-600">
