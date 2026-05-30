@@ -277,12 +277,12 @@ export default function ProfitMarginCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">₹</span>
                 <input
                   type="number"
                   value={watchValues.costPrice === 0 ? '' : watchValues.costPrice}
                   onChange={(e) => setValue('costPrice', parseFloat(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                   placeholder="0"
                 />
               </div>
@@ -308,12 +308,12 @@ export default function ProfitMarginCalculator() {
                   className="w-full md:flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600 transition-all"
                 />
                 <div className="w-full md:w-auto relative flex-shrink-0">
-                  <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                  <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
                   <input
                     type="number"
                     value={watchValues.markup === 0 ? '' : watchValues.markup}
                     onChange={(e) => setValue('markup', parseFloat(e.target.value) || 0)}
-                    className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                    className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                     placeholder="0"
                   />
                 </div>
@@ -340,12 +340,12 @@ export default function ProfitMarginCalculator() {
                   className="w-full md:flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600 transition-all"
                 />
                 <div className="w-full md:w-auto relative flex-shrink-0">
-                  <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                  <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
                   <input
                     type="number"
                     value={watchValues.margin === 0 ? '' : watchValues.margin}
                     onChange={(e) => setValue('margin', parseFloat(e.target.value) || 0)}
-                    className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                    className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                     placeholder="0"
                   />
                 </div>
@@ -371,12 +371,12 @@ export default function ProfitMarginCalculator() {
                   className="w-full md:flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600 transition-all"
                 />
                 <div className="w-full md:w-auto relative flex-shrink-0">
-                  <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                  <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">₹</span>
                   <input
                     type="number"
                     value={watchValues.sellingPrice === 0 ? '' : watchValues.sellingPrice}
                     onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value) || 0)}
-                    className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                    className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                     placeholder="0"
                   />
                 </div>

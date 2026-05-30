@@ -216,12 +216,12 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">₹</span>
                 <input
                   type="number"
                   value={watchValues.homePrice === 0 ? '' : watchValues.homePrice}
                   onChange={(e) => setValue('homePrice', e.target.value ? Number(e.target.value) : 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -245,12 +245,12 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">₹</span>
                 <input
                   type="number"
                   value={watchValues.downPayment === 0 ? '' : watchValues.downPayment}
                   onChange={(e) => setValue('downPayment', e.target.value ? Number(e.target.value) : 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -274,12 +274,12 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">yrs</span>
                 <input
                   type="number"
                   value={watchValues.loanTenure}
                   onChange={(e) => setValue('loanTenure', Number(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -303,13 +303,13 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
                 <input
                   type="number"
                   step="0.1"
                   value={watchValues.interestRate}
                   onChange={(e) => setValue('interestRate', Number(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -338,12 +338,12 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">₹</span>
                 <input
                   type="number"
                   value={watchValues.monthlyRent === 0 ? '' : watchValues.monthlyRent}
                   onChange={(e) => setValue('monthlyRent', e.target.value ? Number(e.target.value) : 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -367,13 +367,13 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-cyan-300 to-cyan-600 rounded-lg appearance-none cursor-pointer accent-cyan-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
                 <input
                   type="number"
                   step="0.1"
                   value={watchValues.rentIncreaseRate}
                   onChange={(e) => setValue('rentIncreaseRate', Number(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -402,13 +402,13 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-amber-300 to-amber-600 rounded-lg appearance-none cursor-pointer accent-amber-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
                 <input
                   type="number"
                   step="0.1"
                   value={watchValues.propertyAppreciationRate}
                   onChange={(e) => setValue('propertyAppreciationRate', Number(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -432,13 +432,13 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-indigo-300 to-indigo-600 rounded-lg appearance-none cursor-pointer accent-indigo-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
                 <input
                   type="number"
                   step="0.1"
                   value={watchValues.investmentReturn}
                   onChange={(e) => setValue('investmentReturn', Number(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -462,12 +462,12 @@ export default function HomeLoanVsRentCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-teal-300 to-teal-600 rounded-lg appearance-none cursor-pointer accent-teal-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">yrs</span>
                 <input
                   type="number"
                   value={watchValues.yearsToCompare}
                   onChange={(e) => setValue('yearsToCompare', Number(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
