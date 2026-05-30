@@ -162,6 +162,127 @@ export default function HomeLoanVsRentCalculator() {
           </div>
         )}
 
+        {/* Winner Analysis Section */}
+        {result && (
+          <div className="card mb-8 border-l-4 border-gradient-to-b">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Left: Verdict & Reasons */}
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  {result.financial_verdict === 'BUYING_IS_BETTER' ? '🏠 Buying Wins' : '📈 Renting Wins'}
+                </h3>
+
+                <div className="space-y-4">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Financial Advantage</p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {formatCurrency(result.absolute_delta)}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      ({result.delta_pct.toFixed(1)}% higher net worth)
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Why this option wins:</p>
+                    <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                      {result.financial_verdict === 'BUYING_IS_BETTER' ? (
+                        <>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                            <span>Property appreciation of <strong>{watchValues.property_growth_rate_pct}%/year</strong> builds significant equity</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                            <span>Final property value: <strong>{formatCurrency(result.buyer_final_property_value)}</strong></span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                            <span>EMI of <strong>{formatCurrency(result.monthly_emi)}/month</strong> is competitive against rising rents</span>
+                          </li>
+                          {watchValues.apply_tax_benefit && (
+                            <li className="flex items-start gap-2">
+                              <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                              <span>Section 24(b) tax deduction provides additional savings</span>
+                            </li>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <li className="flex items-start gap-2">
+                            <span className="text-blue-600 dark:text-blue-400 font-bold">✓</span>
+                            <span>Monthly rent (<strong>{formatCurrency(watchValues.initial_monthly_rent)}</strong>) is lower than EMI (<strong>{formatCurrency(result.monthly_emi)}</strong>)</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-blue-600 dark:text-blue-400 font-bold">✓</span>
+                            <span>Invested down payment + monthly savings grow at <strong>{watchValues.opportunity_return_pct}%/year</strong></span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-blue-600 dark:text-blue-400 font-bold">✓</span>
+                            <span>Renter portfolio reaches <strong>{formatCurrency(result.renter_investment_portfolio)}</strong> in {watchValues.projection_tenure_years} years</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-blue-600 dark:text-blue-400 font-bold">✓</span>
+                            <span>No property maintenance costs ({watchValues.annual_maintenance_pct}% of property value annually)</span>
+                          </li>
+                        </>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Key Metrics Comparison */}
+              <div>
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Key Metrics Comparison</h4>
+                <div className="space-y-3">
+                  <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-3">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Buyer Final Net Worth</p>
+                    <p className="text-lg font-bold text-gray-900 dark:text-white">
+                      {formatCurrency(result.buyer_net_worth)}
+                    </p>
+                  </div>
+                  <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-3">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Renter Final Net Worth</p>
+                    <p className="text-lg font-bold text-gray-900 dark:text-white">
+                      {formatCurrency(result.renter_investment_portfolio)}
+                    </p>
+                  </div>
+                  {result.break_even_year && (
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-amber-50 dark:bg-amber-900/20">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Break-Even Point</p>
+                      <p className="text-lg font-bold text-amber-700 dark:text-amber-300">Year {result.break_even_year}</p>
+                      <p className="text-xs text-amber-600 dark:text-amber-400 mt-1">When buying advantage reaches zero</p>
+                    </div>
+                  )}
+                  {!result.break_even_year && result.financial_verdict === 'RENTING_IS_BETTER' && (
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-blue-50 dark:bg-blue-900/20">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Break-Even Point</p>
+                      <p className="text-lg font-bold text-blue-700 dark:text-blue-300">Never</p>
+                      <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">Renting stays ahead throughout</p>
+                    </div>
+                  )}
+                  <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-3">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Monthly Rent vs EMI</p>
+                    <div className="flex justify-between items-center mt-2">
+                      <div className="text-xs">
+                        <p className="text-gray-600 dark:text-gray-400">Rent: {formatCurrency(watchValues.initial_monthly_rent)}/mo</p>
+                        <p className="text-gray-600 dark:text-gray-400">EMI: {formatCurrency(result.monthly_emi)}/mo</p>
+                      </div>
+                      <div className="text-right">
+                        <p className={`font-bold ${result.monthly_emi > watchValues.initial_monthly_rent ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
+                          {formatCurrency(Math.abs(result.monthly_emi - watchValues.initial_monthly_rent))}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">difference</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Tab Navigation */}
         <div className="flex gap-2 mb-6 border-b border-gray-300 dark:border-gray-700">
           {['property', 'loan', 'assumptions'].map((tab) => (
