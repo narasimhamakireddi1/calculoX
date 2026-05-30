@@ -145,6 +145,128 @@ useEffect(() => {
 
 ---
 
+## 💹 PROFIT MARGIN & MARKUP CALCULATOR (Production-Grade Redesign)
+
+### Core Engine: `ProfitMarginGstEngine`
+**File:** `lib/calculators/profit-margin.ts` | **Type-Safe:** ✅ Strict TypeScript
+
+**Dual-Mode Pricing Architecture:**
+
+1. **Cost-Driven (Bottom-Up)**
+   - User defines: Cost Price + Target Margin% OR Target Markup%
+   - Engine calculates: Net Selling Price → Profit → Equivalent Markup/Margin
+   - Formula (Margin):  `NetSP = CostPrice / (1 - Margin%/100)`
+   - Formula (Markup):  `NetSP = CostPrice × (1 + Markup%/100)`
+
+2. **Selling-Price-Driven (Top-Down)**
+   - User defines: Cost Price + Market MRP (fixed)
+   - Engine calculates: Pre-tax revenue → Profit → Margin/Markup percentages
+   - Common for retail with fixed MRP on packaging
+
+**GST Integration (Indian Tax Compliance):**
+
+| Mode | Tax Flow | Calculation |
+|------|----------|-------------|
+| **Exclusive** | Tax added on top | `FinalPrice = NetSP + (NetSP × GST%)` |
+| **Inclusive** | Tax embedded in MRP | `NetSP = MRP / (1 + GST%)` |
+
+**Key Features:**
+- Decimal.js precision (28 decimal places)
+- Margin dilution calculation for Inclusive GST
+- All 5 GST rates: 0%, 5%, 12%, 18%, 28%
+- Real-time interlinked margin ↔ markup conversion
+
+### UI/UX: Premium React Component
+**File:** `app/profit-margin-calculator/page.tsx` | **Lines:** 712 | **Tests:** ✅ Verified
+
+**Layout Pattern (Retirement-Grade Design):**
+```
+Header (centered title + description)
+├── Mode Tabs (underline style: Cost-Driven / Price-Driven)
+└── 2-Column Grid (lg:grid-cols-3)
+    ├── Left (lg:col-span-1): Input Card
+    │   ├── Cost Price (blue slider, ₹)
+    │   ├── [Mode-specific inputs]
+    │   ├── GST Rate (pill buttons: 0/5/12/18/28%)
+    │   ├── GST Treatment (toggle: Exclusive/Inclusive)
+    │   └── Clear All (red gradient)
+    └── Right (lg:col-span-2): Results Panel
+        ├── Hero Metrics (3 cards: CostPrice, NetSP, FinalMRP)
+        ├── Secondary Metrics (3 cards: Profit, Markup%, Margin%)
+        ├── GST Card (red theme)
+        ├── Margin Warning Badge (⚠️ shown only for Inclusive GST)
+        ├── Profitability Indicator (✅/❌)
+        └── Export Button (PDF + Clipboard)
+
+Charts Section (below grid):
+├── Stacked Bar Chart (Cost → Profit → GST breakdown)
+├── GST Scenario Table (all 5 rates with margin comparison)
+└── Pie Chart (Markup vs Margin visual)
+
+FAQ Section (5 India-specific questions)
+├── Markup vs Margin difference
+├── How GST Inclusive pricing works
+├── MRP & embedded GST extraction
+├── Healthy margin benchmarks for Indian retail
+└── Setting price to achieve target margin with GST
+```
+
+**Color-Coded Slider Pattern:**
+```
+Cost Price:        blue      (from-blue-300 to-blue-600)   border-blue-400 bg-blue-50
+Target Margin:     green     (from-green-300 to-green-600) border-green-400 bg-green-50
+Target Markup:     orange    (from-orange-300 to-orange-600) border-orange-400 bg-orange-50
+Selling Price/MRP: purple    (from-purple-300 to-purple-600) border-purple-400 bg-purple-50
+```
+
+**Interlinked Input Behavior:**
+- When Margin% changes → auto-show "≈ X% Markup" hint (read-only)
+- When Markup% changes → auto-show "≈ X% Margin" hint (read-only)
+- 300ms debounce auto-calculate on all input changes
+- Results update in real-time with smooth transitions
+
+**Metric Cards (Gradient + Border Design):**
+```
+Hero Metrics (top row):
+  Cost Price (blue)   | Net Selling Price (green) | Final MRP (purple)
+  
+Secondary Metrics (second row):
+  Gross Profit (emerald) | Markup % (orange) | Margin % (cyan)
+
+Special Cards:
+  GST Card (red) - shows liability, rate, treatment
+  Margin Warning (amber) - ⚠️ GST dilution alert
+  Profitability (green/red) - ✅ Profitable / ❌ Not Profitable
+```
+
+### Verification Test Results ✅
+
+**Scenario A: GST Exclusive (Bottom-Up)**
+```
+Input:  Cost ₹1,000 | Target Margin 20% | GST 18% EXCLUSIVE
+Output:
+  ✓ Net Selling Price: ₹1,250
+  ✓ Gross Profit: ₹250
+  ✓ Calculated Markup: 25%
+  ✓ GST Amount: ₹225
+  ✓ Final MRP: ₹1,475
+  ✓ Margin % match: 20.00%
+```
+
+**Scenario B: GST Inclusive (Top-Down)**
+```
+Input:  Cost ₹4,000 | MRP ₹5,900 | GST 18% INCLUSIVE
+Output:
+  ✓ Net Selling Price (Pre-GST): ₹5,000
+  ✓ Embedded GST Amount: ₹900
+  ✓ Gross Profit: ₹1,000
+  ✓ Actual Margin %: 20%
+  ✓ Calculated Markup: 25%
+  ✓ Margin Dilution: 0 (seller bears full GST burden)
+```
+
+---
+
 ## 🌐 DEPLOYMENT
 
 ```bash
@@ -190,6 +312,12 @@ See [MEMORY.md](MEMORY.md) for user preferences and project context.
 npm run build              # ✅ Verify production build
 npm run lint               # ✅ ESLint (zero warnings)
 npm run type-check         # ✅ TypeScript strict mode
+npm run dev                # ✅ Development server on :3000 or :3001
 ```
 
-Latest: **✅ 54 pages | ✅ 0 errors | ✅ Vercel live**
+**Latest Build (2026-05-30 Post-Redesign):**
+- **Pages:** 54 ✅
+- **TypeScript Errors:** 0 ✅
+- **Type-Check:** PASS ✅
+- **Profit Margin Redesign:** Production-grade ✅
+- **Vercel Deployment:** Live ✅
