@@ -690,8 +690,11 @@ export default function HomeLoanVsRentCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div className="card">
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Net Worth Comparison</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  <strong>X-axis:</strong> Years | <strong>Y-axis:</strong> Net Worth in ₹
+                </p>
                 <ResponsiveContainer width="100%" height={300}>
-                  <AreaChart data={chartData}>
+                  <AreaChart data={chartData} margin={{ left: 0, right: 20, top: 10, bottom: 0 }}>
                     <defs>
                       <linearGradient id="buyerGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.3} />
@@ -703,8 +706,15 @@ export default function HomeLoanVsRentCalculator() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                    <XAxis dataKey="year" stroke="#6B7280" />
-                    <YAxis stroke="#6B7280" />
+                    <XAxis
+                      dataKey="year"
+                      stroke="#6B7280"
+                      label={{ value: 'Years', position: 'insideBottomRight', offset: -5, fill: '#6B7280' }}
+                    />
+                    <YAxis
+                      stroke="#6B7280"
+                      label={{ value: 'Net Worth (₹)', angle: -90, position: 'insideLeft', fill: '#6B7280' }}
+                    />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: '#1F2937',
@@ -740,11 +750,21 @@ export default function HomeLoanVsRentCalculator() {
 
               <div className="card">
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Cumulative Cash Outflow</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                  <strong>X-axis:</strong> Years | <strong>Y-axis:</strong> Total Amount Paid in ₹
+                </p>
                 <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={chartData}>
+                  <LineChart data={chartData} margin={{ left: 0, right: 20, top: 10, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                    <XAxis dataKey="year" stroke="#6B7280" />
-                    <YAxis stroke="#6B7280" />
+                    <XAxis
+                      dataKey="year"
+                      stroke="#6B7280"
+                      label={{ value: 'Years', position: 'insideBottomRight', offset: -5, fill: '#6B7280' }}
+                    />
+                    <YAxis
+                      stroke="#6B7280"
+                      label={{ value: 'Cumulative Outflow (₹)', angle: -90, position: 'insideLeft', fill: '#6B7280' }}
+                    />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: '#1F2937',
