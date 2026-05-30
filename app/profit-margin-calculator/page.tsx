@@ -266,7 +266,7 @@ export default function ProfitMarginCalculator() {
             <label htmlFor="cost-price" className="block text-sm font-medium mb-2">
               Cost Price (₹)
             </label>
-            <div className="flex gap-3">
+            <div className="flex flex-col md:flex-row gap-3">
               <input
                 id="cost-price"
                 type="range"
@@ -274,13 +274,13 @@ export default function ProfitMarginCalculator() {
                 max="100000"
                 value={watchValues.costPrice || 0}
                 onChange={(e) => setValue('costPrice', parseFloat(e.target.value))}
-                className="flex-1"
+                className="flex-1 md:flex-1"
               />
               <input
                 type="number"
                 value={watchValues.costPrice === 0 ? '' : watchValues.costPrice}
                 onChange={(e) => setValue('costPrice', parseFloat(e.target.value) || 0)}
-                className="w-full md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+                className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
                 placeholder="0"
               />
             </div>
@@ -292,7 +292,7 @@ export default function ProfitMarginCalculator() {
               <label htmlFor="markup" className="block text-sm font-medium mb-2">
                 Markup (%)
               </label>
-              <div className="flex gap-3">
+              <div className="flex flex-col md:flex-row gap-3">
                 <input
                   id="markup"
                   type="range"
@@ -301,13 +301,13 @@ export default function ProfitMarginCalculator() {
                   step="0.1"
                   value={watchValues.markup || 0}
                   onChange={(e) => setValue('markup', parseFloat(e.target.value))}
-                  className="flex-1"
+                  className="flex-1 md:flex-1"
                 />
                 <input
                   type="number"
                   value={watchValues.markup === 0 ? '' : watchValues.markup}
                   onChange={(e) => setValue('markup', parseFloat(e.target.value) || 0)}
-                  className="w-full md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+                  className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
                   placeholder="0"
                 />
               </div>
@@ -320,7 +320,7 @@ export default function ProfitMarginCalculator() {
               <label htmlFor="margin" className="block text-sm font-medium mb-2">
                 Margin (%)
               </label>
-              <div className="flex gap-3">
+              <div className="flex flex-col md:flex-row gap-3">
                 <input
                   id="margin"
                   type="range"
@@ -329,13 +329,13 @@ export default function ProfitMarginCalculator() {
                   step="0.1"
                   value={watchValues.margin || 0}
                   onChange={(e) => setValue('margin', parseFloat(e.target.value))}
-                  className="flex-1"
+                  className="flex-1 md:flex-1"
                 />
                 <input
                   type="number"
                   value={watchValues.margin === 0 ? '' : watchValues.margin}
                   onChange={(e) => setValue('margin', parseFloat(e.target.value) || 0)}
-                  className="w-full md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+                  className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
                   placeholder="0"
                 />
               </div>
@@ -348,7 +348,7 @@ export default function ProfitMarginCalculator() {
               <label htmlFor="selling-price" className="block text-sm font-medium mb-2">
                 Selling Price (₹)
               </label>
-              <div className="flex gap-3">
+              <div className="flex flex-col md:flex-row gap-3">
                 <input
                   id="selling-price"
                   type="range"
@@ -356,13 +356,13 @@ export default function ProfitMarginCalculator() {
                   max="100000"
                   value={watchValues.sellingPrice || 0}
                   onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value))}
-                  className="flex-1"
+                  className="flex-1 md:flex-1"
                 />
                 <input
                   type="number"
                   value={watchValues.sellingPrice === 0 ? '' : watchValues.sellingPrice}
                   onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value) || 0)}
-                  className="w-full md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+                  className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
                   placeholder="0"
                 />
               </div>
@@ -399,7 +399,7 @@ export default function ProfitMarginCalculator() {
             <label htmlFor="units-per-year" className="block text-sm font-medium mb-2">
               Units Per Year
             </label>
-            <div className="flex gap-3">
+            <div className="flex flex-col md:flex-row gap-3">
               <input
                 id="units-per-year"
                 type="range"
@@ -407,13 +407,13 @@ export default function ProfitMarginCalculator() {
                 max="100000"
                 value={watchValues.unitsPerYear || 1000}
                 onChange={(e) => setValue('unitsPerYear', parseFloat(e.target.value))}
-                className="flex-1"
+                className="flex-1 md:flex-1"
               />
               <input
                 type="number"
                 value={watchValues.unitsPerYear === 0 ? '' : watchValues.unitsPerYear}
                 onChange={(e) => setValue('unitsPerYear', parseFloat(e.target.value) || 0)}
-                className="w-full md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
+                className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
                 placeholder="1000"
               />
             </div>
