@@ -3,7 +3,7 @@
 **Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA | AdSense 92/100 | GSC Live  
 **Last Updated:** 2026-05-30 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
-**Latest:** Home Loan vs Rent Calculator Charts Enhanced with Axis Labels (X: Years, Y: Net Worth/Cumulative Outflow) + Detailed Winner Analysis showing WHY buying/renting wins with key metrics & break-even analysis. Complete Opportunity Cost Framework Implementation with month-by-month precision & Section 24(b) tax benefits
+**Latest:** Home Loan vs Rent Calculator with Production-Grade Charts (Y-axis formatted as Cr/L/K, no overlaps, 70px left margin) + Detailed Winner Analysis explaining why each option wins + Complete Opportunity Cost Framework with month-by-month precision & Section 24(b) tax benefits
 
 ---
 
@@ -289,13 +289,19 @@ Output:
 Property Value (₹1L-₹10Cr) | Down Payment % (5-100%) | Loan Interest % (2-15%) | Tenure (1-40y) | Monthly Rent (₹1K-₹5L) | Rent Increase % (0-15%) | Property Appreciation % | Maintenance % | Investment Return % | Inflation % | Timeline (1-40y) | Section 24(b) toggle | Tax Bracket (0-45%)
 
 ### UI/UX: Premium React Component
-**File:** `app/home-loan-vs-rent/page.tsx` | **Lines:** 700+ | **Tabs:** 3 (Property | Loan & Rent | Assumptions)
+**File:** `app/home-loan-vs-rent/page.tsx` | **Lines:** 750+ | **Tabs:** 3 (Property | Loan & Rent | Assumptions)
 
 **Hero Metrics:** Monthly EMI (blue) | Break-Even Year (purple) | Net Advantage (emerald/blue conditional)
 
-**Charts:** 
+**Charts (Production-Grade):** 
 - AreaChart: Dual areas (buyer NW vs renter NW) with break-even reference line
+  * Y-axis formatted as Cr/L/K (Crore/Lakh/Thousand) for readability
+  * 70px left margin preventing text overlap
+  * 320px height for optimal aspect ratio
+  * Grid and legend for clarity
 - LineChart: Cumulative buyer outflows (EMI+maintenance) vs renter rent paid
+  * Same professional formatting as AreaChart
+  * Rotated axis labels removed, clean horizontal tick labels
 
 **Features:**
 - 3-tab input system with color-coded gradient sliders (9 colors)
