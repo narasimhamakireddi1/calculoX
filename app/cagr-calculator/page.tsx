@@ -294,6 +294,109 @@ export default function CAGRCalculatorPage() {
         </div>
       )}
 
+      {/* Featured Snippet Sections for SEO */}
+      <div className="space-y-8">
+        {/* Definition Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">What is CAGR (Compound Annual Growth Rate)?</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            CAGR (Compound Annual Growth Rate) is the average annual growth rate of an investment over a specific period, assuming that profits are reinvested at the end of each year. It is calculated using the formula: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">CAGR = (Ending Value / Beginning Value)^(1/Number of Years) - 1</span>. Unlike simple average returns, CAGR accounts for compound growth and provides a more accurate measure of long-term investment performance, smoothing out volatility year-to-year.
+          </p>
+        </div>
+
+        {/* Table Snippet: CAGR Examples */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">CAGR Examples: Different Investment Scenarios</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-gray-300 dark:border-gray-600">
+                  <th className="text-left py-3 px-4 font-bold">Investment Type</th>
+                  <th className="text-center py-3 px-4 font-bold">Start Amount</th>
+                  <th className="text-center py-3 px-4 font-bold">End Amount (10y)</th>
+                  <th className="text-center py-3 px-4 font-bold">CAGR</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">Savings Account (3%)</td>
+                  <td className="text-center py-3 px-4">₹1,00,000</td>
+                  <td className="text-center py-3 px-4">₹1,34,392</td>
+                  <td className="text-center py-3 px-4">3.0%</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">Fixed Deposit (7%)</td>
+                  <td className="text-center py-3 px-4">₹1,00,000</td>
+                  <td className="text-center py-3 px-4">₹1,96,715</td>
+                  <td className="text-center py-3 px-4">7.0%</td>
+                </tr>
+                <tr className="hover:bg-green-50 dark:hover:bg-green-900/20">
+                  <td className="py-3 px-4 font-semibold">Stock Market (12%)</td>
+                  <td className="text-center py-3 px-4">₹1,00,000</td>
+                  <td className="text-center py-3 px-4">₹3,10,585</td>
+                  <td className="text-center py-3 px-4 text-green-700 dark:text-green-400 font-bold">12.0%</td>
+                </tr>
+                <tr className="hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                  <td className="py-3 px-4 font-semibold">Real Estate (9%)</td>
+                  <td className="text-center py-3 px-4">₹1,00,000</td>
+                  <td className="text-center py-3 px-4">₹2,35,795</td>
+                  <td className="text-center py-3 px-4 text-blue-700 dark:text-blue-400 font-bold">9.0%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* List Snippet: Why CAGR Matters */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">Why CAGR Matters: 5 Key Benefits</h2>
+          <ol className="space-y-3 text-gray-700 dark:text-gray-300">
+            <li className="flex gap-3">
+              <span className="font-bold text-purple-600 dark:text-purple-400 flex-shrink-0">1.</span>
+              <span><strong>Smooths Volatility:</strong> CAGR eliminates the impact of short-term market fluctuations, giving a clearer picture of true growth.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-purple-600 dark:text-purple-400 flex-shrink-0">2.</span>
+              <span><strong>Compares Investments:</strong> Easily compare returns across different asset classes (stocks, FDs, real estate) on a level playing field.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-purple-600 dark:text-purple-400 flex-shrink-0">3.</span>
+              <span><strong>Projects Future Value:</strong> Use historical CAGR to estimate future wealth and plan retirement or financial goals.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-purple-600 dark:text-purple-400 flex-shrink-0">4.</span>
+              <span><strong>Evaluates Fund Performance:</strong> Mutual fund returns are best judged using CAGR over 5-10 years, not annual returns.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-purple-600 dark:text-purple-400 flex-shrink-0">5.</span>
+              <span><strong>Realistic Expectations:</strong> Helps set realistic investment goals rather than hoping for unrealistic 30%+ annual returns.</span>
+            </li>
+          </ol>
+        </div>
+
+        {/* Comparison Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">CAGR vs Simple Average Return: What's the Difference?</h2>
+          <div className="space-y-4 text-sm">
+            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-4 rounded-lg border-2 border-blue-300 dark:border-blue-700">
+              <p className="font-bold text-blue-700 dark:text-blue-300 mb-2">📊 CAGR (Compound)</p>
+              <p className="text-gray-700 dark:text-gray-300">Assumes profits are reinvested each year. Accounts for "interest on interest" (compounding). More accurate for long-term investments.</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400 mt-2"><strong>Example:</strong> ₹1L → ₹3.1L in 10 years @ 12% CAGR</p>
+            </div>
+            <div className="bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/30 dark:to-yellow-900/30 p-4 rounded-lg border-2 border-orange-300 dark:border-orange-700">
+              <p className="font-bold text-orange-700 dark:text-orange-300 mb-2">📈 Average Return (Simple)</p>
+              <p className="text-gray-700 dark:text-gray-300">Treats each year's return equally. Does NOT account for compounding. Overstates returns for volatile investments.</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400 mt-2"><strong>Example:</strong> Year1: +50%, Year2: -30% → Avg = 10%, but CAGR = 8.8%</p>
+            </div>
+          </div>
+          <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>Verdict:</strong> Always use CAGR when evaluating investment performance, especially for periods over 1 year. It gives the true picture of compound growth.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Related Calculators */}
       <RelatedCalculators
         calculators={[

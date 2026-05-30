@@ -366,6 +366,109 @@ export default function EMICalculatorPage() {
         </Suspense>
       )}
 
+      {/* Featured Snippet Sections for SEO */}
+      <div className="space-y-8">
+        {/* Definition Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">What is EMI?</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            EMI (Equated Monthly Installment) is a fixed monthly payment made by a borrower to repay a loan. The EMI includes both principal and interest components, calculated using the formula: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">EMI = [P×R×(1+R)^N]/[(1+R)^N-1]</span> where P is the loan amount, R is the monthly interest rate, and N is the number of months.
+          </p>
+        </div>
+
+        {/* List Snippet: How to Reduce EMI */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">How to Reduce Your Loan EMI?</h2>
+          <ol className="space-y-3 text-gray-700 dark:text-gray-300">
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">1.</span>
+              <span><strong>Make a Larger Down Payment:</strong> Increasing your down payment reduces the loan principal, which directly lowers the EMI amount.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">2.</span>
+              <span><strong>Choose a Longer Loan Tenure:</strong> Extending the loan duration spreads the payment over more months, reducing the monthly EMI (but increases total interest paid).</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">3.</span>
+              <span><strong>Negotiate a Better Interest Rate:</strong> Shopping around with different lenders or negotiating with your bank can secure a lower interest rate, reducing your EMI.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">4.</span>
+              <span><strong>Make Prepayments:</strong> Paying lump sums toward the principal reduces the outstanding balance and future EMI amounts.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">5.</span>
+              <span><strong>Switch to a Better Lender:</strong> If you have improved credit, consider refinancing with a lender offering better rates.</span>
+            </li>
+          </ol>
+        </div>
+
+        {/* Comparison Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">EMI vs Flat Rate Interest: Which is Better?</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="border-l-4 border-blue-600 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">📊 EMI (Reducing Balance)</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Interest calculated on the reducing balance monthly. More interest is paid upfront, less later.</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Total Interest:</strong> Lower | <strong>Early Payment:</strong> Better savings</p>
+            </div>
+            <div className="border-l-4 border-orange-600 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">💰 Flat Rate Interest</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Interest calculated as a fixed percentage of the original principal throughout the loan tenure.</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Total Interest:</strong> Higher | <strong>Early Payment:</strong> Limited benefit</p>
+            </div>
+          </div>
+          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>Verdict:</strong> EMI with reducing balance is significantly better for borrowers. You pay less total interest and benefit more from early repayment. Most Indian banks use the EMI method.
+            </p>
+          </div>
+        </div>
+
+        {/* Table Snippet: EMI for Different Loan Amounts */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">EMI for Different Loan Amounts @ 8.5% Interest</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-gray-300 dark:border-gray-600">
+                  <th className="text-left py-3 px-4 font-bold">Loan Amount</th>
+                  <th className="text-center py-3 px-4 font-bold">5 Years (EMI)</th>
+                  <th className="text-center py-3 px-4 font-bold">10 Years (EMI)</th>
+                  <th className="text-center py-3 px-4 font-bold">20 Years (EMI)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹10 Lakh</td>
+                  <td className="text-center py-3 px-4">₹20,138</td>
+                  <td className="text-center py-3 px-4">₹11,455</td>
+                  <td className="text-center py-3 px-4">₹7,726</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹25 Lakh</td>
+                  <td className="text-center py-3 px-4">₹50,344</td>
+                  <td className="text-center py-3 px-4">₹28,638</td>
+                  <td className="text-center py-3 px-4">₹19,314</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹50 Lakh</td>
+                  <td className="text-center py-3 px-4">₹1,00,689</td>
+                  <td className="text-center py-3 px-4">₹57,275</td>
+                  <td className="text-center py-3 px-4">₹38,629</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹1 Crore</td>
+                  <td className="text-center py-3 px-4">₹2,01,378</td>
+                  <td className="text-center py-3 px-4">₹1,14,549</td>
+                  <td className="text-center py-3 px-4">₹77,258</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       {/* Related Calculators */}
       <RelatedCalculators
         calculators={[

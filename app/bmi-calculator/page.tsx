@@ -454,6 +454,94 @@ export default function BMICalculatorPage() {
         </div>
       </div>
 
+      {/* Featured Snippet Sections for SEO */}
+      <div className="space-y-8">
+        {/* Definition Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">What is BMI (Body Mass Index)?</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            BMI (Body Mass Index) is a measure of body fat based on height and weight that applies to most adults. It is calculated using the formula: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">BMI = Weight (kg) / Height (m)²</span> or <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">BMI = 703 × Weight (lbs) / Height (inches)²</span>. While not a direct measure of body fat percentage, BMI serves as a useful screening tool for identifying weight categories that may lead to health problems.
+          </p>
+        </div>
+
+        {/* Table Snippet: BMI Categories */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">BMI Categories and Health Risk</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-gray-300 dark:border-gray-600">
+                  <th className="text-left py-3 px-4 font-bold">BMI Range</th>
+                  <th className="text-left py-3 px-4 font-bold">Category</th>
+                  <th className="text-left py-3 px-4 font-bold">Health Risk</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr className="hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                  <td className="py-3 px-4 font-semibold">Below 18.5</td>
+                  <td className="py-3 px-4">Underweight</td>
+                  <td className="py-3 px-4">Increased risk of nutritional deficiency</td>
+                </tr>
+                <tr className="hover:bg-green-50 dark:hover:bg-green-900/20">
+                  <td className="py-3 px-4 font-semibold">18.5 - 24.9</td>
+                  <td className="py-3 px-4 text-green-700 dark:text-green-400 font-bold">Normal Weight</td>
+                  <td className="py-3 px-4 text-green-700 dark:text-green-400">Lowest health risk</td>
+                </tr>
+                <tr className="hover:bg-orange-50 dark:hover:bg-orange-900/20">
+                  <td className="py-3 px-4 font-semibold">25.0 - 29.9</td>
+                  <td className="py-3 px-4">Overweight</td>
+                  <td className="py-3 px-4">Increased risk of heart disease, diabetes</td>
+                </tr>
+                <tr className="hover:bg-red-50 dark:hover:bg-red-900/20">
+                  <td className="py-3 px-4 font-semibold">30.0+</td>
+                  <td className="py-3 px-4 text-red-700 dark:text-red-400 font-bold">Obese</td>
+                  <td className="py-3 px-4">High risk of serious health complications</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* List Snippet: Tips for Healthy BMI */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">8 Tips to Achieve and Maintain a Healthy BMI</h2>
+          <ol className="space-y-3 text-gray-700 dark:text-gray-300">
+            <li className="flex gap-3">
+              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">1.</span>
+              <span><strong>Eat Balanced Nutrition:</strong> Include fruits, vegetables, whole grains, lean protein, and healthy fats. Avoid excessive sugary drinks and processed foods.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">2.</span>
+              <span><strong>Exercise Regularly:</strong> Aim for 150+ minutes of moderate aerobic activity per week combined with strength training 2x per week.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">3.</span>
+              <span><strong>Control Portion Sizes:</strong> Use smaller plates, eat slowly, and stop when you feel 80% full to prevent overeating.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">4.</span>
+              <span><strong>Stay Hydrated:</strong> Drink adequate water throughout the day. Sometimes thirst is mistaken for hunger.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">5.</span>
+              <span><strong>Get Quality Sleep:</strong> Aim for 7-9 hours per night. Poor sleep affects metabolism and increases hunger hormones.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">6.</span>
+              <span><strong>Manage Stress:</strong> Chronic stress leads to weight gain. Practice meditation, yoga, or deep breathing exercises.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">7.</span>
+              <span><strong>Track Progress:</strong> Monitor your weight weekly and keep a food diary to identify eating patterns.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">8.</span>
+              <span><strong>Consult Professionals:</strong> For personalized guidance, speak with a nutritionist or healthcare provider.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
       {/* Related Calculators */}
       <RelatedCalculators
         calculators={[

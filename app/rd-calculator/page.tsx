@@ -337,6 +337,108 @@ export default function RDCalculatorPage() {
         </div>
       )}
 
+      {/* Featured Snippet Sections for SEO */}
+      <div className="space-y-8">
+        {/* Definition Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">What is Recurring Deposit (RD)?</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            A Recurring Deposit (RD) is a savings scheme offered by banks where you invest a fixed amount (e.g., ₹500, ₹1000, ₹5000) monthly for a specified tenure (usually 6 months to 10 years) and earn compound interest on it. Unlike Fixed Deposits where you invest a lump sum, RD allows you to save small amounts regularly, making it ideal for salaried employees. Banks typically offer RD interest rates of 5-7%, higher than savings accounts but lower than FDs.
+          </p>
+        </div>
+
+        {/* Comparison: RD vs SIP vs FD */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">RD vs SIP vs Fixed Deposit: Which is Right for You?</h2>
+          <div className="grid md:grid-cols-3 gap-4 text-sm">
+            <div className="border-l-4 border-blue-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">🏦 RD</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly deposits, bank guaranteed, fixed returns</p>
+              <p className="text-xs"><strong>Rate:</strong> 5-7% | <strong>Risk:</strong> Nil | <strong>Liquidity:</strong> Low</p>
+            </div>
+            <div className="border-l-4 border-green-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">📈 SIP</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly investment in mutual funds, market-linked</p>
+              <p className="text-xs"><strong>Rate:</strong> 10-15% | <strong>Risk:</strong> Medium | <strong>Liquidity:</strong> High</p>
+            </div>
+            <div className="border-l-4 border-orange-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">💳 FD</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Lump sum deposit, bank guaranteed, fixed returns</p>
+              <p className="text-xs"><strong>Rate:</strong> 7-8% | <strong>Risk:</strong> Nil | <strong>Liquidity:</strong> Low</p>
+            </div>
+          </div>
+          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>Best Choice:</strong> RD if you save monthly with zero risk appetite; SIP if you can afford monthly investments and want higher growth; FD if you have lump sum savings.
+            </p>
+          </div>
+        </div>
+
+        {/* Table: RD Returns Comparison */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">RD Maturity Amount @ 6% Interest Rate</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-gray-300 dark:border-gray-600">
+                  <th className="text-left py-3 px-4 font-bold">Monthly Deposit</th>
+                  <th className="text-center py-3 px-4 font-bold">2 Years</th>
+                  <th className="text-center py-3 px-4 font-bold">5 Years</th>
+                  <th className="text-center py-3 px-4 font-bold">10 Years</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹1,000</td>
+                  <td className="text-center py-3 px-4">₹24,733</td>
+                  <td className="text-center py-3 px-4">₹65,696</td>
+                  <td className="text-center py-3 px-4">₹1,47,209</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹5,000</td>
+                  <td className="text-center py-3 px-4">₹1,23,665</td>
+                  <td className="text-center py-3 px-4">₹3,28,482</td>
+                  <td className="text-center py-3 px-4">₹7,36,047</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹10,000</td>
+                  <td className="text-center py-3 px-4">₹2,47,330</td>
+                  <td className="text-center py-3 px-4">₹6,56,965</td>
+                  <td className="text-center py-3 px-4">₹14,72,094</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* List: RD Benefits */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">5 Key Advantages of Recurring Deposits</h2>
+          <ol className="space-y-3 text-gray-700 dark:text-gray-300">
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">1.</span>
+              <span><strong>Builds Saving Habit:</strong> Monthly deposits enforce disciplined saving, making it perfect for salaried professionals.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">2.</span>
+              <span><strong>Higher Returns:</strong> RD interest (5-7%) is significantly higher than savings account interest (2-3%).</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">3.</span>
+              <span><strong>Safe & Guaranteed:</strong> 100% capital protection and guaranteed returns, unlike market-linked investments.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">4.</span>
+              <span><strong>Loan Against RD:</strong> Use your RD as collateral to get loans at rates 1-2% above RD interest rate.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">5.</span>
+              <span><strong>Flexible Tenure:</strong> Choose from 6 months to 10 years based on your savings goal and timeline.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
       {/* Related Calculators */}
       <RelatedCalculators
         calculators={[

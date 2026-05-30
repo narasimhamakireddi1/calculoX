@@ -685,6 +685,112 @@ export default function FDCalculatorPage() {
         </div>
       )}
 
+      {/* Featured Snippet Sections for SEO */}
+      <div className="space-y-8">
+        {/* Definition Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">What is Fixed Deposit (FD)?</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            A Fixed Deposit (FD) is a safe investment product offered by banks and financial institutions where you deposit a lump sum amount for a fixed tenure (3 months to 10 years) at a predetermined interest rate. The interest is paid either at maturity (cumulative), quarterly, monthly, or annually depending on the payout option you choose. FDs are FDIC-insured (up to ₹5 lakhs per bank per depositor in India), making them one of the safest investment options with guaranteed returns.
+          </p>
+        </div>
+
+        {/* Comparison Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">FD vs Savings Account vs Recurring Deposit (RD)</h2>
+          <div className="grid md:grid-cols-3 gap-4 text-sm">
+            <div className="border-l-4 border-blue-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">💳 FD (Fixed Deposit)</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Lump sum invested for fixed tenure</p>
+              <p className="text-xs"><strong>Rate:</strong> 7-8% | <strong>Tenure:</strong> 3m-10y | <strong>Safety:</strong> Very High</p>
+            </div>
+            <div className="border-l-4 border-green-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">🏦 Savings Account</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Liquid funds with withdrawal anytime</p>
+              <p className="text-xs"><strong>Rate:</strong> 2-3% | <strong>Tenure:</strong> Ongoing | <strong>Safety:</strong> Very High</p>
+            </div>
+            <div className="border-l-4 border-orange-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">📈 RD (Recurring)</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly investments over fixed period</p>
+              <p className="text-xs"><strong>Rate:</strong> 5-7% | <strong>Tenure:</strong> 6m-10y | <strong>Safety:</strong> Very High</p>
+            </div>
+          </div>
+          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>Best Use:</strong> FD for lump sum savings, Savings Account for emergency funds, RD for monthly savings habit.
+            </p>
+          </div>
+        </div>
+
+        {/* Table Snippet: FD Returns by Tenure */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">FD Returns Projection @ 7% Interest Rate</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-gray-300 dark:border-gray-600">
+                  <th className="text-left py-3 px-4 font-bold">Principal</th>
+                  <th className="text-center py-3 px-4 font-bold">1 Year</th>
+                  <th className="text-center py-3 px-4 font-bold">3 Years</th>
+                  <th className="text-center py-3 px-4 font-bold">5 Years</th>
+                  <th className="text-center py-3 px-4 font-bold">10 Years</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹1 Lakh</td>
+                  <td className="text-center py-3 px-4">₹1,07,000</td>
+                  <td className="text-center py-3 px-4">₹1,22,505</td>
+                  <td className="text-center py-3 px-4">₹1,40,255</td>
+                  <td className="text-center py-3 px-4">₹1,96,715</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹5 Lakh</td>
+                  <td className="text-center py-3 px-4">₹5,35,000</td>
+                  <td className="text-center py-3 px-4">₹6,12,526</td>
+                  <td className="text-center py-3 px-4">₹7,01,275</td>
+                  <td className="text-center py-3 px-4">₹9,83,575</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹10 Lakh</td>
+                  <td className="text-center py-3 px-4">₹10,70,000</td>
+                  <td className="text-center py-3 px-4">₹12,25,043</td>
+                  <td className="text-center py-3 px-4">₹14,02,552</td>
+                  <td className="text-center py-3 px-4">₹19,67,151</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* List Snippet: Benefits of FD */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">Key Advantages of Fixed Deposits</h2>
+          <ol className="space-y-3 text-gray-700 dark:text-gray-300">
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">1.</span>
+              <span><strong>Guaranteed Returns:</strong> Fixed interest rate known upfront, unlike stock market investments.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">2.</span>
+              <span><strong>FDIC Protection:</strong> Deposits up to ₹5 lakhs per bank are protected against bank failure.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">3.</span>
+              <span><strong>Better Than Savings Account:</strong> FD rates (7-8%) are significantly higher than savings account rates (2-3%).</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">4.</span>
+              <span><strong>Senior Citizen Benefit:</strong> Senior citizens (60+ years) get an additional 0.5% interest rate.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">5.</span>
+              <span><strong>Easy Loan Access:</strong> Use FD as collateral to get a loan at rates 1-2% above FD interest.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
       {/* Related Calculators */}
       <RelatedCalculators
         calculators={[
