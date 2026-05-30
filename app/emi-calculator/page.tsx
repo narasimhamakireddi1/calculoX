@@ -172,7 +172,7 @@ const LoanInput = memo(({
           value={value === 0 ? '' : value}
           onChange={onChange}
           onBlur={onBlur}
-          className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+          className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
         />
       </div>
     </div>
