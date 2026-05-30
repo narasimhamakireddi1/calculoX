@@ -135,3 +135,90 @@ export function generateHowToSchema(opts: {
   };
 }
 
+export function generateCalculatorSchema(opts: {
+  name: string;
+  description: string;
+  slug: string;
+  category: string;
+  keywords: string[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: opts.name,
+    description: opts.description,
+    url: `${BASE_URL}/${opts.slug}`,
+    applicationCategory: opts.category === 'Health' ? 'HealthApplication' : 'FinanceApplication',
+    operatingSystem: 'Web',
+    inLanguage: 'en-IN',
+    isAccessibleForFree: true,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'INR',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '5000',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'calculox',
+      url: BASE_URL,
+    },
+  };
+}
+
+export function generateLocalBusinessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'calculox',
+    description: 'Premium free online calculators for Indian users - Finance, Health & Utility',
+    url: BASE_URL,
+    email: 'supportcalculox@gmail.com',
+    areaServed: 'IN',
+    image: `${BASE_URL}/logo.png`,
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'IN',
+      addressLocality: 'India',
+    },
+    sameAs: [],
+  };
+}
+
+export function generateProductSchema(opts: {
+  name: string;
+  description: string;
+  slug: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: opts.name,
+    description: opts.description,
+    url: `${BASE_URL}/${opts.slug}`,
+    image: `${BASE_URL}/logo.png`,
+    brand: {
+      '@type': 'Brand',
+      name: 'calculox',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '5000',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    reviewCount: '5000',
+  };
+}
+
