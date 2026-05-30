@@ -1,4 +1,5 @@
 import { CalculatorCard } from "@/components/ui/CalculatorCard";
+import { CalculatorSearch } from "@/components/ui/CalculatorSearch";
 import { getActiveCalculators } from "@/config/calculators.config";
 
 export default function Home() {
@@ -14,6 +15,9 @@ export default function Home() {
     <div className="space-y-12">
       {/* Hero Section */}
       <section className="text-center py-12 md:py-20">
+        {/* Search Bar */}
+        <CalculatorSearch />
+
         <h1 className="text-5xl md:text-6xl font-bold mb-6">
           <span className="text-gradient">calculox</span>
         </h1>
