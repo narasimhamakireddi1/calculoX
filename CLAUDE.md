@@ -3,7 +3,7 @@
 **Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA | AdSense 92/100 | GSC Live  
 **Last Updated:** 2026-05-30 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
-**Latest:** Home Loan vs Rent Calculator Enhanced with Detailed Winner Analysis (explains WHY buying/renting wins with key metrics, break-even analysis, and financial reasons). Opportunity Cost Framework Implementation Complete (month-by-month precision, break-even detection, Section 24(b) tax benefits)
+**Latest:** Home Loan vs Rent Calculator Charts Enhanced with Axis Labels (X: Years, Y: Net Worth/Cumulative Outflow) + Detailed Winner Analysis showing WHY buying/renting wins with key metrics & break-even analysis. Complete Opportunity Cost Framework Implementation with month-by-month precision & Section 24(b) tax benefits
 
 ---
 
