@@ -10,6 +10,7 @@ import { SimpleInterestSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type SIFormData = {
   principal: number;
@@ -558,16 +559,7 @@ export default function SimpleInterestCalculatorPage() {
       )}
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
-          { title: 'FD Calculator', description: 'Calculate Fixed Deposit maturity amount', icon: '🏦', href: '/fd-calculator' },
-          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
-          { title: 'RD Calculator', description: 'Calculate Recurring Deposit returns', icon: '💳', href: '/rd-calculator' },
-          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
-          { title: 'CAGR Calculator', description: 'Measure investment returns over time', icon: '📊', href: '/cagr-calculator' },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('simple-interest-calculator')} />
 
       {/* FAQ */}
       <div className="card">

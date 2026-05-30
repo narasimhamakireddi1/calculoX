@@ -11,6 +11,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type FormData = {
   age: 'below60' | 'between60to80' | 'above80';
@@ -962,46 +963,7 @@ export default function TaxCalculator() {
               </div>
 
               {/* Related Calculators */}
-              <RelatedCalculators
-                calculators={[
-                  {
-                    title: 'GST Calculator',
-                    description: 'Calculate GST tax on products/services',
-                    icon: '📊',
-                    href: '/gst-calculator',
-                  },
-                  {
-                    title: 'Percentage Calculator',
-                    description: 'Quick percentage and ratio calculations',
-                    icon: '🔢',
-                    href: '/percentage-calculator',
-                  },
-                  {
-                    title: 'Simple Interest Calculator',
-                    description: 'Calculate simple interest on loans/deposits',
-                    icon: '💵',
-                    href: '/simple-interest-calculator',
-                  },
-                  {
-                    title: 'SIP Calculator',
-                    description: 'Plan your systematic investment returns',
-                    icon: '📈',
-                    href: '/sip-calculator',
-                  },
-                  {
-                    title: 'BMI Calculator',
-                    description: 'Check your Body Mass Index and health category',
-                    icon: '⚖️',
-                    href: '/bmi-calculator',
-                  },
-                  {
-                    title: 'CAGR Calculator',
-                    description: 'Measure your investment growth rate annually',
-                    icon: '📈',
-                    href: '/cagr-calculator',
-                  },
-                ]}
-              />
+              <RelatedCalculators calculators={getInternalLinks('tax-calculator')} />
 
               {/* Affiliate Banner */}
               <AffiliateBanner

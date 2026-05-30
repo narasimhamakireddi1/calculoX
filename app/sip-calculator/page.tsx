@@ -11,6 +11,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type SIPFormData = {
   monthlyInvestment: number;
@@ -654,46 +655,7 @@ export default function SIPCalculatorPage() {
       </div>
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          {
-            title: 'EMI Calculator',
-            description: 'Calculate loan EMI and amortization schedules',
-            icon: '🏦',
-            href: '/emi-calculator',
-          },
-          {
-            title: 'FD Calculator',
-            description: 'Calculate fixed deposit maturity and returns',
-            icon: '💳',
-            href: '/fd-calculator',
-          },
-          {
-            title: 'CAGR Calculator',
-            description: 'Measure your investment growth rate annually',
-            icon: '📊',
-            href: '/cagr-calculator',
-          },
-          {
-            title: 'RD Calculator',
-            description: 'Calculate recurring deposit interest earnings',
-            icon: '💰',
-            href: '/rd-calculator',
-          },
-          {
-            title: 'Percentage Calculator',
-            description: 'Quick percentage and ratio calculations',
-            icon: '🔢',
-            href: '/percentage-calculator',
-          },
-          {
-            title: 'Tax Calculator',
-            description: 'Calculate income tax liability (New/Old Regime)',
-            icon: '🧾',
-            href: '/tax-calculator',
-          },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('sip-calculator')} />
 
       {/* Affiliate Banner */}
       <AffiliateBanner

@@ -9,6 +9,7 @@ import { PercentageSchema } from '@/lib/validators';
 import { formatNumber } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type CalculationType = 'hike-discount' | 'percent-of' | 'what-percent' | 'percent-change' | 'reverse-percent' | 'sequential';
 
@@ -527,16 +528,7 @@ export default function PercentageCalculatorPage() {
       </div>
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          { title: 'GST Calculator', description: 'Add or remove GST from any amount', icon: '🧮', href: '/gst-calculator' },
-          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
-          { title: 'Simple Interest', description: 'Calculate simple interest on investments', icon: '💰', href: '/simple-interest-calculator' },
-          { title: 'CAGR Calculator', description: 'Measure investment returns over time', icon: '📊', href: '/cagr-calculator' },
-          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
-          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('percentage-calculator')} />
 
       {/* FAQ */}
       <div className="card">

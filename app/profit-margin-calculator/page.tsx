@@ -16,6 +16,7 @@ import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import ExportButton from '@/components/ui/ExportButton';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+import { getInternalLinks } from '@/config/internal-links.config';
 import {
   ProfitMarginGstEngine,
   type PricingResult,
@@ -675,34 +676,7 @@ export default function ProfitMarginCalculator() {
         </div>
 
         {/* Related Calculators */}
-        <RelatedCalculators
-          calculators={[
-            {
-              title: 'GST Calculator',
-              description: 'Calculate GST at 5%, 12%, 18%, or 28% rates',
-              icon: '🧮',
-              href: '/gst-calculator',
-            },
-            {
-              title: 'EMI Calculator',
-              description: 'Calculate loan EMI and amortization schedules',
-              icon: '🏦',
-              href: '/emi-calculator',
-            },
-            {
-              title: 'Home Loan vs Rent',
-              description: 'Compare buying vs renting with detailed analysis',
-              icon: '🏠',
-              href: '/home-loan-vs-rent-calculator',
-            },
-            {
-              title: 'Percentage Calculator',
-              description: '6 calculation modes for quick percentage work',
-              icon: '📈',
-              href: '/percentage-calculator',
-            },
-          ]}
-        />
+        <RelatedCalculators calculators={getInternalLinks('profit-margin-calculator')} />
 
         {/* Affiliate Banner */}
         <AffiliateBanner

@@ -21,6 +21,7 @@ import { BuyVsRentEngine, BuyVsRentResult, YearlyData } from '@/lib/calculators/
 import ExportButton from '@/components/ui/ExportButton';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { formatCurrency } from '@/lib/utils/format';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 // Format large numbers for Y-axis (e.g., 1000000 → 10L, 10000000 → 1Cr)
 const formatAxisValue = (value: number): string => {
@@ -912,14 +913,7 @@ export default function HomeLoanVsRentCalculator() {
         </div>
 
         {/* Related Calculators */}
-        <RelatedCalculators
-          calculators={[
-            { title: 'EMI Calculator', description: 'Calculate monthly loan payments', icon: '🏦', href: '/emi-calculator' },
-            { title: 'SIP Calculator', description: 'Plan your monthly investments', icon: '📈', href: '/sip-calculator' },
-            { title: 'Retirement Calculator', description: 'Plan your retirement corpus', icon: '🏖️', href: '/retirement-calculator' },
-            { title: 'CAGR Calculator', description: 'Calculate compound annual growth', icon: '📊', href: '/cagr-calculator' },
-          ]}
-        />
+        <RelatedCalculators calculators={getInternalLinks('home-loan-vs-rent')} />
       </div>
     </div>
   );

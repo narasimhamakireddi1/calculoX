@@ -8,6 +8,7 @@ import { NismRetirementEngine, type NismInputs, type NismCalculationResult } fro
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 import z from 'zod';
 
 // Zod validation schema
@@ -731,16 +732,7 @@ export default function RetirementCalculatorPage() {
       )}
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          { title: 'SIP Calculator', description: 'Plan systematic investments for wealth growth', icon: '📈', href: '/sip-calculator' },
-          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
-          { title: 'FD Calculator', description: 'Calculate Fixed Deposit returns', icon: '🏦', href: '/fd-calculator' },
-          { title: 'CAGR Calculator', description: 'Measure investment returns', icon: '📊', href: '/cagr-calculator' },
-          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
-          { title: 'Home Loan vs Rent', description: 'Decide between buying and renting', icon: '🏡', href: '/home-loan-vs-rent' },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('retirement-calculator')} />
 
       {/* FAQ */}
       <div className="card">

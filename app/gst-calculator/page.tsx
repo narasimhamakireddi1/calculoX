@@ -9,6 +9,7 @@ import { GSTSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type GSTFormData = {
   amount: number;
@@ -292,16 +293,7 @@ export default function GSTCalculatorPage() {
       )}
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          { title: 'Percentage Calculator', description: '6 calculation modes — salary hike, discounts, and more', icon: '📊', href: '/percentage-calculator' },
-          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
-          { title: 'Simple Interest', description: 'Calculate simple interest on investments', icon: '💰', href: '/simple-interest-calculator' },
-          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
-          { title: 'BMI Calculator', description: 'Check your Body Mass Index and health category', icon: '⚖️', href: '/bmi-calculator' },
-          { title: 'CAGR Calculator', description: 'Measure investment returns over time', icon: '📊', href: '/cagr-calculator' },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('gst-calculator')} />
 
       {/* GST Rate Info */}
       <div className="card">

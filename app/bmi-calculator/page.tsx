@@ -8,6 +8,7 @@ import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type BMIFormData = {
   weight: number;
@@ -543,46 +544,7 @@ export default function BMICalculatorPage() {
       </div>
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          {
-            title: 'Percentage Calculator',
-            description: 'Quick percentage and ratio calculations',
-            icon: '🔢',
-            href: '/percentage-calculator',
-          },
-          {
-            title: 'SIP Calculator',
-            description: 'Plan your systematic investment returns',
-            icon: '📈',
-            href: '/sip-calculator',
-          },
-          {
-            title: 'EMI Calculator',
-            description: 'Calculate loan EMI and amortization schedules',
-            icon: '🏦',
-            href: '/emi-calculator',
-          },
-          {
-            title: 'Tax Calculator',
-            description: 'Calculate income tax liability',
-            icon: '🧾',
-            href: '/tax-calculator',
-          },
-          {
-            title: 'FD Calculator',
-            description: 'Calculate fixed deposit maturity and returns',
-            icon: '💳',
-            href: '/fd-calculator',
-          },
-          {
-            title: 'CAGR Calculator',
-            description: 'Measure your investment growth rate annually',
-            icon: '📊',
-            href: '/cagr-calculator',
-          },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('bmi-calculator')} />
 
       {/* FAQ */}
       <div className="card">

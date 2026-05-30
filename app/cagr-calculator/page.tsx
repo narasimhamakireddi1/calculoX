@@ -9,6 +9,7 @@ import { CAGRSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type CAGRFormData = {
   beginningValue: number;
@@ -398,16 +399,7 @@ export default function CAGRCalculatorPage() {
       </div>
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
-          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
-          { title: 'FD Calculator', description: 'Calculate Fixed Deposit maturity amount', icon: '🏦', href: '/fd-calculator' },
-          { title: 'RD Calculator', description: 'Calculate Recurring Deposit returns', icon: '💳', href: '/rd-calculator' },
-          { title: 'Simple Interest', description: 'Calculate simple interest on investments', icon: '💰', href: '/simple-interest-calculator' },
-          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('cagr-calculator')} />
 
       {/* Comparison Section */}
       <div className="card">

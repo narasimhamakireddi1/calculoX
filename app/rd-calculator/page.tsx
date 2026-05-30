@@ -10,6 +10,7 @@ import { RDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type RDFormData = {
   monthlyDeposit: number;
@@ -440,16 +441,7 @@ export default function RDCalculatorPage() {
       </div>
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          { title: 'FD Calculator', description: 'Calculate Fixed Deposit maturity amount and interest', icon: '🏦', href: '/fd-calculator' },
-          { title: 'SIP Calculator', description: 'Plan your systematic investment growth', icon: '📈', href: '/sip-calculator' },
-          { title: 'CAGR Calculator', description: 'Measure investment returns over time', icon: '📊', href: '/cagr-calculator' },
-          { title: 'Simple Interest', description: 'Calculate simple interest on investments', icon: '💰', href: '/simple-interest-calculator' },
-          { title: 'Tax Calculator', description: 'Calculate income tax for FY 2025-26', icon: '📋', href: '/income-tax-calculator' },
-          { title: 'EMI Calculator', description: 'Calculate loan EMI and amortization', icon: '🏠', href: '/emi-calculator' },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('rd-calculator')} />
 
       {/* FAQ */}
       <div className="card">

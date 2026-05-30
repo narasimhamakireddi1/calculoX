@@ -9,6 +9,7 @@ import { FDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { getInternalLinks } from '@/config/internal-links.config';
 
 type TenureType = 'years' | 'months' | 'days';
 
@@ -792,46 +793,7 @@ export default function FDCalculatorPage() {
       </div>
 
       {/* Related Calculators */}
-      <RelatedCalculators
-        calculators={[
-          {
-            title: 'RD Calculator',
-            description: 'Calculate recurring deposit interest earnings',
-            icon: '💰',
-            href: '/rd-calculator',
-          },
-          {
-            title: 'SIP Calculator',
-            description: 'Plan your systematic investment returns',
-            icon: '📈',
-            href: '/sip-calculator',
-          },
-          {
-            title: 'CAGR Calculator',
-            description: 'Measure your investment growth rate annually',
-            icon: '📊',
-            href: '/cagr-calculator',
-          },
-          {
-            title: 'Simple Interest Calculator',
-            description: 'Calculate simple interest on loans/deposits',
-            icon: '💵',
-            href: '/simple-interest-calculator',
-          },
-          {
-            title: 'Tax Calculator',
-            description: 'Calculate income tax liability',
-            icon: '🧾',
-            href: '/tax-calculator',
-          },
-          {
-            title: 'EMI Calculator',
-            description: 'Calculate loan EMI and amortization schedules',
-            icon: '🏦',
-            href: '/emi-calculator',
-          },
-        ]}
-      />
+      <RelatedCalculators calculators={getInternalLinks('fd-calculator')} />
 
       {/* FAQ */}
       <div className="card">
