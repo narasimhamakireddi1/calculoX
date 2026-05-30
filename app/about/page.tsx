@@ -52,11 +52,46 @@ export default function AboutPage() {
         {/* Mission */}
         <section className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8 mb-10">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h2>
-          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-            At calculox, our mission is to make financial and health calculations accessible to every Indian.
-            We believe that accurate financial tools should be free, fast, and easy to use – whether you're
-            planning your first SIP investment, calculating a home loan EMI, or checking your BMI.
+          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
+            At calculox, our mission is to empower every Indian with access to accurate, free, and easy-to-use financial, health, and utility calculators. We believe financial literacy and smart decision-making should not be restricted by expensive tools or complex processes.
           </p>
+
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">💰 Investment & Wealth Planning</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                Plan your financial future with SIP Calculator (systematic investment returns), CAGR Calculator (growth rate analysis), FD Calculator (fixed deposit maturity), RD Calculator (recurring deposit tracking), and Simple Interest Calculator (loan & deposit interest).
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">🏠 Loans & Real Estate Decisions</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                Make informed housing decisions with EMI Calculator (loan repayment schedules), Home Loan vs Rent Calculator (buy vs rent break-even analysis), and understand your monthly payment obligations with detailed amortization schedules.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">📊 Tax & Business Planning</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                Optimize your finances with Income Tax Calculator (FY 2024-25 slabs, new vs old regime, 9+ deductions), GST Calculator (add/remove tax at all rates), Profit Margin Calculator (cost-driven & price-driven pricing with GST impact), and Percentage Calculator (6 modes for business calculations).
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">❤️ Health & Wellness</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                Monitor your health with BMI Calculator (Body Mass Index with WHO health categories and personalized tips for your weight category).
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">🔬 Advanced Tools</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                Scientific Calculator (Casio ClassWiz-style with 4 engines: Standard, Complex Numbers, Matrix Operations, and Statistical Analysis) for students, engineers, and professionals.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* What We Offer */}
