@@ -46,6 +46,7 @@ interface ProjectionRow {
 export default function FDCalculatorPage() {
   const [result, setResult] = useState<FDResultData | null>(null);
   const [projections, setProjections] = useState<ProjectionRow[]>([]);
+  const [showAllProjections, setShowAllProjections] = useState(false);
 
   const {
     formState: { errors },
@@ -138,6 +139,7 @@ export default function FDCalculatorPage() {
     reset();
     setResult(null);
     setProjections([]);
+    setShowAllProjections(false);
   };
 
   // Auto-calculate when inputs change (with debounce)
@@ -541,7 +543,7 @@ export default function FDCalculatorPage() {
                 </tr>
               </thead>
               <tbody>
-                {projections.map((proj, idx) => (
+                {(showAllProjections ? projections : projections.slice(0, Math.min(projections.length, 24))).map((proj, idx) => (
                   <tr key={idx} className={`${idx % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50'} border-b border-gray-200 dark:border-gray-700`}>
                     <td className="px-4 py-3 font-semibold">{proj.month}</td>
                     {watchValues.payoutType === 'cumulative' && (
@@ -561,9 +563,19 @@ export default function FDCalculatorPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
-            Showing first {Math.min(projections.length, 24)} months. {projections.length > 24 && `(${projections.length - 24} more months omitted)`}
-          </p>
+          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {showAllProjections ? `Showing all ${projections.length} periods` : `Showing first ${Math.min(projections.length, 24)} periods`}
+            </p>
+            {projections.length > 24 && (
+              <button
+                onClick={() => setShowAllProjections(!showAllProjections)}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-all duration-200"
+              >
+                {showAllProjections ? '▲ Show Less' : '▼ Show All'}
+              </button>
+            )}
+          </div>
         </div>
       )}
 

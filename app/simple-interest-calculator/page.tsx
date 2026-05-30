@@ -40,6 +40,7 @@ export default function SimpleInterestCalculatorPage() {
   const [result, setResult] = useState<SIResultData | null>(null);
   const [projections, setProjections] = useState<any[]>([]);
   const [chartData, setChartData] = useState<any[]>([]);
+  const [showAllProjections, setShowAllProjections] = useState(false);
 
   const {
     formState: { errors },
@@ -119,6 +120,7 @@ export default function SimpleInterestCalculatorPage() {
     setResult(null);
     setProjections([]);
     setChartData([]);
+    setShowAllProjections(false);
   };
 
   useEffect(() => {
@@ -445,7 +447,7 @@ export default function SimpleInterestCalculatorPage() {
                 </tr>
               </thead>
               <tbody>
-                {projections.slice(0, 12).map((proj, idx) => (
+                {(showAllProjections ? projections : projections.slice(0, 12)).map((proj, idx) => (
                   <tr
                     key={idx}
                     className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
@@ -473,9 +475,19 @@ export default function SimpleInterestCalculatorPage() {
             </table>
           </div>
 
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
-            Showing first {Math.min(projections.length, 12)} periods. {projections.length > 12 && `(${projections.length - 12} more periods available)`}
-          </p>
+          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {showAllProjections ? `Showing all ${projections.length} periods` : `Showing first ${Math.min(projections.length, 12)} periods`}
+            </p>
+            {projections.length > 12 && (
+              <button
+                onClick={() => setShowAllProjections(!showAllProjections)}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-all duration-200"
+              >
+                {showAllProjections ? '▲ Show Less' : '▼ Show All'}
+              </button>
+            )}
+          </div>
         </div>
       )}
 
