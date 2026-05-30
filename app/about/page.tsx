@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
 import { generateOrganizationSchema } from '@/lib/seo/schemas';
+import { getActiveCalculators } from '@/config/calculators.config';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -17,21 +18,20 @@ export const metadata: Metadata = {
   },
 };
 
-const calculators = [
-  { name: 'SIP Calculator', href: '/sip-calculator', desc: 'Systematic Investment Plan returns' },
-  { name: 'EMI Calculator', href: '/emi-calculator', desc: 'Loan EMI & amortization schedule' },
-  { name: 'BMI Calculator', href: '/bmi-calculator', desc: 'Body Mass Index & health tips' },
-  { name: 'Tax Calculator', href: '/tax-calculator', desc: 'Income Tax FY 2024-25 New vs Old regime' },
-];
-
 export default function AboutPage() {
   const orgSchema = generateOrganizationSchema();
+  const calculators = getActiveCalculators().map((calc) => ({
+    name: calc.title,
+    href: calc.href,
+    desc: calc.description,
+    icon: calc.icon,
+  }));
 
   return (
     <>
       <Script id="schema-about-org" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
 
-      <div className="max-w-4xl mx-auto px-4 py-12">
+      <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-500 mb-8">
           <Link href="/" className="hover:text-blue-600">Home</Link>
@@ -61,14 +61,15 @@ export default function AboutPage() {
 
         {/* What We Offer */}
         <section className="mb-10">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">What We Offer</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">What We Offer (14 Calculators)</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {calculators.map((calc) => (
               <Link
                 key={calc.href}
                 href={calc.href}
-                className="flex items-start gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md transition-all"
+                className="flex items-start gap-3 p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md transition-all"
               >
+                <span className="text-2xl flex-shrink-0">{calc.icon}</span>
                 <div>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1">{calc.name}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">{calc.desc}</p>
