@@ -93,9 +93,9 @@ export default function FDCalculatorPage() {
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     principal: { min: 10000, max: 100000000, label: 'Principal (₹)' },
     annualRate: { min: 0, max: 20, label: 'Annual Rate (%)' },
-    years: { min: 0, max: 30, label: 'Years' },
-    months: { min: 0, max: 11, label: 'Months' },
-    days: { min: 0, max: 31, label: 'Days' },
+    years: { min: 0, max: 100, label: 'Years' },
+    months: { min: 0, max: 999, label: 'Months' },
+    days: { min: 0, max: 365, label: 'Days' },
   };
 
   const handleInputChange = (fieldName: keyof FDFormData, value: number | boolean) => {
@@ -277,7 +277,7 @@ export default function FDCalculatorPage() {
                     <input
                       type="range"
                       min="0"
-                      max="11"
+                      max="999"
                       step="1"
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
@@ -289,11 +289,11 @@ export default function FDCalculatorPage() {
                       type="number"
                       placeholder="0"
                       min="0"
-                      max="11"
+                      max="999"
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-14 px-2 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                      className="w-16 px-2 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
                     />
                   </div>
                 </div>
@@ -305,7 +305,7 @@ export default function FDCalculatorPage() {
                     <input
                       type="range"
                       min="0"
-                      max="31"
+                      max="365"
                       step="1"
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
@@ -317,11 +317,11 @@ export default function FDCalculatorPage() {
                       type="number"
                       placeholder="0"
                       min="0"
-                      max="31"
+                      max="365"
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-14 px-2 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-pink-900/20 dark:text-pink-400 dark:border-pink-700"
+                      className="w-16 px-2 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-pink-900/20 dark:text-pink-400 dark:border-pink-700"
                     />
                   </div>
                 </div>

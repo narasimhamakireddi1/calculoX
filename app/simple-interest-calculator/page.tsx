@@ -85,9 +85,9 @@ export default function SimpleInterestCalculatorPage() {
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     principal: { min: 10000, max: 100000000, label: 'Principal (₹)' },
     annualRate: { min: 0, max: 50, label: 'Annual Rate (%)' },
-    years: { min: 0, max: 50, label: 'Years' },
-    months: { min: 0, max: 11, label: 'Months' },
-    days: { min: 0, max: 365, label: 'Days' },
+    years: { min: 0, max: 100, label: 'Years' },
+    months: { min: 0, max: 999, label: 'Months' },
+    days: { min: 0, max: 9999, label: 'Days' },
   };
 
   const handleInputChange = (fieldName: keyof Omit<SIFormData, 'tenureType'>, value: number) => {
@@ -265,7 +265,7 @@ export default function SimpleInterestCalculatorPage() {
                     <input
                       type="range"
                       min="0"
-                      max="50"
+                      max="100"
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
@@ -276,11 +276,11 @@ export default function SimpleInterestCalculatorPage() {
                       type="number"
                       placeholder="0"
                       min="0"
-                      max="50"
+                      max="100"
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                      className="w-14 px-2 py-2 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
+                      className="w-16 px-2 py-2 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                     />
                   </div>
                 </div>
@@ -292,7 +292,7 @@ export default function SimpleInterestCalculatorPage() {
                     <input
                       type="range"
                       min="0"
-                      max="11"
+                      max="999"
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
@@ -303,11 +303,11 @@ export default function SimpleInterestCalculatorPage() {
                       type="number"
                       placeholder="0"
                       min="0"
-                      max="11"
+                      max="999"
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-14 px-2 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
+                      className="w-16 px-2 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
                     />
                   </div>
                 </div>
@@ -319,7 +319,7 @@ export default function SimpleInterestCalculatorPage() {
                     <input
                       type="range"
                       min="0"
-                      max="365"
+                      max="9999"
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
@@ -330,11 +330,11 @@ export default function SimpleInterestCalculatorPage() {
                       type="number"
                       placeholder="0"
                       min="0"
-                      max="365"
+                      max="9999"
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-14 px-2 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-gray-700 dark:border-pink-600 dark:text-pink-400"
+                      className="w-20 px-2 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-gray-700 dark:border-pink-600 dark:text-pink-400"
                     />
                   </div>
                 </div>
