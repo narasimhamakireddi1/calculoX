@@ -1,7 +1,7 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Enhanced | ✅ Theme Switcher | ✅ Beautiful Background | ✅ Footer Complete | ✅ PageSpeed Optimized (97/100) | ✅ Google Logo Schema Fixed | ✅ GSC Verified & Monitoring Live | ✅ **Content Expansion COMPLETE (16 Blog Posts)** | ✅ **Phase 3A COMPLETE (3 Calculators)** | ✅ **Responsive Design FIXED (Mobile Optimized)** | 🚀 Production Ready | Vercel Deployed  
-**Last Updated:** 2026-05-30 (Responsive Design Fix: Profit Margin Calculator mobile layout optimized - flex flex-col md:flex-row pattern applied to all 5 input fields. Fixed w-24 on mobile, w-28 on desktop. No horizontal scroll on 375px viewport. 54 pages prerendered, zero TypeScript errors, committed & ready for push) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
+**Status:** ✅ MVP Complete | ✅ Phase 1 Complete | ✅ Phase 2 Complete | ✅ Phase 2B Complete | ✅ Phase 3D Complete | ✅ AdSense Compliance Ready | ✅ Branding Complete | ✅ Emoji/Charset Fix | ✅ Navbar Enhanced | ✅ Theme Switcher | ✅ Beautiful Background | ✅ Footer Complete | ✅ PageSpeed Optimized (97/100) | ✅ Google Logo Schema Fixed | ✅ GSC Verified & Monitoring Live | ✅ **Content Expansion COMPLETE (16 Blog Posts)** | ✅ **Phase 3A COMPLETE (3 Calculators)** | ✅ **Phase 3A Design Pattern Applied** | ✅ **Responsive Design FIXED (Mobile Optimized)** | 🚀 Production Ready | Vercel Deployed  
+**Last Updated:** 2026-05-30 (Phase 3A Design Pattern: Applied EMI calculator design pattern to all 3 Phase 3A calculators - color-coded sliders, range text indicators, Clear All button. Profit Margin (5 fields), Retirement (7 fields), Home Loan vs Rent (9 fields). 54 pages prerendered, zero TypeScript errors, committed 08123af, deployed to Vercel) | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + html2pdf.js + Recharts + Decimal.js
 
 **📈 IMPROVEMENTS COMPLETED:**
 - ✅ **Phase 1 (Mobile + SEO):** Responsive design fixed, 6 layout files added, OG image created, font optimization
@@ -30,6 +30,84 @@
 - ✅ **Footer Enhancement:** Expanded footer from 4 to 5 columns. Added all 11 calculators split into Finance (SIP, EMI, FD, RD, SI, CAGR) and Other Tools (BMI, Tax, GST, Percentage, Scientific) sections. Replaced emoji with matching favicon SVG icon. Added Home link to Company section for better navigation.
 - ✅ **PageSpeed Optimizations (Mobile 87→92+ target):** Fixed low-contrast category labels in calculator cards from text-primary-600 to text-gray-700 (3:1→8:1 WCAG AAA contrast), added .browserslistrc for modern browser targeting, eliminated 14 KiB legacy JavaScript polyfills (Array.at, Object.hasOwn, etc), improved LCP +15ms, TBT +29ms, FCP +9ms. Accessibility audit: 96→99+ expected.
 - 📊 **Expected Results:** SEO 9.0+/10, Lighthouse 87→92, PageSpeed Performance 87→90+, Accessibility 96→99+, +30-50% organic traffic, +40-60% user engagement, AdSense approval ready, complete calculator discoverability, all emojis rendering correctly, consistent UI across all calculators, premium visual experience, user-controlled theme selection, improved footer navigation
+
+---
+
+## 🎯 SESSION SUMMARY (2026-05-30: Phase 3A Design Pattern - EMI Calculator Styling)
+
+### **Work Completed This Session:**
+
+**1. Applied EMI Calculator Design Pattern to All Phase 3A Calculators (COMPLETE)**
+   - ✅ **Profit Margin & Markup Calculator:** 5 color-coded input fields
+     - Cost Price (blue gradient, ₹ prefix)
+     - Markup % (orange gradient, % suffix)
+     - Margin % (green gradient, % suffix)
+     - Selling Price (purple gradient, ₹ prefix)
+     - Units Per Year (rose gradient, no prefix/suffix)
+   - ✅ **Retirement Corpus Calculator:** 7 color-coded input fields
+     - Current Age (blue gradient, range: 18-65)
+     - Retirement Age (orange gradient, range: current-80)
+     - Life Expectancy (green gradient, range: retirement-100)
+     - Monthly Expense (purple gradient, ₹ prefix)
+     - Current Corpus (rose gradient, ₹ prefix)
+     - Annual Return (cyan gradient, % suffix)
+     - Inflation Rate (amber gradient, % suffix)
+   - ✅ **Home Loan vs Rent Calculator:** 9 color-coded input fields
+     - Home Price (blue gradient, ₹ prefix)
+     - Down Payment (orange gradient, ₹ prefix)
+     - Loan Tenure (green gradient, years)
+     - Interest Rate (purple gradient, % suffix)
+     - Monthly Rent (rose gradient, ₹ prefix)
+     - Rent Increase Rate (cyan gradient, % suffix)
+     - Property Appreciation (amber gradient, % suffix)
+     - Investment Return (indigo gradient, % suffix)
+     - Years to Compare (teal gradient, years)
+
+**2. Design Pattern Features (All 3 Calculators)**
+   - ✅ **Color-Coded Sliders:** Each input field has distinct gradient color (9 unique gradient combinations used)
+   - ✅ **Range Text Indicators:** Display min-max ranges below each slider (e.g., "₹10,000 - ₹1 Crore", "18 - 65 years")
+   - ✅ **Currency/Percentage Formatting:** Proper prefix/suffix positioning with absolute positioning inside relative containers
+   - ✅ **Clear All Button:** Red gradient button to reset all inputs to default values in each calculator
+   - ✅ **Responsive Layout:** Flex-col on mobile, flex-row on desktop using Tailwind responsive classes
+   - ✅ **Mobile-First Design:** Full-width inputs on <640px, side-by-side on ≥640px
+
+**3. Technical Implementation**
+   - ✅ **Gradient Color Palette:** Used Tailwind gradients (blue, orange, green, purple, rose, cyan, amber, indigo, teal)
+   - ✅ **Range Text Styling:** Secondary text color with smaller font size for visual hierarchy
+   - ✅ **Form Reset Logic:** Each Clear All button calls setValue() for each field to restore defaults
+   - ✅ **Prefix/Suffix Positioning:** Absolute positioned spans with text-gray-600 color inside relative input containers
+   - ✅ **React Hook Form Integration:** Maintained seamless integration with watch/setValue pattern
+
+**4. Build & Deployment**
+   - ✅ `npm run build`: SUCCESS (54 pages prerendered, 0 TypeScript errors)
+   - ✅ Commit: `08123af` — refactor: Apply EMI calculator design pattern to Phase 3A calculators
+   - ✅ Git push: Successfully pushed to origin/main
+   - ✅ Vercel: Auto-deployed (in progress)
+
+### **Design Pattern Summary**
+| Calculator | Fields | Clear Button | Responsive | Status |
+|---|---|---|---|---|
+| **Profit Margin** | 5 (Cost, Markup, Margin, Selling Price, Units) | ✅ Red Gradient | ✅ Mobile-First | ✅ Complete |
+| **Retirement Corpus** | 7 (Age, Retirement Age, Life Expectancy, Expense, Corpus, Return, Inflation) | ✅ Red Gradient | ✅ Mobile-First | ✅ Complete |
+| **Home Loan vs Rent** | 9 (Home Price, Down Payment, Tenure, Rate, Rent, Rent Increase, Appreciation, Investment Return, Years) | ✅ Red Gradient | ✅ Mobile-First | ✅ Complete |
+
+### **Color Gradient Assignments**
+| Gradient | Used For | Calculator(s) |
+|---|---|---|
+| Blue | Primary input (Age, Home Price, Cost) | All 3 |
+| Orange | Secondary input (Markup, Retirement Age, Down Payment) | All 3 |
+| Green | Tertiary input (Margin, Life Expectancy, Loan Tenure) | All 3 |
+| Purple | Cost/Expense field (Selling Price, Monthly Expense, Interest Rate) | All 3 |
+| Rose | Savings/Current field (Units Per Year, Current Corpus, Monthly Rent) | All 3 |
+| Cyan | Return percentage (Annual Return, Rent Increase Rate) | 2 (Retirement, Home Loan) |
+| Amber | Additional % field (Inflation, Property Appreciation) | 2 (Retirement, Home Loan) |
+| Indigo | Advanced % field (Investment Return) | 1 (Home Loan) |
+| Teal | Final numeric field (Years to Compare) | 1 (Home Loan) |
+
+### **Commits This Session:**
+```
+08123af refactor: Apply EMI calculator design pattern to Phase 3A calculators
+```
 
 ---
 
