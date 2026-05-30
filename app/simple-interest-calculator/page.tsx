@@ -254,13 +254,14 @@ export default function SimpleInterestCalculatorPage() {
               </div>
             </div>
 
-            {/* Tenure - Years, Months, Days */}
+            {/* Tenure - Based on Selected Type */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure Details</label>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3">
-                {/* Years */}
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure Value</label>
+
+              {/* Years Input - Only shows when tenure type is 'years' */}
+              {watchValues.tenureType === 'years' && (
                 <div>
-                  <label htmlFor="tenure-years-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years</label>
+                  <label htmlFor="tenure-years-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years (0-100)</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -284,10 +285,12 @@ export default function SimpleInterestCalculatorPage() {
                     />
                   </div>
                 </div>
+              )}
 
-                {/* Months */}
+              {/* Months Input - Only shows when tenure type is 'months' */}
+              {watchValues.tenureType === 'months' && (
                 <div>
-                  <label htmlFor="tenure-months-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months</label>
+                  <label htmlFor="tenure-months-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months (0-11)</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -311,10 +314,12 @@ export default function SimpleInterestCalculatorPage() {
                     />
                   </div>
                 </div>
+              )}
 
-                {/* Days */}
+              {/* Days Input - Only shows when tenure type is 'days' */}
+              {watchValues.tenureType === 'days' && (
                 <div>
-                  <label htmlFor="tenure-days-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days</label>
+                  <label htmlFor="tenure-days-si" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days (0-30)</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -338,7 +343,7 @@ export default function SimpleInterestCalculatorPage() {
                     />
                   </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <button

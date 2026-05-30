@@ -10,6 +10,8 @@ import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 
+type TenureType = 'years' | 'months' | 'days';
+
 type FDFormData = {
   principal: number;
   annualRate: number;
@@ -18,6 +20,7 @@ type FDFormData = {
   days: number;
   payoutType: PayoutType;
   seniorCitizen: boolean;
+  tenureType: TenureType;
 };
 
 interface FDResultData {
@@ -59,6 +62,7 @@ export default function FDCalculatorPage() {
       days: 0,
       payoutType: 'cumulative',
       seniorCitizen: false,
+      tenureType: 'years',
     },
   });
 
@@ -108,6 +112,10 @@ export default function FDCalculatorPage() {
 
   const handleSeniorCitizenChange = (value: boolean) => {
     setValue('seniorCitizen', value, { shouldValidate: true });
+  };
+
+  const handleTenureTypeChange = (type: TenureType) => {
+    setValue('tenureType', type, { shouldValidate: true });
   };
 
   const handleValidateField = (fieldName: string, value: number) => {
@@ -238,13 +246,39 @@ export default function FDCalculatorPage() {
               <p className="text-xs text-gray-500 dark:text-gray-400">0.01% to 20%</p>
             </div>
 
-            {/* Tenure - Years, Months, Days */}
+            {/* Tenure Type Selector */}
             <div className="space-y-3">
-              <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure</label>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3">
-                {/* Years */}
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure Type</label>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                {(['years', 'months', 'days'] as const).map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    aria-pressed={watchValues.tenureType === type}
+                    onClick={() => handleTenureTypeChange(type)}
+                    className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all capitalize ${
+                      watchValues.tenureType === type
+                        ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white shadow-lg'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    {type === 'years' && '📅'}
+                    {type === 'months' && '📆'}
+                    {type === 'days' && '📋'}
+                    <span className="ml-1 text-xs">{type}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Tenure - Based on Selected Type */}
+            <div className="space-y-3">
+              <label className="block text-sm font-bold text-gray-900 dark:text-white">Tenure Value</label>
+
+              {/* Years Input - Only shows when tenure type is 'years' */}
+              {watchValues.tenureType === 'years' && (
                 <div>
-                  <label htmlFor="tenure-years" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years</label>
+                  <label htmlFor="tenure-years" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Years (0-100)</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -268,11 +302,14 @@ export default function FDCalculatorPage() {
                       className="w-20 px-3 py-2 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                     />
                   </div>
+                  {errors.years && <p className="text-red-500 text-sm">{errors.years.message}</p>}
                 </div>
+              )}
 
-                {/* Months */}
+              {/* Months Input - Only shows when tenure type is 'months' */}
+              {watchValues.tenureType === 'months' && (
                 <div>
-                  <label htmlFor="tenure-months" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months</label>
+                  <label htmlFor="tenure-months" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Months (0-11)</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -296,11 +333,14 @@ export default function FDCalculatorPage() {
                       className="w-20 px-3 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
                     />
                   </div>
+                  {errors.months && <p className="text-red-500 text-sm">{errors.months.message}</p>}
                 </div>
+              )}
 
-                {/* Days */}
+              {/* Days Input - Only shows when tenure type is 'days' */}
+              {watchValues.tenureType === 'days' && (
                 <div>
-                  <label htmlFor="tenure-days" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days</label>
+                  <label htmlFor="tenure-days" className="text-xs text-gray-600 dark:text-gray-400 font-semibold mb-1 block">Days (0-30)</label>
                   <div className="flex gap-1 items-center">
                     <input
                       type="range"
@@ -324,11 +364,10 @@ export default function FDCalculatorPage() {
                       className="w-20 px-3 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-pink-900/20 dark:text-pink-400 dark:border-pink-700"
                     />
                   </div>
+                  {errors.days && <p className="text-red-500 text-sm">{errors.days.message}</p>}
                 </div>
-              </div>
-              {errors.years && <p className="text-red-500 text-sm">{errors.years.message}</p>}
-              {errors.months && <p className="text-red-500 text-sm">{errors.months.message}</p>}
-              {errors.days && <p className="text-red-500 text-sm">{errors.days.message}</p>}
+              )}
+
               {isShortTerm && (
                 <p className="text-yellow-600 dark:text-yellow-400 text-xs font-semibold">
                   ⚠️ Short-term FD (under 6 months) calculated using Simple Interest method
