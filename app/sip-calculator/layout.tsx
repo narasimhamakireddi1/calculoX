@@ -9,13 +9,19 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'SIP Calculator India 2026 - Systematic Investment Plan Returns | calculox',
-  description: 'Advanced SIP Calculator for mutual fund investors. Calculate SIP returns, future value & wealth growth. Monthly SIP, annual returns, step-up SIP support. 100% accurate for all mutual funds.',
+  title: 'SIP Calculator - Calculate Mutual Fund Returns India 2026 | calculox',
+  description: 'Advanced SIP calculator for mutual fund investments. Calculate returns with step-up SIP, monthly investments, and 25+ year projections. RBI-compliant formulas. Free, instant results.',
   keywords: [
-    'SIP calculator', 'SIP calculator online', 'systematic investment plan calculator',
-    'SIP return calculator', 'monthly SIP calculator', 'SIP calculator India',
-    'mutual fund SIP calculator', 'SIP maturity calculator', 'SIP future value',
-    'best SIP calculator', 'SIP investment calculator', 'SIP growth calculator',
+    'sip calculator',
+    'systematic investment plan calculator',
+    'mutual fund calculator',
+    'sip returns calculator',
+    'sip calculator india',
+    'step up sip calculator',
+    'monthly sip calculator',
+    'investment calculator india',
+    'sip formula calculator',
+    'best sip calculator',
   ],
   alternates: { canonical: `${BASE_URL}/sip-calculator` },
   openGraph: {

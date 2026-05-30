@@ -9,15 +9,17 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Profit Margin & Markup Calculator India - GST Impact Analysis | calculox',
-  description: 'Calculate profit margins, markups, and GST impact on profitability. 4 modes: Markup→Margin, Margin→Markup, Cost&Revenue, GST Analysis. Includes yearly projection and comparison tables.',
+  title: 'Profit Margin Calculator - Calculate Markup & GST Impact | calculox',
+  description: 'Free profit margin & markup calculator for Indian retailers & businesses. Calculate gross profit, margin %, markup % with GST (5/12/18/28%) impact analysis. Cost & price-driven modes.',
   keywords: [
     'profit margin calculator',
     'markup calculator',
-    'GST impact calculator',
-    'profit margin vs markup',
-    'retail profit calculator',
+    'profit calculator',
+    'gst calculator with margin',
     'business margin calculator',
+    'markup vs margin calculator',
+    'gross profit calculator',
+    'pricing calculator with gst',
     'price calculator india',
     'GST profit impact',
     'selling price calculator',

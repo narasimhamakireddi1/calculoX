@@ -9,15 +9,17 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Scientific Calculator 2026 - Advanced Math, Complex Numbers, Matrices | calculox',
-  description: 'Professional Scientific Calculator with 4 engines: Standard (trig, logs), Complex numbers, Matrices, Statistics. DEG/RAD modes. Memory registers. Keyboard support.',
+  title: 'Scientific Calculator Online - Complex Numbers, Matrix & Statistics | calculox',
+  description: 'Advanced online scientific calculator with 4 engines: Standard math, Complex numbers, Matrix operations, and Statistics. Casio ClassWiz-style. Free, no registration.',
   keywords: [
     'scientific calculator',
+    'online calculator',
     'scientific calculator online',
-    'advanced calculator',
-    'math calculator',
     'complex number calculator',
     'matrix calculator',
+    'statistics calculator',
+    'trigonometry calculator',
+    'math calculator online',
     'trigonometry calculator',
     'statistics calculator',
     'calculator with complex numbers',

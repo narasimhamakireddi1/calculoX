@@ -9,13 +9,19 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'EMI Calculator India 2026 - Home Loan, Car Loan & Personal Loan | calculox',
-  description: 'Advanced EMI Calculator with amortization schedule. Calculate home loan, car loan & personal loan EMI instantly. See month-by-month interest breakdown. 100% free & accurate. No registration needed.',
+  title: 'EMI Calculator India 2026 - Home, Car & Personal Loan | calculox',
+  description: 'Free EMI calculator for home loan, car loan, personal loan & vehicle loan. Calculate monthly EMI, total interest, and get detailed amortization schedule instantly. No registration needed.',
   keywords: [
-    'EMI calculator', 'loan EMI calculator', 'home loan EMI calculator',
-    'car loan calculator', 'personal loan EMI', 'EMI calculator India',
-    'monthly EMI calculator', 'EMI formula calculator', 'bank loan EMI',
-    'loan installment calculator', 'mortgage calculator India', 'EMI schedule',
+    'emi calculator',
+    'loan emi calculator',
+    'home loan emi calculator',
+    'car loan calculator',
+    'personal loan emi',
+    'emi calculator india',
+    'vehicle loan emi',
+    'monthly emi calculator',
+    'emi formula calculator',
+    'bank loan emi',
   ],
   alternates: { canonical: `${BASE_URL}/emi-calculator` },
   openGraph: {

@@ -5,9 +5,20 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'GST Calculator India 2026 - Calculate GST Tax Online | calculox',
-  description: 'Advanced GST Calculator for India. Add/remove GST at all rates (5%, 12%, 18%, 28%). CGST & SGST breakdown. Input tax credit calculations. 100% accurate.',
-  keywords: ['GST calculator', 'GST tax calculator', 'GST rate calculator', 'GST India', 'tax calculator India', 'GST breakdown calculator'],
+  title: 'GST Calculator India - Add/Remove Tax 5% 12% 18% 28% | calculox',
+  description: 'Free GST calculator for Indian businesses. Calculate tax amount, CGST/SGST/IGST breakdown at all rates (5%, 12%, 18%, 28%). Add or remove GST instantly.',
+  keywords: [
+    'gst calculator',
+    'gst calculator india',
+    'calculate gst',
+    'goods and services tax calculator',
+    'igst calculator',
+    'sgst calculator',
+    'cgst calculator',
+    'gst rate calculator',
+    'gst tax calculator',
+    'gst breakdown calculator',
+  ],
   alternates: { canonical: `${BASE_URL}/gst-calculator` },
   openGraph: {
     title: 'GST Calculator - Calculate GST Tax | calculox',

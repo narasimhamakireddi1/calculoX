@@ -5,9 +5,20 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Percentage Calculator India 2026 - 6-in-1 Percent Tool | calculox',
-  description: 'Advanced Percentage Calculator with 6 independent tools. Calculate discount, markup, percentage change, reverse %, sequential %. Real-time results for shopping, taxes, investments.',
-  keywords: ['percentage calculator', 'percentage of calculator', 'discount calculator', 'percentage change calculator', 'markup calculator', 'percentage off calculator'],
+  title: 'Percentage Calculator India - Calculate Discount, Markup & Change | calculox',
+  description: 'Free 6-in-1 percentage calculator tool. Calculate percentage of, discount, markup, percentage change, reverse %, sequential %. Instant results for all calculations.',
+  keywords: [
+    'percentage calculator',
+    'percentage of calculator',
+    'discount calculator',
+    'percentage change calculator',
+    'markup calculator',
+    'percentage off calculator',
+    'reverse percentage calculator',
+    'percentage increase calculator',
+    'percentage decrease calculator',
+    'compound percentage calculator',
+  ],
   alternates: { canonical: `${BASE_URL}/percentage-calculator` },
   openGraph: {
     title: 'Percentage Calculator - Calculate Any Percentage | calculox',

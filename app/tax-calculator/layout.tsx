@@ -9,13 +9,19 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Income Tax Calculator FY 2025-26 - New vs Old Regime India | calculox',
-  description: 'Advanced Income Tax Calculator for India FY 2025-26. Compare New vs Old regime, calculate exact tax with all deductions (80C, HRA, 80D, 80CCD). Real-time calculations.',
+  title: 'Income Tax Calculator India FY 2025-26 - Calculate Tax & Save | calculox',
+  description: 'Advanced income tax calculator for FY 2025-26. Calculate tax on salary with new/old tax regime, HRA, LTA, 80C deductions, and get instant tax liability. RBI-compliant.',
   keywords: [
-    'income tax calculator', 'income tax calculator India', 'tax calculator 2024-25',
-    'new tax regime calculator', 'old vs new tax regime', 'salary tax calculator India',
-    'income tax India FY 2024-25', 'tax slab calculator', 'tax liability calculator',
-    'IT calculator India', 'income tax comparison', 'budget 2024 tax calculator',
+    'income tax calculator',
+    'income tax calculator india',
+    'tax calculator 2025-26',
+    'salary tax calculator',
+    'income tax calculator with hra',
+    'tax slab calculator',
+    'tax deduction calculator',
+    'income tax new regime',
+    'tax liability calculator',
+    'income tax comparison',
   ],
   alternates: { canonical: `${BASE_URL}/tax-calculator` },
   openGraph: {

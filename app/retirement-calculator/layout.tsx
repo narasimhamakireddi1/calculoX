@@ -9,15 +9,17 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Retirement Corpus Calculator India - Plan Retirement with 25x Rule | calculox',
-  description: 'Advanced Retirement Calculator using 25x annual expense rule. Calculate retirement corpus needed, monthly SIP required, and create inflation-adjusted projections. Indian tax-compliant planning tool.',
+  title: 'Retirement Calculator India - Calculate Retirement Corpus 25x Rule | calculox',
+  description: 'Advanced retirement calculator using NISM 25x rule. Calculate retirement corpus needed, plan inflation-adjusted expenses, and get 2-phase retirement projections. India-specific.',
   keywords: [
     'retirement calculator',
     'retirement corpus calculator',
     'retirement planning calculator',
-    'retirement calculator India',
+    'retirement calculator india',
+    'how much need to retire',
     'retirement age calculator',
-    'retirement corpus needed',
+    'financial independence calculator',
+    'retirement savings calculator',
     'retirement SIP calculator',
     'retirement corpus 25x rule',
     'retirement planning tool',

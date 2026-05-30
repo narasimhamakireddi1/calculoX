@@ -9,12 +9,19 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'FD Calculator India 2026 - Fixed Deposit Interest Calculator | calculox',
-  description: 'Advanced FD Calculator with RBI-compliant rates. Calculate maturity amount, interest earned, senior citizen benefits. 4 payout types supported. 100% accurate, instant results.',
+  title: 'FD Calculator India 2026 - Fixed Deposit Maturity & Interest | calculox',
+  description: 'Advanced FD calculator for fixed deposit. Calculate maturity amount with cumulative, quarterly, monthly payouts. RBI-compliant. Senior citizen rate (+0.5%). Instant results.',
   keywords: [
-    'FD calculator', 'fixed deposit calculator', 'FD interest calculator India',
-    'FD calculator with interest rates', 'bank FD calculator', 'senior citizen FD',
-    'FD maturity calculator', 'compound interest FD', 'investment FD calculator',
+    'fd calculator',
+    'fixed deposit calculator',
+    'fd calculator india',
+    'bank deposit calculator',
+    'fixed deposit interest calculator',
+    'maturity calculator',
+    'compound interest calculator',
+    'savings calculator india',
+    'fd interest calculator',
+    'sbi fd calculator',
   ],
   alternates: { canonical: `${BASE_URL}/fd-calculator` },
   openGraph: {

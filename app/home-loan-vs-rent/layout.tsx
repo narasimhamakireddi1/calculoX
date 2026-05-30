@@ -9,15 +9,17 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Buy vs Rent Calculator - Opportunity Cost Framework | calculox',
-  description: 'Compare buying vs renting using the opportunity cost framework. Analyze parallel financial tracks: buyer net worth vs renter + investor portfolio over 20 years. Includes Section 24(b) tax benefits, property appreciation, and break-even analysis.',
+  title: 'Buy vs Rent Calculator India - Compare Home Loan vs Renting | calculox',
+  description: 'Smart buy vs rent calculator comparing home ownership vs renting with 20-year projections. Includes break-even point, tax benefits (24b), and opportunity cost analysis.',
   keywords: [
-    'opportunity cost calculator',
-    'buy vs rent calculator India',
+    'buy vs rent calculator',
     'home loan vs rent',
-    'opportunity cost analysis',
-    'buy vs rent financial comparison',
-    'property investment calculator India',
+    'should i buy or rent',
+    'home affordability calculator',
+    'property investment calculator',
+    'buy vs rent analysis',
+    'home ownership cost calculator',
+    'rent vs buy india',
     'EMI vs rent comparison',
     'break-even analysis home',
     'Section 24(b) tax calculator',

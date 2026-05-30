@@ -9,13 +9,19 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'BMI Calculator India 2026 - Body Mass Index Health Check | calculox',
-  description: 'Advanced BMI Calculator for Indians. Check Body Mass Index, health category & ideal weight range. Metric & imperial support. WHO-standard health categories. 100% free & instant.',
+  title: 'BMI Calculator India - Body Mass Index & Health Status | calculox',
+  description: 'Free BMI calculator with WHO health categories. Calculate your Body Mass Index, get health recommendations, and understand ideal weight ranges. Accurate for adults, metric & imperial units.',
   keywords: [
-    'BMI calculator', 'body mass index calculator', 'BMI calculator India',
-    'healthy BMI range', 'BMI check online', 'weight height calculator',
-    'ideal weight calculator', 'BMI for Indians', 'normal BMI India',
-    'BMI chart', 'overweight calculator', 'obesity calculator India',
+    'bmi calculator',
+    'body mass index calculator',
+    'bmi calculator india',
+    'healthy bmi range',
+    'bmi check online',
+    'weight height calculator',
+    'ideal weight calculator',
+    'bmi for indians',
+    'normal bmi india',
+    'bmi chart',
   ],
   alternates: { canonical: `${BASE_URL}/bmi-calculator` },
   openGraph: {

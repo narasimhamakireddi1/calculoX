@@ -5,9 +5,20 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'RD Calculator India 2026 - Recurring Deposit Interest Calculator | calculox',
-  description: 'Advanced RD Calculator for recurring deposits. Calculate maturity amount, total interest, monthly deposits. Monthly, quarterly tenures. 100% accurate RBI-compliant calculations.',
-  keywords: ['RD calculator', 'recurring deposit calculator', 'RD calculator India', 'bank RD calculator', 'RD maturity calculator', 'RD interest calculator'],
+  title: 'RD Calculator India - Recurring Deposit Maturity & Interest | calculox',
+  description: 'Free RD calculator for recurring deposits. Calculate maturity amount, interest earned, monthly deposits. RBI-compliant formulas. Includes senior citizen rates. Instant results.',
+  keywords: [
+    'rd calculator',
+    'recurring deposit calculator',
+    'rd calculator india',
+    'bank rd calculator',
+    'rd maturity calculator',
+    'rd interest calculator',
+    'recurring deposit interest',
+    'monthly deposit calculator',
+    'savings deposit calculator',
+    'sbi rd calculator',
+  ],
   alternates: { canonical: `${BASE_URL}/rd-calculator` },
   openGraph: {
     title: 'RD Calculator - Recurring Deposit Calculator | calculox',

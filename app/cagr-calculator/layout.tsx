@@ -5,9 +5,20 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'CAGR Calculator India 2026 - Compound Annual Growth Rate | calculox',
-  description: 'Advanced CAGR Calculator for investment analysis. Calculate compound annual growth rate for stocks, mutual funds, real estate. Compare investment returns accurately.',
-  keywords: ['CAGR calculator', 'compound annual growth rate calculator', 'CAGR formula', 'investment growth calculator', 'mutual fund returns calculator'],
+  title: 'CAGR Calculator India - Compound Annual Growth Rate | calculox',
+  description: 'Free CAGR calculator to calculate compound annual growth rate of investments. Compare stock, mutual fund, real estate returns. Includes year-by-year projections.',
+  keywords: [
+    'cagr calculator',
+    'compound annual growth rate calculator',
+    'cagr formula',
+    'investment growth calculator',
+    'mutual fund cagr calculator',
+    'cagr calculation',
+    'annual growth rate calculator',
+    'investment return calculator',
+    'stock return calculator',
+    'real estate return calculator',
+  ],
   alternates: { canonical: `${BASE_URL}/cagr-calculator` },
   openGraph: {
     title: 'CAGR Calculator - Calculate Compound Annual Growth Rate | calculox',

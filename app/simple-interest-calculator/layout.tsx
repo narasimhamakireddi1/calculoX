@@ -5,9 +5,20 @@ import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSche
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Simple Interest Calculator India 2026 - SI Calculator | calculox',
-  description: 'Advanced Simple Interest Calculator with year, month, day precision. Calculate SI, maturity amount, daily accrual. Loan interest, bond calculations. 100% accurate.',
-  keywords: ['simple interest calculator', 'SI calculator', 'simple interest formula calculator', 'interest calculator', 'loan interest calculator'],
+  title: 'Simple Interest Calculator India - Calculate SI Loans & Deposits | calculox',
+  description: 'Free simple interest calculator with year, month, day precision. Calculate interest on loans, deposits, bonds. SI formula with instant results. Accurate for all tenures.',
+  keywords: [
+    'simple interest calculator',
+    'si calculator',
+    'simple interest formula calculator',
+    'interest calculator',
+    'loan interest calculator',
+    'simple interest on deposits',
+    'bond interest calculator',
+    'monthly interest calculator',
+    'yearly interest calculator',
+    'daily interest calculator',
+  ],
   alternates: { canonical: `${BASE_URL}/simple-interest-calculator` },
   openGraph: {
     title: 'Simple Interest Calculator - Calculate SI | calculox',
