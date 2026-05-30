@@ -263,10 +263,10 @@ export default function ProfitMarginCalculator() {
 
           {/* Cost Price */}
           <div>
-            <label htmlFor="cost-price" className="block text-sm font-medium mb-2">
+            <label htmlFor="cost-price" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
               Cost Price (₹)
             </label>
-            <div className="flex flex-col md:flex-row gap-3">
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="cost-price"
                 type="range"
@@ -274,25 +274,29 @@ export default function ProfitMarginCalculator() {
                 max="100000"
                 value={watchValues.costPrice || 0}
                 onChange={(e) => setValue('costPrice', parseFloat(e.target.value))}
-                className="flex-1 md:flex-1"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.costPrice === 0 ? '' : watchValues.costPrice}
-                onChange={(e) => setValue('costPrice', parseFloat(e.target.value) || 0)}
-                className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
-                placeholder="0"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <input
+                  type="number"
+                  value={watchValues.costPrice === 0 ? '' : watchValues.costPrice}
+                  onChange={(e) => setValue('costPrice', parseFloat(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  placeholder="0"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹1 - ₹100,000</p>
           </div>
 
           {/* Markup (Markup → Margin & GST Impact) */}
           {(watchValues.mode === 'markup-to-margin' || watchValues.mode === 'gst-impact') && (
             <div>
-              <label htmlFor="markup" className="block text-sm font-medium mb-2">
+              <label htmlFor="markup" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                 Markup (%)
               </label>
-              <div className="flex flex-col md:flex-row gap-3">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   id="markup"
                   type="range"
@@ -301,26 +305,30 @@ export default function ProfitMarginCalculator() {
                   step="0.1"
                   value={watchValues.markup || 0}
                   onChange={(e) => setValue('markup', parseFloat(e.target.value))}
-                  className="flex-1 md:flex-1"
+                  className="w-full md:flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600 transition-all"
                 />
-                <input
-                  type="number"
-                  value={watchValues.markup === 0 ? '' : watchValues.markup}
-                  onChange={(e) => setValue('markup', parseFloat(e.target.value) || 0)}
-                  className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
-                  placeholder="0"
-                />
+                <div className="w-full md:w-auto relative flex-shrink-0">
+                  <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                  <input
+                    type="number"
+                    value={watchValues.markup === 0 ? '' : watchValues.markup}
+                    onChange={(e) => setValue('markup', parseFloat(e.target.value) || 0)}
+                    className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                    placeholder="0"
+                  />
+                </div>
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">0% - 200%</p>
             </div>
           )}
 
           {/* Margin (Margin → Markup) */}
           {watchValues.mode === 'margin-to-markup' && (
             <div>
-              <label htmlFor="margin" className="block text-sm font-medium mb-2">
+              <label htmlFor="margin" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                 Margin (%)
               </label>
-              <div className="flex flex-col md:flex-row gap-3">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   id="margin"
                   type="range"
@@ -329,26 +337,30 @@ export default function ProfitMarginCalculator() {
                   step="0.1"
                   value={watchValues.margin || 0}
                   onChange={(e) => setValue('margin', parseFloat(e.target.value))}
-                  className="flex-1 md:flex-1"
+                  className="w-full md:flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600 transition-all"
                 />
-                <input
-                  type="number"
-                  value={watchValues.margin === 0 ? '' : watchValues.margin}
-                  onChange={(e) => setValue('margin', parseFloat(e.target.value) || 0)}
-                  className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
-                  placeholder="0"
-                />
+                <div className="w-full md:w-auto relative flex-shrink-0">
+                  <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                  <input
+                    type="number"
+                    value={watchValues.margin === 0 ? '' : watchValues.margin}
+                    onChange={(e) => setValue('margin', parseFloat(e.target.value) || 0)}
+                    className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                    placeholder="0"
+                  />
+                </div>
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">0% - 99%</p>
             </div>
           )}
 
           {/* Selling Price (Cost & Revenue) */}
           {watchValues.mode === 'cost-revenue' && (
             <div>
-              <label htmlFor="selling-price" className="block text-sm font-medium mb-2">
+              <label htmlFor="selling-price" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                 Selling Price (₹)
               </label>
-              <div className="flex flex-col md:flex-row gap-3">
+              <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                 <input
                   id="selling-price"
                   type="range"
@@ -356,16 +368,20 @@ export default function ProfitMarginCalculator() {
                   max="100000"
                   value={watchValues.sellingPrice || 0}
                   onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value))}
-                  className="flex-1 md:flex-1"
+                  className="w-full md:flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600 transition-all"
                 />
-                <input
-                  type="number"
-                  value={watchValues.sellingPrice === 0 ? '' : watchValues.sellingPrice}
-                  onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value) || 0)}
-                  className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
-                  placeholder="0"
-                />
+                <div className="w-full md:w-auto relative flex-shrink-0">
+                  <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                  <input
+                    type="number"
+                    value={watchValues.sellingPrice === 0 ? '' : watchValues.sellingPrice}
+                    onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value) || 0)}
+                    className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                    placeholder="0"
+                  />
+                </div>
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹1 - ₹100,000</p>
             </div>
           )}
 
@@ -396,10 +412,10 @@ export default function ProfitMarginCalculator() {
 
           {/* Units Per Year (for projection) */}
           <div>
-            <label htmlFor="units-per-year" className="block text-sm font-medium mb-2">
+            <label htmlFor="units-per-year" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
               Units Per Year
             </label>
-            <div className="flex flex-col md:flex-row gap-3">
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="units-per-year"
                 type="range"
@@ -407,17 +423,36 @@ export default function ProfitMarginCalculator() {
                 max="100000"
                 value={watchValues.unitsPerYear || 1000}
                 onChange={(e) => setValue('unitsPerYear', parseFloat(e.target.value))}
-                className="flex-1 md:flex-1"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.unitsPerYear === 0 ? '' : watchValues.unitsPerYear}
-                onChange={(e) => setValue('unitsPerYear', parseFloat(e.target.value) || 0)}
-                className="w-24 md:w-28 px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800"
-                placeholder="1000"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <input
+                  type="number"
+                  value={watchValues.unitsPerYear === 0 ? '' : watchValues.unitsPerYear}
+                  onChange={(e) => setValue('unitsPerYear', parseFloat(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  placeholder="1000"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">10 - 100,000</p>
           </div>
+
+          {/* Clear All Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setValue('costPrice', 100);
+              setValue('markup', 30);
+              setValue('margin', 0);
+              setValue('sellingPrice', 0);
+              setValue('unitsPerYear', 1000);
+              setValue('gstRate', 18);
+            }}
+            className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+          >
+            🗑️ Clear All
+          </button>
         </div>
 
         {/* Results Section */}

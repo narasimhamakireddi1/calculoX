@@ -198,11 +198,13 @@ export default function HomeLoanVsRentCalculator() {
         {/* Input Section */}
         <div className="card space-y-4">
           <h2 className="text-xl font-semibold">Home & Loan Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="homePrice" className="block text-sm font-semibold mb-1">
-                Home Price (₹)
-              </label>
+
+          {/* Home Price */}
+          <div>
+            <label htmlFor="homePrice" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Home Price (₹)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="homePrice"
                 type="range"
@@ -211,20 +213,27 @@ export default function HomeLoanVsRentCalculator() {
                 step="100000"
                 value={watchValues.homePrice}
                 onChange={(e) => setValue('homePrice', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.homePrice === 0 ? '' : watchValues.homePrice}
-                onChange={(e) => setValue('homePrice', e.target.value ? Number(e.target.value) : 0)}
-                className="mt-2 w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <input
+                  type="number"
+                  value={watchValues.homePrice === 0 ? '' : watchValues.homePrice}
+                  onChange={(e) => setValue('homePrice', e.target.value ? Number(e.target.value) : 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹5,00,000 - ₹5,00,00,000</p>
+          </div>
 
-            <div>
-              <label htmlFor="downPayment" className="block text-sm font-semibold mb-1">
-                Down Payment (₹)
-              </label>
+          {/* Down Payment */}
+          <div>
+            <label htmlFor="downPayment" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Down Payment (₹)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="downPayment"
                 type="range"
@@ -233,20 +242,27 @@ export default function HomeLoanVsRentCalculator() {
                 step="50000"
                 value={watchValues.downPayment}
                 onChange={(e) => setValue('downPayment', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.downPayment === 0 ? '' : watchValues.downPayment}
-                onChange={(e) => setValue('downPayment', e.target.value ? Number(e.target.value) : 0)}
-                className="mt-2 w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <input
+                  type="number"
+                  value={watchValues.downPayment === 0 ? '' : watchValues.downPayment}
+                  onChange={(e) => setValue('downPayment', e.target.value ? Number(e.target.value) : 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹0 - ₹{(watchValues.homePrice / 100000).toFixed(0)}L</p>
+          </div>
 
-            <div>
-              <label htmlFor="loanTenure" className="block text-sm font-semibold mb-1">
-                Loan Tenure (Years): {watchValues.loanTenure}
-              </label>
+          {/* Loan Tenure */}
+          <div>
+            <label htmlFor="loanTenure" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Loan Tenure (Years)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="loanTenure"
                 type="range"
@@ -255,14 +271,27 @@ export default function HomeLoanVsRentCalculator() {
                 step="1"
                 value={watchValues.loanTenure}
                 onChange={(e) => setValue('loanTenure', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600 transition-all"
               />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <input
+                  type="number"
+                  value={watchValues.loanTenure}
+                  onChange={(e) => setValue('loanTenure', Number(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">5 - 30 years</p>
+          </div>
 
-            <div>
-              <label htmlFor="interestRate" className="block text-sm font-semibold mb-1">
-                Interest Rate (% p.a.): {watchValues.interestRate.toFixed(2)}%
-              </label>
+          {/* Interest Rate */}
+          <div>
+            <label htmlFor="interestRate" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Interest Rate (% p.a.)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="interestRate"
                 type="range"
@@ -271,20 +300,33 @@ export default function HomeLoanVsRentCalculator() {
                 step="0.1"
                 value={watchValues.interestRate}
                 onChange={(e) => setValue('interestRate', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600 transition-all"
               />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={watchValues.interestRate}
+                  onChange={(e) => setValue('interestRate', Number(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">3% - 15%</p>
           </div>
         </div>
 
         {/* Rent Details */}
         <div className="card space-y-4">
           <h2 className="text-xl font-semibold">Rent Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="monthlyRent" className="block text-sm font-semibold mb-1">
-                Monthly Rent (₹)
-              </label>
+
+          {/* Monthly Rent */}
+          <div>
+            <label htmlFor="monthlyRent" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Monthly Rent (₹)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="monthlyRent"
                 type="range"
@@ -293,20 +335,27 @@ export default function HomeLoanVsRentCalculator() {
                 step="5000"
                 value={watchValues.monthlyRent}
                 onChange={(e) => setValue('monthlyRent', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.monthlyRent === 0 ? '' : watchValues.monthlyRent}
-                onChange={(e) => setValue('monthlyRent', e.target.value ? Number(e.target.value) : 0)}
-                className="mt-2 w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <input
+                  type="number"
+                  value={watchValues.monthlyRent === 0 ? '' : watchValues.monthlyRent}
+                  onChange={(e) => setValue('monthlyRent', e.target.value ? Number(e.target.value) : 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹5,000 - ₹2,00,000</p>
+          </div>
 
-            <div>
-              <label htmlFor="rentIncreaseRate" className="block text-sm font-semibold mb-1">
-                Rent Increase Rate (% per year): {watchValues.rentIncreaseRate.toFixed(2)}%
-              </label>
+          {/* Rent Increase Rate */}
+          <div>
+            <label htmlFor="rentIncreaseRate" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Rent Increase Rate (% per year)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="rentIncreaseRate"
                 type="range"
@@ -315,20 +364,33 @@ export default function HomeLoanVsRentCalculator() {
                 step="0.1"
                 value={watchValues.rentIncreaseRate}
                 onChange={(e) => setValue('rentIncreaseRate', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-cyan-300 to-cyan-600 rounded-lg appearance-none cursor-pointer accent-cyan-600 transition-all"
               />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={watchValues.rentIncreaseRate}
+                  onChange={(e) => setValue('rentIncreaseRate', Number(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">0% - 12%</p>
           </div>
         </div>
 
         {/* Assumptions */}
         <div className="card space-y-4">
           <h2 className="text-xl font-semibold">Assumptions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="propertyAppreciationRate" className="block text-sm font-semibold mb-1">
-                Property Appreciation (% per year): {watchValues.propertyAppreciationRate.toFixed(2)}%
-              </label>
+
+          {/* Property Appreciation */}
+          <div>
+            <label htmlFor="propertyAppreciationRate" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Property Appreciation (% per year)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="propertyAppreciationRate"
                 type="range"
@@ -337,14 +399,28 @@ export default function HomeLoanVsRentCalculator() {
                 step="0.1"
                 value={watchValues.propertyAppreciationRate}
                 onChange={(e) => setValue('propertyAppreciationRate', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-amber-300 to-amber-600 rounded-lg appearance-none cursor-pointer accent-amber-600 transition-all"
               />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={watchValues.propertyAppreciationRate}
+                  onChange={(e) => setValue('propertyAppreciationRate', Number(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">0% - 15%</p>
+          </div>
 
-            <div>
-              <label htmlFor="investmentReturn" className="block text-sm font-semibold mb-1">
-                Investment Return (% per year): {watchValues.investmentReturn.toFixed(2)}%
-              </label>
+          {/* Investment Return */}
+          <div>
+            <label htmlFor="investmentReturn" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Investment Return (% per year)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="investmentReturn"
                 type="range"
@@ -353,14 +429,28 @@ export default function HomeLoanVsRentCalculator() {
                 step="0.1"
                 value={watchValues.investmentReturn}
                 onChange={(e) => setValue('investmentReturn', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-indigo-300 to-indigo-600 rounded-lg appearance-none cursor-pointer accent-indigo-600 transition-all"
               />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={watchValues.investmentReturn}
+                  onChange={(e) => setValue('investmentReturn', Number(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">2% - 18%</p>
+          </div>
 
-            <div>
-              <label htmlFor="yearsToCompare" className="block text-sm font-semibold mb-1">
-                Comparison Period (Years): {watchValues.yearsToCompare}
-              </label>
+          {/* Years to Compare */}
+          <div>
+            <label htmlFor="yearsToCompare" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Comparison Period (Years)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="yearsToCompare"
                 type="range"
@@ -369,10 +459,39 @@ export default function HomeLoanVsRentCalculator() {
                 step="1"
                 value={watchValues.yearsToCompare}
                 onChange={(e) => setValue('yearsToCompare', Number(e.target.value))}
-                className="w-full"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-teal-300 to-teal-600 rounded-lg appearance-none cursor-pointer accent-teal-600 transition-all"
               />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <input
+                  type="number"
+                  value={watchValues.yearsToCompare}
+                  onChange={(e) => setValue('yearsToCompare', Number(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">5 - 40 years</p>
           </div>
+
+          {/* Clear All Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setValue('homePrice', 5000000);
+              setValue('downPayment', 1000000);
+              setValue('loanTenure', 20);
+              setValue('interestRate', 8.5);
+              setValue('monthlyRent', 25000);
+              setValue('rentIncreaseRate', 5);
+              setValue('propertyAppreciationRate', 5);
+              setValue('investmentReturn', 10);
+              setValue('yearsToCompare', 20);
+            }}
+            className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+          >
+            🗑️ Clear All
+          </button>
         </div>
 
         {/* Results Cards */}

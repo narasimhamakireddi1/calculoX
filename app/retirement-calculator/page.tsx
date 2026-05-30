@@ -224,15 +224,15 @@ export default function RetirementCalculator() {
 
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Input Section */}
-        <div className="card space-y-6">
+        <div className="card space-y-4">
           <h2 className="text-xl font-semibold">Retirement Planning Details</h2>
 
-          {/* Age Inputs */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="current-age" className="block text-sm font-medium">
-                Current Age
-              </label>
+          {/* Current Age */}
+          <div>
+            <label htmlFor="current-age" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Current Age
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="current-age"
                 type="range"
@@ -240,20 +240,27 @@ export default function RetirementCalculator() {
                 max="65"
                 value={watchValues.currentAge ?? 0}
                 onChange={(e) => setValue('currentAge', parseInt(e.target.value))}
-                className="w-full cursor-pointer"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.currentAge === 0 ? '' : watchValues.currentAge}
-                onChange={(e) => setValue('currentAge', parseInt(e.target.value) || 0)}
-                className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <input
+                  type="number"
+                  value={watchValues.currentAge === 0 ? '' : watchValues.currentAge}
+                  onChange={(e) => setValue('currentAge', parseInt(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">18 - 65 years</p>
+          </div>
 
-            <div className="space-y-2">
-              <label htmlFor="retirement-age" className="block text-sm font-medium">
-                Retirement Age
-              </label>
+          {/* Retirement Age */}
+          <div>
+            <label htmlFor="retirement-age" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Retirement Age
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="retirement-age"
                 type="range"
@@ -261,20 +268,27 @@ export default function RetirementCalculator() {
                 max="80"
                 value={watchValues.retirementAge ?? 0}
                 onChange={(e) => setValue('retirementAge', parseInt(e.target.value))}
-                className="w-full cursor-pointer"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.retirementAge === 0 ? '' : watchValues.retirementAge}
-                onChange={(e) => setValue('retirementAge', parseInt(e.target.value) || 0)}
-                className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <input
+                  type="number"
+                  value={watchValues.retirementAge === 0 ? '' : watchValues.retirementAge}
+                  onChange={(e) => setValue('retirementAge', parseInt(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Current age - 80 years</p>
+          </div>
 
-            <div className="space-y-2">
-              <label htmlFor="life-expectancy" className="block text-sm font-medium">
-                Life Expectancy
-              </label>
+          {/* Life Expectancy */}
+          <div>
+            <label htmlFor="life-expectancy" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Life Expectancy
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="life-expectancy"
                 type="range"
@@ -282,23 +296,27 @@ export default function RetirementCalculator() {
                 max="100"
                 value={watchValues.lifeExpectancy ?? 0}
                 onChange={(e) => setValue('lifeExpectancy', parseInt(e.target.value))}
-                className="w-full cursor-pointer"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.lifeExpectancy === 0 ? '' : watchValues.lifeExpectancy}
-                onChange={(e) => setValue('lifeExpectancy', parseInt(e.target.value) || 0)}
-                className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <input
+                  type="number"
+                  value={watchValues.lifeExpectancy === 0 ? '' : watchValues.lifeExpectancy}
+                  onChange={(e) => setValue('lifeExpectancy', parseInt(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Retirement age - 100 years</p>
           </div>
 
-          {/* Expense and Corpus Inputs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="monthly-expense" className="block text-sm font-medium">
-                Current Monthly Expenses (₹)
-              </label>
+          {/* Monthly Expense */}
+          <div>
+            <label htmlFor="monthly-expense" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Current Monthly Expenses (₹)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="monthly-expense"
                 type="range"
@@ -307,20 +325,27 @@ export default function RetirementCalculator() {
                 step="5000"
                 value={watchValues.monthlyExpense ?? 0}
                 onChange={(e) => setValue('monthlyExpense', parseInt(e.target.value))}
-                className="w-full cursor-pointer"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.monthlyExpense === 0 ? '' : watchValues.monthlyExpense}
-                onChange={(e) => setValue('monthlyExpense', parseInt(e.target.value) || 0)}
-                className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <input
+                  type="number"
+                  value={watchValues.monthlyExpense === 0 ? '' : watchValues.monthlyExpense}
+                  onChange={(e) => setValue('monthlyExpense', parseInt(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹5,000 - ₹500,000</p>
+          </div>
 
-            <div className="space-y-2">
-              <label htmlFor="current-corpus" className="block text-sm font-medium">
-                Current Retirement Corpus (₹)
-              </label>
+          {/* Current Corpus */}
+          <div>
+            <label htmlFor="current-corpus" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Current Retirement Corpus (₹)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="current-corpus"
                 type="range"
@@ -329,23 +354,27 @@ export default function RetirementCalculator() {
                 step="100000"
                 value={watchValues.currentCorpus ?? 0}
                 onChange={(e) => setValue('currentCorpus', parseInt(e.target.value))}
-                className="w-full cursor-pointer"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600 transition-all"
               />
-              <input
-                type="number"
-                value={watchValues.currentCorpus === 0 ? '' : watchValues.currentCorpus}
-                onChange={(e) => setValue('currentCorpus', parseInt(e.target.value) || 0)}
-                className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <input
+                  type="number"
+                  value={watchValues.currentCorpus === 0 ? '' : watchValues.currentCorpus}
+                  onChange={(e) => setValue('currentCorpus', parseInt(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹0 - ₹5,00,00,000</p>
           </div>
 
-          {/* Return and Inflation Inputs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="annual-return" className="block text-sm font-medium">
-                Expected Annual Return (%)
-              </label>
+          {/* Annual Return */}
+          <div>
+            <label htmlFor="annual-return" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Expected Annual Return (%)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="annual-return"
                 type="range"
@@ -354,21 +383,28 @@ export default function RetirementCalculator() {
                 step="0.5"
                 value={watchValues.annualReturn ?? 0}
                 onChange={(e) => setValue('annualReturn', parseFloat(e.target.value))}
-                className="w-full cursor-pointer"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-cyan-300 to-cyan-600 rounded-lg appearance-none cursor-pointer accent-cyan-600 transition-all"
               />
-              <input
-                type="number"
-                step="0.5"
-                value={watchValues.annualReturn === 0 ? '' : watchValues.annualReturn}
-                onChange={(e) => setValue('annualReturn', parseFloat(e.target.value) || 0)}
-                className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <input
+                  type="number"
+                  step="0.5"
+                  value={watchValues.annualReturn === 0 ? '' : watchValues.annualReturn}
+                  onChange={(e) => setValue('annualReturn', parseFloat(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">4% - 16%</p>
+          </div>
 
-            <div className="space-y-2">
-              <label htmlFor="inflation-rate" className="block text-sm font-medium">
-                Expected Inflation (%)
-              </label>
+          {/* Inflation Rate */}
+          <div>
+            <label htmlFor="inflation-rate" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+              Expected Inflation (%)
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
               <input
                 id="inflation-rate"
                 type="range"
@@ -377,17 +413,38 @@ export default function RetirementCalculator() {
                 step="0.5"
                 value={watchValues.inflationRate ?? 0}
                 onChange={(e) => setValue('inflationRate', parseFloat(e.target.value))}
-                className="w-full cursor-pointer"
+                className="w-full md:flex-1 h-3 bg-gradient-to-r from-amber-300 to-amber-600 rounded-lg appearance-none cursor-pointer accent-amber-600 transition-all"
               />
-              <input
-                type="number"
-                step="0.5"
-                value={watchValues.inflationRate === 0 ? '' : watchValues.inflationRate}
-                onChange={(e) => setValue('inflationRate', parseFloat(e.target.value) || 0)}
-                className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
-              />
+              <div className="w-full md:w-auto relative flex-shrink-0">
+                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <input
+                  type="number"
+                  step="0.5"
+                  value={watchValues.inflationRate === 0 ? '' : watchValues.inflationRate}
+                  onChange={(e) => setValue('inflationRate', parseFloat(e.target.value) || 0)}
+                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                />
+              </div>
             </div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">2% - 10%</p>
           </div>
+
+          {/* Clear All Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setValue('currentAge', 30);
+              setValue('retirementAge', 60);
+              setValue('lifeExpectancy', 85);
+              setValue('monthlyExpense', 50000);
+              setValue('currentCorpus', 500000);
+              setValue('annualReturn', 10);
+              setValue('inflationRate', 5);
+            }}
+            className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+          >
+            🗑️ Clear All
+          </button>
         </div>
 
         {/* Results Section */}
