@@ -176,7 +176,7 @@ export default function SimpleInterestCalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-lg appearance-none cursor-pointer accent-emerald-600"
                 />
                 <div className="relative flex-shrink-0">
-                  <span className="absolute left-2 top-2.5 text-emerald-600 font-bold text-sm">₹</span>
+                  <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-emerald-600 font-bold text-xs md:text-sm">₹</span>
                   <input
                     id="principal-si"
                     type="number"
@@ -187,7 +187,7 @@ export default function SimpleInterestCalculatorPage() {
                     value={watchValues.principal === 0 ? '' : watchValues.principal}
                     onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                    className="w-32 px-6 py-3 pl-7 border-2 border-emerald-400 rounded-lg text-right font-bold text-emerald-700 bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-emerald-600 dark:text-emerald-400"
+                    className="w-32 px-6 py-3 pl-8 md:pl-7 border-2 border-emerald-400 rounded-lg text-right font-bold text-emerald-700 bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-emerald-600 dark:text-emerald-400"
                   />
                 </div>
               </div>
@@ -210,7 +210,7 @@ export default function SimpleInterestCalculatorPage() {
                   className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <div className="relative flex-shrink-0">
-                  <span className="absolute right-3 top-2.5 text-blue-600 font-bold text-sm">%</span>
+                  <span className="absolute right-2 md:right-3 top-3 md:top-2.5 text-blue-600 font-bold text-xs md:text-sm">%</span>
                   <input
                     id="rate-si"
                     type="number"
@@ -221,7 +221,7 @@ export default function SimpleInterestCalculatorPage() {
                     value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
                     onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-                    className="w-20 px-3 py-3 pr-6 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
+                    className="w-20 px-3 py-3 pr-7 md:pr-6 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                   />
                 </div>
               </div>

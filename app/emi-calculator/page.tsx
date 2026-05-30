@@ -160,8 +160,8 @@ const LoanInput = memo(({
         className={`w-full md:flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer accent-${colorTo.split('-')[1]}-600 transition-all will-change-auto`}
       />
       <div className="w-full md:w-auto relative flex-shrink-0">
-        {prefix && <span className="absolute left-2 top-2.5 font-bold text-sm">{prefix}</span>}
-        {suffix && <span className="absolute right-3 top-2.5 font-bold text-sm">{suffix}</span>}
+        {prefix && <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">{prefix}</span>}
+        {suffix && <span className="absolute right-2 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">{suffix}</span>}
         <input
           id={id}
           type="number"
@@ -172,7 +172,7 @@ const LoanInput = memo(({
           value={value === 0 ? '' : value}
           onChange={onChange}
           onBlur={onBlur}
-          className="w-full md:w-32 px-7 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+          className="w-full md:w-32 px-8 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
         />
       </div>
     </div>

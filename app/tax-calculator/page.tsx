@@ -246,7 +246,7 @@ export default function TaxCalculator() {
                       className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
                     <div className="w-full md:w-auto relative flex-shrink-0">
-                      <span className="absolute left-2 top-2.5 text-blue-600 dark:text-blue-400 font-bold text-sm">₹</span>
+                      <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-blue-600 dark:text-blue-400 font-bold text-xs md:text-sm">₹</span>
                       <input
                         id="gross-salary"
                         type="number"
@@ -257,7 +257,7 @@ export default function TaxCalculator() {
                           const val = Number(e.target.value);
                           if (val < 100000) alert('Gross Salary must be at least ₹1,00,000');
                         }}
-                        className="w-full md:w-28 px-3 py-3 pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="0"
                       />
                     </div>
@@ -327,14 +327,14 @@ export default function TaxCalculator() {
                       className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                     />
                     <div className="w-full md:w-auto relative flex-shrink-0">
-                      <span className="absolute left-2 top-2.5 text-green-600 dark:text-green-400 font-bold text-sm">₹</span>
+                      <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-green-600 dark:text-green-400 font-bold text-xs md:text-sm">₹</span>
                       <input
                         id="basic-salary"
                         type="number"
                         min="0"
                         value={watchValues.basicSalary === 0 ? '' : watchValues.basicSalary}
                         onChange={(e) => handleInputChange('basicSalary', e.target.value === '' ? 0 : Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 dark:bg-gray-700 dark:border-green-600 dark:text-green-400 focus:outline-none"
+                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 dark:bg-gray-700 dark:border-green-600 dark:text-green-400 focus:outline-none"
                         placeholder="0"
                       />
                     </div>

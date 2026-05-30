@@ -271,12 +271,12 @@ export default function RetirementCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <span className="absolute right-2 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">yrs</span>
                 <input
                   type="number"
                   value={watchValues.retirementAge === 0 ? '' : watchValues.retirementAge}
                   onChange={(e) => setValue('retirementAge', parseInt(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-6 py-3 pr-7 md:pr-6 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -299,12 +299,12 @@ export default function RetirementCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">yrs</span>
+                <span className="absolute right-2 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">yrs</span>
                 <input
                   type="number"
                   value={watchValues.lifeExpectancy === 0 ? '' : watchValues.lifeExpectancy}
                   onChange={(e) => setValue('lifeExpectancy', parseInt(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-6 py-3 pr-7 md:pr-6 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -357,12 +357,12 @@ export default function RetirementCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute left-2 top-2.5 font-bold text-sm">₹</span>
+                <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">₹</span>
                 <input
                   type="number"
                   value={watchValues.currentCorpus === 0 ? '' : watchValues.currentCorpus}
                   onChange={(e) => setValue('currentCorpus', parseInt(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-8 md:px-6 py-3 pl-7 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
@@ -416,13 +416,13 @@ export default function RetirementCalculator() {
                 className="w-full md:flex-1 h-3 bg-gradient-to-r from-amber-300 to-amber-600 rounded-lg appearance-none cursor-pointer accent-amber-600 transition-all"
               />
               <div className="w-full md:w-auto relative flex-shrink-0">
-                <span className="absolute right-3 top-2.5 font-bold text-sm">%</span>
+                <span className="absolute right-2 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
                 <input
                   type="number"
                   step="0.5"
                   value={watchValues.inflationRate === 0 ? '' : watchValues.inflationRate}
                   onChange={(e) => setValue('inflationRate', parseFloat(e.target.value) || 0)}
-                  className="w-full md:w-32 px-6 py-3 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  className="w-full md:w-32 px-6 py-3 pr-7 md:pr-6 border-2 rounded-lg text-right font-bold focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 />
               </div>
             </div>
