@@ -270,6 +270,48 @@ Output:
 
 ---
 
+## 🏠 HOME LOAN vs RENT CALCULATOR (Opportunity Cost Framework)
+
+### Core Engine: `BuyVsRentEngine`
+**File:** `lib/calculators/buy-vs-rent.ts` | **Type-Safe:** ✅ Strict TypeScript | **Precision:** ✅ Decimal.js
+
+**Dual-Track 20-Year Simulation:**
+1. **Buyer:** Down payment + EMI + maintenance, property appreciates, loan reduces via amortization, net worth = property - loan + tax benefits
+2. **Renter:** Invests down payment + monthly savings, portfolio grows at opportunity return rate, net worth = investment corpus
+
+**Key Features:**
+- Month-by-month precision (240+ iterations)
+- Section 24(b) tax benefit: ₹2L/year interest deduction cap, applied via user's tax bracket
+- Break-even year detection (first year buyer NW > renter NW)
+- Yearly projections tracking cumulative costs and net worth growth
+
+### Input Schema (13 Parameters):
+Property Value (₹1L-₹10Cr) | Down Payment % (5-100%) | Loan Interest % (2-15%) | Tenure (1-40y) | Monthly Rent (₹1K-₹5L) | Rent Increase % (0-15%) | Property Appreciation % | Maintenance % | Investment Return % | Inflation % | Timeline (1-40y) | Section 24(b) toggle | Tax Bracket (0-45%)
+
+### UI/UX: Premium React Component
+**File:** `app/home-loan-vs-rent/page.tsx` | **Lines:** 700+ | **Tabs:** 3 (Property | Loan & Rent | Assumptions)
+
+**Hero Metrics:** Monthly EMI (blue) | Break-Even Year (purple) | Net Advantage (emerald/blue conditional)
+
+**Charts:** 
+- AreaChart: Dual areas (buyer NW vs renter NW) with break-even reference line
+- LineChart: Cumulative buyer outflows (EMI+maintenance) vs renter rent paid
+
+**Features:**
+- 3-tab input system with color-coded gradient sliders (9 colors)
+- Dynamic verdict banner (emerald if buying wins, blue if renting)
+- Projection table (Year-by-year, Show All toggle)
+- PDF export + clipboard copy
+- 5 FAQs on Opportunity Cost Framework + Section 24(b)
+
+### Verification Test ✅
+```
+Property ₹80L | Down 20% | Rate 8.5% | Tenure 20Y | Rent ₹25K (7% escalation) | Investment 12%
+→ EMI: ₹55,525 | Buyer NW: ₹2.56Cr | Renter NW: ₹2.84Cr | Verdict: Renting wins by ₹27.75L (14%)
+```
+
+---
+
 ## 🌐 DEPLOYMENT
 
 ```bash
@@ -322,5 +364,6 @@ npm run dev                # ✅ Development server on :3000 or :3001
 - **Pages:** 54 ✅
 - **TypeScript Errors:** 0 ✅
 - **Type-Check:** PASS ✅
+- **Home Loan vs Rent Redesign:** Opportunity Cost Framework, Production-grade ✅
 - **Profit Margin Redesign:** Production-grade ✅
 - **Vercel Deployment:** Live ✅
