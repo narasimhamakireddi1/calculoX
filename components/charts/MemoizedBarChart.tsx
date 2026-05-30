@@ -30,7 +30,7 @@ export const MemoizedBarChart = memo(function BarChartComponent({
   const memoizedData = useMemo(() => data, [JSON.stringify(data)]);
 
   return (
-    <div className="w-full">
+    <div className="w-full" role="img" aria-label={title || 'Bar chart visualization'}>
       {title && <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">{title}</h3>}
       <ResponsiveContainer width="100%" height={height}>
         <BarChart
