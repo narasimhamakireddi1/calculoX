@@ -3,7 +3,7 @@
 **Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA | AdSense 92/100 | GSC Live  
 **Last Updated:** 2026-05-30 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
-**Latest:** Dark Mode Tooltip Visibility Fixed (all 14 calculators now display chart tooltips with white background & dark text in both light/dark modes). Home Loan vs Rent Calculator Redesigned with Opportunity Cost Framework (month-by-month precision, break-even analysis, Section 24(b) tax benefits)
+**Latest:** Home Loan vs Rent Calculator Enhanced with Detailed Winner Analysis (explains WHY buying/renting wins with key metrics, break-even analysis, and financial reasons). Opportunity Cost Framework Implementation Complete (month-by-month precision, break-even detection, Section 24(b) tax benefits)
 
 ---
 
@@ -300,6 +300,11 @@ Property Value (₹1L-₹10Cr) | Down Payment % (5-100%) | Loan Interest % (2-15
 **Features:**
 - 3-tab input system with color-coded gradient sliders (9 colors)
 - Dynamic verdict banner (emerald if buying wins, blue if renting)
+- **Detailed Winner Analysis Panel:** Explains WHY that option wins with:
+  - Financial advantage (absolute ₹ + percentage difference)
+  - Key reasons with specific metrics (property appreciation, EMI vs rent, investment returns, tax benefits)
+  - Comparison metrics: Final net worth, break-even year, monthly cost difference
+  - Dynamic explanations tailored to buying/renting verdict
 - Projection table (Year-by-year, Show All toggle)
 - PDF export + clipboard copy
 - 5 FAQs on Opportunity Cost Framework + Section 24(b)
