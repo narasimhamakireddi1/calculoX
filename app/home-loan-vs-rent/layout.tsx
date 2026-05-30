@@ -9,55 +9,56 @@ import {
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Home Loan vs Rent Calculator India - Buy vs Rent Decision Tool | calculox',
-  description: 'Compare home loan vs rent with our calculator. Calculate EMI, total cost, break-even point, and property appreciation. Make informed buy vs rent decisions.',
+  title: 'Buy vs Rent Calculator - Opportunity Cost Framework | calculox',
+  description: 'Compare buying vs renting using the opportunity cost framework. Analyze parallel financial tracks: buyer net worth vs renter + investor portfolio over 20 years. Includes Section 24(b) tax benefits, property appreciation, and break-even analysis.',
   keywords: [
-    'home loan vs rent calculator',
-    'buy vs rent calculator',
-    'home loan calculator',
-    'rent vs buy',
-    'property investment calculator',
-    'EMI calculator home',
-    'break-even calculator home',
-    'rent calculator India',
-    'home affordability calculator',
+    'opportunity cost calculator',
+    'buy vs rent calculator India',
+    'home loan vs rent',
+    'opportunity cost analysis',
+    'buy vs rent financial comparison',
+    'property investment calculator India',
+    'EMI vs rent comparison',
+    'break-even analysis home',
+    'Section 24(b) tax calculator',
+    'rent vs buy net worth',
   ],
   alternates: { canonical: `${BASE_URL}/home-loan-vs-rent` },
   openGraph: {
-    title: 'Home Loan vs Rent Calculator - Make Better Housing Decisions | calculox',
-    description: 'Compare buying vs renting: Calculate EMI, total costs, break-even point, and find the best option for your financial situation.',
+    title: 'Buy vs Rent Calculator - Opportunity Cost Framework | calculox',
+    description: 'Compare buying vs renting with parallel financial tracks. Calculate buyer net worth vs renter portfolio, break-even year, and tax benefits.',
     url: `${BASE_URL}/home-loan-vs-rent`,
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Home Loan vs Rent Calculator - calculox' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Buy vs Rent Opportunity Cost Calculator - calculox' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Home Loan vs Rent Calculator - Buy vs Rent Decision Tool | calculox',
-    description: 'Compare buying vs renting: Calculate EMI, total costs, and find your break-even point for informed housing decisions.',
+    title: 'Buy vs Rent Calculator - Opportunity Cost Framework | calculox',
+    description: 'Compare buying vs renting with parallel financial tracks. Calculate buyer net worth vs renter portfolio, break-even year, and tax benefits.',
     images: ['/og-image.png'],
   },
 };
 
 const faqs = [
   {
-    question: 'When is it better to buy than to rent?',
-    answer: 'It\'s generally better to buy when: 1) You plan to stay in the property for 5+ years (to justify transaction costs), 2) Property prices are appreciating in your area, 3) Your EMI is comparable to or less than rent, 4) You have the financial capacity for down payment and EMI, 5) Interest rates are reasonable. This calculator helps you find your break-even point.',
+    question: 'What is the opportunity cost framework?',
+    answer: 'The opportunity cost framework compares two parallel financial tracks over 20 years: (1) Buyer: Invests down payment, pays EMI + maintenance, property appreciates; (2) Renter: Invests down payment + EMI difference into equity/mutual funds (12% annual return). The calculator shows which track yields higher net worth. This approach reveals that renting can beat buying when investment returns exceed property appreciation + tax benefits.',
   },
   {
-    question: 'What is EMI and how is it calculated?',
-    answer: 'EMI (Equated Monthly Installment) is the fixed monthly payment you make on your home loan. Formula: EMI = [P × R × (1+R)^N] / [(1+R)^N - 1], where P = Principal, R = Monthly Interest Rate, N = Number of Months. For example, a ₹40 lakh loan at 8.5% interest for 20 years = ₹38,800 monthly EMI.',
+    question: 'Why does the renter invest the down payment?',
+    answer: 'The down payment represents capital the buyer locks into the property. A renter with the same capital would invest it in diversified assets (SIP/FD/mutual funds). Additionally, the renter invests the EMI difference each month (since rent is often lower than EMI). Over 20 years, compound growth in these investments can exceed property appreciation. This realistic comparison levels the playing field between buying and renting.',
   },
   {
-    question: 'What factors affect the break-even point?',
-    answer: 'Break-even point depends on: 1) EMI vs monthly rent ratio (lower EMI = earlier break-even), 2) Property appreciation rate (higher appreciation = earlier break-even), 3) Rent increase rate (higher rent increase = earlier break-even), 4) Interest rates (lower rates = earlier break-even), 5) Down payment percentage (higher down payment = earlier break-even).',
+    question: 'When does renting beat buying mathematically?',
+    answer: 'Renting wins when: (1) Property appreciation < 6% p.a. (below market growth), (2) EMI > Monthly Rent by large margin (>₹10K difference), (3) Comparison period is long (15-20 years, giving compound growth time), (4) Investment returns are high (10%+ p.a. in equities), (5) Rent increase is low (<5% p.a.). In expensive cities like Mumbai/Delhi, renting often wins by ₹50L-₹1Cr over 20 years.',
   },
   {
-    question: 'Should I consider maintenance and property taxes?',
-    answer: 'Yes, the calculator doesn\'t include these. Typical costs: 1) Maintenance = 1-2% of property value annually (₹50L property = ₹50K-1L/year), 2) Property tax = 5-10% of rental value (varies by municipality), 3) Insurance = 0.5-1% of property value, 4) HOA fees = ₹2K-10K/month (if applicable). These reduce buying advantage by 10-20%.',
+    question: 'What is Section 24(b) and how does it help buyers?',
+    answer: 'Section 24(b) allows home loan interest deduction up to ₹2,00,000 per year on self-occupied properties under the Income Tax Act. If your income tax rate is 20%, a ₹2L deduction saves ₹40,000 annually (₹8L saved over 20 years). This calculator includes this benefit—buyers with higher tax brackets (30-40%) gain ₹6-8L extra advantage. Toggle "Apply Tax Benefit" and adjust your tax bracket to see the impact.',
   },
   {
-    question: 'What if I sell the property before the loan ends?',
-    answer: 'If you sell before 5 years, subtract: 1) Selling costs (5-8% brokerage + stamp duty = 8-12% total), 2) Prepayment charges (0.5-1% of outstanding principal), 3) Capital gains tax (if applicable). For properties held 2-5 years, total selling costs typically exceed rent savings, so renting might be cheaper.',
+    question: 'How accurate is this 20-year projection?',
+    answer: 'The calculator is highly accurate for: (1) EMI calculations (uses standard reducing-balance formula), (2) Property appreciation projections (assumes constant % growth yearly), (3) Rent escalation (compounds monthly), (4) Investment returns (monthly compounding). It assumes: constant interest rates, no prepayment, inflation-adjusted expenses, and doesn\'t include selling costs, property taxes, or insurance (you can estimate these separately). Best used for decision-making, not absolute forecasting.',
   },
 ];
 
@@ -76,50 +77,50 @@ export default function HomeLoanVsRentLayout({ children }: { children: React.Rea
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "How to Use Home Loan vs Rent Calculator",
-    "totalTime": "PT3M",
+    "name": "How to Use Buy vs Rent Opportunity Cost Calculator",
+    "totalTime": "PT4M",
     "step": [
       {
         "@type": "HowToStep",
         "position": 1,
-        "name": "Enter Home Price",
-        "text": "Enter the property price you're considering (e.g., ₹50 lakhs, ₹1 crore). This is the total cost of the home."
+        "name": "Tab 1 - Property Details",
+        "text": "Enter (1) Property Value (₹10L-₹10Cr range, e.g., ₹80L for an average Indian home), (2) Down Payment % (5-100%, typically 20-30%). The calculator shows down payment amount in rupees. This capital would otherwise be invested by the renter."
       },
       {
         "@type": "HowToStep",
         "position": 2,
-        "name": "Set Down Payment",
-        "text": "Enter the down payment amount (typically 20-30% of home price, e.g., ₹10 lakhs for ₹50L property)."
+        "name": "Tab 2 - Loan & Rent Details",
+        "text": "Enter (1) Home Loan Interest Rate (current 7-9.5% depending on bank), (2) Loan Tenure (15-20 years typical), (3) Monthly Rent (current rent you'd pay if renting), (4) Annual Rent Increase (5-7% typical in Indian cities). Calculator computes monthly EMI automatically."
       },
       {
         "@type": "HowToStep",
         "position": 3,
-        "name": "Set Loan Details",
-        "text": "Enter loan tenure (15-20 years typical) and interest rate (currently 7-9.5% in India depending on bank and credit score)."
+        "name": "Tab 3 - Assumptions & Tax Benefits",
+        "text": "Enter (1) Property Appreciation Rate (5-7% typical), (2) Opportunity Investment Return (8-12% for equities/mutual funds), (3) Inflation Rate (5-6% typical), (4) Comparison Timeline (5-20 years), (5) Toggle Section 24(b) Tax Benefit and set your Income Tax Bracket (10-45%)."
       },
       {
         "@type": "HowToStep",
         "position": 4,
-        "name": "Enter Rent Details",
-        "text": "Enter your current monthly rent and expected annual rent increase rate (5-7% typical in Indian cities)."
+        "name": "Review Hero Metrics",
+        "text": "See three key cards: (1) Monthly EMI (your buyer monthly cost), (2) Break-Even Year (when buyer net worth exceeds renter net worth, if ever), (3) Net Advantage (which option wins and by how much in rupees and %)."
       },
       {
         "@type": "HowToStep",
         "position": 5,
-        "name": "Set Assumptions",
-        "text": "Enter property appreciation rate (5-7% typical), investment return for down payment savings (8-10%), and comparison period (5-20 years)."
+        "name": "Analyze Charts",
+        "text": "View dual-track comparison: (1) Net Worth Chart (buyer net worth vs renter investment portfolio growth over 20 years, with break-even line marked), (2) Cumulative Cost Chart (total buyer outflow vs renter rent paid), (3) Year-by-year projection table showing all metrics."
       },
       {
         "@type": "HowToStep",
         "position": 6,
-        "name": "Review Comparison",
-        "text": "See monthly EMI, total interest, total rent, cost comparison chart, break-even point, and which option wins financially."
+        "name": "Review Winner Banner",
+        "text": "See clear verdict: which option (buying or renting) wins financially, by how much (absolute rupees), and percentage advantage. This accounts for property appreciation, investment returns, rent escalation, EMI, maintenance, and Section 24(b) tax benefits."
       },
       {
         "@type": "HowToStep",
         "position": 7,
-        "name": "Export and Share",
-        "text": "Export results as PDF or copy to clipboard to share with family, financial advisor, or real estate agent."
+        "name": "Export and Share Results",
+        "text": "Export as PDF with all inputs and results, or copy to clipboard. Share with spouse, financial advisor, or real estate agent to support your buy-vs-rent decision."
       }
     ]
   };

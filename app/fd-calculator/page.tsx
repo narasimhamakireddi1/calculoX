@@ -591,7 +591,17 @@ export default function FDCalculatorPage() {
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                   <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
                   <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
-                  <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }} formatter={(v) => formatCurrency(v as number)} labelFormatter={(l) => `Month ${l}`} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      color: '#000000',
+                    }}
+                    wrapperStyle={{ outline: 'none' }}
+                    formatter={(v) => formatCurrency(v as number)}
+                    labelFormatter={(l) => `Month ${l}`}
+                  />
                   <Legend />
                   <Line type="monotone" dataKey="amount" stroke="#3b82f6" name="Total Amount" dot={false} strokeWidth={2} />
                   <Line type="monotone" dataKey="interest" stroke="#10b981" name="Interest Earned" dot={false} strokeWidth={2} />
@@ -603,7 +613,17 @@ export default function FDCalculatorPage() {
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                   <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
                   <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}K`} />
-                  <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }} formatter={(v) => formatCurrency(v as number)} labelFormatter={(l) => `Month ${l}`} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      color: '#000000',
+                    }}
+                    wrapperStyle={{ outline: 'none' }}
+                    formatter={(v) => formatCurrency(v as number)}
+                    labelFormatter={(l) => `Month ${l}`}
+                  />
                   <Legend />
                   <Bar dataKey="payout" fill="#f59e0b" name={watchValues.payoutType === 'quarterly' ? 'Quarterly Payout' : 'Monthly Payout'} />
                 </BarChart>
@@ -632,7 +652,16 @@ export default function FDCalculatorPage() {
                     <Cell fill="#3b82f6" />
                     <Cell fill="#10b981" />
                   </Pie>
-                  <Tooltip formatter={(v) => formatCurrency(v as number)} />
+                  <Tooltip
+                    formatter={(v) => formatCurrency(v as number)}
+                    contentStyle={{
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      color: '#000000',
+                    }}
+                    wrapperStyle={{ outline: 'none' }}
+                  />
                 </PieChart>
               </ResponsiveContainer>
               <div className="space-y-2 text-sm px-4 mt-2">

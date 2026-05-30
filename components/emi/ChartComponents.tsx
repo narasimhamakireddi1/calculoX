@@ -42,7 +42,16 @@ const LineChartSection = memo(({ chartData }: { chartData: AmortizationRow[] }) 
           tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`}
           tick={{ fontSize: 12 }}
         />
-        <Tooltip formatter={(value) => formatCurrency(value as number)} />
+        <Tooltip
+          formatter={(value) => formatCurrency(value as number)}
+          contentStyle={{
+            backgroundColor: '#ffffff',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
+            color: '#000000',
+          }}
+          wrapperStyle={{ outline: 'none' }}
+        />
         <Legend />
         <Line
           type="monotone"
@@ -98,7 +107,16 @@ const PieChartSection = memo(({ pieData, result }: { pieData: any[]; result: EMI
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Tooltip formatter={(value) => formatCurrency(value as number)} />
+        <Tooltip
+          formatter={(value) => formatCurrency(value as number)}
+          contentStyle={{
+            backgroundColor: '#ffffff',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
+            color: '#000000',
+          }}
+          wrapperStyle={{ outline: 'none' }}
+        />
       </PieChart>
     </ResponsiveContainer>
     <div className="mt-6 space-y-2 text-sm">

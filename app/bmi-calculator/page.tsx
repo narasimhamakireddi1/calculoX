@@ -326,7 +326,16 @@ export default function BMICalculatorPage() {
                   <Cell fill="#f59e0b" opacity={result.category === 'overweight' ? 1 : 0.4} />
                   <Cell fill="#ef4444" opacity={result.category === 'obese' ? 1 : 0.4} />
                 </Pie>
-                <Tooltip formatter={(v) => `BMI Range: ${v}`} />
+                <Tooltip
+                  formatter={(v) => `BMI Range: ${v}`}
+                  contentStyle={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '8px',
+                    color: '#000000',
+                  }}
+                  wrapperStyle={{ outline: 'none' }}
+                />
               </PieChart>
             </ResponsiveContainer>
             <div className="space-y-3 text-sm">

@@ -40,7 +40,16 @@ export const MemoizedBarChart = memo(function BarChartComponent({
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey={xAxisKey} />
           <YAxis />
-          <Tooltip formatter={(value: number) => value.toLocaleString()} />
+          <Tooltip
+            formatter={(value: number) => value.toLocaleString()}
+            contentStyle={{
+              backgroundColor: '#ffffff',
+              border: '1px solid #e5e7eb',
+              borderRadius: '8px',
+              color: '#000000',
+            }}
+            wrapperStyle={{ outline: 'none' }}
+          />
           <Legend />
           {bars.map((bar, index) => (
             <Bar

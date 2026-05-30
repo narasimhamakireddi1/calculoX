@@ -287,7 +287,13 @@ export default function RDCalculatorPage() {
                 <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
                 <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }}
+                  contentStyle={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '8px',
+                    color: '#000000',
+                  }}
+                  wrapperStyle={{ outline: 'none' }}
                   formatter={(v) => formatCurrency(v as number)}
                   labelFormatter={(l) => `Month ${l}`}
                 />

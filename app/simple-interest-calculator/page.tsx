@@ -506,7 +506,17 @@ export default function SimpleInterestCalculatorPage() {
                   stroke="#6b7280"
                 />
                 <YAxis stroke="#6b7280" tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`} />
-                <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }} formatter={(value) => formatCurrency(value as number)} labelFormatter={(l) => `Period ${l}`} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '8px',
+                    color: '#000000',
+                  }}
+                  wrapperStyle={{ outline: 'none' }}
+                  formatter={(value) => formatCurrency(value as number)}
+                  labelFormatter={(l) => `Period ${l}`}
+                />
                 <Legend />
                 <Line type="monotone" dataKey="totalAmount" stroke="#3b82f6" name="Total Amount" dot={false} strokeWidth={2} />
                 <Line type="monotone" dataKey="interest" stroke="#10b981" name="Interest Earned" dot={false} strokeWidth={2} />

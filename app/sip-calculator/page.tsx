@@ -475,7 +475,13 @@ export default function SIPCalculatorPage() {
                   tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`}
                 />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }}
+                  contentStyle={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '8px',
+                    color: '#000000',
+                  }}
+                  wrapperStyle={{ outline: 'none' }}
                   formatter={(value) => formatCurrency(value as number)}
                   labelFormatter={(label) => `Month ${label}`}
                 />

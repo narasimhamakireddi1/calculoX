@@ -614,7 +614,16 @@ export default function RetirementCalculatorPage() {
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                       <XAxis dataKey="age" label={{ value: 'Age (years)', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
                       <YAxis stroke="#6b7280" tickFormatter={(value) => `₹${(value / 10000000).toFixed(0)}Cr`} />
-                      <Tooltip formatter={(value) => formatCurrency(value as number)} />
+                      <Tooltip
+                        formatter={(value) => formatCurrency(value as number)}
+                        contentStyle={{
+                          backgroundColor: '#ffffff',
+                          border: '1px solid #e5e7eb',
+                          borderRadius: '8px',
+                          color: '#000000',
+                        }}
+                        wrapperStyle={{ outline: 'none' }}
+                      />
                       <Area
                         type="monotone"
                         dataKey="accumulated"
