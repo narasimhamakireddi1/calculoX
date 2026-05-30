@@ -528,7 +528,16 @@ export default function ProfitMarginCalculator() {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis type="number" />
                   <YAxis type="category" dataKey="name" />
-                  <Tooltip formatter={(value) => `₹${Number(value).toFixed(2)}`} />
+                  <Tooltip
+                    formatter={(value) => `₹${Number(value).toFixed(2)}`}
+                    contentStyle={{
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      color: '#000000',
+                    }}
+                    wrapperStyle={{ outline: 'none' }}
+                  />
                   <Legend />
                   <Bar dataKey="cost" stackId="a" fill="#3b82f6" name="Cost Price" />
                   <Bar dataKey="profit" stackId="a" fill="#10b981" name="Net Profit" />
