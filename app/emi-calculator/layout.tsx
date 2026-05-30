@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: 'What is EMI and how is it calculated?', answer: 'EMI (Equated Monthly Instalment) is a fixed payment made by a borrower to a lender each month. It is calculated using the formula: EMI = [P Ã— R Ã— (1+R)^N] / [(1+R)^N - 1], where P is principal, R is monthly interest rate, and N is number of months.' },
+  { question: 'What is EMI and how is it calculated?', answer: 'EMI (Equated Monthly Instalment) is a fixed payment made by a borrower to a lender each month. It is calculated using the formula: EMI = [P × R × (1+R)^N] / [(1+R)^N - 1], where P is principal, R is monthly interest rate, and N is number of months.' },
   { question: 'How can I reduce my loan EMI?', answer: 'You can reduce your EMI by: 1) Choosing a longer loan tenure, 2) Making a larger down payment, 3) Negotiating a lower interest rate, or 4) Making part-prepayments during the loan tenure.' },
   { question: 'What is the difference between flat rate and reducing balance EMI?', answer: 'In flat rate EMI, interest is calculated on the full principal throughout the tenure. In reducing balance (used by most banks), interest is calculated on the outstanding principal, making it cheaper.' },
   { question: 'Does EMI change during the loan tenure?', answer: 'For fixed-rate loans, EMI stays constant. For floating-rate loans, EMI can change when the bank revises its base rate (MCLR/Repo Rate linked). Banks either adjust the EMI amount or the tenure.' },

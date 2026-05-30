@@ -790,7 +790,7 @@ function StatResultCard({ statData }: { statData: StatDataPoint[] }) {
           y = {reg.slope.toFixed(6)}x + {reg.intercept.toFixed(6)}
         </p>
         <p className="text-sm mt-2 text-blue-700 dark:text-blue-300">
-          rÂ² = {(reg.r * reg.r).toFixed(6)}
+          r² = {(reg.r * reg.r).toFixed(6)}
         </p>
       </div>
     </div>

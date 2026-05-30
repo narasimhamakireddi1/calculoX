@@ -25,11 +25,11 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { question: 'How do I calculate X% of Y?', answer: 'Formula: (X/100) Ã— Y. For example, 20% of 500 = (20/100) Ã— 500 = 100.' },
-  { question: 'How do I calculate percentage change?', answer: 'Formula: ((New Value - Old Value) / Old Value) Ã— 100. For example, from 50 to 75: ((75-50)/50) Ã— 100 = 50% increase.' },
-  { question: 'What is reverse percentage calculation?', answer: 'If you know the final amount and the percentage applied, find the original amount. Formula: (Final Amount Ã— 100) / Percentage.' },
-  { question: 'How do I calculate discount?', answer: 'Discount amount = (Discount % / 100) Ã— Original Price. Final Price = Original Price - Discount Amount.' },
-  { question: 'What is markup vs margin?', answer: 'Markup: (Profit / Cost Price) Ã— 100. Margin: (Profit / Selling Price) Ã— 100. They measure profit differently - markup on cost, margin on revenue.' },
+  { question: 'How do I calculate X% of Y?', answer: 'Formula: (X/100) × Y. For example, 20% of 500 = (20/100) × 500 = 100.' },
+  { question: 'How do I calculate percentage change?', answer: 'Formula: ((New Value - Old Value) / Old Value) × 100. For example, from 50 to 75: ((75-50)/50) × 100 = 50% increase.' },
+  { question: 'What is reverse percentage calculation?', answer: 'If you know the final amount and the percentage applied, find the original amount. Formula: (Final Amount × 100) / Percentage.' },
+  { question: 'How do I calculate discount?', answer: 'Discount amount = (Discount % / 100) × Original Price. Final Price = Original Price - Discount Amount.' },
+  { question: 'What is markup vs margin?', answer: 'Markup: (Profit / Cost Price) × 100. Margin: (Profit / Selling Price) × 100. They measure profit differently - markup on cost, margin on revenue.' },
 ];
 
 export default function PercentageCalculatorLayout({ children }: { children: React.ReactNode }) {

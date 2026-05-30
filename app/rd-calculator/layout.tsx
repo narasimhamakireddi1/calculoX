@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const faqs = [
   { question: 'What is a Recurring Deposit (RD)?', answer: 'An RD is a deposit scheme where you invest a fixed amount monthly for a predetermined period. It is ideal for investors who want to save regularly with guaranteed returns.' },
-  { question: 'How is RD interest calculated?', answer: 'RD interest is calculated using the formula: A = P Ã— [((1+r)^n - 1) / (1 - (1+r)^-1)], where P is monthly deposit, r is monthly interest rate, and n is number of months.' },
+  { question: 'How is RD interest calculated?', answer: 'RD interest is calculated using the formula: A = P × [((1+r)^n - 1) / (1 - (1+r)^-1)], where P is monthly deposit, r is monthly interest rate, and n is number of months.' },
   { question: 'What is the difference between RD and FD?', answer: 'FD requires a lump sum investment, while RD allows monthly deposits. RD is ideal for regular savers, while FD suits those with available capital.' },
   { question: 'Can I withdraw from RD before maturity?', answer: 'Yes, premature withdrawal is allowed after 6 months, but with interest penalty of 0.5% to 1% lower than the contracted rate.' },
   { question: 'What are the typical RD tenure options?', answer: 'Banks typically offer RD tenures ranging from 6 months to 10 years, in multiples of 3 or 6 months.' },
