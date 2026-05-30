@@ -22,6 +22,18 @@ import ExportButton from '@/components/ui/ExportButton';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { formatCurrency } from '@/lib/utils/format';
 
+// Format large numbers for Y-axis (e.g., 1000000 → 10L, 10000000 → 1Cr)
+const formatAxisValue = (value: number): string => {
+  if (value >= 10000000) {
+    return `${(value / 10000000).toFixed(0)}Cr`;
+  } else if (value >= 100000) {
+    return `${(value / 100000).toFixed(0)}L`;
+  } else if (value >= 1000) {
+    return `${(value / 1000).toFixed(0)}K`;
+  }
+  return value.toString();
+};
+
 // Zod Schema
 const buyVsRentSchema = z.object({
   property_value: z.number().min(100000).max(100000000),
@@ -693,8 +705,8 @@ export default function HomeLoanVsRentCalculator() {
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
                   <strong>X-axis:</strong> Years | <strong>Y-axis:</strong> Net Worth in ₹
                 </p>
-                <ResponsiveContainer width="100%" height={300}>
-                  <AreaChart data={chartData} margin={{ left: 0, right: 20, top: 10, bottom: 0 }}>
+                <ResponsiveContainer width="100%" height={320}>
+                  <AreaChart data={chartData} margin={{ left: 70, right: 30, top: 15, bottom: 20 }}>
                     <defs>
                       <linearGradient id="buyerGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.3} />
@@ -709,11 +721,13 @@ export default function HomeLoanVsRentCalculator() {
                     <XAxis
                       dataKey="year"
                       stroke="#6B7280"
-                      label={{ value: 'Years', position: 'insideBottomRight', offset: -5, fill: '#6B7280' }}
+                      tick={{ fill: '#6B7280', fontSize: 12 }}
                     />
                     <YAxis
                       stroke="#6B7280"
-                      label={{ value: 'Net Worth (₹)', angle: -90, position: 'insideLeft', fill: '#6B7280' }}
+                      tickFormatter={formatAxisValue}
+                      tick={{ fill: '#6B7280', fontSize: 12 }}
+                      width={60}
                     />
                     <Tooltip
                       contentStyle={{
@@ -753,17 +767,19 @@ export default function HomeLoanVsRentCalculator() {
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
                   <strong>X-axis:</strong> Years | <strong>Y-axis:</strong> Total Amount Paid in ₹
                 </p>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={chartData} margin={{ left: 0, right: 20, top: 10, bottom: 0 }}>
+                <ResponsiveContainer width="100%" height={320}>
+                  <LineChart data={chartData} margin={{ left: 70, right: 30, top: 15, bottom: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                     <XAxis
                       dataKey="year"
                       stroke="#6B7280"
-                      label={{ value: 'Years', position: 'insideBottomRight', offset: -5, fill: '#6B7280' }}
+                      tick={{ fill: '#6B7280', fontSize: 12 }}
                     />
                     <YAxis
                       stroke="#6B7280"
-                      label={{ value: 'Cumulative Outflow (₹)', angle: -90, position: 'insideLeft', fill: '#6B7280' }}
+                      tickFormatter={formatAxisValue}
+                      tick={{ fill: '#6B7280', fontSize: 12 }}
+                      width={60}
                     />
                     <Tooltip
                       contentStyle={{
