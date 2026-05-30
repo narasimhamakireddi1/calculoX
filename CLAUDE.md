@@ -3,12 +3,15 @@
 **Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA | AdSense 92/100 | GSC Live  
 **Last Updated:** 2026-05-30 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
+**Latest:** Dark Mode Tooltip Visibility Fixed (all 14 calculators now display chart tooltips with white background & dark text in both light/dark modes). Home Loan vs Rent Calculator Redesigned with Opportunity Cost Framework (month-by-month precision, break-even analysis, Section 24(b) tax benefits)
+
 ---
 
 ## 📈 DEVELOPMENT TIMELINE (2026-05-30)
 
 | Date | Achievement | Status |
 |------|-------------|--------|
+| **2026-05-30** | Home Loan vs Rent Redesign (Opportunity Cost Framework, 20-year simulation, break-even analysis) | ✅ Production-grade |
 | **2026-05-30** | Profit Margin Redesign (Production-grade GST engine, dual-mode, stacked breakdown) | ✅ Production-grade |
 | **2026-05-30** | NISM Retirement Redesign (10-input, 4-step, dual-phase projections) | ✅ Production-grade |
 | **2026-05-30** | Mobile Input Styling Fix (prefix/suffix on all 11 calculators) | ✅ 100% readable |
@@ -86,7 +89,7 @@ components/
 | **BMI** | BMI = kg/(m²) or 703×lbs/(in²) | WHO categories, health tips |
 | **CAGR** | (Ending/Beginning)^(1/Years)-1 | Year-by-year, benchmarks |
 | **Retirement** | 4-step NISM framework | 10-input matrix, dual-phase, hero metrics |
-| **Home Loan vs Rent** | EMI + cost comparison | 9 inputs, break-even analysis |
+| **Home Loan vs Rent** | Opportunity Cost Framework (dual-track simulation) | 13 inputs, month-by-month, break-even, Section 24(b) |
 | **Profit Margin** | Cost-driven/Price-driven + GST Exclusive/Inclusive | 2-mode, hero metrics, stacked breakdown, margin dilution warning |
 | **Scientific** | Tokenizer→Shunting-Yard→RPN | Standard/Complex/Matrix/Statistics, 4 engines |
 
