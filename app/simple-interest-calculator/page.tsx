@@ -116,12 +116,14 @@ export default function SimpleInterestCalculatorPage() {
     const timer = setTimeout(() => {
       if (watchValues.principal && watchValues.annualRate !== undefined) {
         let tenureVal = 0;
+
+        // Get tenure value based on selected type
         if (watchValues.tenureType === 'years') {
           tenureVal = watchValues.years;
         } else if (watchValues.tenureType === 'months') {
-          tenureVal = watchValues.years * 12 + watchValues.months;
+          tenureVal = watchValues.months;
         } else {
-          tenureVal = watchValues.years * 365 + watchValues.months * 30 + watchValues.days;
+          tenureVal = watchValues.days;
         }
 
         if (tenureVal > 0) {

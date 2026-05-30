@@ -135,9 +135,26 @@ export default function FDCalculatorPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (watchValues.principal && watchValues.annualRate !== undefined) {
-        const totalMonths = watchValues.years * 12 + watchValues.months;
-        if (totalMonths > 0 || watchValues.days > 0) {
-          calculateResults(watchValues);
+        let tenureValue = 0;
+
+        // Get tenure value based on selected type
+        if (watchValues.tenureType === 'years') {
+          tenureValue = watchValues.years;
+        } else if (watchValues.tenureType === 'months') {
+          tenureValue = watchValues.months;
+        } else {
+          tenureValue = watchValues.days;
+        }
+
+        if (tenureValue > 0) {
+          // Create calculation data with only the selected tenure type
+          const calculationData = {
+            ...watchValues,
+            years: watchValues.tenureType === 'years' ? watchValues.years : 0,
+            months: watchValues.tenureType === 'months' ? watchValues.months : 0,
+            days: watchValues.tenureType === 'days' ? watchValues.days : 0,
+          };
+          calculateResults(calculationData);
         }
       }
     }, 300);
