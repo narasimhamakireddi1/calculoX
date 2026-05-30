@@ -116,6 +116,15 @@ export default function FDCalculatorPage() {
 
   const handleTenureTypeChange = (type: TenureType) => {
     setValue('tenureType', type, { shouldValidate: true });
+
+    // Set sensible defaults for the new tenure type if current value is 0
+    if (type === 'years' && watchValues.years === 0) {
+      setValue('years', 2, { shouldValidate: true });
+    } else if (type === 'months' && watchValues.months === 0) {
+      setValue('months', 6, { shouldValidate: true });
+    } else if (type === 'days' && watchValues.days === 0) {
+      setValue('days', 15, { shouldValidate: true });
+    }
   };
 
   const handleValidateField = (fieldName: string, value: number) => {
