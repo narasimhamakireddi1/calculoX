@@ -13,6 +13,7 @@ export interface CalculatorConfig {
   href: string;
   status: 'active' | 'coming-soon' | 'beta';
   tags: string[];
+  keywords?: string[];
 }
 
 export const calculators: CalculatorConfig[] = [
@@ -27,6 +28,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/sip-calculator',
     status: 'active',
     tags: ['investment', 'finance', 'mutual-fund'],
+    keywords: ['sip', 'systematic investment plan', 'mutual fund', 'monthly investment', 'investment plan', 'monthly savings', 'rupee cost averaging', 'nav', 'net asset value', 'investment returns', 'wealth creation', 'long term investment', 'portfolio growth', 'step up sip'],
   },
   {
     id: 'emi',
@@ -38,6 +40,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/emi-calculator',
     status: 'active',
     tags: ['loan', 'finance', 'mortgage'],
+    keywords: ['emi', 'equated monthly installment', 'loan', 'home loan', 'car loan', 'vehicle loan', 'personal loan', 'monthly payment', 'loan calculator', 'installment', 'loan repayment', 'mortgage calculator', 'auto loan', 'vehicle finance', 'car finance', 'monthly installment', 'principal', 'interest', 'amortization schedule', 'loan tenure', 'rate of interest'],
   },
   {
     id: 'bmi',
@@ -49,6 +52,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/bmi-calculator',
     status: 'active',
     tags: ['health', 'fitness', 'wellness'],
+    keywords: ['bmi', 'body mass index', 'weight', 'height', 'health calculator', 'fitness calculator', 'obesity', 'health status', 'ideal weight', 'weight category', 'health assessment', 'body measurement', 'fitness tracker', 'health check', 'weight management', 'body weight'],
   },
   {
     id: 'tax',
@@ -60,6 +64,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/tax-calculator',
     status: 'active',
     tags: ['tax', 'finance', 'india'],
+    keywords: ['income tax', 'tax calculator', 'tax deduction', 'tax slab', 'tax bracket', 'hra', 'lta', 'house rent allowance', 'leave travel allowance', '80c', 'tax planning', 'tax refund', 'income tax return', 'itr', 'tax liability', 'new tax regime', 'old tax regime', 'standard deduction', 'taxable income', 'rebate 87a'],
   },
 
   // Phase 2: Batch 1 - Simple Formula Calculators (Coming Soon - Under Development)
@@ -73,6 +78,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/fd-calculator',
     status: 'active',
     tags: ['investment', 'finance', 'fixed-deposit'],
+    keywords: ['fd', 'fixed deposit', 'savings calculator', 'bank deposit', 'interest calculator', 'maturity amount', 'fixed income', 'deposit interest', 'savings', 'rbi', 'cumulative deposit', 'quarterly payout', 'monthly payout', 'interest on savings', 'bank savings', 'senior citizen fd'],
   },
   {
     id: 'rd',
@@ -84,6 +90,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/rd-calculator',
     status: 'active',
     tags: ['investment', 'finance', 'recurring-deposit'],
+    keywords: ['rd', 'recurring deposit', 'monthly savings', 'recurring investment', 'savings plan', 'deposit', 'monthly contribution', 'maturity', 'investment savings', 'savings deposit', 'compound interest'],
   },
   {
     id: 'simple-interest',
@@ -95,6 +102,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/simple-interest-calculator',
     status: 'active',
     tags: ['finance', 'interest', 'investment'],
+    keywords: ['simple interest', 'si', 'interest rate', 'principal', 'loan interest', 'savings interest', 'interest calculation', 'principal amount', 'tenure', 'rate of interest', 'si calculator'],
   },
   {
     id: 'gst',
@@ -106,6 +114,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/gst-calculator',
     status: 'active',
     tags: ['tax', 'finance', 'india', 'gst'],
+    keywords: ['gst', 'goods and services tax', 'tax calculator', 'tax add', 'tax remove', 'cgst', 'sgst', 'igst', 'tax rate', 'gst rate', '5% gst', '12% gst', '18% gst', '28% gst', 'tax breakdown', 'inclusive tax', 'exclusive tax'],
   },
   {
     id: 'percentage',
@@ -117,6 +126,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/percentage-calculator',
     status: 'active',
     tags: ['math', 'utility', 'calculation', 'percentage'],
+    keywords: ['percentage', 'discount', 'markup', 'profit margin', 'percentage increase', 'percentage decrease', 'discount calculator', 'percentage change', 'hike', 'off', 'percent off', 'percentage of', 'calculate percentage'],
   },
   {
     id: 'cagr',
@@ -128,6 +138,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/cagr-calculator',
     status: 'active',
     tags: ['investment', 'finance', 'growth-rate'],
+    keywords: ['cagr', 'compound annual growth rate', 'growth rate', 'investment returns', 'annualized return', 'investment calculator', 'roi', 'return on investment', 'investment growth', 'annualized growth'],
   },
 
   // Phase 2: Batch 2 - Multi-input Calculators (Coming Soon)
@@ -185,6 +196,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/retirement-calculator',
     status: 'active',
     tags: ['finance', 'retirement', 'planning', 'corpus'],
+    keywords: ['retirement', 'retirement planning', 'retirement corpus', 'retirement calculator', 'retirement age', 'pension', 'post retirement', 'nism', '25x rule', 'retirement fund', 'retirement savings', 'financial independence', 'early retirement', 'retirement income'],
   },
   {
     id: 'home-loan-vs-rent',
@@ -196,6 +208,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/home-loan-vs-rent',
     status: 'active',
     tags: ['finance', 'home-loan', 'real-estate', 'buying', 'renting'],
+    keywords: ['home loan', 'rent', 'buy vs rent', 'property', 'real estate', 'home purchase', 'renting vs buying', 'property investment', 'buying decision', 'rent vs buy', 'housing', 'property cost', 'down payment', 'property value', 'home ownership', 'home affordability'],
   },
   {
     id: 'profit-margin',
@@ -207,6 +220,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/profit-margin-calculator',
     status: 'active',
     tags: ['finance', 'profit', 'markup', 'margin', 'business', 'gst'],
+    keywords: ['profit margin', 'markup', 'profit', 'cost price', 'selling price', 'margin calculator', 'business calculator', 'pricing', 'gst impact', 'cost analysis', 'profit analysis', 'business finance', 'gross profit', 'net profit', 'margin percentage', 'markup percentage', 'retail pricing', 'mrp'],
   },
 
   // Phase 2: Batch 3 - Utility Calculators (Coming Soon)
@@ -220,6 +234,7 @@ export const calculators: CalculatorConfig[] = [
     href: '/scientific-calculator',
     status: 'active',
     tags: ['scientific', 'math', 'calculator', 'complex', 'matrix', 'statistics'],
+    keywords: ['scientific calculator', 'complex numbers', 'matrix calculator', 'statistics calculator', 'math calculator', 'casio calculator', 'trigonometry', 'logarithm', 'sin cos tan', 'statistical analysis', 'data analysis', 'engineering calculator', 'advanced math'],
   },
   {
     id: 'age',

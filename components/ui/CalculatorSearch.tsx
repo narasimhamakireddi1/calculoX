@@ -10,6 +10,7 @@ interface SearchResult {
   href: string;
   icon: string;
   category: string;
+  keywords?: string[];
 }
 
 export function CalculatorSearch() {
@@ -24,6 +25,7 @@ export function CalculatorSearch() {
     href: calc.href,
     icon: calc.icon,
     category: calc.category,
+    keywords: calc.keywords,
   }));
 
   useEffect(() => {
@@ -38,8 +40,11 @@ export function CalculatorSearch() {
       const titleMatch = calc.title.toLowerCase().includes(searchQuery);
       const descMatch = calc.description.toLowerCase().includes(searchQuery);
       const categoryMatch = calc.category.toLowerCase().includes(searchQuery);
+      const keywordMatch = calc.keywords?.some((keyword) =>
+        keyword.toLowerCase().includes(searchQuery)
+      );
 
-      return titleMatch || descMatch || categoryMatch;
+      return titleMatch || descMatch || categoryMatch || keywordMatch;
     });
 
     setResults(filtered);
