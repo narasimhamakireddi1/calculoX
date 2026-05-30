@@ -199,7 +199,6 @@ export default function SIPCalculatorPage() {
                   className="w-full md:flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                 />
                 <div className="w-full md:w-auto relative flex-shrink-0">
-                  <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-green-600 font-bold text-xs md:text-sm">₹</span>
                   <input
                     id="monthly-investment"
                     type="number" placeholder="0"
@@ -209,7 +208,7 @@ export default function SIPCalculatorPage() {
                     value={watchValues.monthlyInvestment === 0 ? "" : watchValues.monthlyInvestment}
                     onChange={(e) => handleInputChange('monthlyInvestment', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('monthlyInvestment', Number(e.target.value))}
-                    className="w-full md:w-28 px-8 md:px-6 py-3 pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
+                    className="w-full md:w-28 px-6 py-3 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
                   />
                 </div>
               </div>
@@ -265,7 +264,6 @@ export default function SIPCalculatorPage() {
                   className="w-full md:flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                 />
                 <div className="w-full md:w-auto relative flex-shrink-0">
-                  <span className="absolute right-2 md:right-3 top-3 md:top-2.5 text-orange-600 font-bold text-xs md:text-sm">%</span>
                   <input
                     id="annual-return"
                     type="number" placeholder="0"
@@ -275,7 +273,7 @@ export default function SIPCalculatorPage() {
                     value={watchValues.annualReturn === 0 ? "" : watchValues.annualReturn}
                     onChange={(e) => handleInputChange('annualReturn', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('annualReturn', Number(e.target.value))}
-                    className="w-full md:w-20 px-3 py-3 pr-7 md:pr-6 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
+                    className="w-full md:w-20 px-3 py-3 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                   />
                 </div>
               </div>
@@ -300,7 +298,6 @@ export default function SIPCalculatorPage() {
                   className="w-full md:flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
                 />
                 <div className="w-full md:w-auto relative flex-shrink-0">
-                  <span className="absolute right-2 md:right-3 top-3 md:top-2.5 text-purple-600 font-bold text-xs md:text-sm">%</span>
                   <input
                     id="step-up"
                     type="number" placeholder="0"
@@ -310,7 +307,7 @@ export default function SIPCalculatorPage() {
                     value={watchValues.stepUpPercent === 0 ? "" : watchValues.stepUpPercent}
                     onChange={(e) => handleInputChange('stepUpPercent', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('stepUpPercent', Number(e.target.value))}
-                    className="w-full md:w-20 px-3 py-3 pr-7 md:pr-6 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
+                    className="w-full md:w-20 px-3 py-3 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
                   />
                 </div>
               </div>
