@@ -187,7 +187,7 @@ export default function SimpleInterestCalculatorPage() {
                     value={watchValues.principal === 0 ? '' : watchValues.principal}
                     onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                    className="w-32 px-6 py-3 pl-8 md:pl-7 border-2 border-emerald-400 rounded-lg text-right font-bold text-emerald-700 bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-emerald-600 dark:text-emerald-400"
+                    className="w-40 px-6 py-3 pl-8 md:pl-7 border-2 border-emerald-400 rounded-lg text-right font-bold text-emerald-700 bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:border-emerald-600 dark:text-emerald-400"
                   />
                 </div>
               </div>
@@ -221,7 +221,7 @@ export default function SimpleInterestCalculatorPage() {
                     value={watchValues.annualRate === 0 ? '' : watchValues.annualRate}
                     onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                     onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-                    className="w-20 px-3 py-3 pr-7 md:pr-6 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
+                    className="w-24 px-3 py-3 pr-7 md:pr-6 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
                   />
                 </div>
               </div>
@@ -280,7 +280,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                      className="w-16 px-2 py-2 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
+                      className="w-20 px-3 py-2 border-2 border-orange-400 rounded text-sm font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
                     />
                   </div>
                 </div>
@@ -307,7 +307,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-14 px-2 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
+                      className="w-20 px-3 py-2 border-2 border-purple-400 rounded text-sm font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
                     />
                   </div>
                 </div>
@@ -334,7 +334,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-14 px-2 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-gray-700 dark:border-pink-600 dark:text-pink-400"
+                      className="w-20 px-3 py-2 border-2 border-pink-400 rounded text-sm font-bold text-pink-700 bg-pink-50 dark:bg-gray-700 dark:border-pink-600 dark:text-pink-400"
                     />
                   </div>
                 </div>
