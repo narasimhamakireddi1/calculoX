@@ -203,6 +203,7 @@ export default function ProfitMarginCalculator() {
                 </div>
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">₹1 - ₹100,000</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Your purchase/manufacturing cost. Profit = Selling Price - Cost Price. Higher cost requires higher margin to stay competitive</p>
             </div>
 
             {/* Cost-Driven Mode Inputs */}
@@ -262,6 +263,7 @@ export default function ProfitMarginCalculator() {
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       Equivalent Markup: ~{equivalentMarkup.toFixed(2)}%
                     </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Healthy retail margins: 20-50% depending on industry. E-commerce: 15-30%, Grocery: 5-15%, Electronics: 10-20%</p>
                   </div>
                 )}
 
@@ -296,6 +298,7 @@ export default function ProfitMarginCalculator() {
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       Equivalent Margin: ~{equivalentMargin.toFixed(2)}%
                     </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Markup: increase from Cost. 25% markup on ₹100 = ₹125 selling price. Higher markup = higher margin (non-linear)</p>
                   </div>
                 )}
               </>
@@ -330,6 +333,7 @@ export default function ProfitMarginCalculator() {
                   </div>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">₹1 - ₹100,000</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Market price or fixed MRP on package. Used in Price-Driven mode when MRP is pre-determined and you need to extract profit</p>
               </div>
             )}
 

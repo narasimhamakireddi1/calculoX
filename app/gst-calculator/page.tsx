@@ -167,6 +167,7 @@ export default function GSTCalculatorPage() {
               </div>
               {errors.amount && <p className="text-red-500 text-sm">{errors.amount.message}</p>}
               <p className="text-xs text-gray-500 dark:text-gray-400">₹100 to ₹10 Crore</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 18% applies to most services. 5% for essential goods, 12% for intermediate, 28% for luxury items</p>
             </div>
 
             {/* GST Rate */}

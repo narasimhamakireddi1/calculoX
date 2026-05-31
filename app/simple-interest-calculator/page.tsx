@@ -207,6 +207,7 @@ export default function SimpleInterestCalculatorPage() {
               </div>
               {errors.principal && <p className="text-red-500 text-sm">{errors.principal.message}</p>}
               <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 - ₹10 Crore</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Principal amount in Simple Interest. Interest is calculated on this amount without compounding</p>
             </div>
 
             {/* Annual Rate */}
@@ -241,6 +242,7 @@ export default function SimpleInterestCalculatorPage() {
               </div>
               {errors.annualRate && <p className="text-red-500 text-sm">{errors.annualRate.message}</p>}
               <p className="text-xs text-gray-500 dark:text-gray-400">0% - 50% p.a.</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Current bank interest rates: 6-7% p.a. for Savings Accounts. Higher for FDs (7-8% p.a.)</p>
             </div>
 
             {/* Tenure Type Selector */}

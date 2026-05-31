@@ -344,6 +344,7 @@ export default function HomeLoanVsRentCalculator() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹1 Lakh - ₹10 Crore</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Current property prices in metros: ₹50-200L. Higher property value favors renting if rent is low</p>
               </div>
 
               <div className="relative flex-shrink-0">
@@ -368,6 +369,7 @@ export default function HomeLoanVsRentCalculator() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">5% - 100%</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 20% down payment is typical. Lower down payment → higher EMI. The down payment amount goes to investment in renting scenario</p>
               </div>
             </div>
           )}
@@ -399,6 +401,7 @@ export default function HomeLoanVsRentCalculator() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">2% - 15%</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Current home loan rates (2025): 8-9%. Higher rates favor renting. Lower rates favor buying</p>
               </div>
 
               <div className="relative flex-shrink-0">
@@ -447,6 +450,7 @@ export default function HomeLoanVsRentCalculator() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹1K - ₹5 Lakh</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Key variable: If rent is lower than EMI, renting looks better initially. But EMI is fixed while rent rises each year</p>
               </div>
 
               <div className="relative flex-shrink-0">
@@ -502,6 +506,7 @@ export default function HomeLoanVsRentCalculator() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">-5% - 15% per year</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Historical (2010-2025): 6-8% p.a. in metros. Higher appreciation favors buying, lower favors renting</p>
               </div>
 
               <div className="relative flex-shrink-0">
@@ -550,6 +555,7 @@ export default function HomeLoanVsRentCalculator() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">0% - 30% per year (equity/MF)</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Nifty 50 (20y CAGR): 13%. Conservative: 10%, Aggressive: 13-15%. Higher returns favor renting</p>
               </div>
 
               <div className="relative flex-shrink-0">
@@ -574,6 +580,7 @@ export default function HomeLoanVsRentCalculator() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">0% - 15% per year</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 India's average (2010-2025): 5-6%. Affects rent growth and real returns on investment</p>
               </div>
 
               <div className="relative flex-shrink-0">
@@ -641,6 +648,7 @@ export default function HomeLoanVsRentCalculator() {
                       />
                     </div>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">0% - 45%</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Your tax slab: 20% slab gets ₹40K deduction on ₹2L interest. 30% slab gets ₹60K. Higher tax rates favor buying</p>
                   </div>
                 )}
               </div>

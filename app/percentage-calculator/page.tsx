@@ -272,6 +272,7 @@ export default function PercentageCalculatorPage() {
                   className="w-full md:w-32 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Enter the {calculationType === 'percent-of' || calculationType === 'reverse-percent' ? 'percentage value' : 'base or starting amount'} for your calculation</p>
             </div>
 
             {/* Value B */}
@@ -296,6 +297,7 @@ export default function PercentageCalculatorPage() {
                   className="w-full md:w-32 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 {calculationType === 'percent-of' ? 'Total or base amount' : calculationType === 'what-percent' ? 'Total amount to compare against' : calculationType === 'percent-change' ? 'Final amount after change' : calculationType === 'hike-discount' ? 'Percentage to apply' : 'Percentage value (0-200%)'}</p>
             </div>
 
             {/* Percent C — only for Sequential */}
@@ -321,6 +323,7 @@ export default function PercentageCalculatorPage() {
                     className="w-full md:w-32 px-3 py-3 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
                   />
                 </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Second percentage in sequence. Applied after the first percentage change</p>
               </div>
             )}
 
