@@ -74,7 +74,7 @@ export function CalculatorSearch() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.trim() && results.length > 0 && setIsOpen(true)}
           placeholder="🔍 Search calculators... (e.g., EMI, Tax, Investment, Loan)"
-          className="w-full px-6 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors text-lg"
+          className="w-full px-6 py-4 rounded-xl border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-all duration-300 text-lg shadow-md hover:shadow-lg"
         />
         {query && (
           <button
@@ -83,8 +83,9 @@ export function CalculatorSearch() {
               setResults([]);
               setIsOpen(false);
             }}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200 text-lg font-bold"
             aria-label="Clear search"
+            title="Clear search"
           >
             ✕
           </button>
@@ -93,9 +94,9 @@ export function CalculatorSearch() {
 
       {/* Search Results Dropdown */}
       {isOpen && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg z-50">
+        <div className="absolute top-full left-0 right-0 mt-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl shadow-xl z-50 overflow-hidden">
           <div className="max-h-96 overflow-y-auto">
-            {results.map((result) => (
+            {results.map((result, index) => (
               <Link
                 key={result.href}
                 href={result.href}
@@ -104,17 +105,19 @@ export function CalculatorSearch() {
                   setResults([]);
                   setIsOpen(false);
                 }}
-                className="flex items-start gap-4 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-gray-100 dark:border-gray-700 last:border-b-0 transition-colors"
+                className={`flex items-start gap-4 px-4 py-4 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 group ${
+                  index !== results.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''
+                }`}
               >
-                <span className="text-2xl flex-shrink-0">{result.icon}</span>
+                <span className="text-3xl flex-shrink-0 group-hover:scale-110 transition-transform duration-200">{result.icon}</span>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                  <h3 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {result.title}
                   </h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2 mt-1">
                     {result.description}
                   </p>
-                  <span className="inline-block mt-1 px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">
+                  <span className="inline-block mt-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full border border-blue-200 dark:border-blue-700/50">
                     {result.category}
                   </span>
                 </div>
@@ -126,8 +129,9 @@ export function CalculatorSearch() {
 
       {/* No Results Message */}
       {isOpen && results.length === 0 && query.trim() && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg p-4 text-center text-gray-600 dark:text-gray-400">
-          No calculators found for "{query}"
+        <div className="absolute top-full left-0 right-0 mt-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl shadow-xl p-6 text-center">
+          <p className="text-gray-600 dark:text-gray-400">No calculators found for "<span className="font-semibold text-gray-900 dark:text-white">{query}</span>"</p>
+          <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">Try searching for "EMI", "Tax", "Investment", "Loan", etc.</p>
         </div>
       )}
     </div>

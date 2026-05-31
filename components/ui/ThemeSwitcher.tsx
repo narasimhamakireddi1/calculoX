@@ -57,12 +57,12 @@ export function ThemeSwitcher() {
   if (!mounted) return null;
 
   return (
-    <div className="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+    <div className="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1 border border-gray-200 dark:border-gray-700 shadow-sm">
       <button
         onClick={() => handleThemeChange('light')}
-        className={`px-3 py-1.5 rounded transition-all duration-200 text-sm font-medium ${
+        className={`px-3 py-2 rounded-md transition-all duration-300 text-base font-medium transform hover:scale-110 ${
           theme === 'light'
-            ? 'bg-white dark:bg-gray-700 text-yellow-500 shadow-sm'
+            ? 'bg-white dark:bg-gray-600 text-yellow-500 shadow-md border border-yellow-200 dark:border-yellow-700/50'
             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
         }`}
         title="Light mode"
@@ -72,9 +72,9 @@ export function ThemeSwitcher() {
       </button>
       <button
         onClick={() => handleThemeChange('system')}
-        className={`px-3 py-1.5 rounded transition-all duration-200 text-sm font-medium ${
+        className={`px-3 py-2 rounded-md transition-all duration-300 text-base font-medium transform hover:scale-110 ${
           theme === 'system'
-            ? 'bg-white dark:bg-gray-700 text-blue-500 shadow-sm'
+            ? 'bg-white dark:bg-gray-600 text-blue-500 shadow-md border border-blue-200 dark:border-blue-700/50'
             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
         }`}
         title="System default"
@@ -84,9 +84,9 @@ export function ThemeSwitcher() {
       </button>
       <button
         onClick={() => handleThemeChange('dark')}
-        className={`px-3 py-1.5 rounded transition-all duration-200 text-sm font-medium ${
+        className={`px-3 py-2 rounded-md transition-all duration-300 text-base font-medium transform hover:scale-110 ${
           theme === 'dark'
-            ? 'bg-white dark:bg-gray-700 text-purple-500 shadow-sm'
+            ? 'bg-white dark:bg-gray-600 text-purple-500 shadow-md border border-purple-200 dark:border-purple-700/50'
             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
         }`}
         title="Dark mode"

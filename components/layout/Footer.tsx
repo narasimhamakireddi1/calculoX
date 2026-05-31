@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 text-white mt-20">
-      <div className="max-w-7xl mx-auto px-4 py-12">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white mt-24 border-t border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
           {/* Brand */}
           <div>
@@ -95,9 +95,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-gray-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} calculox. All rights reserved. Made with ❤️ for India</p>
-          <p className="text-xs">⚠️ Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
+        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm">
+          <div className="text-center md:text-left">
+            <p className="font-medium">&copy; {new Date().getFullYear()} <span className="text-blue-400 font-bold">calculox</span>. All rights reserved.</p>
+            <p className="text-xs text-gray-500 mt-1">Made with ❤️ for India</p>
+          </div>
+          <p className="text-xs bg-gray-800 px-4 py-2 rounded-lg border border-gray-700 text-gray-300">⚠️ Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
         </div>
       </div>
     </footer>
