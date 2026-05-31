@@ -201,6 +201,18 @@ export default function GSTCalculatorPage() {
             >
               🗑️ Clear
             </button>
+
+            {/* Formula Reference */}
+            <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 Formula Reference</h4>
+              <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
+                <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-indigo-200 dark:border-indigo-700">
+                  {calculationType === 'add' ? 'Total = Base × (1 + Rate/100)' : 'Base = Total ÷ (1 + Rate/100)'}
+                </p>
+                <p><strong>GST Rates (India):</strong> 0%, 5%, 12%, 18%, 28%</p>
+                <p><strong>Common:</strong> 18% (Standard), 5% (Essential items)</p>
+              </div>
+            </div>
           </form>
         </div>
 

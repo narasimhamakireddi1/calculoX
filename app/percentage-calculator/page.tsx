@@ -331,6 +331,17 @@ export default function PercentageCalculatorPage() {
             >
               🗑️ Clear All
             </button>
+
+            {/* Formula Reference */}
+            <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 Quick Formulas</h4>
+              <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
+                <p><strong>X% of Y:</strong> (X ÷ 100) × Y</p>
+                <p><strong>What %:</strong> (Part ÷ Whole) × 100</p>
+                <p><strong>% Change:</strong> ((New - Old) ÷ Old) × 100</p>
+                <p><strong>Reverse %:</strong> Final ÷ (1 ± %) × 100</p>
+              </div>
+            </div>
           </div>
         </div>
 

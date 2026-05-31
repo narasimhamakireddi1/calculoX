@@ -539,6 +539,16 @@ export default function RetirementCalculatorPage() {
             >
               🗑️ Clear All
             </button>
+
+            {/* Formula Reference */}
+            <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 NISM Framework</h4>
+              <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
+                <p><strong>25x Rule:</strong> Corpus = 25 × Annual Expense Needed</p>
+                <p><strong>Corpus = FV of Savings + SIP Amount</strong></p>
+                <p><strong>Real Return:</strong> = Nominal - Inflation</p>
+              </div>
+            </div>
           </div>
         </div>
 
