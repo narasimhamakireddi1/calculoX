@@ -284,6 +284,14 @@ export default function CAGRCalculatorPage() {
                   <strong>Formula:</strong> CAGR = (Ending Value / Beginning Value)^(1/Years) - 1
                 </p>
               </div>
+
+              <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                <p className="text-sm text-amber-700 dark:text-amber-300">
+                  Your CAGR of <strong>{result.cagrPercentage.toFixed(2)}%</strong> {result.cagrPercentage > 15 ? 'is excellent and beats 95% of Indian equity mutual funds' : result.cagrPercentage > 10 ? 'matches the long-term market average' : 'is below inflation and needs attention'}. Nifty 50 has historically averaged ~13% CAGR over 20+ years. Consider diversified index funds for consistent, tax-efficient long-term growth.
+                </p>
+              </div>
+
               <div className="mt-6">
                 <ExportButton
                   fileName="CAGR_Results"

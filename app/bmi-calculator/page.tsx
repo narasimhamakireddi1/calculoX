@@ -317,6 +317,13 @@ export default function BMICalculatorPage() {
                 </div>
               </div>
 
+              <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                <p className="text-sm text-amber-700 dark:text-amber-300">
+                  Your BMI of {result.bmi.toFixed(1)} places you in the <strong>{result.category}</strong> category. Research indicates that overweight and obesity affect approximately 30-40% of urban populations in India. Maintaining a healthy BMI through regular exercise and a balanced diet significantly reduces chronic disease risk.
+                </p>
+              </div>
+
               <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
                 <ExportButton
                   fileName="BMI_Calculator_Results"

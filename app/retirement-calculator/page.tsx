@@ -634,6 +634,13 @@ export default function RetirementCalculatorPage() {
                   </div>
                 </div>
 
+                <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
+                  <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                  <p className="text-sm text-amber-700 dark:text-amber-300">
+                    Your retirement corpus target of <strong>{formatCurrency(result.net_shortfall_to_build + result.fv_of_current_savings)}</strong> is based on the NISM 25x rule. With a monthly withdrawal of ₹{(watchValues.present_monthly_expenses * (1 - watchValues.expense_reduction_pct / 100)).toFixed(0)} and a {watchValues.post_retirement_return_pct}% real return rate, your corpus is designed to last {result.distributionYears} years while beating inflation. The 4% safe withdrawal rule suggests you can sustain monthly withdrawals without depleting your corpus.
+                  </p>
+                </div>
+
                 <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
                   <p className="text-sm text-yellow-800 dark:text-yellow-200">
                     <strong>Note:</strong> This calculator uses NISM framework with inflation-adjusted real rate of return to ensure your purchasing power is preserved during retirement.

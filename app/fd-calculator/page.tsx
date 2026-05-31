@@ -524,6 +524,13 @@ export default function FDCalculatorPage() {
                 </div>
               </div>
 
+              <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                <p className="text-sm text-amber-700 dark:text-amber-300">
+                  Your effective annual yield is <strong>{((result.totalInterest / (watchValues.principal * (result.tenure.totalDays / 365))) * 100).toFixed(2)}%</strong>. Current bank FD rates range from 5-7%, so your {watchValues.annualRate}% rate {watchValues.annualRate >= 7 ? 'is competitive' : watchValues.annualRate >= 6 ? 'is reasonable' : 'is below market rates'}. {watchValues.seniorCitizen && 'Your 0.5% senior citizen bonus adds ₹' + (result.totalInterest - (watchValues.principal * (watchValues.annualRate / 100) * (result.tenure.totalDays / 365))).toFixed(0) + ' in extra returns.'} Compare with RD for monthly investment habits.
+                </p>
+              </div>
+
               <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
                   <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.

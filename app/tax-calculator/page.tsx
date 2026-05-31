@@ -721,6 +721,16 @@ export default function TaxCalculator() {
                 </div>
               </div>
 
+              {/* How Do You Compare */}
+              {getRegimeResult() && (
+                <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
+                  <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                  <p className="text-sm text-amber-700 dark:text-amber-300">
+                    You save <strong>{formatCurrency(result.savings)}</strong> by choosing the <strong>{result.recommended === 'new' ? 'New' : 'Old'}</strong> regime. With an effective tax rate of <strong>{getRegimeResult()!.effectiveRate.toFixed(2)}%</strong>, your deductions and income level position you well. Consider maximizing 80C (₹1.5L), 80D (health insurance), and 24(b) (₹2L home loan interest) in the Old Regime for additional tax savings.
+                  </p>
+                </div>
+              )}
+
               {/* Income Breakup Pie Chart */}
               {getRegimeResult() && (
                 <div className="card">

@@ -416,6 +416,13 @@ export default function SIPCalculatorPage() {
                 </div>
               </div>
 
+              <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                <p className="text-sm text-amber-700 dark:text-amber-300">
+                  Your projected corpus of <strong>{formatCurrency(result.futureValue)}</strong> demonstrates the power of disciplined investing. Consistent SIP investments typically outperform market timing, and a 12-13% return rate (index fund average) has historically beaten inflation by 6-7% annually. Your {watchValues.stepUpPercent}% annual step-up accelerates wealth accumulation.
+                </p>
+              </div>
+
               <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   ⚠️ <strong>Disclaimer:</strong> This calculation assumes regular monthly investments and consistent {watchValues.annualReturn}% annual returns. Actual returns vary based on market conditions, fund selection, and economic factors.
