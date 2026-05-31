@@ -309,37 +309,61 @@ export default function EMICalculatorPage() {
         <div id="emi-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Loan Details</h2>
           <form className="space-y-6">
-            <LoanInput
-              id="principal"
-              label="Loan Amount (₹)"
-              value={watchValues.principal ?? 0}
-              onChange={(e) => handleInputChange('principal', Number(e.target.value))}
-              onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-              min={10000}
-              max={100000000}
-              step={10000}
-              error={errors.principal}
-              prefix="₹"
-              rangeText="₹10,000 - ₹1 Crore"
-              colorFrom="from-blue-300"
-              colorTo="to-blue-600"
-            />
+            <div>
+              <LoanInput
+                id="principal"
+                label="Loan Amount (₹)"
+                value={watchValues.principal ?? 0}
+                onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+                onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
+                min={10000}
+                max={100000000}
+                step={10000}
+                error={errors.principal}
+                prefix="₹"
+                rangeText="₹10,000 - ₹1 Crore"
+                colorFrom="from-blue-300"
+                colorTo="to-blue-600"
+              />
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[2000000, 5000000, 8000000, 10000000].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('principal', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                    {val === 10000000 ? '₹1 Cr' : `₹${val / 100000}L`}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-            <LoanInput
-              id="annual-rate"
-              label="Annual Interest Rate (%)"
-              value={watchValues.annualRate ?? 0}
-              onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
-              onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-              min={0}
-              max={50}
-              step={0.1}
-              error={errors.annualRate}
-              suffix="%"
-              rangeText="0% - 50%"
-              colorFrom="from-orange-300"
-              colorTo="to-orange-600"
-            />
+            <div>
+              <LoanInput
+                id="annual-rate"
+                label="Annual Interest Rate (%)"
+                value={watchValues.annualRate ?? 0}
+                onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+                onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
+                min={0}
+                max={50}
+                step={0.1}
+                error={errors.annualRate}
+                suffix="%"
+                rangeText="0% - 50%"
+                colorFrom="from-orange-300"
+                colorTo="to-orange-600"
+              />
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[7.5, 8.5, 9.5].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('annualRate', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-orange-200 dark:border-orange-700
+                               bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300
+                               hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors">
+                    {val}%
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <LoanInput
               id="loan-tenure"

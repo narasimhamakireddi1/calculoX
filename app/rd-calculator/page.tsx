@@ -154,6 +154,16 @@ export default function RDCalculatorPage() {
                 />
               </div>
               {errors.monthlyDeposit && <p className="text-red-500 text-sm">{errors.monthlyDeposit.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[1000, 2000, 5000, 10000].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('monthlyDeposit', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
+                               bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                               hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                    ₹{val / 1000}K
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Annual Rate */}

@@ -342,6 +342,16 @@ export default function RetirementCalculatorPage() {
                       className={numberInputClasses}
                     />
                   </div>
+                  <div className="flex gap-2 flex-wrap mt-3">
+                    {[30000, 50000, 75000, 100000].map(val => (
+                      <button key={val} type="button" onClick={() => handleInputChange('present_monthly_expenses', val)}
+                        className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                                   bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                                   hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                        ₹{val >= 100000 ? `${val / 100000}L` : `${val / 1000}K`}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Expense Reduction */}

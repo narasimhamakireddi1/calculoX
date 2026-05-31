@@ -217,6 +217,16 @@ export default function SIPCalculatorPage() {
                 <p className="text-red-500 text-sm">{errors.monthlyInvestment.message}</p>
               )}
               <p className="text-xs text-gray-500 dark:text-gray-400">₹100 - ₹10,00,000</p>
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[1000, 5000, 10000, 25000].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('monthlyInvestment', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
+                               bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                               hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                    ₹{val >= 1000 ? `${val / 1000}K` : val}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Years */}
@@ -248,6 +258,16 @@ export default function SIPCalculatorPage() {
                 <p className="text-red-500 text-sm">{errors.years.message}</p>
               )}
               <p className="text-xs text-gray-500 dark:text-gray-400">1 - 50 years</p>
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[5, 10, 15, 20].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('years', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                    {val}y
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Annual Return */}

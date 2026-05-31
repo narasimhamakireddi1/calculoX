@@ -239,6 +239,16 @@ export default function FDCalculatorPage() {
               </div>
               {errors.principal && <p className="text-red-500 text-sm">{errors.principal.message}</p>}
               <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 to ₹10 Crore</p>
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[50000, 100000, 500000, 1000000].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('principal', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-700
+                               bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300
+                               hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors">
+                    {val === 1000000 ? '₹10L' : `₹${val / 100000}L`}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Annual Rate */}

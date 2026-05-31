@@ -264,6 +264,16 @@ export default function TaxCalculator() {
                     </div>
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹1L - ₹1Cr</p>
+                  <div className="flex gap-2 flex-wrap mt-3">
+                    {[500000, 800000, 1200000, 2000000].map(val => (
+                      <button key={val} type="button" onClick={() => handleInputChange('grossSalary', val)}
+                        className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                                   bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                                   hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                        ₹{val >= 1000000 ? `${val / 1000000}Cr` : `${val / 100000}L`}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 {/* House Property Income */}
