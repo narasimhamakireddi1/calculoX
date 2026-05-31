@@ -497,6 +497,20 @@ export default function FDCalculatorPage() {
                 )}
               </div>
 
+              {/* Result Explanation */}
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your FD Results</h3>
+                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                  <p><strong>Maturity Amount:</strong> The total amount you'll receive at the end of the FD tenure (Principal + Interest)</p>
+                  <p><strong>Total Interest Earned:</strong> The profit you earn from your Fixed Deposit investment</p>
+                  {result.periodicPayout !== undefined && result.periodicPayout > 0 && (
+                    <p><strong>Periodic Payout:</strong> Interest paid to you {watchValues.payoutType === 'quarterly' ? 'every quarter' : 'every month'} while FD is active</p>
+                  )}
+                  <p><strong>Tenure:</strong> {result.tenure.years}Y {result.tenure.months}M {result.tenure.days}D ({result.tenure.totalDays} days total)</p>
+                  <p><strong>Interest Rate:</strong> {watchValues.seniorCitizen ? watchValues.annualRate + 0.5 : watchValues.annualRate}% p.a. {watchValues.seniorCitizen && '(includes 0.5% senior citizen bonus)'}</p>
+                </div>
+              </div>
+
               <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
                   <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.

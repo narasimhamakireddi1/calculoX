@@ -281,6 +281,36 @@ export default function BMICalculatorPage() {
                 </div>
               </div>
 
+              {/* Health Insights & Recommendations */}
+              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your BMI</h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+                  BMI (Body Mass Index) is a measure of body fat based on height and weight. A BMI of <strong>{result.bmi}</strong> falls in the <strong className={colors.text.replace('text-', 'text-')}>{result.category}</strong> category.
+                </p>
+                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                  {result.category === 'underweight' && (
+                    <div className="p-3 bg-blue-100 dark:bg-blue-900/40 rounded">
+                      <p><strong>💡 Recommendation:</strong> You may need to gain weight. Consult a healthcare provider for a balanced diet plan that includes nutrient-rich foods.</p>
+                    </div>
+                  )}
+                  {result.category === 'normal' && (
+                    <div className="p-3 bg-green-100 dark:bg-green-900/40 rounded">
+                      <p><strong>✅ Great!</strong> Your weight is healthy. Maintain this by regular exercise (150 min/week) and a balanced diet.</p>
+                    </div>
+                  )}
+                  {result.category === 'overweight' && (
+                    <div className="p-3 bg-orange-100 dark:bg-orange-900/40 rounded">
+                      <p><strong>⚠️ Recommendation:</strong> Consider gradual weight loss through increased physical activity and dietary changes. Aim for 0.5-1 kg loss per week.</p>
+                    </div>
+                  )}
+                  {result.category === 'obese' && (
+                    <div className="p-3 bg-red-100 dark:bg-red-900/40 rounded">
+                      <p><strong>⚠️ Important:</strong> Consult a doctor or nutritionist for a personalized weight management plan. Regular exercise and lifestyle changes are recommended.</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
               <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
                 <ExportButton
                   fileName="BMI_Calculator_Results"

@@ -488,6 +488,24 @@ export default function ProfitMarginCalculator() {
                 </div>
               )}
 
+              {/* Understanding Markup vs Margin */}
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Markup vs Margin Explained</h3>
+                <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-200">
+                  <div>
+                    <p><strong>📈 Markup ({results.calculatedMarkupPercentage.toFixed(2)}%):</strong></p>
+                    <p className="text-xs mt-1">Percentage increase from Cost Price to Selling Price. Formula: (Selling Price - Cost) / Cost × 100</p>
+                    <p className="text-xs mt-2 text-blue-700 dark:text-blue-300"><strong>Example:</strong> If you add 50% markup to ₹100 cost, selling price = ₹150</p>
+                  </div>
+                  <div>
+                    <p><strong>💹 Margin ({results.calculatedMarginPercentage.toFixed(2)}%):</strong></p>
+                    <p className="text-xs mt-1">Profit as percentage of Selling Price. Formula: Profit / Selling Price × 100</p>
+                    <p className="text-xs mt-2 text-blue-700 dark:text-blue-300"><strong>Example:</strong> ₹50 profit on ₹150 sale = 33.3% margin</p>
+                  </div>
+                </div>
+                <p className="text-xs mt-3 text-blue-700 dark:text-blue-300">💡 <strong>Key Insight:</strong> Same markup always gives lower margin%. Healthy retail margins: 20-50% depending on product</p>
+              </div>
+
               {/* Profitability Indicator */}
               <div
                 className={`rounded-lg p-4 text-center font-semibold ${

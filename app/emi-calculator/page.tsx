@@ -94,6 +94,28 @@ const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null
         </div>
       </div>
 
+      {/* Result Explanation */}
+      <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+        <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your EMI</h3>
+        <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+          <p><strong>Monthly EMI:</strong> Fixed amount you pay each month. Includes both principal and interest components that change each month</p>
+          <p><strong>Total Interest:</strong> Total amount you pay as interest over the entire loan duration. Reduces with early repayment</p>
+          <p><strong>Total Payable:</strong> Principal (loan amount) + Total Interest. This is the complete amount you'll pay by maturity</p>
+          <p><strong>Interest Breakdown:</strong> Early payments have more interest, later payments have more principal (see amortization table below)</p>
+        </div>
+      </div>
+
+      {/* Helpful Tips */}
+      <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+        <h3 className="font-bold text-green-900 dark:text-green-300 mb-2">💡 Money-Saving Tips</h3>
+        <ul className="space-y-1 text-sm text-green-800 dark:text-green-200">
+          <li>✓ <strong>Prepay Lump Sums:</strong> Pay extra in good months to reduce total interest significantly</li>
+          <li>✓ <strong>Shorter Tenure:</strong> 15 years instead of 20 can save substantial interest</li>
+          <li>✓ <strong>Better Rate:</strong> Even 0.5% lower rate saves thousands over the loan period</li>
+          <li>✓ <strong>Early Settlement:</strong> Check for prepayment penalties before clearing early</li>
+        </ul>
+      </div>
+
       <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
         <p className="text-xs text-gray-500 dark:text-gray-400">
           EMI calculated using monthly reducing balance method with compounding interest.

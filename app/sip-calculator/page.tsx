@@ -368,9 +368,31 @@ export default function SIPCalculatorPage() {
                 </div>
               </div>
 
+              {/* Result Explanation */}
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your Results</h3>
+                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                  <p><strong>Total Invested:</strong> The sum of all your monthly SIP contributions over {watchValues.years} year{watchValues.years > 1 ? 's' : ''} (including step-up increases)</p>
+                  <p><strong>Future Value:</strong> Your total amount after growth at {watchValues.annualReturn}% annual return - this is your maturity amount</p>
+                  <p><strong>Total Gains:</strong> The profit you'll earn = Future Value - Total Invested. This is your investment growth from compound returns</p>
+                  <p><strong>Return Rate:</strong> The percentage gain on your invested amount. Higher % = better investment performance</p>
+                </div>
+              </div>
+
+              {/* Investment Insights */}
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-2">💡 Key Insights</h3>
+                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                  <p>• Your money grows <strong>{((result.futureValue / result.totalInvestment) - 1).toFixed(1)}x</strong> over {watchValues.years} year{watchValues.years > 1 ? 's' : ''}</p>
+                  <p>• Monthly investment of <strong>₹{watchValues.monthlyInvestment.toLocaleString('en-IN')}</strong> becomes <strong>₹{(result.futureValue / (watchValues.years * 12)).toLocaleString('en-IN')}</strong> per month in terms of value</p>
+                  <p>• <strong>{((result.gainedAmount / result.futureValue) * 100).toFixed(0)}%</strong> of your final amount is pure profit from returns</p>
+                  {watchValues.stepUpPercent > 0 && <p>• Annual {watchValues.stepUpPercent}% step-up adds ₹{((result.totalInvestment - (watchValues.monthlyInvestment * 12 * watchValues.years))).toLocaleString('en-IN')} extra over the period</p>}
+                </div>
+              </div>
+
               <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  This calculation assumes regular monthly investments and consistent returns. Actual returns may vary based on market conditions.
+                  ⚠️ <strong>Disclaimer:</strong> This calculation assumes regular monthly investments and consistent {watchValues.annualReturn}% annual returns. Actual returns vary based on market conditions, fund selection, and economic factors.
                 </p>
               </div>
 

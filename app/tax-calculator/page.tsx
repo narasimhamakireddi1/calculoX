@@ -682,6 +682,21 @@ export default function TaxCalculator() {
                     </p>
                   </div>
                 )}
+
+                {/* Explanation Section */}
+                <div className="mt-6 p-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border border-amber-300 dark:border-amber-800">
+                  <h4 className="font-bold text-amber-900 dark:text-amber-300 mb-3">📚 How Your Tax is Calculated</h4>
+                  <div className="space-y-2 text-sm text-amber-800 dark:text-amber-200">
+                    <p><strong>Gross Salary:</strong> Your total annual income before any deductions</p>
+                    <p><strong>Deductions:</strong> Amounts subtracted from gross salary (HRA, LTA, Medical, 80C, 80D, etc.)</p>
+                    <p><strong>Taxable Income:</strong> Gross salary minus deductions (used to calculate tax)</p>
+                    <p><strong>Tax Slabs:</strong> Progressive tax rates - you pay higher % only on income in that bracket</p>
+                    <p><strong>Effective Rate:</strong> Your actual tax as % of gross income (not the bracket %)</p>
+                    {result.recommended && (
+                      <p><strong>Why {result.recommended === 'new' ? 'New' : 'Old'} Regime?:</strong> {result.recommended === 'new' ? 'Lower tax due to simpler slab structure and potential benefit from current income level' : 'Better tax savings due to available deductions exceeding standard deduction benefit'}</p>
+                    )}
+                  </div>
+                </div>
                 <div className="mt-6">
                   <ExportButton
                     fileName="Income_Tax_Results"
