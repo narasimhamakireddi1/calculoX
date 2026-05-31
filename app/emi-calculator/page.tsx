@@ -335,6 +335,9 @@ export default function EMICalculatorPage() {
                   </button>
                 ))}
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 Typical home loan range: ₹10L – ₹1Cr depending on property value and down payment
+              </p>
             </div>
 
             <div>
@@ -363,22 +366,30 @@ export default function EMICalculatorPage() {
                   </button>
                 ))}
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 Current home loan rates: 7.5-9.5% p.a. (varies by bank and credit score)
+              </p>
             </div>
 
-            <LoanInput
-              id="loan-tenure"
-              label="Loan Tenure (Years)"
-              value={watchValues.years ?? 0}
-              onChange={(e) => handleInputChange('years', Number(e.target.value))}
-              onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-              min={1}
-              max={50}
-              step={1}
-              error={errors.years}
-              rangeText="1 - 50 years"
-              colorFrom="from-green-300"
-              colorTo="to-green-600"
-            />
+            <div>
+              <LoanInput
+                id="loan-tenure"
+                label="Loan Tenure (Years)"
+                value={watchValues.years ?? 0}
+                onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                onBlur={(e) => handleValidateField('years', Number(e.target.value))}
+                min={1}
+                max={50}
+                step={1}
+                error={errors.years}
+                rangeText="1 - 50 years"
+                colorFrom="from-green-300"
+                colorTo="to-green-600"
+              />
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 Most home loans: 15-30 years. Shorter tenure = higher EMI but less total interest
+              </p>
+            </div>
 
             <button
               type="button"

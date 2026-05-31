@@ -249,6 +249,9 @@ export default function FDCalculatorPage() {
                   </button>
                 ))}
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 Current bank FD rates: 6.5-7.5% p.a. Senior citizens get additional +0.5% bonus rate
+              </p>
             </div>
 
             {/* Annual Rate */}

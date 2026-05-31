@@ -274,6 +274,9 @@ export default function TaxCalculator() {
                       </button>
                     ))}
                   </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                    💡 New regime is often better for salaries without deductions. Old regime better if you maximize 80C deductions
+                  </p>
                 </div>
 
                 {/* House Property Income */}

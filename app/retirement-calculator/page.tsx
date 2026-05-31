@@ -352,6 +352,9 @@ export default function RetirementCalculatorPage() {
                       </button>
                     ))}
                   </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                    💡 Enter current monthly expenses. Use the 25x rule: Corpus = 25 × Annual Expense for 4% withdrawal strategy
+                  </p>
                 </div>
 
                 {/* Expense Reduction */}

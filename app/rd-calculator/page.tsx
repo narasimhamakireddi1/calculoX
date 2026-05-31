@@ -164,6 +164,9 @@ export default function RDCalculatorPage() {
                   </button>
                 ))}
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 RD is a savings tool with fixed returns. Discipline-friendly alternative to SIP with bank guarantee
+              </p>
             </div>
 
             {/* Annual Rate */}

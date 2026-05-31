@@ -227,6 +227,9 @@ export default function SIPCalculatorPage() {
                   </button>
                 ))}
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 Start as low as ₹500/month. Increase with salary hikes. Even small amounts compound significantly over 10+ years
+              </p>
             </div>
 
             {/* Years */}
@@ -268,6 +271,9 @@ export default function SIPCalculatorPage() {
                   </button>
                 ))}
               </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 Index funds historically average 12-13% CAGR. Longer periods smooth out market volatility
+              </p>
             </div>
 
             {/* Annual Return */}
