@@ -367,6 +367,112 @@ export default function GSTCalculatorPage() {
         </div>
       </div>
 
+      {/* Featured Snippet Sections for SEO */}
+      {/* Definition Snippet */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">What is GST?</h2>
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          GST (Goods and Services Tax) is a unified indirect tax system in India that applies to the supply of goods and services. Introduced on July 1, 2017, GST replaced multiple taxes including VAT, Service Tax, and Excise Duty. The tax is calculated as a percentage of the transaction value and varies from <strong>5% to 28%</strong> depending on the category of goods or services. The formula for calculating GST is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">GST = Base Amount × (GST Rate / 100)</span>
+        </p>
+        <p className="text-gray-700 dark:text-gray-300">
+          GST is an indirect tax, meaning registered businesses collect it from customers on behalf of the government and remit it to tax authorities. For businesses, Input Tax Credit (ITC) allows them to claim credit for GST paid on business purchases.
+        </p>
+      </div>
+
+      {/* Table Snippet - GST Rates by Category */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">GST Rates in India: Complete Breakdown by Category</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
+                <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">GST Rate</th>
+                <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Category Examples</th>
+                <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-green-700 dark:text-green-400">0% (Exempt)</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300">Essential food items</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Unpackaged rice, flour, eggs</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-green-700 dark:text-green-400">5% (Essential)</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300">Basic essentials</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Packaged food, medicines, books</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-blue-700 dark:text-blue-400">12% (Mid-rate)</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300">Common goods & services</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Clothing, electronics, domestic flights</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-orange-700 dark:text-orange-400">18% (Standard)</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300">Most goods & services</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Restaurants, hotels, software, AC electronics</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-red-700 dark:text-red-400">28% (Luxury)</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300">Luxury items</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Cars, jewelry, precious metals</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
+          <strong>Note:</strong> Some categories like passenger vehicles, petrol, diesel, and banking services have special rates or exceptions. Always verify the applicable GST rate for your specific product or service.
+        </p>
+      </div>
+
+      {/* How-to List Snippet */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">How to Calculate GST on a Product or Service?</h2>
+        <ol className="space-y-4 text-gray-700 dark:text-gray-300">
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">1.</span>
+            <div>
+              <strong>Identify the Product Category:</strong> Determine the category of your product or service. Different categories have different GST rates (5%, 12%, 18%, or 28%).
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">2.</span>
+            <div>
+              <strong>Know the Applicable GST Rate:</strong> Once you identify the category, find out the GST rate. For example, restaurant meals are 5% GST (unpackaged takeaway) or 5% (dine-in for less than ₹1000 bill) or 18% (dine-in for larger bills).
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">3.</span>
+            <div>
+              <strong>Calculate GST Amount:</strong> Multiply the base amount (before GST) by the GST rate and divide by 100. Formula: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">GST = Amount × (Rate / 100)</span>
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">4.</span>
+            <div>
+              <strong>Add GST to Get Final Price:</strong> The final price paid by the customer is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Final Price = Base Amount + GST Amount</span>
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">5.</span>
+            <div>
+              <strong>For Reverse Calculation (Remove GST):</strong> If you have the final price and need to find the base amount: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Base = Final Price / (1 + Rate/100)</span>
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">6.</span>
+            <div>
+              <strong>Use a GST Calculator (Optional):</strong> For quick and accurate calculations, use an online GST calculator like the one above instead of manual calculations.
+            </div>
+          </li>
+        </ol>
+        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-sm text-blue-800 dark:text-blue-200">
+            <strong>Example:</strong> If you buy an item for ₹1,000 with 18% GST, the GST amount is ₹1,000 × 0.18 = ₹180, and the final price you pay is ₹1,000 + ₹180 = ₹1,180.
+          </p>
+        </div>
+      </div>
+
       {/* FAQ */}
       <div className="card">
         <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>

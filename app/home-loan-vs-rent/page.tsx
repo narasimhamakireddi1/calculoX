@@ -975,6 +975,118 @@ export default function HomeLoanVsRentCalculator() {
           </div>
         </div>
 
+        {/* Featured Snippet Sections for SEO */}
+        {/* Definition Snippet */}
+        <div className="card mb-8">
+          <h2 className="text-2xl font-bold mb-4">What is the Opportunity Cost Framework (Buy vs Rent)?</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            The Opportunity Cost Framework is a financial comparison method that answers: "Is it better to buy a home or rent and invest the difference?" Instead of simply calculating EMI, it tracks two parallel financial paths over 20 years: the buyer's path (property ownership, loan repayment, maintenance, tax benefits) versus the renter's path (rent payments, but freed capital invested in equity markets). The winner is determined by which path creates greater net worth by the end of the projection.
+          </p>
+          <p className="text-gray-700 dark:text-gray-300">
+            This framework accounts for property appreciation, investment returns, inflation, Section 24(b) tax benefits for home loan interest, and the break-even year—the first year when the buyer's net worth exceeds the renter's. It provides a quantitative answer to one of life's biggest financial decisions.
+          </p>
+        </div>
+
+        {/* Table Snippet - Break-Even Years at Different Appreciation Rates */}
+        <div className="card mb-8">
+          <h2 className="text-2xl font-bold mb-4">Break-Even Years at Different Property Appreciation Rates</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
+                  <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Property Appreciation</th>
+                  <th className="px-4 py-3 text-center font-bold text-gray-900 dark:text-white">Investment Returns 10%</th>
+                  <th className="px-4 py-3 text-center font-bold text-gray-900 dark:text-white">Investment Returns 12%</th>
+                  <th className="px-4 py-3 text-center font-bold text-gray-900 dark:text-white">Investment Returns 15%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">4% p.a.</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 3-4</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Renting wins</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Renting wins</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">6% p.a.</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 5-6</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 8-10</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Renting wins</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">8% p.a.</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 7-8</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 10-12</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 15+</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">10% p.a.</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 8-9</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 11-13</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 16-18</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">12% p.a.</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 9-10</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 12-14</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">Break-even Year 18-20</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
+            <strong>Key Insight:</strong> Buying wins faster when property appreciation is high, but renting wins if investment returns significantly exceed property appreciation. This assumes consistent market conditions and actual returns matching projections.
+          </p>
+        </div>
+
+        {/* How-to List Snippet */}
+        <div className="card mb-8">
+          <h2 className="text-2xl font-bold mb-4">How to Decide Whether to Buy or Rent: 6-Step Framework</h2>
+          <ol className="space-y-4 text-gray-700 dark:text-gray-300">
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">1.</span>
+              <div>
+                <strong>Calculate Your Down Payment Capacity:</strong> Determine how much capital you can deploy upfront. Banks typically require 20% for homes. Example: For ₹80L property, down payment = ₹16L. This same capital could be invested in stocks/mutual funds if you choose to rent.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">2.</span>
+              <div>
+                <strong>Estimate Your Rental vs EMI Costs:</strong> Find comparable properties available for rent in your desired location. Compare monthly rent vs estimated EMI. Example: Rent ₹25,000/month vs EMI ₹55,000/month (buying is more expensive per month, but you're building equity).
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">3.</span>
+              <div>
+                <strong>Project Property Appreciation:</strong> Research historical property appreciation rates in your city. Major metros like Bangalore, Mumbai average 6-8% p.a. Conservative estimate: use 6%. This becomes a variable in comparing both paths.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">4.</span>
+              <div>
+                <strong>Estimate Investment Returns (for Renting Path):</strong> If you rent and invest, what returns realistically? Conservative: 9-10% (Debt), Moderate: 11-12% (Balanced), Aggressive: 13-15% (Equity). Use moderate (12%) for fair comparison.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">5.</span>
+              <div>
+                <strong>Account for Tax Benefits (Buyers):</strong> Home buyers get Section 24(b) deduction: up to ₹2L/year of loan interest reduces taxable income. At 30% tax bracket, this saves ₹60K/year in taxes. Renters get no such benefit. This tilts buying favorably in some cases.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">6.</span>
+              <div>
+                <strong>Run a 20-Year Comparison Using This Calculator:</strong> Input all parameters and observe: which path gives you higher net worth in Year 20? At what year does one path overtake the other (break-even year)? Use this data-driven insight, not emotion, to decide.
+              </div>
+            </li>
+          </ol>
+          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <p className="text-sm text-blue-800 dark:text-blue-200">
+              <strong>Real Example Scenario:</strong> Property ₹80L, Down 20% (₹16L), Rent ₹25K/month with 7% escalation, Investment return 12%, Property appreciation 8%, Inflation 5% → Buyer's net worth exceeds renter's in Year 6-7. After 20 years: Buyer net worth ₹3.2Cr, Renter ₹2.8Cr. Buying wins by ₹40L, but took 6+ years to break even.
+            </p>
+          </div>
+        </div>
+
         {/* Related Calculators */}
         <RelatedCalculators calculators={getInternalLinks('home-loan-vs-rent')} />
       </div>

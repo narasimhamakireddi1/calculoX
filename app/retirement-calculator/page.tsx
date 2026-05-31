@@ -777,6 +777,106 @@ export default function RetirementCalculatorPage() {
       {/* Related Calculators */}
       <RelatedCalculators calculators={getInternalLinks('retirement-calculator')} />
 
+      {/* Featured Snippet Sections for SEO */}
+      {/* Definition Snippet */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">What is Retirement Corpus?</h2>
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          Retirement Corpus is the total amount of money you need to accumulate by the time you retire to sustain your lifestyle until the end of your life. It's calculated using the "25x Rule" — a popular retirement planning principle suggesting you need 25 times your annual expense saved. For example, if your annual expenses are ₹6 lakhs (₹50K/month), your retirement corpus should be ₹1.5 crores (₹6L × 25).
+        </p>
+        <p className="text-gray-700 dark:text-gray-300">
+          The corpus must grow through investments during your working years (accumulation phase) and then safely withdraw without running out of money during retirement (distribution phase). The NISM Framework uses a sophisticated calculation: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-sm">Corpus = Inflation-Adjusted Expenses ÷ Real Return Rate</span>, which ensures your purchasing power is maintained throughout retirement.
+        </p>
+      </div>
+
+      {/* Table Snippet - Target Corpus by Monthly Expense */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">Target Retirement Corpus by Monthly Expense (25x Rule)</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
+                <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Monthly Expense</th>
+                <th className="px-4 py-3 text-right font-bold text-gray-900 dark:text-white">Annual Expense</th>
+                <th className="px-4 py-3 text-right font-bold text-gray-900 dark:text-white">Required Corpus (25x)</th>
+                <th className="px-4 py-3 text-right font-bold text-gray-900 dark:text-white">Monthly Withdrawal @ 4%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">₹30,000</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹3,60,000</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹90,00,000 (90L)</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹30,000</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">₹50,000</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹6,00,000</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹1,50,00,000 (1.5Cr)</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹50,000</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">₹75,000</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹9,00,000</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹2,25,00,000 (2.25Cr)</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹75,000</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">₹1,00,000</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹12,00,000</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹3,00,00,000 (3Cr)</td>
+                <td className="px-4 py-3 text-right text-gray-700 dark:text-gray-300">₹1,00,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
+          <strong>Note:</strong> The 25x rule assumes a 4% withdrawal rate annually. The corpus at 4% returns generates enough monthly income to cover your expenses indefinitely without depleting principal.
+        </p>
+      </div>
+
+      {/* How-to List Snippet */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">How to Calculate Retirement Corpus in 5 Steps (NISM Framework)?</h2>
+        <ol className="space-y-4 text-gray-700 dark:text-gray-300">
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">1.</span>
+            <div>
+              <strong>Estimate Your Current Monthly Expenses:</strong> List all monthly expenses (rent, food, utilities, entertainment, healthcare, insurance, loans). This becomes your baseline expense. For example: ₹50,000/month = ₹6,00,000/year.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">2.</span>
+            <div>
+              <strong>Account for Inflation Until Retirement:</strong> Your current ₹50,000 will be worth less in future due to inflation. Assuming 6% inflation and retiring in 20 years, at retirement your monthly expenses will be ₹50,000 × (1.06)^20 ≈ ₹1,60,000.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">3.</span>
+            <div>
+              <strong>Reduce for Planned Expense Changes:</strong> Estimate how much your expenses will reduce in retirement (typically 10-30%). Examples: no work-related expenses (5-10%), house paid off (-10%), loans cleared (-5-10%). For ₹1,60,000, if 20% reduction: ₹1,60,000 × 0.8 = ₹1,28,000/month.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">4.</span>
+            <div>
+              <strong>Calculate Real Return Rate:</strong> Real return = (1 + Post-Retirement Return) / (1 + Inflation) - 1. If you expect 7% returns and 5% inflation: Real return = 1.07 / 1.05 - 1 ≈ 1.9% actual purchasing power growth.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">5.</span>
+            <div>
+              <strong>Calculate Required Corpus:</strong> Use the formula: Corpus = Monthly Expense at Retirement / Monthly Real Return Rate. For ₹1,28,000/month at 1.9% real return: Corpus = ₹1,28,000 / 0.019 ≈ ₹67,368,000 (₹6.7 crores needed).
+            </div>
+          </li>
+        </ol>
+        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-sm text-blue-800 dark:text-blue-200">
+            <strong>Quick Rule of Thumb:</strong> Using the simple 25x rule: If your retirement expense is ₹1,28,000/month (₹15.36L/year), your target corpus is ₹15.36L × 25 = ₹3,84,00,000 (₹3.84Cr). This is a quick approximation without accounting for inflation dynamics.
+          </p>
+        </div>
+      </div>
+
       {/* FAQ */}
       <div className="card">
         <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>

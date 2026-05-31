@@ -693,6 +693,117 @@ export default function ProfitMarginCalculator() {
           </details>
         </div>
 
+        {/* Featured Snippet Sections for SEO */}
+        {/* Definition Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">What is Profit Margin?</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            Profit Margin is the percentage of revenue that remains as profit after all expenses are deducted. It measures how much profit a business makes for every rupee of sales. The basic formula is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Profit Margin (%) = (Profit / Selling Price) × 100</span>. For example, if you sell a product for ₹100 and your profit is ₹20, your profit margin is 20%.
+          </p>
+          <p className="text-gray-700 dark:text-gray-300">
+            Profit margin is crucial for business sustainability because it shows how efficiently a business converts sales into actual profit. A higher margin indicates better profitability, while a lower margin suggests the business operates with tight budgets and has less room for unexpected expenses.
+          </p>
+        </div>
+
+        {/* Table Snippet - Healthy Margin Benchmarks by Industry */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">Healthy Profit Margin Benchmarks by Industry in India</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
+                  <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Industry / Category</th>
+                  <th className="px-4 py-3 text-center font-bold text-gray-900 dark:text-white">Healthy Margin Range</th>
+                  <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Electronics</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">5-15%</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Competitive market, high volume, low margins</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Clothing & Apparel</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">25-50%</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Good margins due to brand value and seasonality</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Food & Beverages</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">15-25%</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Regulated prices, moderate margins, perishable goods</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">E-commerce (Gross)</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">20-40%</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">Gross margin before logistics and operational costs</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">E-commerce (Net)</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">5-15%</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">After deducting logistics, returns, and overhead costs</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                  <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Software & SaaS</td>
+                  <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">60-90%</td>
+                  <td className="px-4 py-3 text-gray-600 dark:text-gray-400">High margins, low variable costs, high development investment</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
+            <strong>Tip:</strong> Compare your margins with industry benchmarks to assess your business competitiveness. Lower than benchmark may indicate high costs; higher may indicate premium positioning.
+          </p>
+        </div>
+
+        {/* How-to List Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">How to Price a Product to Achieve a 20% Margin with GST?</h2>
+          <ol className="space-y-4 text-gray-700 dark:text-gray-300">
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">1.</span>
+              <div>
+                <strong>Determine Your Cost Price:</strong> Calculate the total cost to produce/procure the product. Include material costs, manufacturing, packaging, and overheads. Example: Cost = ₹100.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">2.</span>
+              <div>
+                <strong>Decide on GST Treatment:</strong> Choose between GST Exclusive (add GST on top) or GST Inclusive (GST embedded in final price). GST Exclusive is standard for B2B; GST Inclusive for retail with fixed MRP.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">3.</span>
+              <div>
+                <strong>For GST Exclusive (Standard):</strong> Calculate selling price needed to achieve 20% margin: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Selling Price = Cost / (1 - Margin%/100)</span>. For ₹100 cost with 20% margin: SP = 100 / 0.8 = ₹125.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">4.</span>
+              <div>
+                <strong>Add GST (if Exclusive):</strong> Add the applicable GST rate (5%, 12%, or 18%) to the selling price. For ₹125 SP with 18% GST: Customer price = ₹125 × 1.18 = ₹147.50.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">5.</span>
+              <div>
+                <strong>For GST Inclusive (MRP Model):</strong> If you want a fixed MRP of ₹1,180 with 20% margin: Net SP = MRP / (1 + GST%/100). Your true margin is 20% on the pre-GST amount, not the final price.
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">6.</span>
+              <div>
+                <strong>Verify Your Margin:</strong> Always double-check: Margin% = ((Selling Price - Cost Price) / Selling Price) × 100. Ensure it matches your target before launching the product.
+              </div>
+            </li>
+          </ol>
+          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <p className="text-sm text-blue-800 dark:text-blue-200">
+              <strong>Real Example:</strong> For a product with ₹500 cost, aiming for 25% margin with 18% GST (Exclusive): Selling price = 500 / 0.75 = ₹667. Customer price = ₹667 × 1.18 = ₹787 (includes ₹120 GST). Your profit margin = (167 / 667) × 100 = 25%.
+            </p>
+          </div>
+        </div>
+
         {/* Related Calculators */}
         <RelatedCalculators calculators={getInternalLinks('profit-margin-calculator')} />
 

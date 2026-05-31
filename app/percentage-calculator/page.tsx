@@ -597,6 +597,114 @@ export default function PercentageCalculatorPage() {
       {/* Related Calculators */}
       <RelatedCalculators calculators={getInternalLinks('percentage-calculator')} />
 
+      {/* Featured Snippet Sections for SEO */}
+      {/* Definition Snippet */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">What is a Percentage?</h2>
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          A percentage is a fraction or ratio expressed as a number out of 100, denoted by the symbol <strong>%</strong>. It represents how much of one quantity relates to another, expressed per hundred. For example, 50% means 50 out of 100 or half. The basic formula for calculating percentage is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Percentage = (Part / Whole) × 100</span>
+        </p>
+        <p className="text-gray-700 dark:text-gray-300">
+          Percentages are widely used in everyday life for discounts, salary hikes, tax calculations, test scores, profit margins, and many other applications. Understanding percentages is essential for financial decisions, comparing values, and analyzing data.
+        </p>
+      </div>
+
+      {/* Table Snippet - Percentage Use Cases */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">Common Percentage Calculations and Use Cases</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
+                <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Calculation Type</th>
+                <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Formula</th>
+                <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">X% of Y</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">(X/100) × Y</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">20% of ₹1000 = ₹200</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Percentage Hike/Discount</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">New = Original × (1 ± %/100)</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹500 with 10% hike = ₹550</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">What % is A of B</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">(A/B) × 100</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹250 is 25% of ₹1000</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Percentage Change</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">((New - Old) / Old) × 100</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹100 to ₹150 = 50% increase</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Reverse Percentage</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">Base = Part × 100 / %</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹180 is 18% of base = ₹1000</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Sequential %</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">Apply % one after another</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹100 + 10% then + 5% = ₹115.50</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* How-to List Snippet */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">How to Calculate Percentage Change (Increase or Decrease)?</h2>
+        <ol className="space-y-4 text-gray-700 dark:text-gray-300">
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">1.</span>
+            <div>
+              <strong>Identify the Initial and Final Values:</strong> Determine the original value (starting point) and the new value (ending point). For example, if a stock price was ₹100 and is now ₹120, the initial value is ₹100 and final value is ₹120.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">2.</span>
+            <div>
+              <strong>Calculate the Difference:</strong> Subtract the initial value from the final value: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Difference = Final - Initial</span>. Using the example: ₹120 - ₹100 = ₹20.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">3.</span>
+            <div>
+              <strong>Divide by the Initial Value:</strong> Divide the difference by the initial value. This normalizes the change: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Rate of Change = Difference / Initial</span>. Using the example: ₹20 / ₹100 = 0.2.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">4.</span>
+            <div>
+              <strong>Multiply by 100:</strong> Convert the decimal to a percentage by multiplying by 100: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Percentage Change = Rate × 100</span>. Using the example: 0.2 × 100 = 20%.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">5.</span>
+            <div>
+              <strong>Interpret the Result:</strong> A positive percentage indicates an increase, while a negative percentage indicates a decrease. In our example, a 20% increase means the stock price increased by 20% from its original value.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">6.</span>
+            <div>
+              <strong>Use the Complete Formula:</strong> The complete percentage change formula is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">% Change = ((Final - Initial) / Initial) × 100</span>
+            </div>
+          </li>
+        </ol>
+        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-sm text-blue-800 dark:text-blue-200">
+            <strong>Example:</strong> If your salary increased from ₹30,000 to ₹36,000: % Change = ((36,000 - 30,000) / 30,000) × 100 = (6,000 / 30,000) × 100 = 20% salary increase.
+          </p>
+        </div>
+      </div>
+
       {/* FAQ */}
       <div className="card">
         <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>

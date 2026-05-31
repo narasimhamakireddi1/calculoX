@@ -488,6 +488,111 @@ export default function RDCalculatorPage() {
       {/* Related Calculators */}
       <RelatedCalculators calculators={getInternalLinks('rd-calculator')} />
 
+      {/* Featured Snippet Sections for SEO */}
+      {/* Definition Snippet */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">What is a Recurring Deposit (RD)?</h2>
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          A Recurring Deposit (RD) is a flexible savings and investment scheme offered by banks where you deposit a fixed amount every month for a predetermined tenure (usually 3 months to 10 years). The bank pays you compound interest on your deposits, making RD an excellent tool for building wealth systematically. The formula for calculating RD maturity is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">A = P × [((1+r)^n-1)/r] × (1+r)</span>, where P is monthly deposit, r is monthly interest rate, and n is number of months.
+        </p>
+        <p className="text-gray-700 dark:text-gray-300">
+          RD is ideal for salaried individuals who receive regular income and want to invest disciplined, fixed amounts monthly. It builds savings discipline while offering guaranteed returns with compound interest, making it less risky than equity investments and more rewarding than regular savings accounts.
+        </p>
+      </div>
+
+      {/* Table Snippet - RD Maturity at Different Rates */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">RD Maturity Amounts: Monthly Deposit of ₹5,000 at Different Interest Rates</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
+                <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Time Period</th>
+                <th className="px-4 py-3 text-center font-bold text-gray-900 dark:text-white">6% p.a.</th>
+                <th className="px-4 py-3 text-center font-bold text-gray-900 dark:text-white">7% p.a.</th>
+                <th className="px-4 py-3 text-center font-bold text-gray-900 dark:text-white">8% p.a.</th>
+                <th className="px-4 py-3 text-center font-bold text-gray-900 dark:text-white">9% p.a.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">1 Year (12 months)</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹61,644</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹61,885</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹62,128</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹62,373</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">2 Years (24 months)</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹125,847</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹127,101</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹128,395</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹129,727</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">3 Years (36 months)</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹192,849</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹195,632</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹198,535</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹201,562</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+                <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">5 Years (60 months)</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹328,679</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹334,850</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹341,431</td>
+                <td className="px-4 py-3 text-center text-gray-700 dark:text-gray-300">₹348,446</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
+          <strong>Note:</strong> Rates vary by bank and may change quarterly. Current bank RD rates range from 5.5% to 8.5% depending on the bank and tenure. Compare rates before opening an RD account.
+        </p>
+      </div>
+
+      {/* How-to List Snippet */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">How to Calculate RD Maturity Amount in 5 Steps?</h2>
+        <ol className="space-y-4 text-gray-700 dark:text-gray-300">
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">1.</span>
+            <div>
+              <strong>Gather Your RD Details:</strong> Collect the monthly deposit amount (P), the annual interest rate offered by your bank (R), and the tenure in months (n). For example: Monthly deposit ₹5,000, Rate 8% p.a., Duration 3 years (36 months).
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">2.</span>
+            <div>
+              <strong>Convert Annual Rate to Monthly Rate:</strong> Banks compound interest quarterly or monthly. Divide the annual rate by 12 and convert to decimal: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">r = R / (100 × 12)</span>. For 8% p.a.: r = 8 / 1200 = 0.00667.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">3.</span>
+            <div>
+              <strong>Apply the RD Formula:</strong> Use the compound interest formula for RD: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">A = P × [((1+r)^n - 1) / r] × (1+r)</span>. This accounts for compound interest on all monthly deposits.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">4.</span>
+            <div>
+              <strong>Calculate Total Investment:</strong> Total amount invested = Monthly Deposit × Number of Months. For ₹5,000/month for 36 months: ₹5,000 × 36 = ₹1,80,000.
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">5.</span>
+            <div>
+              <strong>Calculate Interest Earned:</strong> Interest earned = Maturity Amount - Total Investment. This shows your profit from the RD. For maturity of ₹2,05,000: Interest = ₹2,05,000 - ₹1,80,000 = ₹25,000 earned.
+            </div>
+          </li>
+        </ol>
+        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-sm text-blue-800 dark:text-blue-200">
+            <strong>Real Example:</strong> ₹5,000 monthly for 3 years @ 8% p.a. → Monthly rate = 0.667%. Using the formula, maturity amount ≈ ₹1,98,535, meaning you invest ₹1,80,000 and earn ₹18,535 as interest through compound growth.
+          </p>
+        </div>
+      </div>
+
       {/* FAQ */}
       <div className="card">
         <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
