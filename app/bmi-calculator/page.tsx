@@ -195,6 +195,9 @@ export default function BMICalculatorPage() {
                 />
               </div>
               {errors.weight && <p className="text-red-500 text-sm">{errors.weight.message}</p>}
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 Normal BMI range: 18.5-24.9. Asian guidelines suggest &lt;23 for optimal health
+              </p>
             </div>
 
             {/* Height */}
@@ -224,6 +227,9 @@ export default function BMICalculatorPage() {
                 />
               </div>
               {errors.height && <p className="text-red-500 text-sm">{errors.height.message}</p>}
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                💡 Be precise with your height. Even small variations impact BMI calculation significantly
+              </p>
             </div>
 
             <button
