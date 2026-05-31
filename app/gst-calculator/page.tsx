@@ -232,6 +232,40 @@ export default function GSTCalculatorPage() {
                 </div>
               </div>
 
+              {/* Understanding GST */}
+              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding GST</h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+                  GST (Goods and Services Tax) is an indirect tax in India applied to most products and services. The rate varies based on product category (0%, 5%, 12%, 18%, or 28%).
+                </p>
+                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                  <p><strong>Base Amount:</strong> {formatCurrency(result.baseAmount)} - {calculationType === 'add' ? 'Your cost or price before GST' : 'Calculated amount excluding GST'}</p>
+                  <p><strong>GST Rate:</strong> {gstRate}% - Standard rate for this product/service category</p>
+                  <p><strong>GST Amount:</strong> {formatCurrency(result.gstAmount)} - Tax liability ({gstRate}% of base)</p>
+                  <p><strong>Total Amount:</strong> {formatCurrency(result.totalAmount)} - Final price {calculationType === 'add' ? 'including' : 'excluding'} GST</p>
+                </div>
+              </div>
+
+              {/* Key Insights */}
+              <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                  <p>
+                    <strong>GST Impact:</strong> {calculationType === 'add' ? 'Your base amount increases by' : 'Your total amount reduces by'} <span className="font-bold text-green-700 dark:text-green-300">{((result.gstAmount / result.baseAmount) * 100).toFixed(1)}%</span>
+                  </p>
+                  <p>
+                    <strong>Price Comparison:</strong> Base price is {((result.baseAmount / result.totalAmount) * 100).toFixed(1)}% of total | GST is {((result.gstAmount / result.totalAmount) * 100).toFixed(1)}% of total
+                  </p>
+                  <p>
+                    <strong>GST Rate Note:</strong> {Number(gstRate) === 18 && '18% is the standard GST rate for most products and services in India'}
+                    {Number(gstRate) === 5 && '5% GST applies to essential items like packaged foods, medicines, and certain services'}
+                    {Number(gstRate) === 12 && '12% GST applies to intermediate products like packaged snacks and leather items'}
+                    {Number(gstRate) === 28 && '28% is the highest GST rate, applied to luxury items like automobiles'}
+                    {Number(gstRate) === 0 && '0% GST applies to essential items like raw foods and newspapers'}
+                  </p>
+                </div>
+              </div>
+
               <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-4 rounded mt-4">
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   <strong>Calculation:</strong> {calculationType === 'add' ? 'Total = Base + (Base × Rate / 100)' : 'Base = Total / (1 + Rate / 100)'}

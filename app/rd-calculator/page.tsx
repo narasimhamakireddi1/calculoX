@@ -253,6 +253,39 @@ export default function RDCalculatorPage() {
                 </div>
               </div>
 
+              {/* Understanding Your RD */}
+              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your RD Results</h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+                  A Recurring Deposit is a savings instrument where you deposit a fixed amount monthly and earn compound interest. Your money grows through regular deposits + accumulated interest.
+                </p>
+                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                  <p><strong>Monthly Deposit:</strong> {formatCurrency(watchValues.monthlyDeposit)} - Amount you'll invest every month</p>
+                  <p><strong>Total Invested:</strong> {formatCurrency(result.totalDeposits)} - Sum of all your monthly deposits over {watchValues.months} months</p>
+                  <p><strong>Interest Earned:</strong> {formatCurrency(result.totalInterest)} - Compound interest on your deposits at {watchValues.annualRate}% p.a.</p>
+                  <p><strong>Maturity Amount:</strong> {formatCurrency(result.maturityAmount)} - Total amount you'll receive on maturity</p>
+                </div>
+              </div>
+
+              {/* Key Insights */}
+              <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                  <p>
+                    <strong>Growth Multiple:</strong> <span className="font-bold text-green-700 dark:text-green-300">{(result.maturityAmount / result.totalDeposits).toFixed(2)}x</span> - Your invested amount grows by {((result.maturityAmount / result.totalDeposits - 1) * 100).toFixed(1)}%
+                  </p>
+                  <p>
+                    <strong>Interest vs Investment:</strong> You earn {formatCurrency(result.totalInterest)} interest on {formatCurrency(result.totalDeposits)} invested
+                  </p>
+                  <p>
+                    <strong>Monthly Returns:</strong> {formatCurrency(result.maturityAmount / watchValues.months)} average per month over your entire tenure
+                  </p>
+                  <p>
+                    <strong>Interest Rate Impact:</strong> At {watchValues.annualRate}% p.a., your money compounds monthly for maximum returns
+                  </p>
+                </div>
+              </div>
+
               <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mt-4">
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
                   <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.

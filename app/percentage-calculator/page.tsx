@@ -413,6 +413,62 @@ export default function PercentageCalculatorPage() {
                 </div>
               )}
 
+              {/* Understanding Percentages */}
+              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding the Calculation</h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-2">
+                  {calculationType === 'percent-change' && 'Percentage change shows how much a value has increased or decreased relative to the original value.'}
+                  {calculationType === 'percent-of' && 'This calculates what amount represents the given percentage of the total value.'}
+                  {calculationType === 'what-percent' && 'This finds what percentage one value is compared to another value.'}
+                  {calculationType === 'reverse-percent' && 'This calculates the original value before a percentage was applied.'}
+                  {calculationType === 'sequential' && 'This applies multiple percentage changes in sequence to see cumulative effects.'}
+                  {calculationType === 'hike-discount' && 'This applies a percentage increase (hike) or decrease (discount) to a value.'}
+                </p>
+              </div>
+
+              {/* Key Insights */}
+              <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Quick Tips</h3>
+                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                  {calculationType === 'percent-change' && (
+                    <>
+                      <p>💡 Positive % = Value increased | Negative % = Value decreased</p>
+                      <p>💡 Larger the percentage, bigger the change relative to original</p>
+                    </>
+                  )}
+                  {calculationType === 'percent-of' && (
+                    <>
+                      <p>💡 Formula: (X% × Y) / 100 = Result</p>
+                      <p>💡 Useful for discounts, commissions, and portions</p>
+                    </>
+                  )}
+                  {calculationType === 'what-percent' && (
+                    <>
+                      <p>💡 Formula: (Part / Whole) × 100 = Percentage</p>
+                      <p>💡 Always compare same units (both in rupees, same timeframe, etc.)</p>
+                    </>
+                  )}
+                  {calculationType === 'reverse-percent' && (
+                    <>
+                      <p>💡 Useful when you know the final value after percentage change</p>
+                      <p>💡 Common in reverse calculating original price before discount</p>
+                    </>
+                  )}
+                  {calculationType === 'sequential' && (
+                    <>
+                      <p>💡 Changes compound — second % applies to result of first %</p>
+                      <p>💡 Order doesn't always matter: 10% then 20% = 20% then 10%</p>
+                    </>
+                  )}
+                  {calculationType === 'hike-discount' && (
+                    <>
+                      <p>💡 Hike = Value increases | Discount = Value decreases</p>
+                      <p>💡 Formula: New Value = Original × (1 ± Percentage/100)</p>
+                    </>
+                  )}
+                </div>
+              </div>
+
               <div className="mt-2">
                 <ExportButton
                   fileName="Percentage_Results"

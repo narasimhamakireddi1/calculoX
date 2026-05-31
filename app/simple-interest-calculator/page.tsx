@@ -405,6 +405,37 @@ export default function SimpleInterestCalculatorPage() {
                 )}
               </div>
 
+              {/* Understanding Your Simple Interest */}
+              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your Simple Interest</h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+                  Simple Interest is calculated only on the principal amount throughout the tenure. Unlike compound interest, it doesn't earn interest on interest.
+                </p>
+                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                  <p><strong>Principal Amount:</strong> {formatCurrency(result.principalAmount)} - Your initial investment</p>
+                  <p><strong>Interest Earned:</strong> {formatCurrency(result.interestAccrued)} - Money earned at {watchValues.annualRate}% p.a. for {watchValues.tenureType === 'years' ? watchValues.years + ' year(s)' : watchValues.tenureType === 'months' ? watchValues.months + ' month(s)' : watchValues.days + ' day(s)'}</p>
+                  <p><strong>Maturity Amount:</strong> {formatCurrency(result.totalMaturityValue)} - Total amount you'll receive (Principal + Interest)</p>
+                </div>
+              </div>
+
+              {/* Key Insights */}
+              <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                  <p>
+                    <strong>Return Multiple:</strong> <span className="font-bold text-green-700 dark:text-green-300">{(result.totalMaturityValue / result.principalAmount).toFixed(2)}x</span> - Your money will grow by {((result.totalMaturityValue / result.principalAmount - 1) * 100).toFixed(1)}%
+                  </p>
+                  <p>
+                    <strong>Interest Rate Comparison:</strong> At {watchValues.annualRate}% p.a., you earn {formatCurrency(result.interestAccrued / (watchValues.tenureType === 'years' ? watchValues.years : watchValues.tenureType === 'months' ? watchValues.months / 12 : watchValues.days / 365))} per year
+                  </p>
+                  {result.dailyAccrual !== undefined && (
+                    <p>
+                      <strong>Daily Earnings:</strong> {formatCurrency(result.dailyAccrual)} per day - Or {formatCurrency(result.dailyAccrual * 30)} per month on average
+                    </p>
+                  )}
+                </div>
+              </div>
+
               <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
                 <p className="text-sm text-yellow-800 dark:text-yellow-200">
                   <strong>Disclaimer:</strong> This calculation assumes constant interest rates and regular calculations. Actual amounts may vary based on lender terms and conditions.

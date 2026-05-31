@@ -699,6 +699,59 @@ export default function HomeLoanVsRentCalculator() {
               </div>
             </div>
 
+            {/* Understanding Your Analysis */}
+            <div className="card mb-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+              <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 text-lg">📚 Understanding This Analysis</h3>
+              <p className="text-sm text-blue-800 dark:text-blue-200 mb-4">
+                This calculator compares two financial paths over {watchValues.projection_tenure_years} years using the Opportunity Cost Framework: <strong>Buy with a loan</strong> vs <strong>Rent and invest the saved capital</strong>.
+              </p>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-200">
+                <div>
+                  <p className="font-semibold mb-2">🏠 Buyer's Path:</p>
+                  <ul className="list-disc list-inside space-y-1 text-xs">
+                    <li>Pay down payment: {formatCurrency(downPaymentAmount)}</li>
+                    <li>Monthly EMI: {formatCurrency(result.monthly_emi)}</li>
+                    <li>Maintenance costs</li>
+                    <li>Property appreciates over time</li>
+                    <li>Tax benefit from Section 24(b)</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold mb-2">📈 Renter's Path:</p>
+                  <ul className="list-disc list-inside space-y-1 text-xs">
+                    <li>Invest down payment amount</li>
+                    <li>Invest EMI difference monthly</li>
+                    <li>No maintenance costs</li>
+                    <li>Portfolio grows at {watchValues.opportunity_return_pct}% p.a.</li>
+                    <li>Pay rent (increases annually)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Key Verdict & Insights */}
+            <div className={`card mb-8 ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800' : 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'}`}>
+              <h3 className={`font-bold mb-3 text-lg ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-900 dark:text-emerald-300' : 'text-blue-900 dark:text-blue-300'}`}>
+                ✨ {result.financial_verdict === 'BUYING_IS_BETTER' ? '🏠 Buying is the Better Choice' : '📈 Renting is the Better Choice'}
+              </h3>
+              <div className={`space-y-2 text-sm ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-800 dark:text-emerald-200' : 'text-blue-800 dark:text-blue-200'}`}>
+                <p>
+                  <strong>Financial Advantage:</strong> <span className="font-bold">{result.financial_verdict === 'BUYING_IS_BETTER' ? 'Buying wins' : 'Renting wins'} by {formatCurrency(Math.abs(result.absolute_delta))}</span> over {watchValues.projection_tenure_years} years
+                </p>
+                {result.break_even_year && (
+                  <p>
+                    <strong>Break-Even Point:</strong> Buying becomes financially superior in <span className="font-bold">Year {result.break_even_year}</span> (but {result.financial_verdict === 'BUYING_IS_BETTER' ? 'overall still wins' : 'overall renting still wins'})
+                  </p>
+                )}
+                <p>
+                  <strong>Key Reason:</strong> {result.financial_verdict === 'BUYING_IS_BETTER' ? 'Property appreciation and tax benefits outweigh investment returns' : 'Investment returns on saved capital exceed property appreciation gains'}
+                </p>
+                <p className="text-xs mt-3">
+                  💡 This analysis assumes constant rates and returns. Your actual outcome depends on market conditions, personal circumstances, and life changes.
+                </p>
+              </div>
+            </div>
+
             {/* Charts */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <div className="card">

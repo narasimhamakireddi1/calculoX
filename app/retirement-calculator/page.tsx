@@ -578,6 +578,39 @@ export default function RetirementCalculatorPage() {
                   </div>
                 </div>
 
+                {/* Understanding Retirement Corpus */}
+                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                  <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your Retirement Plan</h3>
+                  <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+                    The NISM framework calculates how much corpus you need to retire comfortably. It accounts for inflation and ensures your money lasts throughout retirement.
+                  </p>
+                  <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                    <p><strong>FV of Current Savings:</strong> {formatCurrency(result.fv_of_current_savings)} - How your existing savings will grow until retirement</p>
+                    <p><strong>Shortfall Corpus:</strong> {formatCurrency(result.net_shortfall_to_build)} - Additional amount needed (build via SIP)</p>
+                    <p><strong>Accumulation Phase:</strong> {result.accumulationYears} years - Time to save/grow money until retirement</p>
+                    <p><strong>Distribution Phase:</strong> {result.distributionYears} years - Years you'll live off corpus post-retirement</p>
+                  </div>
+                </div>
+
+                {/* Key Insights */}
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
+                  <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                  <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                    <p>
+                      <strong>Monthly SIP Needed:</strong> Build {formatCurrency(result.net_shortfall_to_build)} via monthly investments at {watchValues.pre_retirement_return_pct}% returns
+                    </p>
+                    <p>
+                      <strong>Real Returns:</strong> At {watchValues.post_retirement_return_pct}% returns and {watchValues.long_term_inflation_pct}% inflation, your real return is {(((1 + watchValues.post_retirement_return_pct / 100) / (1 + watchValues.long_term_inflation_pct / 100) - 1) * 100).toFixed(2)}% p.a.
+                    </p>
+                    <p>
+                      <strong>Retirement Security:</strong> Your corpus will support {watchValues.present_monthly_expenses * (1 - watchValues.expense_reduction_pct / 100) >= 0 ? 'monthly expenses' : 'inflation-adjusted expenses'} for {result.distributionYears} years
+                    </p>
+                    <p>
+                      💡 Start your SIP now to avoid financial stress during retirement. Every year of delay increases required monthly investment.
+                    </p>
+                  </div>
+                </div>
+
                 <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
                   <p className="text-sm text-yellow-800 dark:text-yellow-200">
                     <strong>Note:</strong> This calculator uses NISM framework with inflation-adjusted real rate of return to ensure your purchasing power is preserved during retirement.

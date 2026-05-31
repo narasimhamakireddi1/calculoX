@@ -229,6 +229,41 @@ export default function CAGRCalculatorPage() {
                 </div>
               </div>
 
+              {/* Understanding CAGR */}
+              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding CAGR</h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+                  CAGR (Compound Annual Growth Rate) shows the average annual return on your investment, ignoring volatility. It helps you compare investments fairly across different time periods.
+                </p>
+                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                  <p><strong>Beginning Value:</strong> {formatCurrency(watchValues.beginningValue)} - Your initial investment amount</p>
+                  <p><strong>Ending Value:</strong> {formatCurrency(watchValues.endingValue)} - Final value after {watchValues.years} year(s)</p>
+                  <p><strong>Total Growth:</strong> {formatCurrency(watchValues.endingValue - watchValues.beginningValue)} - Absolute gain from your investment</p>
+                  <p><strong>CAGR:</strong> {result.cagrPercentage.toFixed(2)}% - Average annual growth rate (compounded)</p>
+                </div>
+              </div>
+
+              {/* Key Insights */}
+              <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                  <p>
+                    <strong>Investment Multiplier:</strong> <span className="font-bold text-green-700 dark:text-green-300">{(watchValues.endingValue / watchValues.beginningValue).toFixed(2)}x</span> - Your money grew by {((watchValues.endingValue / watchValues.beginningValue - 1) * 100).toFixed(1)}%
+                  </p>
+                  <p>
+                    <strong>Comparison Standard:</strong> A CAGR of {result.cagrPercentage.toFixed(2)}% means if you had a fixed-return investment, this % would give the same result
+                  </p>
+                  <p>
+                    <strong>Time Factor:</strong> Over {watchValues.years} year(s), your investment grew at {result.cagrPercentage.toFixed(2)}% annually on average
+                  </p>
+                  {result.cagrPercentage > 15 && (
+                    <p className="text-green-700 dark:text-green-300 font-semibold">
+                      💡 <strong>Excellent Return:</strong> A CAGR above 15% is considered very strong for most investments
+                    </p>
+                  )}
+                </div>
+              </div>
+
               <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 p-4 rounded mt-4">
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   <strong>Formula:</strong> CAGR = (Ending Value / Beginning Value)^(1/Years) - 1
