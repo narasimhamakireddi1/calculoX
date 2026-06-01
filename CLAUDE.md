@@ -4,6 +4,7 @@
 **Last Updated:** 2026-06-01 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
 **Latest:** 
+- ✅ **Bug Fix:** Category filtering crash (Case mismatch in categoryLabels - normalized to lowercase for consistency across tabs, grouping, and display logic)
 - ✅ **Design Enhancement Phase 1:** Home Page Hero & Category Navigation (Category-first filtering, colored tabs, "Start Now" overlays, smooth animations)
 - ✅ **Result Card Text Overflow Fix:** Responsive text sizing on all 11 calculators (text wrapping with break-words, mobile-first responsive breakpoints)
 - ✅ **Phase 6 Complete:** Benchmark Context in Results (7 calculators: BMI, EMI, SIP, CAGR, Tax, FD, Retirement with fact-checked "How Do You Compare?" cards)
