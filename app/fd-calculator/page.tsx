@@ -1,8 +1,7 @@
 'use client';
 
-'use client';
-
 import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
@@ -13,6 +12,8 @@ import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
+import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
+import { SwipeHint } from '@/components/mobile/SwipeHint';
 
 type TenureType = 'years' | 'months' | 'days';
 
@@ -227,8 +228,30 @@ export default function FDCalculatorPage() {
     monthly: '📅 Monthly Payout',
   };
 
+  // Swipe navigation to related calculators (mobile only)
+  const router = useRouter();
+  const relatedCalcs = getInternalLinks('fd-calculator').slice(0, 5);
+  const currentIndex = 0;
+
+  const { onTouchStart, onTouchEnd } = useSwipeGesture({
+    threshold: 50,
+    onSwipe: (direction) => {
+      if (direction === 'left' && currentIndex < relatedCalcs.length - 1) {
+        router.push(relatedCalcs[currentIndex + 1].href);
+      } else if (direction === 'right' && currentIndex > 0) {
+        router.push(relatedCalcs[currentIndex - 1].href);
+      }
+    }
+  });
+
   return (
-    <div className="space-y-8 py-8">
+    <div className="space-y-8 py-8" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <SwipeHint
+        hasLeft={currentIndex < relatedCalcs.length - 1}
+        hasRight={currentIndex > 0}
+        calculatorName="FD"
+      />
+
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-gradient">🏦 Fixed Deposit (FD) Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
