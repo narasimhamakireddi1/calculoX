@@ -136,6 +136,44 @@ h3 {
   animation: slideUnderline 0.3s ease-out;
 }
 
+/* Navbar Animations - Modern & Smooth */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes navGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  }
+}
+
+@keyframes underlineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.navbar-link-glow {
+  animation: navGlow 2s ease-in-out infinite;
+}
+
+.navbar-underline {
+  animation: underlineGrow 0.3s ease-out;
+}
+
 /* Forms */
 input:not([type="range"]),
 textarea,

@@ -127,18 +127,18 @@ export function Navbar() {
   };
 
   return (
-    <nav aria-label="Main navigation" className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200/30 dark:border-gray-800/30 shadow-lg">
+    <nav aria-label="Main navigation" className="sticky top-0 z-50 backdrop-blur-xl bg-white/85 dark:bg-gray-950/85 border-b border-gray-200/50 dark:border-gray-800/50 shadow-lg shadow-blue-500/5 dark:shadow-blue-500/10 will-change-backdrop-filter">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo - Enhanced */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-bold text-2xl text-blue-600 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 flex-shrink-0"
+            className="flex items-center gap-2 font-bold text-2xl text-blue-600 hover:text-blue-700 hover:drop-shadow-lg transition-all duration-300 transform flex-shrink-0 group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
-              className="w-8 h-8"
+              className="w-8 h-8 transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
             >
               <defs>
                 <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -169,7 +169,7 @@ export function Navbar() {
             {canScrollLeft && (
               <button
                 onClick={handleScrollLeft}
-                className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-200 transform hover:scale-110 flex-shrink-0 shadow-lg shadow-blue-500/30"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:-translate-y-1 flex-shrink-0 shadow-lg shadow-blue-500/40 hover:shadow-xl hover:shadow-blue-500/60"
                 aria-label="Scroll navbar left"
                 title="Scroll to see previous calculators"
               >
@@ -204,10 +204,10 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     aria-current={active ? 'page' : undefined}
-                    className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium text-sm flex items-center gap-1.5 transform hover:scale-105 whitespace-nowrap flex-shrink-0 ${
+                    className={`px-4 py-2 rounded-lg transition-all duration-300 font-semibold text-sm flex items-center gap-1.5 transform hover:-translate-y-0.5 whitespace-nowrap flex-shrink-0 relative group ${
                       active
-                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/40 hover:shadow-xl hover:shadow-blue-500/60'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/60 dark:hover:bg-gray-800/60'
                     }`}
                   >
                     <span>{link.icon}</span>
@@ -222,7 +222,7 @@ export function Navbar() {
             {canScrollRight && (
               <button
                 onClick={handleScrollRight}
-                className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-200 transform hover:scale-110 flex-shrink-0 shadow-lg shadow-blue-500/30"
+                className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:-translate-y-1 flex-shrink-0 shadow-lg shadow-blue-500/40 hover:shadow-xl hover:shadow-blue-500/60"
                 aria-label="Scroll navbar right"
                 title="Scroll to see more calculators"
               >
@@ -240,7 +240,7 @@ export function Navbar() {
 
             {/* Mobile Menu Button - Enhanced */}
             <button
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 flex-shrink-0"
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex-shrink-0 transform hover:-translate-y-0.5 hover:shadow-md"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
@@ -255,7 +255,7 @@ export function Navbar() {
 
         {/* Mobile Menu - Enhanced */}
         {isOpen && (
-          <div id="mobile-menu" className="md:hidden pb-4 space-y-3 animate-in fade-in slide-in-from-top-2">
+          <div id="mobile-menu" className="md:hidden pb-4 space-y-2 animate-in fade-in slide-in-from-top-4 duration-300 ease-out">
             {/* Theme Switcher for Mobile */}
             <div className="sm:hidden px-4 py-2">
               <ThemeSwitcher />
@@ -268,12 +268,16 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`block px-4 py-3 rounded-lg transition-all duration-200 font-medium flex items-center gap-2 ${
+                  className={`block px-4 py-3 rounded-lg transition-all duration-300 font-semibold flex items-center gap-2 transform hover:-translate-y-0.5 ${
                     active
-                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/30'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/50'
+                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/40 hover:shadow-xl hover:shadow-blue-500/60'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/60 dark:hover:bg-gray-800/60'
                   }`}
                   onClick={() => setIsOpen(false)}
+                  style={{
+                    animation: `slideInLeft 0.3s ease-out ${active ? '0ms' : `${links.indexOf(link) * 50}ms`} forwards`,
+                    opacity: 0
+                  }}
                 >
                   <span className="text-xl">{link.icon}</span>
                   <span>{link.label}</span>
