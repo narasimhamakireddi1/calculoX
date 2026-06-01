@@ -13,6 +13,7 @@ import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
+import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 
 type FormData = {
   age: 'below60' | 'between60to80' | 'above80';
@@ -118,6 +119,8 @@ export default function TaxCalculator() {
     return data;
   }, [watchValues]);
 
+  const haptic = useHapticFeedback();
+
   const calculateResults = (data: FormData) => {
     const input: ComprehensiveTaxInput = {
       profile: {
@@ -162,6 +165,7 @@ export default function TaxCalculator() {
 
     try {
       const calculatedResult = calculateComprehensiveTax(input);
+      haptic.trigger('success');
       setResult(calculatedResult);
     } catch (error) {
       console.error('Tax calculation error:', error);
@@ -172,10 +176,11 @@ export default function TaxCalculator() {
     setValue(fieldName, value, { shouldValidate: true });
   };
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
+    haptic.trigger('warning');
     reset();
     setResult(null);
-  };
+  }, [reset, haptic]);
 
   // Quick-start scenarios
   const taxScenarios: QuickStartScenario[] = useMemo(() => [

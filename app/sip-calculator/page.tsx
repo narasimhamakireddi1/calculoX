@@ -16,6 +16,7 @@ import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/Qui
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
+import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 
 type SIPFormData = {
   monthlyInvestment: number;
@@ -100,12 +101,15 @@ export default function SIPCalculatorPage() {
     }
   };
 
-  const handleReset = () => {
+  const haptic = useHapticFeedback();
+
+  const handleReset = useCallback(() => {
+    haptic.trigger('warning');
     reset();
     setResult(null);
     setChartData([]);
     setProjections([]);
-  };
+  }, [reset, haptic]);
 
   // Quick-start scenarios
   const sipScenarios: QuickStartScenario[] = useMemo(() => [
@@ -148,6 +152,7 @@ export default function SIPCalculatorPage() {
 
   const calculateResults = (data: SIPFormData) => {
     const result = calculateSIP(data);
+    haptic.trigger('success');
     setResult(result);
 
     // Generate yearly projection data
