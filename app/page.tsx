@@ -26,7 +26,7 @@ export default function Home() {
   // Group calculators by category
   const groupedByCategory: Record<string, typeof allCalculators> = {};
   (selectedCategory ? filteredCalculators : allCalculators).forEach(calc => {
-    const catKey = calc.category;
+    const catKey = calc.category.toLowerCase();
     if (!groupedByCategory[catKey]) {
       groupedByCategory[catKey] = [];
     }
@@ -34,10 +34,10 @@ export default function Home() {
   });
 
   const categoryLabels: Record<string, string> = {
-    Finance: '💰 Finance',
-    Health: '💪 Health',
-    Utility: '📈 Utility',
-    Conversion: '🔄 Conversion'
+    finance: '💰 Finance',
+    health: '💪 Health',
+    utility: '📈 Utility',
+    conversion: '🔄 Conversion'
   };
 
   return (
@@ -129,17 +129,17 @@ export default function Home() {
               <div key={category} className="space-y-4">
                 <div className="flex items-center gap-3 pb-4 border-b-2 border-gray-200 dark:border-gray-700">
                   <h3 className={`text-2xl font-bold ${
-                    category === 'Finance' ? 'text-blue-600' :
-                    category === 'Health' ? 'text-pink-600' :
-                    category === 'Utility' ? 'text-orange-600' :
+                    category === 'finance' ? 'text-blue-600' :
+                    category === 'health' ? 'text-pink-600' :
+                    category === 'utility' ? 'text-orange-600' :
                     'text-purple-600'
                   }`}>
                     {categoryLabels[category]}
                   </h3>
                   <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                    category === 'Finance' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
-                    category === 'Health' ? 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400' :
-                    category === 'Utility' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
+                    category === 'finance' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+                    category === 'health' ? 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400' :
+                    category === 'utility' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
                     'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
                   }`}>
                     {calcs.length} {calcs.length === 1 ? 'Calculator' : 'Calculators'}
