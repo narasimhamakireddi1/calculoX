@@ -14,6 +14,7 @@ import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/Qui
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
+import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 
 // Dynamic imports for charts - lazy load to improve initial page load
 const Charts = lazy(() => import('@/components/emi/ChartComponents').then(m => ({ default: m.ChartsSection })));
@@ -274,13 +275,16 @@ export default function EMICalculatorPage() {
     }
   }, [fieldRanges]);
 
+  const haptic = useHapticFeedback();
+
   const handleReset = useCallback(() => {
+    haptic.trigger('warning');
     reset();
     setResult(null);
     setSchedule([]);
     setScheduleFirstTwelve([]);
     setShowFullSchedule(false);
-  }, [reset]);
+  }, [reset, haptic]);
 
   const handleToggleSchedule = useCallback(() => {
     setShowFullSchedule(prev => !prev);
@@ -317,11 +321,12 @@ export default function EMICalculatorPage() {
   // Memoized calculation
   const calculateResults = useCallback((data: EMIFormData) => {
     const result = calculateEMI(data);
+    haptic.trigger('success');
     setResult(result);
     const fullSchedule = generateAmortizationSchedule(data, result);
     setSchedule(fullSchedule);
     setScheduleFirstTwelve(fullSchedule.slice(0, 12));
-  }, []);
+  }, [haptic]);
 
   // Auto-calculate with debounce
   useEffect(() => {
