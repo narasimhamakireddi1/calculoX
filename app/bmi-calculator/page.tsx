@@ -128,27 +128,52 @@ export default function BMICalculatorPage() {
     setUnitSystem(unit);
   };
 
-  // Quick-start scenarios
-  const bmiScenarios: QuickStartScenario[] = useMemo(() => [
-    {
-      label: 'Average Adult (Metric)',
-      description: '70 kg, 175 cm - Normal BMI',
-      icon: '👤',
-      values: { weight: 70, height: 175 }
-    },
-    {
-      label: 'Average Adult (Imperial)',
-      description: '154 lbs, 69 inches - Normal BMI',
-      icon: '🇺🇸',
-      values: { weight: 154, height: 69 }
-    },
-    {
-      label: 'Fitness Enthusiast',
-      description: '75 kg, 180 cm - Healthy range',
-      icon: '💪',
-      values: { weight: 75, height: 180 }
+  // Quick-start scenarios (dynamic based on unit system)
+  const bmiScenarios: QuickStartScenario[] = useMemo(() => {
+    if (unitSystem === 'metric') {
+      return [
+        {
+          label: 'Average Adult (Metric)',
+          description: '70 kg, 175 cm - Normal BMI',
+          icon: '👤',
+          values: { weight: 70, height: 175 }
+        },
+        {
+          label: 'Fitness Enthusiast',
+          description: '75 kg, 180 cm - Healthy range',
+          icon: '💪',
+          values: { weight: 75, height: 180 }
+        },
+        {
+          label: 'Lightweight Person',
+          description: '55 kg, 165 cm - Normal BMI',
+          icon: '🏃',
+          values: { weight: 55, height: 165 }
+        }
+      ];
+    } else {
+      return [
+        {
+          label: 'Average Adult (Imperial)',
+          description: '154 lbs, 69 inches - Normal BMI',
+          icon: '👤',
+          values: { weight: 154, height: 69 }
+        },
+        {
+          label: 'Fitness Enthusiast',
+          description: '165 lbs, 71 inches - Healthy range',
+          icon: '💪',
+          values: { weight: 165, height: 71 }
+        },
+        {
+          label: 'Lightweight Person',
+          description: '121 lbs, 65 inches - Normal BMI',
+          icon: '🏃',
+          values: { weight: 121, height: 65 }
+        }
+      ];
     }
-  ], []);
+  }, [unitSystem]);
 
   const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
     Object.entries(values).forEach(([key, value]) => {
