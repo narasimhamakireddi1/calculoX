@@ -321,12 +321,11 @@ export default function EMICalculatorPage() {
   // Memoized calculation
   const calculateResults = useCallback((data: EMIFormData) => {
     const result = calculateEMI(data);
-    haptic.trigger('success');
     setResult(result);
     const fullSchedule = generateAmortizationSchedule(data, result);
     setSchedule(fullSchedule);
     setScheduleFirstTwelve(fullSchedule.slice(0, 12));
-  }, [haptic]);
+  }, []);
 
   // Auto-calculate with debounce
   useEffect(() => {

@@ -152,7 +152,6 @@ export default function SIPCalculatorPage() {
 
   const calculateResults = (data: SIPFormData) => {
     const result = calculateSIP(data);
-    haptic.trigger('success');
     setResult(result);
 
     // Generate yearly projection data

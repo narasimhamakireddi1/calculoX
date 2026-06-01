@@ -165,7 +165,6 @@ export default function TaxCalculator() {
 
     try {
       const calculatedResult = calculateComprehensiveTax(input);
-      haptic.trigger('success');
       setResult(calculatedResult);
     } catch (error) {
       console.error('Tax calculation error:', error);

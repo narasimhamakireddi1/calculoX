@@ -212,7 +212,6 @@ export default function FDCalculatorPage() {
 
   const calculateResults = (data: FDFormData) => {
     const result = calculateFD(data);
-    haptic.trigger('success');
     setResult(result);
     const projections = generateFDProjection(data);
     setProjections(projections);

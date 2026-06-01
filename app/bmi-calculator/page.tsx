@@ -85,7 +85,6 @@ export default function BMICalculatorPage() {
     }
 
     const result = calculateBMI({ weight: weightInKg, height: heightInCm });
-    haptic.trigger('success');
     setResult(result);
   };
 

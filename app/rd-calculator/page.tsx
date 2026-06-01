@@ -140,7 +140,6 @@ export default function RDCalculatorPage() {
 
   const calculateResults = (data: RDFormData) => {
     const result = calculateRD(data);
-    haptic.trigger('success');
     setResult(result);
     const projections = generateRDProjection(data);
     setProjections(projections);
