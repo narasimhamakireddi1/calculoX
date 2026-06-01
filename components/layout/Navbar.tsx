@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { getActiveCalculators } from '@/config/calculators.config';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
+import { CalculatorBottomSheet } from '@/components/mobile/CalculatorBottomSheet';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -253,39 +254,8 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu - Enhanced */}
-        {isOpen && (
-          <div id="mobile-menu" className="md:hidden pb-4 space-y-2 animate-in fade-in slide-in-from-top-4 duration-300 ease-out">
-            {/* Theme Switcher for Mobile */}
-            <div className="sm:hidden px-4 py-2">
-              <ThemeSwitcher />
-            </div>
-
-            {links.map((link) => {
-              const active = isActive(link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? 'page' : undefined}
-                  className={`block px-4 py-3 rounded-lg transition-all duration-300 font-semibold flex items-center gap-2 transform hover:-translate-y-0.5 ${
-                    active
-                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/40 hover:shadow-xl hover:shadow-blue-500/60'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/60 dark:hover:bg-gray-800/60'
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                  style={{
-                    animation: `slideInLeft 0.3s ease-out ${active ? '0ms' : `${links.indexOf(link) * 50}ms`} forwards`,
-                    opacity: 0
-                  }}
-                >
-                  <span className="text-xl">{link.icon}</span>
-                  <span>{link.label}</span>
-                </Link>
-              );
-            })}
-          </div>
-        )}
+        {/* Mobile Bottom Sheet for Calculators */}
+        <CalculatorBottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
 
       <style jsx>{`
