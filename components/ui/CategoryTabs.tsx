@@ -1,5 +1,8 @@
 'use client';
 
+import { useMemo } from 'react';
+import { getActiveCalculators } from '@/config/calculators.config';
+
 export type CalculatorCategory = 'finance' | 'health' | 'utility' | 'conversion';
 
 interface CategoryTabsProps {
@@ -7,34 +10,48 @@ interface CategoryTabsProps {
   selectedCategory: CalculatorCategory | null;
 }
 
-const categoryConfig = {
+const baseConfig = {
   finance: {
     label: 'Finance',
     color: 'from-blue-600 to-blue-400',
-    count: 16,
     description: 'Loans, Investments & Wealth'
   },
   health: {
     label: 'Health',
     color: 'from-pink-600 to-rose-400',
-    count: 1,
     description: 'Body & Fitness'
   },
   utility: {
     label: 'Utility',
     color: 'from-orange-600 to-amber-400',
-    count: 3,
     description: 'Percentage, Hike & More'
   },
   conversion: {
     label: 'Conversion',
     color: 'from-purple-600 to-indigo-400',
-    count: 2,
     description: 'Unit & Value Conversion'
   }
 };
 
 export function CategoryTabs({ onCategoryChange, selectedCategory }: CategoryTabsProps) {
+  // Dynamically calculate category counts using useMemo
+  const categoryConfig = useMemo(() => {
+    const active = getActiveCalculators();
+    const counts = {
+      finance: active.filter(c => c.category === 'Finance').length,
+      health: active.filter(c => c.category === 'Health').length,
+      utility: active.filter(c => c.category === 'Utility').length,
+      conversion: active.filter(c => c.category === 'Conversion').length,
+    };
+
+    return {
+      finance: { ...baseConfig.finance, count: counts.finance },
+      health: { ...baseConfig.health, count: counts.health },
+      utility: { ...baseConfig.utility, count: counts.utility },
+      conversion: { ...baseConfig.conversion, count: counts.conversion },
+    };
+  }, []);
+
   const handleTabClick = (category: CalculatorCategory) => {
     onCategoryChange(selectedCategory === category ? null : category);
   };
