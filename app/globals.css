@@ -105,12 +105,35 @@ h3 {
   }
 }
 
+/* Phase 1 Animations: Home Page Hero & Category Navigation */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes slideUnderline {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
 
 .slide-up {
   animation: slideUp 0.5s ease-out;
+}
+
+.animate-slide-underline {
+  animation: slideUnderline 0.3s ease-out;
 }
 
 /* Forms */

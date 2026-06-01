@@ -1,20 +1,49 @@
+'use client';
+
+import { useState } from 'react';
 import { CalculatorCard } from "@/components/ui/CalculatorCard";
 import { CalculatorSearch } from "@/components/ui/CalculatorSearch";
+import { CategoryTabs, type CalculatorCategory } from "@/components/ui/CategoryTabs";
 import { getActiveCalculators } from "@/config/calculators.config";
 
 export default function Home() {
-  // Get only active calculators (MVP: SIP, EMI, BMI, Tax)
-  const calculators = getActiveCalculators().map((calc) => ({
+  const [selectedCategory, setSelectedCategory] = useState<CalculatorCategory | null>(null);
+
+  // Get only active calculators
+  const allCalculators = getActiveCalculators().map((calc) => ({
     title: calc.title,
     description: calc.description,
     href: calc.href,
     icon: calc.icon,
     category: calc.category,
   }));
+
+  // Filter calculators by category
+  const filteredCalculators = selectedCategory
+    ? allCalculators.filter(calc => calc.category.toLowerCase() === selectedCategory.toLowerCase())
+    : allCalculators;
+
+  // Group calculators by category
+  const groupedByCategory: Record<string, typeof allCalculators> = {};
+  (selectedCategory ? filteredCalculators : allCalculators).forEach(calc => {
+    const catKey = calc.category.toLowerCase();
+    if (!groupedByCategory[catKey]) {
+      groupedByCategory[catKey] = [];
+    }
+    groupedByCategory[catKey].push(calc);
+  });
+
+  const categoryLabels: Record<string, string> = {
+    finance: '💰 Finance',
+    health: '💪 Health',
+    business: '📊 Business',
+    advanced: '🧮 Advanced'
+  };
+
   return (
     <div className="space-y-12">
       {/* Hero Section */}
-      <section className="text-center py-12 md:py-24 space-y-8">
+      <section className="text-center py-12 md:py-24 space-y-8 relative">
         {/* Search Bar */}
         <div className="mb-8">
           <CalculatorSearch />
@@ -68,17 +97,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Calculators Grid */}
+      {/* Calculators Grid with Category Tabs */}
       <section className="space-y-8">
         <div className="space-y-2 mb-8">
           <h2 className="text-4xl font-bold">Popular Calculators</h2>
-          <p className="text-gray-600 dark:text-gray-400">Choose from our collection of powerful financial and health calculators</p>
+          <p className="text-gray-600 dark:text-gray-400">
+            {selectedCategory
+              ? `Explore our ${categoryLabels[selectedCategory].split(' ')[1]} calculators`
+              : 'Choose from our collection of powerful financial and health calculators'}
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {calculators.map((calc) => (
-            <CalculatorCard key={calc.href} {...calc} />
-          ))}
-        </div>
+
+        {/* Category Tabs */}
+        <CategoryTabs
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+        />
+
+        {/* Grouped Calculator Cards */}
+        {selectedCategory ? (
+          // Single category view
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {filteredCalculators.map((calc) => (
+              <CalculatorCard key={calc.href} {...calc} />
+            ))}
+          </div>
+        ) : (
+          // All calculators grouped by category
+          <div className="space-y-12">
+            {Object.entries(groupedByCategory).map(([category, calcs]) => (
+              <div key={category} className="space-y-4">
+                <div className="flex items-center gap-3 pb-4 border-b-2 border-gray-200 dark:border-gray-700">
+                  <h3 className={`text-2xl font-bold ${
+                    category === 'finance' ? 'text-blue-600' :
+                    category === 'health' ? 'text-pink-600' :
+                    category === 'business' ? 'text-orange-600' :
+                    'text-purple-600'
+                  }`}>
+                    {categoryLabels[category]}
+                  </h3>
+                  <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                    category === 'finance' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+                    category === 'health' ? 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400' :
+                    category === 'business' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
+                    'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
+                  }`}>
+                    {calcs.length} {calcs.length === 1 ? 'Calculator' : 'Calculators'}
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {calcs.map((calc) => (
+                    <CalculatorCard key={calc.href} {...calc} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Testimonials Section */}

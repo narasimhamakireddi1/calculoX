@@ -37,6 +37,8 @@ const config: Config = {
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
+        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+        'slide-underline': 'slideUnderline 0.3s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -46,6 +48,18 @@ const config: Config = {
         slideUp: {
           from: { transform: 'translateY(10px)', opacity: '0' },
           to: { transform: 'translateY(0)', opacity: '1' },
+        },
+        pulseGlow: {
+          '0%, 100%': {
+            boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)',
+          },
+          '50%': {
+            boxShadow: '0 0 30px rgba(59, 130, 246, 0.8)',
+          },
+        },
+        slideUnderline: {
+          from: { transform: 'translateX(-100%)' },
+          to: { transform: 'translateX(0)' },
         },
       },
     },
