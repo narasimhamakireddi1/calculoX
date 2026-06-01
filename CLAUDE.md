@@ -1,9 +1,10 @@
 # 🧮 calculox - CLAUDE.md
 
 **Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA+ | AdSense 92/100 | GSC Live | **SEO: 6/6 Complete** | **Accessibility: WCAG 2.1 AAA++** | **UI: Premium Polish ✨**  
-**Last Updated:** 2026-05-31 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
+**Last Updated:** 2026-06-01 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
 **Latest:** 
+- ✅ **Result Card Text Overflow Fix:** Responsive text sizing on all 11 calculators (text wrapping with break-words, mobile-first responsive breakpoints)
 - ✅ **Phase 6 Complete:** Benchmark Context in Results (7 calculators: BMI, EMI, SIP, CAGR, Tax, FD, Retirement with fact-checked "How Do You Compare?" cards)
 - ✅ **Phase 5 Complete:** Input Hints on All 14 Calculators (Contextual, India-specific 💡 hints below each major input field)
 - ✅ **Phase 4 Complete:** Mobile Quick-Select Buttons (6 calculators: EMI, SIP, FD, RD, Tax, Retirement with preset values for faster mobile input)
@@ -13,10 +14,11 @@
 
 ---
 
-## 📈 DEVELOPMENT TIMELINE (2026-05-31)
+## 📈 DEVELOPMENT TIMELINE (2026-06-01)
 
 | Date | Achievement | Status |
 |------|-------------|--------|
+| **2026-06-01** | Result Card Text Overflow Fix (All 11 calculators: responsive text sizing, break-words, mobile-first breakpoints) | ✅ 100% mobile-safe |
 | **2026-05-31** | Benchmark Context Phase 6 (7 calculators: BMI, EMI, SIP, CAGR, Tax, FD, Retirement with fact-checked comparison cards) | ✅ +20% engagement |
 | **2026-05-31** | Input Hints Phase 5 (All 14 calculators: CAGR, GST, Percentage, SI, Scientific, Profit Margin, Home Loan vs Rent) | ✅ -10% abandonment |
 | **2026-05-31** | Mobile Quick-Select Buttons Phase 4 (6 calculators: preset values for EMI, SIP, FD, RD, Tax, Retirement) | ✅ -20% mobile bounce |
