@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
@@ -11,6 +11,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type FormData = {
@@ -176,6 +177,34 @@ export default function TaxCalculator() {
     setResult(null);
   };
 
+  // Quick-start scenarios
+  const taxScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Mid-Level Professional',
+      description: '₹12,00,000/year salary',
+      icon: '👨‍💼',
+      values: { grossSalary: 1200000, hra: 0, standardDeduction: 0, '80C': 150000, '80D': 25000, regime: 'new', age: 'below60', city: 'metro', childrenCount: 0 }
+    },
+    {
+      label: 'Senior Executive',
+      description: '₹50,00,000/year + investments',
+      icon: '💼',
+      values: { grossSalary: 5000000, hra: 500000, standardDeduction: 50000, '80C': 150000, '80D': 50000, regime: 'old', age: 'below60', city: 'metro', childrenCount: 2 }
+    },
+    {
+      label: 'Senior Citizen',
+      description: '₹25,00,000/year, above 60',
+      icon: '👴',
+      values: { grossSalary: 2500000, hra: 0, standardDeduction: 0, '80C': 150000, '80D': 50000, regime: 'new', age: 'above60', city: 'metro', childrenCount: 0 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as any, value, { shouldValidate: true });
+    });
+  }, [setValue]);
+
   const getRegimeResult = () => {
     if (!result) return null;
     return result.recommended === 'new' ? result.newRegime : result.oldRegime;
@@ -202,6 +231,12 @@ export default function TaxCalculator() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Form Section */}
           <div id="tax-inputs" className="lg:col-span-1 space-y-6">
+            {/* Quick-Start Examples */}
+            <QuickStartExamples
+              scenarios={taxScenarios}
+              onSelectScenario={handleSelectScenario}
+            />
+
             {/* Personal Details */}
             <div className="card p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
               <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">👤 Personal Details</h2>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -11,6 +11,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type SIPFormData = {
@@ -103,6 +104,34 @@ export default function SIPCalculatorPage() {
     setProjections([]);
   };
 
+  // Quick-start scenarios
+  const sipScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Conservative Investor',
+      description: '₹5,000/month, 12% returns',
+      icon: '🛡️',
+      values: { monthlyInvestment: 5000, years: 10, annualReturn: 12, stepUpPercent: 0 }
+    },
+    {
+      label: 'Aggressive Investor',
+      description: '₹25,000/month, 15% returns',
+      icon: '🚀',
+      values: { monthlyInvestment: 25000, years: 20, annualReturn: 15, stepUpPercent: 5 }
+    },
+    {
+      label: 'Retirement Planning',
+      description: '₹10,000/month, 20 years',
+      icon: '🎯',
+      values: { monthlyInvestment: 10000, years: 20, annualReturn: 13, stepUpPercent: 3 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof SIPFormData, Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
+
   // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -184,6 +213,13 @@ export default function SIPCalculatorPage() {
         {/* Form Section */}
         <div id="sip-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={sipScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
+
           <form className="space-y-6">
             {/* Monthly Investment */}
             <div className="space-y-3">

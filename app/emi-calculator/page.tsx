@@ -9,6 +9,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 // Dynamic imports for charts - lazy load to improve initial page load
@@ -282,6 +283,34 @@ export default function EMICalculatorPage() {
     setShowFullSchedule(prev => !prev);
   }, []);
 
+  // Quick-start scenarios
+  const emiScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'First-Time Homebuyer',
+      description: 'Typical home loan scenario',
+      icon: '🏡',
+      values: { principal: 5000000, annualRate: 8.5, years: 20 }
+    },
+    {
+      label: 'Refinance Existing',
+      description: 'Lower rate on existing loan',
+      icon: '📊',
+      values: { principal: 3000000, annualRate: 7.5, years: 15 }
+    },
+    {
+      label: 'Business Loan',
+      description: 'Commercial property/working capital',
+      icon: '💼',
+      values: { principal: 10000000, annualRate: 10.5, years: 10 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof EMIFormData, Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
+
   // Memoized calculation
   const calculateResults = useCallback((data: EMIFormData) => {
     const result = calculateEMI(data);
@@ -315,6 +344,13 @@ export default function EMICalculatorPage() {
         {/* Form Section */}
         <div id="emi-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Loan Details</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={emiScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
+
           <form className="space-y-6">
             <div>
               <LoanInput

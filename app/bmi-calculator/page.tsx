@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
@@ -8,6 +8,7 @@ import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type BMIFormData = {
@@ -127,6 +128,34 @@ export default function BMICalculatorPage() {
     setUnitSystem(unit);
   };
 
+  // Quick-start scenarios
+  const bmiScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Average Adult (Metric)',
+      description: '70 kg, 175 cm - Normal BMI',
+      icon: '👤',
+      values: { weight: 70, height: 175 }
+    },
+    {
+      label: 'Average Adult (Imperial)',
+      description: '154 lbs, 69 inches - Normal BMI',
+      icon: '🇺🇸',
+      values: { weight: 154, height: 69 }
+    },
+    {
+      label: 'Fitness Enthusiast',
+      description: '75 kg, 180 cm - Healthy range',
+      icon: '💪',
+      values: { weight: 75, height: 180 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof BMIFormData, Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
+
   const colors = result ? categoryColors[result.category] : categoryColors.normal;
 
   return (
@@ -142,6 +171,12 @@ export default function BMICalculatorPage() {
         {/* Form Section */}
         <div id="bmi-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Your Measurements</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={bmiScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
 
           {/* Unit Toggle */}
           <div className="flex gap-2 mb-8 bg-gray-100 dark:bg-gray-700/30 p-1 rounded-lg">
