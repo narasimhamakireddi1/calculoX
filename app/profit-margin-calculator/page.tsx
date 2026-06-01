@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   BarChart,
@@ -16,6 +16,7 @@ import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import ExportButton from '@/components/ui/ExportButton';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import {
   ProfitMarginGstEngine,
@@ -127,6 +128,34 @@ export default function ProfitMarginCalculator() {
     setValue('marginOrMarkup', 'margin');
   };
 
+  // Quick-start scenarios
+  const pmScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Retail Product',
+      description: '₹1,000 cost → 25% margin',
+      icon: '🛍️',
+      values: { costPrice: 1000, targetMarginPct: 25, targetMarkupPct: 0, gstRatePct: 18, calculationBasis: 'COST_DRIVEN', gstTreatment: 'EXCLUSIVE' }
+    },
+    {
+      label: 'Premium Item',
+      description: '₹5,000 cost → 40% margin',
+      icon: '💎',
+      values: { costPrice: 5000, targetMarginPct: 40, targetMarkupPct: 0, gstRatePct: 18, calculationBasis: 'COST_DRIVEN', gstTreatment: 'EXCLUSIVE' }
+    },
+    {
+      label: 'Bulk Sales',
+      description: '₹10,000 cost → 15% markup',
+      icon: '📦',
+      values: { costPrice: 10000, targetMarginPct: 0, targetMarkupPct: 15, gstRatePct: 12, calculationBasis: 'COST_DRIVEN', gstTreatment: 'EXCLUSIVE' }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof FormData, value as any, { shouldValidate: true });
+    });
+  }, [setValue]);
+
   const chartData = results
     ? [
         {
@@ -174,6 +203,12 @@ export default function ProfitMarginCalculator() {
           {/* Left Column - Inputs */}
           <div id="pricing-inputs" className="lg:col-span-1 card space-y-6">
             <h2 className="text-lg font-semibold mb-6">Input Parameters</h2>
+
+            {/* Quick-Start Examples */}
+            <QuickStartExamples
+              scenarios={pmScenarios}
+              onSelectScenario={handleSelectScenario}
+            />
 
             {/* Cost Price - Common for both modes */}
             <div className="space-y-3">

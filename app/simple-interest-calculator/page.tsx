@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -10,6 +10,7 @@ import { SimpleInterestSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type SIFormData = {
@@ -124,6 +125,34 @@ export default function SimpleInterestCalculatorPage() {
     setShowAllProjections(false);
   };
 
+  // Quick-start scenarios
+  const siScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Short-Term Loan',
+      description: '₹1,00,000 at 8% for 2 years',
+      icon: '🏦',
+      values: { principal: 100000, annualRate: 8, years: 2, months: 0, days: 0, tenureType: 'years' }
+    },
+    {
+      label: 'Education Fund',
+      description: '₹5,00,000 at 6% for 5 years',
+      icon: '🎓',
+      values: { principal: 500000, annualRate: 6, years: 5, months: 0, days: 0, tenureType: 'years' }
+    },
+    {
+      label: 'Business Investment',
+      description: '₹10,00,000 at 10% for 3 years',
+      icon: '💼',
+      values: { principal: 1000000, annualRate: 10, years: 3, months: 0, days: 0, tenureType: 'years' }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as any, key === 'tenureType' ? (value as any) : Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (watchValues.principal && watchValues.annualRate !== undefined) {
@@ -174,6 +203,13 @@ export default function SimpleInterestCalculatorPage() {
         {/* Form Section */}
         <div id="simple-interest-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={siScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
+
           <form className="space-y-6">
             {/* Principal */}
             <div className="space-y-3">

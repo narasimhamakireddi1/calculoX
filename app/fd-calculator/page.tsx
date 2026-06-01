@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
@@ -9,6 +9,7 @@ import { FDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type TenureType = 'years' | 'months' | 'days';
@@ -143,6 +144,34 @@ export default function FDCalculatorPage() {
     setShowAllProjections(false);
   };
 
+  // Quick-start scenarios
+  const fdScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Short-Term (1 Year)',
+      description: '₹1L at 6.5% for 1 year',
+      icon: '⏱️',
+      values: { principal: 100000, annualRate: 6.5, years: 1, months: 0, days: 0, tenureType: 'years', payoutType: 'cumulative' }
+    },
+    {
+      label: 'Medium-Term (5 Years)',
+      description: '₹5L at 7% quarterly payout',
+      icon: '📅',
+      values: { principal: 500000, annualRate: 7, years: 5, months: 0, days: 0, tenureType: 'years', payoutType: 'quarterly' }
+    },
+    {
+      label: 'Long-Term (10 Years)',
+      description: '₹10L at 7.5% monthly payout',
+      icon: '📈',
+      values: { principal: 1000000, annualRate: 7.5, years: 10, months: 0, days: 0, tenureType: 'years', payoutType: 'monthly' }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as any, (key === 'tenureType' || key === 'payoutType') ? (value as any) : Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
+
   // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -209,6 +238,13 @@ export default function FDCalculatorPage() {
         {/* Form */}
         <div id="fd-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={fdScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
+
           <form className="space-y-6">
             {/* Principal */}
             <div className="space-y-3">

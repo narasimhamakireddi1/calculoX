@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
@@ -9,6 +9,7 @@ import { PercentageSchema } from '@/lib/validators';
 import { formatNumber } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type CalculationType = 'hike-discount' | 'percent-of' | 'what-percent' | 'percent-change' | 'reverse-percent' | 'sequential';
@@ -173,6 +174,34 @@ export default function PercentageCalculatorPage() {
     setCalcError(null);
   };
 
+  // Quick-start scenarios
+  const percentageScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Salary Hike (10%)',
+      description: '₹50,000 → 10% increase',
+      icon: '📈',
+      values: { value: 50000, percentage: 10, calculationType: 'hike-discount' }
+    },
+    {
+      label: 'Shopping Discount (20%)',
+      description: '₹5,000 item → 20% off',
+      icon: '🛍️',
+      values: { value: 5000, percentage: 20, calculationType: 'hike-discount' }
+    },
+    {
+      label: 'What Percentage (5% of 1000)',
+      description: 'Find 5% of ₹1,000',
+      icon: '❓',
+      values: { value: 1000, percentage: 5, calculationType: 'percent-of' }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as any, value as any, { shouldValidate: true });
+    });
+  }, [setValue]);
+
   const switchTrack = (id: CalculationType) => {
     setValue('calculationType', id);
     setResult(null);
@@ -220,6 +249,12 @@ export default function PercentageCalculatorPage() {
             {TRACKS.find(t => t.id === calculationType)?.icon}{' '}
             {TRACKS.find(t => t.id === calculationType)?.name}
           </h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={percentageScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
 
           <div className="space-y-5">
             {/* Hike / Discount toggle */}

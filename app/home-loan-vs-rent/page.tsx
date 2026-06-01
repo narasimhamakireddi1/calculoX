@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -21,6 +21,7 @@ import { BuyVsRentEngine, BuyVsRentResult, YearlyData } from '@/lib/calculators/
 import ExportButton from '@/components/ui/ExportButton';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { formatCurrency } from '@/lib/utils/format';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 // Format large numbers for Y-axis (e.g., 1000000 → 10L, 10000000 → 1Cr)
@@ -137,6 +138,34 @@ export default function HomeLoanVsRentCalculator() {
     setValue('apply_tax_benefit', false);
     setValue('income_tax_rate_pct', 20);
   };
+
+  // Quick-start scenarios
+  const hlrScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Budget Buyer',
+      description: '₹40L property, ₹20K rent',
+      icon: '🏠',
+      values: { property_value: 4000000, down_payment_pct: 20, loan_interest_rate_pct: 8.5, loan_tenure_years: 20, initial_monthly_rent: 20000, opportunity_return_pct: 12, projection_tenure_years: 20 }
+    },
+    {
+      label: 'Mid-Range Home',
+      description: '₹80L property, ₹40K rent',
+      icon: '🏡',
+      values: { property_value: 8000000, down_payment_pct: 25, loan_interest_rate_pct: 8.5, loan_tenure_years: 20, initial_monthly_rent: 40000, opportunity_return_pct: 12, projection_tenure_years: 25 }
+    },
+    {
+      label: 'Premium Property',
+      description: '₹1.5Cr property, ₹75K rent',
+      icon: '🏢',
+      values: { property_value: 15000000, down_payment_pct: 30, loan_interest_rate_pct: 8, loan_tenure_years: 25, initial_monthly_rent: 75000, opportunity_return_pct: 11, projection_tenure_years: 30 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof FormData, value as any, { shouldValidate: true });
+    });
+  }, [setValue]);
 
   const downPaymentAmount = watchValues.property_value * (watchValues.down_payment_pct / 100);
 
@@ -295,6 +324,12 @@ export default function HomeLoanVsRentCalculator() {
             </div>
           </div>
         )}
+
+        {/* Quick-Start Examples */}
+        <QuickStartExamples
+          scenarios={hlrScenarios}
+          onSelectScenario={handleSelectScenario}
+        />
 
         {/* Tab Navigation */}
         <div className="flex gap-2 mb-6 border-b border-gray-300 dark:border-gray-700">

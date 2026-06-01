@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -8,6 +8,7 @@ import { NismRetirementEngine, type NismInputs, type NismCalculationResult } fro
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import z from 'zod';
 
@@ -92,6 +93,34 @@ export default function RetirementCalculatorPage() {
     setChartData([]);
     setShowAllProjections(false);
   };
+
+  // Quick-start scenarios
+  const retirementScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Early Retirement (40)',
+      description: 'Retire at 40, live to 85',
+      icon: '🏖️',
+      values: { currentAge: 35, retirementAge: 40, lifeExpectancy: 85, monthlyExpense: 50000, currentSavings: 5000000, monthlyInvestment: 50000, investmentReturn: 12, inflationRate: 6 }
+    },
+    {
+      label: 'Standard Retirement (60)',
+      description: 'Retire at 60, live to 90',
+      icon: '👴',
+      values: { currentAge: 40, retirementAge: 60, lifeExpectancy: 90, monthlyExpense: 75000, currentSavings: 10000000, monthlyInvestment: 30000, investmentReturn: 11, inflationRate: 6 }
+    },
+    {
+      label: 'Extended Work (65)',
+      description: 'Work till 65, live comfortably',
+      icon: '💼',
+      values: { currentAge: 45, retirementAge: 65, lifeExpectancy: 95, monthlyExpense: 100000, currentSavings: 20000000, monthlyInvestment: 25000, investmentReturn: 10, inflationRate: 5 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof RetirementFormData, Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
 
   // Auto-calculate on input changes
   useEffect(() => {
@@ -201,6 +230,12 @@ export default function RetirementCalculatorPage() {
         <div className="lg:col-span-1">
           <div className="card">
             <h2 className="text-2xl font-bold mb-4">📋 Retirement Inputs</h2>
+
+            {/* Quick-Start Examples */}
+            <QuickStartExamples
+              scenarios={retirementScenarios}
+              onSelectScenario={handleSelectScenario}
+            />
 
             {/* Tab Navigation */}
             <div className="flex gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">

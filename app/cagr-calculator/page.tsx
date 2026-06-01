@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
@@ -9,6 +9,7 @@ import { CAGRSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type CAGRFormData = {
@@ -77,6 +78,34 @@ export default function CAGRCalculatorPage() {
     setResult(null);
   };
 
+  // Quick-start scenarios
+  const cagrScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Conservative Investment',
+      description: '₹1L → ₹5L over 10 years',
+      icon: '🛡️',
+      values: { beginningValue: 100000, endingValue: 500000, years: 10 }
+    },
+    {
+      label: 'Moderate Growth',
+      description: '₹5L → ₹25L over 15 years',
+      icon: '📈',
+      values: { beginningValue: 500000, endingValue: 2500000, years: 15 }
+    },
+    {
+      label: 'Aggressive Growth',
+      description: '₹10L → ₹1Cr over 10 years',
+      icon: '🚀',
+      values: { beginningValue: 1000000, endingValue: 10000000, years: 10 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof CAGRFormData, Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
+
   // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -106,6 +135,13 @@ export default function CAGRCalculatorPage() {
         {/* Form */}
         <div id="cagr-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Investment Details</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={cagrScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
+
           <form  className="space-y-6">
             {/* Beginning Value */}
             <div className="space-y-3">

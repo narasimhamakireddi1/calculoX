@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -10,6 +10,7 @@ import { RDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type RDFormData = {
@@ -91,6 +92,34 @@ export default function RDCalculatorPage() {
     setProjections([]);
   };
 
+  // Quick-start scenarios
+  const rdScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Starter Plan',
+      description: '₹1,000/month for 2 years',
+      icon: '🚀',
+      values: { monthlyDeposit: 1000, annualRate: 6.5, months: 24 }
+    },
+    {
+      label: 'Regular Saver',
+      description: '₹5,000/month for 5 years',
+      icon: '💰',
+      values: { monthlyDeposit: 5000, annualRate: 7, months: 60 }
+    },
+    {
+      label: 'Long-Term Growth',
+      description: '₹10,000/month for 10 years',
+      icon: '📈',
+      values: { monthlyDeposit: 10000, annualRate: 7.2, months: 120 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof RDFormData, Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
+
   // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -126,6 +155,13 @@ export default function RDCalculatorPage() {
         {/* Form */}
         <div id="rd-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">Deposit Details</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={rdScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
+
           <form  className="space-y-6">
             {/* Monthly Deposit */}
             <div className="space-y-3">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
@@ -9,6 +9,7 @@ import { GSTSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type GSTFormData = {
@@ -74,6 +75,34 @@ export default function GSTCalculatorPage() {
     setResult(null);
   };
 
+  // Quick-start scenarios
+  const gstScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'Essential Goods (5%)',
+      description: '₹1,000 price, 5% GST',
+      icon: '🛒',
+      values: { amount: 1000, gstRate: 5, mode: 'add' }
+    },
+    {
+      label: 'Regular Product (18%)',
+      description: '₹5,000 price, 18% GST',
+      icon: '📦',
+      values: { amount: 5000, gstRate: 18, mode: 'add' }
+    },
+    {
+      label: 'Luxury Item (28%)',
+      description: '₹50,000 price, 28% GST',
+      icon: '✨',
+      values: { amount: 50000, gstRate: 28, mode: 'add' }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof GSTFormData, value as any, { shouldValidate: true });
+    });
+  }, [setValue]);
+
   // Auto-calculate when inputs change (with debounce)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -107,6 +136,13 @@ export default function GSTCalculatorPage() {
         {/* Form */}
         <div id="gst-inputs" className="card">
           <h2 className="text-2xl font-bold mb-6">GST Details</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={gstScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
+
           <form  className="space-y-6">
             {/* Calculation Type */}
             <div className="space-y-3">
