@@ -13,6 +13,7 @@ import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/Qui
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
+import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 
 type BMIFormData = {
   weight: number;
@@ -72,6 +73,8 @@ export default function BMICalculatorPage() {
     return () => clearTimeout(timer);
   }, [watchValues, unitSystem]);
 
+  const haptic = useHapticFeedback();
+
   const calculateResults = (data: BMIFormData) => {
     let weightInKg = data.weight;
     let heightInCm = data.height;
@@ -82,6 +85,7 @@ export default function BMICalculatorPage() {
     }
 
     const result = calculateBMI({ weight: weightInKg, height: heightInCm });
+    haptic.trigger('success');
     setResult(result);
   };
 
@@ -111,10 +115,11 @@ export default function BMICalculatorPage() {
     }
   };
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
+    haptic.trigger('warning');
     reset();
     setResult(null);
-  };
+  }, [reset, haptic]);
 
   const handleUnitChange = (unit: 'metric' | 'imperial') => {
     if (unit === 'imperial' && unitSystem === 'metric') {

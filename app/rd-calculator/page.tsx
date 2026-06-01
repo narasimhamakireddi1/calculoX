@@ -15,6 +15,7 @@ import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/Qui
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
+import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 
 type RDFormData = {
   monthlyDeposit: number;
@@ -89,11 +90,14 @@ export default function RDCalculatorPage() {
     }
   };
 
-  const handleReset = () => {
+  const haptic = useHapticFeedback();
+
+  const handleReset = useCallback(() => {
+    haptic.trigger('warning');
     reset();
     setResult(null);
     setProjections([]);
-  };
+  }, [reset, haptic]);
 
   // Quick-start scenarios
   const rdScenarios: QuickStartScenario[] = useMemo(() => [
@@ -136,6 +140,7 @@ export default function RDCalculatorPage() {
 
   const calculateResults = (data: RDFormData) => {
     const result = calculateRD(data);
+    haptic.trigger('success');
     setResult(result);
     const projections = generateRDProjection(data);
     setProjections(projections);

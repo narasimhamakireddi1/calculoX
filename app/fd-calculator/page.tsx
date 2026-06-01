@@ -14,6 +14,7 @@ import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/Qui
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
+import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 
 type TenureType = 'years' | 'months' | 'days';
 
@@ -140,12 +141,15 @@ export default function FDCalculatorPage() {
     }
   };
 
-  const handleReset = () => {
+  const haptic = useHapticFeedback();
+
+  const handleReset = useCallback(() => {
+    haptic.trigger('warning');
     reset();
     setResult(null);
     setProjections([]);
     setShowAllProjections(false);
-  };
+  }, [reset, haptic]);
 
   // Quick-start scenarios
   const fdScenarios: QuickStartScenario[] = useMemo(() => [
@@ -208,6 +212,7 @@ export default function FDCalculatorPage() {
 
   const calculateResults = (data: FDFormData) => {
     const result = calculateFD(data);
+    haptic.trigger('success');
     setResult(result);
     const projections = generateFDProjection(data);
     setProjections(projections);
