@@ -4,6 +4,7 @@
 **Last Updated:** 2026-06-01 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
 **Latest:** 
+- ✅ **Theme Switcher Redesign:** Clean SVG icons (sun/monitor/moon), compact modern buttons (p-2.5), smooth hover animations (translate-y-0.5), blue active state
 - ✅ **Bug Fix:** BMI Calculator Quick-Start Examples now respond to unit system changes (metric ↔ imperial). Scenarios dynamically update with correct values and units
 - ✅ **Navbar Redesign - Modern & Smooth:** Enhanced glassmorphism, smooth animations (duration-300), lift effects on hover, glow shadows, mobile stagger animation, 54 pages | 0 errors)
 - ✅ **Bug Fix:** Category count badges now dynamic (Finance: 11, Health: 1, Utility: 2, Conversion: 0 - calculates from active calculators in real-time)
