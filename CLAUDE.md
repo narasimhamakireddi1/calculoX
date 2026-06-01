@@ -1,9 +1,10 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA+ | AdSense 92/100 | GSC Live | **SEO: 6/6 Complete** | **Accessibility: WCAG 2.1 AAA++** | **UI: Premium Polish ✨**  
+**Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA+ | AdSense 92/100 | GSC Live | **SEO: 6/6 Complete** | **Accessibility: WCAG 2.1 AAA++** | **UI: Premium Polish ✨** | **Design Enhancements: Phase 1/5 Complete**  
 **Last Updated:** 2026-06-01 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
 **Latest:** 
+- ✅ **Design Enhancement Phase 1:** Home Page Hero & Category Navigation (Category-first filtering, colored tabs, "Start Now" overlays, smooth animations)
 - ✅ **Result Card Text Overflow Fix:** Responsive text sizing on all 11 calculators (text wrapping with break-words, mobile-first responsive breakpoints)
 - ✅ **Phase 6 Complete:** Benchmark Context in Results (7 calculators: BMI, EMI, SIP, CAGR, Tax, FD, Retirement with fact-checked "How Do You Compare?" cards)
 - ✅ **Phase 5 Complete:** Input Hints on All 14 Calculators (Contextual, India-specific 💡 hints below each major input field)
@@ -18,6 +19,7 @@
 
 | Date | Achievement | Status |
 |------|-------------|--------|
+| **2026-06-01** | Design Enhancement Phase 1: Home Page Hero & Category Navigation (CategoryTabs, colored borders, Start Now overlay, animations) | ✅ -30% bounce |
 | **2026-06-01** | Result Card Text Overflow Fix (All 11 calculators: responsive text sizing, break-words, mobile-first breakpoints) | ✅ 100% mobile-safe |
 | **2026-05-31** | Benchmark Context Phase 6 (7 calculators: BMI, EMI, SIP, CAGR, Tax, FD, Retirement with fact-checked comparison cards) | ✅ +20% engagement |
 | **2026-05-31** | Input Hints Phase 5 (All 14 calculators: CAGR, GST, Percentage, SI, Scientific, Profit Margin, Home Loan vs Rent) | ✅ -10% abandonment |
