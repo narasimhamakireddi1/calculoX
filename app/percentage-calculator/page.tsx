@@ -372,14 +372,14 @@ export default function PercentageCalculatorPage() {
                 <p className="text-xs uppercase tracking-wide font-semibold mb-2 text-gray-500">Result</p>
                 <div className="flex items-center gap-3">
                   {calculationType === 'percent-change' && (
-                    <span className={`text-4xl font-bold ${
+                    <span className={`text-2xl sm:text-3xl md:text-4xl font-bold ${
                       result.direction === 'increase' ? 'text-green-500' :
                       result.direction === 'decrease' ? 'text-red-500' : 'text-gray-400'
                     }`}>
                       {result.direction === 'increase' ? '↑' : result.direction === 'decrease' ? '↓' : '→'}
                     </span>
                   )}
-                  <p className={`text-5xl font-bold ${
+                  <p className={`text-2xl sm:text-4xl md:text-5xl font-bold break-words overflow-hidden ${
                     calculationType === 'percent-change' && result.direction === 'decrease'
                       ? 'text-red-600 dark:text-red-400'
                       : calculationType === 'percent-change' && result.direction === 'increase'

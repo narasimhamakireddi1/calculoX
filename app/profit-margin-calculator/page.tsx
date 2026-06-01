@@ -396,7 +396,7 @@ export default function ProfitMarginCalculator() {
                   <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     💰 Cost Price
                   </p>
-                  <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
                     ₹{results.inputCostPrice.toFixed(2)}
                   </p>
                 </div>
@@ -405,7 +405,7 @@ export default function ProfitMarginCalculator() {
                   <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     📊 Net Price (Pre-GST)
                   </p>
-                  <p className="text-3xl font-bold text-green-700 dark:text-green-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">
                     ₹{results.netSellingPricePreGst.toFixed(2)}
                   </p>
                 </div>
@@ -414,7 +414,7 @@ export default function ProfitMarginCalculator() {
                   <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     💳 Final MRP
                   </p>
-                  <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
                     ₹{results.finalConsumerMRP.toFixed(2)}
                   </p>
                 </div>
@@ -426,7 +426,7 @@ export default function ProfitMarginCalculator() {
                   <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     🎯 Gross Profit
                   </p>
-                  <p className="text-3xl font-bold text-emerald-700 dark:text-emerald-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-emerald-700 dark:text-emerald-400 break-words overflow-hidden">
                     ₹{results.absoluteGrossProfit.toFixed(2)}
                   </p>
                 </div>
@@ -435,7 +435,7 @@ export default function ProfitMarginCalculator() {
                   <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     📈 Markup
                   </p>
-                  <p className="text-3xl font-bold text-orange-700 dark:text-orange-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-orange-700 dark:text-orange-400 break-words overflow-hidden">
                     {results.calculatedMarkupPercentage.toFixed(2)}%
                   </p>
                 </div>
@@ -444,7 +444,7 @@ export default function ProfitMarginCalculator() {
                   <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     💹 Margin
                   </p>
-                  <p className="text-3xl font-bold text-cyan-700 dark:text-cyan-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-cyan-700 dark:text-cyan-400 break-words overflow-hidden">
                     {results.calculatedMarginPercentage.toFixed(2)}%
                   </p>
                 </div>

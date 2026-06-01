@@ -364,7 +364,7 @@ export default function SIPCalculatorPage() {
                 {/* Total Investment */}
                 <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-5 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-shadow">
                   <p className="text-gray-600 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2">Total Invested</p>
-                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white break-words overflow-hidden">
                     {formatCurrency(result.totalInvestment)}
                   </p>
                 </div>
@@ -372,7 +372,7 @@ export default function SIPCalculatorPage() {
                 {/* Future Value - Highlighted */}
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-lg hover:shadow-xl transition-all">
                   <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">🎯 Future Value (Maturity)</p>
-                  <p className="text-4xl font-bold text-green-700 dark:text-green-400">
+                  <p className="text-xl sm:text-3xl md:text-4xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">
                     {formatCurrency(result.futureValue)}
                   </p>
                 </div>
@@ -380,7 +380,7 @@ export default function SIPCalculatorPage() {
                 {/* Gain Amount */}
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">📈 Total Gains (Returns)</p>
-                  <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
                     {formatCurrency(result.gainedAmount)}
                   </p>
                 </div>
@@ -388,7 +388,7 @@ export default function SIPCalculatorPage() {
                 {/* Return Percentage */}
                 <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-5 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm hover:shadow-md transition-shadow">
                   <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">Return Rate (%)</p>
-                  <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
                     {((result.gainedAmount / result.totalInvestment) * 100).toFixed(1)}%
                   </p>
                 </div>

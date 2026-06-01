@@ -680,7 +680,7 @@ export default function HomeLoanVsRentCalculator() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <div className="card bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800">
                 <div className="text-gray-600 dark:text-gray-300 text-sm font-semibold mb-2">Monthly EMI</div>
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-300">
+                <div className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-300 break-words overflow-hidden">
                   {formatCurrency(result.monthly_emi)}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-2">Buyer's fixed monthly payment</div>
@@ -688,7 +688,7 @@ export default function HomeLoanVsRentCalculator() {
 
               <div className="card bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800">
                 <div className="text-gray-600 dark:text-gray-300 text-sm font-semibold mb-2">Break-Even</div>
-                <div className="text-3xl font-bold text-purple-600 dark:text-purple-300">
+                <div className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-300 break-words overflow-hidden">
                   {result.break_even_year ? `Year ${result.break_even_year}` : 'Never'}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-2">When buying becomes better (if ever)</div>
@@ -703,7 +703,7 @@ export default function HomeLoanVsRentCalculator() {
               >
                 <div className="text-gray-600 dark:text-gray-300 text-sm font-semibold mb-2">Net Advantage</div>
                 <div
-                  className={`text-3xl font-bold ${
+                  className={`text-lg sm:text-2xl md:text-3xl font-bold break-words overflow-hidden ${
                     result.financial_verdict === 'BUYING_IS_BETTER'
                       ? 'text-emerald-600 dark:text-emerald-300'
                       : 'text-blue-600 dark:text-blue-300'

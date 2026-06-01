@@ -232,14 +232,14 @@ export default function CAGRCalculatorPage() {
                   <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     📈 CAGR Percentage
                   </p>
-                  <p className="text-4xl font-bold text-blue-700 dark:text-blue-400">{result.cagrPercentage.toFixed(2)}%</p>
+                  <p className="text-xl sm:text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">{result.cagrPercentage.toFixed(2)}%</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     📊 CAGR Factor
                   </p>
-                  <p className="text-3xl font-bold text-green-700 dark:text-green-400">{result.cagr.toFixed(4)}</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{result.cagr.toFixed(4)}</p>
                   <p className="text-xs text-green-600 dark:text-green-400 mt-2">Growth multiple ({(result.cagr + 1).toFixed(4)}x)</p>
                 </div>
               </div>

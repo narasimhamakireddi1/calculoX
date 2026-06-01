@@ -227,21 +227,21 @@ export default function GSTCalculatorPage() {
                   <p className="text-gray-700 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     📦 Base Amount
                   </p>
-                  <p className="text-4xl font-bold text-gray-700 dark:text-gray-400">{formatCurrency(result.baseAmount)}</p>
+                  <p className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-700 dark:text-gray-400 break-words overflow-hidden">{formatCurrency(result.baseAmount)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     💜 GST Amount ({gstRate}%)
                   </p>
-                  <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">{formatCurrency(result.gstAmount)}</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">{formatCurrency(result.gstAmount)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     ✅ Total Amount
                   </p>
-                  <p className="text-4xl font-bold text-green-700 dark:text-green-400">{formatCurrency(result.totalAmount)}</p>
+                  <p className="text-xl sm:text-3xl md:text-4xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{formatCurrency(result.totalAmount)}</p>
                 </div>
               </div>
 

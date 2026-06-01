@@ -490,14 +490,14 @@ export default function FDCalculatorPage() {
                   <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     💰 Maturity Amount
                   </p>
-                  <p className="text-4xl font-bold text-blue-700 dark:text-blue-400">{formatCurrency(result.maturityAmount)}</p>
+                  <p className="text-xl sm:text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">{formatCurrency(result.maturityAmount)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">
                     📈 Total Interest Earned
                   </p>
-                  <p className="text-3xl font-bold text-green-700 dark:text-green-400">{formatCurrency(result.totalInterest)}</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{formatCurrency(result.totalInterest)}</p>
                 </div>
 
                 {result.periodicPayout !== undefined && result.periodicPayout > 0 && (
@@ -505,7 +505,7 @@ export default function FDCalculatorPage() {
                     <p className="text-amber-700 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-2">
                       {watchValues.payoutType === 'quarterly' ? '📊 Per Quarter Payout' : '📅 Per Month Payout'}
                     </p>
-                    <p className="text-3xl font-bold text-amber-700 dark:text-amber-400">{formatCurrency(result.periodicPayout)}</p>
+                    <p className="text-lg sm:text-2xl md:text-3xl font-bold text-amber-700 dark:text-amber-400 break-words overflow-hidden">{formatCurrency(result.periodicPayout)}</p>
                   </div>
                 )}
               </div>

@@ -394,19 +394,19 @@ export default function SimpleInterestCalculatorPage() {
                 {/* Principal */}
                 <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 p-5 rounded-lg border border-emerald-300 dark:border-emerald-700 shadow-sm hover:shadow-md transition-shadow">
                   <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-2">💰 Principal Amount</p>
-                  <p className="text-3xl font-bold text-emerald-700 dark:text-emerald-400">{formatCurrency(result.principalAmount)}</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-emerald-700 dark:text-emerald-400 break-words overflow-hidden">{formatCurrency(result.principalAmount)}</p>
                 </div>
 
                 {/* Interest - Highlighted */}
                 <div className="bg-gradient-to-br from-green-50 to-cyan-50 dark:from-green-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-lg hover:shadow-xl transition-all">
                   <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">📈 Interest Accrued</p>
-                  <p className="text-4xl font-bold text-green-700 dark:text-green-400">{formatCurrency(result.interestAccrued)}</p>
+                  <p className="text-xl sm:text-3xl md:text-4xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{formatCurrency(result.interestAccrued)}</p>
                 </div>
 
                 {/* Total Maturity Value */}
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">🎯 Total Maturity Value</p>
-                  <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">{formatCurrency(result.totalMaturityValue)}</p>
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">{formatCurrency(result.totalMaturityValue)}</p>
                 </div>
 
                 {/* Daily Accrual */}

@@ -609,7 +609,7 @@ export default function TaxCalculator() {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-lg hover:shadow-xl transition-all">
                     <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1">Total Income</p>
-                    <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">
+                    <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
                       {formatCurrency(getRegimeResult()!.grossSalary + (getRegimeResult()!.grossTotalIncome - (getRegimeResult()!.grossSalary - getRegimeResult()!.standardDeduction)))}
                     </p>
                   </div>
@@ -618,14 +618,14 @@ export default function TaxCalculator() {
                     <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1">
                       Net Taxable Income ({result.recommended === 'new' ? 'New' : 'Old'})
                     </p>
-                    <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">
+                    <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
                       {formatCurrency(getRegimeResult()!.taxableIncome)}
                     </p>
                   </div>
 
                   <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/30 dark:to-amber-900/30 p-5 rounded-lg border-2 border-orange-300 dark:border-orange-700 shadow-lg hover:shadow-xl transition-all">
                     <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-1">Slab Tax (Before Rebate)</p>
-                    <p className="text-3xl font-bold text-orange-700 dark:text-orange-400">
+                    <p className="text-lg sm:text-2xl md:text-3xl font-bold text-orange-700 dark:text-orange-400 break-words overflow-hidden">
                       {formatCurrency(getRegimeResult()!.slabTax)}
                     </p>
                   </div>
@@ -645,7 +645,7 @@ export default function TaxCalculator() {
                       Total Tax Payable
                     </p>
                     <p
-                      className={`text-4xl font-bold ${
+                      className={`text-xl sm:text-3xl md:text-4xl font-bold break-words overflow-hidden ${
                         getRegimeResult()!.totalTax === 0 ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'
                       }`}
                     >
