@@ -9,22 +9,22 @@ interface CalculatorCardProps {
 }
 
 const categoryColors: Record<string, { badge: string; border: string; text: string }> = {
-  finance: {
+  Finance: {
     badge: 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800',
     border: 'group-hover:border-blue-400 dark:group-hover:border-blue-500',
     text: 'group-hover:text-blue-600 dark:group-hover:text-blue-400'
   },
-  health: {
+  Health: {
     badge: 'bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-800',
     border: 'group-hover:border-pink-400 dark:group-hover:border-pink-500',
     text: 'group-hover:text-pink-600 dark:group-hover:text-pink-400'
   },
-  business: {
+  Utility: {
     badge: 'bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800',
     border: 'group-hover:border-orange-400 dark:group-hover:border-orange-500',
     text: 'group-hover:text-orange-600 dark:group-hover:text-orange-400'
   },
-  advanced: {
+  Conversion: {
     badge: 'bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800',
     border: 'group-hover:border-purple-400 dark:group-hover:border-purple-500',
     text: 'group-hover:text-purple-600 dark:group-hover:text-purple-400'
@@ -38,7 +38,7 @@ export function CalculatorCard({
   icon,
   category,
 }: CalculatorCardProps) {
-  const colors = categoryColors[category.toLowerCase()] || categoryColors.finance;
+  const colors = categoryColors[category] || categoryColors['Finance'];
 
   return (
     <Link href={href}>

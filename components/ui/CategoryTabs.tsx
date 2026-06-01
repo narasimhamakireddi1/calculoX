@@ -1,6 +1,6 @@
 'use client';
 
-export type CalculatorCategory = 'finance' | 'health' | 'business' | 'advanced';
+export type CalculatorCategory = 'finance' | 'health' | 'utility' | 'conversion';
 
 interface CategoryTabsProps {
   onCategoryChange: (category: CalculatorCategory | null) => void;
@@ -11,7 +11,7 @@ const categoryConfig = {
   finance: {
     label: 'Finance',
     color: 'from-blue-600 to-blue-400',
-    count: 7,
+    count: 16,
     description: 'Loans, Investments & Wealth'
   },
   health: {
@@ -20,17 +20,17 @@ const categoryConfig = {
     count: 1,
     description: 'Body & Fitness'
   },
-  business: {
-    label: 'Business',
+  utility: {
+    label: 'Utility',
     color: 'from-orange-600 to-amber-400',
     count: 3,
-    description: 'Taxes, Margins & Pricing'
+    description: 'Percentage, Hike & More'
   },
-  advanced: {
-    label: 'Advanced',
+  conversion: {
+    label: 'Conversion',
     color: 'from-purple-600 to-indigo-400',
-    count: 3,
-    description: 'Complex Calculations'
+    count: 2,
+    description: 'Unit & Value Conversion'
   }
 };
 

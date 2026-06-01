@@ -20,13 +20,13 @@ export default function Home() {
 
   // Filter calculators by category
   const filteredCalculators = selectedCategory
-    ? allCalculators.filter(calc => calc.category.toLowerCase() === selectedCategory.toLowerCase())
+    ? allCalculators.filter(calc => calc.category.toLowerCase() === selectedCategory)
     : allCalculators;
 
   // Group calculators by category
   const groupedByCategory: Record<string, typeof allCalculators> = {};
   (selectedCategory ? filteredCalculators : allCalculators).forEach(calc => {
-    const catKey = calc.category.toLowerCase();
+    const catKey = calc.category;
     if (!groupedByCategory[catKey]) {
       groupedByCategory[catKey] = [];
     }
@@ -34,10 +34,10 @@ export default function Home() {
   });
 
   const categoryLabels: Record<string, string> = {
-    finance: '💰 Finance',
-    health: '💪 Health',
-    business: '📊 Business',
-    advanced: '🧮 Advanced'
+    Finance: '💰 Finance',
+    Health: '💪 Health',
+    Utility: '📈 Utility',
+    Conversion: '🔄 Conversion'
   };
 
   return (
@@ -129,17 +129,17 @@ export default function Home() {
               <div key={category} className="space-y-4">
                 <div className="flex items-center gap-3 pb-4 border-b-2 border-gray-200 dark:border-gray-700">
                   <h3 className={`text-2xl font-bold ${
-                    category === 'finance' ? 'text-blue-600' :
-                    category === 'health' ? 'text-pink-600' :
-                    category === 'business' ? 'text-orange-600' :
+                    category === 'Finance' ? 'text-blue-600' :
+                    category === 'Health' ? 'text-pink-600' :
+                    category === 'Utility' ? 'text-orange-600' :
                     'text-purple-600'
                   }`}>
                     {categoryLabels[category]}
                   </h3>
                   <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                    category === 'finance' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
-                    category === 'health' ? 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400' :
-                    category === 'business' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
+                    category === 'Finance' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+                    category === 'Health' ? 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400' :
+                    category === 'Utility' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
                     'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
                   }`}>
                     {calcs.length} {calcs.length === 1 ? 'Calculator' : 'Calculators'}
