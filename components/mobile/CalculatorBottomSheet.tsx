@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { getActiveCalculators } from '@/config/calculators.config';
 import { CategoryTabs, type CalculatorCategory } from '@/components/ui/CategoryTabs';
 import { MobileBottomSheet } from './MobileBottomSheet';
@@ -13,6 +13,7 @@ interface CalculatorBottomSheetProps {
 
 export function CalculatorBottomSheet({ isOpen, onClose }: CalculatorBottomSheetProps) {
   const [selectedCategory, setSelectedCategory] = useState<CalculatorCategory | null>(null);
+  const router = useRouter();
   const activeCalculators = getActiveCalculators();
 
   const filteredCalculators = useMemo(() => {
@@ -22,8 +23,11 @@ export function CalculatorBottomSheet({ isOpen, onClose }: CalculatorBottomSheet
     return activeCalculators.filter(calc => calc.category === categoryCapitalized);
   }, [selectedCategory, activeCalculators]);
 
-  const handleNavigate = () => {
+  const handleNavigate = (href: string) => {
     onClose();
+    setTimeout(() => {
+      router.push(href);
+    }, 150);
   };
 
   return (
@@ -45,11 +49,10 @@ export function CalculatorBottomSheet({ isOpen, onClose }: CalculatorBottomSheet
         {/* Calculator Grid */}
         <div className="grid grid-cols-2 gap-3">
           {filteredCalculators.map((calc) => (
-            <Link
+            <button
               key={calc.id}
-              href={calc.href}
-              onClick={handleNavigate}
-              className="p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 group"
+              onClick={() => handleNavigate(calc.href)}
+              className="p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 group text-left"
             >
               <div className="text-2xl mb-1 group-hover:scale-110 transition-transform duration-300">
                 {calc.icon}
@@ -60,7 +63,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: CalculatorBottomSheet
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                 {calc.category}
               </p>
-            </Link>
+            </button>
           ))}
         </div>
 
