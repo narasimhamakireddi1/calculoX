@@ -580,30 +580,58 @@ export default function ProfitMarginCalculator() {
         {/* Charts Section */}
         {results && (
           <div className="space-y-8">
-            {/* Stacked Bar Chart */}
-            <div className="card">
+            {/* Stacked Bar Chart - Mobile Responsive */}
+            <div className="card overflow-x-auto">
               <h2 className="text-lg font-semibold mb-6">📊 Revenue Breakdown (Stacked)</h2>
-              <ResponsiveContainer width="100%" height={250}>
-                <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, bottom: 20, left: 100 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" />
-                  <YAxis type="category" dataKey="name" />
-                  <Tooltip
-                    formatter={(value) => `₹${Number(value).toFixed(2)}`}
-                    contentStyle={{
-                      backgroundColor: '#ffffff',
-                      border: '1px solid #e5e7eb',
-                      borderRadius: '8px',
-                      color: '#000000',
-                    }}
-                    wrapperStyle={{ outline: 'none' }}
-                  />
-                  <Legend />
-                  <Bar dataKey="cost" stackId="a" fill="#3b82f6" name="Cost Price" />
-                  <Bar dataKey="profit" stackId="a" fill="#10b981" name="Net Profit" />
-                  <Bar dataKey="gst" stackId="a" fill="#ef4444" name="GST Amount" />
-                </BarChart>
-              </ResponsiveContainer>
+              {/* Mobile View - Horizontal Layout */}
+              <div className="md:hidden">
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={chartData} layout="horizontal" margin={{ top: 5, right: 30, bottom: 5, left: 60 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" tick={{ fontSize: 12 }} />
+                    <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={55} />
+                    <Tooltip
+                      formatter={(value) => `₹${Number(value).toFixed(2)}`}
+                      contentStyle={{
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '8px',
+                        color: '#000000',
+                        fontSize: '12px',
+                      }}
+                      wrapperStyle={{ outline: 'none' }}
+                    />
+                    <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '12px' }} />
+                    <Bar dataKey="cost" stackId="a" fill="#3b82f6" name="Cost Price" />
+                    <Bar dataKey="profit" stackId="a" fill="#10b981" name="Net Profit" />
+                    <Bar dataKey="gst" stackId="a" fill="#ef4444" name="GST Amount" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              {/* Desktop View - Vertical Layout */}
+              <div className="hidden md:block">
+                <ResponsiveContainer width="100%" height={250}>
+                  <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, bottom: 20, left: 100 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" />
+                    <YAxis type="category" dataKey="name" />
+                    <Tooltip
+                      formatter={(value) => `₹${Number(value).toFixed(2)}`}
+                      contentStyle={{
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '8px',
+                        color: '#000000',
+                      }}
+                      wrapperStyle={{ outline: 'none' }}
+                    />
+                    <Legend />
+                    <Bar dataKey="cost" stackId="a" fill="#3b82f6" name="Cost Price" />
+                    <Bar dataKey="profit" stackId="a" fill="#10b981" name="Net Profit" />
+                    <Bar dataKey="gst" stackId="a" fill="#ef4444" name="GST Amount" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </div>
 
             {/* GST Scenario Table */}
