@@ -581,36 +581,44 @@ export default function ProfitMarginCalculator() {
         {results && (
           <div className="space-y-8">
             {/* Stacked Bar Chart - Mobile Responsive */}
-            <div className="card overflow-x-auto">
+            <div className="card">
               <h2 className="text-lg font-semibold mb-6">📊 Revenue Breakdown (Stacked)</h2>
-              {/* Mobile View - Horizontal Layout */}
-              <div className="md:hidden">
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={chartData} layout="horizontal" margin={{ top: 5, right: 30, bottom: 5, left: 60 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="number" tick={{ fontSize: 12 }} />
-                    <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={55} />
-                    <Tooltip
-                      formatter={(value) => `₹${Number(value).toFixed(2)}`}
-                      contentStyle={{
-                        backgroundColor: '#ffffff',
-                        border: '1px solid #e5e7eb',
-                        borderRadius: '8px',
-                        color: '#000000',
-                        fontSize: '12px',
-                      }}
-                      wrapperStyle={{ outline: 'none' }}
-                    />
-                    <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '12px' }} />
-                    <Bar dataKey="cost" stackId="a" fill="#3b82f6" name="Cost Price" />
-                    <Bar dataKey="profit" stackId="a" fill="#10b981" name="Net Profit" />
-                    <Bar dataKey="gst" stackId="a" fill="#ef4444" name="GST Amount" />
-                  </BarChart>
-                </ResponsiveContainer>
+              {/* Mobile View - Compact Vertical Layout */}
+              <div className="md:hidden overflow-x-auto -mx-4 px-4">
+                <div style={{ minWidth: '320px' }}>
+                  <ResponsiveContainer width="100%" height={280}>
+                    <BarChart data={chartData} margin={{ top: 10, right: 20, bottom: 40, left: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis
+                        dataKey="name"
+                        angle={-45}
+                        textAnchor="end"
+                        height={80}
+                        tick={{ fontSize: 12, fill: '#9CA3AF' }}
+                      />
+                      <YAxis tick={{ fontSize: 12, fill: '#9CA3AF' }} />
+                      <Tooltip
+                        formatter={(value) => `₹${Number(value).toLocaleString('en-IN', {maximumFractionDigits: 0})}`}
+                        contentStyle={{
+                          backgroundColor: '#1f2937',
+                          border: '1px solid #374151',
+                          borderRadius: '8px',
+                          color: '#f3f4f6',
+                          fontSize: '12px',
+                        }}
+                        wrapperStyle={{ outline: 'none' }}
+                      />
+                      <Legend wrapperStyle={{ paddingTop: '15px', fontSize: '12px' }} />
+                      <Bar dataKey="cost" stackId="a" fill="#3b82f6" name="Cost Price" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="profit" stackId="a" fill="#10b981" name="Net Profit" radius={[0, 0, 0, 0]} />
+                      <Bar dataKey="gst" stackId="a" fill="#ef4444" name="GST Amount" radius={[0, 0, 4, 4]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
-              {/* Desktop View - Vertical Layout */}
+              {/* Desktop View - Original Vertical Layout */}
               <div className="hidden md:block">
-                <ResponsiveContainer width="100%" height={250}>
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, bottom: 20, left: 100 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />
