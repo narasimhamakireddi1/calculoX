@@ -10,6 +10,8 @@ import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { useSavedCalculations } from '@/lib/hooks/useSavedCalculations';
+import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
@@ -52,7 +54,87 @@ interface AmortizationRow {
 }
 
 // Memoized result cards component
-const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null; inputsData: FormattedInput[] }) => {
+const SaveButtonSection = ({ formValues, result }: { formValues: EMIFormData; result: EMIResultData | null }) => {
+  const { saveCalculation } = useSavedCalculations();
+  const [showModal, setShowModal] = useState(false);
+  const [customName, setCustomName] = useState('');
+  const [saved, setSaved] = useState(false);
+
+  if (!result) return null;
+
+  const handleSave = (name?: string) => {
+    saveCalculation('emi-calculator', 'EMI Calculator', formValues, {
+      emi: result.emi,
+      totalAmount: result.totalAmount,
+      totalInterest: result.totalInterest,
+      numberOfMonths: result.numberOfMonths
+    }, name || undefined);
+    setSaved(true);
+    setShowModal(false);
+    setTimeout(() => setSaved(false), 2000);
+  };
+
+  return (
+    <>
+      <button
+        onClick={() => setShowModal(true)}
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold transition-all duration-200 hover:shadow-lg active:scale-95"
+        title="Save this calculation for later"
+      >
+        <span>💾</span>
+        {saved ? 'Saved!' : 'Save Calculation'}
+      </button>
+
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-md w-full p-6 border border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Save Calculation</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Calculator: EMI Calculator
+                </label>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Access this in "Saved Calculations" from the home page
+                </p>
+              </div>
+              <div>
+                <label htmlFor="customName" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Give it a name (optional)
+                </label>
+                <input
+                  id="customName"
+                  type="text"
+                  placeholder="e.g., Home Loan - 50L Budget"
+                  value={customName}
+                  onChange={(e) => setCustomName(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  maxLength={50}
+                />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => handleSave(customName)}
+                  className="flex-1 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:from-purple-700 hover:to-pink-700 transition-all"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+const ResultCards = memo(({ result, inputsData, formValues }: { result: EMIResultData | null; inputsData: FormattedInput[]; formValues: EMIFormData }) => {
   if (!result) {
     return (
       <div className="card h-full flex items-center justify-center min-h-64">
@@ -134,14 +216,17 @@ const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null
         </p>
       </div>
 
-      <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
-        <ExportButton
-          fileName="EMI_Loan_Summary"
-          calculatorName="EMI Calculator Results"
-          resultElementId="emi-results"
-          inputElementId="emi-inputs"
-          inputsData={inputsData}
-        />
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-600 space-y-3">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <SaveButtonSection formValues={formValues} result={result} />
+          <ExportButton
+            fileName="EMI_Loan_Summary"
+            calculatorName="EMI Calculator Results"
+            resultElementId="emi-results"
+            inputElementId="emi-inputs"
+            inputsData={inputsData}
+          />
+        </div>
       </div>
     </div>
   );
@@ -180,41 +265,94 @@ const LoanInput = memo(({
   rangeText: string;
   colorFrom: string;
   colorTo: string;
-}) => (
-  <div className="space-y-3">
-    <label htmlFor={id} className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
-    <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value ?? 0}
-        onChange={onChange}
-        onBlur={onBlur}
-        className={`w-full md:flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer accent-${colorTo.split('-')[1]}-600 transition-all will-change-auto`}
-      />
-      <div className="w-full md:w-auto relative flex-shrink-0">
-        {prefix && <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">{prefix}</span>}
-        {suffix && <span className="absolute right-2 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">{suffix}</span>}
-        <input
-          id={id}
-          type="number"
-          placeholder="0"
-          min={min}
-          max={max}
-          step={step}
-          value={value === 0 ? '' : value}
-          onChange={onChange}
-          onBlur={onBlur}
-          className="w-full md:w-32 px-8 md:px-6 py-3 border-2 rounded-lg text-right font-bold text-sm md:text-base focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
-        />
+}) => {
+  const [isDragging, setIsDragging] = useState(false);
+
+  return (
+    <div className="space-y-3">
+      <label htmlFor={id} className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
+      <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:items-center">
+        {/* Slider - Enhanced for mobile */}
+        <div className="flex-1 flex flex-col items-center justify-center md:block">
+          <input
+            type="range"
+            min={min}
+            max={max}
+            step={step}
+            value={value ?? 0}
+            onChange={onChange}
+            onMouseDown={() => setIsDragging(true)}
+            onMouseUp={() => setIsDragging(false)}
+            onTouchStart={() => setIsDragging(true)}
+            onTouchEnd={() => setIsDragging(false)}
+            onBlur={onBlur}
+            className={`w-full slider-input h-2 md:h-2.5 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-full appearance-none cursor-pointer transition-all ${isDragging ? 'scale-105 shadow-lg' : 'hover:scale-102'} will-change-transform`}
+            style={{
+              WebkitAppearance: 'none',
+            }}
+          />
+          <style>{`
+            input[type='range'].slider-input::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              appearance: none;
+              width: 28px;
+              height: 28px;
+              border-radius: 50%;
+              background: white;
+              cursor: pointer;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+              border: 3px solid currentColor;
+              transition: all 0.2s ease;
+            }
+            input[type='range'].slider-input::-webkit-slider-thumb:active {
+              width: 32px;
+              height: 32px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+            input[type='range'].slider-input::-moz-range-thumb {
+              width: 28px;
+              height: 28px;
+              border-radius: 50%;
+              background: white;
+              cursor: pointer;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+              border: 3px solid currentColor;
+              transition: all 0.2s ease;
+            }
+            input[type='range'].slider-input::-moz-range-thumb:active {
+              width: 32px;
+              height: 32px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+            input[type='range'].slider-input:focus {
+              outline: none;
+            }
+          `}</style>
+        </div>
+
+        {/* Number Input - Enhanced for mobile (56px+ touch target) */}
+        <div className="w-full md:w-auto relative flex-shrink-0">
+          {prefix && <span className="absolute left-3 md:left-2 top-1/2 -translate-y-1/2 md:translate-y-0 md:top-3 font-bold text-sm md:text-sm">{prefix}</span>}
+          {suffix && <span className="absolute right-3 md:right-3 top-1/2 -translate-y-1/2 md:translate-y-0 md:top-3 font-bold text-sm md:text-sm">{suffix}</span>}
+          <input
+            id={id}
+            type="number"
+            placeholder="0"
+            min={min}
+            max={max}
+            step={step}
+            value={value === 0 ? '' : value}
+            onChange={onChange}
+            onBlur={onBlur}
+            className="w-full md:w-32 px-10 md:px-6 py-3 md:py-2.5 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-right font-bold text-base md:text-base focus:outline-none focus:ring-2 focus:ring-offset-0 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all hover:border-gray-400 dark:hover:border-gray-500"
+          />
+        </div>
       </div>
+      {error && <p className="text-red-500 text-sm">{error.message}</p>}
+      <p className="text-xs text-gray-500 dark:text-gray-400">{rangeText}</p>
     </div>
-    {error && <p className="text-red-500 text-sm">{error.message}</p>}
-    <p className="text-xs text-gray-500 dark:text-gray-400">{rangeText}</p>
-  </div>
-));
+  );
+});
 
 LoanInput.displayName = 'LoanInput';
 
@@ -224,6 +362,12 @@ export default function EMICalculatorPage() {
   const [scheduleFirstTwelve, setScheduleFirstTwelve] = useState<AmortizationRow[]>([]);
   const [showFullSchedule, setShowFullSchedule] = useState(false);
 
+  const defaultValues = {
+    principal: 1000000,
+    annualRate: 8.5,
+    years: 5,
+  };
+
   const {
     formState: { errors },
     watch,
@@ -231,12 +375,24 @@ export default function EMICalculatorPage() {
     reset,
   } = useForm<EMIFormData>({
     resolver: zodResolver(EMISchema),
-    defaultValues: {
-      principal: 1000000,
-      annualRate: 8.5,
-      years: 5,
-    },
+    defaultValues,
   });
+
+  // Restore saved calculation if available
+  useEffect(() => {
+    const savedData = sessionStorage.getItem('restore_emi-calculator');
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        Object.entries(parsed).forEach(([key, value]) => {
+          setValue(key as keyof EMIFormData, value as any, { shouldValidate: true });
+        });
+        sessionStorage.removeItem('restore_emi-calculator');
+      } catch {
+        // Ignore if invalid
+      }
+    }
+  }, [setValue]);
 
   const watchValues = watch();
 
@@ -369,6 +525,8 @@ export default function EMICalculatorPage() {
         </p>
       </div>
 
+      <ConfidenceBadge calculatorType="emi" />
+
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form Section */}
         <div id="emi-inputs" className="card">
@@ -474,7 +632,7 @@ export default function EMICalculatorPage() {
         </div>
 
         {/* Results Section */}
-        <ResultCards result={result} inputsData={inputsData} />
+        <ResultCards result={result} inputsData={inputsData} formValues={watchValues} />
       </div>
 
       {/* Charts Section - Lazy loaded */}

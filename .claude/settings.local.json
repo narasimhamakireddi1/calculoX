@@ -5,7 +5,11 @@
       "Bash(git commit *)",
       "Bash(npm run *)",
       "Bash(git push *)",
-      "Bash(curl -s http://localhost:3000/blog)"
+      "Bash(curl -s http://localhost:3000/blog)",
+      "PowerShell(grep -i \"error\\\\|warn\" 2>&1)",
+      "PowerShell(head -20)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(curl -s http://localhost:3000/emi-calculator)"
     ]
   }
 }

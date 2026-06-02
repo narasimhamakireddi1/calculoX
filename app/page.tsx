@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { CalculatorCard } from "@/components/ui/CalculatorCard";
 import { CalculatorSearch } from "@/components/ui/CalculatorSearch";
 import { CategoryTabs, type CalculatorCategory } from "@/components/ui/CategoryTabs";
+import { SavedCalculationsPanel } from "@/components/ui/SavedCalculationsPanel";
 import { getActiveCalculators } from "@/config/calculators.config";
 
 export default function Home() {
@@ -72,6 +74,9 @@ export default function Home() {
           <div className="px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-sm font-semibold border border-purple-200 dark:border-purple-800">
             ✓ 14 Calculators
           </div>
+          <Link href="/compare" className="px-4 py-2 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 text-sm font-semibold border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors">
+            ⚖️ Compare Calculators
+          </Link>
         </div>
 
         {/* Trust Bar */}
@@ -96,6 +101,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Saved Calculations Panel */}
+      <SavedCalculationsPanel />
 
       {/* Calculators Grid with Category Tabs */}
       <section className="space-y-8">

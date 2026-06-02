@@ -11,6 +11,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
@@ -231,6 +232,8 @@ export default function TaxCalculator() {
           <h1 className="text-4xl font-bold mb-4 text-gradient">💰 Income Tax Calculator</h1>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">FY 2025-26 | AY 2026-27 | Old & New Regime</p>
         </div>
+
+        <ConfidenceBadge calculatorType="tax" />
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Form Section */}
