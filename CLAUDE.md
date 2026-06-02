@@ -1,10 +1,11 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready | Modern Sliders Live
-**Last Updated:** 2026-06-02 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** d3936e2
+**Last Updated:** 2026-06-02 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 06d408d
 
-## ✅ Latest (2026-06-02 - Mobile Navbar Fix + Phase 3: Modern Sliders + Preset Buttons)
-- 📱 **Mobile Navbar Fix:** Calculator links in mobile menu now respond instantly | useRouter manual navigation | No event conflicts on touch ✅
+## ✅ Latest (2026-06-02 - Mobile Menu Z-Index Fix + Phase 3: Modern Sliders + Preset Buttons)
+- 📱 **Mobile Menu Fix:** Bottom sheet now appears above navbar (z-index 70→80) | Menu button opens smoothly | Fixed overlay stacking ✅
+- 📱 **Mobile Navigator:** Calculator links respond instantly | useRouter manual navigation | No event conflicts on touch ✅
 - 🎚️ **Modern Slider Design:** All 14 calculators with gradient backgrounds (h-3 height), color-coordinated inputs, 24px→28px thumb animation ✅
 - 📋 **Quick-Select Presets:** All 14 calculators with context-aware preset buttons (₹, %, years, months) | Dynamic button labels ✅
 - ⚖️ **Calculator Comparison Mode:** Side-by-side EMI / SIP / FD | Shareable URLs (`?c1=emi&c2=sip`) | Swap button | Mobile responsive ✅
