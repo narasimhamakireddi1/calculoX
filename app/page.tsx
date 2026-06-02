@@ -80,14 +80,10 @@ export default function Home() {
 
         {/* Trust Bar */}
         <div className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 md:p-8 border border-blue-100 dark:border-blue-800/50">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">50K+</div>
               <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Indians using CalculoX</p>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400">✅</div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Zero Ad Clutter</p>
             </div>
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">🔒</div>
