@@ -29,7 +29,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: CalculatorBottomSheet
       />
 
       {/* Mobile Menu Panel */}
-      <div className="fixed top-0 right-0 bottom-0 z-[80] w-full max-w-sm bg-white dark:bg-gray-900 shadow-2xl md:hidden overflow-y-auto">
+      <div className="fixed top-0 right-0 bottom-0 z-[80] w-[85vw] max-w-full bg-white dark:bg-gray-900 shadow-2xl md:hidden overflow-y-auto">
         {/* Header with Close Button */}
         <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-4 flex justify-between items-center">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white">Menu</h2>
