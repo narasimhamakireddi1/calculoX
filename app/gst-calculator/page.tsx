@@ -204,6 +204,16 @@ export default function GSTCalculatorPage() {
                 />
               </div>
               {errors.amount && <p className="text-red-500 text-sm">{errors.amount.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[1000, 5000, 10000, 50000].map(val => (
+                  <button key={val} type="button" onClick={() => handleAmountChange(val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                    ₹{val >= 1000 ? `${val / 1000}K` : val}
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">₹100 to ₹10 Crore</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 18% applies to most services. 5% for essential goods, 12% for intermediate, 28% for luxury items</p>
             </div>

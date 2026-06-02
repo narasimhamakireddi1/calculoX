@@ -284,6 +284,16 @@ export default function BMICalculatorPage() {
                 />
               </div>
               {errors.weight && <p className="text-red-500 text-sm">{errors.weight.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {(unitSystem === 'metric' ? [50, 70, 90] : [110, 154, 198]).map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('weight', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                    {val}{unitSystem === 'metric' ? 'kg' : 'lbs'}
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                 💡 Normal BMI range: 18.5-24.9. Asian guidelines suggest &lt;23 for optimal health
               </p>
@@ -316,6 +326,16 @@ export default function BMICalculatorPage() {
                 />
               </div>
               {errors.height && <p className="text-red-500 text-sm">{errors.height.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {(unitSystem === 'metric' ? [160, 170, 180] : [64, 68, 72]).map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('height', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
+                               bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                               hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                    {val}{unitSystem === 'metric' ? 'cm' : '\"'}
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                 💡 Be precise with your height. Even small variations impact BMI calculation significantly
               </p>

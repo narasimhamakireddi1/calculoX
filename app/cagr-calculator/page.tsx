@@ -172,6 +172,16 @@ export default function CAGRCalculatorPage() {
                 />
               </div>
               {errors.beginningValue && <p className="text-red-500 text-sm">{errors.beginningValue.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[10000, 50000, 100000, 500000].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('beginningValue', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                    ₹{val >= 100000 ? `${val / 100000}L` : `${val / 1000}K`}
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 to ₹1 Crore</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Starting investment amount. Use actual investment sum to calculate realistic CAGR</p>
             </div>
@@ -203,6 +213,16 @@ export default function CAGRCalculatorPage() {
                 />
               </div>
               {errors.endingValue && <p className="text-red-500 text-sm">{errors.endingValue.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[50000, 100000, 500000, 1000000].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('endingValue', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
+                               bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                               hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                    ₹{val >= 100000 ? `${val / 100000}L` : `${val / 1000}K`}
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 to ₹1 Crore</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Final portfolio value after investment period. Must be greater than beginning value for positive CAGR</p>
             </div>
@@ -234,6 +254,16 @@ export default function CAGRCalculatorPage() {
                 />
               </div>
               {errors.years && <p className="text-red-500 text-sm">{errors.years.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[5, 10, 15, 20].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('years', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-orange-200 dark:border-orange-700
+                               bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300
+                               hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors">
+                    {val}y
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">1 to 50 years</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Stock market CAGR (Nifty 50): ~13% over 20 years. Long-term investing smooths volatility and improves returns</p>
             </div>

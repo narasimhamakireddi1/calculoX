@@ -244,6 +244,16 @@ export default function SimpleInterestCalculatorPage() {
                 </div>
               </div>
               {errors.principal && <p className="text-red-500 text-sm">{errors.principal.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[10000, 50000, 100000, 500000].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('principal', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-700
+                               bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300
+                               hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors">
+                    ₹{val >= 100000 ? `${val / 100000}L` : `${val / 1000}K`}
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">₹10,000 - ₹10 Crore</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Principal amount in Simple Interest. Interest is calculated on this amount without compounding</p>
             </div>
@@ -279,6 +289,16 @@ export default function SimpleInterestCalculatorPage() {
                 </div>
               </div>
               {errors.annualRate && <p className="text-red-500 text-sm">{errors.annualRate.message}</p>}
+              <div className="flex gap-2 flex-wrap mt-3">
+                {[3, 6, 9, 12].map(val => (
+                  <button key={val} type="button" onClick={() => handleInputChange('annualRate', val)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                    {val}%
+                  </button>
+                ))}
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">0% - 50% p.a.</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Current bank interest rates: 6-7% p.a. for Savings Accounts. Higher for FDs (7-8% p.a.)</p>
             </div>

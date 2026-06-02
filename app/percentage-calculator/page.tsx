@@ -309,6 +309,26 @@ export default function PercentageCalculatorPage() {
                   className="w-full md:w-32 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
+              <div className="flex gap-2 flex-wrap mt-3">
+                {['percent-of', 'reverse-percent'].includes(calculationType) ?
+                  [10, 25, 50, 100].map(val => (
+                    <button key={val} type="button" onClick={() => setValue('valueA', val)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                                 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                                 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                      {val}%
+                    </button>
+                  )) :
+                  [100, 500, 1000, 5000].map(val => (
+                    <button key={val} type="button" onClick={() => setValue('valueA', val)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                                 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                                 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                      ₹{val}
+                    </button>
+                  ))
+                }
+              </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Enter the {calculationType === 'percent-of' || calculationType === 'reverse-percent' ? 'percentage value' : 'base or starting amount'} for your calculation</p>
             </div>
 
@@ -333,6 +353,26 @@ export default function PercentageCalculatorPage() {
                   onChange={(e) => setValue('valueB', e.target.value === '' ? 0 : Number(e.target.value))}
                   className="w-full md:w-32 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
+              </div>
+              <div className="flex gap-2 flex-wrap mt-3">
+                {['hike-discount', 'what-percent', 'sequential', 'reverse-percent'].includes(calculationType) ?
+                  [5, 10, 20, 50].map(val => (
+                    <button key={val} type="button" onClick={() => setValue('valueB', val)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
+                                 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                                 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                      {val}%
+                    </button>
+                  )) :
+                  [1000, 5000, 10000, 50000].map(val => (
+                    <button key={val} type="button" onClick={() => setValue('valueB', val)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
+                                 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                                 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                      ₹{val >= 1000 ? `${val / 1000}K` : val}
+                    </button>
+                  ))
+                }
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 {calculationType === 'percent-of' ? 'Total or base amount' : calculationType === 'what-percent' ? 'Total amount to compare against' : calculationType === 'percent-change' ? 'Final amount after change' : calculationType === 'hike-discount' ? 'Percentage to apply' : 'Percentage value (0-200%)'}</p>
             </div>
