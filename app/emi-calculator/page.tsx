@@ -183,74 +183,41 @@ const LoanInput = memo(({
   colorFrom: string;
   colorTo: string;
 }) => {
-  const [isDragging, setIsDragging] = useState(false);
+  // Extract color names for dynamic styling
+  const getColorClasses = () => {
+    if (colorFrom.includes('blue')) return { border: 'border-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-700 dark:text-blue-400', dark: 'dark:border-blue-700' };
+    if (colorFrom.includes('green')) return { border: 'border-green-400', bg: 'bg-green-50 dark:bg-green-900/20', text: 'text-green-700 dark:text-green-400', dark: 'dark:border-green-700' };
+    if (colorFrom.includes('orange')) return { border: 'border-orange-400', bg: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-700 dark:text-orange-400', dark: 'dark:border-orange-700' };
+    if (colorFrom.includes('purple')) return { border: 'border-purple-400', bg: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-700 dark:text-purple-400', dark: 'dark:border-purple-700' };
+    if (colorFrom.includes('red')) return { border: 'border-red-400', bg: 'bg-red-50 dark:bg-red-900/20', text: 'text-red-700 dark:text-red-400', dark: 'dark:border-red-700' };
+    return { border: 'border-gray-400', bg: 'bg-gray-50 dark:bg-gray-900/20', text: 'text-gray-700 dark:text-gray-400', dark: 'dark:border-gray-700' };
+  };
+
+  const colors = getColorClasses();
 
   return (
     <div className="space-y-3">
       <label htmlFor={id} className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
-      <div className="flex flex-col md:flex-row gap-4 md:gap-3 md:items-center">
-        {/* Slider - Enhanced for mobile */}
-        <div className="flex-1 flex flex-col items-center justify-center md:block">
-          <input
-            type="range"
-            min={min}
-            max={max}
-            step={step}
-            value={value ?? 0}
-            onChange={onChange}
-            onMouseDown={() => setIsDragging(true)}
-            onMouseUp={() => setIsDragging(false)}
-            onTouchStart={() => setIsDragging(true)}
-            onTouchEnd={() => setIsDragging(false)}
-            onBlur={onBlur}
-            className={`w-full slider-input h-2 md:h-2.5 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-full appearance-none cursor-pointer transition-all ${isDragging ? 'scale-105 shadow-lg' : 'hover:scale-102'} will-change-transform`}
-            style={{
-              WebkitAppearance: 'none',
-            }}
-          />
-          <style>{`
-            input[type='range'].slider-input::-webkit-slider-thumb {
-              -webkit-appearance: none;
-              appearance: none;
-              width: 28px;
-              height: 28px;
-              border-radius: 50%;
-              background: white;
-              cursor: pointer;
-              box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-              border: 3px solid currentColor;
-              transition: all 0.2s ease;
-            }
-            input[type='range'].slider-input::-webkit-slider-thumb:active {
-              width: 32px;
-              height: 32px;
-              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            }
-            input[type='range'].slider-input::-moz-range-thumb {
-              width: 28px;
-              height: 28px;
-              border-radius: 50%;
-              background: white;
-              cursor: pointer;
-              box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-              border: 3px solid currentColor;
-              transition: all 0.2s ease;
-            }
-            input[type='range'].slider-input::-moz-range-thumb:active {
-              width: 32px;
-              height: 32px;
-              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            }
-            input[type='range'].slider-input:focus {
-              outline: none;
-            }
-          `}</style>
-        </div>
+      <div className="flex flex-col md:flex-row gap-3 md:gap-3 md:items-center">
+        {/* Slider */}
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value ?? 0}
+          onChange={onChange}
+          onBlur={onBlur}
+          className={`flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer transition-all will-change-transform`}
+          style={{
+            WebkitAppearance: 'none',
+          }}
+        />
 
-        {/* Number Input - Enhanced for mobile (56px+ touch target) */}
+        {/* Number Input - 56px+ touch target on mobile */}
         <div className="w-full md:w-auto relative flex-shrink-0">
-          {prefix && <span className="absolute left-3 md:left-2 top-1/2 -translate-y-1/2 md:translate-y-0 md:top-3 font-bold text-sm md:text-sm">{prefix}</span>}
-          {suffix && <span className="absolute right-3 md:right-3 top-1/2 -translate-y-1/2 md:translate-y-0 md:top-3 font-bold text-sm md:text-sm">{suffix}</span>}
+          {prefix && <span className="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-base md:text-sm">{prefix}</span>}
+          {suffix && <span className="absolute right-3 top-1/2 -translate-y-1/2 font-bold text-base md:text-sm">{suffix}</span>}
           <input
             id={id}
             type="number"
@@ -261,10 +228,49 @@ const LoanInput = memo(({
             value={value === 0 ? '' : value}
             onChange={onChange}
             onBlur={onBlur}
-            className="w-full md:w-32 px-10 md:px-6 py-3 md:py-2.5 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-right font-bold text-base md:text-base focus:outline-none focus:ring-2 focus:ring-offset-0 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all hover:border-gray-400 dark:hover:border-gray-500"
+            className={`w-full md:w-28 px-10 py-3 md:py-2.5 border-2 ${colors.border} ${colors.dark} rounded-lg font-bold text-base ${colors.text} ${colors.bg} focus:outline-none focus:ring-2 focus:ring-offset-0 focus:border-transparent transition-all`}
           />
         </div>
       </div>
+
+      <style>{`
+        input[type='range']::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: white;
+          cursor: pointer;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+          border: 2px solid currentColor;
+          transition: all 0.15s ease;
+        }
+        input[type='range']::-webkit-slider-thumb:active {
+          width: 28px;
+          height: 28px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        input[type='range']::-moz-range-thumb {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: white;
+          cursor: pointer;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+          border: 2px solid currentColor;
+          transition: all 0.15s ease;
+        }
+        input[type='range']::-moz-range-thumb:active {
+          width: 28px;
+          height: 28px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        input[type='range']:focus {
+          outline: none;
+        }
+      `}</style>
+
       {error && <p className="text-red-500 text-sm">{error.message}</p>}
       <p className="text-xs text-gray-500 dark:text-gray-400">{rangeText}</p>
     </div>
