@@ -1,9 +1,18 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | **UI/UX: Premium Phase 1-2 ✨** | **AdSense: Integrated ✅** | PageSpeed 97/100 | WCAG 2.1 AAA+ | GSC Live | **SEO: 6/6 Complete** | **Accessibility: WCAG 2.1 AAA++** | **Mobile Experience: 5/5 Complete** | **Keyword SEO: 100% Complete (All 14)** | **Blog Routing: Fixed ✅** | **Git: Pushed ✅** 🎯
-**Last Updated:** 2026-06-02 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js | **Latest Commit:** 362f5c2 (AdSense Integration)
+**Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | **UI/UX: Premium Phase 1-2 ✨** | **AdSense: Integrated ✅** | **GA4: Tracking Live ✅** | PageSpeed 97/100 | WCAG 2.1 AAA+ | GSC Live | **SEO: 6/6 Complete** | **Accessibility: WCAG 2.1 AAA++** | **Mobile Experience: 5/5 Complete** | **Keyword SEO: 100% Complete (All 14)** | **Blog Routing: Fixed ✅** | **Git: Pushed ✅** 🎯
+**Last Updated:** 2026-06-02 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js | **Latest Commit:** ce0b48d (GA4 Tracking + AdSense)
 
 **Latest:** 
+- 📊 **Google Analytics 4 Integration Complete**
+  - ✅ **GA4 Code:** Added to app/layout.tsx <head> section
+  - ✅ **Measurement ID:** G-GFN66QLNZP
+  - ✅ **Stream Name:** My_website
+  - ✅ **Stream URL:** https://www.calculox.in/
+  - ✅ **Status:** Live and tracking (immediate data collection)
+  - **Features:** Real-time analytics, user behavior tracking, event tracking
+  - **Dashboard:** Available in Google Analytics 4 console
+  - **Build Status:** ✅ 41 pages | 0 TypeScript errors
 - 💰 **Google AdSense Integration Complete**
   - ✅ **AdSense Code:** Added to app/layout.tsx <head> section
   - ✅ **Client ID:** ca-pub-7034746357427731 (verified)
