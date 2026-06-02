@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Color System — Enhanced Palette */
+:root {
+  /* Primary Colors */
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-50: #eff6ff;
+
+  /* Semantic Colors */
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+  --color-info: #3b82f6;
+  --color-info-light: #dbeafe;
+
+  /* Neutral Colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-tertiary: #6b7280;
+  --color-border: #e5e7eb;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb;
+}
+
+html.dark {
+  /* Dark mode colors */
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #e5e7eb;
+  --color-text-tertiary: #9ca3af;
+  --color-border: #374151;
+  --color-bg-primary: #111827;
+  --color-bg-secondary: #1f2937;
+}
+
 * {
   @apply box-border;
 }
@@ -15,6 +51,35 @@ html {
 
 html.dark {
   background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 25%, #1a1a3a 50%, #2a1a3a 75%, #0f172a 100%);
+  color-scheme: dark;
+}
+
+/* Enhanced dark mode inputs with proper backdrop */
+html.dark input:not([type="range"]),
+html.dark textarea,
+html.dark select {
+  @apply bg-gray-800/60 border-gray-700 text-gray-50 placeholder-gray-500;
+  backdrop-filter: blur(10px);
+}
+
+/* Enhanced dark mode cards with glass-morphism */
+html.dark .card {
+  @apply bg-gray-900/50 border-gray-700/50;
+  backdrop-filter: blur(12px);
+}
+
+/* Enhanced dark mode text contrast */
+html.dark p, html.dark body {
+  @apply text-gray-200;
+  color: #e5e7eb;
+}
+
+html.dark label, html.dark .label {
+  @apply text-gray-300;
+}
+
+html.dark ul, html.dark ol {
+  @apply text-gray-300;
 }
 
 body {
@@ -240,6 +305,35 @@ select {
          disabled:cursor-not-allowed;
 }
 
+/* Enhanced focus states for all interactive elements */
+input:focus:not([type="range"]),
+textarea:focus,
+select:focus {
+  @apply shadow-lg shadow-blue-500/10 border-blue-500;
+}
+
+/* Focus state colors per semantic type */
+.focus-success:focus {
+  @apply shadow-lg shadow-emerald-500/10 border-emerald-500;
+}
+
+.focus-warning:focus {
+  @apply shadow-lg shadow-amber-500/10 border-amber-500;
+}
+
+.focus-danger:focus {
+  @apply shadow-lg shadow-red-500/10 border-red-500;
+}
+
+/* Label styling improvements */
+label {
+  @apply text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200;
+}
+
+label:hover {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
 /* Range input specific styling */
 input[type="range"] {
   @apply w-full cursor-pointer;
@@ -298,7 +392,62 @@ button:disabled {
 }
 
 .btn-danger {
-  @apply px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg hover:from-red-700 hover:to-red-800 shadow-lg shadow-red-500/30 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+  @apply px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg
+         shadow-md shadow-red-500/20
+         border border-red-500/20
+         transition-all duration-200
+         hover:from-red-700 hover:to-red-800
+         hover:shadow-lg hover:shadow-red-500/30
+         hover:border-red-500/40
+         active:scale-95
+         focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2
+         dark:focus:ring-offset-gray-900
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+.btn-success {
+  @apply px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700
+         text-white font-semibold rounded-lg
+         shadow-md shadow-emerald-500/20
+         border border-emerald-500/20
+         transition-all duration-200
+         hover:from-emerald-700 hover:to-emerald-800
+         hover:shadow-lg hover:shadow-emerald-500/30
+         hover:border-emerald-500/40
+         active:scale-95
+         focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2
+         dark:focus:ring-offset-gray-900
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+.btn-warning {
+  @apply px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700
+         text-white font-semibold rounded-lg
+         shadow-md shadow-amber-500/20
+         border border-amber-500/20
+         transition-all duration-200
+         hover:from-amber-700 hover:to-amber-800
+         hover:shadow-lg hover:shadow-amber-500/30
+         hover:border-amber-500/40
+         active:scale-95
+         focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2
+         dark:focus:ring-offset-gray-900
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+.btn-info {
+  @apply px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-700
+         text-white font-semibold rounded-lg
+         shadow-md shadow-cyan-500/20
+         border border-cyan-500/20
+         transition-all duration-200
+         hover:from-cyan-700 hover:to-cyan-800
+         hover:shadow-lg hover:shadow-cyan-500/30
+         hover:border-cyan-500/40
+         active:scale-95
+         focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2
+         dark:focus:ring-offset-gray-900
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
 }
 
 /* Cards — Premium Depth & Hover */
@@ -329,14 +478,78 @@ button:disabled {
   @apply shadow-none border-gray-200 dark:border-gray-700;
 }
 
+/* Color-coded card variants */
+.card-success {
+  @apply border-l-4 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20;
+}
+
+.card-success-text {
+  @apply text-emerald-800 dark:text-emerald-200;
+}
+
+.card-warning {
+  @apply border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-900/20;
+}
+
+.card-warning-text {
+  @apply text-amber-800 dark:text-amber-200;
+}
+
+.card-danger {
+  @apply border-l-4 border-red-500 bg-red-50 dark:bg-red-900/20;
+}
+
+.card-danger-text {
+  @apply text-red-800 dark:text-red-200;
+}
+
+.card-info {
+  @apply border-l-4 border-cyan-500 bg-cyan-50 dark:bg-cyan-900/20;
+}
+
+.card-info-text {
+  @apply text-cyan-800 dark:text-cyan-200;
+}
+
+.card-result {
+  @apply bg-gradient-to-br from-white to-gray-50
+         dark:from-gray-900 dark:to-gray-800
+         border-l-4 border-blue-500;
+}
+
 /* Utility Classes */
 .container-section {
   @apply max-w-7xl mx-auto px-4 py-12 md:py-16;
 }
 
+/* Text Color System */
+.text-primary {
+  @apply text-gray-900 dark:text-gray-50;
+}
+
+.text-secondary {
+  @apply text-gray-700 dark:text-gray-200;
+}
+
+.text-tertiary {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
 /* Text gradient - uses solid blue color to ensure emoji rendering */
 .text-gradient {
   @apply text-blue-600 dark:text-blue-400;
+}
+
+.text-gradient-success {
+  @apply bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent;
+}
+
+.text-gradient-warning {
+  @apply bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent;
+}
+
+.text-gradient-danger {
+  @apply bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text text-transparent;
 }
 
 /* Responsive Grid */
@@ -414,5 +627,66 @@ button:disabled {
 
   button:hover {
     @apply translate-y-0;
+  }
+}
+
+/* Badge/Pill Color System */
+.badge {
+  @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold
+         transition-colors duration-200;
+}
+
+.badge-primary {
+  @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
+}
+
+.badge-success {
+  @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300;
+}
+
+.badge-warning {
+  @apply bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300;
+}
+
+.badge-danger {
+  @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
+}
+
+.badge-info {
+  @apply bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300;
+}
+
+/* Status indicators */
+.status-dot {
+  @apply inline-block w-2.5 h-2.5 rounded-full;
+}
+
+.status-dot-success {
+  @apply bg-emerald-500;
+}
+
+.status-dot-warning {
+  @apply bg-amber-500;
+}
+
+.status-dot-danger {
+  @apply bg-red-500;
+}
+
+.status-dot-info {
+  @apply bg-cyan-500;
+}
+
+/* Animated status dots */
+.status-dot-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }
