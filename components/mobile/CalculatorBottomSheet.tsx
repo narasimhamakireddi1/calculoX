@@ -1,9 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { getActiveCalculators } from '@/config/calculators.config';
-import { CategoryTabs, type CalculatorCategory } from '@/components/ui/CategoryTabs';
 import { MobileBottomSheet } from './MobileBottomSheet';
 
 interface CalculatorBottomSheetProps {
@@ -12,16 +10,8 @@ interface CalculatorBottomSheetProps {
 }
 
 export function CalculatorBottomSheet({ isOpen, onClose }: CalculatorBottomSheetProps) {
-  const [selectedCategory, setSelectedCategory] = useState<CalculatorCategory | null>(null);
   const router = useRouter();
   const activeCalculators = getActiveCalculators();
-
-  const filteredCalculators = useMemo(() => {
-    if (!selectedCategory) return activeCalculators;
-    // Convert selectedCategory to match capitalized category in config
-    const categoryCapitalized = selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1);
-    return activeCalculators.filter(calc => calc.category === categoryCapitalized);
-  }, [selectedCategory, activeCalculators]);
 
   const handleNavigate = (href: string) => {
     onClose();
@@ -30,55 +20,73 @@ export function CalculatorBottomSheet({ isOpen, onClose }: CalculatorBottomSheet
     }, 150);
   };
 
+  const navigationItems = [
+    { href: '/', label: 'Home', icon: '🏠' },
+  ];
+
+  const bottomItems = [
+    { href: '/blog', label: 'Blog', icon: '📖' },
+    { href: '/about', label: 'About', icon: 'ℹ️' },
+  ];
+
   return (
     <MobileBottomSheet
       isOpen={isOpen}
       onClose={onClose}
-      title="All Calculators"
-      maxHeight="90vh"
+      title="Navigation"
+      maxHeight="95vh"
     >
-      <div className="space-y-4">
-        {/* Category Tabs */}
-        <div className="sticky top-0 bg-white dark:bg-gray-900 -mx-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700 z-10">
-          <CategoryTabs
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
+      <div className="space-y-1 pb-4">
+        {/* Home Link */}
+        {navigationItems.map((item) => (
+          <button
+            key={item.href}
+            onClick={() => handleNavigate(item.href)}
+            className="w-full px-4 py-3 rounded-lg flex items-center gap-3 text-left hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors duration-200 group"
+          >
+            <span className="text-xl group-hover:scale-110 transition-transform duration-200">{item.icon}</span>
+            <span className="font-semibold text-gray-900 dark:text-white">{item.label}</span>
+          </button>
+        ))}
+
+        {/* Calculators Section */}
+        <div className="pt-3 pb-2">
+          <h3 className="px-4 py-2 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            Calculators
+          </h3>
+          <div className="grid grid-cols-3 gap-2">
+            {activeCalculators.map((calc) => (
+              <button
+                key={calc.id}
+                onClick={() => handleNavigate(calc.href)}
+                className="p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 group text-center flex flex-col items-center gap-1"
+              >
+                <div className="text-2xl group-hover:scale-110 transition-transform duration-200">
+                  {calc.icon}
+                </div>
+                <h4 className="font-semibold text-xs text-gray-900 dark:text-white line-clamp-2">
+                  {calc.title.replace(' Calculator', '')}
+                </h4>
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Calculator Grid */}
-        <div className="grid grid-cols-2 gap-3">
-          {filteredCalculators.map((calc) => (
+        {/* Divider */}
+        <div className="border-t border-gray-200 dark:border-gray-700 my-3" />
+
+        {/* Blog & About Links */}
+        <div className="space-y-1">
+          {bottomItems.map((item) => (
             <button
-              key={calc.id}
-              onClick={() => handleNavigate(calc.href)}
-              className="p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 group text-left"
+              key={item.href}
+              onClick={() => handleNavigate(item.href)}
+              className="w-full px-4 py-3 rounded-lg flex items-center gap-3 text-left hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors duration-200 group"
             >
-              <div className="text-2xl mb-1 group-hover:scale-110 transition-transform duration-300">
-                {calc.icon}
-              </div>
-              <h3 className="font-semibold text-sm text-gray-900 dark:text-white line-clamp-2">
-                {calc.title.replace(' Calculator', '')}
-              </h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {calc.category}
-              </p>
+              <span className="text-xl group-hover:scale-110 transition-transform duration-200">{item.icon}</span>
+              <span className="font-semibold text-gray-900 dark:text-white">{item.label}</span>
             </button>
           ))}
-        </div>
-
-        {/* Empty State */}
-        {filteredCalculators.length === 0 && (
-          <div className="text-center py-8">
-            <p className="text-gray-500 dark:text-gray-400">
-              No calculators in this category
-            </p>
-          </div>
-        )}
-
-        {/* Info */}
-        <div className="text-xs text-gray-500 dark:text-gray-400 text-center pt-4 border-t border-gray-200 dark:border-gray-700">
-          {filteredCalculators.length} calculator{filteredCalculators.length !== 1 ? 's' : ''} available
         </div>
       </div>
     </MobileBottomSheet>
