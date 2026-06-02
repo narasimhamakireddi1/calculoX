@@ -380,6 +380,18 @@ export default function HomeLoanVsRentCalculator() {
                     className={numberInputClasses}
                   />
                 </div>
+                <div className="flex gap-2 flex-wrap mt-3">
+                  {[5000000, 8000000, 15000000, 20000000].map((val) => (
+                    <button
+                      key={val}
+                      type="button"
+                      onClick={() => setValue('property_value', val)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                    >
+                      ₹{val / 1000000}Cr
+                    </button>
+                  ))}
+                </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹1 Lakh - ₹10 Crore</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Current property prices in metros: ₹50-200L. Higher property value favors renting if rent is low</p>
               </div>
@@ -404,6 +416,18 @@ export default function HomeLoanVsRentCalculator() {
                     onChange={(e) => setValue('down_payment_pct', Number(e.target.value) || 0)}
                     className={numberInputClasses}
                   />
+                </div>
+                <div className="flex gap-2 flex-wrap mt-3">
+                  {[10, 20, 30, 50].map((val) => (
+                    <button
+                      key={val}
+                      type="button"
+                      onClick={() => setValue('down_payment_pct', val)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-orange-200 dark:border-orange-700 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                    >
+                      {val}%
+                    </button>
+                  ))}
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">5% - 100%</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 20% down payment is typical. Lower down payment → higher EMI. The down payment amount goes to investment in renting scenario</p>
@@ -462,6 +486,18 @@ export default function HomeLoanVsRentCalculator() {
                     className={numberInputClasses}
                   />
                 </div>
+                <div className="flex gap-2 flex-wrap mt-3">
+                  {[10, 15, 20, 30].map((val) => (
+                    <button
+                      key={val}
+                      type="button"
+                      onClick={() => setValue('loan_tenure_years', val)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                    >
+                      {val}Y
+                    </button>
+                  ))}
+                </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">1 - 40 years</p>
               </div>
 
@@ -485,6 +521,18 @@ export default function HomeLoanVsRentCalculator() {
                     onChange={(e) => setValue('initial_monthly_rent', Number(e.target.value) || 0)}
                     className={numberInputClasses}
                   />
+                </div>
+                <div className="flex gap-2 flex-wrap mt-3">
+                  {[20000, 30000, 50000, 75000].map((val) => (
+                    <button
+                      key={val}
+                      type="button"
+                      onClick={() => setValue('initial_monthly_rent', val)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-rose-200 dark:border-rose-700 bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors"
+                    >
+                      ₹{val / 1000}K
+                    </button>
+                  ))}
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">₹1K - ₹5 Lakh</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Key variable: If rent is lower than EMI, renting looks better initially. But EMI is fixed while rent rises each year</p>

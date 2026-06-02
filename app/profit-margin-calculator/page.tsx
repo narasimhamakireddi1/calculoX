@@ -310,6 +310,16 @@ export default function ProfitMarginCalculator() {
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       Equivalent Markup: ~{equivalentMarkup.toFixed(2)}%
                     </p>
+                    <div className="flex gap-2 flex-wrap mt-3">
+                      {[20, 30, 40, 50].map(val => (
+                        <button key={val} type="button" onClick={() => setValue('targetMarginPct', val)}
+                          className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
+                                     bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                                     hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                          {val}%
+                        </button>
+                      ))}
+                    </div>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Healthy retail margins: 20-50% depending on industry. E-commerce: 15-30%, Grocery: 5-15%, Electronics: 10-20%</p>
                   </div>
                 )}
@@ -345,6 +355,16 @@ export default function ProfitMarginCalculator() {
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       Equivalent Margin: ~{equivalentMargin.toFixed(2)}%
                     </p>
+                    <div className="flex gap-2 flex-wrap mt-3">
+                      {[15, 25, 40, 50].map(val => (
+                        <button key={val} type="button" onClick={() => setValue('targetMarkupPct', val)}
+                          className="text-xs px-3 py-1.5 rounded-full border border-orange-200 dark:border-orange-700
+                                     bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300
+                                     hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors">
+                          {val}%
+                        </button>
+                      ))}
+                    </div>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Markup: increase from Cost. 25% markup on ₹100 = ₹125 selling price. Higher markup = higher margin (non-linear)</p>
                   </div>
                 )}
