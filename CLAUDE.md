@@ -1,9 +1,15 @@
 # 🧮 calculox - CLAUDE.md
 
-**Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA+ | AdSense 92/100 | GSC Live | **SEO: 6/6 Complete** | **Accessibility: WCAG 2.1 AAA++** | **UI: Premium Polish ✨** | **Mobile Experience: 5/5 Complete** | **Keyword SEO: 100% Complete (All 14)** 🎯
+**Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97/100 | WCAG 2.1 AAA+ | AdSense 92/100 | GSC Live | **SEO: 6/6 Complete** | **Accessibility: WCAG 2.1 AAA++** | **UI: Premium Polish ✨** | **Mobile Experience: 5/5 Complete** | **Keyword SEO: 100% Complete (All 14)** | **Blog Routing: Fixed ✅** 🎯
 **Last Updated:** 2026-06-02 | **Tech Stack:** Next.js 16.2.6 + React 19 + TypeScript 5.6 + Tailwind 3.4 + Recharts + Decimal.js
 
 **Latest:** 
+- 🔧 **Blog Routing Architecture Consolidated (Critical Fix)**
+  - ✅ **Issue:** 24 hardcoded blog directories conflicted with dynamic [slug] route → 404 errors in production
+  - ✅ **Fix Applied:** Deleted all hardcoded directories, consolidated to config-based [slug] routing system
+  - ✅ **Next.js 16 Compatibility:** Fixed async params handling (params is now Promise, requires await)
+  - ✅ **Result:** All 28 blog posts now accessible via unified /blog/{slug} routes
+  - **Build Status:** 41 pages | 0 TypeScript errors | All blog routes generating correctly
 - 🚀 **Systematic Enhancement Phase Complete (All 4 Systematic Tasks):**
   - ✅ **Task 1: Extended SEO Keywords to All 14 Calculators**
     * Added SI, RD, CAGR, Percentage configs to seo.config.ts (previously only 3/14 had enhanced keywords)
