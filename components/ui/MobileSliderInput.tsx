@@ -15,6 +15,9 @@ interface MobileSliderInputProps {
   colorFrom: string;
   colorTo: string;
   error?: any;
+  presets?: number[];
+  presetLabels?: string[];
+  helperText?: string;
 }
 
 export function MobileSliderInput({
@@ -32,6 +35,9 @@ export function MobileSliderInput({
   colorFrom,
   colorTo,
   error,
+  presets,
+  presetLabels,
+  helperText,
 }: MobileSliderInputProps) {
   // Extract color class names for styling
   const getColorClasses = () => {
@@ -134,6 +140,36 @@ export function MobileSliderInput({
       `}</style>
 
       {error && <p className="text-red-500 text-sm">{error.message}</p>}
+
+      {/* Quick Preset Buttons */}
+      {presets && presets.length > 0 && (
+        <div className="flex gap-2 flex-wrap mt-3">
+          {presets.map((preset, idx) => (
+            <button
+              key={preset}
+              type="button"
+              onClick={() => onChange({ target: { value: String(preset) } } as any)}
+              className={`text-xs px-3 py-1.5 rounded-full border transition-colors
+                ${colorFrom.includes('blue') ? 'border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50' : ''}
+                ${colorFrom.includes('green') ? 'border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/50' : ''}
+                ${colorFrom.includes('orange') ? 'border-orange-200 dark:border-orange-700 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 hover:bg-orange-100 dark:hover:bg-orange-900/50' : ''}
+                ${colorFrom.includes('purple') ? 'border-purple-200 dark:border-purple-700 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/50' : ''}
+                ${colorFrom.includes('red') ? 'border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/50' : ''}
+              `}
+            >
+              {presetLabels?.[idx] || preset}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Helper Text */}
+      {helperText && (
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+          {helperText}
+        </p>
+      )}
+
       <p className="text-xs text-gray-500 dark:text-gray-400">{rangeText}</p>
     </div>
   );
