@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { CalculatorCard } from "@/components/ui/CalculatorCard";
 import { CalculatorSearch } from "@/components/ui/CalculatorSearch";
 import { CategoryTabs, type CalculatorCategory } from "@/components/ui/CategoryTabs";
-import { SavedCalculationsPanel } from "@/components/ui/SavedCalculationsPanel";
 import { getActiveCalculators } from "@/config/calculators.config";
 
 export default function Home() {
@@ -101,9 +100,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Saved Calculations Panel */}
-      <SavedCalculationsPanel />
 
       {/* Calculators Grid with Category Tabs */}
       <section className="space-y-8">

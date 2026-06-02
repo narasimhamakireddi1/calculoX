@@ -1,12 +1,11 @@
 # 🧮 calculox
 
-**Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready | Trust Badges Live
+**Status:** ✅ Production Ready | 14 Calculators | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready | Comparison Mode Live
 **Last Updated:** 2026-06-02 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** TBD
 
 ## ✅ Latest (2026-06-02 - Phase 3: UX Enhancements + Comparison Mode)
 - ⚖️ **Calculator Comparison Mode:** Side-by-side EMI / SIP / FD | Shareable URLs (`?c1=emi&c2=sip`) | Swap button | Mobile responsive ✅
 - 🏆 **Confidence Badges:** EMI (RBI-verified), Tax (FY2025-26 official rates), SIP (SEBI-compliant) | 50K+ user verified ✅
-- 💾 **Saved Calculations:** localStorage persistence, quick restore, "Your Saved Calculations" panel on home
 - 📱 **Mobile Slider UX:** 56px+ touch targets (EMI), custom thumb styling (28→32px), drag visual feedback, improved number input
 - 📊 GA4 Tracking: ID `G-GFN66QLNZP` | Measurement ID set | Live data collection ✅
 - 💰 AdSense: Client `ca-pub-7034746357427731` | Ready for review | afterInteractive loading
