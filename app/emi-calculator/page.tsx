@@ -166,7 +166,10 @@ const LoanInput = memo(({
   suffix,
   rangeText,
   colorFrom,
-  colorTo
+  colorTo,
+  presets,
+  presetLabels,
+  helperText
 }: {
   id: string;
   label: string;
@@ -182,6 +185,9 @@ const LoanInput = memo(({
   rangeText: string;
   colorFrom: string;
   colorTo: string;
+  presets?: number[];
+  presetLabels?: string[];
+  helperText?: string;
 }) => {
   // Extract color names for dynamic styling
   const getColorClasses = () => {
@@ -272,6 +278,34 @@ const LoanInput = memo(({
       `}</style>
 
       {error && <p className="text-red-500 text-sm">{error.message}</p>}
+
+      {/* Quick Preset Buttons */}
+      {presets && presets.length > 0 && (
+        <div className="flex gap-2 flex-wrap mt-3">
+          {presets.map((preset, idx) => (
+            <button
+              key={preset}
+              type="button"
+              onClick={() => onChange({ target: { value: String(preset) } } as any)}
+              className={`text-xs px-3 py-1.5 rounded-full border transition-colors
+                ${colorFrom.includes('blue') ? 'border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50' : ''}
+                ${colorFrom.includes('green') ? 'border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/50' : ''}
+                ${colorFrom.includes('orange') ? 'border-orange-200 dark:border-orange-700 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 hover:bg-orange-100 dark:hover:bg-orange-900/50' : ''}
+              `}
+            >
+              {presetLabels?.[idx] || preset}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Helper Text */}
+      {helperText && (
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+          {helperText}
+        </p>
+      )}
+
       <p className="text-xs text-gray-500 dark:text-gray-400">{rangeText}</p>
     </div>
   );
@@ -477,20 +511,10 @@ export default function EMICalculatorPage() {
                 rangeText="₹10,000 - ₹1 Crore"
                 colorFrom="from-blue-300"
                 colorTo="to-blue-600"
+                presets={[2000000, 5000000, 8000000, 10000000]}
+                presetLabels={['₹20L', '₹50L', '₹80L', '₹1Cr']}
+                helperText="💡 Typical home loan range: ₹10L – ₹1Cr depending on property value and down payment"
               />
-              <div className="flex gap-2 flex-wrap mt-3">
-                {[2000000, 5000000, 8000000, 10000000].map(val => (
-                  <button key={val} type="button" onClick={() => handleInputChange('principal', val)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
-                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
-                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
-                    {val === 10000000 ? '₹1 Cr' : `₹${val / 100000}L`}
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                💡 Typical home loan range: ₹10L – ₹1Cr depending on property value and down payment
-              </p>
             </div>
 
             <div>
@@ -508,20 +532,10 @@ export default function EMICalculatorPage() {
                 rangeText="0% - 50%"
                 colorFrom="from-orange-300"
                 colorTo="to-orange-600"
+                presets={[7.5, 8.5, 9.5]}
+                presetLabels={['7.5%', '8.5%', '9.5%']}
+                helperText="💡 Current home loan rates: 7.5-9.5% p.a. (varies by bank and credit score)"
               />
-              <div className="flex gap-2 flex-wrap mt-3">
-                {[7.5, 8.5, 9.5].map(val => (
-                  <button key={val} type="button" onClick={() => handleInputChange('annualRate', val)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-orange-200 dark:border-orange-700
-                               bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300
-                               hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors">
-                    {val}%
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                💡 Current home loan rates: 7.5-9.5% p.a. (varies by bank and credit score)
-              </p>
             </div>
 
             <div>
@@ -538,10 +552,10 @@ export default function EMICalculatorPage() {
                 rangeText="1 - 50 years"
                 colorFrom="from-green-300"
                 colorTo="to-green-600"
+                presets={[10, 15, 20, 30]}
+                presetLabels={['10Y', '15Y', '20Y', '30Y']}
+                helperText="💡 Most home loans: 15-30 years. Shorter tenure = higher EMI but less total interest"
               />
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                💡 Most home loans: 15-30 years. Shorter tenure = higher EMI but less total interest
-              </p>
             </div>
 
             <button
