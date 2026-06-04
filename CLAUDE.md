@@ -1,9 +1,20 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 6226096
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 86586c5
 
-## ✅ Latest (2026-06-04 - Layout Reorganization: Export PDF + Share Sections)
+## ✅ Latest (2026-06-04 - Simplified to Share-Only: Removed Export PDF Feature)
+- 🗑️ **Removed Export PDF Feature:** Simplified to single sharing action ✅
+  - **Removed:** Export PDF / Save Results button from all calculators ✅
+  - **Simplified UI:** Only ShareButtons remains for user actions ✅
+  - **Focus:** Sharing results (WhatsApp, Twitter, LinkedIn, Facebook, Copy) ✅
+  - **Cleaner Interface:** Removed duplicate save options ✅
+  - **Removed From:** EMI, SIP, FD calculators ✅
+  - **Cleanup:** Removed FormattedInput imports, unused useMemo calculations ✅
+  - **Benefit:** Simpler, faster, clearer intent ✅
+  - **Commit:** 86586c5 ✅
+
+## ✅ Previous (2026-06-04 - Layout Reorganization: Export PDF + Share Sections)
 - 🎯 **Layout Refactoring:** Removed duplicate Copy button & reorganized action sections ✅
   - **Export PDF Section:** Dedicated "💾 Save Results" area for PDF downloads ✅
   - **Share Section:** Below export with Preview + Social buttons + Copy ✅
