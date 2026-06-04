@@ -13,7 +13,6 @@ import { SIPSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { ShareButtons } from '@/components/ui/ShareButtons';
@@ -71,23 +70,6 @@ export default function SIPCalculatorPage() {
   });
 
   const watchValues = watch();
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.monthlyInvestment) {
-      data.push({ label: 'Monthly Investment', value: formatCurrency(watchValues.monthlyInvestment) });
-    }
-    if (watchValues.years) {
-      data.push({ label: 'Investment Duration', value: `${watchValues.years} Year(s)` });
-    }
-    if (watchValues.annualReturn !== undefined) {
-      data.push({ label: 'Expected Annual Return', value: `${watchValues.annualReturn}%` });
-    }
-    if (watchValues.stepUpPercent) {
-      data.push({ label: 'Annual Step-Up', value: `${watchValues.stepUpPercent}%` });
-    }
-    return data;
-  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     monthlyInvestment: { min: 100, max: 1000000, label: 'Monthly Investment (₹)' },
@@ -489,21 +471,7 @@ export default function SIPCalculatorPage() {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
-                {/* Export PDF Section */}
-                <div>
-                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
-                    💾 Save Results
-                  </p>
-                  <ExportButton
-                    fileName="SIP_Investment_Results"
-                    calculatorName="SIP Calculator Results"
-                    resultElementId="sip-results"
-                    inputElementId="sip-inputs"
-                    inputsData={inputsData}
-                  />
-                </div>
-
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
                 {/* Share Section */}
                 <ShareButtons
                   inputs={[

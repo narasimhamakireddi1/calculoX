@@ -9,7 +9,6 @@ import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { ShareButtons } from '@/components/ui/ShareButtons';
@@ -53,7 +52,7 @@ interface AmortizationRow {
   balance: number;
 }
 
-const ResultCards = memo(({ result, inputsData, watchValues }: { result: EMIResultData | null; inputsData: FormattedInput[]; watchValues: EMIFormData }) => {
+const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | null; watchValues: EMIFormData }) => {
   if (!result) {
     return (
       <div className="card h-full flex items-center justify-center min-h-64">
@@ -135,21 +134,7 @@ const ResultCards = memo(({ result, inputsData, watchValues }: { result: EMIResu
         </p>
       </div>
 
-      <div className="pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
-        {/* Export PDF Section */}
-        <div>
-          <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
-            💾 Save Results
-          </p>
-          <ExportButton
-            fileName="EMI_Loan_Summary"
-            calculatorName="EMI Calculator Results"
-            resultElementId="emi-results"
-            inputElementId="emi-inputs"
-            inputsData={inputsData}
-          />
-        </div>
-
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
         {/* Share Section */}
         <ShareButtons
           inputs={[
@@ -320,20 +305,6 @@ export default function EMICalculatorPage() {
   }, [setValue]);
 
   const watchValues = watch();
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.principal) {
-      data.push({ label: 'Loan Amount', value: formatCurrency(watchValues.principal) });
-    }
-    if (watchValues.annualRate !== undefined) {
-      data.push({ label: 'Annual Interest Rate', value: `${watchValues.annualRate}%` });
-    }
-    if (watchValues.years) {
-      data.push({ label: 'Loan Duration', value: `${watchValues.years} Year(s)` });
-    }
-    return data;
-  }, [watchValues]);
 
   const fieldRanges = useMemo(
     () => ({
@@ -529,7 +500,7 @@ export default function EMICalculatorPage() {
         </div>
 
         {/* Results Section */}
-        <ResultCards result={result} inputsData={inputsData} watchValues={watchValues} />
+        <ResultCards result={result} watchValues={watchValues} />
       </div>
 
       {/* Charts Section - Lazy loaded */}
