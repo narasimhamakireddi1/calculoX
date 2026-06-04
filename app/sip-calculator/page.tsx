@@ -16,6 +16,7 @@ import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
@@ -488,13 +489,18 @@ export default function SIPCalculatorPage() {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
                 <ExportButton
                   fileName="SIP_Investment_Results"
                   calculatorName="SIP Calculator Results"
                   resultElementId="sip-results"
                   inputElementId="sip-inputs"
                   inputsData={inputsData}
+                />
+
+                <ShareButtons
+                  resultText={`My SIP Investment Result:\nFuture Value: ₹${result.futureValue.toLocaleString('en-IN')}\nTotal Invested: ₹${result.totalInvestment.toLocaleString('en-IN')}\nTotal Gains: ₹${result.gainedAmount.toLocaleString('en-IN')}`}
+                  calculatorName="SIP Calculator"
                 />
               </div>
             </div>

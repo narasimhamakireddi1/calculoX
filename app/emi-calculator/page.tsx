@@ -12,6 +12,7 @@ import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
@@ -134,7 +135,7 @@ const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null
         </p>
       </div>
 
-      <div className="pt-4 border-t border-gray-200 dark:border-gray-600 space-y-3">
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
         <div className="flex flex-col sm:flex-row gap-3">
           <ExportButton
             fileName="EMI_Loan_Summary"
@@ -144,6 +145,11 @@ const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null
             inputsData={inputsData}
           />
         </div>
+
+        <ShareButtons
+          resultText={`My Monthly EMI: ₹${result.emi.toLocaleString('en-IN')}\nTotal Payable: ₹${result.totalAmount.toLocaleString('en-IN')}\nTotal Interest: ₹${result.totalInterest.toLocaleString('en-IN')}`}
+          calculatorName="EMI Calculator"
+        />
       </div>
     </div>
   );

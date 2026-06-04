@@ -12,6 +12,7 @@ import { FDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
@@ -597,13 +598,18 @@ export default function FDCalculatorPage() {
                   <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.
                 </p>
               </div>
-              <div className="mt-6">
+              <div className="mt-6 space-y-4">
                 <ExportButton
                   fileName="FD_Results"
                   calculatorName="Fixed Deposit Results"
                   resultElementId="fd-results"
                   inputElementId="fd-inputs"
                   inputsData={inputsData}
+                />
+
+                <ShareButtons
+                  resultText={`My Fixed Deposit Result:\nMaturity Amount: ₹${result.maturityAmount.toLocaleString('en-IN')}\nInterest Earned: ₹${result.totalInterest.toLocaleString('en-IN')}\nPrincipal: ₹${watchValues.principal.toLocaleString('en-IN')}`}
+                  calculatorName="FD Calculator"
                 />
               </div>
             </div>
