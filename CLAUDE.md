@@ -1,9 +1,18 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** f4e28e7
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 74e07e4
 
-## ✅ Latest (2026-06-04 - Mobile Swipe Navigation Complete Redesign: Content Swipes No Longer Trigger Navigation)
+## ✅ Latest (2026-06-04 - SIP Projection Table Enhancement + Mobile Swipe Navigation Fix)
+- 📊 **SIP Investment Projection Table:** Smart "Show All" button for better UX ✅
+  - **Default Behavior:** If years ≤ 12, show all rows by default (no button needed)
+  - **Long Projections:** If years > 12, show first 5 rows by default with "Show All" button
+  - **Toggle Functionality:** Click "Show All" to expand all years, "Show Less" to collapse back to 5 rows
+  - **Benefit:** Better readability for long-term projections while keeping all data accessible ✅
+  - **Tested:** Years = 10 (all shown), Years = 20 (5 shown + button works) ✅
+  - **Commit:** 74e07e4 ✅
+
+## ✅ Previous (2026-06-04 - Mobile Swipe Navigation Complete Redesign: Content Swipes No Longer Trigger Navigation)
 - 🐛 **Major Mobile UX Fix:** ANY swipe gesture in calculator content area no longer triggers unexpected navigation ✅
   - **Root Cause:** Swipe handlers were attached to entire page container, capturing all touch events
   - **Solution:** Moved swipe gesture handlers from main page container to dedicated fixed footer area (mobile-only)
