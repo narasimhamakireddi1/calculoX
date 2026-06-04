@@ -829,7 +829,7 @@ export default function SIPCalculatorPage() {
       <div
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
-        className="fixed bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent dark:from-gray-900/50 dark:to-transparent border-t border-gray-200 dark:border-gray-700 flex items-center justify-center gap-4 md:hidden"
+        className="fixed bottom-0 left-0 right-0 h-16 flex items-center justify-center md:hidden"
       >
         <SwipeHint
           hasLeft={currentIndex < relatedCalcs.length - 1}
