@@ -4,15 +4,16 @@
 **Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 708b49d
 
 ## ✅ Latest (2026-06-04 - Slider Design Consistency: All Complex Calculators Updated to Match RD Pattern)
-- 🎚️ **Slider Design Consistency Phase Complete:** Simple Interest, Tax, EMI, SIP, FD, Retirement, and Home Loan vs Rent calculators refactored to match RD design pattern (mobile-first, clean layout, consistent styling) ✅
+- 🎚️ **Slider Design Consistency Phase Complete:** Simple Interest, Tax, EMI, SIP, FD, Retirement, Home Loan vs Rent, and Profit Margin calculators refactored to match RD design pattern (mobile-first, clean layout, consistent styling) ✅
   - **Simple Interest Calculator:** Tenure sliders (Years/Months/Days) upgraded to RD pattern with h-3 height, responsive layout (`flex flex-col md:flex-row gap-3`), color-coordinated inputs (Orange/Purple/Pink gradients), `w-full md:w-28` width, focus rings ✅
   - **SIP Calculator:** Applied RD clean pattern to all 4 sliders (Monthly Investment, Years, Annual Return, Step Up) with simplified layout (`flex-1` proportions, no wrapper divs, color-matched dark backgrounds `dark:bg-*-900/20`) ✅
   - **FD Calculator:** Applied RD pattern to Principal, Rate, Years, Months, Days sliders with unified layout (`h-3` height, `flex flex-col md:flex-row` gaps, `w-full md:w-28` inputs) ✅
   - **Home Loan vs Rent Calculator:** Updated all 12 sliders (Property, Down Payment, Loan Rate, Loan Tenure, Rent, Rent Increase, Property Growth, Maintenance, Opportunity Return, Inflation, Timeline, Tax Rate) to RD pattern with `flex flex-col md:flex-row gap-3` layout, `flex-1` slider widths, `w-full md:w-28` inputs, `border-2 rounded-lg` styling ✅
+  - **Profit Margin Calculator:** Simplified all 4 sliders (Cost Price, Target Margin %, Target Markup %, Selling Price) by removing prefix/suffix wrappers, updating to `flex-1` slider widths, `w-full md:w-28` inputs, improved dark mode colors (`dark:bg-{color}-900/20`) ✅
   - **Tax Calculator:** Modern sliders applied to key income/HRA fields (Gross Salary, Basic Salary, House Property Income, Other Sources Income, HRA Received, Rent Paid, LTA) with color-coordinated gradients ✅
   - **EMI Calculator:** Removed prefix/suffix complexity, simplified to core slider+input pattern with `accent-{color}` sliders ✅
   - **Retirement Calculator:** Updated responsive layout from `flex gap-3` to `flex flex-col md:flex-row gap-3 items-center md:items-center`, simplified number inputs to `w-full md:w-28`, improved dark mode styling (`dark:bg-blue-900/20`) ✅
-  - **Mobile View Verified:** SIP, FD, HLR, Simple Interest & Retirement tested in mobile viewport—matches RD design exactly with clean layout, all sliders responsive, auto-calculation works ✅
+  - **Mobile View Verified:** SIP, FD, HLR, Simple Interest, Profit Margin & Retirement tested in mobile viewport—matches RD design exactly with clean layout, all sliders responsive, auto-calculation works ✅
   - All 14 calculators now use unified mobile slider design: `flex flex-col md:flex-row gap-3 items-center md:items-center`, gradient backgrounds (h-3), `accent-{color}` sliders, color-coordinated borders, `w-full md:w-28` inputs ✅
   - Functionality & logic 100% preserved across all calculators ✅
 

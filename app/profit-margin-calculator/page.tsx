@@ -225,19 +225,16 @@ export default function ProfitMarginCalculator() {
                   step="1"
                   value={watchValues.costPrice || 0}
                   onChange={(e) => setValue('costPrice', parseFloat(e.target.value))}
-                  className="w-full md:flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
-                <div className="w-full md:w-auto relative flex-shrink-0">
-                  <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">₹</span>
-                  <input
-                    id="cost-price"
-                    type="number"
-                    value={watchValues.costPrice === 0 ? '' : watchValues.costPrice}
-                    onChange={(e) => setValue('costPrice', parseFloat(e.target.value) || 0)}
-                    className="w-full md:w-28 px-7 md:px-6 py-3 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400"
-                    placeholder="0"
-                  />
-                </div>
+                <input
+                  id="cost-price"
+                  type="number"
+                  value={watchValues.costPrice === 0 ? '' : watchValues.costPrice}
+                  onChange={(e) => setValue('costPrice', parseFloat(e.target.value) || 0)}
+                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  placeholder="0"
+                />
               </div>
               <div className="flex gap-2 flex-wrap mt-3">
                 {[100, 500, 1000, 5000].map(val => (
@@ -293,19 +290,16 @@ export default function ProfitMarginCalculator() {
                         step="0.1"
                         value={watchValues.targetMarginPct || 0}
                         onChange={(e) => setValue('targetMarginPct', parseFloat(e.target.value))}
-                        className="w-full md:flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
+                        className="flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
                       />
-                      <div className="w-full md:w-auto relative flex-shrink-0">
-                        <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
-                        <input
-                          id="target-margin"
-                          type="number"
-                          value={watchValues.targetMarginPct === 0 ? '' : watchValues.targetMarginPct}
-                          onChange={(e) => setValue('targetMarginPct', parseFloat(e.target.value) || 0)}
-                          className="w-full md:w-28 px-7 md:px-6 py-3 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:border-green-600 dark:text-green-400"
-                          placeholder="0"
-                        />
-                      </div>
+                      <input
+                        id="target-margin"
+                        type="number"
+                        value={watchValues.targetMarginPct === 0 ? '' : watchValues.targetMarginPct}
+                        onChange={(e) => setValue('targetMarginPct', parseFloat(e.target.value) || 0)}
+                        className="w-full md:w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                        placeholder="0"
+                      />
                     </div>
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       Equivalent Markup: ~{equivalentMarkup.toFixed(2)}%
@@ -338,19 +332,16 @@ export default function ProfitMarginCalculator() {
                         step="0.1"
                         value={watchValues.targetMarkupPct || 0}
                         onChange={(e) => setValue('targetMarkupPct', parseFloat(e.target.value))}
-                        className="w-full md:flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                        className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                       />
-                      <div className="w-full md:w-auto relative flex-shrink-0">
-                        <span className="absolute right-2.5 md:right-3 top-3 md:top-2.5 font-bold text-xs md:text-sm">%</span>
-                        <input
-                          id="target-markup"
-                          type="number"
-                          value={watchValues.targetMarkupPct === 0 ? '' : watchValues.targetMarkupPct}
-                          onChange={(e) => setValue('targetMarkupPct', parseFloat(e.target.value) || 0)}
-                          className="w-full md:w-28 px-7 md:px-6 py-3 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400"
-                          placeholder="0"
-                        />
-                      </div>
+                      <input
+                        id="target-markup"
+                        type="number"
+                        value={watchValues.targetMarkupPct === 0 ? '' : watchValues.targetMarkupPct}
+                        onChange={(e) => setValue('targetMarkupPct', parseFloat(e.target.value) || 0)}
+                        className="w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                        placeholder="0"
+                      />
                     </div>
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       Equivalent Margin: ~{equivalentMargin.toFixed(2)}%
@@ -385,19 +376,16 @@ export default function ProfitMarginCalculator() {
                     step="1"
                     value={watchValues.sellingPrice || 0}
                     onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value))}
-                    className="w-full md:flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                    className="flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
                   />
-                  <div className="w-full md:w-auto relative flex-shrink-0">
-                    <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 font-bold text-xs md:text-sm">₹</span>
-                    <input
-                      id="selling-price"
-                      type="number"
-                      value={watchValues.sellingPrice === 0 ? '' : watchValues.sellingPrice}
-                      onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value) || 0)}
-                      className="w-full md:w-28 px-7 md:px-6 py-3 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400"
-                      placeholder="0"
-                    />
-                  </div>
+                  <input
+                    id="selling-price"
+                    type="number"
+                    value={watchValues.sellingPrice === 0 ? '' : watchValues.sellingPrice}
+                    onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value) || 0)}
+                    className="w-full md:w-28 px-3 py-3 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                    placeholder="0"
+                  />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">₹1 - ₹100,000</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Market price or fixed MRP on package. Used in Price-Driven mode when MRP is pre-determined and you need to extract profit</p>
