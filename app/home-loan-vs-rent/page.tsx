@@ -20,7 +20,7 @@ import {
   ReferenceLine,
 } from 'recharts';
 import { BuyVsRentEngine, BuyVsRentResult, YearlyData } from '@/lib/calculators/buy-vs-rent';
-import ExportButton from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { formatCurrency } from '@/lib/utils/format';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
@@ -1012,23 +1012,22 @@ export default function HomeLoanVsRentCalculator() {
               </div>
             </div>
 
-            {/* Export & Share */}
+            {/* Share */}
             <div className="mb-8">
-              <ExportButton
-                fileName="home-loan-vs-rent-analysis"
-                calculatorName="Home Loan vs Rent Calculator"
-                resultElementId="results"
-                inputsData={[
+              <ShareButtons
+                inputs={[
                   { label: 'Property Value', value: formatCurrency(watchValues.property_value) },
-                  { label: 'Down Payment', value: `${watchValues.down_payment_pct}% (${formatCurrency(downPaymentAmount)})` },
+                  { label: 'Down Payment', value: `${watchValues.down_payment_pct}%` },
                   { label: 'Loan Interest Rate', value: `${watchValues.loan_interest_rate_pct}%` },
                   { label: 'Loan Tenure', value: `${watchValues.loan_tenure_years} years` },
-                  { label: 'Initial Monthly Rent', value: formatCurrency(watchValues.initial_monthly_rent) },
-                  { label: 'Opportunity Return', value: `${watchValues.opportunity_return_pct}%` },
+                  { label: 'Initial Monthly Rent', value: formatCurrency(watchValues.initial_monthly_rent) }
+                ]}
+                outputs={[
                   { label: 'Monthly EMI', value: formatCurrency(result.monthly_emi) },
                   { label: 'Verdict', value: result.financial_verdict === 'BUYING_IS_BETTER' ? '🏠 Buying Wins' : '📈 Renting Wins' },
-                  { label: 'Advantage', value: formatCurrency(result.absolute_delta) },
+                  { label: 'Advantage', value: formatCurrency(result.absolute_delta) }
                 ]}
+                calculatorName="Home Loan vs Rent Calculator"
               />
             </div>
           </>

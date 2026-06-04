@@ -13,7 +13,7 @@ import { calculateSimpleInterest, generateSimpleInterestProjection, type TenureT
 import { SimpleInterestSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
@@ -68,27 +68,6 @@ export default function SimpleInterestCalculatorPage() {
   });
 
   const watchValues = watch();
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.principal) {
-      data.push({ label: 'Principal Amount', value: formatCurrency(watchValues.principal) });
-    }
-    if (watchValues.annualRate !== undefined) {
-      data.push({ label: 'Annual Interest Rate (%)', value: `${watchValues.annualRate}%` });
-    }
-    if (watchValues.tenureType === 'years' && watchValues.years) {
-      data.push({ label: 'Tenure', value: `${watchValues.years} Year(s)` });
-    } else if (watchValues.tenureType === 'months') {
-      const yrs = watchValues.years || 0;
-      const mths = watchValues.months || 0;
-      const display = yrs > 0 ? `${yrs}Y ${mths}M` : `${mths} Month(s)`;
-      data.push({ label: 'Tenure', value: display });
-    } else if (watchValues.tenureType === 'days' && watchValues.days) {
-      data.push({ label: 'Tenure', value: `${watchValues.days} Day(s)` });
-    }
-    return data;
-  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     principal: { min: 10000, max: 100000000, label: 'Principal (₹)' },
@@ -524,12 +503,18 @@ export default function SimpleInterestCalculatorPage() {
                 </p>
               </div>
               <div className="mt-6">
-                <ExportButton
-                  fileName="Simple_Interest_Results"
-                  calculatorName="Simple Interest Results"
-                  resultElementId="simple-interest-results"
-                  inputElementId="simple-interest-inputs"
-                  inputsData={inputsData}
+                <ShareButtons
+                  inputs={[
+                    { label: 'Principal Amount', value: formatCurrency(result.principalAmount) },
+                    { label: 'Annual Interest Rate', value: `${watchValues.annualRate}%` },
+                    { label: 'Tenure', value: watchValues.tenureType === 'years' ? `${watchValues.years} Year(s)` : watchValues.tenureType === 'months' ? `${watchValues.years}Y ${watchValues.months}M` : `${watchValues.days} Day(s)` }
+                  ]}
+                  outputs={[
+                    { label: 'Total Maturity Value', value: formatCurrency(result.totalMaturityValue) },
+                    { label: 'Interest Accrued', value: formatCurrency(result.interestAccrued) },
+                    ...(result.dailyAccrual !== undefined ? [{ label: 'Daily Interest Accrual', value: formatCurrency(result.dailyAccrual) }] : [])
+                  ]}
+                  calculatorName="Simple Interest Calculator"
                 />
               </div>
             </div>

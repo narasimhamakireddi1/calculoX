@@ -10,7 +10,7 @@ import { calculateRD, generateRDProjection } from '@/lib/calculators/rd';
 import { RDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
@@ -55,23 +55,6 @@ export default function RDCalculatorPage() {
   });
 
   const watchValues = watch();
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.monthlyDeposit) {
-      data.push({ label: 'Monthly Deposit', value: formatCurrency(watchValues.monthlyDeposit) });
-    }
-    if (watchValues.annualRate !== undefined) {
-      data.push({ label: 'Annual Interest Rate', value: `${watchValues.annualRate}%` });
-    }
-    if (watchValues.months) {
-      const years = Math.floor(watchValues.months / 12);
-      const months = watchValues.months % 12;
-      const tenureStr = years > 0 ? `${years}Y ${months}M` : `${months}M`;
-      data.push({ label: 'Tenure', value: tenureStr });
-    }
-    return data;
-  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     monthlyDeposit: { min: 1000, max: 10000000, label: 'Monthly Deposit (₹)' },
@@ -376,12 +359,18 @@ export default function RDCalculatorPage() {
                 </p>
               </div>
               <div className="mt-6">
-                <ExportButton
-                  fileName="RD_Results"
-                  calculatorName="Recurring Deposit Results"
-                  resultElementId="rd-results"
-                  inputElementId="rd-inputs"
-                  inputsData={inputsData}
+                <ShareButtons
+                  inputs={[
+                    { label: 'Monthly Deposit', value: formatCurrency(watchValues.monthlyDeposit) },
+                    { label: 'Annual Interest Rate', value: `${watchValues.annualRate}%` },
+                    { label: 'Tenure', value: (() => { const y = Math.floor(watchValues.months / 12); const m = watchValues.months % 12; return y > 0 ? `${y}Y ${m}M` : `${m}M`; })() }
+                  ]}
+                  outputs={[
+                    { label: 'Maturity Amount', value: formatCurrency(result.maturityAmount) },
+                    { label: 'Total Invested', value: formatCurrency(result.totalDeposits) },
+                    { label: 'Total Interest Earned', value: formatCurrency(result.totalInterest) }
+                  ]}
+                  calculatorName="Recurring Deposit Calculator"
                 />
               </div>
             </div>

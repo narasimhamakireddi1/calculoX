@@ -8,7 +8,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
@@ -51,17 +51,6 @@ export default function BMICalculatorPage() {
   });
 
   const watchValues = watch();
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.weight) {
-      data.push({ label: `Weight (${unitSystem === 'metric' ? 'kg' : 'lbs'})`, value: watchValues.weight.toString() });
-    }
-    if (watchValues.height) {
-      data.push({ label: `Height (${unitSystem === 'metric' ? 'cm' : 'inches'})`, value: watchValues.height.toString() });
-    }
-    return data;
-  }, [watchValues, unitSystem]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -428,12 +417,16 @@ export default function BMICalculatorPage() {
               </div>
 
               <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
-                <ExportButton
-                  fileName="BMI_Calculator_Results"
-                  calculatorName="BMI Calculator Results"
-                  resultElementId="bmi-results"
-                  inputElementId="bmi-inputs"
-                  inputsData={inputsData}
+                <ShareButtons
+                  inputs={[
+                    { label: `Weight (${unitSystem === 'metric' ? 'kg' : 'lbs'})`, value: watchValues.weight.toString() },
+                    { label: `Height (${unitSystem === 'metric' ? 'cm' : 'inches'})`, value: watchValues.height.toString() }
+                  ]}
+                  outputs={[
+                    { label: 'BMI Score', value: result.bmi.toFixed(1) },
+                    { label: 'Category', value: result.category.charAt(0).toUpperCase() + result.category.slice(1) }
+                  ]}
+                  calculatorName="BMI Calculator"
                 />
               </div>
             </div>

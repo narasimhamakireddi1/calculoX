@@ -11,7 +11,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { NismRetirementEngine, type NismInputs, type NismCalculationResult } from '@/lib/calculators/nism-retirement';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import z from 'zod';
@@ -71,21 +71,6 @@ export default function RetirementCalculatorPage() {
   });
 
   const watchValues = watch();
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    data.push({ label: 'Present Age', value: `${watchValues.present_age} years` });
-    data.push({ label: 'Retirement Age', value: `${watchValues.retirement_age} years` });
-    data.push({ label: 'Life Expectancy', value: `${watchValues.life_expectancy} years` });
-    data.push({ label: 'Current Monthly Expenses', value: formatCurrency(watchValues.present_monthly_expenses) });
-    data.push({ label: 'Expense Reduction Post-Retirement', value: `${watchValues.expense_reduction_pct}%` });
-    data.push({ label: 'Long-term Inflation Rate', value: `${watchValues.long_term_inflation_pct}% p.a.` });
-    data.push({ label: 'Current Savings', value: formatCurrency(watchValues.current_savings) });
-    data.push({ label: 'Lump Sum Benefits', value: formatCurrency(watchValues.lump_sum_benefits) });
-    data.push({ label: 'Pre-Retirement Return', value: `${watchValues.pre_retirement_return_pct}% p.a.` });
-    data.push({ label: 'Post-Retirement Return', value: `${watchValues.post_retirement_return_pct}% p.a.` });
-    return data;
-  }, [watchValues]);
 
   const handleInputChange = (fieldName: keyof RetirementFormData, value: number) => {
     setValue(fieldName, value, { shouldValidate: true });
@@ -688,14 +673,22 @@ export default function RetirementCalculatorPage() {
                   </p>
                 </div>
 
-                {/* Export Button */}
+                {/* Share Button */}
                 <div className="mt-4">
-                  <ExportButton
-                    fileName="Retirement_Corpus_Plan"
-                    calculatorName="Retirement Corpus Calculator (NISM Framework)"
-                    resultElementId="results-section"
-                    inputElementId="inputs-section"
-                    inputsData={inputsData}
+                  <ShareButtons
+                    inputs={[
+                      { label: 'Present Age', value: `${watchValues.present_age} years` },
+                      { label: 'Retirement Age', value: `${watchValues.retirement_age} years` },
+                      { label: 'Life Expectancy', value: `${watchValues.life_expectancy} years` },
+                      { label: 'Current Monthly Expenses', value: formatCurrency(watchValues.present_monthly_expenses) }
+                    ]}
+                    outputs={[
+                      { label: 'FV of Current Savings', value: formatCurrency(result.fv_of_current_savings) },
+                      { label: 'Shortfall Corpus', value: formatCurrency(result.net_shortfall_to_build) },
+                      { label: 'Accumulation Years', value: `${result.accumulationYears} years` },
+                      { label: 'Distribution Years', value: `${result.distributionYears} years` }
+                    ]}
+                    calculatorName="Retirement Calculator"
                   />
                 </div>
               </div>

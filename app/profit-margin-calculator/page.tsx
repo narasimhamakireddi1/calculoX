@@ -15,7 +15,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
-import ExportButton from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
@@ -576,20 +576,20 @@ export default function ProfitMarginCalculator() {
                 {results.isProfitable ? '✅ Profitable' : '❌ Not Profitable'}
               </div>
 
-              {/* Export Button */}
-              <ExportButton
-                fileName="profit-margin-pricing"
-                calculatorName="Profit Margin & Markup Calculator"
-                resultElementId="pricing-inputs"
-                inputsData={[
+              {/* Share Button */}
+              <ShareButtons
+                inputs={[
                   { label: 'Mode', value: watchValues.calculationBasis.replace('_', ' ') },
                   { label: 'Cost Price', value: `₹${results.inputCostPrice.toFixed(2)}` },
+                  { label: 'GST Treatment', value: watchValues.gstTreatment }
+                ]}
+                outputs={[
                   { label: 'Net Selling Price', value: `₹${results.netSellingPricePreGst.toFixed(2)}` },
                   { label: 'Final MRP', value: `₹${results.finalConsumerMRP.toFixed(2)}` },
-                  { label: 'GST Treatment', value: watchValues.gstTreatment },
                   { label: 'Markup %', value: `${results.calculatedMarkupPercentage.toFixed(2)}%` },
-                  { label: 'Margin %', value: `${results.calculatedMarginPercentage.toFixed(2)}%` },
+                  { label: 'Margin %', value: `${results.calculatedMarginPercentage.toFixed(2)}%` }
                 ]}
+                calculatorName="Profit Margin Calculator"
               />
             </div>
           )}

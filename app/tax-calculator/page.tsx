@@ -10,7 +10,7 @@ import { ComprehensiveTaxInput, ComprehensiveTaxResult } from '@/lib/tax-engine/
 import { formatCurrency } from '@/lib/utils/format';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
@@ -93,32 +93,6 @@ export default function TaxCalculator() {
   });
 
   const watchValues = watch();
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.grossSalary) {
-      data.push({ label: 'Gross Salary', value: formatCurrency(watchValues.grossSalary) });
-    }
-    if (watchValues.basicSalary) {
-      data.push({ label: 'Basic Salary', value: formatCurrency(watchValues.basicSalary) });
-    }
-    if (watchValues.hraReceived) {
-      data.push({ label: 'HRA Received', value: formatCurrency(watchValues.hraReceived) });
-    }
-    if (watchValues.rentPaid) {
-      data.push({ label: 'Rent Paid', value: formatCurrency(watchValues.rentPaid) });
-    }
-    if (watchValues.lta) {
-      data.push({ label: 'LTA Claimed', value: formatCurrency(watchValues.lta) });
-    }
-    if (watchValues.incomeHouseProperty) {
-      data.push({ label: 'House Property Income', value: formatCurrency(watchValues.incomeHouseProperty) });
-    }
-    if (watchValues.incomeOtherSources) {
-      data.push({ label: 'Other Sources Income', value: formatCurrency(watchValues.incomeOtherSources) });
-    }
-    return data;
-  }, [watchValues]);
 
   const haptic = useHapticFeedback();
 
@@ -818,12 +792,20 @@ export default function TaxCalculator() {
                   </div>
                 </div>
                 <div className="mt-6">
-                  <ExportButton
-                    fileName="Income_Tax_Results"
-                    calculatorName="Income Tax Results"
-                    resultElementId="tax-results"
-                    inputElementId="tax-inputs"
-                    inputsData={inputsData}
+                  <ShareButtons
+                    inputs={[
+                      { label: 'Gross Salary', value: formatCurrency(watchValues.grossSalary) },
+                      { label: 'Basic Salary', value: formatCurrency(watchValues.basicSalary) },
+                      { label: 'HRA Received', value: formatCurrency(watchValues.hraReceived) },
+                      { label: 'Rent Paid', value: formatCurrency(watchValues.rentPaid) }
+                    ]}
+                    outputs={[
+                      { label: 'Net Taxable Income', value: formatCurrency(getRegimeResult()?.taxableIncome || 0) },
+                      { label: 'Total Tax', value: formatCurrency(getRegimeResult()?.totalTax || 0) },
+                      { label: 'Effective Rate', value: `${getRegimeResult()?.effectiveRate.toFixed(2) || 0}%` },
+                      { label: 'Recommended Regime', value: result?.recommended === 'new' ? 'New Regime' : 'Old Regime' }
+                    ]}
+                    calculatorName="Income Tax Calculator"
                   />
                 </div>
               </div>

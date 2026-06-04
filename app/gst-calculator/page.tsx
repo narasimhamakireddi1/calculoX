@@ -10,7 +10,7 @@ import { calculateGST } from '@/lib/calculators/gst';
 import { GSTSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
@@ -47,20 +47,6 @@ export default function GSTCalculatorPage() {
   const watchValues = watch();
   const calculationType = watch('calculationType');
   const gstRate = watch('gstRate');
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.amount) {
-      data.push({ label: calculationType === 'add' ? 'Amount (Without GST)' : 'Amount (With GST)', value: formatCurrency(watchValues.amount) });
-    }
-    if (watchValues.gstRate) {
-      data.push({ label: 'GST Rate', value: `${watchValues.gstRate}%` });
-    }
-    if (calculationType) {
-      data.push({ label: 'Operation Type', value: calculationType === 'add' ? 'Add GST' : 'Remove GST' });
-    }
-    return data;
-  }, [watchValues, calculationType]);
 
   const handleAmountChange = (value: number) => {
     setValue('amount', value, { shouldValidate: true });
@@ -333,12 +319,18 @@ export default function GSTCalculatorPage() {
                 </p>
               </div>
               <div className="mt-6">
-                <ExportButton
-                  fileName="GST_Results"
-                  calculatorName="GST Breakdown"
-                  resultElementId="gst-results"
-                  inputElementId="gst-inputs"
-                  inputsData={inputsData}
+                <ShareButtons
+                  inputs={[
+                    { label: calculationType === 'add' ? 'Amount (Without GST)' : 'Amount (With GST)', value: formatCurrency(watchValues.amount) },
+                    { label: 'GST Rate', value: `${gstRate}%` },
+                    { label: 'Operation Type', value: calculationType === 'add' ? 'Add GST' : 'Remove GST' }
+                  ]}
+                  outputs={[
+                    { label: calculationType === 'add' ? 'Base Amount' : 'Amount Without GST', value: formatCurrency(result.baseAmount) },
+                    { label: 'GST Amount', value: formatCurrency(result.gstAmount) },
+                    { label: calculationType === 'add' ? 'Total Amount' : 'Amount With GST', value: formatCurrency(result.totalAmount) }
+                  ]}
+                  calculatorName="GST Calculator"
                 />
               </div>
             </div>

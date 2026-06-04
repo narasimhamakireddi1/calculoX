@@ -10,7 +10,7 @@ import { calculatePercentage } from '@/lib/calculators/percentage';
 import { PercentageSchema } from '@/lib/validators';
 import { formatNumber } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
@@ -150,21 +150,6 @@ export default function PercentageCalculatorPage() {
 
   const labels = getLabels();
 
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [
-      { label: labels.a, value: formatNumber(valueA ?? 0, 2) },
-      { label: labels.b, value: formatNumber(valueB ?? 0, 2) },
-    ];
-    if (calculationType === 'sequential') {
-      data.push({ label: labels.c ?? 'Second %', value: formatNumber(percentC ?? 0, 2) });
-    }
-    if (calculationType === 'hike-discount') {
-      data.push({ label: 'Direction', value: hikeDirection === 'hike' ? 'Hike (Increase)' : 'Discount (Decrease)' });
-    }
-    data.push({ label: 'Calculation Type', value: TRACKS.find(t => t.id === calculationType)?.name ?? calculationType });
-    return data;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watchValues]);
 
   const isResultPercent = ['what-percent', 'percent-change'].includes(calculationType);
   const showPie = result?.breakdown && result.breakdown.length >= 2 && ['hike-discount', 'percent-of', 'reverse-percent'].includes(calculationType);
@@ -561,12 +546,17 @@ export default function PercentageCalculatorPage() {
               </div>
 
               <div className="mt-2">
-                <ExportButton
-                  fileName="Percentage_Results"
-                  calculatorName="Percentage Calculator Results"
-                  resultElementId="percentage-results"
-                  inputElementId="percentage-inputs"
-                  inputsData={inputsData}
+                <ShareButtons
+                  inputs={[
+                    { label: labels.a, value: formatNumber(valueA ?? 0, 2) },
+                    { label: labels.b, value: formatNumber(valueB ?? 0, 2) },
+                    ...(calculationType === 'sequential' ? [{ label: labels.c ?? 'Second %', value: formatNumber(percentC ?? 0, 2) }] : []),
+                    { label: 'Type', value: TRACKS.find(t => t.id === calculationType)?.name ?? calculationType }
+                  ]}
+                  outputs={[
+                    { label: 'Result', value: isResultPercent ? `${formatNumber(result.result, 2)}%` : formatNumber(result.result, 2) }
+                  ]}
+                  calculatorName="Percentage Calculator"
                 />
               </div>
             </div>

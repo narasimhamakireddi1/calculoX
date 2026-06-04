@@ -10,7 +10,7 @@ import { calculateCAGR } from '@/lib/calculators/cagr';
 import { CAGRSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import ExportButton, { type FormattedInput } from '@/components/ui/ExportButton';
+import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 
@@ -43,20 +43,6 @@ export default function CAGRCalculatorPage() {
   });
 
   const watchValues = watch();
-
-  const inputsData: FormattedInput[] = useMemo(() => {
-    const data: FormattedInput[] = [];
-    if (watchValues.beginningValue) {
-      data.push({ label: 'Beginning Value', value: formatCurrency(watchValues.beginningValue) });
-    }
-    if (watchValues.endingValue) {
-      data.push({ label: 'Ending Value', value: formatCurrency(watchValues.endingValue) });
-    }
-    if (watchValues.years) {
-      data.push({ label: 'Time Period', value: `${watchValues.years} Year(s)` });
-    }
-    return data;
-  }, [watchValues]);
 
   const fieldRanges: Record<string, { min: number; max: number; label: string }> = {
     beginningValue: { min: 10000, max: 100000000, label: 'Beginning Value (₹)' },
@@ -361,12 +347,16 @@ export default function CAGRCalculatorPage() {
               </div>
 
               <div className="mt-6">
-                <ExportButton
-                  fileName="CAGR_Results"
-                  calculatorName="CAGR Results"
-                  resultElementId="cagr-results"
-                  inputElementId="cagr-inputs"
-                  inputsData={inputsData}
+                <ShareButtons
+                  inputs={[
+                    { label: 'Beginning Value', value: formatCurrency(watchValues.beginningValue) },
+                    { label: 'Ending Value', value: formatCurrency(watchValues.endingValue) },
+                    { label: 'Time Period', value: `${watchValues.years} Year(s)` }
+                  ]}
+                  outputs={[
+                    { label: 'CAGR', value: `${result.cagrPercentage.toFixed(2)}%` }
+                  ]}
+                  calculatorName="CAGR Calculator"
                 />
               </div>
             </div>
