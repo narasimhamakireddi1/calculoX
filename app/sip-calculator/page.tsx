@@ -499,7 +499,18 @@ export default function SIPCalculatorPage() {
                 />
 
                 <ShareButtons
-                  resultText={`My SIP Investment Result:\nFuture Value: ₹${result.futureValue.toLocaleString('en-IN')}\nTotal Invested: ₹${result.totalInvestment.toLocaleString('en-IN')}\nTotal Gains: ₹${result.gainedAmount.toLocaleString('en-IN')}`}
+                  inputs={[
+                    { label: 'Monthly Investment', value: `₹${watchValues.monthlyInvestment.toLocaleString('en-IN')}` },
+                    { label: 'Investment Period', value: `${watchValues.years} years` },
+                    { label: 'Expected Annual Return', value: `${watchValues.annualReturn}%` },
+                    { label: 'Annual Step-Up', value: `${watchValues.stepUpPercent}%` },
+                  ]}
+                  outputs={[
+                    { label: 'Future Value', value: `₹${result.futureValue.toLocaleString('en-IN')}` },
+                    { label: 'Total Invested', value: `₹${result.totalInvestment.toLocaleString('en-IN')}` },
+                    { label: 'Total Gains', value: `₹${result.gainedAmount.toLocaleString('en-IN')}` },
+                    { label: 'Return Rate', value: `${((result.gainedAmount / result.totalInvestment) * 100).toFixed(1)}%` },
+                  ]}
                   calculatorName="SIP Calculator"
                 />
               </div>

@@ -53,7 +53,7 @@ interface AmortizationRow {
   balance: number;
 }
 
-const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null; inputsData: FormattedInput[] }) => {
+const ResultCards = memo(({ result, inputsData, watchValues }: { result: EMIResultData | null; inputsData: FormattedInput[]; watchValues: EMIFormData }) => {
   if (!result) {
     return (
       <div className="card h-full flex items-center justify-center min-h-64">
@@ -147,7 +147,16 @@ const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null
         </div>
 
         <ShareButtons
-          resultText={`My Monthly EMI: ₹${result.emi.toLocaleString('en-IN')}\nTotal Payable: ₹${result.totalAmount.toLocaleString('en-IN')}\nTotal Interest: ₹${result.totalInterest.toLocaleString('en-IN')}`}
+          inputs={[
+            { label: 'Principal Amount', value: `₹${watchValues.principal.toLocaleString('en-IN')}` },
+            { label: 'Interest Rate', value: `${watchValues.annualRate}% p.a.` },
+            { label: 'Loan Tenure', value: `${watchValues.years} years` },
+          ]}
+          outputs={[
+            { label: 'Monthly EMI', value: `₹${result.emi.toLocaleString('en-IN')}` },
+            { label: 'Total Payable', value: `₹${result.totalAmount.toLocaleString('en-IN')}` },
+            { label: 'Total Interest', value: `₹${result.totalInterest.toLocaleString('en-IN')}` },
+          ]}
           calculatorName="EMI Calculator"
         />
       </div>
@@ -515,7 +524,7 @@ export default function EMICalculatorPage() {
         </div>
 
         {/* Results Section */}
-        <ResultCards result={result} inputsData={inputsData} />
+        <ResultCards result={result} inputsData={inputsData} watchValues={watchValues} />
       </div>
 
       {/* Charts Section - Lazy loaded */}

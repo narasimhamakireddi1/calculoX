@@ -608,7 +608,17 @@ export default function FDCalculatorPage() {
                 />
 
                 <ShareButtons
-                  resultText={`My Fixed Deposit Result:\nMaturity Amount: ₹${result.maturityAmount.toLocaleString('en-IN')}\nInterest Earned: ₹${result.totalInterest.toLocaleString('en-IN')}\nPrincipal: ₹${watchValues.principal.toLocaleString('en-IN')}`}
+                  inputs={[
+                    { label: 'Principal Amount', value: `₹${watchValues.principal.toLocaleString('en-IN')}` },
+                    { label: 'Interest Rate', value: `${((watchValues.seniorCitizen ? watchValues.annualRate + 0.5 : watchValues.annualRate).toFixed(2))}% p.a.` },
+                    { label: 'Tenure', value: watchValues.years > 0 ? `${watchValues.years}Y ${watchValues.months}M ${watchValues.days}D` : `${watchValues.months}M ${watchValues.days}D` },
+                    { label: 'Payout Type', value: watchValues.payoutType.charAt(0).toUpperCase() + watchValues.payoutType.slice(1) },
+                  ]}
+                  outputs={[
+                    { label: 'Maturity Amount', value: `₹${result.maturityAmount.toLocaleString('en-IN')}` },
+                    { label: 'Interest Earned', value: `₹${result.totalInterest.toLocaleString('en-IN')}` },
+                    { label: 'Effective Yield', value: `${((result.totalInterest / (watchValues.principal * (result.tenure.totalDays / 365))) * 100).toFixed(2)}%` },
+                  ]}
                   calculatorName="FD Calculator"
                 />
               </div>

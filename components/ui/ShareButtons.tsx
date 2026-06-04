@@ -2,16 +2,45 @@
 
 import { useState } from 'react';
 
+interface InputField {
+  label: string;
+  value: string;
+}
+
 interface ShareButtonsProps {
-  resultText: string;
+  inputs: InputField[];
+  outputs: InputField[];
   calculatorName: string;
 }
 
-export function ShareButtons({ resultText, calculatorName }: ShareButtonsProps) {
+export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareMessage = `${resultText}\n\n📊 Calculated using CalculoX - ${calculatorName}\n${currentUrl}`;
+
+  // Format the share message with inputs and outputs
+  const formatShareMessage = (): string => {
+    let message = `✅ ${calculatorName}\n\n`;
+
+    // Add inputs section
+    message += '📥 INPUTS (Assumptions):\n';
+    inputs.forEach((input) => {
+      message += `  • ${input.label}: ${input.value}\n`;
+    });
+
+    // Add outputs section
+    message += '\n📤 RESULTS (Outputs):\n';
+    outputs.forEach((output) => {
+      message += `  • ${output.label}: ${output.value}\n`;
+    });
+
+    // Add footer
+    message += `\n🔗 Calculated using CalculoX\n${currentUrl}`;
+
+    return message;
+  };
+
+  const shareMessage = formatShareMessage();
   const encodedMessage = encodeURIComponent(shareMessage);
   const encodedUrl = encodeURIComponent(currentUrl);
 
@@ -34,8 +63,23 @@ export function ShareButtons({ resultText, calculatorName }: ShareButtonsProps) 
   };
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2 w-full">
-      <div className="flex-1">
+    <div className="space-y-3">
+      {/* Preview Box */}
+      <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
+          📋 Preview of Share Message
+        </p>
+        <div className="bg-white dark:bg-gray-900 rounded p-3 text-xs font-mono text-gray-700 dark:text-gray-300 space-y-1 max-h-40 overflow-y-auto border border-gray-200 dark:border-gray-700">
+          {shareMessage.split('\n').map((line, idx) => (
+            <div key={idx} className="whitespace-pre-wrap break-words">
+              {line}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Share Buttons */}
+      <div>
         <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
           📤 Share Your Results
         </p>
