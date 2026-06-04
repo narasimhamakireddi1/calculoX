@@ -1,9 +1,18 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** b502aac
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 08b95cb
 
-## ✅ Latest (2026-06-04 - Projection Table Enhancement: Smart Show All Button for All Calculators)
+## ✅ Latest (2026-06-04 - Projection Table Polish: Smooth Scroll on Toggle + Smart Show All Button)
+- 🎯 **Smooth Scroll on Expand/Collapse:** Prevent unwanted page jumps when toggling projection tables ✅
+  - **Issue:** Clicking "Show All" would scroll page to unexpected locations
+  - **Solution:** Added useRef to projection sections with smooth scroll behavior (`scrollIntoView`)
+  - **Behavior:** When showing all rows, table smoothly scrolls to its top; when collapsing, view stays on table
+  - **Applied To:** SIP, FD, Simple Interest, Retirement calculators ✅
+  - **Result:** User stays focused on the projection data while toggling ✅
+  - **Commit:** 08b95cb ✅
+
+## ✅ Previous (2026-06-04 - Projection Table Enhancement: Smart Show All Button for All Calculators)
 - 📊 **Projection Table UX Consistency:** Smart "Show All" button applied to all calculators with projections ✅
   - **SIP Calculator:** If years ≤ 12, show all rows; if years > 12, show first 5 + button ✅
   - **FD Calculator:** If tenure ≤ 12 months, show all rows; if > 12 months, show first 5 + button ✅
