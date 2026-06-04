@@ -1,7 +1,6 @@
 'use client';
 
 import { memo, useMemo, useState, useCallback } from 'react';
-import { formatCurrency } from '@/lib/utils/format';
 
 interface YearlyProjection {
   year: number;
