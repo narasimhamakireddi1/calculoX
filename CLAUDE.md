@@ -1,9 +1,19 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 08b95cb
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 76842ee
 
-## ✅ Latest (2026-06-04 - Projection Table Polish: Smooth Scroll on Toggle + Smart Show All Button)
+## ✅ Latest (2026-06-04 - Projection Tables Refactored: Amortization-Style Show All Pattern)
+- 🎯 **Amortization-Style Projection Tables:** All projection-based calculators now use same pattern as EMI amortization schedule ✅
+  - **SIP Calculator:** New ProjectionTable component, first 12 years default, virtual scrolling ✅
+  - **FD Calculator:** New ProjectionTable component, first 12 months default, virtual scrolling ✅
+  - **Simple Interest Calculator:** New ProjectionTable component, first 12 periods default, virtual scrolling ✅
+  - **Retirement Calculator:** New ProjectionTable component, first 12 years default, virtual scrolling ✅
+  - **UX Pattern:** Toggle button between "Show All" and "Show First 12", lazy load 50 rows on scroll ✅
+  - **Performance:** Memoized components, virtual scrolling, lazy-loaded with Suspense ✅
+  - **Commits:** 3878113 (SIP) → 7151486 (FD) → c2165b7 (Simple Interest) → 76842ee (Retirement) ✅
+
+## ✅ Previous (2026-06-04 - Projection Table Polish: Smooth Scroll on Toggle + Smart Show All Button)
 - 🎯 **Smooth Scroll on Expand/Collapse:** Prevent unwanted page jumps when toggling projection tables ✅
   - **Issue:** Clicking "Show All" would scroll page to unexpected locations
   - **Solution:** Added useRef to projection sections with smooth scroll behavior (`scrollIntoView`)
