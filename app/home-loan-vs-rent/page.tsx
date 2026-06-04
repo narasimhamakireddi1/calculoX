@@ -61,7 +61,7 @@ const rangeInputClasses =
   'w-full md:flex-1 h-3 bg-gradient-to-r rounded-lg appearance-none cursor-pointer slider [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:cursor-pointer';
 
 const numberInputClasses =
-  'w-24 md:w-28 px-3 py-2 border-l-2 border-gray-300 dark:border-gray-600 rounded-r-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none';
+  'w-full md:w-28 px-3 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none';
 
 export default function HomeLoanVsRentCalculator() {
   const [activeTab, setActiveTab] = useState<'property' | 'loan' | 'assumptions'>('property');
@@ -363,7 +363,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Property Value: {formatCurrency(watchValues.property_value)}
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="100000"
@@ -371,7 +371,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="100000"
                     value={watchValues.property_value}
                     onChange={(e) => setValue('property_value', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-blue-500 to-blue-600`}
+                    className={`flex-1 ${rangeInputClasses} from-blue-500 to-blue-600`}
                   />
                   <input
                     type="number"
@@ -400,7 +400,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Down Payment: {watchValues.down_payment_pct}% ({formatCurrency(downPaymentAmount)})
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="5"
@@ -408,7 +408,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="1"
                     value={watchValues.down_payment_pct}
                     onChange={(e) => setValue('down_payment_pct', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-orange-500 to-orange-600`}
+                    className={`flex-1 ${rangeInputClasses} from-orange-500 to-orange-600`}
                   />
                   <input
                     type="number"
@@ -444,7 +444,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Home Loan Interest Rate: {watchValues.loan_interest_rate_pct}%
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="2"
@@ -452,7 +452,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="0.1"
                     value={watchValues.loan_interest_rate_pct}
                     onChange={(e) => setValue('loan_interest_rate_pct', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-purple-500 to-purple-600`}
+                    className={`flex-1 ${rangeInputClasses} from-purple-500 to-purple-600`}
                   />
                   <input
                     type="number"
@@ -469,7 +469,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Loan Tenure: {watchValues.loan_tenure_years} years
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="1"
@@ -477,7 +477,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="1"
                     value={watchValues.loan_tenure_years}
                     onChange={(e) => setValue('loan_tenure_years', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-green-500 to-green-600`}
+                    className={`flex-1 ${rangeInputClasses} from-green-500 to-green-600`}
                   />
                   <input
                     type="number"
@@ -505,7 +505,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Initial Monthly Rent: {formatCurrency(watchValues.initial_monthly_rent)}
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="1000"
@@ -513,7 +513,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="1000"
                     value={watchValues.initial_monthly_rent}
                     onChange={(e) => setValue('initial_monthly_rent', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-rose-500 to-rose-600`}
+                    className={`flex-1 ${rangeInputClasses} from-rose-500 to-rose-600`}
                   />
                   <input
                     type="number"
@@ -542,7 +542,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Annual Rent Increase: {watchValues.annual_rent_increase_pct}%
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="0"
@@ -550,7 +550,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="0.5"
                     value={watchValues.annual_rent_increase_pct}
                     onChange={(e) => setValue('annual_rent_increase_pct', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-cyan-500 to-cyan-600`}
+                    className={`flex-1 ${rangeInputClasses} from-cyan-500 to-cyan-600`}
                   />
                   <input
                     type="number"
@@ -573,7 +573,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Property Appreciation Rate: {watchValues.property_growth_rate_pct}%
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="-5"
@@ -581,7 +581,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="0.5"
                     value={watchValues.property_growth_rate_pct}
                     onChange={(e) => setValue('property_growth_rate_pct', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-amber-500 to-amber-600`}
+                    className={`flex-1 ${rangeInputClasses} from-amber-500 to-amber-600`}
                   />
                   <input
                     type="number"
@@ -598,7 +598,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Annual Maintenance: {watchValues.annual_maintenance_pct}%
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="0"
@@ -606,7 +606,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="0.1"
                     value={watchValues.annual_maintenance_pct}
                     onChange={(e) => setValue('annual_maintenance_pct', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-indigo-500 to-indigo-600`}
+                    className={`flex-1 ${rangeInputClasses} from-indigo-500 to-indigo-600`}
                   />
                   <input
                     type="number"
@@ -622,7 +622,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Opportunity Investment Return: {watchValues.opportunity_return_pct}%
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="0"
@@ -630,7 +630,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="0.5"
                     value={watchValues.opportunity_return_pct}
                     onChange={(e) => setValue('opportunity_return_pct', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-teal-500 to-teal-600`}
+                    className={`flex-1 ${rangeInputClasses} from-teal-500 to-teal-600`}
                   />
                   <input
                     type="number"
@@ -647,7 +647,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Inflation Rate: {watchValues.inflation_rate_pct}%
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="0"
@@ -655,7 +655,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="0.5"
                     value={watchValues.inflation_rate_pct}
                     onChange={(e) => setValue('inflation_rate_pct', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-pink-500 to-pink-600`}
+                    className={`flex-1 ${rangeInputClasses} from-pink-500 to-pink-600`}
                   />
                   <input
                     type="number"
@@ -672,7 +672,7 @@ export default function HomeLoanVsRentCalculator() {
                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Comparison Timeline: {watchValues.projection_tenure_years} years
                 </label>
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                   <input
                     type="range"
                     min="1"
@@ -680,7 +680,7 @@ export default function HomeLoanVsRentCalculator() {
                     step="1"
                     value={watchValues.projection_tenure_years}
                     onChange={(e) => setValue('projection_tenure_years', Number(e.target.value))}
-                    className={`${rangeInputClasses} from-red-500 to-red-600`}
+                    className={`flex-1 ${rangeInputClasses} from-red-500 to-red-600`}
                   />
                   <input
                     type="number"
@@ -715,7 +715,7 @@ export default function HomeLoanVsRentCalculator() {
                     <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                       Your Tax Bracket: {watchValues.income_tax_rate_pct}%
                     </label>
-                    <div className="flex gap-3 items-center">
+                    <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                       <input
                         type="range"
                         min="0"
@@ -723,7 +723,7 @@ export default function HomeLoanVsRentCalculator() {
                         step="1"
                         value={watchValues.income_tax_rate_pct}
                         onChange={(e) => setValue('income_tax_rate_pct', Number(e.target.value))}
-                        className={`${rangeInputClasses} from-violet-500 to-violet-600`}
+                        className={`flex-1 ${rangeInputClasses} from-violet-500 to-violet-600`}
                       />
                       <input
                         type="number"
