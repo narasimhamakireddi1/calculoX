@@ -323,38 +323,64 @@ export default function TaxCalculator() {
 
                 {/* House Property Income */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wide font-semibold text-orange-700 dark:text-orange-400 mb-2">
+                  <label htmlFor="house-property" className="block text-xs uppercase tracking-wide font-semibold text-orange-700 dark:text-orange-400 mb-2">
                     Income from House Property (₹)
                   </label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-2.5 text-gray-600 dark:text-gray-400 font-bold text-xs">₹</span>
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
-                      type="number"
+                      type="range"
                       min="0"
-                      {...register('incomeHouseProperty', { valueAsNumber: true })}
-                      className="w-full px-3 py-2 pl-7 border border-gray-300 dark:border-gray-600 rounded-lg text-right dark:bg-gray-700 dark:text-gray-300 focus:outline-none"
-                      placeholder="0"
+                      max="5000000"
+                      step="10000"
+                      value={watchValues.incomeHouseProperty ?? 0}
+                      onChange={(e) => handleInputChange('incomeHouseProperty', Number(e.target.value))}
+                      className="flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
                     />
+                    <div className="w-full md:w-auto relative flex-shrink-0">
+                      <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-orange-600 dark:text-orange-400 font-bold text-xs md:text-sm">₹</span>
+                      <input
+                        id="house-property"
+                        type="number"
+                        min="0"
+                        value={watchValues.incomeHouseProperty === 0 ? '' : watchValues.incomeHouseProperty}
+                        onChange={(e) => handleInputChange('incomeHouseProperty', e.target.value === '' ? 0 : Number(e.target.value))}
+                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Net rental income after 30% deduction</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Net rental income after 30% deduction</p>
                 </div>
 
                 {/* Other Sources Income */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wide font-semibold text-purple-700 dark:text-purple-400 mb-2">
+                  <label htmlFor="other-sources" className="block text-xs uppercase tracking-wide font-semibold text-purple-700 dark:text-purple-400 mb-2">
                     Income from Other Sources (₹)
                   </label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-2.5 text-gray-600 dark:text-gray-400 font-bold text-xs">₹</span>
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
-                      type="number"
+                      type="range"
                       min="0"
-                      {...register('incomeOtherSources', { valueAsNumber: true })}
-                      className="w-full px-3 py-2 pl-7 border border-gray-300 dark:border-gray-600 rounded-lg text-right dark:bg-gray-700 dark:text-gray-300 focus:outline-none"
-                      placeholder="0"
+                      max="5000000"
+                      step="10000"
+                      value={watchValues.incomeOtherSources ?? 0}
+                      onChange={(e) => handleInputChange('incomeOtherSources', Number(e.target.value))}
+                      className="flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
                     />
+                    <div className="w-full md:w-auto relative flex-shrink-0">
+                      <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-purple-600 dark:text-purple-400 font-bold text-xs md:text-sm">₹</span>
+                      <input
+                        id="other-sources"
+                        type="number"
+                        min="0"
+                        value={watchValues.incomeOtherSources === 0 ? '' : watchValues.incomeOtherSources}
+                        onChange={(e) => handleInputChange('incomeOtherSources', e.target.value === '' ? 0 : Number(e.target.value))}
+                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">FD interest, capital gains, etc.</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">FD interest, capital gains, etc.</p>
                 </div>
               </div>
             </div>
@@ -399,35 +425,61 @@ export default function TaxCalculator() {
 
                 {/* HRA Received */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wide font-semibold text-purple-700 dark:text-purple-400 mb-2">
+                  <label htmlFor="hra-received" className="block text-xs uppercase tracking-wide font-semibold text-red-700 dark:text-red-400 mb-2">
                     HRA Received (₹)
                   </label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-2.5 text-gray-600 dark:text-gray-400 font-bold text-xs">₹</span>
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
-                      type="number"
+                      type="range"
                       min="0"
-                      {...register('hraReceived', { valueAsNumber: true })}
-                      className="w-full px-3 py-2 pl-7 border border-gray-300 dark:border-gray-600 rounded-lg text-right dark:bg-gray-700 dark:text-gray-300 focus:outline-none"
-                      placeholder="0"
+                      max="5000000"
+                      step="10000"
+                      value={watchValues.hraReceived ?? 0}
+                      onChange={(e) => handleInputChange('hraReceived', Number(e.target.value))}
+                      className="flex-1 h-3 bg-gradient-to-r from-red-300 to-red-600 rounded-lg appearance-none cursor-pointer accent-red-600"
                     />
+                    <div className="w-full md:w-auto relative flex-shrink-0">
+                      <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-red-600 dark:text-red-400 font-bold text-xs md:text-sm">₹</span>
+                      <input
+                        id="hra-received"
+                        type="number"
+                        min="0"
+                        value={watchValues.hraReceived === 0 ? '' : watchValues.hraReceived}
+                        onChange={(e) => handleInputChange('hraReceived', e.target.value === '' ? 0 : Number(e.target.value))}
+                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-red-400 rounded-lg text-right font-bold text-red-700 bg-red-50 dark:bg-gray-700 dark:border-red-600 dark:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
                 </div>
 
                 {/* Rent Paid */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wide font-semibold text-orange-700 dark:text-orange-400 mb-2">
+                  <label htmlFor="rent-paid" className="block text-xs uppercase tracking-wide font-semibold text-amber-700 dark:text-amber-400 mb-2">
                     Rent Paid (Annual, ₹)
                   </label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-2.5 text-gray-600 dark:text-gray-400 font-bold text-xs">₹</span>
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
-                      type="number"
+                      type="range"
                       min="0"
-                      {...register('rentPaid', { valueAsNumber: true })}
-                      className="w-full px-3 py-2 pl-7 border border-gray-300 dark:border-gray-600 rounded-lg text-right dark:bg-gray-700 dark:text-gray-300 focus:outline-none"
-                      placeholder="0"
+                      max="5000000"
+                      step="10000"
+                      value={watchValues.rentPaid ?? 0}
+                      onChange={(e) => handleInputChange('rentPaid', Number(e.target.value))}
+                      className="flex-1 h-3 bg-gradient-to-r from-amber-300 to-amber-600 rounded-lg appearance-none cursor-pointer accent-amber-600"
                     />
+                    <div className="w-full md:w-auto relative flex-shrink-0">
+                      <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-amber-600 dark:text-amber-400 font-bold text-xs md:text-sm">₹</span>
+                      <input
+                        id="rent-paid"
+                        type="number"
+                        min="0"
+                        value={watchValues.rentPaid === 0 ? '' : watchValues.rentPaid}
+                        onChange={(e) => handleInputChange('rentPaid', e.target.value === '' ? 0 : Number(e.target.value))}
+                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-amber-400 rounded-lg text-right font-bold text-amber-700 bg-amber-50 dark:bg-gray-700 dark:border-amber-600 dark:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -454,20 +506,33 @@ export default function TaxCalculator() {
 
                 {/* LTA */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wide font-semibold text-cyan-700 dark:text-cyan-400 mb-2">
+                  <label htmlFor="lta-claimed" className="block text-xs uppercase tracking-wide font-semibold text-cyan-700 dark:text-cyan-400 mb-2">
                     LTA Claimed (₹)
                   </label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-2.5 text-gray-600 dark:text-gray-400 font-bold text-xs">₹</span>
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
-                      type="number"
+                      type="range"
                       min="0"
-                      {...register('lta', { valueAsNumber: true })}
-                      className="w-full px-3 py-2 pl-7 border border-gray-300 dark:border-gray-600 rounded-lg text-right dark:bg-gray-700 dark:text-gray-300 focus:outline-none"
-                      placeholder="0"
+                      max="1000000"
+                      step="10000"
+                      value={watchValues.lta ?? 0}
+                      onChange={(e) => handleInputChange('lta', Number(e.target.value))}
+                      className="flex-1 h-3 bg-gradient-to-r from-cyan-300 to-cyan-600 rounded-lg appearance-none cursor-pointer accent-cyan-600"
                     />
+                    <div className="w-full md:w-auto relative flex-shrink-0">
+                      <span className="absolute left-2.5 md:left-2 top-3 md:top-2.5 text-cyan-600 dark:text-cyan-400 font-bold text-xs md:text-sm">₹</span>
+                      <input
+                        id="lta-claimed"
+                        type="number"
+                        min="0"
+                        value={watchValues.lta === 0 ? '' : watchValues.lta}
+                        onChange={(e) => handleInputChange('lta', e.target.value === '' ? 0 : Number(e.target.value))}
+                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-cyan-400 rounded-lg text-right font-bold text-cyan-700 bg-cyan-50 dark:bg-gray-700 dark:border-cyan-600 dark:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        placeholder="0"
+                      />
+                    </div>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Leave Travel Allowance (Old Regime only)</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Leave Travel Allowance (Old Regime only)</p>
                 </div>
               </div>
             </details>

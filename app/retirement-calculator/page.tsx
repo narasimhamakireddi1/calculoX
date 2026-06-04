@@ -170,7 +170,7 @@ export default function RetirementCalculatorPage() {
   }, [watchValues]);
 
   const rangeInputClasses = 'flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600';
-  const numberInputClasses = 'w-32 px-4 py-3 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400';
+  const numberInputClasses = 'w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700';
 
   return (
     <div className="space-y-8 py-8">
@@ -266,7 +266,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Present Age (Years)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min="18"
@@ -292,7 +292,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Retirement Age (Years)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min={watchValues.present_age + 1}
@@ -318,7 +318,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Life Expectancy (Years)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min={watchValues.retirement_age + 1}
@@ -361,7 +361,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Current Monthly Expenses (₹)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min="5000"
@@ -399,7 +399,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Expense Reduction Post-Retirement (%)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min="0"
@@ -427,7 +427,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Long-term Inflation Rate (% p.a.)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min="0"
@@ -454,7 +454,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Current Retirement Savings (₹)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min="0"
@@ -479,7 +479,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Lump Sum Benefits at Retirement (₹)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min="0"
@@ -512,7 +512,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Pre-Retirement Return (% p.a.)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min="4"
@@ -542,7 +542,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Post-Retirement Return (% p.a.)
                   </label>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
                     <input
                       type="range"
                       min="2"

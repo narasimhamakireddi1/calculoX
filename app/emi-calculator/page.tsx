@@ -151,7 +151,7 @@ const ResultCards = memo(({ result, inputsData }: { result: EMIResultData | null
 
 ResultCards.displayName = 'ResultCards';
 
-// Memoized input component with optimized rendering
+// Memoized input component with optimized rendering - RD design pattern
 const LoanInput = memo(({
   id,
   label,
@@ -162,8 +162,6 @@ const LoanInput = memo(({
   max,
   step,
   error,
-  prefix,
-  suffix,
   rangeText,
   colorFrom,
   colorTo,
@@ -180,8 +178,6 @@ const LoanInput = memo(({
   max: number;
   step: number | string;
   error: any;
-  prefix?: string;
-  suffix?: string;
   rangeText: string;
   colorFrom: string;
   colorTo: string;
@@ -204,78 +200,33 @@ const LoanInput = memo(({
   return (
     <div className="space-y-3">
       <label htmlFor={id} className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
-      <div className="flex flex-col md:flex-row gap-3 md:gap-3 md:items-center">
+      <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
         {/* Slider */}
         <input
           type="range"
           min={min}
           max={max}
           step={step}
-          value={value ?? 0}
+          value={value === 0 ? '' : value}
           onChange={onChange}
           onBlur={onBlur}
-          className={`flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer transition-all will-change-transform`}
-          style={{
-            WebkitAppearance: 'none',
-          }}
+          className={`flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer accent-${colorFrom.split('-')[1]}-600`}
         />
 
-        {/* Number Input - 56px+ touch target on mobile */}
-        <div className="w-full md:w-auto relative flex-shrink-0">
-          {prefix && <span className="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-base md:text-sm">{prefix}</span>}
-          {suffix && <span className="absolute right-3 top-1/2 -translate-y-1/2 font-bold text-base md:text-sm">{suffix}</span>}
-          <input
-            id={id}
-            type="number"
-            placeholder="0"
-            min={min}
-            max={max}
-            step={step}
-            value={value === 0 ? '' : value}
-            onChange={onChange}
-            onBlur={onBlur}
-            className={`w-full md:w-28 px-10 py-3 md:py-2.5 border-2 ${colors.border} ${colors.dark} rounded-lg font-bold text-base ${colors.text} ${colors.bg} focus:outline-none focus:ring-2 focus:ring-offset-0 focus:border-transparent transition-all`}
-          />
-        </div>
+        {/* Number Input - matches RD design */}
+        <input
+          id={id}
+          type="number"
+          placeholder="0"
+          min={min}
+          max={max}
+          step={step}
+          value={value === 0 ? '' : value}
+          onChange={onChange}
+          onBlur={onBlur}
+          className={`w-full md:w-28 px-3 py-3 border-2 ${colors.border} rounded-lg font-bold ${colors.text} ${colors.bg} ${colors.dark}`}
+        />
       </div>
-
-      <style>{`
-        input[type='range']::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: white;
-          cursor: pointer;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-          border: 2px solid currentColor;
-          transition: all 0.15s ease;
-        }
-        input[type='range']::-webkit-slider-thumb:active {
-          width: 28px;
-          height: 28px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        input[type='range']::-moz-range-thumb {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: white;
-          cursor: pointer;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-          border: 2px solid currentColor;
-          transition: all 0.15s ease;
-        }
-        input[type='range']::-moz-range-thumb:active {
-          width: 28px;
-          height: 28px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        input[type='range']:focus {
-          outline: none;
-        }
-      `}</style>
 
       {error && <p className="text-red-500 text-sm">{error.message}</p>}
 
@@ -287,11 +238,8 @@ const LoanInput = memo(({
               key={preset}
               type="button"
               onClick={() => onChange({ target: { value: String(preset) } } as any)}
-              className={`text-xs px-3 py-1.5 rounded-full border transition-colors
-                ${colorFrom.includes('blue') ? 'border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50' : ''}
-                ${colorFrom.includes('green') ? 'border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/50' : ''}
-                ${colorFrom.includes('orange') ? 'border-orange-200 dark:border-orange-700 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 hover:bg-orange-100 dark:hover:bg-orange-900/50' : ''}
-              `}
+              className={`text-xs px-3 py-1.5 rounded-full border ${colors.border} ${colors.dark}
+                ${colors.bg} hover:brightness-110 transition-colors`}
             >
               {presetLabels?.[idx] || preset}
             </button>
@@ -507,7 +455,6 @@ export default function EMICalculatorPage() {
                 max={100000000}
                 step={10000}
                 error={errors.principal}
-                prefix="₹"
                 rangeText="₹10,000 - ₹1 Crore"
                 colorFrom="from-blue-300"
                 colorTo="to-blue-600"
@@ -528,7 +475,6 @@ export default function EMICalculatorPage() {
                 max={50}
                 step={0.1}
                 error={errors.annualRate}
-                suffix="%"
                 rangeText="0% - 50%"
                 colorFrom="from-orange-300"
                 colorTo="to-orange-600"
