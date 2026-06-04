@@ -2,7 +2,9 @@
 
 'use client';
 
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
+
+const ProjectionTable = lazy(() => import('@/components/retirement/ProjectionTable').then(m => ({ default: m.default })));
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -44,8 +46,8 @@ export default function RetirementCalculatorPage() {
   const [result, setResult] = useState<NismCalculationResult | null>(null);
   const [projections, setProjections] = useState<any[]>([]);
   const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
-  const [showAllProjections, setShowAllProjections] = useState(false);
-  const projectionRef = useRef<HTMLDivElement>(null);
+  const [projectionFirstTwelve, setProjectionFirstTwelve] = useState<any[]>([]);
+  const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   const {
     formState: { errors },
@@ -94,7 +96,7 @@ export default function RetirementCalculatorPage() {
     setResult(null);
     setProjections([]);
     setChartData([]);
-    setShowAllProjections(false);
+    setShowFullSchedule(false);
   };
 
   // Quick-start scenarios
@@ -154,6 +156,7 @@ export default function RetirementCalculatorPage() {
 
         const projectionData = NismRetirementEngine.generateProjection(inputs, calcResult);
         setProjections(projectionData);
+        setProjectionFirstTwelve(projectionData.slice(0, 12));
 
         // Prepare chart data
         const chartPoints: ChartDataPoint[] = projectionData.map((p) => ({
@@ -766,7 +769,19 @@ export default function RetirementCalculatorPage() {
 
       {/* Projection Table */}
       {projections.length > 0 && (
-        <div className="card" ref={projectionRef}>
+        <Suspense fallback={<div className="card h-32" />}>
+          <ProjectionTable
+            projections={projections}
+            projectionFirstTwelve={projectionFirstTwelve}
+            showFullSchedule={showFullSchedule}
+            onToggle={() => setShowFullSchedule(!showFullSchedule)}
+          />
+        </Suspense>
+      )}
+
+      {/* OLD - DELETE */}
+      {false && (
+        <div className="card">
           <h2 className="text-2xl font-bold mb-6">📋 Year-by-Year Projection</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -782,7 +797,7 @@ export default function RetirementCalculatorPage() {
               <tbody>
                 {(() => {
                   const totalYears = watchValues.life_expectancy - watchValues.present_age;
-                  const shouldShowAll = totalYears <= 12 || showAllProjections;
+                  const shouldShowAll = totalYears <= 12 || showFullSchedule;
                   return projections.slice(0, shouldShowAll ? projections.length : 5).map((proj, idx) => (
                     <tr
                       key={idx}
@@ -823,19 +838,18 @@ export default function RetirementCalculatorPage() {
           {/* Show All Button */}
           {(() => {
             const totalYears = watchValues.life_expectancy - watchValues.present_age;
-            return totalYears > 12 && !showAllProjections ? (
+            return totalYears > 12 && !showFullSchedule ? (
               <button
                 onClick={() => {
-                  setShowAllProjections(true);
-                  projectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
+                  setShowFullSchedule(true);
+                                  }}
                 className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 📊 Show All {projections.length} Years
               </button>
-            ) : showAllProjections ? (
+            ) : showFullSchedule ? (
               <button
-                onClick={() => setShowAllProjections(false)}
+                onClick={() => setShowFullSchedule(false)}
                 className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
               >
                 ▲ Show Less
