@@ -2,7 +2,9 @@
 
 ﻿'use client';
 
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
+
+const ProjectionTable = lazy(() => import('@/components/simple-interest/ProjectionTable').then(m => ({ default: m.default })));
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -44,8 +46,8 @@ export default function SimpleInterestCalculatorPage() {
   const [result, setResult] = useState<SIResultData | null>(null);
   const [projections, setProjections] = useState<any[]>([]);
   const [chartData, setChartData] = useState<any[]>([]);
-  const [showAllProjections, setShowAllProjections] = useState(false);
-  const projectionRef = useRef<HTMLDivElement>(null);
+  const [projectionFirstTwelve, setProjectionFirstTwelve] = useState<any[]>([]);
+  const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   const {
     formState: { errors },
@@ -125,7 +127,7 @@ export default function SimpleInterestCalculatorPage() {
     setResult(null);
     setProjections([]);
     setChartData([]);
-    setShowAllProjections(false);
+    setShowFullSchedule(false);
   };
 
   // Quick-start scenarios
@@ -185,6 +187,7 @@ export default function SimpleInterestCalculatorPage() {
             tenureType: watchValues.tenureType,
           });
           setProjections(projections);
+          setProjectionFirstTwelve(projections.slice(0, 12));
           setChartData(projections.slice(0, Math.min(projections.length, 24)));
         }
       }
@@ -544,7 +547,20 @@ export default function SimpleInterestCalculatorPage() {
 
       {/* Projection Table */}
       {projections.length > 0 && (
-        <div className="card" ref={projectionRef}>
+        <Suspense fallback={<div className="card h-32" />}>
+          <ProjectionTable
+            projections={projections}
+            projectionFirstTwelve={projectionFirstTwelve}
+            showFullSchedule={showFullSchedule}
+            onToggle={() => setShowFullSchedule(!showFullSchedule)}
+            tenureType={watchValues.tenureType}
+          />
+        </Suspense>
+      )}
+
+      {/* OLD - DELETE */}
+      {false && (
+        <div className="card">
           <h2 className="text-2xl font-bold mb-6">📊 Interest Projection Schedule</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">Period-wise breakdown showing interest accrual over time</p>
 
@@ -560,7 +576,7 @@ export default function SimpleInterestCalculatorPage() {
               <tbody>
                 {(() => {
                   const tenure = watchValues.tenureType === 'years' ? watchValues.years : watchValues.tenureType === 'months' ? watchValues.months : watchValues.days;
-                  const shouldShowAll = tenure <= 12 || showAllProjections;
+                  const shouldShowAll = tenure <= 12 || showFullSchedule;
                   return projections.slice(0, shouldShowAll ? projections.length : 5).map((proj, idx) => (
                     <tr
                       key={idx}
@@ -594,19 +610,18 @@ export default function SimpleInterestCalculatorPage() {
           {(() => {
             const tenure = watchValues.tenureType === 'years' ? watchValues.years : watchValues.tenureType === 'months' ? watchValues.months : watchValues.days;
             const periodLabel = watchValues.tenureType === 'years' ? 'Years' : watchValues.tenureType === 'months' ? 'Months' : 'Days';
-            return tenure > 12 && !showAllProjections ? (
+            return tenure > 12 && !showFullSchedule ? (
               <button
                 onClick={() => {
-                  setShowAllProjections(true);
-                  projectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
+                  setShowFullSchedule(true);
+                                  }}
                 className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 📊 Show All {projections.length} {periodLabel}
               </button>
-            ) : showAllProjections ? (
+            ) : showFullSchedule ? (
               <button
-                onClick={() => setShowAllProjections(false)}
+                onClick={() => setShowFullSchedule(false)}
                 className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
               >
                 ▲ Show Less
