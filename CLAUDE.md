@@ -1,15 +1,20 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 709f733
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 0f41b60
 
-## ✅ Latest (2026-06-04 - Mobile Swipe Gesture Fix: Slider Drags No Longer Trigger Navigation)
-- 🐛 **Mobile Swipe Bug Fixed:** Slider drags (horizontal swipes on range inputs) no longer trigger unwanted navigation to adjacent calculators ✅
-  - **Root Cause:** `useSwipeGesture` hook was capturing touch events from sliders without distinguishing between user drags and intentional navigation swipes
-  - **Solution:** Added check in `useSwipeGesture.ts` to ignore touch events originating from range input elements
-  - **Affected Calculators:** SIP, EMI, FD, RD, BMI (all with mobile swipe navigation) ✅
-  - **Testing:** Mobile viewport (375×812px) slider drag verified—no navigation triggered ✅
-  - **Fix Commit:** 709f733 ✅
+## ✅ Latest (2026-06-04 - Mobile Swipe Navigation Complete Redesign: Content Swipes No Longer Trigger Navigation)
+- 🐛 **Major Mobile UX Fix:** ANY swipe gesture in calculator content area no longer triggers unexpected navigation ✅
+  - **Root Cause:** Swipe handlers were attached to entire page container, capturing all touch events
+  - **Solution:** Moved swipe gesture handlers from main page container to dedicated fixed footer area (mobile-only)
+  - **Benefits:** 
+    - Users can scroll, drag sliders, and swipe freely in content without triggering navigation
+    - Intentional navigation swipes still available in footer area
+    - Clean separation of concerns: content interaction vs. navigation
+  - **Affected Calculators:** SIP, EMI, FD, RD, BMI ✅
+  - **Testing:** All 5 calculators tested in mobile viewport (375×812px)—content swipes do NOT trigger navigation ✅
+  - **Implementation:** Fixed footer with `md:hidden` (mobile-only), padding div prevents content overlap
+  - **Fix Commits:** 709f733 (range input check) → 0f41b60 (footer restructure) ✅
 
 ## ✅ Previous (2026-06-04 - Slider Design Consistency: All Complex Calculators Updated to Match RD Pattern)
 - 🎚️ **Slider Design Consistency Phase Complete:** Simple Interest, Tax, EMI, SIP, FD, Retirement, Home Loan vs Rent, and Profit Margin calculators refactored to match RD design pattern (mobile-first, clean layout, consistent styling) ✅
