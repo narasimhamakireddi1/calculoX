@@ -33,7 +33,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Simple Interest Calculator',
       description: 'Understand basic interest calculations on loans',
-      icon: '📐',
+      icon: '📝',
       href: '/simple-interest-calculator',
     },
     {
@@ -45,19 +45,19 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Percentage Calculator',
       description: 'Calculate interest rates and loan percentages',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
     {
       title: 'SIP Calculator',
       description: 'Invest the difference between rent and EMI',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
       title: 'Tax Calculator',
       description: 'Account for loan interest tax deductions',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
   ],
@@ -67,7 +67,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'CAGR Calculator',
       description: 'Measure your SIP investment growth rate',
-      icon: '📊',
+      icon: '🚀',
       href: '/cagr-calculator',
     },
     {
@@ -79,25 +79,25 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'FD Calculator',
       description: 'Compare SIP vs Fixed Deposit returns',
-      icon: '💳',
+      icon: '🔐',
       href: '/fd-calculator',
     },
     {
       title: 'Tax Calculator',
       description: 'Tax-efficient investing with 80C benefits',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
     {
       title: 'RD Calculator',
       description: 'Alternative: Recurring Deposits vs SIP',
-      icon: '💰',
+      icon: '📊',
       href: '/rd-calculator',
     },
     {
       title: 'Percentage Calculator',
       description: 'Understand returns and percentage growth',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
   ],
@@ -107,7 +107,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'SIP Calculator',
       description: 'Plan tax-efficient SIP investments (80C)',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
@@ -125,7 +125,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Profit Margin Calculator',
       description: 'Business tax & GST impact on margins',
-      icon: '💼',
+      icon: '💹',
       href: '/profit-margin-calculator',
     },
     {
@@ -137,7 +137,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'FD Calculator',
       description: 'TDS on Fixed Deposit interest income',
-      icon: '💳',
+      icon: '🔐',
       href: '/fd-calculator',
     },
   ],
@@ -147,7 +147,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Percentage Calculator',
       description: 'Body composition percentage calculations',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
     {
@@ -159,7 +159,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'SIP Calculator',
       description: 'Save for fitness & wellness goals',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
@@ -171,7 +171,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Tax Calculator',
       description: 'Health insurance tax deductions (80D)',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
     {
@@ -187,25 +187,25 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'RD Calculator',
       description: 'Recurring deposit alternative to FD',
-      icon: '💰',
+      icon: '📊',
       href: '/rd-calculator',
     },
     {
       title: 'SIP Calculator',
       description: 'Higher returns with SIP vs FD',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
       title: 'CAGR Calculator',
       description: 'Measure FD returns over time',
-      icon: '📊',
+      icon: '🚀',
       href: '/cagr-calculator',
     },
     {
       title: 'Simple Interest Calculator',
       description: 'Understand FD interest calculations',
-      icon: '📐',
+      icon: '📝',
       href: '/simple-interest-calculator',
     },
     {
@@ -217,7 +217,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Tax Calculator',
       description: 'TDS implications on FD interest',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
   ],
@@ -227,13 +227,13 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Profit Margin Calculator',
       description: 'GST impact on product pricing & margins',
-      icon: '💼',
+      icon: '💹',
       href: '/profit-margin-calculator',
     },
     {
       title: 'Percentage Calculator',
       description: 'Tax rate and percentage calculations',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
     {
@@ -245,7 +245,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Tax Calculator',
       description: 'GST vs income tax filing',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
     {
@@ -257,7 +257,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'SIP Calculator',
       description: 'Business owner investment planning',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
   ],
@@ -267,25 +267,25 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'FD Calculator',
       description: 'Fixed deposit comparison',
-      icon: '💳',
+      icon: '🔐',
       href: '/fd-calculator',
     },
     {
       title: 'SIP Calculator',
       description: 'Higher returns with mutual funds',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
       title: 'Simple Interest Calculator',
       description: 'Understand RD interest calculations',
-      icon: '📐',
+      icon: '📝',
       href: '/simple-interest-calculator',
     },
     {
       title: 'CAGR Calculator',
       description: 'Measure RD investment returns',
-      icon: '📊',
+      icon: '🚀',
       href: '/cagr-calculator',
     },
     {
@@ -297,7 +297,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Percentage Calculator',
       description: 'Interest rate calculations',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
   ],
@@ -307,13 +307,13 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'FD Calculator',
       description: 'Fixed deposit compound interest',
-      icon: '💳',
+      icon: '🔐',
       href: '/fd-calculator',
     },
     {
       title: 'RD Calculator',
       description: 'Recurring deposit calculations',
-      icon: '💰',
+      icon: '📊',
       href: '/rd-calculator',
     },
     {
@@ -325,19 +325,19 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Percentage Calculator',
       description: 'Interest rate percentages',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
     {
       title: 'CAGR Calculator',
       description: 'Measuring investment growth',
-      icon: '📊',
+      icon: '🚀',
       href: '/cagr-calculator',
     },
     {
       title: 'SIP Calculator',
       description: 'Investment returns calculation',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
   ],
@@ -347,13 +347,13 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'SIP Calculator',
       description: 'Measure mutual fund SIP growth',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
       title: 'FD Calculator',
       description: 'Measure fixed deposit returns',
-      icon: '💳',
+      icon: '🔐',
       href: '/fd-calculator',
     },
     {
@@ -371,13 +371,13 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'RD Calculator',
       description: 'Recurring deposit growth rate',
-      icon: '💰',
+      icon: '📊',
       href: '/rd-calculator',
     },
     {
       title: 'Percentage Calculator',
       description: 'Growth percentage calculations',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
   ],
@@ -387,13 +387,13 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'GST Calculator',
       description: 'Tax percentage calculations',
-      icon: '🛒',
+      icon: '🧮',
       href: '/gst-calculator',
     },
     {
       title: 'Profit Margin Calculator',
       description: 'Profit and margin percentages',
-      icon: '💼',
+      icon: '💹',
       href: '/profit-margin-calculator',
     },
     {
@@ -405,13 +405,13 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Tax Calculator',
       description: 'Tax slab percentages',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
     {
       title: 'SIP Calculator',
       description: 'Return percentage calculations',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
@@ -439,25 +439,25 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Percentage Calculator',
       description: 'Affordability percentage calculations',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
     {
       title: 'SIP Calculator',
       description: 'Invest the difference wisely',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
       title: 'Tax Calculator',
       description: 'Section 24(b) interest deductions',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
     {
       title: 'CAGR Calculator',
       description: 'Property appreciation measurement',
-      icon: '📊',
+      icon: '🚀',
       href: '/cagr-calculator',
     },
   ],
@@ -467,19 +467,19 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'GST Calculator',
       description: 'GST impact on product pricing',
-      icon: '🛒',
+      icon: '🧮',
       href: '/gst-calculator',
     },
     {
       title: 'Percentage Calculator',
       description: 'Profit margin percentages',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
     {
       title: 'Tax Calculator',
       description: 'Business tax implications',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
     {
@@ -491,7 +491,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'SIP Calculator',
       description: 'Business owner investment planning',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
@@ -507,19 +507,19 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'SIP Calculator',
       description: 'Build retirement corpus via SIP',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
     {
       title: 'FD Calculator',
       description: 'Fixed deposit retirement income',
-      icon: '💳',
+      icon: '🔐',
       href: '/fd-calculator',
     },
     {
       title: 'Tax Calculator',
       description: 'Retirement income tax planning',
-      icon: '🧾',
+      icon: '📋',
       href: '/tax-calculator',
     },
     {
@@ -531,13 +531,13 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'CAGR Calculator',
       description: 'Investment growth to goal',
-      icon: '📊',
+      icon: '🚀',
       href: '/cagr-calculator',
     },
     {
       title: 'Percentage Calculator',
       description: 'Retirement planning percentages',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
   ],
@@ -547,7 +547,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'Percentage Calculator',
       description: 'Advanced percentage operations',
-      icon: '🔢',
+      icon: '📈',
       href: '/percentage-calculator',
     },
     {
@@ -559,25 +559,25 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'GST Calculator',
       description: 'Tax and business calculations',
-      icon: '🛒',
+      icon: '🧮',
       href: '/gst-calculator',
     },
     {
       title: 'Profit Margin Calculator',
       description: 'Business margin calculations',
-      icon: '💼',
+      icon: '💹',
       href: '/profit-margin-calculator',
     },
     {
       title: 'CAGR Calculator',
       description: 'Investment growth calculations',
-      icon: '📊',
+      icon: '🚀',
       href: '/cagr-calculator',
     },
     {
       title: 'SIP Calculator',
       description: 'Financial growth projections',
-      icon: '📈',
+      icon: '🔄',
       href: '/sip-calculator',
     },
   ],
