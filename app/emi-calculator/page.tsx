@@ -416,13 +416,7 @@ export default function EMICalculatorPage() {
   });
 
   return (
-    <div className="space-y-8 py-8" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-      <SwipeHint
-        hasLeft={currentIndex < relatedCalcs.length - 1}
-        hasRight={currentIndex > 0}
-        calculatorName="EMI"
-      />
-
+    <div className="space-y-8 py-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-gradient">🏦 EMI Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
@@ -701,6 +695,22 @@ export default function EMICalculatorPage() {
           </details>
         </div>
       </div>
+
+      {/* Swipe navigation footer (mobile only) */}
+      <div
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        className="fixed bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent dark:from-gray-900/50 dark:to-transparent border-t border-gray-200 dark:border-gray-700 flex items-center justify-center gap-4 md:hidden"
+      >
+        <SwipeHint
+          hasLeft={currentIndex < relatedCalcs.length - 1}
+          hasRight={currentIndex > 0}
+          calculatorName="EMI"
+        />
+      </div>
+
+      {/* Padding for fixed footer on mobile */}
+      <div className="h-16 md:hidden" />
     </div>
   );
 }
