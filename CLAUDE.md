@@ -1,7 +1,7 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 0f41b60
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** f4e28e7
 
 ## ✅ Latest (2026-06-04 - Mobile Swipe Navigation Complete Redesign: Content Swipes No Longer Trigger Navigation)
 - 🐛 **Major Mobile UX Fix:** ANY swipe gesture in calculator content area no longer triggers unexpected navigation ✅
@@ -14,7 +14,7 @@
   - **Affected Calculators:** SIP, EMI, FD, RD, BMI ✅
   - **Testing:** All 5 calculators tested in mobile viewport (375×812px)—content swipes do NOT trigger navigation ✅
   - **Implementation:** Fixed footer with `md:hidden` (mobile-only), padding div prevents content overlap
-  - **Fix Commits:** 709f733 (range input check) → 0f41b60 (footer restructure) ✅
+  - **Fix Commits:** 709f733 (range input check) → 0f41b60 (footer restructure) → f4e28e7 (transparent footer styling) ✅
 
 ## ✅ Previous (2026-06-04 - Slider Design Consistency: All Complex Calculators Updated to Match RD Pattern)
 - 🎚️ **Slider Design Consistency Phase Complete:** Simple Interest, Tax, EMI, SIP, FD, Retirement, Home Loan vs Rent, and Profit Margin calculators refactored to match RD design pattern (mobile-first, clean layout, consistent styling) ✅
