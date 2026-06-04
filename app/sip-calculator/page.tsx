@@ -49,6 +49,7 @@ export default function SIPCalculatorPage() {
   const [result, setResult] = useState<SIPResultData | null>(null);
   const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
   const [projections, setProjections] = useState<YearlyProjection[]>([]);
+  const [showAllProjections, setShowAllProjections] = useState(false);
 
   const {
     formState: { errors },
@@ -522,38 +523,60 @@ export default function SIPCalculatorPage() {
                 </tr>
               </thead>
               <tbody>
-                {projections.map((proj, idx) => (
-                  <tr
-                    key={proj.year}
-                    className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
-                      idx % 2 === 0
-                        ? 'bg-white dark:bg-gray-800/50'
-                        : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    <td className="px-4 py-4 font-semibold text-gray-900 dark:text-white">
-                      Year {proj.year}
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <div className="font-semibold text-blue-600 dark:text-blue-400">
-                        ₹{proj.monthlyInvestment.toLocaleString('en-IN')}
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <div className="font-semibold text-green-600 dark:text-green-400">
-                        ₹{proj.annualInvestment.toLocaleString('en-IN')}
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <div className="font-bold text-purple-600 dark:text-purple-400 text-lg">
-                        ₹{proj.cumulativeInvestment.toLocaleString('en-IN')}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                {projections
+                  .slice(0, watchValues.years <= 12 || showAllProjections ? projections.length : 5)
+                  .map((proj, idx) => (
+                    <tr
+                      key={proj.year}
+                      className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
+                        idx % 2 === 0
+                          ? 'bg-white dark:bg-gray-800/50'
+                          : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      <td className="px-4 py-4 font-semibold text-gray-900 dark:text-white">
+                        Year {proj.year}
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="font-semibold text-blue-600 dark:text-blue-400">
+                          ₹{proj.monthlyInvestment.toLocaleString('en-IN')}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="font-semibold text-green-600 dark:text-green-400">
+                          ₹{proj.annualInvestment.toLocaleString('en-IN')}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="font-bold text-purple-600 dark:text-purple-400 text-lg">
+                          ₹{proj.cumulativeInvestment.toLocaleString('en-IN')}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
+
+          {/* Show All Button */}
+          {watchValues.years > 12 && !showAllProjections && (
+            <button
+              onClick={() => setShowAllProjections(true)}
+              className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              📊 Show All {watchValues.years} Years
+            </button>
+          )}
+
+          {/* Hide Button */}
+          {showAllProjections && (
+            <button
+              onClick={() => setShowAllProjections(false)}
+              className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
+            >
+              ▲ Show Less
+            </button>
+          )}
 
           {/* Step-up Info Card */}
           {(watchValues.stepUpPercent || 0) > 0 && (
