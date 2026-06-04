@@ -1,9 +1,19 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 3179212
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 6226096
 
-## ✅ Latest (2026-06-04 - Enhanced Social Share with Inputs + Outputs Context)
+## ✅ Latest (2026-06-04 - Layout Reorganization: Export PDF + Share Sections)
+- 🎯 **Layout Refactoring:** Removed duplicate Copy button & reorganized action sections ✅
+  - **Export PDF Section:** Dedicated "💾 Save Results" area for PDF downloads ✅
+  - **Share Section:** Below export with Preview + Social buttons + Copy ✅
+  - **Removed Duplication:** Copy button removed from ExportButton (exists in ShareButtons) ✅
+  - **Visual Hierarchy:** Clear separation between Save and Share actions ✅
+  - **Full-Width PDF:** Export PDF button now spans full width for better prominence ✅
+  - **Applied To:** EMI, SIP, FD calculators ✅
+  - **Commit:** 6226096 ✅
+
+## ✅ Previous (2026-06-04 - Enhanced Social Share with Inputs + Outputs Context)
 - 📤 **Social Share Feature (Enhanced):** Share complete calculation context with inputs AND outputs ✅
   - **Preview Box:** Live preview of share message before sending (scrollable, dark mode support) ✅
   - **Inputs Section:** Display all calculator assumptions (Principal, Rate, Tenure, etc.) ✅
