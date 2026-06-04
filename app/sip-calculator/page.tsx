@@ -490,14 +490,21 @@ export default function SIPCalculatorPage() {
               </div>
 
               <div className="pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
-                <ExportButton
-                  fileName="SIP_Investment_Results"
-                  calculatorName="SIP Calculator Results"
-                  resultElementId="sip-results"
-                  inputElementId="sip-inputs"
-                  inputsData={inputsData}
-                />
+                {/* Export PDF Section */}
+                <div>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
+                    💾 Save Results
+                  </p>
+                  <ExportButton
+                    fileName="SIP_Investment_Results"
+                    calculatorName="SIP Calculator Results"
+                    resultElementId="sip-results"
+                    inputElementId="sip-inputs"
+                    inputsData={inputsData}
+                  />
+                </div>
 
+                {/* Share Section */}
                 <ShareButtons
                   inputs={[
                     { label: 'Monthly Investment', value: `₹${watchValues.monthlyInvestment.toLocaleString('en-IN')}` },

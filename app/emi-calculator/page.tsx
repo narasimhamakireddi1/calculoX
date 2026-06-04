@@ -136,7 +136,11 @@ const ResultCards = memo(({ result, inputsData, watchValues }: { result: EMIResu
       </div>
 
       <div className="pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
-        <div className="flex flex-col sm:flex-row gap-3">
+        {/* Export PDF Section */}
+        <div>
+          <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
+            💾 Save Results
+          </p>
           <ExportButton
             fileName="EMI_Loan_Summary"
             calculatorName="EMI Calculator Results"
@@ -146,6 +150,7 @@ const ResultCards = memo(({ result, inputsData, watchValues }: { result: EMIResu
           />
         </div>
 
+        {/* Share Section */}
         <ShareButtons
           inputs={[
             { label: 'Principal Amount', value: `₹${watchValues.principal.toLocaleString('en-IN')}` },

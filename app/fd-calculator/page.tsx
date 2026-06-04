@@ -599,14 +599,21 @@ export default function FDCalculatorPage() {
                 </p>
               </div>
               <div className="mt-6 space-y-4">
-                <ExportButton
-                  fileName="FD_Results"
-                  calculatorName="Fixed Deposit Results"
-                  resultElementId="fd-results"
-                  inputElementId="fd-inputs"
-                  inputsData={inputsData}
-                />
+                {/* Export PDF Section */}
+                <div>
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
+                    💾 Save Results
+                  </p>
+                  <ExportButton
+                    fileName="FD_Results"
+                    calculatorName="Fixed Deposit Results"
+                    resultElementId="fd-results"
+                    inputElementId="fd-inputs"
+                    inputsData={inputsData}
+                  />
+                </div>
 
+                {/* Share Section */}
                 <ShareButtons
                   inputs={[
                     { label: 'Principal Amount', value: `₹${watchValues.principal.toLocaleString('en-IN')}` },
