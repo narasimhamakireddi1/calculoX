@@ -68,6 +68,15 @@ export default function HomeLoanVsRentCalculator() {
   const [result, setResult] = useState<BuyVsRentResult | null>(null);
   const [chartData, setChartData] = useState<YearlyData[]>([]);
   const [showAllProjections, setShowAllProjections] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile view for responsive charts
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const { watch, setValue } = useForm<FormData>({
     resolver: zodResolver(buyVsRentSchema),
@@ -862,8 +871,8 @@ export default function HomeLoanVsRentCalculator() {
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
                   <strong>X-axis:</strong> Years | <strong>Y-axis:</strong> Net Worth in ₹
                 </p>
-                <ResponsiveContainer width="100%" height={320}>
-                  <AreaChart data={chartData} margin={{ left: 70, right: 30, top: 15, bottom: 20 }}>
+                <ResponsiveContainer width="100%" height={isMobile ? 280 : 360}>
+                  <AreaChart data={chartData} margin={{ left: isMobile ? 50 : 70, right: isMobile ? 10 : 30, top: 15, bottom: isMobile ? 10 : 20 }}>
                     <defs>
                       <linearGradient id="buyerGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.3} />
@@ -878,13 +887,13 @@ export default function HomeLoanVsRentCalculator() {
                     <XAxis
                       dataKey="year"
                       stroke="#6B7280"
-                      tick={{ fill: '#6B7280', fontSize: 12 }}
+                      tick={{ fill: '#6B7280', fontSize: isMobile ? 11 : 12 }}
                     />
                     <YAxis
                       stroke="#6B7280"
                       tickFormatter={formatAxisValue}
-                      tick={{ fill: '#6B7280', fontSize: 12 }}
-                      width={60}
+                      tick={{ fill: '#6B7280', fontSize: isMobile ? 11 : 12 }}
+                      width={isMobile ? 45 : 60}
                     />
                     <Tooltip
                       contentStyle={{
@@ -924,19 +933,19 @@ export default function HomeLoanVsRentCalculator() {
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
                   <strong>X-axis:</strong> Years | <strong>Y-axis:</strong> Total Amount Paid in ₹
                 </p>
-                <ResponsiveContainer width="100%" height={320}>
-                  <LineChart data={chartData} margin={{ left: 70, right: 30, top: 15, bottom: 20 }}>
+                <ResponsiveContainer width="100%" height={isMobile ? 280 : 360}>
+                  <LineChart data={chartData} margin={{ left: isMobile ? 50 : 70, right: isMobile ? 10 : 30, top: 15, bottom: isMobile ? 10 : 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                     <XAxis
                       dataKey="year"
                       stroke="#6B7280"
-                      tick={{ fill: '#6B7280', fontSize: 12 }}
+                      tick={{ fill: '#6B7280', fontSize: isMobile ? 11 : 12 }}
                     />
                     <YAxis
                       stroke="#6B7280"
                       tickFormatter={formatAxisValue}
-                      tick={{ fill: '#6B7280', fontSize: 12 }}
-                      width={60}
+                      tick={{ fill: '#6B7280', fontSize: isMobile ? 11 : 12 }}
+                      width={isMobile ? 45 : 60}
                     />
                     <Tooltip
                       contentStyle={{

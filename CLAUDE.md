@@ -3,7 +3,24 @@
 **Status:** ✅ Production Ready | 14 Calculators (100% Share-Only UI) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
 **Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** [pending]
 
-## ✅ Latest (2026-06-04 - ShareButtons Emoji Update: Accurate Platform Icons)
+## ✅ Latest (2026-06-04 - Home Loan vs Rent: Responsive Chart Optimization for Mobile)
+- 📊 **Mobile Chart Space Efficiency:** Optimized charts to utilize mobile viewport more effectively ✅
+  - **Issue:** Charts had fixed 320px height + large margins (70/30/15/20), wasting space on mobile ✅
+  - **Solution:** Responsive heights, margins, font sizes, and Y-axis widths ✅
+  - **Changes:**
+    - **Height:** 320px → 280px (mobile) | 360px (desktop) ✅
+    - **Left Margin:** 70px → 50px (mobile) - reduce Y-axis label area ✅
+    - **Right Margin:** 30px → 10px (mobile) - maximize chart content ✅
+    - **Bottom Margin:** 20px → 10px (mobile) ✅
+    - **Y-Axis Width:** 60px → 45px (mobile) ✅
+    - **Font Sizes:** 12px → 11px (mobile) ✅
+  - **Detection:** Real-time responsive via `useEffect` checking `window.innerWidth < 768` ✅
+  - **Affected Charts:** Net Worth Comparison (AreaChart) + Cumulative Cash Outflow (LineChart) ✅
+  - **Result:** Charts now utilize 30-40% more space on mobile while remaining readable ✅
+  - **Build:** ✅ 55 pages, 0 TypeScript errors ✅
+  - **Verified:** Tested on 375×812 mobile viewport—both charts render optimally ✅
+
+## ✅ Previous (2026-06-04 - ShareButtons Emoji Update: Accurate Platform Icons)
 - 🎯 **ShareButtons Emoji Refinement:** Updated to accurate, brand-correct platform emojis ✅
   - **Applied To:** All 13 financial calculators (EMI, SIP, FD, Simple Interest, RD, Tax, Percentage, GST, BMI, CAGR, Retirement, Home Loan vs Rent, Profit Margin) ✅
   - **Emoji Updates:**
