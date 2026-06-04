@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -53,6 +53,7 @@ export default function FDCalculatorPage() {
   const [result, setResult] = useState<FDResultData | null>(null);
   const [projections, setProjections] = useState<ProjectionRow[]>([]);
   const [showAllProjections, setShowAllProjections] = useState(false);
+  const projectionRef = useRef<HTMLDivElement>(null);
 
   const {
     formState: { errors },
@@ -613,7 +614,7 @@ export default function FDCalculatorPage() {
 
       {/* Projection Table */}
       {projections.length > 0 && (
-        <div className="card">
+        <div className="card" ref={projectionRef}>
           <h2 className="text-2xl font-bold mb-6">📊 Projection Schedule</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -665,7 +666,10 @@ export default function FDCalculatorPage() {
             const totalMonths = watchValues.years * 12 + watchValues.months;
             return totalMonths > 12 && !showAllProjections ? (
               <button
-                onClick={() => setShowAllProjections(true)}
+                onClick={() => {
+                  setShowAllProjections(true);
+                  projectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
                 className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 📊 Show All {projections.length} Months

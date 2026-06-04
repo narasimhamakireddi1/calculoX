@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -45,6 +45,7 @@ export default function RetirementCalculatorPage() {
   const [projections, setProjections] = useState<any[]>([]);
   const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
   const [showAllProjections, setShowAllProjections] = useState(false);
+  const projectionRef = useRef<HTMLDivElement>(null);
 
   const {
     formState: { errors },
@@ -765,7 +766,7 @@ export default function RetirementCalculatorPage() {
 
       {/* Projection Table */}
       {projections.length > 0 && (
-        <div className="card">
+        <div className="card" ref={projectionRef}>
           <h2 className="text-2xl font-bold mb-6">📋 Year-by-Year Projection</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -824,7 +825,10 @@ export default function RetirementCalculatorPage() {
             const totalYears = watchValues.life_expectancy - watchValues.present_age;
             return totalYears > 12 && !showAllProjections ? (
               <button
-                onClick={() => setShowAllProjections(true)}
+                onClick={() => {
+                  setShowAllProjections(true);
+                  projectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
                 className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 📊 Show All {projections.length} Years

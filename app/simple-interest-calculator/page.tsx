@@ -2,7 +2,7 @@
 
 ﻿'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -45,6 +45,7 @@ export default function SimpleInterestCalculatorPage() {
   const [projections, setProjections] = useState<any[]>([]);
   const [chartData, setChartData] = useState<any[]>([]);
   const [showAllProjections, setShowAllProjections] = useState(false);
+  const projectionRef = useRef<HTMLDivElement>(null);
 
   const {
     formState: { errors },
@@ -543,7 +544,7 @@ export default function SimpleInterestCalculatorPage() {
 
       {/* Projection Table */}
       {projections.length > 0 && (
-        <div className="card">
+        <div className="card" ref={projectionRef}>
           <h2 className="text-2xl font-bold mb-6">📊 Interest Projection Schedule</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">Period-wise breakdown showing interest accrual over time</p>
 
@@ -595,7 +596,10 @@ export default function SimpleInterestCalculatorPage() {
             const periodLabel = watchValues.tenureType === 'years' ? 'Years' : watchValues.tenureType === 'months' ? 'Months' : 'Days';
             return tenure > 12 && !showAllProjections ? (
               <button
-                onClick={() => setShowAllProjections(true)}
+                onClick={() => {
+                  setShowAllProjections(true);
+                  projectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
                 className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 📊 Show All {projections.length} {periodLabel}

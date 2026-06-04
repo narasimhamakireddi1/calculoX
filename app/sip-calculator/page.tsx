@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -50,6 +50,7 @@ export default function SIPCalculatorPage() {
   const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
   const [projections, setProjections] = useState<YearlyProjection[]>([]);
   const [showAllProjections, setShowAllProjections] = useState(false);
+  const projectionRef = useRef<HTMLDivElement>(null);
 
   const {
     formState: { errors },
@@ -508,7 +509,7 @@ export default function SIPCalculatorPage() {
 
       {/* Income Projection Section */}
       {projections.length > 0 && (
-        <div className="card">
+        <div className="card" ref={projectionRef}>
           <h2 className="text-2xl font-bold mb-6">📈 Investment Projection</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-6">Year-wise breakdown of your SIP journey with step-up increments</p>
 
@@ -561,7 +562,10 @@ export default function SIPCalculatorPage() {
           {/* Show All Button */}
           {watchValues.years > 12 && !showAllProjections && (
             <button
-              onClick={() => setShowAllProjections(true)}
+              onClick={() => {
+                setShowAllProjections(true);
+                projectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
               className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               📊 Show All {watchValues.years} Years
