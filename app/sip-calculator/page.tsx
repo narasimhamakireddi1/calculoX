@@ -1,9 +1,11 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+const ProjectionTable = lazy(() => import('@/components/sip/ProjectionTable').then(m => ({ default: m.default })));
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateSIP } from '@/lib/calculators/sip';
@@ -49,8 +51,8 @@ export default function SIPCalculatorPage() {
   const [result, setResult] = useState<SIPResultData | null>(null);
   const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
   const [projections, setProjections] = useState<YearlyProjection[]>([]);
-  const [showAllProjections, setShowAllProjections] = useState(false);
-  const projectionRef = useRef<HTMLDivElement>(null);
+  const [projectionFirstTwelve, setProjectionFirstTwelve] = useState<YearlyProjection[]>([]);
+  const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   const {
     formState: { errors },
@@ -176,6 +178,7 @@ export default function SIPCalculatorPage() {
     }
 
     setProjections(yearlyProj);
+    setProjectionFirstTwelve(yearlyProj.slice(0, 12));
 
     // Generate chart data showing growth over time
     const data_points: ChartDataPoint[] = [];
@@ -507,89 +510,24 @@ export default function SIPCalculatorPage() {
         </div>
       </div>
 
-      {/* Income Projection Section */}
+      {/* Investment Projection Section */}
       {projections.length > 0 && (
-        <div className="card" ref={projectionRef}>
-          <h2 className="text-2xl font-bold mb-6">📈 Investment Projection</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">Year-wise breakdown of your SIP journey with step-up increments</p>
+        <Suspense fallback={<div className="card h-32" />}>
+          <ProjectionTable
+            projections={projections}
+            projectionFirstTwelve={projectionFirstTwelve}
+            showFullSchedule={showFullSchedule}
+            onToggle={() => setShowFullSchedule(!showFullSchedule)}
+          />
+        </Suspense>
+      )}
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
-                  <th className="px-4 py-4 text-left font-bold text-gray-900 dark:text-white">Year</th>
-                  <th className="px-4 py-4 text-right font-bold text-blue-700 dark:text-blue-400">Monthly Investment</th>
-                  <th className="px-4 py-4 text-right font-bold text-green-700 dark:text-green-400">Annual Investment</th>
-                  <th className="px-4 py-4 text-right font-bold text-purple-700 dark:text-purple-400">Cumulative Invested</th>
-                </tr>
-              </thead>
-              <tbody>
-                {projections
-                  .slice(0, watchValues.years <= 12 || showAllProjections ? projections.length : 5)
-                  .map((proj, idx) => (
-                    <tr
-                      key={proj.year}
-                      className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
-                        idx % 2 === 0
-                          ? 'bg-white dark:bg-gray-800/50'
-                          : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
-                      }`}
-                    >
-                      <td className="px-4 py-4 font-semibold text-gray-900 dark:text-white">
-                        Year {proj.year}
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <div className="font-semibold text-blue-600 dark:text-blue-400">
-                          ₹{proj.monthlyInvestment.toLocaleString('en-IN')}
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <div className="font-semibold text-green-600 dark:text-green-400">
-                          ₹{proj.annualInvestment.toLocaleString('en-IN')}
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <div className="font-bold text-purple-600 dark:text-purple-400 text-lg">
-                          ₹{proj.cumulativeInvestment.toLocaleString('en-IN')}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Show All Button */}
-          {watchValues.years > 12 && !showAllProjections && (
-            <button
-              onClick={() => {
-                setShowAllProjections(true);
-                projectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
-              className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              📊 Show All {watchValues.years} Years
-            </button>
-          )}
-
-          {/* Hide Button */}
-          {showAllProjections && (
-            <button
-              onClick={() => setShowAllProjections(false)}
-              className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
-            >
-              ▲ Show Less
-            </button>
-          )}
-
-          {/* Step-up Info Card */}
-          {(watchValues.stepUpPercent || 0) > 0 && (
-            <div className="mt-6 p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 rounded-lg">
-              <p className="text-sm text-purple-900 dark:text-purple-300">
-                <span className="font-semibold">Step-up Active:</span> Your monthly investment increases by <span className="font-bold text-lg">{(watchValues.stepUpPercent || 0).toFixed(1)}%</span> each year. This helps your SIP grow with your income!
-              </p>
-            </div>
-          )}
+      {/* Step-up Info */}
+      {projections.length > 0 && (watchValues.stepUpPercent || 0) > 0 && (
+        <div className="card p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500">
+          <p className="text-sm text-purple-900 dark:text-purple-300">
+            <span className="font-semibold">Step-up Active:</span> Your monthly investment increases by <span className="font-bold text-lg">{(watchValues.stepUpPercent || 0).toFixed(1)}%</span> each year. This helps your SIP grow with your income!
+          </p>
         </div>
       )}
 
