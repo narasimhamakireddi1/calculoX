@@ -1,17 +1,28 @@
 # 🧮 calculox
 
-**Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 86586c5
+**Status:** ✅ Production Ready | 14 Calculators (100% Share-Only UI) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 74609c8
 
-## ✅ Latest (2026-06-04 - Simplified to Share-Only: Removed Export PDF Feature)
+## ✅ Latest (2026-06-04 - ShareButtons Expansion: All 14 Calculators Unified)
+- 📤 **ShareButtons Across All 14 Calculators:** Complete unification complete ✅
+  - **Applied To:** Simple Interest, RD, BMI, CAGR, GST, Percentage, Profit Margin, Retirement, Home Loan vs Rent, Tax (+ EMI, SIP, FD from earlier) ✅
+  - **Removed:** ExportButton imports, FormattedInput types, inputsData useMemo from all 11 calculators ✅
+  - **Result:** Single sharing action pattern across entire app ✅
+  - **Each Calculator:** Structured inputs (assumptions) + outputs (results) for context-aware sharing ✅
+  - **Share Platforms:** WhatsApp, Twitter, LinkedIn, Facebook + Copy to Clipboard ✅
+  - **Benefits:** 
+    - Consistent UX across all 14 calculators
+    - Reduced code complexity (87 lines removed, 123 inserted, net -87)
+    - Cleaner code: no PDF export overhead
+    - Focus on sharing for viral reach
+  - **Build:** ✅ 55 pages, 0 TypeScript errors, 16.8s compile ✅
+  - **Commit:** 74609c8 ✅
+
+## ✅ Previous (2026-06-04 - Simplified to Share-Only: Removed Export PDF Feature)
 - 🗑️ **Removed Export PDF Feature:** Simplified to single sharing action ✅
-  - **Removed:** Export PDF / Save Results button from all calculators ✅
+  - **Removed:** Export PDF / Save Results button from EMI, SIP, FD calculators ✅
   - **Simplified UI:** Only ShareButtons remains for user actions ✅
   - **Focus:** Sharing results (WhatsApp, Twitter, LinkedIn, Facebook, Copy) ✅
-  - **Cleaner Interface:** Removed duplicate save options ✅
-  - **Removed From:** EMI, SIP, FD calculators ✅
-  - **Cleanup:** Removed FormattedInput imports, unused useMemo calculations ✅
-  - **Benefit:** Simpler, faster, clearer intent ✅
   - **Commit:** 86586c5 ✅
 
 ## ✅ Previous (2026-06-04 - Layout Reorganization: Export PDF + Share Sections)
