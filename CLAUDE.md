@@ -1,9 +1,26 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** d2e43f3
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** f0b5dbf
 
-## ✅ Latest (2026-06-04 - Theme Switcher + Amortization-Style Projection Tables)
+## ✅ Latest (2026-06-04 - Mobile Navbar Redesigned for Professional Top-Website Style)
+- 📱 **Mobile Navbar Redesign:** Completely redesigned mobile menu to match professional website standards ✅
+  - **Premium Gradient Header:** Blue gradient (from-blue-600 to-blue-700) with branding + close button ✅
+  - **Search Bar:** Real-time search functionality at top of menu with icon (filters by title/ID) ✅
+  - **Theme Switcher:** Moved to header section for prominence and easy access ✅
+  - **Organized Sections:** 
+    - Primary Navigation (Home with description)
+    - Calculators (3-column grid, more spacious than 4-column)
+    - Resources (Blog + About with descriptions)
+  - **Enhanced UX:** 
+    - Descriptions on each menu item (e.g., "Back to main", "Articles & guides")
+    - Smooth hover animations (scale transitions)
+    - Professional spacing and visual hierarchy
+    - Info footer showing "14 Free Calculators"
+  - **Design Patterns:** Matches GitHub (clean sections), Google (prominent search), modern SaaS (gradient headers) ✅
+  - **Commit:** f0b5dbf ✅
+
+## ✅ Previous (2026-06-04 - Theme Switcher + Amortization-Style Projection Tables)
 - 🎨 **Theme Switcher:** Complete dark mode support with easy switching ✅
   - **Desktop:** Theme switcher visible in navbar (Light / System / Dark) ✅
   - **Mobile:** Theme switcher added to mobile menu for easy access ✅
