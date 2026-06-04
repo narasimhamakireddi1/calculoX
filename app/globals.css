@@ -50,22 +50,54 @@ html {
 }
 
 html.dark {
-  background: linear-gradient(135deg, #0f172a 0%, #1a2a4a 25%, #1a1a3a 50%, #2a1a3a 75%, #0f172a 100%);
+  background: linear-gradient(135deg, #0a0f1f 0%, #0f1729 12%, #1a1f3a 25%, #15213f 37%, #1a1a35 50%, #231a35 62%, #2a1f38 75%, #1a1f2e 87%, #0a0f1f 100%);
   color-scheme: dark;
+}
+
+/* Subtle noise texture for dark mode */
+html.dark::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  background-size: 100% 2px, 2px 100%;
+  pointer-events: none;
+  z-index: -2;
 }
 
 /* Enhanced dark mode inputs with proper backdrop */
 html.dark input:not([type="range"]),
 html.dark textarea,
 html.dark select {
-  @apply bg-gray-800/60 border-gray-700 text-gray-50 placeholder-gray-500;
+  @apply bg-gradient-to-b from-gray-800/70 to-gray-900/60 border-gray-700/60 text-gray-50 placeholder-gray-500;
   backdrop-filter: blur(10px);
+  background-blend-mode: overlay;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
+              0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 /* Enhanced dark mode cards with glass-morphism */
 html.dark .card {
-  @apply bg-gray-900/50 border-gray-700/50;
+  @apply bg-gradient-to-br from-gray-900/60 to-gray-800/50 border-gray-700/60;
   backdrop-filter: blur(12px);
+  background-blend-mode: overlay;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* Enhanced dark mode text contrast */
@@ -87,6 +119,11 @@ body {
   overflow-x: hidden;
   background-attachment: fixed;
   position: relative;
+  background-color: #0f1219;
+}
+
+html.dark body {
+  background-color: #0a0f1f;
 }
 
 body::before {
@@ -97,9 +134,10 @@ body::before {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 90% 10%, rgba(79, 70, 229, 0.1) 0%, transparent 45%);
   pointer-events: none;
   z-index: 0;
 }
@@ -112,8 +150,9 @@ body::after {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(ellipse at 50% -20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-    radial-gradient(ellipse at -20% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+    radial-gradient(ellipse at 50% -20%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+    radial-gradient(ellipse at -20% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 110% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
