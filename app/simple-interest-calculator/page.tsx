@@ -557,47 +557,58 @@ export default function SimpleInterestCalculatorPage() {
                 </tr>
               </thead>
               <tbody>
-                {(showAllProjections ? projections : projections.slice(0, 12)).map((proj, idx) => (
-                  <tr
-                    key={idx}
-                    className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
-                      idx % 2 === 0
-                        ? 'bg-white dark:bg-gray-800/50'
-                        : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    <td className="px-4 py-4 font-semibold text-gray-900 dark:text-white">
-                      {watchValues.tenureType === 'years' ? `Year ${proj.period}` : watchValues.tenureType === 'months' ? `Month ${proj.period}` : `Day ${proj.period}`}
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <div className="font-semibold text-green-600 dark:text-green-400">
-                        {formatCurrency(proj.interest)}
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <div className="font-bold text-blue-600 dark:text-blue-400 text-lg">
-                        {formatCurrency(proj.totalAmount)}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                {(() => {
+                  const tenure = watchValues.tenureType === 'years' ? watchValues.years : watchValues.tenureType === 'months' ? watchValues.months : watchValues.days;
+                  const shouldShowAll = tenure <= 12 || showAllProjections;
+                  return projections.slice(0, shouldShowAll ? projections.length : 5).map((proj, idx) => (
+                    <tr
+                      key={idx}
+                      className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
+                        idx % 2 === 0
+                          ? 'bg-white dark:bg-gray-800/50'
+                          : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      <td className="px-4 py-4 font-semibold text-gray-900 dark:text-white">
+                        {watchValues.tenureType === 'years' ? `Year ${proj.period}` : watchValues.tenureType === 'months' ? `Month ${proj.period}` : `Day ${proj.period}`}
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="font-semibold text-green-600 dark:text-green-400">
+                          {formatCurrency(proj.interest)}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="font-bold text-blue-600 dark:text-blue-400 text-lg">
+                          {formatCurrency(proj.totalAmount)}
+                        </div>
+                      </td>
+                    </tr>
+                  ));
+                })()}
               </tbody>
             </table>
           </div>
 
-          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              {showAllProjections ? `Showing all ${projections.length} periods` : `Showing first ${Math.min(projections.length, 12)} periods`}
-            </p>
-            {projections.length > 12 && (
+          {/* Show All Button */}
+          {(() => {
+            const tenure = watchValues.tenureType === 'years' ? watchValues.years : watchValues.tenureType === 'months' ? watchValues.months : watchValues.days;
+            const periodLabel = watchValues.tenureType === 'years' ? 'Years' : watchValues.tenureType === 'months' ? 'Months' : 'Days';
+            return tenure > 12 && !showAllProjections ? (
               <button
-                onClick={() => setShowAllProjections(!showAllProjections)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-all duration-200"
+                onClick={() => setShowAllProjections(true)}
+                className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                {showAllProjections ? '▲ Show Less' : '▼ Show All'}
+                📊 Show All {projections.length} {periodLabel}
               </button>
-            )}
-          </div>
+            ) : showAllProjections ? (
+              <button
+                onClick={() => setShowAllProjections(false)}
+                className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
+              >
+                ▲ Show Less
+              </button>
+            ) : null;
+          })()}
         </div>
       )}
 

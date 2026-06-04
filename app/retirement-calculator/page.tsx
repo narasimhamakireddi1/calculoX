@@ -779,55 +779,65 @@ export default function RetirementCalculatorPage() {
                 </tr>
               </thead>
               <tbody>
-                {(showAllProjections ? projections : projections.slice(0, 12)).map((proj, idx) => (
-                  <tr
-                    key={idx}
-                    className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
-                      idx % 2 === 0 ? 'bg-white dark:bg-gray-800/50' : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    <td className="px-4 py-3 font-semibold">{proj.year}</td>
-                    <td className="px-4 py-3">{proj.age} years</td>
-                    <td className="px-4 py-3">
-                      <span
-                        className={`px-2 py-1 rounded text-xs font-semibold ${
-                          proj.phase === 'accumulation'
-                            ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-                            : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'
-                        }`}
-                      >
-                        {proj.phase === 'accumulation' ? '📈 Accumulating' : '📉 Distribution'}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-right font-mono font-semibold text-blue-600 dark:text-blue-400">
-                      {formatCurrency(proj.corpus)}
-                    </td>
-                    <td className="px-4 py-3 text-right font-mono font-semibold">
-                      {proj.phase === 'accumulation' ? (
-                        <span className="text-green-600 dark:text-green-400">+{formatCurrency(proj.annualSip || 0)}</span>
-                      ) : (
-                        <span className="text-orange-600 dark:text-orange-400">−{formatCurrency(proj.annualWithdrawal || 0)}</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                {(() => {
+                  const totalYears = watchValues.life_expectancy - watchValues.present_age;
+                  const shouldShowAll = totalYears <= 12 || showAllProjections;
+                  return projections.slice(0, shouldShowAll ? projections.length : 5).map((proj, idx) => (
+                    <tr
+                      key={idx}
+                      className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
+                        idx % 2 === 0 ? 'bg-white dark:bg-gray-800/50' : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      <td className="px-4 py-3 font-semibold">{proj.year}</td>
+                      <td className="px-4 py-3">{proj.age} years</td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={`px-2 py-1 rounded text-xs font-semibold ${
+                            proj.phase === 'accumulation'
+                              ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                              : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'
+                          }`}
+                        >
+                          {proj.phase === 'accumulation' ? '📈 Accumulating' : '📉 Distribution'}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-right font-mono font-semibold text-blue-600 dark:text-blue-400">
+                        {formatCurrency(proj.corpus)}
+                      </td>
+                      <td className="px-4 py-3 text-right font-mono font-semibold">
+                        {proj.phase === 'accumulation' ? (
+                          <span className="text-green-600 dark:text-green-400">+{formatCurrency(proj.annualSip || 0)}</span>
+                        ) : (
+                          <span className="text-orange-600 dark:text-orange-400">−{formatCurrency(proj.annualWithdrawal || 0)}</span>
+                        )}
+                      </td>
+                    </tr>
+                  ));
+                })()}
               </tbody>
             </table>
           </div>
 
-          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              {showAllProjections ? `Showing all ${projections.length} years` : `Showing first 12 years`}
-            </p>
-            {projections.length > 12 && (
+          {/* Show All Button */}
+          {(() => {
+            const totalYears = watchValues.life_expectancy - watchValues.present_age;
+            return totalYears > 12 && !showAllProjections ? (
               <button
-                onClick={() => setShowAllProjections(!showAllProjections)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-all duration-200"
+                onClick={() => setShowAllProjections(true)}
+                className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                {showAllProjections ? '▲ Show Less' : '▼ Show All'}
+                📊 Show All {projections.length} Years
               </button>
-            )}
-          </div>
+            ) : showAllProjections ? (
+              <button
+                onClick={() => setShowAllProjections(false)}
+                className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
+              >
+                ▲ Show Less
+              </button>
+            ) : null;
+          })()}
         </div>
       )}
 

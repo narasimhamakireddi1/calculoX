@@ -635,39 +635,50 @@ export default function FDCalculatorPage() {
                 </tr>
               </thead>
               <tbody>
-                {(showAllProjections ? projections : projections.slice(0, Math.min(projections.length, 24))).map((proj, idx) => (
-                  <tr key={idx} className={`${idx % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50'} border-b border-gray-200 dark:border-gray-700`}>
-                    <td className="px-4 py-3 font-semibold">{proj.month}</td>
-                    {watchValues.payoutType === 'cumulative' && (
-                      <>
-                        <td className="px-4 py-3 text-right font-mono">{formatCurrency(proj.amount)}</td>
-                        <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">{formatCurrency(proj.interest)}</td>
-                      </>
-                    )}
-                    {(watchValues.payoutType === 'quarterly' || watchValues.payoutType === 'monthly') && (
-                      <>
-                        <td className="px-4 py-3 text-right font-mono text-amber-600 dark:text-amber-400 font-semibold">{formatCurrency(proj.payout)}</td>
-                        <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">{formatCurrency(proj.interest)}</td>
-                      </>
-                    )}
-                  </tr>
-                ))}
+                {(() => {
+                  const totalMonths = watchValues.years * 12 + watchValues.months;
+                  const shouldShowAll = totalMonths <= 12 || showAllProjections;
+                  return projections.slice(0, shouldShowAll ? projections.length : 5).map((proj, idx) => (
+                    <tr key={idx} className={`${idx % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50'} border-b border-gray-200 dark:border-gray-700`}>
+                      <td className="px-4 py-3 font-semibold">{proj.month}</td>
+                      {watchValues.payoutType === 'cumulative' && (
+                        <>
+                          <td className="px-4 py-3 text-right font-mono">{formatCurrency(proj.amount)}</td>
+                          <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">{formatCurrency(proj.interest)}</td>
+                        </>
+                      )}
+                      {(watchValues.payoutType === 'quarterly' || watchValues.payoutType === 'monthly') && (
+                        <>
+                          <td className="px-4 py-3 text-right font-mono text-amber-600 dark:text-amber-400 font-semibold">{formatCurrency(proj.payout)}</td>
+                          <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">{formatCurrency(proj.interest)}</td>
+                        </>
+                      )}
+                    </tr>
+                  ));
+                })()}
               </tbody>
             </table>
           </div>
-          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              {showAllProjections ? `Showing all ${projections.length} periods` : `Showing first ${Math.min(projections.length, 24)} periods`}
-            </p>
-            {projections.length > 24 && (
+
+          {/* Show All Button */}
+          {(() => {
+            const totalMonths = watchValues.years * 12 + watchValues.months;
+            return totalMonths > 12 && !showAllProjections ? (
               <button
-                onClick={() => setShowAllProjections(!showAllProjections)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-all duration-200"
+                onClick={() => setShowAllProjections(true)}
+                className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                {showAllProjections ? '▲ Show Less' : '▼ Show All'}
+                📊 Show All {projections.length} Months
               </button>
-            )}
-          </div>
+            ) : showAllProjections ? (
+              <button
+                onClick={() => setShowAllProjections(false)}
+                className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
+              >
+                ▲ Show Less
+              </button>
+            ) : null;
+          })()}
         </div>
       )}
 
