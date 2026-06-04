@@ -1,9 +1,17 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 8f8b9b6
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 709f733
 
-## ✅ Latest (2026-06-04 - Slider Design Consistency: All Complex Calculators Updated to Match RD Pattern)
+## ✅ Latest (2026-06-04 - Mobile Swipe Gesture Fix: Slider Drags No Longer Trigger Navigation)
+- 🐛 **Mobile Swipe Bug Fixed:** Slider drags (horizontal swipes on range inputs) no longer trigger unwanted navigation to adjacent calculators ✅
+  - **Root Cause:** `useSwipeGesture` hook was capturing touch events from sliders without distinguishing between user drags and intentional navigation swipes
+  - **Solution:** Added check in `useSwipeGesture.ts` to ignore touch events originating from range input elements
+  - **Affected Calculators:** SIP, EMI, FD, RD, BMI (all with mobile swipe navigation) ✅
+  - **Testing:** Mobile viewport (375×812px) slider drag verified—no navigation triggered ✅
+  - **Fix Commit:** 709f733 ✅
+
+## ✅ Previous (2026-06-04 - Slider Design Consistency: All Complex Calculators Updated to Match RD Pattern)
 - 🎚️ **Slider Design Consistency Phase Complete:** Simple Interest, Tax, EMI, SIP, FD, Retirement, Home Loan vs Rent, and Profit Margin calculators refactored to match RD design pattern (mobile-first, clean layout, consistent styling) ✅
   - **Simple Interest Calculator:** Tenure sliders (Years/Months/Days) upgraded to RD pattern with h-3 height, responsive layout (`flex flex-col md:flex-row gap-3`), color-coordinated inputs (Orange/Purple/Pink gradients), `w-full md:w-28` width, focus rings ✅
   - **SIP Calculator:** Applied RD clean pattern to all 4 sliders (Monthly Investment, Years, Annual Return, Step Up) with simplified layout (`flex-1` proportions, no wrapper divs, color-matched dark backgrounds `dark:bg-*-900/20`) ✅
