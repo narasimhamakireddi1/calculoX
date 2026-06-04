@@ -1,16 +1,17 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 74e07e4
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** b502aac
 
-## ✅ Latest (2026-06-04 - SIP Projection Table Enhancement + Mobile Swipe Navigation Fix)
-- 📊 **SIP Investment Projection Table:** Smart "Show All" button for better UX ✅
-  - **Default Behavior:** If years ≤ 12, show all rows by default (no button needed)
-  - **Long Projections:** If years > 12, show first 5 rows by default with "Show All" button
-  - **Toggle Functionality:** Click "Show All" to expand all years, "Show Less" to collapse back to 5 rows
-  - **Benefit:** Better readability for long-term projections while keeping all data accessible ✅
-  - **Tested:** Years = 10 (all shown), Years = 20 (5 shown + button works) ✅
-  - **Commit:** 74e07e4 ✅
+## ✅ Latest (2026-06-04 - Projection Table Enhancement: Smart Show All Button for All Calculators)
+- 📊 **Projection Table UX Consistency:** Smart "Show All" button applied to all calculators with projections ✅
+  - **SIP Calculator:** If years ≤ 12, show all rows; if years > 12, show first 5 + button ✅
+  - **FD Calculator:** If tenure ≤ 12 months, show all rows; if > 12 months, show first 5 + button ✅
+  - **Simple Interest Calculator:** If tenure ≤ 12 (years/months/days), show all; if > 12, show first 5 + button ✅
+  - **Retirement Calculator:** If life span ≤ 12 years, show all; if > 12 years, show first 5 + button ✅
+  - **Button Design:** Consistent gradient styling (blue→purple), full-width layout, with "Show Less" collapse variant
+  - **Benefit:** Better readability for long projections while keeping all data accessible ✅
+  - **Commits:** 74e07e4 (SIP initial) → b502aac (FD, Simple Interest, Retirement redesigned) ✅
 
 ## ✅ Previous (2026-06-04 - Mobile Swipe Navigation Complete Redesign: Content Swipes No Longer Trigger Navigation)
 - 🐛 **Major Mobile UX Fix:** ANY swipe gesture in calculator content area no longer triggers unexpected navigation ✅
