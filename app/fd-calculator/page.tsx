@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
+import { useState, useMemo, useEffect, useCallback, lazy, Suspense } from 'react';
+
+const ProjectionTable = lazy(() => import('@/components/fd/ProjectionTable').then(m => ({ default: m.default })));
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -52,8 +54,8 @@ interface ProjectionRow {
 export default function FDCalculatorPage() {
   const [result, setResult] = useState<FDResultData | null>(null);
   const [projections, setProjections] = useState<ProjectionRow[]>([]);
-  const [showAllProjections, setShowAllProjections] = useState(false);
-  const projectionRef = useRef<HTMLDivElement>(null);
+  const [projectionFirstTwelve, setProjectionFirstTwelve] = useState<ProjectionRow[]>([]);
+  const [showFullSchedule, setShowFullSchedule] = useState(false);
 
   const {
     formState: { errors },
@@ -149,7 +151,7 @@ export default function FDCalculatorPage() {
     reset();
     setResult(null);
     setProjections([]);
-    setShowAllProjections(false);
+    setShowFullSchedule(false);
   }, [reset, haptic]);
 
   // Quick-start scenarios
@@ -216,6 +218,7 @@ export default function FDCalculatorPage() {
     setResult(result);
     const projections = generateFDProjection(data);
     setProjections(projections);
+    setProjectionFirstTwelve(projections.slice(0, 12));
   };
 
   const chartData = useMemo(() => {
@@ -614,77 +617,17 @@ export default function FDCalculatorPage() {
 
       {/* Projection Table */}
       {projections.length > 0 && (
-        <div className="card" ref={projectionRef}>
-          <h2 className="text-2xl font-bold mb-6">📊 Projection Schedule</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-                  <th className="px-4 py-3 text-left font-semibold">Month</th>
-                  {watchValues.payoutType === 'cumulative' && (
-                    <>
-                      <th className="px-4 py-3 text-right font-semibold">Amount (₹)</th>
-                      <th className="px-4 py-3 text-right font-semibold">Interest (₹)</th>
-                    </>
-                  )}
-                  {(watchValues.payoutType === 'quarterly' || watchValues.payoutType === 'monthly') && (
-                    <>
-                      <th className="px-4 py-3 text-right font-semibold">Periodic Payout (₹)</th>
-                      <th className="px-4 py-3 text-right font-semibold">Total Earned (₹)</th>
-                    </>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {(() => {
-                  const totalMonths = watchValues.years * 12 + watchValues.months;
-                  const shouldShowAll = totalMonths <= 12 || showAllProjections;
-                  return projections.slice(0, shouldShowAll ? projections.length : 5).map((proj, idx) => (
-                    <tr key={idx} className={`${idx % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700/50'} border-b border-gray-200 dark:border-gray-700`}>
-                      <td className="px-4 py-3 font-semibold">{proj.month}</td>
-                      {watchValues.payoutType === 'cumulative' && (
-                        <>
-                          <td className="px-4 py-3 text-right font-mono">{formatCurrency(proj.amount)}</td>
-                          <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">{formatCurrency(proj.interest)}</td>
-                        </>
-                      )}
-                      {(watchValues.payoutType === 'quarterly' || watchValues.payoutType === 'monthly') && (
-                        <>
-                          <td className="px-4 py-3 text-right font-mono text-amber-600 dark:text-amber-400 font-semibold">{formatCurrency(proj.payout)}</td>
-                          <td className="px-4 py-3 text-right font-mono text-green-600 dark:text-green-400 font-semibold">{formatCurrency(proj.interest)}</td>
-                        </>
-                      )}
-                    </tr>
-                  ));
-                })()}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Show All Button */}
-          {(() => {
-            const totalMonths = watchValues.years * 12 + watchValues.months;
-            return totalMonths > 12 && !showAllProjections ? (
-              <button
-                onClick={() => {
-                  setShowAllProjections(true);
-                  projectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
-                className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                📊 Show All {projections.length} Months
-              </button>
-            ) : showAllProjections ? (
-              <button
-                onClick={() => setShowAllProjections(false)}
-                className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
-              >
-                ▲ Show Less
-              </button>
-            ) : null;
-          })()}
-        </div>
+        <Suspense fallback={<div className="card h-32" />}>
+          <ProjectionTable
+            projections={projections}
+            projectionFirstTwelve={projectionFirstTwelve}
+            showFullSchedule={showFullSchedule}
+            onToggle={() => setShowFullSchedule(!showFullSchedule)}
+            payoutType={watchValues.payoutType}
+          />
+        </Suspense>
       )}
+
 
       {/* Chart */}
       {chartData.length > 0 && (
