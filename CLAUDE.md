@@ -1,9 +1,17 @@
 # 🧮 calculox
 
 **Status:** ✅ Production Ready | 14 Calculators (100% Modern Sliders) | 28 Blog Posts | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live | AdSense Ready
-**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** 76842ee
+**Last Updated:** 2026-06-04 | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Commit:** d2e43f3
 
-## ✅ Latest (2026-06-04 - Projection Tables Refactored: Amortization-Style Show All Pattern)
+## ✅ Latest (2026-06-04 - Theme Switcher + Amortization-Style Projection Tables)
+- 🎨 **Theme Switcher:** Complete dark mode support with easy switching ✅
+  - **Desktop:** Theme switcher visible in navbar (Light / System / Dark) ✅
+  - **Mobile:** Theme switcher added to mobile menu for easy access ✅
+  - **Features:** 3-mode toggle (Light, System, Dark), localStorage persistence, real-time theme application ✅
+  - **Icons:** Sun (light) / Monitor (system) / Moon (dark) with active state highlighting ✅
+  - **Commit:** d2e43f3 ✅
+
+## ✅ Previous (2026-06-04 - Projection Tables Refactored: Amortization-Style Show All Pattern)
 - 🎯 **Amortization-Style Projection Tables:** All projection-based calculators now use same pattern as EMI amortization schedule ✅
   - **SIP Calculator:** New ProjectionTable component, first 12 years default, virtual scrolling ✅
   - **FD Calculator:** New ProjectionTable component, first 12 months default, virtual scrolling ✅
