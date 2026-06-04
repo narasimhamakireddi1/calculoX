@@ -95,21 +95,21 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
             <span className="hidden sm:inline">WhatsApp</span>
           </button>
 
-          {/* Twitter */}
+          {/* Twitter/X */}
           <button
             onClick={() => handleShare('twitter')}
-            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
-            title="Share on Twitter"
-            aria-label="Share on Twitter"
+            className="flex-1 sm:flex-initial px-3 py-2 bg-black hover:bg-gray-900 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
+            title="Share on X (Twitter)"
+            aria-label="Share on X (Twitter)"
           >
             <span>𝕏</span>
-            <span className="hidden sm:inline">Twitter</span>
+            <span className="hidden sm:inline">X</span>
           </button>
 
           {/* LinkedIn */}
           <button
             onClick={() => handleShare('linkedin')}
-            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
+            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
             title="Share on LinkedIn"
             aria-label="Share on LinkedIn"
           >
@@ -120,11 +120,11 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
           {/* Facebook */}
           <button
             onClick={() => handleShare('facebook')}
-            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
+            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
             title="Share on Facebook"
             aria-label="Share on Facebook"
           >
-            <span>f</span>
+            <span>👥</span>
             <span className="hidden sm:inline">Facebook</span>
           </button>
 
