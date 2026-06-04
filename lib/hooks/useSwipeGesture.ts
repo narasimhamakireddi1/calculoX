@@ -22,6 +22,11 @@ export function useSwipeGesture(config: SwipeConfig) {
   const touchStartRef = useRef<TouchCoordinates | null>(null);
 
   const handleTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'INPUT' && (target as HTMLInputElement).type === 'range') {
+      return;
+    }
+
     touchStartRef.current = {
       x: e.touches[0].clientX,
       y: e.touches[0].clientY,
