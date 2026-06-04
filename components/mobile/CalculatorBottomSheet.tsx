@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { getActiveCalculators } from '@/config/calculators.config';
+import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 
 interface CalculatorBottomSheetProps {
   isOpen: boolean;
@@ -93,11 +94,19 @@ export function CalculatorBottomSheet({ isOpen, onClose }: CalculatorBottomSheet
           {/* About */}
           <button
             onClick={() => handleNavigate('/about')}
-            className="w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center gap-3"
+            className="w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border-b border-gray-200 dark:border-gray-700 flex items-center gap-3"
           >
             <span className="text-2xl">ℹ️</span>
             <span className="font-semibold text-gray-900 dark:text-white">About</span>
           </button>
+        </div>
+
+        {/* Theme Switcher - Mobile */}
+        <div className="px-4 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Theme</span>
+          </div>
+          <ThemeSwitcher />
         </div>
       </div>
     </>
