@@ -291,6 +291,142 @@ export default function ScientificCalculatorPage() {
         )}
       </div>
 
+      {/* Understanding Scientific Calculations */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">📚 Understanding Scientific Calculations</h2>
+        <div className="space-y-4 text-gray-700 dark:text-gray-300">
+          <p>
+            Scientific calculators are powerful tools used by engineers, mathematicians, physicists, and students to solve complex mathematical problems involving trigonometric functions, logarithms, exponentials, matrices, and statistical analysis.
+          </p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+              <p className="font-bold text-blue-900 dark:text-blue-300 mb-2">🔢 Standard Mode</p>
+              <p className="text-sm">Basic mathematical operations with scientific functions like trigonometry, logarithms, roots, and factorials.</p>
+            </div>
+            <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+              <p className="font-bold text-purple-900 dark:text-purple-300 mb-2">➕ Complex Numbers</p>
+              <p className="text-sm">Advanced calculations with imaginary numbers (using i notation). Essential for electrical engineering and physics.</p>
+            </div>
+            <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+              <p className="font-bold text-green-900 dark:text-green-300 mb-2">📊 Matrix Operations</p>
+              <p className="text-sm">Perform linear algebra computations: determinants, inverses, transpose, addition, and multiplication of matrices.</p>
+            </div>
+            <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
+              <p className="font-bold text-orange-900 dark:text-orange-300 mb-2">📈 Statistics</p>
+              <p className="text-sm">Analyze data sets with statistical measures: mean, standard deviation, regression analysis, and correlation coefficients.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Key Features & How to Use */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">🎯 Key Features & How to Master Them</h2>
+        <div className="space-y-4">
+          <div className="border-l-4 border-blue-600 pl-4 py-2">
+            <p className="font-semibold text-gray-900 dark:text-white mb-1">1. Angle Units (DEG/RAD)</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">Press DEG/RAD to toggle between degrees and radians. Degrees (0-360°) are common for everyday use. Radians (0-2π) are used in calculus and advanced math. Example: sin(90°) = 1, but sin(π/2 radians) = 1.</p>
+          </div>
+
+          <div className="border-l-4 border-green-600 pl-4 py-2">
+            <p className="font-semibold text-gray-900 dark:text-white mb-1">2. Trigonometric Functions (sin, cos, tan)</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">Essential for engineering, physics, and navigation. Use SHIFT + sin/cos/tan to access inverse functions (asin, acos, atan). Formula: sin(45°) = 0.7071, useful for wave analysis and angle calculations.</p>
+          </div>
+
+          <div className="border-l-4 border-purple-600 pl-4 py-2">
+            <p className="font-semibold text-gray-900 dark:text-white mb-1">3. Logarithmic & Exponential Functions (log, ln, e^)</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">log = logarithm base 10 (common in engineering), ln = natural logarithm (calculus, finance). Use SHIFT+log for 10^x, SHIFT+ln for e^x. Example: log(100) = 2, ln(e) = 1.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-600 pl-4 py-2">
+            <p className="font-semibold text-gray-900 dark:text-white mb-1">4. Memory Functions (M+, M-, MR, MC)</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">M+ adds to memory, M- subtracts, MR recalls value, MC clears. Useful for multi-step calculations. Example: Calculate multiple values and accumulate them in memory.</p>
+          </div>
+
+          <div className="border-l-4 border-red-600 pl-4 py-2">
+            <p className="font-semibold text-gray-900 dark:text-white mb-1">5. Matrix Operations (A, B, det, inv, T)</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">Enter matrices via Mat A/Mat B buttons. det (determinant) useful for solving linear equations. inv (inverse) for solving systems Ax=b. T (transpose) for reshaping data.</p>
+          </div>
+
+          <div className="border-l-4 border-indigo-600 pl-4 py-2">
+            <p className="font-semibold text-gray-900 dark:text-white mb-1">6. Combinatorics & Factorials (nCr, nPr, !)</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">nCr = combinations (selection order doesn't matter), nPr = permutations (order matters), ! = factorial. Example: 5! = 120, nCr(5,2) = 10 ways to choose 2 items from 5.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Practical Applications */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">💡 Real-World Applications</h2>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
+            <p className="font-bold text-blue-900 dark:text-blue-300 mb-2">🏗️ Engineering</p>
+            <p className="text-sm">Calculate structural angles, forces using trigonometry. Use matrices for finite element analysis. Example: Bridge load calculations.</p>
+          </div>
+
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-lg border border-green-200 dark:border-green-700">
+            <p className="font-bold text-green-900 dark:text-green-300 mb-2">📡 Physics</p>
+            <p className="text-sm">Wave equations using sin/cos. Exponential decay (radioactive materials). Logarithmic scales (decibels, Richter scale).</p>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
+            <p className="font-bold text-purple-900 dark:text-purple-300 mb-2">💰 Finance</p>
+            <p className="text-sm">Compound interest using e^x. Logarithmic returns. Matrix methods for portfolio optimization.</p>
+          </div>
+
+          <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-700">
+            <p className="font-bold text-orange-900 dark:text-orange-300 mb-2">📊 Data Analysis</p>
+            <p className="text-sm">Statistical measures (mean, std dev) for data insights. Linear regression for trend analysis and predictions.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Tips for Accurate Calculations */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-4">🔍 Tips for Accurate Calculations</h2>
+        <div className="space-y-3">
+          <div className="flex gap-3">
+            <span className="text-2xl">✓</span>
+            <div>
+              <p className="font-semibold text-gray-900 dark:text-white">Verify Angle Mode</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Always check if you're in DEG or RAD mode before calculating trigonometric functions. sin(90) in degrees is different from sin(90) in radians!</p>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <span className="text-2xl">✓</span>
+            <div>
+              <p className="font-semibold text-gray-900 dark:text-white">Use Parentheses for Grouping</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Complex expressions need proper grouping. 2+3*4 = 14 (order of operations), but (2+3)*4 = 20. Always use parentheses to avoid ambiguity.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <span className="text-2xl">✓</span>
+            <div>
+              <p className="font-semibold text-gray-900 dark:text-white">Check Precision Limits</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Floating-point calculations have precision limits. Very small results may show rounding. For critical calculations, round only at the end.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <span className="text-2xl">✓</span>
+            <div>
+              <p className="font-semibold text-gray-900 dark:text-white">Double-Check Matrix Dimensions</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Matrix multiplication requires matching dimensions (m×n × n×p = m×p). Ensure matrices are properly sized before operations.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <span className="text-2xl">✓</span>
+            <div>
+              <p className="font-semibold text-gray-900 dark:text-white">Validate Statistical Data</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Ensure you have sufficient data points for meaningful statistics. Outliers can significantly affect standard deviation and regression analysis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Affiliate Banner */}
       <AffiliateBanner
         icon="📬"

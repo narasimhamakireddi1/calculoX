@@ -581,6 +581,95 @@ export default function EMICalculatorPage() {
           </div>
         </div>
 
+        {/* Is Your EMI Sustainable */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">Is Your EMI Sustainable? The 40% Rule</h2>
+          <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <p>
+              Financial experts recommend that your total EMI (including all loans) should not exceed 40% of your monthly gross income. This is called the "40% rule" and ensures you have sufficient funds for living expenses, savings, and emergencies.
+            </p>
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+              <p className="font-bold text-blue-900 dark:text-blue-300 mb-2">📋 Quick Assessment:</p>
+              <p className="text-sm">If your monthly EMI is ₹{result ? formatCurrency(result.emi).replace('₹', '') : 'X'}, you should have a gross monthly income of at least ₹{result ? formatCurrency(result.emi * 2.5).replace('₹', '') : 'X'} to stay within the 40% rule.</p>
+            </div>
+            <p className="text-sm">
+              <strong>Why does this matter?</strong> Keeping your EMI within 40% of income ensures you can handle unexpected expenses, maintain an emergency fund, invest for retirement, and avoid financial stress during economic downturns.
+            </p>
+            <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800 space-y-2">
+              <p className="font-bold text-amber-900 dark:text-amber-300">⚠️ Income Verification Tips:</p>
+              <ul className="text-sm space-y-1 list-disc list-inside">
+                <li>Banks typically verify last 2 years of income (salary slips, IT returns)</li>
+                <li>Self-employed: 3 years of audited accounts required</li>
+                <li>Co-applicant income can be added to improve loan eligibility</li>
+                <li>Bonuses count only if received consistently for 2+ years</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* How to Reduce EMI */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">Strategic Ways to Reduce Your EMI & Save Interest</h2>
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-lg border-2 border-green-300 dark:border-green-700">
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">💰 Maximize Down Payment</h3>
+                <p className="text-sm text-green-800 dark:text-green-200 mb-3">Increasing your down payment from 20% to 40% can reduce your loan principal by ₹{result ? formatCurrency((result.totalAmount - result.emi * (watchValues.years * 12)) * 0.2).replace('₹', '') : 'X'}, which directly lowers EMI.</p>
+                <p className="text-xs font-semibold text-green-700 dark:text-green-300">Example: ₹50L home with 20% down vs 40% down reduces EMI by ₹10,000-15,000/month</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-4 rounded-lg border-2 border-blue-300 dark:border-blue-700">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">🎯 Negotiate Better Rate</h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">Even 0.5% reduction in interest rate saves substantial interest. At ₹50L loan, 0.5% cut saves ₹{result ? formatCurrency((result.totalAmount - (result.emi * watchValues.years * 12)) * 0.15).replace('₹', '') : 'X'} over tenure.</p>
+                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300">Negotiation factors: CIBIL score {'>'} 750, existing customer, bulk loans</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 rounded-lg border-2 border-purple-300 dark:border-purple-700">
+                <h3 className="font-bold text-purple-900 dark:text-purple-300 mb-3">⏰ Extend Tenure Strategically</h3>
+                <p className="text-sm text-purple-800 dark:text-purple-200 mb-3">Longer tenure reduces monthly EMI but increases total interest. 20-year vs 30-year tenure reduces EMI by 30% but adds ~45% more total interest.</p>
+                <p className="text-xs font-semibold text-purple-700 dark:text-purple-300">Strategy: Balance EMI comfort with interest cost</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-4 rounded-lg border-2 border-orange-300 dark:border-orange-700">
+                <h3 className="font-bold text-orange-900 dark:text-orange-300 mb-3">🚀 Prepay Strategically</h3>
+                <p className="text-sm text-orange-800 dark:text-orange-200 mb-3">Annual bonuses or surplus income can be prepaid toward principal. Prepaying ₹5L in year 5 saves ₹10-15L in total interest on 20-year loans.</p>
+                <p className="text-xs font-semibold text-orange-700 dark:text-orange-300">Check prepayment penalties before pursuing this strategy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Expert Tips */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">💡 Expert Insights on Loan Management</h2>
+          <div className="space-y-4">
+            <div className="border-l-4 border-blue-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">1. Understand Your Amortization Schedule</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Early EMI payments are mostly interest. In the first 5 years of a 20-year loan, 70% goes toward interest. Review the amortization table to see your exact principal-to-interest breakdown each month.</p>
+            </div>
+
+            <div className="border-l-4 border-green-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">2. Rate Lock & Market Monitoring</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Monitor RBI repo rate changes. When rates fall, refinance your loan. If rates are expected to rise, lock in fixed rates. Current home loan rates (2024): 8.0-9.5% depending on bank and credit profile.</p>
+            </div>
+
+            <div className="border-l-4 border-purple-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">3. CIBIL Score Impact</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Your credit score directly affects interest rate. Score 750+: Best rates (8.0-8.5%) | Score 700-749: Standard rates (8.5-9.2%) | Score below 700: Expect 9.5%+. Improve your score before applying to save significantly.</p>
+            </div>
+
+            <div className="border-l-4 border-orange-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">4. Floating vs Fixed Rate Trade-off</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300"><strong>Floating:</strong> 0.3-0.5% cheaper, varies with RBI rate | <strong>Fixed:</strong> Stable EMI, peace of mind. Choose floating if rates expected to fall, fixed if rates might rise.</p>
+            </div>
+
+            <div className="border-l-4 border-red-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">5. Insurance & Emergency Fund</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Banks require home loan insurance. Also maintain 6-months of EMI in emergency fund. For ₹31,040 EMI, keep ₹1,86,240 emergency corpus in high-yield savings (FD/liquid funds).</p>
+            </div>
+          </div>
+        </div>
+
         {/* Table Snippet: EMI for Different Loan Amounts */}
         <div className="card">
           <h2 className="text-2xl font-bold mb-4">EMI for Different Loan Amounts @ 8.5% Interest</h2>

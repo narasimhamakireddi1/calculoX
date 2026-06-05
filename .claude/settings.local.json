@@ -31,7 +31,15 @@
       "Bash(awk '{sum+=$1} END {print \"Total FAQ answer words: \" sum}')",
       "Bash(git checkout *)",
       "mcp__claude_ai_Tavily__tavily_search",
-      "mcp__claude_ai_Tavily__tavily_crawl"
+      "mcp__claude_ai_Tavily__tavily_crawl",
+      "mcp__claude_ai_Tavily__tavily_extract",
+      "Bash(grep -E \"\\\\.\\(ts|tsx\\)$\")",
+      "Bash(awk '/slug:/{post=$0} /heading:/{if\\(post ~ /emergency-fund/ || post ~ /wealth-building/ || post ~ /business-loan/\\) print post, NR}')",
+      "Bash(awk '/slug: .emergency-fund/,/^  \\\\],/')",
+      "Bash(awk '/slug: .business-loan/,/^  \\\\],/')",
+      "Bash(awk '/slug: .sip-vs-lump/,/^  \\\\],/')",
+      "Bash(awk '/slug:/{if\\(NR>1\\) print \"\"} {print}')",
+      "Bash(awk '/slug: .how-to-calculate-emi/,/^  \\\\],/ {if\\(/sections: \\\\[/\\) {in_sections=1} else if\\(in_sections && /heading:/\\) {count++} else if\\(in_sections && /faqs:/\\) {print count \" sections\"; exit}}')"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\Downloads\\calculator\\calc"
