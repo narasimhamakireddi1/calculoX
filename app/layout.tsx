@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | calculox - Free Online Calculator",
   },
   description:
-    "calculox - Free online calculators for India. SIP, EMI, BMI, Tax, FD, RD, GST, CAGR & 8 more calculators. Fast, accurate, mobile-friendly. No ads. No registration. Calculate instantly online.",
+    "calculox - Free online calculators for India. SIP, EMI, BMI, Tax, FD, RD, GST, CAGR & 8 more calculators. Fast, accurate, mobile-friendly. No registration required. Calculate instantly online.",
   keywords: [
     "calculox",
     "calculox calculator",
@@ -102,7 +102,7 @@ export const metadata: Metadata = {
     siteName: "calculox",
     title: "calculox - Free Online Calculators for India | 14+ Tools",
     description:
-      "calculox offers 14+ free online calculators for Indian users. Calculate SIP returns, EMI, BMI, income tax, FD, RD, GST, CAGR, and more. Fast, accurate, no ads, no registration.",
+      "calculox offers 14+ free online calculators for Indian users. Calculate SIP returns, EMI, BMI, income tax, FD, RD, GST, CAGR, and more. Fast, accurate, no registration required.",
     images: [
       {
         url: "/logo.png",
@@ -119,7 +119,7 @@ export const metadata: Metadata = {
     creator: "@calculox",
     title: "calculox - 14+ Free Online Calculators for India",
     description:
-      "SIP calculator, EMI calculator, BMI calculator, income tax calculator, FD calculator, RD calculator, GST calculator, and 7+ more. Free, accurate, instant results. No ads.",
+      "SIP calculator, EMI calculator, BMI calculator, income tax calculator, FD calculator, RD calculator, GST calculator, and 7+ more. Free, accurate, instant results.",
   },
   icons: {
     icon: [
