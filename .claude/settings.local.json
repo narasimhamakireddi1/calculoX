@@ -9,7 +9,26 @@
       "PowerShell(grep -i \"error\\\\|warn\" 2>&1)",
       "PowerShell(head -20)",
       "Bash(pkill -f \"next dev\")",
-      "Bash(curl -s http://localhost:3000/emi-calculator)"
+      "Bash(curl -s http://localhost:3000/emi-calculator)",
+      "Bash(pkill -f \"npm run dev\")",
+      "Bash(curl -s http://localhost:3000/tax-calculator)",
+      "Bash(npx playwright *)",
+      "Bash(node test-sip-mobile.js)",
+      "Bash(node test-mobile-swipe.js)",
+      "Bash(node test-show-all-collapse.js)",
+      "Bash(grep -E \"\\\\.\\(tsx|ts|css\\)$\")",
+      "Bash(curl -s http://localhost:3000/sip-calculator)",
+      "Bash(git reset *)",
+      "Bash(awk '-F'\\\\''' '{ *)",
+      "Bash(awk '{print NR\": \"$0}')",
+      "Bash(cd \"c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\" && rm -f test-emoji-*.js verify-emojis.js emoji-*.png)",
+      "WebFetch(domain:support.google.com)",
+      "WebSearch",
+      "Bash(curl -s https://www.calculox.in/privacy-policy)",
+      "Bash(grep -E \"\\\\.\\(ts|js|mdx|md\\)$\")"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\trish\\Downloads\\calculator\\calc"
     ]
   }
 }
