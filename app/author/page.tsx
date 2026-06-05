@@ -2,11 +2,11 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Narasimha Makireddi | Author & Fintech Expert',
-  description: 'Meet Narasimha Makireddi - Fintech professional with 5+ years experience building trusted financial calculators for millions of Indians. Expert in investment planning, tax optimization, and banking solutions.',
+  title: 'About Calculox | Expert Financial Calculator Team',
+  description: 'Learn about the expert team behind Calculox - fintech professionals with 5+ years experience building trusted financial calculators for millions of Indians. Experts in investment planning, tax optimization, and banking solutions.',
   openGraph: {
-    title: 'About Narasimha Makireddi | Financial Calculator Expert',
-    description: 'Fintech innovator empowering Indians with accurate, transparent financial calculators and educational content.',
+    title: 'About Calculox | Financial Calculator Expert Team',
+    description: 'Expert fintech team empowering Indians with accurate, transparent financial calculators and educational content.',
     type: 'website',
   },
 };
@@ -20,14 +20,14 @@ export default function AuthorPage() {
           <div className="flex flex-col md:flex-row items-center gap-8">
             {/* Avatar */}
             <div className="w-40 h-40 rounded-full bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0 border-4 border-white/30">
-              <div className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-6xl font-bold">
-                NM
+              <div className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-5xl font-bold">
+                💰
               </div>
             </div>
 
             <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Narasimha Makireddi</h1>
-              <p className="text-xl text-blue-100 mb-4">Fintech Professional & Financial Calculator Expert</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-2">Calculox Team</h1>
+              <p className="text-xl text-blue-100 mb-4">Expert Fintech Professionals & Financial Calculator Specialists</p>
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                 <span className="px-4 py-2 bg-white/20 rounded-full text-sm font-semibold backdrop-blur">Financial Tech</span>
                 <span className="px-4 py-2 bg-white/20 rounded-full text-sm font-semibold backdrop-blur">Investment Planning</span>
@@ -42,18 +42,18 @@ export default function AuthorPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Bio Section */}
         <section className="mb-12 bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Professional Biography</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">About Our Team</h2>
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-              I am a fintech professional with over 5 years of experience building accurate, transparent financial calculators trusted by millions of Indians. My mission is simple but powerful: <strong>empower every Indian with free, reliable financial tools and education</strong> to make better money decisions.
+              The Calculox team comprises fintech professionals with over 5 years of experience building accurate, transparent financial calculators trusted by millions of Indians. Our mission is simple but powerful: <strong>empower every Indian with free, reliable financial tools and education</strong> to make better money decisions.
             </p>
 
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-              Through years of working in financial technology, I've witnessed how complex financial decisions become when people lack access to transparent, easy-to-use tools. Most financial calculators online are either overly complicated, filled with advertising, or lack the accuracy needed for real Indian financial scenarios. This is why I built Calculox - a comprehensive suite of 14 financial calculators designed specifically for Indian needs.
+              Through years of working in financial technology, we've witnessed how complex financial decisions become when people lack access to transparent, easy-to-use tools. Most financial calculators online are either overly complicated, filled with advertising, or lack the accuracy needed for real Indian financial scenarios. This is why we created Calculox - a comprehensive suite of 14 financial calculators designed specifically for Indian needs.
             </p>
 
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              Every calculator on this platform has been developed with meticulous attention to accuracy, compliance with RBI guidelines, GST regulations, Income Tax slabs (FY 2025-26), and SEBI investment standards. My work combines technical expertise with a deep understanding of Indian financial products, tax structures, and investment options.
+              Every calculator on this platform has been developed with meticulous attention to accuracy, compliance with RBI guidelines, GST regulations, Income Tax slabs (FY 2025-26), and SEBI investment standards. Our work combines technical expertise with a deep understanding of Indian financial products, tax structures, and investment options.
             </p>
           </div>
         </section>
