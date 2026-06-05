@@ -769,13 +769,13 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Real Estate Finance Expert | Investment Analyst',
     category: 'Investing',
-    readTime: '17 min read',
+    readTime: '18 min read',
     keywords: ['home loan vs rent', 'buy vs rent', 'should I buy a house', 'rent vs home loan cost', 'real estate investment'],
     relatedCalculator: { name: 'Home Loan vs Rent Calculator', href: '/home-loan-vs-rent-calculator' },
     sections: [
       {
         heading: 'The Buy vs Rent Decision Framework',
-        content: 'This is deeply personal: Buy if you plan to stay 10+ years, have 20% down payment, stable income, want to build equity. Rent if you value flexibility, uncertain about location/job, don\'t have large down payment, living in expensive metro. Financial analysis: Calculate total cost of ownership (loan interest, maintenance, tax, insurance) vs total rent cost. Break-even analysis: When does home appreciation offset rental savings? Timeline: Most homes break even after 10-12 years in Indian metros.',
+        content: 'This is deeply personal financial decision. Buy if: planning to stay 10+ years, have 20% down payment ready, stable income (job security), want to build equity and have control. Rent if: value flexibility highly, uncertain about location or job stability, don\'t have large down payment, living in expensive metro, want to invest surplus in stocks instead of property. Financial analysis framework: Calculate complete total cost of ownership (loan EMI + interest, property tax, annual maintenance, home insurance, registration/stamp duty upfront) versus total rent cost (rent × 12 months × years, with rent escalation assumed at 6% annually). Break-even analysis answers: When does accumulated home appreciation offset the rental savings and investment returns? Timeline insight: Most homes in Indian metros break-even after 10-12 years, but this varies dramatically by city, property price, and appreciation rate.',
       },
       {
         heading: 'Calculate Total Cost of Ownership',
