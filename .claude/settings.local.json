@@ -30,7 +30,8 @@
       "Bash(awk '{sum+=$1} END {print \"Total section words: \" sum}')",
       "Bash(awk '{sum+=$1} END {print \"Total FAQ answer words: \" sum}')",
       "Bash(git checkout *)",
-      "mcp__claude_ai_Tavily__tavily_search"
+      "mcp__claude_ai_Tavily__tavily_search",
+      "mcp__claude_ai_Tavily__tavily_crawl"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\Downloads\\calculator\\calc"

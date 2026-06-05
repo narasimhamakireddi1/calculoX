@@ -22,7 +22,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Financial Calculator Experts | Certified Financial Planner Community',
     category: 'Finance',
-    readTime: '7 min read',
+    readTime: '5 min read',
     keywords: ['EMI calculation', 'EMI formula', 'how to calculate EMI', 'loan EMI', 'home loan EMI formula', 'EMI calculator formula'],
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
     sections: [
@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Investment Specialist | SEBI-Registered Investment Advisor',
     category: 'Investment',
-    readTime: '8 min read',
+    readTime: '5 min read',
     keywords: ['SIP calculator', 'SIP return calculation', 'systematic investment plan', 'SIP explained', 'SIP investment guide', 'mutual fund SIP'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -138,7 +138,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Income Tax Specialist | ITA Qualified Tax Professional',
     category: 'Tax',
-    readTime: '9 min read',
+    readTime: '5 min read',
     keywords: ['new vs old tax regime', 'tax regime comparison', 'new tax regime 2024-25', 'old tax regime benefits', 'which tax regime is better', 'income tax India'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
@@ -190,7 +190,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Health & Nutrition Expert | ICMR Health Advisor',
     category: 'Health',
-    readTime: '12 min read',
+    readTime: '5 min read',
     keywords: ['BMI for Indians', 'healthy BMI India', 'normal BMI Indian adults', 'Asian BMI chart', 'BMI calculator India', 'overweight Indians BMI', 'weight management India', 'healthy weight for Indians'],
     relatedCalculator: { name: 'BMI Calculator', href: '/bmi-calculator' },
     sections: [
@@ -234,7 +234,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Investment Analyst | CFA-Affiliated Financial Expert',
     category: 'Investment',
-    readTime: '6 min read',
+    readTime: '5 min read',
     keywords: ['CAGR', 'compound annual growth rate', 'how to calculate CAGR', 'CAGR formula', 'CAGR calculator', 'investment growth rate', 'CAGR vs absolute return'],
     relatedCalculator: { name: 'CAGR Calculator', href: '/cagr-calculator' },
     sections: [
@@ -300,7 +300,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Banking Expert | RBI-Compliant FD Advisor',
     category: 'Finance',
-    readTime: '7 min read',
+    readTime: '5 min read',
     keywords: ['FD calculator', 'fixed deposit calculator', 'FD interest calculator India', 'FD maturity', 'bank FD rates', 'senior citizen FD'],
     relatedCalculator: { name: 'FD Calculator', href: '/fd-calculator' },
     sections: [
@@ -335,7 +335,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Savings Specialist | Banking Advisor',
     category: 'Finance',
-    readTime: '6 min read',
+    readTime: '5 min read',
     keywords: ['RD calculator', 'recurring deposit calculator', 'RD interest calculator', 'RD maturity', 'RD vs FD', 'bank RD rates'],
     relatedCalculator: { name: 'RD Calculator', href: '/rd-calculator' },
     sections: [
@@ -365,7 +365,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'GST Expert | ICAI-Recognized Tax Consultant',
     category: 'Tax',
-    readTime: '12 min read',
+    readTime: '5 min read',
     keywords: ['GST calculator', 'GST tax calculator', 'GST rates India', 'GST slab', 'SGST CGST IGST', 'how to calculate GST', 'GST formula', 'GST compliance'],
     relatedCalculator: { name: 'GST Calculator', href: '/gst-calculator' },
     sections: [
@@ -395,7 +395,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Mathematics & Finance Expert | Educator',
     category: 'Finance',
-    readTime: '12 min read',
+    readTime: '5 min read',
     keywords: ['percentage calculator', 'percent change calculator', 'percent of calculator', 'percentage discount calculator', 'percentage increase calculator', 'percentage formula', 'how to calculate percentage'],
     relatedCalculator: { name: 'Percentage Calculator', href: '/percentage-calculator' },
     sections: [
@@ -426,7 +426,7 @@ export const blogPosts: BlogPost[] = [
     author: 'calculox Team',
     authorCredentials: 'Finance Expert | Personal Loan Specialist',
     category: 'Finance',
-    readTime: '6 min read',
+    readTime: '5 min read',
     keywords: ['simple interest calculator', 'SI calculator', 'simple interest formula', 'simple interest vs compound interest', 'SI calculation'],
     relatedCalculator: { name: 'Simple Interest Calculator', href: '/simple-interest-calculator' },
     sections: [
@@ -457,7 +457,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Finance Expert | Real Estate Advisor | Loan Specialist',
     category: 'Finance',
-    readTime: '12 min read',
+    readTime: '5 min read',
     keywords: ['how to calculate home loan emi', 'home loan emi formula', 'emi calculation step by step', 'home loan monthly payment', 'calculate emi for home loan', 'reduce home loan emi'],
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
     sections: [
@@ -492,7 +492,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Finance Expert | Investment Advisor | Mutual Fund Specialist',
     category: 'Investment',
-    readTime: '16 min read',
+    readTime: '5 min read',
     keywords: ['sip vs lump sum', 'sip vs lump sum investment', 'sip investment vs lump sum', 'which is better sip or lump sum', 'sip returns vs lump sum'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -523,7 +523,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Tax Expert | CA Advisor | Income Tax Specialist',
     category: 'Tax',
-    readTime: '18 min read',
+    readTime: '5 min read',
     keywords: ['how to calculate income tax india', 'income tax calculation india', 'income tax slabs 2025-26', 'income tax deduction', 'tax rebate 87a', 'hra exemption calculation'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
@@ -552,7 +552,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Tax Expert | CA Advisor | Income Tax Specialist',
     category: 'Tax',
-    readTime: '16 min read',
+    readTime: '5 min read',
     keywords: ['new vs old tax regime', 'new tax regime vs old regime', 'which tax regime is better', 'new income tax regime', 'old income tax regime', 'tax regime comparison'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
@@ -581,7 +581,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Business Consultant | Pricing Strategy Expert | Finance Analyst',
     category: 'Business',
-    readTime: '15 min read',
+    readTime: '5 min read',
     keywords: ['healthy profit margin by industry', 'profit margin benchmarks', 'markup vs margin', 'industry profit margins', 'retail margin', 'business margin percentage'],
     relatedCalculator: { name: 'Profit Margin Calculator', href: '/profit-margin-calculator' },
     sections: [
@@ -609,7 +609,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Investment Advisor | SEBI-Registered | Financial Planning Expert',
     category: 'Investment',
-    readTime: '18 min read',
+    readTime: '5 min read',
     keywords: ['investment planning', 'investment strategy India', 'asset allocation', 'portfolio management', 'wealth creation', 'investment goals', 'mutual funds vs stocks'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -664,7 +664,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Tax Advisor | CA Qualified | Income Tax Expert',
     category: 'Tax',
-    readTime: '16 min read',
+    readTime: '5 min read',
     keywords: ['tax saving strategies', 'income tax savings', 'section 80c', 'HRA exemption', 'tax deduction', 'salary income tax reduction'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
@@ -722,7 +722,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Certified Financial Planner | NISM Trained | Retirement Specialist',
     category: 'Retirement',
-    readTime: '17 min read',
+    readTime: '5 min read',
     keywords: ['retirement planning', 'retirement corpus', 'retirement calculator', 'how much to save for retirement', 'retirement fund calculation'],
     relatedCalculator: { name: 'Retirement Calculator', href: '/retirement-calculator' },
     sections: [
@@ -779,7 +779,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Personal Finance Expert | Savings Specialist | Risk Management Advisor',
     category: 'Savings',
-    readTime: '17 min read',
+    readTime: '5 min read',
     keywords: ['emergency fund', 'emergency fund calculator', 'how much emergency fund', 'months of expenses', 'emergency savings', 'financial safety net'],
     relatedCalculator: { name: 'FD Calculator', href: '/fd-calculator' },
     sections: [
@@ -832,7 +832,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Real Estate Finance Expert | Investment Analyst',
     category: 'Investing',
-    readTime: '18 min read',
+    readTime: '5 min read',
     keywords: ['home loan vs rent', 'buy vs rent', 'should I buy a house', 'rent vs home loan cost', 'real estate investment'],
     relatedCalculator: { name: 'Home Loan vs Rent Calculator', href: '/home-loan-vs-rent-calculator' },
     sections: [
@@ -884,7 +884,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Business Finance Expert | Loan Specialist | Entrepreneur Advisor',
     category: 'Finance',
-    readTime: '15 min read',
+    readTime: '5 min read',
     keywords: ['business loan vs personal loan', 'business loan', 'personal loan', 'loan comparison', 'entrepreneur loans', 'msme loans'],
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
     sections: [
@@ -938,7 +938,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Financial Educator | Young Professional Advisor | Wealth Coach',
     category: 'Personal Finance',
-    readTime: '18 min read',
+    readTime: '5 min read',
     keywords: ['financial literacy', 'financial planning young professionals', 'wealth building', 'financial education', 'money management'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -994,7 +994,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Investment Advisor | Portfolio Manager | Finance Analyst',
     category: 'Investment',
-    readTime: '18 min read',
+    readTime: '5 min read',
     keywords: ['investment options', 'investment types India', 'where to invest', 'asset classes', 'investment comparison'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -1050,7 +1050,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Mutual Fund Analyst | Portfolio Consultant | Investment Educator',
     category: 'Investment',
-    readTime: '14 min read',
+    readTime: '5 min read',
     keywords: ['best mutual funds', 'mutual fund selection', 'mutual fund evaluation', 'fund selection criteria', 'how to select funds'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -1108,7 +1108,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Wealth Management Advisor | Personal Finance Coach | Financial Success Author',
     category: 'Wealth Building',
-    readTime: '16 min read',
+    readTime: '5 min read',
     keywords: ['wealth building', 'build wealth', 'financial success', 'wealth creation principles', 'long-term wealth'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
