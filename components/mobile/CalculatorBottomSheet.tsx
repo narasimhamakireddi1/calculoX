@@ -211,24 +211,26 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
         <div className="px-4 pt-3 pb-3 flex-shrink-0 border-b border-gray-100 dark:border-gray-800/80">
           <div className="relative">
             <svg
-              style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', width: 16, height: 16, color: '#9ca3af', flexShrink: 0 }}
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', width: 15, height: 15, flexShrink: 0 }}
+              viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
             >
-              <circle cx="11" cy="11" r="8" />
+              <circle cx="11" cy="11" r="7" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
             <input
               ref={inputRef}
-              type="search"
+              type="text"
+              inputMode="search"
               placeholder="Search calculators..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2.5 rounded-xl text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-colors"
+              className="w-full rounded-xl text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-colors"
+              style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 40, paddingRight: searchQuery ? 32 : 12 }}
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-base leading-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-lg leading-none"
                 aria-label="Clear search"
               >
                 ×
