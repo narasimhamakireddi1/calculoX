@@ -1,22 +1,30 @@
 # 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-09 (Mobile Nav Redesign) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 55 pages, 0 TypeScript errors
+**Last Updated:** 2026-06-09 (Mobile Nav Bug Fixes) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 55 pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-09 - Mobile Navbar Premium Redesign)
-- 📱 **Mobile Menu Full Redesign:** Replaced heavy gradient header with a clean, modern side drawer matching top-site standards ✅
+## ✅ Latest (2026-06-09 - Mobile Navbar Bug Fixes: Icons + Drawer + Search)
+- 🐛 **4 critical mobile nav bugs fixed after redesign:** ✅
+  - **Drawer not opening:** `CalculatorBottomSheet` was inside `<nav backdrop-blur-xl>` — `backdrop-filter` creates a CSS containing block for fixed children, so the drawer was clipped to 64px nav height instead of viewport. Fixed by moving component outside `<nav>` into a React Fragment. ✅
+  - **Hamburger icon invisible:** SVG rendering unreliable via JSX stroke/path. Replaced with 3× CSS `<span>` bars (`18px × 2px`, explicit `bg-gray-800 dark:bg-gray-100`) — guaranteed render everywhere. ✅
+  - **Close (×) button invisible:** Tailwind `rotate-45` on inline `<span>` elements doesn't apply transforms. Replaced with inline-style `transform: rotate(±45deg)` on `position: absolute` bars — always works. ✅
+  - **Search icon overlapping text:** `type="search"` causes browser to inject its own internal padding/cancel button overriding Tailwind `pl-*`. Changed to `type="text"` + `inputMode="search"`, inline `paddingLeft: 40px` for pixel-precise gap. ✅
+- 📱 **Mobile Menu Full Redesign (same session):** Clean side drawer replacing heavy gradient header ✅
   - **Smooth Animation:** CSS `translate-x-full` → `translate-x-0` with cubic-bezier easing — panel always in DOM, no flicker ✅
-  - **Blurred Backdrop:** `backdrop-filter: blur(6px)` with dark overlay that fades independently from panel ✅
-  - **Slim Header (56px):** Logo + title + SVG close button — no heavy blue gradient block eating vertical space ✅
-  - **Polished Search:** Rounded pill input, real SVG search/clear icons, auto-focuses on open ✅
-  - **Nav Links as Rows:** Home / Blog / About each show icon + title + subtitle with active-page blue highlight + dot indicator ✅
-  - **4-Column Calculator Grid:** More compact tiles, active-page ring highlight on current calculator ✅
-  - **Dedicated Theme Footer:** Full-width segmented pill (Light / Auto / Dark) — no more `scale-75` hack ✅
+  - **Blurred Backdrop:** `backdrop-filter: blur(6px)` with dark overlay that fades independently ✅
+  - **Slim Header (56px):** Logo + title + close button — no heavy blue gradient block ✅
+  - **Nav Links as Rows:** Home / Blog / About with icon + subtitle + active-page highlight ✅
+  - **4-Column Calculator Grid:** Compact tiles, active-page ring highlight ✅
+  - **Dedicated Theme Footer:** Full-width segmented pill (Light / Auto / Dark) ✅
   - **ESC to close + body scroll lock + auto-close on route change** ✅
-  - **SVG hamburger icon** replaces emoji `☰` / `✕` in navbar button ✅
-  - **Files:** `components/mobile/CalculatorBottomSheet.tsx` (full rewrite), `components/layout/Navbar.tsx` (button update) ✅
+  - **Files:** `components/mobile/CalculatorBottomSheet.tsx`, `components/layout/Navbar.tsx` ✅
   - **Build:** ✅ 55 pages, 0 TypeScript errors ✅
+
+## ⚠️ Key Implementation Notes (Mobile Drawer)
+- **Never render fixed-position overlays inside elements with `backdrop-filter`, `filter`, `transform`, or `will-change`** — these CSS properties create a containing block that clips fixed descendants to the parent element's bounds instead of the viewport.
+- **SVG icons in JSX**: `stroke="currentColor"` can fail in certain builds. Use inline `style` with explicit `stroke="#hex"` or replace with CSS bar elements for guaranteed rendering.
+- **`type="search"` inputs**: Browser-injected styles override Tailwind padding classes. Use `type="text"` + `inputMode="search"` + inline style padding for reliable layout.
 
 ## ✅ Previous (2026-06-05 Late - 6-Agent Multi-Threaded AdSense Approval Campaign)
 - 🤖 **Multi-Agent System Addressing All Google Rejection Root Causes:** 6 parallel agents fixing all 6 identified issues ✅
