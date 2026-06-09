@@ -199,12 +199,17 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
 
           <button
             onClick={onClose}
-            className="w-9 h-9 flex items-center justify-center rounded-xl text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+            className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
             aria-label="Close menu"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="w-5 h-5">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
+            <span className="relative w-[18px] h-[18px]">
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="block w-[18px] h-[2px] rounded-full bg-gray-600 dark:bg-gray-300 rotate-45" />
+              </span>
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="block w-[18px] h-[2px] rounded-full bg-gray-600 dark:bg-gray-300 -rotate-45" />
+              </span>
+            </span>
           </button>
         </div>
 

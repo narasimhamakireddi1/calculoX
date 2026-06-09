@@ -241,14 +241,16 @@ export function Navbar() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 flex-shrink-0 text-gray-800 dark:text-gray-100"
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 flex-shrink-0"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <span className="flex flex-col gap-[5px]">
+                <span className="block w-[18px] h-[2px] rounded-full bg-gray-800 dark:bg-gray-100" />
+                <span className="block w-[18px] h-[2px] rounded-full bg-gray-800 dark:bg-gray-100" />
+                <span className="block w-[18px] h-[2px] rounded-full bg-gray-800 dark:bg-gray-100" />
+              </span>
             </button>
           </div>
         </div>
