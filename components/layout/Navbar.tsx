@@ -128,6 +128,7 @@ export function Navbar() {
   };
 
   return (
+    <>
     <nav aria-label="Main navigation" className="sticky top-0 z-50 backdrop-blur-xl bg-white/85 dark:bg-gray-950/85 border-b border-gray-200/50 dark:border-gray-800/50 shadow-lg shadow-blue-500/5 dark:shadow-blue-500/10 will-change-backdrop-filter">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -255,8 +256,6 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Bottom Sheet for Calculators */}
-        <CalculatorBottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </div>
 
       <style jsx>{`
@@ -277,5 +276,9 @@ export function Navbar() {
         }
       `}</style>
     </nav>
+
+    {/* Rendered outside <nav> so backdrop-blur doesn't create a fixed containing block */}
+    <CalculatorBottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </>
   );
 }
