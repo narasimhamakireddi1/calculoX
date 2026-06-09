@@ -97,7 +97,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
   const pathname = usePathname();
   const activeCalculators = getActiveCalculators();
   const [searchQuery, setSearchQuery] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null); // kept for potential future focus use
   const prevPathname = useRef(pathname);
 
   // Close on route change
@@ -109,11 +109,9 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
     }
   }, [pathname, onClose]);
 
-  // Auto-focus search when opened; clear query on close
+  // Clear query on close
   useEffect(() => {
-    if (!isOpen) { setSearchQuery(''); return; }
-    const t = setTimeout(() => inputRef.current?.focus(), 350);
-    return () => clearTimeout(t);
+    if (!isOpen) setSearchQuery('');
   }, [isOpen]);
 
   // Body scroll lock
@@ -199,46 +197,35 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
 
           <button
             onClick={onClose}
-            className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+            className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all flex-shrink-0"
             aria-label="Close menu"
           >
-            <span className="relative w-[18px] h-[18px]">
-              <span className="absolute inset-0 flex items-center justify-center">
-                <span className="block w-[18px] h-[2px] rounded-full bg-gray-600 dark:bg-gray-300 rotate-45" />
-              </span>
-              <span className="absolute inset-0 flex items-center justify-center">
-                <span className="block w-[18px] h-[2px] rounded-full bg-gray-600 dark:bg-gray-300 -rotate-45" />
-              </span>
+            <span style={{ position: 'relative', display: 'block', width: 18, height: 18, flexShrink: 0 }}>
+              <span style={{ position: 'absolute', top: 8, left: 0, right: 0, height: 2, borderRadius: 9999, backgroundColor: '#6b7280', transform: 'rotate(45deg)' }} />
+              <span style={{ position: 'absolute', top: 8, left: 0, right: 0, height: 2, borderRadius: 9999, backgroundColor: '#6b7280', transform: 'rotate(-45deg)' }} />
             </span>
           </button>
         </div>
 
         {/* ── Search ── */}
-        <div className="px-4 pt-3 pb-2 flex-shrink-0">
+        <div className="px-4 pt-3 pb-3 flex-shrink-0 border-b border-gray-100 dark:border-gray-800/80">
           <div className="relative">
-            <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
-            >
-              <circle cx="11" cy="11" r="7" /><path strokeLinecap="round" d="M21 21l-4.35-4.35" />
-            </svg>
+            <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#9ca3af', fontSize: 15 }}>🔍</span>
             <input
               ref={inputRef}
               type="search"
               placeholder="Search calculators..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm bg-gray-100 dark:bg-gray-800/80 border-0 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-shadow"
+              className="w-full pl-9 pr-8 py-2.5 rounded-xl text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-colors"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-base leading-none"
                 aria-label="Clear search"
               >
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
+                ×
               </button>
             )}
           </div>
