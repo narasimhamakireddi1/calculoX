@@ -239,17 +239,22 @@ export function Navbar() {
               <ThemeSwitcher />
             </div>
 
-            {/* Mobile Menu Button - Enhanced */}
+            {/* Mobile Menu Button */}
             <button
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex-shrink-0 transform hover:-translate-y-0.5 hover:shadow-md"
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 flex-shrink-0 text-gray-600 dark:text-gray-300"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
-              aria-controls="mobile-menu"
             >
-              <span className="text-2xl font-bold">
-                {isOpen ? '✕' : '☰'}
-              </span>
+              {isOpen ? (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="w-5 h-5">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
