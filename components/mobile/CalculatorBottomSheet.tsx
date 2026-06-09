@@ -210,7 +210,13 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
         {/* ── Search ── */}
         <div className="px-4 pt-3 pb-3 flex-shrink-0 border-b border-gray-100 dark:border-gray-800/80">
           <div className="relative">
-            <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#9ca3af', fontSize: 15 }}>🔍</span>
+            <svg
+              style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', width: 16, height: 16, color: '#9ca3af', flexShrink: 0 }}
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
             <input
               ref={inputRef}
               type="search"
