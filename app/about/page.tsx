@@ -3,6 +3,14 @@ import Script from 'next/script';
 import Link from 'next/link';
 import { generateOrganizationSchema } from '@/lib/seo/schemas';
 import { getActiveCalculators } from '@/config/calculators.config';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+
+const categoryColors: Record<string, { iconBg: string; iconColor: string; hoverBorder: string; hoverText: string }> = {
+  Finance:    { iconBg: 'bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/60',   iconColor: 'text-blue-600 dark:text-blue-400',   hoverBorder: 'hover:border-blue-300 dark:hover:border-blue-600/70',   hoverText: 'group-hover:text-blue-600 dark:group-hover:text-blue-400' },
+  Health:     { iconBg: 'bg-rose-50 dark:bg-rose-950/40 ring-1 ring-rose-100 dark:ring-rose-900/60',   iconColor: 'text-rose-600 dark:text-rose-400',   hoverBorder: 'hover:border-rose-300 dark:hover:border-rose-600/70',   hoverText: 'group-hover:text-rose-600 dark:group-hover:text-rose-400' },
+  Utility:    { iconBg: 'bg-violet-50 dark:bg-violet-950/40 ring-1 ring-violet-100 dark:ring-violet-900/60', iconColor: 'text-violet-600 dark:text-violet-400', hoverBorder: 'hover:border-violet-300 dark:hover:border-violet-600/70', hoverText: 'group-hover:text-violet-600 dark:group-hover:text-violet-400' },
+  Conversion: { iconBg: 'bg-teal-50 dark:bg-teal-950/40 ring-1 ring-teal-100 dark:ring-teal-900/60',   iconColor: 'text-teal-600 dark:text-teal-400',   hoverBorder: 'hover:border-teal-300 dark:hover:border-teal-600/70',   hoverText: 'group-hover:text-teal-600 dark:group-hover:text-teal-400' },
+};
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -24,7 +32,7 @@ export default function AboutPage() {
     name: calc.title,
     href: calc.href,
     desc: calc.description,
-    icon: calc.icon,
+    category: calc.category,
   }));
 
   return (
@@ -98,19 +106,24 @@ export default function AboutPage() {
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">What We Offer (14 Calculators)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {calculators.map((calc) => (
-              <Link
-                key={calc.href}
-                href={calc.href}
-                className="flex items-start gap-3 p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md transition-all"
-              >
-                <span className="text-2xl flex-shrink-0">{calc.icon}</span>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">{calc.name}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{calc.desc}</p>
-                </div>
-              </Link>
-            ))}
+            {calculators.map((calc) => {
+              const colors = categoryColors[calc.category] ?? categoryColors['Finance'];
+              return (
+                <Link
+                  key={calc.href}
+                  href={calc.href}
+                  className={`group flex items-start gap-3 p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all ${colors.hoverBorder}`}
+                >
+                  <div className={`flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0 ${colors.iconBg}`}>
+                    <CalculatorIcon idOrHref={calc.href} className={`w-5 h-5 ${colors.iconColor}`} />
+                  </div>
+                  <div>
+                    <h3 className={`font-semibold text-gray-900 dark:text-white mb-1 transition-colors ${colors.hoverText}`}>{calc.name}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{calc.desc}</p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
