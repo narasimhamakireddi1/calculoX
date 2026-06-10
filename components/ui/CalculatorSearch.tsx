@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { getActiveCalculators } from '@/config/calculators.config';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+import { Search } from 'lucide-react';
 import Link from 'next/link';
 
 interface SearchResult {
@@ -68,13 +70,18 @@ export function CalculatorSearch() {
   return (
     <div ref={searchRef} className="w-full max-w-2xl mx-auto relative mb-8">
       <div className="relative">
+        <Search
+          className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 pointer-events-none"
+          strokeWidth={2}
+          aria-hidden="true"
+        />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.trim() && results.length > 0 && setIsOpen(true)}
-          placeholder="🔍 Search calculators... (e.g., EMI, Tax, Investment, Loan)"
-          className="w-full px-6 py-4 rounded-xl border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-all duration-300 text-lg shadow-md hover:shadow-lg"
+          placeholder="Search calculators... (e.g., EMI, Tax, Investment, Loan)"
+          className="w-full !pl-14 !pr-12 py-4 rounded-xl border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-all duration-300 text-lg shadow-md hover:shadow-lg"
         />
         {query && (
           <button
@@ -109,7 +116,9 @@ export function CalculatorSearch() {
                   index !== results.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''
                 }`}
               >
-                <span className="text-3xl flex-shrink-0 group-hover:scale-110 transition-transform duration-200">{result.icon}</span>
+                <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/50 flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <CalculatorIcon idOrHref={result.href} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                </span>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {result.title}

@@ -5,6 +5,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import * as z from 'zod';
 import {
   AreaChart,
@@ -185,7 +186,10 @@ export default function HomeLoanVsRentCalculator() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-2">🏠 Home Loan vs Rent</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-2 inline-flex items-center gap-3">
+            <CalculatorIcon idOrHref="home-loan-vs-rent" className="w-9 h-9 md:w-10 md:h-10 flex-shrink-0" />
+            <span>Home Loan vs Rent</span>
+          </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Run two parallel financial scenarios: buying with a home loan vs. renting and investing the saved cash.
             Discover which path yields higher net worth using the Opportunity Cost Framework.

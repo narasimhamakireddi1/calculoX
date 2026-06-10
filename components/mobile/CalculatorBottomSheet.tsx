@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { getActiveCalculators } from '@/config/calculators.config';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+import { Home, BookOpen, Info, type LucideIcon } from 'lucide-react';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -142,10 +144,10 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
     return pathname.startsWith(href);
   };
 
-  const navLinks = [
-    { href: '/', label: 'Home', icon: '🏠', desc: 'Back to homepage' },
-    { href: '/blog', label: 'Blog', icon: '📖', desc: '25 financial guides' },
-    { href: '/about', label: 'About', icon: 'ℹ️', desc: 'Our team & mission' },
+  const navLinks: { href: string; label: string; Icon: LucideIcon; desc: string }[] = [
+    { href: '/', label: 'Home', Icon: Home, desc: 'Back to homepage' },
+    { href: '/blog', label: 'Blog', Icon: BookOpen, desc: '25 financial guides' },
+    { href: '/about', label: 'About', Icon: Info, desc: 'Our team & mission' },
   ];
 
   return (
@@ -258,8 +260,8 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
                         : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/60'
                     }`}
                   >
-                    <span className="text-lg w-7 text-center flex-shrink-0 transition-transform group-hover:scale-110 duration-150">
-                      {link.icon}
+                    <span className="w-7 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 duration-150">
+                      <link.Icon className="w-5 h-5" strokeWidth={2} aria-hidden="true" />
                     </span>
                     <div className="min-w-0">
                       <div className={`text-sm font-semibold leading-tight ${active ? '' : ''}`}>{link.label}</div>
@@ -305,8 +307,8 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
                           : 'hover:bg-gray-100/80 dark:hover:bg-gray-800/60'
                       }`}
                     >
-                      <span className="text-xl leading-none transition-transform duration-150 group-hover:scale-110">
-                        {calc.icon}
+                      <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800/80 transition-transform duration-150 group-hover:scale-110">
+                        <CalculatorIcon idOrHref={calc.id} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                       </span>
                       <span className={`text-[10px] text-center leading-snug font-medium line-clamp-2 ${
                         active

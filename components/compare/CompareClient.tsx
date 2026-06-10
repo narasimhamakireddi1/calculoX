@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { MiniCalculatorPanel } from './MiniCalculatorPanel';
+import { ArrowLeftRight } from 'lucide-react';
 
 type CalculatorId = 'emi' | 'sip' | 'fd';
 
@@ -58,7 +59,10 @@ export function CompareClient() {
     <div className="space-y-8 py-8">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">⚖️ Compare Calculators</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
+          <ArrowLeftRight className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+          <span>Compare Calculators</span>
+        </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Pick two calculators and see how they compare side-by-side. Run the same scenarios and spot the differences instantly.
         </p>
@@ -78,7 +82,7 @@ export function CompareClient() {
           >
             {CALCULATORS.map(cal => (
               <option key={cal.id} value={cal.id}>
-                {cal.icon} {cal.label}
+                {cal.label}
               </option>
             ))}
           </select>
@@ -87,10 +91,11 @@ export function CompareClient() {
         {/* Swap Button */}
         <button
           onClick={handleSwap}
-          className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-xl hover:shadow-lg transition-all active:scale-95 mt-6"
+          className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:shadow-lg transition-all active:scale-95 mt-6"
           title="Swap calculators"
+          aria-label="Swap calculators"
         >
-          ⇄
+          <ArrowLeftRight className="w-5 h-5" strokeWidth={2.5} aria-hidden="true" />
         </button>
 
         {/* Calc 2 Selector */}
@@ -105,7 +110,7 @@ export function CompareClient() {
           >
             {CALCULATORS.map(cal => (
               <option key={cal.id} value={cal.id}>
-                {cal.icon} {cal.label}
+                {cal.label}
               </option>
             ))}
           </select>

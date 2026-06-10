@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
@@ -198,7 +199,10 @@ export default function BMICalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">⚖️ BMI Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
+          <CalculatorIcon idOrHref="bmi" className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" />
+          <span>BMI Calculator</span>
+        </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Calculate your Body Mass Index and check your health status instantly
         </p>

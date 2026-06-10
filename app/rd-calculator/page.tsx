@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateRD, generateRDProjection } from '@/lib/calculators/rd';
@@ -151,7 +152,10 @@ export default function RDCalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">📊 RD Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
+          <CalculatorIcon idOrHref="rd" className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" />
+          <span>RD Calculator</span>
+        </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Calculate maturity amount and interest for your Recurring Deposits
         </p>

@@ -1,6 +1,13 @@
 ﻿import type { Metadata } from "next";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -202,7 +209,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#f6f8fd] dark:bg-[#070b15] text-gray-900 dark:text-gray-50">
+      <body className={`${inter.variable} font-sans bg-[#f6f8fd] dark:bg-[#070b15] text-gray-900 dark:text-gray-50`}>
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

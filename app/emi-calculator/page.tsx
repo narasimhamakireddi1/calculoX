@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useCallback, memo, Suspense, lazy } from 
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/emi';
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -409,7 +410,10 @@ export default function EMICalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">🏦 EMI Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
+          <CalculatorIcon idOrHref="emi" className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" />
+          <span>EMI Calculator</span>
+        </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Calculate your Equated Monthly Installment (EMI) for loans. View total interest, amortization schedule, and repayment breakdown.
         </p>

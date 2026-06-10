@@ -1,22 +1,24 @@
 import Link from 'next/link';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 
 interface CalculatorCardProps {
   title: string;
   description: string;
   href: string;
-  icon: string;
+  icon?: string;
   category: string;
 }
 
 const categoryColors: Record<
   string,
-  { badge: string; border: string; text: string; iconBg: string; accent: string }
+  { badge: string; border: string; text: string; iconBg: string; iconColor: string; accent: string }
 > = {
   Finance: {
     badge: 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800',
     border: 'group-hover:border-blue-300 dark:group-hover:border-blue-600/70',
     text: 'group-hover:text-blue-600 dark:group-hover:text-blue-400',
     iconBg: 'bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/60',
+    iconColor: 'text-blue-600 dark:text-blue-400',
     accent: 'from-blue-500 to-blue-600',
   },
   Health: {
@@ -24,6 +26,7 @@ const categoryColors: Record<
     border: 'group-hover:border-pink-300 dark:group-hover:border-pink-600/70',
     text: 'group-hover:text-pink-600 dark:group-hover:text-pink-400',
     iconBg: 'bg-pink-50 dark:bg-pink-950/40 ring-1 ring-pink-100 dark:ring-pink-900/60',
+    iconColor: 'text-pink-600 dark:text-pink-400',
     accent: 'from-pink-500 to-rose-500',
   },
   Utility: {
@@ -31,6 +34,7 @@ const categoryColors: Record<
     border: 'group-hover:border-orange-300 dark:group-hover:border-orange-600/70',
     text: 'group-hover:text-orange-600 dark:group-hover:text-orange-400',
     iconBg: 'bg-orange-50 dark:bg-orange-950/40 ring-1 ring-orange-100 dark:ring-orange-900/60',
+    iconColor: 'text-orange-600 dark:text-orange-400',
     accent: 'from-orange-500 to-amber-500',
   },
   Conversion: {
@@ -38,6 +42,7 @@ const categoryColors: Record<
     border: 'group-hover:border-purple-300 dark:group-hover:border-purple-600/70',
     text: 'group-hover:text-purple-600 dark:group-hover:text-purple-400',
     iconBg: 'bg-purple-50 dark:bg-purple-950/40 ring-1 ring-purple-100 dark:ring-purple-900/60',
+    iconColor: 'text-purple-600 dark:text-purple-400',
     accent: 'from-purple-500 to-indigo-500',
   },
 };
@@ -46,7 +51,6 @@ export function CalculatorCard({
   title,
   description,
   href,
-  icon,
   category,
 }: CalculatorCardProps) {
   const colors = categoryColors[category] || categoryColors['Finance'];
@@ -63,9 +67,9 @@ export function CalculatorCard({
 
         <div className="flex items-start justify-between mb-4">
           <div
-            className={`flex items-center justify-center w-14 h-14 rounded-2xl text-3xl ${colors.iconBg} transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3`}
+            className={`flex items-center justify-center w-14 h-14 rounded-2xl ${colors.iconBg} transition-transform duration-300 group-hover:scale-105`}
           >
-            {icon}
+            <CalculatorIcon idOrHref={href} className={`w-7 h-7 ${colors.iconColor}`} />
           </div>
           <span
             className={`text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide ${colors.badge}`}

@@ -4,7 +4,19 @@
 **Last Updated:** 2026-06-10 (Aesthetic Design Refresh) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 55 pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-10 - Calculator Icon Consistency Fix)
+## ✅ Latest (2026-06-10 - Premium Pass: Lucide Icon System + Inter Font)
+- 🎨 **Replaced emoji icons with a real Lucide icon set (biggest premium lift):** ✅
+  - **Central registry:** `components/ui/CalculatorIcon.tsx` maps calculator id/slug/href → Lucide icon (single source of truth). Monochrome icons inherit `currentColor`, so they adapt to light/dark and any tint automatically.
+  - **Mapping:** sip=Repeat, emi=Landmark, bmi=Scale, tax=ReceiptText, fd=Lock, rd=PiggyBank, simple-interest=FileText, gst=Calculator, percentage=Percent, cagr=TrendingUp, retirement=Target, home-loan-vs-rent=Home, profit-margin=LineChart, scientific=FlaskConical.
+  - **Wired into every identity surface:** Navbar (calc links + Home/Blog/About via Home/BookOpen/Info), homepage CalculatorCard (category-tinted tiles), CalculatorSearch (tiles + real Search icon, removed 🔍 placeholder), mobile CalculatorBottomSheet (calc grid + nav links), RelatedCalculators (derives icon from href), Compare page (panel headers + H1/swap → ArrowLeftRight; `<select>` options are label-only since SVG can't render in `<option>`), and all 14 calculator page H1 headers. ✅
+- 🔤 **Inter typeface via `next/font`:** added `--font-inter` + `font-sans` on `<body>`. ✅
+  - **Bug found & fixed during verification:** the whole site was rendering in **Times New Roman** — nothing set a font-family on html/body (Tailwind preflight wasn't applying the sans stack). Adding `font-sans` to body fixed it (confirmed computed font = Inter).
+  - **Bug 2:** hero search icon overlapped placeholder because the global `input:not([type=range])` rule (specificity 0,0,1,1) beat the `pl-14` utility; fixed with `!pl-14 !pr-12`.
+- **Build:** ✅ 74 static pages, 0 errors. Verified across mobile (390px) + desktop (1280px) × light + dark via Playwright (navbar, cards, search, mobile menu, FD header, related, compare). ✅
+- **Dependency added:** `lucide-react`. **Files:** `components/ui/CalculatorIcon.tsx` (new), `app/layout.tsx`, `tailwind.config.ts`, `components/layout/Navbar.tsx`, `components/ui/CalculatorCard.tsx`, `components/ui/CalculatorSearch.tsx`, `components/mobile/CalculatorBottomSheet.tsx`, `components/ui/RelatedCalculators.tsx`, `components/compare/{CompareClient,MiniCalculatorPanel}.tsx`, all 14 `app/*-calculator*/page.tsx` headers.
+- **Not yet done (future premium items):** navbar mega-menu (#2), color-story discipline (#5), chart refinement (#7), reviewing the fabricated-looking testimonials/stats (#3).
+
+## ✅ Previous (2026-06-10 - Calculator Icon Consistency Fix)
 - 🎯 **Unified every calculator's icon with the config (navbar source of truth):** ✅
   - Source of truth = `config/calculators.config.ts` `icon` field (used by navbar, homepage cards, search, mobile sheet).
   - **Page headers (H1) fixed (6):** SIP 📊→🔄, FD 🏦→🔐, Tax 💰→📋, RD 💳→📊, CAGR 📊→🚀, Simple Interest 📊→📝. ✅

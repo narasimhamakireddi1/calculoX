@@ -6,6 +6,7 @@ import { calculateEMI } from '@/lib/calculators/emi';
 import { calculateSIP } from '@/lib/calculators/sip';
 import { calculateFD } from '@/lib/calculators/fd';
 import { formatCurrency } from '@/lib/utils/format';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 
 type CalculatorId = 'emi' | 'sip' | 'fd';
 type AccentColor = 'blue' | 'purple';
@@ -96,7 +97,9 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
     <div className={`card border-l-4 ${borderColor}`}>
       {calcId === 'emi' && (
         <>
-          <h2 className={`text-xl font-bold mb-4 ${textAccent}`}>🏦 EMI Calculator</h2>
+          <h2 className={`text-xl font-bold mb-4 flex items-center gap-2 ${textAccent}`}>
+            <CalculatorIcon idOrHref="emi" className="w-5 h-5" /> EMI Calculator
+          </h2>
 
           <div className="space-y-4 mb-6">
             <div>
@@ -177,7 +180,9 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
 
       {calcId === 'sip' && (
         <>
-          <h2 className={`text-xl font-bold mb-4 ${textAccent}`}>🔄 SIP Calculator</h2>
+          <h2 className={`text-xl font-bold mb-4 flex items-center gap-2 ${textAccent}`}>
+            <CalculatorIcon idOrHref="sip" className="w-5 h-5" /> SIP Calculator
+          </h2>
 
           <div className="space-y-4 mb-6">
             <div>
@@ -254,7 +259,9 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
 
       {calcId === 'fd' && (
         <>
-          <h2 className={`text-xl font-bold mb-4 ${textAccent}`}>🔐 FD Calculator</h2>
+          <h2 className={`text-xl font-bold mb-4 flex items-center gap-2 ${textAccent}`}>
+            <CalculatorIcon idOrHref="fd" className="w-5 h-5" /> FD Calculator
+          </h2>
 
           <div className="space-y-4 mb-6">
             <div>

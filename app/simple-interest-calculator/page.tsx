@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react
 const ProjectionTable = lazy(() => import('@/components/simple-interest/ProjectionTable').then(m => ({ default: m.default })));
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateSimpleInterest, generateSimpleInterestProjection, type TenureType } from '@/lib/calculators/simple-interest';
@@ -178,7 +179,10 @@ export default function SimpleInterestCalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">📝 Simple Interest Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
+          <CalculatorIcon idOrHref="simple-interest" className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" />
+          <span>Simple Interest Calculator</span>
+        </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Calculate simple interest with precision across Years, Months, or Days. Automatic leap year detection ensures maximum accuracy.
         </p>

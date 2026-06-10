@@ -5,6 +5,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateGST } from '@/lib/calculators/gst';
 import { GSTSchema } from '@/lib/validators';
@@ -114,7 +115,10 @@ export default function GSTCalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">🧮 GST Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
+          <CalculatorIcon idOrHref="gst" className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" />
+          <span>GST Calculator</span>
+        </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Add or remove GST from any amount. Calculate GST at 5%, 12%, 18%, or 28%
         </p>

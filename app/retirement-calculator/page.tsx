@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react
 const ProjectionTable = lazy(() => import('@/components/retirement/ProjectionTable').then(m => ({ default: m.default })));
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { NismRetirementEngine, type NismInputs, type NismCalculationResult } from '@/lib/calculators/nism-retirement';
 import { formatCurrency } from '@/lib/utils/format';
@@ -165,7 +166,10 @@ export default function RetirementCalculatorPage() {
     <div className="space-y-8 py-8">
       {/* Page Header */}
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">🎯 Retirement Corpus Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
+          <CalculatorIcon idOrHref="retirement" className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" />
+          <span>Retirement Corpus Calculator</span>
+        </h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           NISM Framework-based retirement planning engine. Calculate your exact retirement corpus needed, accounting for inflation-adjusted returns and lifestyle adjustments.
         </p>

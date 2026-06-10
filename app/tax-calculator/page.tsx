@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { ComprehensiveTaxSchema } from '@/lib/validators';
 import { calculateComprehensiveTax } from '@/lib/tax-engine/calculator';
@@ -203,7 +204,10 @@ export default function TaxCalculator() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold mb-4 text-gradient">📋 Income Tax Calculator</h1>
+          <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
+            <CalculatorIcon idOrHref="tax" className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" />
+            <span>Income Tax Calculator</span>
+          </h1>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">FY 2025-26 | AY 2026-27 | Old & New Regime</p>
         </div>
 
