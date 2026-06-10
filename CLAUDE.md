@@ -1,10 +1,36 @@
 # 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-10 (Aesthetic Design Refresh) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 55 pages, 0 TypeScript errors
+**Last Updated:** 2026-06-10 (Color Story + Mega-Menu) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-10 - Premium Pass: Lucide Icon System + Inter Font)
+## ✅ Latest (2026-06-10 - Tighter Color Story: 4 Semantic Roles)
+- 🎨 **Eliminated scattered color usage; every color now has exactly one meaning:** ✅
+  - **Blue** → brand + Finance category + all primary CTAs + "All" tab (was also emerald/green in places)
+  - **Rose** → Health category exclusively (header, badge, card icon/border, tab gradient) — was inconsistent pink/rose mix
+  - **Violet** → Utility category (was orange/amber — warm tone had no semantic connection to utility tools)
+  - **Teal** → Conversion category (was purple/indigo — now distinct from brand blue)
+  - **Emerald** → reserved for success/verified states only (removed from category tabs "All" button)
+  - **Amber** → star ratings only (UI convention for ⭐)
+  - **Feature pills** unified: 3 neutral-gray info pills + 1 blue action pill (was green/blue/purple/indigo — 4 different colors for no reason)
+  - **Testimonial accent bars** all blue (was blue/emerald/purple — arbitrary, not semantic)
+  - **Category tab shadows** now per-category color (was hard-coded `shadow-blue-600/25` for all tabs)
+  - **Mega-menu "Health & Utility" section header** → rose (matches Health category)
+  - **Files:** `app/page.tsx`, `components/ui/CategoryTabs.tsx`, `components/ui/CalculatorCard.tsx`, `components/layout/Navbar.tsx`
+  - **Build:** ✅ 74 static pages, 0 errors. Verified Finance/Health/Utility headers, tab active states, testimonials, dark mode. ✅
+
+## ✅ Previous (2026-06-10 - Navbar Mega-Menu)
+- 🗂️ **Replaced scrollable pill bar with a full-width mega-menu dropdown on desktop:** ✅
+  - **Trigger:** `[Home] [Calculators ▾] [Blog] [About]` — clean 4-item top nav replaces 17-item horizontal scroll
+  - **Panel:** Full-width dropdown (absolute inside sticky nav). Finance section (11 items, 3-column grid) + divider + Health & Utility section (3 items, column). Footer row: "14 free calculators · No signup" + "Compare side-by-side →" CTA.
+  - **Behavior:** Opens on hover (150ms debounce cancel); closes on mouse-leave (200ms delay), outside click, or Escape. ChevronDown rotates on open. Active calculator page highlights its item blue.
+  - **Animation:** `@keyframes megaIn` — 0.15s ease-out fade + 6px translateY slide-in (`.mega-panel-enter` CSS class).
+  - **Mobile:** Unchanged — hamburger → CalculatorBottomSheet side drawer.
+  - **Key implementation note:** Mega panel is `position: absolute` inside `<nav>` (sticky). Works correctly — `sticky` creates a positioning context for absolute children without clipping fixed descendants.
+  - **Files:** `components/layout/Navbar.tsx`, `app/globals.css`
+  - **Build:** ✅ 74 static pages, 0 errors. ✅
+
+## ✅ Previous (2026-06-10 - Premium Pass: Lucide Icon System + Inter Font)
 - 🎨 **Replaced emoji icons with a real Lucide icon set (biggest premium lift):** ✅
   - **Central registry:** `components/ui/CalculatorIcon.tsx` maps calculator id/slug/href → Lucide icon (single source of truth). Monochrome icons inherit `currentColor`, so they adapt to light/dark and any tint automatically.
   - **Mapping:** sip=Repeat, emi=Landmark, bmi=Scale, tax=ReceiptText, fd=Lock, rd=PiggyBank, simple-interest=FileText, gst=Calculator, percentage=Percent, cagr=TrendingUp, retirement=Target, home-loan-vs-rent=Home, profit-margin=LineChart, scientific=FlaskConical.
@@ -12,9 +38,9 @@
 - 🔤 **Inter typeface via `next/font`:** added `--font-inter` + `font-sans` on `<body>`. ✅
   - **Bug found & fixed during verification:** the whole site was rendering in **Times New Roman** — nothing set a font-family on html/body (Tailwind preflight wasn't applying the sans stack). Adding `font-sans` to body fixed it (confirmed computed font = Inter).
   - **Bug 2:** hero search icon overlapped placeholder because the global `input:not([type=range])` rule (specificity 0,0,1,1) beat the `pl-14` utility; fixed with `!pl-14 !pr-12`.
-- **Build:** ✅ 74 static pages, 0 errors. Verified across mobile (390px) + desktop (1280px) × light + dark via Playwright (navbar, cards, search, mobile menu, FD header, related, compare). ✅
+- **Build:** ✅ 74 static pages, 0 errors. Verified across mobile (390px) + desktop (1280px) × light + dark via Playwright. ✅
 - **Dependency added:** `lucide-react`. **Files:** `components/ui/CalculatorIcon.tsx` (new), `app/layout.tsx`, `tailwind.config.ts`, `components/layout/Navbar.tsx`, `components/ui/CalculatorCard.tsx`, `components/ui/CalculatorSearch.tsx`, `components/mobile/CalculatorBottomSheet.tsx`, `components/ui/RelatedCalculators.tsx`, `components/compare/{CompareClient,MiniCalculatorPanel}.tsx`, all 14 `app/*-calculator*/page.tsx` headers.
-- **Not yet done (future premium items):** navbar mega-menu (#2), color-story discipline (#5), chart refinement (#7), reviewing the fabricated-looking testimonials/stats (#3).
+- **Not yet done (future premium items):** chart refinement (#7), reviewing the fabricated-looking testimonials/stats (#3).
 
 ## ✅ Previous (2026-06-10 - Calculator Icon Consistency Fix)
 - 🎯 **Unified every calculator's icon with the config (navbar source of truth):** ✅
