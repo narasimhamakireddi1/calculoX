@@ -11,6 +11,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { useChartColors } from './useChartColors';
 
 interface MemoizedBarChartProps {
   data: Array<{ [key: string]: any }>;
@@ -28,6 +29,7 @@ export const MemoizedBarChart = memo(function BarChartComponent({
   xAxisKey = 'year',
 }: MemoizedBarChartProps) {
   const memoizedData = useMemo(() => data, [JSON.stringify(data)]);
+  const { tooltipStyle, gridColor, axisColor, axisFill } = useChartColors();
 
   return (
     <div className="w-full" role="img" aria-label={title || 'Bar chart visualization'}>
@@ -37,17 +39,12 @@ export const MemoizedBarChart = memo(function BarChartComponent({
           data={memoizedData}
           margin={{ top: 5, right: 30, left: 0, bottom: 5 }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={xAxisKey} />
-          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+          <XAxis dataKey={xAxisKey} stroke={axisColor} tick={{ fill: axisFill, fontSize: 12 }} />
+          <YAxis stroke={axisColor} tick={{ fill: axisFill, fontSize: 12 }} />
           <Tooltip
-            formatter={(value: number) => value.toLocaleString()}
-            contentStyle={{
-              backgroundColor: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '8px',
-              color: '#000000',
-            }}
+            formatter={(value: number) => value.toLocaleString('en-IN')}
+            contentStyle={tooltipStyle}
             wrapperStyle={{ outline: 'none' }}
           />
           <Legend />

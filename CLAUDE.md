@@ -1,10 +1,22 @@
 # 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-10 (Color Story + Mega-Menu) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 pages, 0 TypeScript errors
+**Last Updated:** 2026-06-10 (Chart Refinement #7) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-10 - Tighter Color Story: 4 Semantic Roles)
+## ✅ Latest (2026-06-10 - Chart Refinement #7: Dark Mode + Gradient Area Fills + Color Story)
+- 📊 **Premium chart upgrade across all 13 calculators with charts:** ✅
+  - **Dark-mode-aware tooltips (critical fix):** Created `components/charts/useChartColors.ts` — reactive hook watching `document.documentElement.classList` for `dark`; returns theme-adaptive tooltip background/border/text, grid color, and axis color. Previously all charts showed white tooltip boxes in dark mode. ✅
+  - **Gradient area fills (LineChart → AreaChart):** SIP, FD, RD, Simple Interest, and EMI repayment charts converted from plain `LineChart` to `AreaChart` with subtle gradient fills (blue/emerald, 0.25→0.02 opacity). Gives a premium financial-dashboard look. ✅
+  - **Dark mode grid & axis:** All hard-coded `#e5e7eb` grid / `#6b7280` axis colors now use `useChartColors` values that adapt per theme. ✅
+  - **Color story alignment (Home Loan renter):** Renter line/fill color changed from purple (`#A855F7`) → teal (`#14b8a6`), matching Teal = Conversion semantic role from the June-10 color story. Both Home Loan charts also fixed from always-dark tooltip to dynamic. ✅
+  - **Shared components updated:** `MemoizedPieChart`, `MemoizedLineChart`, `MemoizedBarChart` all use `useChartColors` for tooltip, grid, and axis. ✅
+  - **Added `Legend` where missing:** EMI pie chart, BMI pie chart, FD inline pie chart. ✅
+  - **`isAnimationActive={false}` standardized** on all Area/Line elements for consistent fast rendering. ✅
+  - **Files:** `components/charts/useChartColors.ts` (new), `components/charts/Memoized{Bar,Line,Pie}Chart.tsx`, `components/emi/ChartComponents.tsx`, `app/{sip,fd,rd,simple-interest,retirement,bmi,home-loan-vs-rent}-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors. ✅
+
+## ✅ Previous (2026-06-10 - Tighter Color Story: 4 Semantic Roles)
 - 🎨 **Eliminated scattered color usage; every color now has exactly one meaning:** ✅
   - **Blue** → brand + Finance category + all primary CTAs + "All" tab (was also emerald/green in places)
   - **Rose** → Health category exclusively (header, badge, card icon/border, tab gradient) — was inconsistent pink/rose mix

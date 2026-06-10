@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import { useChartColors } from '@/components/charts/useChartColors';
 import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
@@ -35,6 +36,7 @@ const categoryColors = {
 };
 
 export default function BMICalculatorPage() {
+  const chartColors = useChartColors();
   const [result, setResult] = useState<BMIResultData | null>(null);
   const [unitSystem, setUnitSystem] = useState<'metric' | 'imperial'>('metric');
 
@@ -472,14 +474,10 @@ export default function BMICalculatorPage() {
                 </Pie>
                 <Tooltip
                   formatter={(v) => `BMI Range: ${v}`}
-                  contentStyle={{
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #e5e7eb',
-                    borderRadius: '8px',
-                    color: '#000000',
-                  }}
+                  contentStyle={chartColors.tooltipStyle}
                   wrapperStyle={{ outline: 'none' }}
                 />
+                <Legend />
               </PieChart>
             </ResponsiveContainer>
             <div className="space-y-3 text-sm">

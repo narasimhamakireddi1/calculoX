@@ -8,7 +8,8 @@ const ProjectionTable = lazy(() => import('@/components/simple-interest/Projecti
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useChartColors } from '@/components/charts/useChartColors';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateSimpleInterest, generateSimpleInterestProjection, type TenureType } from '@/lib/calculators/simple-interest';
 import { SimpleInterestSchema } from '@/lib/validators';
@@ -44,6 +45,7 @@ interface SIResultData {
 }
 
 export default function SimpleInterestCalculatorPage() {
+  const chartColors = useChartColors();
   const [result, setResult] = useState<SIResultData | null>(null);
   const [projections, setProjections] = useState<any[]>([]);
   const [chartData, setChartData] = useState<any[]>([]);
@@ -627,29 +629,35 @@ export default function SimpleInterestCalculatorPage() {
           <div className="card">
             <h2 className="text-2xl font-bold mb-6">📈 Growth Visualization</h2>
             <ResponsiveContainer width="100%" height={400}>
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <AreaChart data={chartData}>
+                <defs>
+                  <linearGradient id="siAmountGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.02} />
+                  </linearGradient>
+                  <linearGradient id="siInterestGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.02} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke={chartColors.gridColor} />
                 <XAxis
                   dataKey="period"
                   label={{ value: `${watchValues.tenureType.charAt(0).toUpperCase() + watchValues.tenureType.slice(1)}`, position: 'insideBottomRight', offset: -5 }}
-                  stroke="#6b7280"
+                  stroke={chartColors.axisColor}
+                  tick={{ fill: chartColors.axisFill, fontSize: 12 }}
                 />
-                <YAxis stroke="#6b7280" tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`} />
+                <YAxis stroke={chartColors.axisColor} tick={{ fill: chartColors.axisFill, fontSize: 12 }} tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`} />
                 <Tooltip
-                  contentStyle={{
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #e5e7eb',
-                    borderRadius: '8px',
-                    color: '#000000',
-                  }}
+                  contentStyle={chartColors.tooltipStyle}
                   wrapperStyle={{ outline: 'none' }}
                   formatter={(value) => formatCurrency(value as number)}
                   labelFormatter={(l) => `Period ${l}`}
                 />
                 <Legend />
-                <Line type="monotone" dataKey="totalAmount" stroke="#3b82f6" name="Total Amount" dot={false} strokeWidth={2} />
-                <Line type="monotone" dataKey="interest" stroke="#10b981" name="Interest Earned" dot={false} strokeWidth={2} />
-              </LineChart>
+                <Area type="monotone" dataKey="totalAmount" stroke="#3b82f6" strokeWidth={2} fill="url(#siAmountGrad)" name="Total Amount" dot={false} isAnimationActive={false} />
+                <Area type="monotone" dataKey="interest" stroke="#10b981" strokeWidth={2} fill="url(#siInterestGrad)" name="Interest Earned" dot={false} isAnimationActive={false} />
+              </AreaChart>
             </ResponsiveContainer>
           </div>
 

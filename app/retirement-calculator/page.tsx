@@ -8,7 +8,8 @@ const ProjectionTable = lazy(() => import('@/components/retirement/ProjectionTab
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useChartColors } from '@/components/charts/useChartColors';
 import { NismRetirementEngine, type NismInputs, type NismCalculationResult } from '@/lib/calculators/nism-retirement';
 import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
@@ -43,6 +44,7 @@ interface ChartDataPoint {
 }
 
 export default function RetirementCalculatorPage() {
+  const chartColors = useChartColors();
   const [activeTab, setActiveTab] = useState<TabType>('timeline');
   const [result, setResult] = useState<NismCalculationResult | null>(null);
   const [projections, setProjections] = useState<any[]>([]);
@@ -713,19 +715,15 @@ export default function RetirementCalculatorPage() {
                           <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                      <XAxis dataKey="age" label={{ value: 'Age (years)', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
-                      <YAxis stroke="#6b7280" tickFormatter={(value) => `₹${(value / 10000000).toFixed(0)}Cr`} />
+                      <CartesianGrid strokeDasharray="3 3" stroke={chartColors.gridColor} />
+                      <XAxis dataKey="age" label={{ value: 'Age (years)', position: 'insideBottomRight', offset: -5 }} stroke={chartColors.axisColor} tick={{ fill: chartColors.axisFill, fontSize: 12 }} />
+                      <YAxis stroke={chartColors.axisColor} tick={{ fill: chartColors.axisFill, fontSize: 12 }} tickFormatter={(value) => `₹${(value / 10000000).toFixed(0)}Cr`} />
                       <Tooltip
                         formatter={(value) => formatCurrency(value as number)}
-                        contentStyle={{
-                          backgroundColor: '#ffffff',
-                          border: '1px solid #e5e7eb',
-                          borderRadius: '8px',
-                          color: '#000000',
-                        }}
+                        contentStyle={chartColors.tooltipStyle}
                         wrapperStyle={{ outline: 'none' }}
                       />
+                      <Legend />
                       <Area
                         type="monotone"
                         dataKey="accumulated"

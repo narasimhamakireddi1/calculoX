@@ -2,12 +2,14 @@
 
 import { memo, useMemo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import { useChartColors } from './useChartColors';
 
 interface MemoizedPieChartProps {
   data: Array<{ name: string; value: number }>;
   colors: string[];
   title?: string;
   height?: number;
+  formatter?: (value: number) => string;
 }
 
 export const MemoizedPieChart = memo(function PieChartComponent({
@@ -15,8 +17,10 @@ export const MemoizedPieChart = memo(function PieChartComponent({
   colors,
   title,
   height = 300,
+  formatter,
 }: MemoizedPieChartProps) {
   const memoizedData = useMemo(() => data, [JSON.stringify(data)]);
+  const { tooltipStyle } = useChartColors();
 
   return (
     <div className="w-full" role="img" aria-label={title || 'Pie chart visualization'}>
@@ -38,13 +42,10 @@ export const MemoizedPieChart = memo(function PieChartComponent({
             ))}
           </Pie>
           <Tooltip
-            formatter={(value: number) => value.toLocaleString()}
-            contentStyle={{
-              backgroundColor: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '8px',
-              color: '#000000',
-            }}
+            formatter={(value: number) =>
+              formatter ? formatter(value) : value.toLocaleString('en-IN')
+            }
+            contentStyle={tooltipStyle}
             wrapperStyle={{ outline: 'none' }}
           />
           <Legend />

@@ -7,7 +7,8 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import { useChartColors } from '@/components/charts/useChartColors';
 import { calculateFD, generateFDProjection, type PayoutType } from '@/lib/calculators/fd';
 import { FDSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -53,6 +54,7 @@ interface ProjectionRow {
 }
 
 export default function FDCalculatorPage() {
+  const chartColors = useChartColors();
   const [result, setResult] = useState<FDResultData | null>(null);
   const [projections, setProjections] = useState<ProjectionRow[]>([]);
   const [projectionFirstTwelve, setProjectionFirstTwelve] = useState<ProjectionRow[]>([]);
@@ -623,45 +625,45 @@ export default function FDCalculatorPage() {
             <h2 className="text-2xl font-bold mb-6">📈 Growth Visualization</h2>
             {watchValues.payoutType === 'cumulative' ? (
               <ResponsiveContainer width="100%" height={400}>
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                  <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
-                  <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
+                <AreaChart data={chartData}>
+                  <defs>
+                    <linearGradient id="fdAmountGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.25} />
+                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.02} />
+                    </linearGradient>
+                    <linearGradient id="fdInterestGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.25} />
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0.02} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke={chartColors.gridColor} />
+                  <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke={chartColors.axisColor} tick={{ fill: chartColors.axisFill, fontSize: 12 }} />
+                  <YAxis stroke={chartColors.axisColor} tick={{ fill: chartColors.axisFill, fontSize: 12 }} tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`} />
                   <Tooltip
-                    contentStyle={{
-                      backgroundColor: '#ffffff',
-                      border: '1px solid #e5e7eb',
-                      borderRadius: '8px',
-                      color: '#000000',
-                    }}
+                    contentStyle={chartColors.tooltipStyle}
                     wrapperStyle={{ outline: 'none' }}
                     formatter={(v) => formatCurrency(v as number)}
                     labelFormatter={(l) => `Month ${l}`}
                   />
                   <Legend />
-                  <Line type="monotone" dataKey="amount" stroke="#3b82f6" name="Total Amount" dot={false} strokeWidth={2} />
-                  <Line type="monotone" dataKey="interest" stroke="#10b981" name="Interest Earned" dot={false} strokeWidth={2} />
-                </LineChart>
+                  <Area type="monotone" dataKey="amount" stroke="#3b82f6" strokeWidth={2} fill="url(#fdAmountGrad)" name="Total Amount" dot={false} isAnimationActive={false} />
+                  <Area type="monotone" dataKey="interest" stroke="#10b981" strokeWidth={2} fill="url(#fdInterestGrad)" name="Interest Earned" dot={false} isAnimationActive={false} />
+                </AreaChart>
               </ResponsiveContainer>
             ) : (
               <ResponsiveContainer width="100%" height={400}>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                  <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke="#6b7280" />
-                  <YAxis stroke="#6b7280" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}K`} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={chartColors.gridColor} />
+                  <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottomRight', offset: -5 }} stroke={chartColors.axisColor} tick={{ fill: chartColors.axisFill, fontSize: 12 }} />
+                  <YAxis stroke={chartColors.axisColor} tick={{ fill: chartColors.axisFill, fontSize: 12 }} tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}K`} />
                   <Tooltip
-                    contentStyle={{
-                      backgroundColor: '#ffffff',
-                      border: '1px solid #e5e7eb',
-                      borderRadius: '8px',
-                      color: '#000000',
-                    }}
+                    contentStyle={chartColors.tooltipStyle}
                     wrapperStyle={{ outline: 'none' }}
                     formatter={(v) => formatCurrency(v as number)}
                     labelFormatter={(l) => `Month ${l}`}
                   />
                   <Legend />
-                  <Bar dataKey="payout" fill="#f59e0b" name={watchValues.payoutType === 'quarterly' ? 'Quarterly Payout' : 'Monthly Payout'} />
+                  <Bar dataKey="payout" fill="#f59e0b" name={watchValues.payoutType === 'quarterly' ? 'Quarterly Payout' : 'Monthly Payout'} isAnimationActive={false} />
                 </BarChart>
               </ResponsiveContainer>
             )}
@@ -690,14 +692,10 @@ export default function FDCalculatorPage() {
                   </Pie>
                   <Tooltip
                     formatter={(v) => formatCurrency(v as number)}
-                    contentStyle={{
-                      backgroundColor: '#ffffff',
-                      border: '1px solid #e5e7eb',
-                      borderRadius: '8px',
-                      color: '#000000',
-                    }}
+                    contentStyle={chartColors.tooltipStyle}
                     wrapperStyle={{ outline: 'none' }}
                   />
+                  <Legend />
                 </PieChart>
               </ResponsiveContainer>
               <div className="space-y-2 text-sm px-4 mt-2">

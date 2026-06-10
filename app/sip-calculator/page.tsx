@@ -7,7 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 
 const ProjectionTable = lazy(() => import('@/components/sip/ProjectionTable').then(m => ({ default: m.default })));
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useChartColors } from '@/components/charts/useChartColors';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateSIP } from '@/lib/calculators/sip';
 import { SIPSchema } from '@/lib/validators';
@@ -49,6 +50,7 @@ interface YearlyProjection {
 }
 
 export default function SIPCalculatorPage() {
+  const chartColors = useChartColors();
   const [result, setResult] = useState<SIPResultData | null>(null);
   const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
   const [projections, setProjections] = useState<YearlyProjection[]>([]);
@@ -534,46 +536,57 @@ export default function SIPCalculatorPage() {
           <div className="card">
             <h2 className="text-2xl font-bold mb-6">📊 Growth Visualization</h2>
             <ResponsiveContainer width="100%" height={400}>
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <AreaChart data={chartData}>
+                <defs>
+                  <linearGradient id="sipInvestedGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.02} />
+                  </linearGradient>
+                  <linearGradient id="sipValueGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.02} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke={chartColors.gridColor} />
                 <XAxis
                   dataKey="month"
                   label={{ value: 'Months', position: 'insideBottomRight', offset: -5 }}
-                  stroke="#6b7280"
+                  stroke={chartColors.axisColor}
+                  tick={{ fill: chartColors.axisFill, fontSize: 12 }}
                 />
                 <YAxis
-                  stroke="#6b7280"
+                  stroke={chartColors.axisColor}
+                  tick={{ fill: chartColors.axisFill, fontSize: 12 }}
                   tickFormatter={(value) => `₹${(value / 100000).toFixed(0)}L`}
                 />
                 <Tooltip
-                  contentStyle={{
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #e5e7eb',
-                    borderRadius: '8px',
-                    color: '#000000',
-                  }}
+                  contentStyle={chartColors.tooltipStyle}
                   wrapperStyle={{ outline: 'none' }}
                   formatter={(value) => formatCurrency(value as number)}
                   labelFormatter={(label) => `Month ${label}`}
                 />
                 <Legend />
-                <Line
+                <Area
                   type="monotone"
                   dataKey="invested"
                   stroke="#3b82f6"
+                  strokeWidth={2}
+                  fill="url(#sipInvestedGrad)"
                   name="Total Invested"
                   dot={false}
-                  strokeWidth={2}
+                  isAnimationActive={false}
                 />
-                <Line
+                <Area
                   type="monotone"
                   dataKey="value"
                   stroke="#10b981"
+                  strokeWidth={2}
+                  fill="url(#sipValueGrad)"
                   name="Future Value"
                   dot={false}
-                  strokeWidth={2}
+                  isAnimationActive={false}
                 />
-              </LineChart>
+              </AreaChart>
             </ResponsiveContainer>
           </div>
 

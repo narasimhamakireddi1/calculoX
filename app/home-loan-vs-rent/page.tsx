@@ -21,6 +21,7 @@ import {
   ReferenceLine,
 } from 'recharts';
 import { BuyVsRentEngine, BuyVsRentResult, YearlyData } from '@/lib/calculators/buy-vs-rent';
+import { useChartColors } from '@/components/charts/useChartColors';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -65,6 +66,7 @@ const numberInputClasses =
   'w-full md:w-28 px-3 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none';
 
 export default function HomeLoanVsRentCalculator() {
+  const chartColors = useChartColors();
   const [activeTab, setActiveTab] = useState<'property' | 'loan' | 'assumptions'>('property');
   const [result, setResult] = useState<BuyVsRentResult | null>(null);
   const [chartData, setChartData] = useState<YearlyData[]>([]);
@@ -883,29 +885,25 @@ export default function HomeLoanVsRentCalculator() {
                         <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="renterGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#A855F7" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#A855F7" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#14b8a6" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                    <CartesianGrid strokeDasharray="3 3" stroke={chartColors.gridColor} />
                     <XAxis
                       dataKey="year"
-                      stroke="#6B7280"
-                      tick={{ fill: '#6B7280', fontSize: isMobile ? 11 : 12 }}
+                      stroke={chartColors.axisColor}
+                      tick={{ fill: chartColors.axisFill, fontSize: isMobile ? 11 : 12 }}
                     />
                     <YAxis
-                      stroke="#6B7280"
+                      stroke={chartColors.axisColor}
                       tickFormatter={formatAxisValue}
-                      tick={{ fill: '#6B7280', fontSize: isMobile ? 11 : 12 }}
+                      tick={{ fill: chartColors.axisFill, fontSize: isMobile ? 11 : 12 }}
                       width={isMobile ? 45 : 60}
                     />
                     <Tooltip
-                      contentStyle={{
-                        backgroundColor: '#1F2937',
-                        border: '1px solid #374151',
-                        borderRadius: '8px',
-                        color: '#F3F4F6',
-                      }}
+                      contentStyle={chartColors.tooltipStyle}
+                      wrapperStyle={{ outline: 'none' }}
                       formatter={(value: any) => formatCurrency(value)}
                     />
                     <Legend />
@@ -917,16 +915,20 @@ export default function HomeLoanVsRentCalculator() {
                       dataKey="buyer_net_worth"
                       name="Buyer Net Worth"
                       stroke="#3B82F6"
+                      strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#buyerGradient)"
+                      isAnimationActive={false}
                     />
                     <Area
                       type="monotone"
                       dataKey="renter_net_worth"
                       name="Renter Net Worth"
-                      stroke="#A855F7"
+                      stroke="#14b8a6"
+                      strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#renterGradient)"
+                      isAnimationActive={false}
                     />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -939,25 +941,21 @@ export default function HomeLoanVsRentCalculator() {
                 </p>
                 <ResponsiveContainer width="100%" height={isMobile ? 280 : 360}>
                   <LineChart data={chartData} margin={{ left: isMobile ? 50 : 70, right: isMobile ? 10 : 30, top: 15, bottom: isMobile ? 10 : 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                    <CartesianGrid strokeDasharray="3 3" stroke={chartColors.gridColor} />
                     <XAxis
                       dataKey="year"
-                      stroke="#6B7280"
-                      tick={{ fill: '#6B7280', fontSize: isMobile ? 11 : 12 }}
+                      stroke={chartColors.axisColor}
+                      tick={{ fill: chartColors.axisFill, fontSize: isMobile ? 11 : 12 }}
                     />
                     <YAxis
-                      stroke="#6B7280"
+                      stroke={chartColors.axisColor}
                       tickFormatter={formatAxisValue}
-                      tick={{ fill: '#6B7280', fontSize: isMobile ? 11 : 12 }}
+                      tick={{ fill: chartColors.axisFill, fontSize: isMobile ? 11 : 12 }}
                       width={isMobile ? 45 : 60}
                     />
                     <Tooltip
-                      contentStyle={{
-                        backgroundColor: '#1F2937',
-                        border: '1px solid #374151',
-                        borderRadius: '8px',
-                        color: '#F3F4F6',
-                      }}
+                      contentStyle={chartColors.tooltipStyle}
+                      wrapperStyle={{ outline: 'none' }}
                       formatter={(value: any) => formatCurrency(value)}
                     />
                     <Legend />
@@ -967,6 +965,8 @@ export default function HomeLoanVsRentCalculator() {
                       name="Buyer (EMI+Maint)"
                       stroke="#3B82F6"
                       strokeWidth={2}
+                      dot={false}
+                      isAnimationActive={false}
                     />
                     <Line
                       type="monotone"
@@ -974,6 +974,8 @@ export default function HomeLoanVsRentCalculator() {
                       name="Renter (Rent Paid)"
                       stroke="#EF4444"
                       strokeWidth={2}
+                      dot={false}
+                      isAnimationActive={false}
                     />
                   </LineChart>
                 </ResponsiveContainer>
