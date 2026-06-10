@@ -203,7 +203,7 @@ export function Navbar() {
 
                 {/* Health & Utility section */}
                 <div className="w-44 flex-shrink-0">
-                  <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-3">
+                  <p className="text-xs font-bold uppercase tracking-widest text-rose-600 dark:text-rose-400 mb-3">
                     Health & Utility
                   </p>
                   <div className="flex flex-col gap-1">

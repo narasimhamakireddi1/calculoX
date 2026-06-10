@@ -14,21 +14,25 @@ const baseConfig = {
   finance: {
     label: 'Finance',
     color: 'from-blue-600 to-blue-400',
+    shadow: 'shadow-blue-600/25',
     description: 'Loans, Investments & Wealth'
   },
   health: {
     label: 'Health',
-    color: 'from-pink-600 to-rose-400',
+    color: 'from-rose-600 to-rose-400',
+    shadow: 'shadow-rose-600/25',
     description: 'Body & Fitness'
   },
   utility: {
     label: 'Utility',
-    color: 'from-orange-600 to-amber-400',
+    color: 'from-violet-600 to-violet-400',
+    shadow: 'shadow-violet-600/25',
     description: 'Percentage, Hike & More'
   },
   conversion: {
     label: 'Conversion',
-    color: 'from-purple-600 to-indigo-400',
+    color: 'from-teal-600 to-teal-400',
+    shadow: 'shadow-teal-600/25',
     description: 'Unit & Value Conversion'
   }
 };
@@ -68,7 +72,7 @@ export function CategoryTabs({ onCategoryChange, selectedCategory }: CategoryTab
             onClick={() => handleTabClick(category)}
             className={`relative px-6 py-3 rounded-xl transition-all duration-300 transform group ${
               isSelected
-                ? `bg-gradient-to-r ${config.color} text-white shadow-md shadow-blue-600/25 -translate-y-0.5`
+                ? `bg-gradient-to-r ${config.color} text-white shadow-md ${config.shadow} -translate-y-0.5`
                 : 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500/70 hover:-translate-y-0.5'
             }`}
           >
@@ -90,8 +94,8 @@ export function CategoryTabs({ onCategoryChange, selectedCategory }: CategoryTab
         onClick={() => onCategoryChange(null)}
         className={`px-6 py-3 rounded-xl transition-all duration-300 transform ${
           selectedCategory === null
-            ? 'bg-gradient-to-r from-emerald-600 to-emerald-400 text-white shadow-md shadow-emerald-600/25 -translate-y-0.5'
-            : 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-emerald-300 dark:hover:border-emerald-500/70 hover:-translate-y-0.5'
+            ? 'bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-md shadow-blue-600/25 -translate-y-0.5'
+            : 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500/70 hover:-translate-y-0.5'
         }`}
       >
         <div className="flex flex-col items-start gap-1">

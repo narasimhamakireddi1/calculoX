@@ -64,16 +64,16 @@ export default function Home() {
 
         {/* Feature Pills */}
         <div className="flex flex-wrap justify-center gap-3 md:gap-4 pt-4">
-          <div className="px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-semibold border border-green-200 dark:border-green-800">
+          <div className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-sm font-semibold border border-gray-200 dark:border-gray-700">
             ✓ 100% Free
           </div>
-          <div className="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-sm font-semibold border border-blue-200 dark:border-blue-800">
+          <div className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-sm font-semibold border border-gray-200 dark:border-gray-700">
             ✓ No Registration
           </div>
-          <div className="px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-sm font-semibold border border-purple-200 dark:border-purple-800">
+          <div className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-sm font-semibold border border-gray-200 dark:border-gray-700">
             ✓ 14 Calculators
           </div>
-          <Link href="/compare" className="px-4 py-2 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 text-sm font-semibold border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors">
+          <Link href="/compare" className="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-sm font-semibold border border-blue-200 dark:border-blue-800/60 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
             ⚖️ Compare Calculators
           </Link>
         </div>
@@ -129,18 +129,18 @@ export default function Home() {
               <div key={category} className="space-y-4">
                 <div className="flex items-center gap-3 pb-4 border-b-2 border-gray-200 dark:border-gray-700">
                   <h3 className={`text-2xl font-bold ${
-                    category === 'finance' ? 'text-blue-600' :
-                    category === 'health' ? 'text-pink-600' :
-                    category === 'utility' ? 'text-orange-600' :
-                    'text-purple-600'
+                    category === 'finance' ? 'text-blue-600 dark:text-blue-400' :
+                    category === 'health' ? 'text-rose-600 dark:text-rose-400' :
+                    category === 'utility' ? 'text-violet-600 dark:text-violet-400' :
+                    'text-teal-600 dark:text-teal-400'
                   }`}>
                     {categoryLabels[category]}
                   </h3>
                   <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
                     category === 'finance' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
-                    category === 'health' ? 'bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400' :
-                    category === 'utility' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
-                    'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
+                    category === 'health' ? 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400' :
+                    category === 'utility' ? 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400' :
+                    'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400'
                   }`}>
                     {calcs.length} {calcs.length === 1 ? 'Calculator' : 'Calculators'}
                   </span>
@@ -178,7 +178,7 @@ export default function Home() {
 
           {/* Testimonial 2 */}
           <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <span className="absolute inset-y-0 left-0 w-1.5 bg-emerald-500" />
+            <span className="absolute inset-y-0 left-0 w-1.5 bg-blue-500" />
             <div className="flex items-center mb-4">
               <span className="text-amber-400">⭐⭐⭐⭐⭐</span>
             </div>
@@ -191,7 +191,7 @@ export default function Home() {
 
           {/* Testimonial 3 */}
           <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <span className="absolute inset-y-0 left-0 w-1.5 bg-purple-500" />
+            <span className="absolute inset-y-0 left-0 w-1.5 bg-blue-500" />
             <div className="flex items-center mb-4">
               <span className="text-amber-400">⭐⭐⭐⭐⭐</span>
             </div>
