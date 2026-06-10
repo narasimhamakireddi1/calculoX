@@ -8,8 +8,8 @@ type CalculatorId = 'emi' | 'sip' | 'fd';
 
 const CALCULATORS: Array<{ id: CalculatorId; label: string; icon: string }> = [
   { id: 'emi', label: 'EMI Calculator', icon: '🏦' },
-  { id: 'sip', label: 'SIP Calculator', icon: '📊' },
-  { id: 'fd', label: 'FD Calculator', icon: '🏦' },
+  { id: 'sip', label: 'SIP Calculator', icon: '🔄' },
+  { id: 'fd', label: 'FD Calculator', icon: '🔐' },
 ];
 
 export function CompareClient() {

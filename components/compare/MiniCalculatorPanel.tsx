@@ -177,7 +177,7 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
 
       {calcId === 'sip' && (
         <>
-          <h2 className={`text-xl font-bold mb-4 ${textAccent}`}>📊 SIP Calculator</h2>
+          <h2 className={`text-xl font-bold mb-4 ${textAccent}`}>🔄 SIP Calculator</h2>
 
           <div className="space-y-4 mb-6">
             <div>
@@ -254,7 +254,7 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
 
       {calcId === 'fd' && (
         <>
-          <h2 className={`text-xl font-bold mb-4 ${textAccent}`}>🏦 FD Calculator</h2>
+          <h2 className={`text-xl font-bold mb-4 ${textAccent}`}>🔐 FD Calculator</h2>
 
           <div className="space-y-4 mb-6">
             <div>

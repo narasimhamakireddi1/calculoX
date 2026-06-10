@@ -215,7 +215,7 @@ export default function SIPCalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">📊 SIP Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient">🔄 SIP Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Calculate your Systematic Investment Plan (SIP) returns and projected wealth growth. See how regular monthly investments compound over time.
         </p>
@@ -652,7 +652,7 @@ export default function SIPCalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">SIP vs Lump Sum Investment: Which is Better?</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="border-l-4 border-green-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">📈 SIP (Regular Investment)</h3>
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">🔄 SIP (Regular Investment)</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Fixed amount invested monthly over extended period. Spreads risk through rupee cost averaging.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Best For:</strong> Beginners, low income, risk-averse</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Returns:</strong> Moderate, steady, lower volatility</p>

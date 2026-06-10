@@ -553,7 +553,7 @@ export const internalLinks: CalculatorLinks = {
     {
       title: 'BMI Calculator',
       description: 'Health and fitness calculations',
-      icon: '💪',
+      icon: '⚖️',
       href: '/bmi-calculator',
     },
     {

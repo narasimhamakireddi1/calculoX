@@ -229,7 +229,7 @@ export default function FDCalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">🏦 Fixed Deposit (FD) Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient">🔐 Fixed Deposit (FD) Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           RBI-compliant FD calculator with support for multiple payout types (Cumulative, Quarterly, Monthly)
         </p>
@@ -732,7 +732,7 @@ export default function FDCalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">FD vs Savings Account vs Recurring Deposit (RD)</h2>
           <div className="grid md:grid-cols-3 gap-4 text-sm">
             <div className="border-l-4 border-blue-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">💳 FD (Fixed Deposit)</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">🔐 FD (Fixed Deposit)</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Lump sum invested for fixed tenure</p>
               <p className="text-xs"><strong>Rate:</strong> 7-8% | <strong>Tenure:</strong> 3m-10y | <strong>Safety:</strong> Very High</p>
             </div>
@@ -742,7 +742,7 @@ export default function FDCalculatorPage() {
               <p className="text-xs"><strong>Rate:</strong> 2-3% | <strong>Tenure:</strong> Ongoing | <strong>Safety:</strong> Very High</p>
             </div>
             <div className="border-l-4 border-orange-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">📈 RD (Recurring)</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">📊 RD (Recurring)</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly investments over fixed period</p>
               <p className="text-xs"><strong>Rate:</strong> 5-7% | <strong>Tenure:</strong> 6m-10y | <strong>Safety:</strong> Very High</p>
             </div>

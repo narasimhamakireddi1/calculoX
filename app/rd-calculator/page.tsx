@@ -151,7 +151,7 @@ export default function RDCalculatorPage() {
   return (
     <div className="space-y-8 py-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gradient">💳 RD Calculator</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gradient">📊 RD Calculator</h1>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
           Calculate maturity amount and interest for your Recurring Deposits
         </p>
@@ -459,17 +459,17 @@ export default function RDCalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">RD vs SIP vs Fixed Deposit: Which is Right for You?</h2>
           <div className="grid md:grid-cols-3 gap-4 text-sm">
             <div className="border-l-4 border-blue-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">🏦 RD</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">📊 RD</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly deposits, bank guaranteed, fixed returns</p>
               <p className="text-xs"><strong>Rate:</strong> 5-7% | <strong>Risk:</strong> Nil | <strong>Liquidity:</strong> Low</p>
             </div>
             <div className="border-l-4 border-green-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">📈 SIP</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">🔄 SIP</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly investment in mutual funds, market-linked</p>
               <p className="text-xs"><strong>Rate:</strong> 10-15% | <strong>Risk:</strong> Medium | <strong>Liquidity:</strong> High</p>
             </div>
             <div className="border-l-4 border-orange-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">💳 FD</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">🔐 FD</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Lump sum deposit, bank guaranteed, fixed returns</p>
               <p className="text-xs"><strong>Rate:</strong> 7-8% | <strong>Risk:</strong> Nil | <strong>Liquidity:</strong> Low</p>
             </div>
