@@ -164,7 +164,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Testimonial 1 */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 border-l-4 border-blue-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div className="bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border-l-4 border-blue-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="flex items-center mb-4">
               <span className="text-amber-400">⭐⭐⭐⭐⭐</span>
             </div>
@@ -176,7 +176,7 @@ export default function Home() {
           </div>
 
           {/* Testimonial 2 */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 border-l-4 border-emerald-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div className="bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border-l-4 border-emerald-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="flex items-center mb-4">
               <span className="text-amber-400">⭐⭐⭐⭐⭐</span>
             </div>
@@ -188,7 +188,7 @@ export default function Home() {
           </div>
 
           {/* Testimonial 3 */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 border-l-4 border-purple-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div className="bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border-l-4 border-purple-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div className="flex items-center mb-4">
               <span className="text-amber-400">⭐⭐⭐⭐⭐</span>
             </div>
@@ -207,21 +207,21 @@ export default function Home() {
           Why Choose Our Calculators?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700">
+          <div className="text-center p-6 rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur-md shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700">
             <div className="text-5xl mb-4">⚡</div>
             <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Fast & Accurate</h3>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               Get instant results with high precision calculations powered by advanced algorithms
             </p>
           </div>
-          <div className="text-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700">
+          <div className="text-center p-6 rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur-md shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700">
             <div className="text-5xl mb-4">🔒</div>
             <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Secure & Private</h3>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               Your data is never stored or shared. All calculations happen securely in your browser
             </p>
           </div>
-          <div className="text-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700">
+          <div className="text-center p-6 rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur-md shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700">
             <div className="text-5xl mb-4">📱</div>
             <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Mobile Friendly</h3>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -238,7 +238,7 @@ export default function Home() {
           <p className="text-gray-600 dark:text-gray-400">Find answers to common questions about our calculators</p>
         </div>
         <div className="space-y-4">
-          <details className="group bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300 cursor-pointer">
+          <details className="group bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300 cursor-pointer">
             <summary className="font-semibold text-lg text-gray-900 dark:text-white flex items-center justify-between group-open:text-blue-600 dark:group-open:text-blue-400 transition-colors">
               <span>Are these calculators free to use?</span>
               <span className="transform group-open:rotate-180 transition-transform duration-300 text-xl">▾</span>
@@ -247,7 +247,7 @@ export default function Home() {
               Yes! All our calculators are completely free and don&apos;t require any registration or payment. We believe financial tools should be accessible to everyone.
             </p>
           </details>
-          <details className="group bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300 cursor-pointer">
+          <details className="group bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300 cursor-pointer">
             <summary className="font-semibold text-lg text-gray-900 dark:text-white flex items-center justify-between group-open:text-blue-600 dark:group-open:text-blue-400 transition-colors">
               <span>Is my data secure?</span>
               <span className="transform group-open:rotate-180 transition-transform duration-300 text-xl">▾</span>
@@ -256,7 +256,7 @@ export default function Home() {
               Yes. All calculations happen in your browser. We never store or transmit your personal data. Your privacy is our top priority.
             </p>
           </details>
-          <details className="group bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300 cursor-pointer">
+          <details className="group bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300 cursor-pointer">
             <summary className="font-semibold text-lg text-gray-900 dark:text-white flex items-center justify-between group-open:text-blue-600 dark:group-open:text-blue-400 transition-colors">
               <span>Will you add more calculators?</span>
               <span className="transform group-open:rotate-180 transition-transform duration-300 text-xl">▾</span>
