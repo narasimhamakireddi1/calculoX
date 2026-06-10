@@ -294,6 +294,22 @@ li {
   animation: slideUnderline 0.3s ease-out;
 }
 
+/* Mega-menu enter animation */
+@keyframes megaIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mega-panel-enter {
+  animation: megaIn 0.15s ease-out both;
+}
+
 /* Navbar Animations - Modern & Smooth */
 @keyframes slideInLeft {
   from {
