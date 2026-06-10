@@ -164,7 +164,8 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Testimonial 1 */}
-          <div className="bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border-l-4 border-blue-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <span className="absolute inset-y-0 left-0 w-1.5 bg-blue-500" />
             <div className="flex items-center mb-4">
               <span className="text-amber-400">⭐⭐⭐⭐⭐</span>
             </div>
@@ -176,7 +177,8 @@ export default function Home() {
           </div>
 
           {/* Testimonial 2 */}
-          <div className="bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border-l-4 border-emerald-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <span className="absolute inset-y-0 left-0 w-1.5 bg-emerald-500" />
             <div className="flex items-center mb-4">
               <span className="text-amber-400">⭐⭐⭐⭐⭐</span>
             </div>
@@ -188,7 +190,8 @@ export default function Home() {
           </div>
 
           {/* Testimonial 3 */}
-          <div className="bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border-l-4 border-purple-500 border-r border-b border-t border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div className="relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <span className="absolute inset-y-0 left-0 w-1.5 bg-purple-500" />
             <div className="flex items-center mb-4">
               <span className="text-amber-400">⭐⭐⭐⭐⭐</span>
             </div>
