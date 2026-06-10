@@ -6,7 +6,7 @@
 
 ## ✅ Latest (2026-06-10 - Aesthetic Design Refresh: Calmer Canvas, Refined Cards/Buttons/Tables)
 - 🎨 **Site-wide visual polish (functionality untouched, design-only):** ✅
-  - **Calmer canvas:** Replaced the loud 5-stop pastel-rainbow page background with a subtle cool gradient (`#f7f9fc → #eef3fa → #f3f0fb`); reduced the busy multi-radial glow overlays to 2 soft accents at lower opacity. ✅
+  - **Premium background (light + dark):** Replaced the loud pastel-rainbow canvas with a refined tinted base (`#f6f8fd` light / `#070b15` dark, set on `<body>`), a soft top-center spotlight glow, low-opacity indigo/violet/cyan ambient corner glows (`body::after`), and a faint dot-grid texture (`body::before`) for depth. Note: the visible background lives on `body` + its `::before`/`::after` overlays because `<body>` has an opaque base color — the `html` gradient and old dark scanlines were painted behind it and never showed. ✅
   - **Buttons (globals.css):** `.btn-primary/.btn-secondary/.btn-outline` now use `rounded-xl`, softer layered shadows, and an elegant `-translate-y-0.5` lift instead of the bouncy `scale(1.05)`; all semantic buttons unified to `rounded-xl`. ✅
   - **Cards (`.card`):** `rounded-2xl`, refined two-layer soft shadows (raw box-shadow; dark glass-morphism preserved), gentler border-on-hover. ✅
   - **CalculatorCard:** Removed the heavy black `bg-black/40` "Start Now" overlay that obscured content; replaced with a category-tinted icon tile, a growing top accent bar, and a cleaner "Explore →" CTA. ✅
@@ -17,7 +17,7 @@
   - **Refined custom scrollbars** added site-wide (thin, rounded, theme-aware). ✅
   - **Build:** ✅ 55 pages, 0 TypeScript errors ✅
   - **Visual verification:** Playwright screenshots of homepage + SIP calculator (cards grid, category tabs, projection table, share buttons) across mobile (390px) + desktop (1280px) × light + dark — all confirmed rendering correctly. ✅
-  - **Files:** `app/globals.css`, `components/ui/CalculatorCard.tsx`, `components/ui/CategoryTabs.tsx`, `components/ui/ShareButtons.tsx`, `components/{sip,fd,simple-interest,retirement}/ProjectionTable.tsx`, `app/page.tsx` ✅
+  - **Files:** `app/globals.css`, `app/layout.tsx`, `components/ui/CalculatorCard.tsx`, `components/ui/CategoryTabs.tsx`, `components/ui/ShareButtons.tsx`, `components/{sip,fd,simple-interest,retirement}/ProjectionTable.tsx`, `app/page.tsx` ✅
 
 ## ✅ Previous (2026-06-09 - Mobile Navbar Bug Fixes: Icons + Drawer + Search)
 - 🐛 **4 critical mobile nav bugs fixed after redesign:** ✅

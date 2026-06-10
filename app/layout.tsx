@@ -202,7 +202,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-50">
+      <body className="bg-[#f6f8fd] dark:bg-[#070b15] text-gray-900 dark:text-gray-50">
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
