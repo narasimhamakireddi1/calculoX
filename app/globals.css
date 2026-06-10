@@ -45,7 +45,8 @@ html.dark {
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background: linear-gradient(135deg, #f0f4f8 0%, #e1eef9 25%, #f0e8ff 50%, #ffe8f0 75%, #f0f4f8 100%);
+  /* Calm, refined canvas — subtle cool tint instead of a loud pastel rainbow */
+  background: linear-gradient(165deg, #f7f9fc 0%, #eef3fa 45%, #f3f0fb 100%);
   min-height: 100vh;
 }
 
@@ -134,10 +135,8 @@ body::before {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 90% 10%, rgba(79, 70, 229, 0.1) 0%, transparent 45%);
+    radial-gradient(circle at 18% 30%, rgba(37, 99, 235, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(147, 51, 234, 0.05) 0%, transparent 45%);
   pointer-events: none;
   z-index: 0;
 }
@@ -150,9 +149,8 @@ body::after {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(ellipse at 50% -20%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
-    radial-gradient(ellipse at -20% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
-    radial-gradient(ellipse at 110% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+    radial-gradient(ellipse at 50% -20%, rgba(59, 130, 246, 0.07) 0%, transparent 40%),
+    radial-gradient(ellipse at 110% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
@@ -417,17 +415,17 @@ button:disabled {
   @apply opacity-50 cursor-not-allowed;
 }
 
-/* Button Variants */
+/* Button Variants — refined: softer shadows, elegant lift (no bouncy scale) */
 .btn-primary {
-  @apply px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+  @apply px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
 }
 
 .btn-secondary {
-  @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-purple-800 shadow-lg shadow-purple-500/30 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+  @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-purple-800 shadow-md shadow-purple-600/20 hover:shadow-lg hover:shadow-purple-600/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-purple-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
 }
 
 .btn-outline {
-  @apply px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-semibold rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+  @apply px-6 py-3 border-2 border-blue-600/80 text-blue-600 dark:text-blue-400 dark:border-blue-400/70 font-semibold rounded-xl hover:bg-blue-50 hover:border-blue-600 dark:hover:bg-blue-950/40 dark:hover:border-blue-400 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
 }
 
 .btn-danger {
@@ -446,7 +444,7 @@ button:disabled {
 
 .btn-success {
   @apply px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700
-         text-white font-semibold rounded-lg
+         text-white font-semibold rounded-xl
          shadow-md shadow-emerald-500/20
          border border-emerald-500/20
          transition-all duration-200
@@ -461,7 +459,7 @@ button:disabled {
 
 .btn-warning {
   @apply px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700
-         text-white font-semibold rounded-lg
+         text-white font-semibold rounded-xl
          shadow-md shadow-amber-500/20
          border border-amber-500/20
          transition-all duration-200
@@ -476,7 +474,7 @@ button:disabled {
 
 .btn-info {
   @apply px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-700
-         text-white font-semibold rounded-lg
+         text-white font-semibold rounded-xl
          shadow-md shadow-cyan-500/20
          border border-cyan-500/20
          transition-all duration-200
@@ -492,13 +490,17 @@ button:disabled {
 /* Cards — Premium Depth & Hover */
 .card {
   @apply bg-white dark:bg-gray-900/50
-         rounded-xl border border-gray-100 dark:border-gray-800
-         shadow-sm dark:shadow-none
+         rounded-2xl border border-gray-200/70 dark:border-gray-800
          backdrop-filter backdrop-blur-sm
          transition-all duration-300
-         hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-700
+         hover:border-gray-300/80 dark:hover:border-blue-700/60
          hover:-translate-y-1
          p-6;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 28px -16px rgba(16, 24, 40, 0.16);
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(16, 24, 40, 0.05), 0 22px 48px -20px rgba(16, 24, 40, 0.24);
 }
 
 .card-compact {
@@ -714,6 +716,44 @@ button:disabled {
 
 .status-dot-info {
   @apply bg-cyan-500;
+}
+
+/* Refined custom scrollbars — elegant thin track site-wide */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.45);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.7);
+}
+
+html.dark * {
+  scrollbar-color: rgba(71, 85, 105, 0.6) transparent;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(71, 85, 105, 0.55);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.8);
 }
 
 /* Animated status dots */

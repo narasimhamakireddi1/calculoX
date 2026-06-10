@@ -66,10 +66,10 @@ export function CategoryTabs({ onCategoryChange, selectedCategory }: CategoryTab
           <button
             key={category}
             onClick={() => handleTabClick(category)}
-            className={`relative px-6 py-3 rounded-xl transition-all duration-300 group ${
+            className={`relative px-6 py-3 rounded-xl transition-all duration-300 transform group ${
               isSelected
-                ? `bg-gradient-to-r ${config.color} text-white shadow-lg shadow-blue-500/30 scale-105`
-                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500'
+                ? `bg-gradient-to-r ${config.color} text-white shadow-md shadow-blue-600/25 -translate-y-0.5`
+                : 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500/70 hover:-translate-y-0.5'
             }`}
           >
             <div className="flex flex-col items-start gap-1">
@@ -88,10 +88,10 @@ export function CategoryTabs({ onCategoryChange, selectedCategory }: CategoryTab
       {/* Show All button */}
       <button
         onClick={() => onCategoryChange(null)}
-        className={`px-6 py-3 rounded-xl transition-all duration-300 ${
+        className={`px-6 py-3 rounded-xl transition-all duration-300 transform ${
           selectedCategory === null
-            ? 'bg-gradient-to-r from-green-600 to-emerald-400 text-white shadow-lg shadow-green-500/30 scale-105'
-            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-200 dark:border-gray-700 hover:border-green-400 dark:hover:border-green-500'
+            ? 'bg-gradient-to-r from-emerald-600 to-emerald-400 text-white shadow-md shadow-emerald-600/25 -translate-y-0.5'
+            : 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-emerald-300 dark:hover:border-emerald-500/70 hover:-translate-y-0.5'
         }`}
       >
         <div className="flex flex-col items-start gap-1">

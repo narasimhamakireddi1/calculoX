@@ -1,10 +1,25 @@
 # 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-09 (Mobile Nav Bug Fixes) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 55 pages, 0 TypeScript errors
+**Last Updated:** 2026-06-10 (Aesthetic Design Refresh) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 55 pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-09 - Mobile Navbar Bug Fixes: Icons + Drawer + Search)
+## ✅ Latest (2026-06-10 - Aesthetic Design Refresh: Calmer Canvas, Refined Cards/Buttons/Tables)
+- 🎨 **Site-wide visual polish (functionality untouched, design-only):** ✅
+  - **Calmer canvas:** Replaced the loud 5-stop pastel-rainbow page background with a subtle cool gradient (`#f7f9fc → #eef3fa → #f3f0fb`); reduced the busy multi-radial glow overlays to 2 soft accents at lower opacity. ✅
+  - **Buttons (globals.css):** `.btn-primary/.btn-secondary/.btn-outline` now use `rounded-xl`, softer layered shadows, and an elegant `-translate-y-0.5` lift instead of the bouncy `scale(1.05)`; all semantic buttons unified to `rounded-xl`. ✅
+  - **Cards (`.card`):** `rounded-2xl`, refined two-layer soft shadows (raw box-shadow; dark glass-morphism preserved), gentler border-on-hover. ✅
+  - **CalculatorCard:** Removed the heavy black `bg-black/40` "Start Now" overlay that obscured content; replaced with a category-tinted icon tile, a growing top accent bar, and a cleaner "Explore →" CTA. ✅
+  - **CategoryTabs:** Bouncy `scale-105` → subtle lift + glass background. ✅
+  - **Projection tables (SIP/FD/Simple Interest/Retirement):** Toggle button restyled to a clean bordered pill. ✅
+  - **ShareButtons (all 14 calcs):** `rounded-xl`, lift-on-hover instead of scale. ✅
+  - **Homepage:** Testimonial/feature/FAQ cards bumped to `rounded-2xl` with soft shadow + lift hover. ✅
+  - **Refined custom scrollbars** added site-wide (thin, rounded, theme-aware). ✅
+  - **Build:** ✅ 55 pages, 0 TypeScript errors ✅
+  - **Visual verification:** Playwright screenshots of homepage + SIP calculator (cards grid, category tabs, projection table, share buttons) across mobile (390px) + desktop (1280px) × light + dark — all confirmed rendering correctly. ✅
+  - **Files:** `app/globals.css`, `components/ui/CalculatorCard.tsx`, `components/ui/CategoryTabs.tsx`, `components/ui/ShareButtons.tsx`, `components/{sip,fd,simple-interest,retirement}/ProjectionTable.tsx`, `app/page.tsx` ✅
+
+## ✅ Previous (2026-06-09 - Mobile Navbar Bug Fixes: Icons + Drawer + Search)
 - 🐛 **4 critical mobile nav bugs fixed after redesign:** ✅
   - **Drawer not opening:** `CalculatorBottomSheet` was inside `<nav backdrop-blur-xl>` — `backdrop-filter` creates a CSS containing block for fixed children, so the drawer was clipped to 64px nav height instead of viewport. Fixed by moving component outside `<nav>` into a React Fragment. ✅
   - **Hamburger icon invisible:** SVG rendering unreliable via JSX stroke/path. Replaced with 3× CSS `<span>` bars (`18px × 2px`, explicit `bg-gray-800 dark:bg-gray-100`) — guaranteed render everywhere. ✅

@@ -78,7 +78,7 @@ const ProjectionTableComponent = memo(({
         <h2 className="text-2xl font-bold">📈 Investment Projection</h2>
         <button
           onClick={onToggle}
-          className="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-lg font-semibold hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+          className="px-4 py-2 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/70 rounded-xl text-sm font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200"
         >
           {showFullSchedule ? 'Show First 12 Years' : 'Show All'}
         </button>

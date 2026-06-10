@@ -65,7 +65,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
   return (
     <div className="space-y-3">
       {/* Preview Box */}
-      <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+      <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
         <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
           📋 Preview of Share Message
         </p>
@@ -87,7 +87,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
           {/* WhatsApp */}
           <button
             onClick={() => handleShare('whatsapp')}
-            className="flex-1 sm:flex-initial px-3 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
+            className="flex-1 sm:flex-initial px-3 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md"
             title="Share on WhatsApp"
             aria-label="Share on WhatsApp"
           >
@@ -98,7 +98,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
           {/* Twitter/X */}
           <button
             onClick={() => handleShare('twitter')}
-            className="flex-1 sm:flex-initial px-3 py-2 bg-black hover:bg-gray-900 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
+            className="flex-1 sm:flex-initial px-3 py-2 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md"
             title="Share on X (Twitter)"
             aria-label="Share on X (Twitter)"
           >
@@ -109,7 +109,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
           {/* LinkedIn */}
           <button
             onClick={() => handleShare('linkedin')}
-            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
+            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-xl transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md"
             title="Share on LinkedIn"
             aria-label="Share on LinkedIn"
           >
@@ -120,7 +120,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
           {/* Facebook */}
           <button
             onClick={() => handleShare('facebook')}
-            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg"
+            className="flex-1 sm:flex-initial px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md"
             title="Share on Facebook"
             aria-label="Share on Facebook"
           >
@@ -131,7 +131,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
           {/* Copy to Clipboard */}
           <button
             onClick={handleCopyToClipboard}
-            className={`flex-1 sm:flex-initial px-3 py-2 font-semibold rounded-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg ${
+            className={`flex-1 sm:flex-initial px-3 py-2 font-semibold rounded-xl transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-2 text-sm shadow-sm hover:shadow-md ${
               copied
                 ? 'bg-green-500 text-white'
                 : 'bg-gray-300 dark:bg-gray-600 text-gray-900 dark:text-white hover:bg-gray-400 dark:hover:bg-gray-500'
