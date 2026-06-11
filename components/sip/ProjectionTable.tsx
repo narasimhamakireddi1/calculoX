@@ -1,6 +1,7 @@
 'use client';
 
 import { memo, useMemo, useState, useCallback } from 'react';
+import { TrendingUp } from 'lucide-react';
 
 interface YearlyProjection {
   year: number;
@@ -75,7 +76,7 @@ const ProjectionTableComponent = memo(({
   return (
     <div className="card">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">📈 Investment Projection</h2>
+        <h2 className="text-2xl font-bold flex items-center gap-2"><TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Investment Projection</h2>
         <button
           onClick={onToggle}
           className="px-4 py-2 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/70 rounded-xl text-sm font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200"
