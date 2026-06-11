@@ -14,6 +14,8 @@ import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
+import type { LucideIcon } from 'lucide-react';
+import { TrendingUp, Target, BarChart2, RefreshCw, Search, Hash, ShoppingBag, HelpCircle } from 'lucide-react';
 
 type CalculationType = 'hike-discount' | 'percent-of' | 'what-percent' | 'percent-change' | 'reverse-percent' | 'sequential';
 
@@ -32,50 +34,56 @@ interface PercentageResultData {
   breakdown?: { label: string; value: number }[];
 }
 
-const TRACKS = [
+const TRACKS: Array<{
+  id: CalculationType;
+  icon: LucideIcon;
+  name: string;
+  desc: string;
+  example: string;
+}> = [
   {
-    id: 'hike-discount' as CalculationType,
-    icon: '📈',
+    id: 'hike-discount',
+    icon: TrendingUp,
     name: 'Hike / Discount',
     desc: 'Apply % increase or decrease',
     example: '₹50K + 12% hike = ₹56K',
   },
   {
-    id: 'percent-of' as CalculationType,
-    icon: '🎯',
+    id: 'percent-of',
+    icon: Target,
     name: 'X% of Y',
     desc: 'Find value from a percentage',
     example: '20% of 500 = 100',
   },
   {
-    id: 'what-percent' as CalculationType,
-    icon: '📊',
+    id: 'what-percent',
+    icon: BarChart2,
     name: 'What % of',
     desc: 'A is what percent of B',
     example: '450 of 600 = 75%',
   },
   {
-    id: 'percent-change' as CalculationType,
-    icon: '🔄',
+    id: 'percent-change',
+    icon: RefreshCw,
     name: '% Change',
     desc: 'Percentage change from A to B',
     example: '1,20,000 → 1,44,200 = +20.17%',
   },
   {
-    id: 'reverse-percent' as CalculationType,
-    icon: '🔍',
+    id: 'reverse-percent',
+    icon: Search,
     name: 'Reverse %',
     desc: 'X is Y% of what total?',
     example: '₹9K is 18% → base = ₹50K',
   },
   {
-    id: 'sequential' as CalculationType,
-    icon: '🔢',
+    id: 'sequential',
+    icon: Hash,
     name: 'Sequential',
     desc: 'Apply two % steps in sequence',
     example: '₹10K + 10% + 4% = ₹11,440',
   },
-] as const;
+];
 
 const PIE_COLORS: Record<string, string[]> = {
   'hike-discount': ['#3b82f6', '#10b981'],
@@ -167,19 +175,19 @@ export default function PercentageCalculatorPage() {
     {
       label: 'Salary Hike (10%)',
       description: '₹50,000 → 10% increase',
-      icon: '📈',
+      icon: TrendingUp,
       values: { value: 50000, percentage: 10, calculationType: 'hike-discount' }
     },
     {
       label: 'Shopping Discount (20%)',
       description: '₹5,000 item → 20% off',
-      icon: '🛍️',
+      icon: ShoppingBag,
       values: { value: 5000, percentage: 20, calculationType: 'hike-discount' }
     },
     {
       label: 'What Percentage (5% of 1000)',
       description: 'Find 5% of ₹1,000',
-      icon: '❓',
+      icon: HelpCircle,
       values: { value: 1000, percentage: 5, calculationType: 'percent-of' }
     }
   ], []);
@@ -221,7 +229,7 @@ export default function PercentageCalculatorPage() {
                 : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 bg-white dark:bg-gray-800'
             }`}
           >
-            <div className="text-2xl mb-1">{track.icon}</div>
+            <div className="mb-1">{(() => { const Icon = track.icon; return <Icon className="w-6 h-6 text-blue-600 dark:text-blue-400" aria-hidden="true" />; })()}</div>
             <div className="font-bold text-xs text-gray-900 dark:text-white leading-tight">{track.name}</div>
             <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-tight">{track.desc}</div>
           </button>
@@ -236,8 +244,8 @@ export default function PercentageCalculatorPage() {
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Form */}
         <div id="percentage-inputs" className="card">
-          <h2 className="text-2xl font-bold mb-6">
-            {TRACKS.find(t => t.id === calculationType)?.icon}{' '}
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+            {(() => { const track = TRACKS.find(t => t.id === calculationType); if (!track) return null; const Icon = track.icon; return <Icon className="w-6 h-6 flex-shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" />; })()}
             {TRACKS.find(t => t.id === calculationType)?.name}
           </h2>
 
@@ -647,24 +655,27 @@ export default function PercentageCalculatorPage() {
 
       {/* Quick Examples */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">📋 Quick Examples</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><ShoppingBag className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Quick Examples</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {TRACKS.map((track) => (
-            <button
-              key={track.id}
-              onClick={() => switchTrack(track.id)}
-              className={`text-left p-4 rounded-xl border-2 transition-all hover:shadow-md hover:scale-102 ${
-                calculationType === track.id
-                  ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                  : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
-              }`}
-            >
-              <div className="text-2xl mb-2">{track.icon}</div>
-              <p className="font-bold text-gray-900 dark:text-white mb-1">{track.name}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{track.desc}</p>
-              <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">{track.example}</p>
-            </button>
-          ))}
+          {TRACKS.map((track) => {
+            const TrackIcon = track.icon;
+            return (
+              <button
+                key={track.id}
+                onClick={() => switchTrack(track.id)}
+                className={`text-left p-4 rounded-xl border-2 transition-all hover:shadow-md hover:scale-102 ${
+                  calculationType === track.id
+                    ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                    : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                }`}
+              >
+                <div className="mb-2"><TrackIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /></div>
+                <p className="font-bold text-gray-900 dark:text-white mb-1">{track.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{track.desc}</p>
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">{track.example}</p>
+              </button>
+            );
+          })}
         </div>
       </div>
 

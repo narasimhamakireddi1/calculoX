@@ -1,5 +1,7 @@
 'use client';
 
+import type { LucideIcon } from 'lucide-react';
+
 interface AffiliateLink {
   label: string;
   href: string;
@@ -7,7 +9,7 @@ interface AffiliateLink {
 }
 
 interface AffiliateBannerProps {
-  icon: string;
+  icon: LucideIcon;
   headline: string;
   subtext: string;
   note: string;
@@ -15,10 +17,9 @@ interface AffiliateBannerProps {
   gradient: string;
 }
 
-export function AffiliateBanner({ icon, headline, subtext, note, links, gradient }: AffiliateBannerProps) {
+export function AffiliateBanner({ icon: Icon, headline, subtext, note, links, gradient }: AffiliateBannerProps) {
   return (
     <div className={`my-12 rounded-2xl p-8 bg-gradient-to-br ${gradient} shadow-xl border border-white/20 overflow-hidden relative`}>
-      {/* Decorative background element */}
       <div aria-hidden="true" className="absolute inset-0 opacity-10">
         <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)' }}></div>
       </div>
@@ -26,7 +27,7 @@ export function AffiliateBanner({ icon, headline, subtext, note, links, gradient
       <div className="flex flex-col md:flex-row md:items-center gap-6 relative z-10">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-3xl" aria-hidden="true">{icon}</span>
+            <Icon className="w-8 h-8 text-white" strokeWidth={1.75} aria-hidden="true" />
             <span className="inline-block text-xs font-bold uppercase tracking-wider text-white/70 bg-white/10 px-3 py-1 rounded-full">Sponsored</span>
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">{headline}</h3>

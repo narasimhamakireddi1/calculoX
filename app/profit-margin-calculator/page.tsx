@@ -20,6 +20,7 @@ import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { ShoppingBag, Diamond, Package, CheckCircle2, XCircle, Smartphone } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import {
   ProfitMarginGstEngine,
@@ -136,19 +137,19 @@ export default function ProfitMarginCalculator() {
     {
       label: 'Retail Product',
       description: '₹1,000 cost → 25% margin',
-      icon: '🛍️',
+      icon: ShoppingBag,
       values: { costPrice: 1000, targetMarginPct: 25, targetMarkupPct: 0, gstRatePct: 18, calculationBasis: 'COST_DRIVEN', gstTreatment: 'EXCLUSIVE' }
     },
     {
       label: 'Premium Item',
       description: '₹5,000 cost → 40% margin',
-      icon: '💎',
+      icon: Diamond,
       values: { costPrice: 5000, targetMarginPct: 40, targetMarkupPct: 0, gstRatePct: 18, calculationBasis: 'COST_DRIVEN', gstTreatment: 'EXCLUSIVE' }
     },
     {
       label: 'Bulk Sales',
       description: '₹10,000 cost → 15% markup',
-      icon: '📦',
+      icon: Package,
       values: { costPrice: 10000, targetMarginPct: 0, targetMarkupPct: 15, gstRatePct: 12, calculationBasis: 'COST_DRIVEN', gstTreatment: 'EXCLUSIVE' }
     }
   ], []);
@@ -577,7 +578,10 @@ export default function ProfitMarginCalculator() {
                     : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 border border-red-300 dark:border-red-700'
                 }`}
               >
-                {results.isProfitable ? '✅ Profitable' : '❌ Not Profitable'}
+                {results.isProfitable
+                  ? <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4" strokeWidth={2} aria-hidden="true" />Profitable</span>
+                  : <span className="flex items-center gap-1.5"><XCircle className="w-4 h-4" strokeWidth={2} aria-hidden="true" />Not Profitable</span>
+                }
               </div>
 
               {/* Share Button */}
@@ -908,7 +912,7 @@ export default function ProfitMarginCalculator() {
 
         {/* Affiliate Banner */}
         <AffiliateBanner
-          icon="📱"
+          icon={Smartphone}
           headline="Need Pricing & Billing Software?"
           subtext="Manage dynamic pricing, GST invoicing, and profit tracking for your e-commerce business"
           note="Integrated pricing engine for accurate margin calculation and tax compliance"

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+import { Shield, Rocket, Target, TrendingUp, BarChart2, Coins, BookOpen, Lightbulb, Trash2, RefreshCw, Repeat } from 'lucide-react';
 
 const ProjectionTable = lazy(() => import('@/components/sip/ProjectionTable').then(m => ({ default: m.default })));
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -107,19 +108,19 @@ export default function SIPCalculatorPage() {
     {
       label: 'Conservative Investor',
       description: '₹5,000/month, 12% returns',
-      icon: '🛡️',
+      icon: Shield,
       values: { monthlyInvestment: 5000, years: 10, annualReturn: 12, stepUpPercent: 0 }
     },
     {
       label: 'Aggressive Investor',
       description: '₹25,000/month, 15% returns',
-      icon: '🚀',
+      icon: Rocket,
       values: { monthlyInvestment: 25000, years: 20, annualReturn: 15, stepUpPercent: 5 }
     },
     {
       label: 'Retirement Planning',
       description: '₹10,000/month, 20 years',
-      icon: '🎯',
+      icon: Target,
       values: { monthlyInvestment: 10000, years: 20, annualReturn: 13, stepUpPercent: 3 }
     }
   ], []);
@@ -397,7 +398,7 @@ export default function SIPCalculatorPage() {
               onClick={handleReset}
               className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
             >
-              🗑️ Clear All
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
           </form>
         </div>
@@ -419,7 +420,7 @@ export default function SIPCalculatorPage() {
 
                 {/* Future Value - Highlighted */}
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-lg hover:shadow-xl transition-all">
-                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">🎯 Future Value (Maturity)</p>
+                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1"><Target className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Future Value (Maturity)</p>
                   <p className="text-xl sm:text-3xl md:text-4xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">
                     {formatCurrency(result.futureValue)}
                   </p>
@@ -427,7 +428,7 @@ export default function SIPCalculatorPage() {
 
                 {/* Gain Amount */}
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">📈 Total Gains (Returns)</p>
+                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1"><TrendingUp className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Gains (Returns)</p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
                     {formatCurrency(result.gainedAmount)}
                   </p>
@@ -444,7 +445,7 @@ export default function SIPCalculatorPage() {
 
               {/* Result Explanation */}
               <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your Results</h3>
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your Results</h3>
                 <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
                   <p><strong>Total Invested:</strong> The sum of all your monthly SIP contributions over {watchValues.years} year{watchValues.years > 1 ? 's' : ''} (including step-up increases)</p>
                   <p><strong>Future Value:</strong> Your total amount after growth at {watchValues.annualReturn}% annual return - this is your maturity amount</p>
@@ -455,7 +456,7 @@ export default function SIPCalculatorPage() {
 
               {/* Investment Insights */}
               <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-2">💡 Key Insights</h3>
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
                 <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
                   <p>• Your money grows <strong>{((result.futureValue / result.totalInvestment) - 1).toFixed(1)}x</strong> over {watchValues.years} year{watchValues.years > 1 ? 's' : ''}</p>
                   <p>• Monthly investment of <strong>₹{watchValues.monthlyInvestment.toLocaleString('en-IN')}</strong> becomes <strong>₹{(result.futureValue / (watchValues.years * 12)).toLocaleString('en-IN')}</strong> per month in terms of value</p>
@@ -465,7 +466,7 @@ export default function SIPCalculatorPage() {
               </div>
 
               <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
                 <p className="text-sm text-amber-700 dark:text-amber-300">
                   Your projected corpus of <strong>{formatCurrency(result.futureValue)}</strong> demonstrates the power of disciplined investing. Consistent SIP investments typically outperform market timing, and a 12-13% return rate (index fund average) has historically beaten inflation by 6-7% annually. Your {watchValues.stepUpPercent}% annual step-up accelerates wealth accumulation.
                 </p>
@@ -534,7 +535,7 @@ export default function SIPCalculatorPage() {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Line Chart */}
           <div className="card">
-            <h2 className="text-2xl font-bold mb-6">📊 Growth Visualization</h2>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><BarChart2 className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Growth Visualization</h2>
             <ResponsiveContainer width="100%" height={400}>
               <AreaChart data={chartData}>
                 <defs>
@@ -593,7 +594,7 @@ export default function SIPCalculatorPage() {
           {/* Pie Chart */}
           {result && (
             <div className="card">
-              <h2 className="text-2xl font-bold mb-6">💰 SIP Breakup</h2>
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Coins className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> SIP Breakup</h2>
               <MemoizedPieChart
                 data={[
                   { name: 'Total Invested', value: result.totalInvestment },
@@ -669,13 +670,13 @@ export default function SIPCalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">SIP vs Lump Sum Investment: Which is Better?</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="border-l-4 border-green-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">🔄 SIP (Regular Investment)</h3>
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><RefreshCw className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> SIP (Regular Investment)</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Fixed amount invested monthly over extended period. Spreads risk through rupee cost averaging.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Best For:</strong> Beginners, low income, risk-averse</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Returns:</strong> Moderate, steady, lower volatility</p>
             </div>
             <div className="border-l-4 border-blue-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">💰 Lump Sum (One-Time)</h3>
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Lump Sum (One-Time)</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Entire amount invested at once. Best if you have bulk cash available.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Best For:</strong> Downturn timing, inheritance, bonus</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Returns:</strong> Higher potential, but higher timing risk</p>
@@ -742,7 +743,7 @@ export default function SIPCalculatorPage() {
 
       {/* Affiliate Banner */}
       <AffiliateBanner
-        icon="📈"
+        icon={Repeat}
         headline="Ready to Start Your SIP Investment?"
         subtext="Open a free demat account and start SIP from ₹500/month in top mutual funds."
         note="Free account · ₹0 AMC · 5-minute setup · 1 Crore+ investors"

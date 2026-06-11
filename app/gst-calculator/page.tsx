@@ -13,6 +13,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { ShoppingCart, Package, Sparkles } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type GSTFormData = {
@@ -69,19 +70,19 @@ export default function GSTCalculatorPage() {
     {
       label: 'Essential Goods (5%)',
       description: '₹1,000 price, 5% GST',
-      icon: '🛒',
+      icon: ShoppingCart,
       values: { amount: 1000, gstRate: 5, mode: 'add' }
     },
     {
       label: 'Regular Product (18%)',
       description: '₹5,000 price, 18% GST',
-      icon: '📦',
+      icon: Package,
       values: { amount: 5000, gstRate: 18, mode: 'add' }
     },
     {
       label: 'Luxury Item (28%)',
       description: '₹50,000 price, 28% GST',
-      icon: '✨',
+      icon: Sparkles,
       values: { amount: 50000, gstRate: 28, mode: 'add' }
     }
   ], []);

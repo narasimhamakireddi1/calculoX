@@ -12,6 +12,7 @@ import { BMISchema } from '@/lib/validators';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { UserRound, Dumbbell, Activity, TrendingDown, CheckCircle2, AlertTriangle, AlertOctagon, BarChart2 } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
@@ -134,19 +135,19 @@ export default function BMICalculatorPage() {
         {
           label: 'Average Adult (Metric)',
           description: '70 kg, 175 cm - Normal BMI',
-          icon: '👤',
+          icon: UserRound,
           values: { weight: 70, height: 175 }
         },
         {
           label: 'Fitness Enthusiast',
           description: '75 kg, 180 cm - Healthy range',
-          icon: '💪',
+          icon: Dumbbell,
           values: { weight: 75, height: 180 }
         },
         {
           label: 'Lightweight Person',
           description: '55 kg, 165 cm - Normal BMI',
-          icon: '🏃',
+          icon: Activity,
           values: { weight: 55, height: 165 }
         }
       ];
@@ -155,19 +156,19 @@ export default function BMICalculatorPage() {
         {
           label: 'Average Adult (Imperial)',
           description: '154 lbs, 69 inches - Normal BMI',
-          icon: '👤',
+          icon: UserRound,
           values: { weight: 154, height: 69 }
         },
         {
           label: 'Fitness Enthusiast',
           description: '165 lbs, 71 inches - Healthy range',
-          icon: '💪',
+          icon: Dumbbell,
           values: { weight: 165, height: 71 }
         },
         {
           label: 'Lightweight Person',
           description: '121 lbs, 65 inches - Normal BMI',
-          icon: '🏃',
+          icon: Activity,
           values: { weight: 121, height: 65 }
         }
       ];
@@ -577,16 +578,19 @@ export default function BMICalculatorPage() {
 
       {/* BMI Categories Chart */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">📊 BMI Categories</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+          <BarChart2 className="w-6 h-6 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" />
+          BMI Categories
+        </h2>
         <div className="space-y-3">
           {[
-            { range: 'Below 18.5', category: 'Underweight', color: 'bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700', icon: '📉' },
-            { range: '18.5 to 24.9', category: 'Normal Weight', color: 'bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-700', icon: '✅' },
-            { range: '25.0 to 29.9', category: 'Overweight', color: 'bg-orange-100 dark:bg-orange-900/30 border-orange-300 dark:border-orange-700', icon: '⚠️' },
-            { range: '30.0 and above', category: 'Obesity', color: 'bg-red-100 dark:bg-red-900/30 border-red-300 dark:border-red-700', icon: '🔴' },
+            { range: 'Below 18.5', category: 'Underweight', color: 'bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700', Icon: TrendingDown },
+            { range: '18.5 to 24.9', category: 'Normal Weight', color: 'bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-700', Icon: CheckCircle2 },
+            { range: '25.0 to 29.9', category: 'Overweight', color: 'bg-orange-100 dark:bg-orange-900/30 border-orange-300 dark:border-orange-700', Icon: AlertTriangle },
+            { range: '30.0 and above', category: 'Obesity', color: 'bg-red-100 dark:bg-red-900/30 border-red-300 dark:border-red-700', Icon: AlertOctagon },
           ].map((item) => (
             <div key={item.category} className={`border-2 ${item.color} p-4 rounded-lg flex items-center gap-4`}>
-              <span className="text-2xl">{item.icon}</span>
+              <item.Icon className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
               <div>
                 <p className="font-bold text-gray-900 dark:text-white">{item.category}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">BMI: {item.range}</p>

@@ -6,6 +6,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+import { Shield, TrendingUp, Rocket, BarChart2, BookOpen, Sparkles, Trash2, Lightbulb, Ruler, HelpCircle } from 'lucide-react';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateCAGR } from '@/lib/calculators/cagr';
 import { CAGRSchema } from '@/lib/validators';
@@ -72,19 +73,19 @@ export default function CAGRCalculatorPage() {
     {
       label: 'Conservative Investment',
       description: '₹1L → ₹5L over 10 years',
-      icon: '🛡️',
+      icon: Shield,
       values: { beginningValue: 100000, endingValue: 500000, years: 10 }
     },
     {
       label: 'Moderate Growth',
       description: '₹5L → ₹25L over 15 years',
-      icon: '📈',
+      icon: TrendingUp,
       values: { beginningValue: 500000, endingValue: 2500000, years: 15 }
     },
     {
       label: 'Aggressive Growth',
       description: '₹10L → ₹1Cr over 10 years',
-      icon: '🚀',
+      icon: Rocket,
       values: { beginningValue: 1000000, endingValue: 10000000, years: 10 }
     }
   ], []);
@@ -263,12 +264,12 @@ export default function CAGRCalculatorPage() {
               onClick={handleReset}
               className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
             >
-              🗑️ Clear
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear
             </button>
 
             {/* Formula Reference */}
             <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 Formula Reference</h4>
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-2"><Ruler className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
               <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
                 <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-indigo-200 dark:border-indigo-700">
                   CAGR = (EV / BV)^(1/n) - 1
@@ -288,14 +289,14 @@ export default function CAGRCalculatorPage() {
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    📈 CAGR Percentage
+                    <TrendingUp className="w-3.5 h-3.5 inline mr-1 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> CAGR Percentage
                   </p>
                   <p className="text-xl sm:text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">{result.cagrPercentage.toFixed(2)}%</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    📊 CAGR Factor
+                    <BarChart2 className="w-3.5 h-3.5 inline mr-1 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> CAGR Factor
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{result.cagr.toFixed(4)}</p>
                   <p className="text-xs text-green-600 dark:text-green-400 mt-2">Growth multiple ({(result.cagr + 1).toFixed(4)}x)</p>
@@ -304,7 +305,7 @@ export default function CAGRCalculatorPage() {
 
               {/* Understanding CAGR */}
               <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding CAGR</h3>
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding CAGR</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
                   CAGR (Compound Annual Growth Rate) shows the average annual return on your investment, ignoring volatility. It helps you compare investments fairly across different time periods.
                 </p>
@@ -318,7 +319,7 @@ export default function CAGRCalculatorPage() {
 
               {/* Key Insights */}
               <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Sparkles className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
                 <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
                   <p>
                     <strong>Investment Multiplier:</strong> <span className="font-bold text-green-700 dark:text-green-300">{(watchValues.endingValue / watchValues.beginningValue).toFixed(2)}x</span> - Your money grew by {((watchValues.endingValue / watchValues.beginningValue - 1) * 100).toFixed(1)}%
@@ -344,7 +345,7 @@ export default function CAGRCalculatorPage() {
               </div>
 
               <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
                 <p className="text-sm text-amber-700 dark:text-amber-300">
                   Your CAGR of <strong>{result.cagrPercentage.toFixed(2)}%</strong> {result.cagrPercentage > 15 ? 'is excellent and beats 95% of Indian equity mutual funds' : result.cagrPercentage > 10 ? 'matches the long-term market average' : 'is below inflation and needs attention'}. Nifty 50 has historically averaged ~13% CAGR over 20+ years. Consider diversified index funds for consistent, tax-efficient long-term growth.
                 </p>
@@ -375,7 +376,7 @@ export default function CAGRCalculatorPage() {
       {/* CAGR Value Breakup Pie Chart */}
       {result && (
         <div className="card">
-          <h2 className="text-2xl font-bold mb-6">📊 Value Growth Breakup</h2>
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><BarChart2 className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Value Growth Breakup</h2>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
               <MemoizedPieChart
@@ -500,12 +501,12 @@ export default function CAGRCalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">CAGR vs Simple Average Return: What's the Difference?</h2>
           <div className="space-y-4 text-sm">
             <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-4 rounded-lg border-2 border-blue-300 dark:border-blue-700">
-              <p className="font-bold text-blue-700 dark:text-blue-300 mb-2">📊 CAGR (Compound)</p>
+              <p className="font-bold text-blue-700 dark:text-blue-300 mb-2 flex items-center gap-1"><BarChart2 className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> CAGR (Compound)</p>
               <p className="text-gray-700 dark:text-gray-300">Assumes profits are reinvested each year. Accounts for "interest on interest" (compounding). More accurate for long-term investments.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400 mt-2"><strong>Example:</strong> ₹1L → ₹3.1L in 10 years @ 12% CAGR</p>
             </div>
             <div className="bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/30 dark:to-yellow-900/30 p-4 rounded-lg border-2 border-orange-300 dark:border-orange-700">
-              <p className="font-bold text-orange-700 dark:text-orange-300 mb-2">📈 Average Return (Simple)</p>
+              <p className="font-bold text-orange-700 dark:text-orange-300 mb-2 flex items-center gap-1"><TrendingUp className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Average Return (Simple)</p>
               <p className="text-gray-700 dark:text-gray-300">Treats each year's return equally. Does NOT account for compounding. Overstates returns for volatile investments.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400 mt-2"><strong>Example:</strong> Year1: +50%, Year2: -30% → Avg = 10%, but CAGR = 8.8%</p>
             </div>
@@ -523,7 +524,7 @@ export default function CAGRCalculatorPage() {
 
       {/* Comparison Section */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">💡 Understanding CAGR</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Lightbulb className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding CAGR</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-4 rounded-lg border border-blue-300 dark:border-blue-700">
             <p className="font-bold text-blue-700 dark:text-blue-300 mb-3">What is CAGR?</p>
@@ -557,7 +558,7 @@ export default function CAGRCalculatorPage() {
 
       {/* FAQ */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">

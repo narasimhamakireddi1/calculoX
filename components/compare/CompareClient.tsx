@@ -3,14 +3,14 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { MiniCalculatorPanel } from './MiniCalculatorPanel';
-import { ArrowLeftRight } from 'lucide-react';
+import { ArrowLeftRight, Lightbulb } from 'lucide-react';
 
 type CalculatorId = 'emi' | 'sip' | 'fd';
 
-const CALCULATORS: Array<{ id: CalculatorId; label: string; icon: string }> = [
-  { id: 'emi', label: 'EMI Calculator', icon: '🏦' },
-  { id: 'sip', label: 'SIP Calculator', icon: '🔄' },
-  { id: 'fd', label: 'FD Calculator', icon: '🔐' },
+const CALCULATORS: Array<{ id: CalculatorId; label: string }> = [
+  { id: 'emi', label: 'EMI Calculator' },
+  { id: 'sip', label: 'SIP Calculator' },
+  { id: 'fd', label: 'FD Calculator' },
 ];
 
 export function CompareClient() {
@@ -125,8 +125,9 @@ export function CompareClient() {
 
       {/* Footer Info */}
       <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800 text-center text-sm text-gray-700 dark:text-gray-300">
-        <p>
-          💡 Tip: Bookmark this page to save your comparison. The URL updates automatically with your selections.
+        <p className="flex items-center justify-center gap-2">
+          <Lightbulb className="w-4 h-4 flex-shrink-0 text-blue-500" strokeWidth={2} aria-hidden="true" />
+          Tip: Bookmark this page to save your comparison. The URL updates automatically with your selections.
         </p>
       </div>
     </div>

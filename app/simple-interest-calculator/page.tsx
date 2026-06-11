@@ -8,6 +8,7 @@ const ProjectionTable = lazy(() => import('@/components/simple-interest/Projecti
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+import { Landmark, GraduationCap, Briefcase, Coins, TrendingUp, Target, Sunrise, BarChart2, BookOpen, Sparkles, Trash2, Ruler, Calendar, HelpCircle } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useChartColors } from '@/components/charts/useChartColors';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
@@ -117,19 +118,19 @@ export default function SimpleInterestCalculatorPage() {
     {
       label: 'Short-Term Loan',
       description: '₹1,00,000 at 8% for 2 years',
-      icon: '🏦',
+      icon: Landmark,
       values: { principal: 100000, annualRate: 8, years: 2, months: 0, days: 0, tenureType: 'years' }
     },
     {
       label: 'Education Fund',
       description: '₹5,00,000 at 6% for 5 years',
-      icon: '🎓',
+      icon: GraduationCap,
       values: { principal: 500000, annualRate: 6, years: 5, months: 0, days: 0, tenureType: 'years' }
     },
     {
       label: 'Business Investment',
       description: '₹10,00,000 at 10% for 3 years',
-      icon: '💼',
+      icon: Briefcase,
       values: { principal: 1000000, annualRate: 10, years: 3, months: 0, days: 0, tenureType: 'years' }
     }
   ], []);
@@ -308,9 +309,9 @@ export default function SimpleInterestCalculatorPage() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {type === 'years' && '📅'}
-                    {type === 'months' && '📆'}
-                    {type === 'days' && '📋'}
+                    {type === 'years' && <Calendar className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'months' && <BarChart2 className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'days' && <Ruler className="w-3.5 h-3.5 inline" aria-hidden="true" />}
                     <span className="ml-1 text-xs">{type}</span>
                   </button>
                 ))}
@@ -420,12 +421,12 @@ export default function SimpleInterestCalculatorPage() {
               onClick={handleReset}
               className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
             >
-              🗑️ Clear All
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
 
             {/* Formula Reference */}
             <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 Formula Reference</h4>
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-2"><Ruler className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
               <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
                 <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-indigo-200 dark:border-indigo-700">
                   SI = (P × R × T) / 100
@@ -446,26 +447,26 @@ export default function SimpleInterestCalculatorPage() {
               <div className="grid grid-cols-1 gap-4">
                 {/* Principal */}
                 <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 p-5 rounded-lg border border-emerald-300 dark:border-emerald-700 shadow-sm hover:shadow-md transition-shadow">
-                  <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-2">💰 Principal Amount</p>
+                  <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1"><Coins className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Principal Amount</p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-emerald-700 dark:text-emerald-400 break-words overflow-hidden">{formatCurrency(result.principalAmount)}</p>
                 </div>
 
                 {/* Interest - Highlighted */}
                 <div className="bg-gradient-to-br from-green-50 to-cyan-50 dark:from-green-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-lg hover:shadow-xl transition-all">
-                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">📈 Interest Accrued</p>
+                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1"><TrendingUp className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Accrued</p>
                   <p className="text-xl sm:text-3xl md:text-4xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{formatCurrency(result.interestAccrued)}</p>
                 </div>
 
                 {/* Total Maturity Value */}
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">🎯 Total Maturity Value</p>
+                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1"><Target className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Maturity Value</p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">{formatCurrency(result.totalMaturityValue)}</p>
                 </div>
 
                 {/* Daily Accrual */}
                 {result.dailyAccrual !== undefined && (
                   <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 p-5 rounded-lg border border-amber-300 dark:border-amber-700 shadow-sm hover:shadow-md transition-shadow">
-                    <p className="text-amber-700 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-2">☀️ Daily Interest Accrual</p>
+                    <p className="text-amber-700 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1"><Sunrise className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Daily Interest Accrual</p>
                     <p className="text-2xl font-bold text-amber-700 dark:text-amber-400">{formatCurrency(result.dailyAccrual)}</p>
                     <p className="text-xs text-amber-600 dark:text-amber-300 mt-1">Interest earned per day</p>
                   </div>
@@ -474,7 +475,7 @@ export default function SimpleInterestCalculatorPage() {
 
               {/* Understanding Your Simple Interest */}
               <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your Simple Interest</h3>
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your Simple Interest</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
                   Simple Interest is calculated only on the principal amount throughout the tenure. Unlike compound interest, it doesn't earn interest on interest.
                 </p>
@@ -487,7 +488,7 @@ export default function SimpleInterestCalculatorPage() {
 
               {/* Key Insights */}
               <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Sparkles className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
                 <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
                   <p>
                     <strong>Return Multiple:</strong> <span className="font-bold text-green-700 dark:text-green-300">{(result.totalMaturityValue / result.principalAmount).toFixed(2)}x</span> - Your money will grow by {((result.totalMaturityValue / result.principalAmount - 1) * 100).toFixed(1)}%
@@ -627,7 +628,7 @@ export default function SimpleInterestCalculatorPage() {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Line Chart */}
           <div className="card">
-            <h2 className="text-2xl font-bold mb-6">📈 Growth Visualization</h2>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><TrendingUp className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Growth Visualization</h2>
             <ResponsiveContainer width="100%" height={400}>
               <AreaChart data={chartData}>
                 <defs>
@@ -664,7 +665,7 @@ export default function SimpleInterestCalculatorPage() {
           {/* Pie Chart */}
           {result && (
             <div className="card">
-              <h2 className="text-2xl font-bold mb-6">💰 SI Breakup</h2>
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Coins className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> SI Breakup</h2>
               <MemoizedPieChart
                 data={[
                   { name: 'Principal', value: result.principalAmount },
@@ -804,7 +805,7 @@ export default function SimpleInterestCalculatorPage() {
 
       {/* FAQ */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">

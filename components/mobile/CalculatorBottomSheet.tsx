@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { getActiveCalculators } from '@/config/calculators.config';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Home, BookOpen, Info, type LucideIcon } from 'lucide-react';
+import { Home, BookOpen, Info, Search, type LucideIcon } from 'lucide-react';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -323,7 +323,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
               </div>
             ) : (
               <div className="text-center py-10">
-                <div className="text-3xl mb-2">🔍</div>
+                <Search className="w-8 h-8 mx-auto mb-2 text-gray-300 dark:text-gray-600" strokeWidth={1.5} aria-hidden="true" />
                 <p className="text-sm text-gray-400 dark:text-gray-500">No calculators found</p>
                 <button
                   onClick={() => setSearchQuery('')}

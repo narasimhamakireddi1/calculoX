@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+import { Home, BarChart2, Briefcase, Rocket, Target, Coins, BookOpen, Lightbulb, Trash2, AlertTriangle, Landmark } from 'lucide-react';
 import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/emi';
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -72,7 +73,7 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
 
       <div className="grid grid-cols-1 gap-4">
         <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-lg hover:shadow-xl transition-all will-change-transform">
-          <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">💰 Monthly EMI</p>
+          <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1"><Coins className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly EMI</p>
           <p className="text-xl sm:text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
             {formatCurrency(result.emi)}
           </p>
@@ -86,7 +87,7 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
         </div>
 
         <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-lg transition-shadow">
-          <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-2">📊 Total Interest</p>
+          <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1"><BarChart2 className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Interest</p>
           <p className="text-lg sm:text-2xl md:text-3xl font-bold text-red-700 dark:text-red-400 break-words overflow-hidden">
             {formatCurrency(result.totalInterest)}
           </p>
@@ -102,7 +103,7 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
 
       {/* Result Explanation */}
       <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-        <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your EMI</h3>
+        <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your EMI</h3>
         <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
           <p><strong>Monthly EMI:</strong> Fixed amount you pay each month. Includes both principal and interest components that change each month</p>
           <p><strong>Total Interest:</strong> Total amount you pay as interest over the entire loan duration. Reduces with early repayment</p>
@@ -113,7 +114,7 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
 
       {/* Helpful Tips */}
       <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
-        <h3 className="font-bold text-green-900 dark:text-green-300 mb-2">💡 Money-Saving Tips</h3>
+        <h3 className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Money-Saving Tips</h3>
         <ul className="space-y-1 text-sm text-green-800 dark:text-green-200">
           <li>✓ <strong>Prepay Lump Sums:</strong> Pay extra in good months to reduce total interest significantly</li>
           <li>✓ <strong>Shorter Tenure:</strong> 15 years instead of 20 can save substantial interest</li>
@@ -123,7 +124,7 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
       </div>
 
       <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-        <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+        <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
         <p className="text-sm text-amber-700 dark:text-amber-300">
           Your monthly EMI is <strong>{formatCurrency(result.emi)}</strong>. Financial advisors recommend keeping your EMI-to-income ratio below 40% for healthy finances. With an interest rate of 8-9%, home loans are typically more advantageous than personal loans at 12-18%.
         </p>
@@ -348,19 +349,19 @@ export default function EMICalculatorPage() {
     {
       label: 'First-Time Homebuyer',
       description: 'Typical home loan scenario',
-      icon: '🏡',
+      icon: Home,
       values: { principal: 5000000, annualRate: 8.5, years: 20 }
     },
     {
       label: 'Refinance Existing',
       description: 'Lower rate on existing loan',
-      icon: '📊',
+      icon: BarChart2,
       values: { principal: 3000000, annualRate: 7.5, years: 15 }
     },
     {
       label: 'Business Loan',
       description: 'Commercial property/working capital',
-      icon: '💼',
+      icon: Briefcase,
       values: { principal: 10000000, annualRate: 10.5, years: 10 }
     }
   ], []);
@@ -498,7 +499,7 @@ export default function EMICalculatorPage() {
               onClick={handleReset}
               className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
             >
-              🗑️ Clear All
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
           </form>
         </div>
@@ -568,12 +569,12 @@ export default function EMICalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">EMI vs Flat Rate Interest: Which is Better?</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="border-l-4 border-blue-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">📊 EMI (Reducing Balance)</h3>
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> EMI (Reducing Balance)</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Interest calculated on the reducing balance monthly. More interest is paid upfront, less later.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Total Interest:</strong> Lower | <strong>Early Payment:</strong> Better savings</p>
             </div>
             <div className="border-l-4 border-orange-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">💰 Flat Rate Interest</h3>
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Flat Rate Interest</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Interest calculated as a fixed percentage of the original principal throughout the loan tenure.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Total Interest:</strong> Higher | <strong>Early Payment:</strong> Limited benefit</p>
             </div>
@@ -593,14 +594,14 @@ export default function EMICalculatorPage() {
               Financial experts recommend that your total EMI (including all loans) should not exceed 40% of your monthly gross income. This is called the "40% rule" and ensures you have sufficient funds for living expenses, savings, and emergencies.
             </p>
             <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-              <p className="font-bold text-blue-900 dark:text-blue-300 mb-2">📋 Quick Assessment:</p>
+              <p className="font-bold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-1"><Target className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Quick Assessment:</p>
               <p className="text-sm">If your monthly EMI is ₹{result ? formatCurrency(result.emi).replace('₹', '') : 'X'}, you should have a gross monthly income of at least ₹{result ? formatCurrency(result.emi * 2.5).replace('₹', '') : 'X'} to stay within the 40% rule.</p>
             </div>
             <p className="text-sm">
               <strong>Why does this matter?</strong> Keeping your EMI within 40% of income ensures you can handle unexpected expenses, maintain an emergency fund, invest for retirement, and avoid financial stress during economic downturns.
             </p>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800 space-y-2">
-              <p className="font-bold text-amber-900 dark:text-amber-300">⚠️ Income Verification Tips:</p>
+              <p className="font-bold text-amber-900 dark:text-amber-300 flex items-center gap-1"><AlertTriangle className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Income Verification Tips:</p>
               <ul className="text-sm space-y-1 list-disc list-inside">
                 <li>Banks typically verify last 2 years of income (salary slips, IT returns)</li>
                 <li>Self-employed: 3 years of audited accounts required</li>
@@ -617,13 +618,13 @@ export default function EMICalculatorPage() {
           <div className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-lg border-2 border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">💰 Maximize Down Payment</h3>
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maximize Down Payment</h3>
                 <p className="text-sm text-green-800 dark:text-green-200 mb-3">Increasing your down payment from 20% to 40% can reduce your loan principal by ₹{result ? formatCurrency((result.totalAmount - result.emi * (watchValues.years * 12)) * 0.2).replace('₹', '') : 'X'}, which directly lowers EMI.</p>
                 <p className="text-xs font-semibold text-green-700 dark:text-green-300">Example: ₹50L home with 20% down vs 40% down reduces EMI by ₹10,000-15,000/month</p>
               </div>
 
               <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-4 rounded-lg border-2 border-blue-300 dark:border-blue-700">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">🎯 Negotiate Better Rate</h3>
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><Target className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Negotiate Better Rate</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">Even 0.5% reduction in interest rate saves substantial interest. At ₹50L loan, 0.5% cut saves ₹{result ? formatCurrency((result.totalAmount - (result.emi * watchValues.years * 12)) * 0.15).replace('₹', '') : 'X'} over tenure.</p>
                 <p className="text-xs font-semibold text-blue-700 dark:text-blue-300">Negotiation factors: CIBIL score {'>'} 750, existing customer, bulk loans</p>
               </div>
@@ -635,7 +636,7 @@ export default function EMICalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-4 rounded-lg border-2 border-orange-300 dark:border-orange-700">
-                <h3 className="font-bold text-orange-900 dark:text-orange-300 mb-3">🚀 Prepay Strategically</h3>
+                <h3 className="font-bold text-orange-900 dark:text-orange-300 mb-3 flex items-center gap-2"><Rocket className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Prepay Strategically</h3>
                 <p className="text-sm text-orange-800 dark:text-orange-200 mb-3">Annual bonuses or surplus income can be prepaid toward principal. Prepaying ₹5L in year 5 saves ₹10-15L in total interest on 20-year loans.</p>
                 <p className="text-xs font-semibold text-orange-700 dark:text-orange-300">Check prepayment penalties before pursuing this strategy</p>
               </div>
@@ -645,7 +646,7 @@ export default function EMICalculatorPage() {
 
         {/* Expert Tips */}
         <div className="card">
-          <h2 className="text-2xl font-bold mb-4">💡 Expert Insights on Loan Management</h2>
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Lightbulb className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Expert Insights on Loan Management</h2>
           <div className="space-y-4">
             <div className="border-l-4 border-blue-600 pl-4 py-2">
               <p className="font-semibold text-gray-900 dark:text-white mb-1">1. Understand Your Amortization Schedule</p>
@@ -723,7 +724,7 @@ export default function EMICalculatorPage() {
 
       {/* Affiliate Banner */}
       <AffiliateBanner
-        icon="🏦"
+        icon={Landmark}
         headline="Get the Lowest Loan Rate for Your EMI"
         subtext="Compare home loan, car loan & personal loan rates from 20+ banks instantly."
         note="Free comparison · No credit score impact · Instant eligibility check"

@@ -4,6 +4,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
+import { Mail } from 'lucide-react';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { evaluate, computeRegression, computeStats, matrixDet, matrixMul, matrixAdd, matrixTranspose, matrixInverse } from '@/lib/calculators/scientific';
 import type { AngleUnit, EngineMode } from '@/lib/calculators/scientific';
@@ -433,7 +434,7 @@ export default function ScientificCalculatorPage() {
 
       {/* Affiliate Banner */}
       <AffiliateBanner
-        icon="📬"
+        icon={Mail}
         headline="Advanced Scientific Computing"
         subtext="Use calculox for precise mathematical calculations with professional accuracy"
         note="Perfect for engineers, scientists, and students"

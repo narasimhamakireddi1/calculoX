@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
+import type { LucideIcon } from 'lucide-react';
+import {
+  DollarSign, Home, BarChart2, Heart, FlaskConical,
+  Zap, Target, Smartphone, Gift, Globe, Moon,
+} from 'lucide-react';
 import { generateOrganizationSchema } from '@/lib/seo/schemas';
 import { getActiveCalculators } from '@/config/calculators.config';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
@@ -26,6 +31,48 @@ export const metadata: Metadata = {
   },
 };
 
+const missionSections: Array<{ Icon: LucideIcon; color: string; heading: string; body: string }> = [
+  {
+    Icon: DollarSign,
+    color: 'text-blue-600 dark:text-blue-400',
+    heading: 'Investment & Wealth Planning',
+    body: 'Plan your financial future with SIP Calculator (systematic investment returns), CAGR Calculator (growth rate analysis), FD Calculator (fixed deposit maturity), RD Calculator (recurring deposit tracking), and Simple Interest Calculator (loan & deposit interest).',
+  },
+  {
+    Icon: Home,
+    color: 'text-violet-600 dark:text-violet-400',
+    heading: 'Loans & Real Estate Decisions',
+    body: 'Make informed housing decisions with EMI Calculator (loan repayment schedules), Home Loan vs Rent Calculator (buy vs rent break-even analysis), and understand your monthly payment obligations with detailed amortization schedules.',
+  },
+  {
+    Icon: BarChart2,
+    color: 'text-teal-600 dark:text-teal-400',
+    heading: 'Tax & Business Planning',
+    body: 'Optimize your finances with Income Tax Calculator (FY 2024-25 slabs, new vs old regime, 9+ deductions), GST Calculator (add/remove tax at all rates), Profit Margin Calculator (cost-driven & price-driven pricing with GST impact), and Percentage Calculator (6 modes for business calculations).',
+  },
+  {
+    Icon: Heart,
+    color: 'text-rose-600 dark:text-rose-400',
+    heading: 'Health & Wellness',
+    body: 'Monitor your health with BMI Calculator (Body Mass Index with WHO health categories and personalized tips for your weight category).',
+  },
+  {
+    Icon: FlaskConical,
+    color: 'text-indigo-600 dark:text-indigo-400',
+    heading: 'Advanced Tools',
+    body: 'Scientific Calculator (Casio ClassWiz-style with 4 engines: Standard, Complex Numbers, Matrix Operations, and Statistical Analysis) for students, engineers, and professionals.',
+  },
+];
+
+const whyChooseItems: Array<{ Icon: LucideIcon; title: string; desc: string }> = [
+  { Icon: Zap,        title: 'Lightning Fast',    desc: 'Instant calculations with no delays or loading screens.' },
+  { Icon: Target,     title: '100% Accurate',     desc: 'Verified formulas used by financial professionals.' },
+  { Icon: Smartphone, title: 'Mobile Friendly',   desc: 'Works perfectly on all devices – phone, tablet, desktop.' },
+  { Icon: Gift,       title: 'Completely Free',   desc: 'All calculators are free forever. No registration needed.' },
+  { Icon: Globe,      title: 'Made for India',    desc: 'Tailored for Indian tax laws, RBI rates & financial norms.' },
+  { Icon: Moon,       title: 'Dark Mode',         desc: 'Easy on the eyes with full dark mode support.' },
+];
+
 export default function AboutPage() {
   const orgSchema = generateOrganizationSchema();
   const calculators = getActiveCalculators().map((calc) => ({
@@ -49,9 +96,7 @@ export default function AboutPage() {
 
         {/* Hero */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            About calculox
-          </h1>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">About calculox</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             India's premium free calculator platform – built for accuracy, speed & simplicity.
           </p>
@@ -65,40 +110,15 @@ export default function AboutPage() {
           </p>
 
           <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">💰 Investment & Wealth Planning</h3>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Plan your financial future with SIP Calculator (systematic investment returns), CAGR Calculator (growth rate analysis), FD Calculator (fixed deposit maturity), RD Calculator (recurring deposit tracking), and Simple Interest Calculator (loan & deposit interest).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">🏠 Loans & Real Estate Decisions</h3>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Make informed housing decisions with EMI Calculator (loan repayment schedules), Home Loan vs Rent Calculator (buy vs rent break-even analysis), and understand your monthly payment obligations with detailed amortization schedules.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">📊 Tax & Business Planning</h3>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Optimize your finances with Income Tax Calculator (FY 2024-25 slabs, new vs old regime, 9+ deductions), GST Calculator (add/remove tax at all rates), Profit Margin Calculator (cost-driven & price-driven pricing with GST impact), and Percentage Calculator (6 modes for business calculations).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">❤️ Health & Wellness</h3>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Monitor your health with BMI Calculator (Body Mass Index with WHO health categories and personalized tips for your weight category).
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">🔬 Advanced Tools</h3>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Scientific Calculator (Casio ClassWiz-style with 4 engines: Standard, Complex Numbers, Matrix Operations, and Statistical Analysis) for students, engineers, and professionals.
-              </p>
-            </div>
+            {missionSections.map(({ Icon, color, heading, body }) => (
+              <div key={heading}>
+                <h3 className={`font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2 ${color}`}>
+                  <Icon className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                  <span className="text-gray-900 dark:text-white">{heading}</span>
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 text-sm">{body}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -131,18 +151,11 @@ export default function AboutPage() {
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Why Choose calculox?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: '⚡', title: 'Lightning Fast', desc: 'Instant calculations with no delays or loading screens.' },
-              { icon: '🎯', title: '100% Accurate', desc: 'Verified formulas used by financial professionals.' },
-              { icon: '📱', title: 'Mobile Friendly', desc: 'Works perfectly on all devices – phone, tablet, desktop.' },
-              { icon: '🆓', title: 'Completely Free', desc: 'All calculators are free forever. No registration needed.' },
-              { icon: '🇮🇳', title: 'Made for India', desc: 'Tailored for Indian tax laws, RBI rates & financial norms.' },
-              { icon: '🌙', title: 'Dark Mode', desc: 'Easy on the eyes with full dark mode support.' },
-            ].map((item) => (
-              <div key={item.title} className="p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{item.desc}</p>
+            {whyChooseItems.map(({ Icon, title, desc }) => (
+              <div key={title} className="p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+                <Icon className="w-8 h-8 mb-3 text-blue-600 dark:text-blue-400" strokeWidth={1.75} aria-hidden="true" />
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{title}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{desc}</p>
               </div>
             ))}
           </div>

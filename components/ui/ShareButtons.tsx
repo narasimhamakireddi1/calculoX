@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Eye, Share2, Clipboard, Check, MessageCircle, Briefcase, Users } from 'lucide-react';
 
 interface InputField {
   label: string;
@@ -18,25 +19,17 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  // Format the share message with inputs and outputs
   const formatShareMessage = (): string => {
     let message = `✅ ${calculatorName}\n\n`;
-
-    // Add inputs section
     message += '📥 INPUTS (Assumptions):\n';
     inputs.forEach((input) => {
       message += `  • ${input.label}: ${input.value}\n`;
     });
-
-    // Add outputs section
     message += '\n📤 RESULTS (Outputs):\n';
     outputs.forEach((output) => {
       message += `  • ${output.label}: ${output.value}\n`;
     });
-
-    // Add footer
     message += `\n🔗 Calculated using CalculoX\n${currentUrl}`;
-
     return message;
   };
 
@@ -66,8 +59,9 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
     <div className="space-y-3">
       {/* Preview Box */}
       <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
-        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
-          📋 Preview of Share Message
+        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide flex items-center gap-1.5">
+          <Eye className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
+          Preview of Share Message
         </p>
         <div className="bg-white dark:bg-gray-900 rounded p-3 text-xs font-mono text-gray-700 dark:text-gray-300 space-y-1 max-h-40 overflow-y-auto border border-gray-200 dark:border-gray-700">
           {shareMessage.split('\n').map((line, idx) => (
@@ -80,8 +74,9 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
 
       {/* Share Buttons */}
       <div>
-        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide">
-          📤 Share Your Results
+        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wide flex items-center gap-1.5">
+          <Share2 className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
+          Share Your Results
         </p>
         <div className="flex flex-wrap gap-2">
           {/* WhatsApp */}
@@ -91,7 +86,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
             title="Share on WhatsApp"
             aria-label="Share on WhatsApp"
           >
-            <span>💬</span>
+            <MessageCircle className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
             <span className="hidden sm:inline">WhatsApp</span>
           </button>
 
@@ -102,7 +97,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
             title="Share on X (Twitter)"
             aria-label="Share on X (Twitter)"
           >
-            <span>𝕏</span>
+            <span className="font-bold text-base leading-none">𝕏</span>
             <span className="hidden sm:inline">X</span>
           </button>
 
@@ -113,7 +108,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
             title="Share on LinkedIn"
             aria-label="Share on LinkedIn"
           >
-            <span>💼</span>
+            <Briefcase className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
             <span className="hidden sm:inline">LinkedIn</span>
           </button>
 
@@ -124,7 +119,7 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
             title="Share on Facebook"
             aria-label="Share on Facebook"
           >
-            <span>👥</span>
+            <Users className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
             <span className="hidden sm:inline">Facebook</span>
           </button>
 
@@ -139,7 +134,10 @@ export function ShareButtons({ inputs, outputs, calculatorName }: ShareButtonsPr
             title="Copy to clipboard"
             aria-label="Copy to clipboard"
           >
-            <span>{copied ? '✓' : '📋'}</span>
+            {copied
+              ? <Check className="w-4 h-4" strokeWidth={2.5} aria-hidden="true" />
+              : <Clipboard className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+            }
             <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy'}</span>
           </button>
         </div>

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+import { Clock, Calendar, TrendingUp, Coins, BarChart2, BookOpen, Trash2, RefreshCw, Landmark, Lock, AlertTriangle, HelpCircle } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
 import { useChartColors } from '@/components/charts/useChartColors';
 import { calculateFD, generateFDProjection, type PayoutType } from '@/lib/calculators/fd';
@@ -136,19 +137,19 @@ export default function FDCalculatorPage() {
     {
       label: 'Short-Term (1 Year)',
       description: '₹1L at 6.5% for 1 year',
-      icon: '⏱️',
+      icon: Clock,
       values: { principal: 100000, annualRate: 6.5, years: 1, months: 0, days: 0, tenureType: 'years', payoutType: 'cumulative' }
     },
     {
       label: 'Medium-Term (5 Years)',
       description: '₹5L at 7% quarterly payout',
-      icon: '📅',
+      icon: Calendar,
       values: { principal: 500000, annualRate: 7, years: 5, months: 0, days: 0, tenureType: 'years', payoutType: 'quarterly' }
     },
     {
       label: 'Long-Term (10 Years)',
       description: '₹10L at 7.5% monthly payout',
-      icon: '📈',
+      icon: TrendingUp,
       values: { principal: 1000000, annualRate: 7.5, years: 10, months: 0, days: 0, tenureType: 'years', payoutType: 'monthly' }
     }
   ], []);
@@ -208,9 +209,9 @@ export default function FDCalculatorPage() {
   );
 
   const payoutLabel = {
-    cumulative: '🔄 Cumulative (Reinvested)',
-    quarterly: '📊 Quarterly Payout',
-    monthly: '📅 Monthly Payout',
+    cumulative: 'Cumulative (Reinvested)',
+    quarterly: 'Quarterly Payout',
+    monthly: 'Monthly Payout',
   };
 
   // Swipe navigation to related calculators (mobile only)
@@ -345,9 +346,9 @@ export default function FDCalculatorPage() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {type === 'years' && '📅'}
-                    {type === 'months' && '📆'}
-                    {type === 'days' && '📋'}
+                    {type === 'years' && <Calendar className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'months' && <BarChart2 className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'days' && <Clock className="w-3.5 h-3.5 inline" aria-hidden="true" />}
                     <span className="ml-1 text-xs">{type}</span>
                   </button>
                 ))}
@@ -452,8 +453,8 @@ export default function FDCalculatorPage() {
               )}
 
               {isShortTerm && (
-                <p className="text-yellow-600 dark:text-yellow-400 text-xs font-semibold">
-                  ⚠️ Short-term FD (under 6 months) calculated using Simple Interest method
+                <p className="text-yellow-600 dark:text-yellow-400 text-xs font-semibold flex items-center gap-1">
+                  <AlertTriangle className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Short-term FD (under 6 months) calculated using Simple Interest method
                 </p>
               )}
             </div>
@@ -474,9 +475,9 @@ export default function FDCalculatorPage() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {type === 'cumulative' && '🔄'}
-                    {type === 'quarterly' && '📊'}
-                    {type === 'monthly' && '📅'}
+                    {type === 'cumulative' && <RefreshCw className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'quarterly' && <BarChart2 className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'monthly' && <Calendar className="w-3.5 h-3.5 inline" aria-hidden="true" />}
                     <span className="ml-1 text-xs capitalize">{type}</span>
                   </button>
                 ))}
@@ -507,7 +508,7 @@ export default function FDCalculatorPage() {
               onClick={handleReset}
               className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
             >
-              🗑️ Clear
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear
             </button>
           </form>
         </div>
@@ -520,7 +521,7 @@ export default function FDCalculatorPage() {
 
               {/* Tenure Info */}
               <div className="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg border-l-4 border-indigo-500">
-                <p className="text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-1">📅 Tenure</p>
+                <p className="text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-1 flex items-center gap-1"><Calendar className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Tenure</p>
                 <p className="text-indigo-900 dark:text-indigo-100 font-bold">
                   {result.tenure.years}Y {result.tenure.months}M {result.tenure.days}D ({result.tenure.totalDays} days)
                 </p>
@@ -529,14 +530,14 @@ export default function FDCalculatorPage() {
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    💰 Maturity Amount
+                    <Coins className="w-3.5 h-3.5 inline mr-1 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maturity Amount
                   </p>
                   <p className="text-xl sm:text-3xl md:text-4xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">{formatCurrency(result.maturityAmount)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow">
                   <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    📈 Total Interest Earned
+                    <TrendingUp className="w-3.5 h-3.5 inline mr-1 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Interest Earned
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{formatCurrency(result.totalInterest)}</p>
                 </div>
@@ -544,7 +545,7 @@ export default function FDCalculatorPage() {
                 {result.periodicPayout !== undefined && result.periodicPayout > 0 && (
                   <div className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/20 p-5 rounded-lg border-2 border-amber-300 dark:border-amber-700 shadow-md hover:shadow-lg transition-shadow">
                     <p className="text-amber-700 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                      {watchValues.payoutType === 'quarterly' ? '📊 Per Quarter Payout' : '📅 Per Month Payout'}
+                      {watchValues.payoutType === 'quarterly' ? <><BarChart2 className="w-3.5 h-3.5 inline mr-1 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Per Quarter Payout</> : <><Calendar className="w-3.5 h-3.5 inline mr-1 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Per Month Payout</>}
                     </p>
                     <p className="text-lg sm:text-2xl md:text-3xl font-bold text-amber-700 dark:text-amber-400 break-words overflow-hidden">{formatCurrency(result.periodicPayout)}</p>
                   </div>
@@ -553,7 +554,7 @@ export default function FDCalculatorPage() {
 
               {/* Result Explanation */}
               <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your FD Results</h3>
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your FD Results</h3>
                 <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
                   <p><strong>Maturity Amount:</strong> The total amount you'll receive at the end of the FD tenure (Principal + Interest)</p>
                   <p><strong>Total Interest Earned:</strong> The profit you earn from your Fixed Deposit investment</p>
@@ -566,7 +567,7 @@ export default function FDCalculatorPage() {
               </div>
 
               <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
                 <p className="text-sm text-amber-700 dark:text-amber-300">
                   Your effective annual yield is <strong>{((result.totalInterest / (watchValues.principal * (result.tenure.totalDays / 365))) * 100).toFixed(2)}%</strong>. Current bank FD rates range from 5-7%, so your {watchValues.annualRate}% rate {watchValues.annualRate >= 7 ? 'is competitive' : watchValues.annualRate >= 6 ? 'is reasonable' : 'is below market rates'}. {watchValues.seniorCitizen && 'Your 0.5% senior citizen bonus adds ₹' + (result.totalInterest - (watchValues.principal * (watchValues.annualRate / 100) * (result.tenure.totalDays / 365))).toFixed(0) + ' in extra returns.'} Compare with RD for monthly investment habits.
                 </p>
@@ -622,7 +623,7 @@ export default function FDCalculatorPage() {
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Line/Bar Chart */}
           <div className="card">
-            <h2 className="text-2xl font-bold mb-6">📈 Growth Visualization</h2>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><TrendingUp className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Growth Visualization</h2>
             {watchValues.payoutType === 'cumulative' ? (
               <ResponsiveContainer width="100%" height={400}>
                 <AreaChart data={chartData}>
@@ -672,7 +673,7 @@ export default function FDCalculatorPage() {
           {/* Pie Chart */}
           {result && watchValues.payoutType === 'cumulative' && (
             <div className="card">
-              <h2 className="text-2xl font-bold mb-6">💰 FD Breakup</h2>
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Coins className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> FD Breakup</h2>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
@@ -734,17 +735,17 @@ export default function FDCalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">FD vs Savings Account vs Recurring Deposit (RD)</h2>
           <div className="grid md:grid-cols-3 gap-4 text-sm">
             <div className="border-l-4 border-blue-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">🔐 FD (Fixed Deposit)</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Lock className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> FD (Fixed Deposit)</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Lump sum invested for fixed tenure</p>
               <p className="text-xs"><strong>Rate:</strong> 7-8% | <strong>Tenure:</strong> 3m-10y | <strong>Safety:</strong> Very High</p>
             </div>
             <div className="border-l-4 border-green-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">🏦 Savings Account</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Landmark className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Savings Account</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Liquid funds with withdrawal anytime</p>
               <p className="text-xs"><strong>Rate:</strong> 2-3% | <strong>Tenure:</strong> Ongoing | <strong>Safety:</strong> Very High</p>
             </div>
             <div className="border-l-4 border-orange-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">📊 RD (Recurring)</h3>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> RD (Recurring)</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly investments over fixed period</p>
               <p className="text-xs"><strong>Rate:</strong> 5-7% | <strong>Tenure:</strong> 6m-10y | <strong>Safety:</strong> Very High</p>
             </div>
@@ -830,7 +831,7 @@ export default function FDCalculatorPage() {
 
       {/* FAQ */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">

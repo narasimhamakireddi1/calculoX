@@ -26,6 +26,7 @@ import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { formatCurrency } from '@/lib/utils/format';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { Home, Building2, TrendingUp, Landmark, BarChart2, Sparkles } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 // Format large numbers for Y-axis (e.g., 1000000 → 10L, 10000000 → 1Cr)
@@ -158,19 +159,19 @@ export default function HomeLoanVsRentCalculator() {
     {
       label: 'Budget Buyer',
       description: '₹40L property, ₹20K rent',
-      icon: '🏠',
+      icon: Home,
       values: { property_value: 4000000, down_payment_pct: 20, loan_interest_rate_pct: 8.5, loan_tenure_years: 20, initial_monthly_rent: 20000, opportunity_return_pct: 12, projection_tenure_years: 20 }
     },
     {
       label: 'Mid-Range Home',
       description: '₹80L property, ₹40K rent',
-      icon: '🏡',
+      icon: Home,
       values: { property_value: 8000000, down_payment_pct: 25, loan_interest_rate_pct: 8.5, loan_tenure_years: 20, initial_monthly_rent: 40000, opportunity_return_pct: 12, projection_tenure_years: 25 }
     },
     {
       label: 'Premium Property',
       description: '₹1.5Cr property, ₹75K rent',
-      icon: '🏢',
+      icon: Building2,
       values: { property_value: 15000000, down_payment_pct: 30, loan_interest_rate_pct: 8, loan_tenure_years: 25, initial_monthly_rent: 75000, opportunity_return_pct: 11, projection_tenure_years: 30 }
     }
   ], []);
@@ -227,8 +228,11 @@ export default function HomeLoanVsRentCalculator() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Left: Verdict & Reasons */}
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  {result.financial_verdict === 'BUYING_IS_BETTER' ? '🏠 Buying Wins' : '📈 Renting Wins'}
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  {result.financial_verdict === 'BUYING_IS_BETTER'
+                    ? <><Home className="w-6 h-6 text-emerald-600" strokeWidth={2} aria-hidden="true" /> Buying Wins</>
+                    : <><TrendingUp className="w-6 h-6 text-blue-600" strokeWidth={2} aria-hidden="true" /> Renting Wins</>
+                  }
                 </h3>
 
                 <div className="space-y-4">
@@ -360,9 +364,9 @@ export default function HomeLoanVsRentCalculator() {
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
               }`}
             >
-              {tab === 'property' && '🏠 Property'}
-              {tab === 'loan' && '🏦 Loan & Rent'}
-              {tab === 'assumptions' && '📊 Assumptions'}
+              {tab === 'property' && <span className="flex items-center gap-1.5"><Home className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Property</span>}
+              {tab === 'loan' && <span className="flex items-center gap-1.5"><Landmark className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Loan & Rent</span>}
+              {tab === 'assumptions' && <span className="flex items-center gap-1.5"><BarChart2 className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Assumptions</span>}
             </button>
           ))}
         </div>
@@ -850,7 +854,10 @@ export default function HomeLoanVsRentCalculator() {
             {/* Key Verdict & Insights */}
             <div className={`card mb-8 ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800' : 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'}`}>
               <h3 className={`font-bold mb-3 text-lg ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-900 dark:text-emerald-300' : 'text-blue-900 dark:text-blue-300'}`}>
-                ✨ {result.financial_verdict === 'BUYING_IS_BETTER' ? '🏠 Buying is the Better Choice' : '📈 Renting is the Better Choice'}
+                <span className="flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                  {result.financial_verdict === 'BUYING_IS_BETTER' ? 'Buying is the Better Choice' : 'Renting is the Better Choice'}
+                </span>
               </h3>
               <div className={`space-y-2 text-sm ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-800 dark:text-emerald-200' : 'text-blue-800 dark:text-blue-200'}`}>
                 <p>
@@ -1018,7 +1025,10 @@ export default function HomeLoanVsRentCalculator() {
                           {formatCurrency(row.renter_net_worth)}
                         </td>
                         <td className="text-right py-2 px-2 font-semibold text-gray-700 dark:text-gray-300">
-                          {row.buyer_net_worth > row.renter_net_worth ? '🏠' : '📈'}
+                          {row.buyer_net_worth > row.renter_net_worth
+                            ? <Home className="w-4 h-4 inline text-emerald-600" strokeWidth={2} aria-hidden="true" />
+                            : <TrendingUp className="w-4 h-4 inline text-blue-600" strokeWidth={2} aria-hidden="true" />
+                          }
                         </td>
                       </tr>
                     ))}

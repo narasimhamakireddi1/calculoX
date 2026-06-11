@@ -14,6 +14,7 @@ import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { Briefcase, UserRound, Calculator } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 
@@ -162,19 +163,19 @@ export default function TaxCalculator() {
     {
       label: 'Mid-Level Professional',
       description: '₹12,00,000/year salary',
-      icon: '👨‍💼',
+      icon: Briefcase,
       values: { grossSalary: 1200000, hra: 0, standardDeduction: 0, '80C': 150000, '80D': 25000, regime: 'new', age: 'below60', city: 'metro', childrenCount: 0 }
     },
     {
       label: 'Senior Executive',
       description: '₹50,00,000/year + investments',
-      icon: '💼',
+      icon: Briefcase,
       values: { grossSalary: 5000000, hra: 500000, standardDeduction: 50000, '80C': 150000, '80D': 50000, regime: 'old', age: 'below60', city: 'metro', childrenCount: 2 }
     },
     {
       label: 'Senior Citizen',
       description: '₹25,00,000/year, above 60',
-      icon: '👴',
+      icon: UserRound,
       values: { grossSalary: 2500000, hra: 0, standardDeduction: 0, '80C': 150000, '80D': 50000, regime: 'new', age: 'above60', city: 'metro', childrenCount: 0 }
     }
   ], []);
@@ -1098,7 +1099,7 @@ export default function TaxCalculator() {
 
               {/* Affiliate Banner */}
               <AffiliateBanner
-                icon="🧮"
+                icon={Calculator}
                 headline="File Your ITR Correctly"
                 subtext="Use ClearTax for accurate ITR filing with expert guidance"
                 note="Get personalized tax saving tips tailored to your income"

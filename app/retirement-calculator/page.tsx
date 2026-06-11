@@ -15,6 +15,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { Sunset, UserRound, Briefcase, Calendar, Coins, BarChart2, TrendingDown, TrendingUp } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import z from 'zod';
 
@@ -92,19 +93,19 @@ export default function RetirementCalculatorPage() {
     {
       label: 'Early Retirement (40)',
       description: 'Retire at 40, live to 85',
-      icon: '🏖️',
+      icon: Sunset,
       values: { currentAge: 35, retirementAge: 40, lifeExpectancy: 85, monthlyExpense: 50000, currentSavings: 5000000, monthlyInvestment: 50000, investmentReturn: 12, inflationRate: 6 }
     },
     {
       label: 'Standard Retirement (60)',
       description: 'Retire at 60, live to 90',
-      icon: '👴',
+      icon: UserRound,
       values: { currentAge: 40, retirementAge: 60, lifeExpectancy: 90, monthlyExpense: 75000, currentSavings: 10000000, monthlyInvestment: 30000, investmentReturn: 11, inflationRate: 6 }
     },
     {
       label: 'Extended Work (65)',
       description: 'Work till 65, live comfortably',
-      icon: '💼',
+      icon: Briefcase,
       values: { currentAge: 45, retirementAge: 65, lifeExpectancy: 95, monthlyExpense: 100000, currentSavings: 20000000, monthlyInvestment: 25000, investmentReturn: 10, inflationRate: 5 }
     }
   ], []);
@@ -246,9 +247,9 @@ export default function RetirementCalculatorPage() {
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                   }`}
                 >
-                  {tab === 'timeline' && '📅 Timeline'}
-                  {tab === 'financials' && '💰 Financials'}
-                  {tab === 'returns' && '📊 Returns'}
+                  {tab === 'timeline' && <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Timeline</span>}
+                  {tab === 'financials' && <span className="flex items-center gap-1.5"><Coins className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Financials</span>}
+                  {tab === 'returns' && <span className="flex items-center gap-1.5"><BarChart2 className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Returns</span>}
                 </button>
               ))}
             </div>
@@ -337,11 +338,13 @@ export default function RetirementCalculatorPage() {
                 {/* Timeline Summary */}
                 {result && (
                   <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded border border-blue-200 dark:border-blue-800">
-                    <p className="text-sm font-semibold text-blue-900 dark:text-blue-300 mb-1">
-                      ⏳ Accumulation Phase: {result.accumulationYears} years ({result.totalWorkingMonths} months)
+                    <p className="text-sm font-semibold text-blue-900 dark:text-blue-300 mb-1 flex items-center gap-1.5">
+                      <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                      Accumulation Phase: {result.accumulationYears} years ({result.totalWorkingMonths} months)
                     </p>
-                    <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
-                      📅 Distribution Phase: {result.distributionYears} years ({result.totalRetirementMonths} months)
+                    <p className="text-sm font-semibold text-blue-900 dark:text-blue-300 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                      Distribution Phase: {result.distributionYears} years ({result.totalRetirementMonths} months)
                     </p>
                   </div>
                 )}
@@ -702,7 +705,10 @@ export default function RetirementCalculatorPage() {
               {/* Area Chart */}
               {chartData.length > 0 && (
                 <div className="card">
-                  <h2 className="text-2xl font-bold mb-6">📈 Wealth Accumulation & Distribution</h2>
+                  <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" />
+                    Wealth Accumulation & Distribution
+                  </h2>
                   <ResponsiveContainer width="100%" height={400}>
                     <AreaChart data={chartData}>
                       <defs>
@@ -810,7 +816,10 @@ export default function RetirementCalculatorPage() {
                               : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'
                           }`}
                         >
-                          {proj.phase === 'accumulation' ? '📈 Accumulating' : '📉 Distribution'}
+                          {proj.phase === 'accumulation'
+                            ? <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3" strokeWidth={2} aria-hidden="true" />Accumulating</span>
+                            : <span className="flex items-center gap-1"><TrendingDown className="w-3 h-3" strokeWidth={2} aria-hidden="true" />Distribution</span>
+                          }
                         </span>
                       </td>
                       <td className="px-4 py-3 text-right font-mono font-semibold text-blue-600 dark:text-blue-400">

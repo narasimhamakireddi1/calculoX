@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import type { LucideIcon } from 'lucide-react';
+import { Mail, Wrench, Lightbulb, Handshake } from 'lucide-react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -8,6 +10,13 @@ export const metadata: Metadata = {
   description: 'Contact the calculox team. Report bugs, suggest new calculators, or give feedback. We respond within 24 hours.',
   alternates: { canonical: `${BASE_URL}/contact` },
 };
+
+const contactCards: Array<{ Icon: LucideIcon; color: string; title: string; desc: string; value: string; href: string }> = [
+  { Icon: Mail,      color: 'text-blue-600 dark:text-blue-400',   title: 'Email Us',              desc: 'For general questions and support',     value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com' },
+  { Icon: Wrench,    color: 'text-rose-600 dark:text-rose-400',    title: 'Report a Bug',          desc: 'Found an issue with a calculator?',     value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Bug Report' },
+  { Icon: Lightbulb, color: 'text-amber-600 dark:text-amber-400',  title: 'Suggest a Calculator', desc: 'Want us to build a new calculator?',    value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Calculator Suggestion' },
+  { Icon: Handshake, color: 'text-violet-600 dark:text-violet-400',title: 'Partnerships',         desc: 'Business & advertising inquiries',      value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Partnership Inquiry' },
+];
 
 export default function ContactPage() {
   return (
@@ -24,21 +33,16 @@ export default function ContactPage() {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {[
-          { icon: '📧', title: 'Email Us', desc: 'For general questions and support', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com' },
-          { icon: '🛠️', title: 'Report a Bug', desc: 'Found an issue with a calculator?', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Bug Report' },
-          { icon: '💡', title: 'Suggest a Calculator', desc: 'Want us to build a new calculator?', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Calculator Suggestion' },
-          { icon: '🤝', title: 'Partnerships', desc: 'Business & advertising inquiries', value: 'supportcalculox@gmail.com', href: 'mailto:supportcalculox@gmail.com?subject=Partnership Inquiry' },
-        ].map((item) => (
+        {contactCards.map(({ Icon, color, title, desc, value, href }) => (
           <a
-            key={item.title}
-            href={item.href}
+            key={title}
+            href={href}
             className="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md transition-all"
           >
-            <div className="text-3xl mb-3">{item.icon}</div>
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{item.title}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{item.desc}</p>
-            <p className="text-blue-600 text-sm font-medium">{item.value}</p>
+            <Icon className={`w-8 h-8 mb-3 ${color}`} strokeWidth={1.75} aria-hidden="true" />
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{title}</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{desc}</p>
+            <p className="text-blue-600 text-sm font-medium">{value}</p>
           </a>
         ))}
       </div>
