@@ -3,7 +3,7 @@ import Script from 'next/script';
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import {
-  DollarSign, Home, BarChart2, Heart, FlaskConical,
+  IndianRupee, Home, BarChart2, Heart, FlaskConical,
   Zap, Target, Smartphone, Gift, Globe, Moon,
 } from 'lucide-react';
 import { generateOrganizationSchema } from '@/lib/seo/schemas';
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 const missionSections: Array<{ Icon: LucideIcon; color: string; heading: string; body: string }> = [
   {
-    Icon: DollarSign,
+    Icon: IndianRupee,
     color: 'text-blue-600 dark:text-blue-400',
     heading: 'Investment & Wealth Planning',
     body: 'Plan your financial future with SIP Calculator (systematic investment returns), CAGR Calculator (growth rate analysis), FD Calculator (fixed deposit maturity), RD Calculator (recurring deposit tracking), and Simple Interest Calculator (loan & deposit interest).',

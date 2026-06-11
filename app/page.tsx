@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import {
-  DollarSign, Heart, Wrench, ArrowLeftRight,
+  IndianRupee, Heart, Wrench, ArrowLeftRight,
   Zap, ShieldCheck, Smartphone, Lock, Scale,
   Landmark, ReceiptText, Target,
 } from 'lucide-react';
@@ -14,7 +14,7 @@ import { CategoryTabs, type CalculatorCategory } from "@/components/ui/CategoryT
 import { getActiveCalculators } from "@/config/calculators.config";
 
 const categoryConfig: Record<string, { label: string; Icon: LucideIcon }> = {
-  finance:    { label: 'Finance',    Icon: DollarSign },
+  finance:    { label: 'Finance',    Icon: IndianRupee },
   health:     { label: 'Health',     Icon: Heart },
   utility:    { label: 'Utility',    Icon: Wrench },
   conversion: { label: 'Conversion', Icon: ArrowLeftRight },

@@ -14,7 +14,7 @@ import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { Briefcase, UserRound, Calculator, DollarSign, Home, Landmark, BarChart2, Trash2, BookOpen, Lightbulb, TrendingUp, Search, HelpCircle, Clock, Coins, CheckCircle2, PieChart, Sparkles } from 'lucide-react';
+import { Briefcase, UserRound, Calculator, IndianRupee, Home, Landmark, BarChart2, Trash2, BookOpen, Lightbulb, TrendingUp, Search, HelpCircle, Clock, Coins, CheckCircle2, PieChart, Sparkles } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 
@@ -251,7 +251,7 @@ export default function TaxCalculator() {
 
             {/* Income Details */}
             <div className="card p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-              <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2"><DollarSign className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Income Details</h2>
+              <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2"><IndianRupee className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Income Details</h2>
 
               <div className="space-y-4">
                 {/* Gross Salary */}
