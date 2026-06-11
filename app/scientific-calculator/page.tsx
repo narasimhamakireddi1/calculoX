@@ -1,7 +1,5 @@
 'use client';
 
-﻿'use client';
-
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { Mail } from 'lucide-react';

@@ -5,7 +5,8 @@ import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import {
   DollarSign, Heart, Wrench, ArrowLeftRight,
-  Zap, ShieldCheck, Smartphone, Lock, Scale, Star,
+  Zap, ShieldCheck, Smartphone, Lock, Scale,
+  Landmark, ReceiptText, Target,
 } from 'lucide-react';
 import { CalculatorCard } from "@/components/ui/CalculatorCard";
 import { CalculatorSearch } from "@/components/ui/CalculatorSearch";
@@ -84,21 +85,18 @@ export default function Home() {
 
         {/* Trust Bar */}
         <div className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 md:p-8 border border-blue-100 dark:border-blue-800/50">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">50K+</div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Indians using CalculoX</p>
+              <div className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">14</div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Free Calculators</p>
             </div>
             <div className="text-center">
               <Lock className="w-8 h-8 mx-auto text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" />
               <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">No Data Stored</p>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center gap-1 text-2xl md:text-3xl font-bold text-amber-600 dark:text-amber-400">
-                <Star className="w-6 h-6 fill-current" strokeWidth={0} aria-hidden="true" />
-                4.8
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">User Rating</p>
+              <div className="text-2xl md:text-3xl font-bold text-violet-600 dark:text-violet-400">0</div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Signup Required</p>
             </div>
           </div>
         </div>
@@ -164,28 +162,50 @@ export default function Home() {
         )}
       </section>
 
-      {/* Testimonials Section */}
+      {/* Use Cases Section */}
       <section className="space-y-8">
         <div className="space-y-2 mb-8">
-          <h2 className="text-4xl font-bold">What Users Are Saying</h2>
-          <p className="text-gray-600 dark:text-gray-400">Real stories from Indians using CalculoX every day</p>
+          <h2 className="text-4xl font-bold">Common Use Cases</h2>
+          <p className="text-gray-600 dark:text-gray-400">See how CalculoX helps with everyday financial decisions</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { quote: 'Calculated my home loan EMI in seconds — way more detailed than bank calculators. The breakdown is so clear!', name: 'Priya S.', location: 'Bangalore' },
-            { quote: 'The tax calculator helped me save ₹45,000 by comparing old vs new regime. Absolutely worth it!', name: 'Rahul M.', location: 'Delhi' },
-            { quote: 'Love the retirement planner — finally understand how much I need to save monthly. Game changer!', name: 'Sneha K.', location: 'Mumbai' },
-          ].map((t) => (
-            <div key={t.name} className="relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <span className="absolute inset-y-0 left-0 w-1.5 bg-blue-500" />
-              <div className="flex items-center mb-4 gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" strokeWidth={0} aria-hidden="true" />
-                ))}
+            {
+              Icon: Landmark,
+              color: 'text-blue-600 dark:text-blue-400',
+              bg: 'bg-blue-50 dark:bg-blue-900/20',
+              title: 'Home Loan Planning',
+              body: 'Compare EMIs across tenures, see total interest paid over the loan life, and decide between buying and renting — before signing with a bank.',
+              cta: 'Try EMI Calculator',
+              href: '/emi-calculator',
+            },
+            {
+              Icon: ReceiptText,
+              color: 'text-violet-600 dark:text-violet-400',
+              bg: 'bg-violet-50 dark:bg-violet-900/20',
+              title: 'Old vs New Tax Regime',
+              body: 'Enter your salary, HRA, and deductions once. The tax calculator shows the exact liability under both regimes so you pick the one that saves more.',
+              cta: 'Try Tax Calculator',
+              href: '/tax-calculator',
+            },
+            {
+              Icon: Target,
+              color: 'text-emerald-600 dark:text-emerald-400',
+              bg: 'bg-emerald-50 dark:bg-emerald-900/20',
+              title: 'Retirement Corpus Goal',
+              body: 'Use the NISM-based retirement planner to find out how much you need to invest each month to retire at your chosen age with the lifestyle you want.',
+              cta: 'Try Retirement Planner',
+              href: '/retirement-calculator',
+            },
+          ].map((card) => (
+            <div key={card.title} className="relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+              <span className="absolute inset-y-0 left-0 w-1.5 bg-blue-500 rounded-l-2xl" />
+              <div className={`inline-flex p-2.5 rounded-xl mb-4 ${card.bg}`}>
+                <card.Icon className={`w-5 h-5 ${card.color}`} strokeWidth={2} aria-hidden="true" />
               </div>
-              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed italic">&quot;{t.quote}&quot;</p>
-              <p className="font-semibold text-gray-900 dark:text-white">{t.name}</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{t.location}</p>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{card.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">{card.body}</p>
+              <Link href={card.href} className={`text-sm font-semibold ${card.color} hover:underline`}>{card.cta} →</Link>
             </div>
           ))}
         </div>
