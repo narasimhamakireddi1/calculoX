@@ -56,7 +56,11 @@
       "Bash(node _ic.mjs)",
       "Bash(npm install *)",
       "Bash(node -e \"console.log\\('lucide-react', require\\('lucide-react/package.json'\\).version\\)\")",
-      "Bash(node _v.mjs)"
+      "Bash(node _v.mjs)",
+      "Bash(git restore *)",
+      "Bash(git pull *)",
+      "Bash(xargs grep -l \"^'use client'\")",
+      "Bash(git rm *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\Downloads\\calculator\\calc"

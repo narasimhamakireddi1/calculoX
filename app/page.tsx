@@ -119,13 +119,13 @@ export default function Home() {
         />
 
         {selectedCategory ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div key={selectedCategory} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in">
             {filteredCalculators.map((calc) => (
               <CalculatorCard key={calc.href} {...calc} />
             ))}
           </div>
         ) : (
-          <div className="space-y-12">
+          <div key="all" className="space-y-12 animate-fade-in">
             {Object.entries(groupedByCategory).map(([category, calcs]) => {
               const cfg = categoryConfig[category];
               const CategoryIcon = cfg?.Icon;

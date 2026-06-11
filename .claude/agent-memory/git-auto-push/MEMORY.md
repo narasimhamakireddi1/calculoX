@@ -1,0 +1,1 @@
+- [Chart refinement #7](project_chart_refinement.md) — Dark mode theming hook + AreaChart gradient fills shipped 2026-06-10; useChartColors is the canonical pattern for future charts
