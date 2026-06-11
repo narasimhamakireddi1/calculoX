@@ -1,3 +1,4 @@
 - [Chart refinement #7](project_chart_refinement.md) — Dark mode theming hook + AreaChart gradient fills shipped 2026-06-10; useChartColors is the canonical pattern for future charts
 - [Icon tile consistency](project_icon_tile_consistency.md) — All H1 headers/RelatedCalculators/Compare panel use rounded tile containers with category-aware colors; established 2026-06-11
 - [Lucide icon parity commit pattern](feedback_icon_parity_commit.md) — feat(icons) scope used for emoji→Lucide sweeps; body lists per-calc changes + duplicate 'use client' removals; ends with build status line
+- [IndianRupee not DollarSign](feedback_indian_rupee_icon.md) — Always use IndianRupee (₹) for Finance/money icons; DollarSign was corrected 2026-06-11 across 3 files
