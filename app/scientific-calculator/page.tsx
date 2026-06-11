@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
-import { Mail } from 'lucide-react';
+import { Mail, ClipboardList, BookOpen, Calculator, Sigma, LayoutGrid, BarChart2, Target, Lightbulb, Building2, Zap, TrendingUp, Search, CheckCircle2, HelpCircle } from 'lucide-react';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { evaluate, computeRegression, computeStats, matrixDet, matrixMul, matrixAdd, matrixTranspose, matrixInverse } from '@/lib/calculators/scientific';
 import type { AngleUnit, EngineMode } from '@/lib/calculators/scientific';
@@ -245,7 +245,7 @@ export default function ScientificCalculatorPage() {
         {/* History Panel */}
         {history.length > 0 && (
           <div className="card">
-            <h3 className="text-xl font-bold mb-4">📋 History</h3>
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2"><ClipboardList className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> History</h3>
             <div className="space-y-2 max-h-[200px] overflow-y-auto">
               {[...history].reverse().map((item, i) => (
                 <div key={i} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -298,26 +298,26 @@ export default function ScientificCalculatorPage() {
 
       {/* Understanding Scientific Calculations */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-4">📚 Understanding Scientific Calculations</h2>
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BookOpen className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Scientific Calculations</h2>
         <div className="space-y-4 text-gray-700 dark:text-gray-300">
           <p>
             Scientific calculators are powerful tools used by engineers, mathematicians, physicists, and students to solve complex mathematical problems involving trigonometric functions, logarithms, exponentials, matrices, and statistical analysis.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-              <p className="font-bold text-blue-900 dark:text-blue-300 mb-2">🔢 Standard Mode</p>
+              <p className="font-bold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Standard Mode</p>
               <p className="text-sm">Basic mathematical operations with scientific functions like trigonometry, logarithms, roots, and factorials.</p>
             </div>
             <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
-              <p className="font-bold text-purple-900 dark:text-purple-300 mb-2">➕ Complex Numbers</p>
+              <p className="font-bold text-purple-900 dark:text-purple-300 mb-2 flex items-center gap-2"><Sigma className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Complex Numbers</p>
               <p className="text-sm">Advanced calculations with imaginary numbers (using i notation). Essential for electrical engineering and physics.</p>
             </div>
             <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
-              <p className="font-bold text-green-900 dark:text-green-300 mb-2">📊 Matrix Operations</p>
+              <p className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><LayoutGrid className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Matrix Operations</p>
               <p className="text-sm">Perform linear algebra computations: determinants, inverses, transpose, addition, and multiplication of matrices.</p>
             </div>
             <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
-              <p className="font-bold text-orange-900 dark:text-orange-300 mb-2">📈 Statistics</p>
+              <p className="font-bold text-orange-900 dark:text-orange-300 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Statistics</p>
               <p className="text-sm">Analyze data sets with statistical measures: mean, standard deviation, regression analysis, and correlation coefficients.</p>
             </div>
           </div>
@@ -326,7 +326,7 @@ export default function ScientificCalculatorPage() {
 
       {/* Key Features & How to Use */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-4">🎯 Key Features & How to Master Them</h2>
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Target className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Features & How to Master Them</h2>
         <div className="space-y-4">
           <div className="border-l-4 border-blue-600 pl-4 py-2">
             <p className="font-semibold text-gray-900 dark:text-white mb-1">1. Angle Units (DEG/RAD)</p>
@@ -362,25 +362,25 @@ export default function ScientificCalculatorPage() {
 
       {/* Practical Applications */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-4">💡 Real-World Applications</h2>
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Lightbulb className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Real-World Applications</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
-            <p className="font-bold text-blue-900 dark:text-blue-300 mb-2">🏗️ Engineering</p>
+            <p className="font-bold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2"><Building2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Engineering</p>
             <p className="text-sm">Calculate structural angles, forces using trigonometry. Use matrices for finite element analysis. Example: Bridge load calculations.</p>
           </div>
 
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-lg border border-green-200 dark:border-green-700">
-            <p className="font-bold text-green-900 dark:text-green-300 mb-2">📡 Physics</p>
+            <p className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><Zap className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Physics</p>
             <p className="text-sm">Wave equations using sin/cos. Exponential decay (radioactive materials). Logarithmic scales (decibels, Richter scale).</p>
           </div>
 
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
-            <p className="font-bold text-purple-900 dark:text-purple-300 mb-2">💰 Finance</p>
+            <p className="font-bold text-purple-900 dark:text-purple-300 mb-2 flex items-center gap-2"><TrendingUp className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Finance</p>
             <p className="text-sm">Compound interest using e^x. Logarithmic returns. Matrix methods for portfolio optimization.</p>
           </div>
 
           <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-700">
-            <p className="font-bold text-orange-900 dark:text-orange-300 mb-2">📊 Data Analysis</p>
+            <p className="font-bold text-orange-900 dark:text-orange-300 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Data Analysis</p>
             <p className="text-sm">Statistical measures (mean, std dev) for data insights. Linear regression for trend analysis and predictions.</p>
           </div>
         </div>
@@ -388,10 +388,10 @@ export default function ScientificCalculatorPage() {
 
       {/* Tips for Accurate Calculations */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-4">🔍 Tips for Accurate Calculations</h2>
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Search className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Tips for Accurate Calculations</h2>
         <div className="space-y-3">
           <div className="flex gap-3">
-            <span className="text-2xl">✓</span>
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-green-500 mt-0.5" strokeWidth={2} aria-hidden="true" />
             <div>
               <p className="font-semibold text-gray-900 dark:text-white">Verify Angle Mode</p>
               <p className="text-sm text-gray-700 dark:text-gray-300">Always check if you're in DEG or RAD mode before calculating trigonometric functions. sin(90) in degrees is different from sin(90) in radians!</p>
@@ -399,7 +399,7 @@ export default function ScientificCalculatorPage() {
           </div>
 
           <div className="flex gap-3">
-            <span className="text-2xl">✓</span>
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-green-500 mt-0.5" strokeWidth={2} aria-hidden="true" />
             <div>
               <p className="font-semibold text-gray-900 dark:text-white">Use Parentheses for Grouping</p>
               <p className="text-sm text-gray-700 dark:text-gray-300">Complex expressions need proper grouping. 2+3*4 = 14 (order of operations), but (2+3)*4 = 20. Always use parentheses to avoid ambiguity.</p>
@@ -407,7 +407,7 @@ export default function ScientificCalculatorPage() {
           </div>
 
           <div className="flex gap-3">
-            <span className="text-2xl">✓</span>
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-green-500 mt-0.5" strokeWidth={2} aria-hidden="true" />
             <div>
               <p className="font-semibold text-gray-900 dark:text-white">Check Precision Limits</p>
               <p className="text-sm text-gray-700 dark:text-gray-300">Floating-point calculations have precision limits. Very small results may show rounding. For critical calculations, round only at the end.</p>
@@ -415,7 +415,7 @@ export default function ScientificCalculatorPage() {
           </div>
 
           <div className="flex gap-3">
-            <span className="text-2xl">✓</span>
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-green-500 mt-0.5" strokeWidth={2} aria-hidden="true" />
             <div>
               <p className="font-semibold text-gray-900 dark:text-white">Double-Check Matrix Dimensions</p>
               <p className="text-sm text-gray-700 dark:text-gray-300">Matrix multiplication requires matching dimensions (m×n × n×p = m×p). Ensure matrices are properly sized before operations.</p>
@@ -423,7 +423,7 @@ export default function ScientificCalculatorPage() {
           </div>
 
           <div className="flex gap-3">
-            <span className="text-2xl">✓</span>
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-green-500 mt-0.5" strokeWidth={2} aria-hidden="true" />
             <div>
               <p className="font-semibold text-gray-900 dark:text-white">Validate Statistical Data</p>
               <p className="text-sm text-gray-700 dark:text-gray-300">Ensure you have sufficient data points for meaningful statistics. Outliers can significantly affect standard deviation and regression analysis.</p>
@@ -446,7 +446,7 @@ export default function ScientificCalculatorPage() {
 
       {/* FAQ */}
       <div className="max-w-3xl mx-auto card">
-        <h3 className="text-2xl font-bold mb-6">📋 Frequently Asked Questions</h3>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group cursor-pointer">
             <summary className="font-semibold text-gray-900 dark:text-gray-100 group-open:text-blue-600">
@@ -910,7 +910,7 @@ function StatResultCard({ statData }: { statData: StatDataPoint[] }) {
 
   return (
     <div className="card">
-      <h3 className="text-xl font-bold mb-4">📊 Statistical Analysis</h3>
+      <h3 className="text-xl font-bold mb-4 flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Statistical Analysis</h3>
 
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>

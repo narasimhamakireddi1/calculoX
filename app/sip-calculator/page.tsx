@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Shield, Rocket, Target, TrendingUp, BarChart2, Coins, BookOpen, Lightbulb, Trash2, RefreshCw, Repeat } from 'lucide-react';
+import { Shield, Rocket, Target, TrendingUp, BarChart2, Coins, BookOpen, Lightbulb, Trash2, RefreshCw, Repeat, HelpCircle } from 'lucide-react';
 
 const ProjectionTable = lazy(() => import('@/components/sip/ProjectionTable').then(m => ({ default: m.default })));
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -758,7 +758,7 @@ export default function SIPCalculatorPage() {
 
       {/* FAQ Section */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">

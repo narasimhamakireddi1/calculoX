@@ -5,14 +5,16 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
-import { useChartColors } from '@/components/charts/useChartColors';
 import { calculateBMI } from '@/lib/calculators/bmi';
 import { BMISchema } from '@/lib/validators';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { UserRound, Dumbbell, Activity, TrendingDown, CheckCircle2, AlertTriangle, AlertOctagon, BarChart2 } from 'lucide-react';
+import {
+  UserRound, Dumbbell, Activity, TrendingDown, CheckCircle2, AlertTriangle, AlertOctagon,
+  Globe, Ruler, Trash2, BookOpen, Info, Lightbulb, Target, Utensils, Stethoscope,
+  HeartPulse, HelpCircle, Zap, Star, Scale as ScaleIcon,
+} from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useSwipeGesture } from '@/lib/hooks/useSwipeGesture';
 import { SwipeHint } from '@/components/mobile/SwipeHint';
@@ -37,7 +39,6 @@ const categoryColors = {
 };
 
 export default function BMICalculatorPage() {
-  const chartColors = useChartColors();
   const [result, setResult] = useState<BMIResultData | null>(null);
   const [unitSystem, setUnitSystem] = useState<'metric' | 'imperial'>('metric');
 
@@ -228,23 +229,25 @@ export default function BMICalculatorPage() {
           <div className="flex gap-2 mb-8 bg-gray-100 dark:bg-gray-700/30 p-1 rounded-lg">
             <button
               onClick={() => handleUnitChange('metric')}
-              className={`flex-1 py-3 px-4 rounded-md font-semibold transition-all duration-200 ${
+              className={`flex-1 py-3 px-4 rounded-md font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
                 unitSystem === 'metric'
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white shadow-lg'
                   : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
-              🌍 Metric (kg, cm)
+              <Globe className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+              Metric (kg, cm)
             </button>
             <button
               onClick={() => handleUnitChange('imperial')}
-              className={`flex-1 py-3 px-4 rounded-md font-semibold transition-all duration-200 ${
+              className={`flex-1 py-3 px-4 rounded-md font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
                 unitSystem === 'imperial'
-                  ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-rose-600 to-rose-700 text-white shadow-lg'
                   : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
-              🇺🇸 Imperial (lbs, in)
+              <Ruler className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+              Imperial (lbs, in)
             </button>
           </div>
 
@@ -286,8 +289,9 @@ export default function BMICalculatorPage() {
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                💡 Normal BMI range: 18.5-24.9. Asian guidelines suggest &lt;23 for optimal health
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-start gap-1.5">
+                <Info className="w-3.5 h-3.5 flex-shrink-0 mt-px" strokeWidth={2} aria-hidden="true" />
+                Normal BMI range: 18.5–24.9. Asian guidelines suggest &lt;23 for optimal health
               </p>
             </div>
 
@@ -328,17 +332,19 @@ export default function BMICalculatorPage() {
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                💡 Be precise with your height. Even small variations impact BMI calculation significantly
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-start gap-1.5">
+                <Info className="w-3.5 h-3.5 flex-shrink-0 mt-px" strokeWidth={2} aria-hidden="true" />
+                Be precise with your height — even small variations impact BMI significantly
               </p>
             </div>
 
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all hover:scale-[1.02] active:scale-95"
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2"
             >
-              🗑️ Clear All
+              <Trash2 className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
+              Clear All
             </button>
           </form>
         </div>
@@ -389,37 +395,47 @@ export default function BMICalculatorPage() {
               </div>
 
               {/* Health Insights & Recommendations */}
-              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your BMI</h3>
-                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
-                  BMI (Body Mass Index) is a measure of body fat based on height and weight. A BMI of <strong>{result.bmi}</strong> falls in the <strong className={colors.text.replace('text-', 'text-')}>{result.category}</strong> category.
+              <div className="mt-6 bg-rose-50 dark:bg-rose-900/20 rounded-xl p-4 border border-rose-200 dark:border-rose-800">
+                <h3 className="font-bold text-rose-900 dark:text-rose-300 mb-3 flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                  Understanding Your BMI
+                </h3>
+                <p className="text-sm text-rose-800 dark:text-rose-200 mb-3">
+                  BMI (Body Mass Index) is a measure of body fat based on height and weight. A BMI of <strong>{result.bmi}</strong> falls in the <strong className={colors.text}>{result.category}</strong> category.
                 </p>
-                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                <div className="space-y-2 text-sm">
                   {result.category === 'underweight' && (
-                    <div className="p-3 bg-blue-100 dark:bg-blue-900/40 rounded">
-                      <p><strong>💡 Recommendation:</strong> You may need to gain weight. Consult a healthcare provider for a balanced diet plan that includes nutrient-rich foods.</p>
+                    <div className="p-3 bg-blue-100 dark:bg-blue-900/40 rounded-lg flex gap-2">
+                      <Lightbulb className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400 mt-0.5" strokeWidth={2} aria-hidden="true" />
+                      <p className="text-blue-800 dark:text-blue-200"><strong>Recommendation:</strong> You may need to gain weight. Consult a healthcare provider for a balanced diet plan that includes nutrient-rich foods.</p>
                     </div>
                   )}
                   {result.category === 'normal' && (
-                    <div className="p-3 bg-green-100 dark:bg-green-900/40 rounded">
-                      <p><strong>✅ Great!</strong> Your weight is healthy. Maintain this by regular exercise (150 min/week) and a balanced diet.</p>
+                    <div className="p-3 bg-green-100 dark:bg-green-900/40 rounded-lg flex gap-2">
+                      <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-green-600 dark:text-green-400 mt-0.5" strokeWidth={2} aria-hidden="true" />
+                      <p className="text-green-800 dark:text-green-200"><strong>Great!</strong> Your weight is healthy. Maintain this by regular exercise (150 min/week) and a balanced diet.</p>
                     </div>
                   )}
                   {result.category === 'overweight' && (
-                    <div className="p-3 bg-orange-100 dark:bg-orange-900/40 rounded">
-                      <p><strong>⚠️ Recommendation:</strong> Consider gradual weight loss through increased physical activity and dietary changes. Aim for 0.5-1 kg loss per week.</p>
+                    <div className="p-3 bg-amber-100 dark:bg-amber-900/40 rounded-lg flex gap-2">
+                      <AlertTriangle className="w-4 h-4 flex-shrink-0 text-amber-600 dark:text-amber-400 mt-0.5" strokeWidth={2} aria-hidden="true" />
+                      <p className="text-amber-800 dark:text-amber-200"><strong>Recommendation:</strong> Consider gradual weight loss through increased physical activity and dietary changes. Aim for 0.5–1 kg loss per week.</p>
                     </div>
                   )}
                   {result.category === 'obese' && (
-                    <div className="p-3 bg-red-100 dark:bg-red-900/40 rounded">
-                      <p><strong>⚠️ Important:</strong> Consult a doctor or nutritionist for a personalized weight management plan. Regular exercise and lifestyle changes are recommended.</p>
+                    <div className="p-3 bg-red-100 dark:bg-red-900/40 rounded-lg flex gap-2">
+                      <AlertOctagon className="w-4 h-4 flex-shrink-0 text-red-600 dark:text-red-400 mt-0.5" strokeWidth={2} aria-hidden="true" />
+                      <p className="text-red-800 dark:text-red-200"><strong>Important:</strong> Consult a doctor or nutritionist for a personalized weight management plan. Regular exercise and lifestyle changes are recommended.</p>
                     </div>
                   )}
                 </div>
               </div>
 
               <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2">
+                  <ScaleIcon className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                  How Do You Compare?
+                </h3>
                 <p className="text-sm text-amber-700 dark:text-amber-300">
                   Your BMI of {result.bmi.toFixed(1)} places you in the <strong>{result.category}</strong> category. Research indicates that overweight and obesity affect approximately 30-40% of urban populations in India. Maintaining a healthy BMI through regular exercise and a balanced diet significantly reduces chronic disease risk.
                 </p>
@@ -449,128 +465,171 @@ export default function BMICalculatorPage() {
         </div>
       </div>
 
-      {/* BMI Category Range Donut Chart */}
-      {result && (
-        <div className="card">
-          <h2 className="text-2xl font-bold mb-6">📊 BMI Spectrum Distribution</h2>
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={[
-                    { name: 'Underweight (<18.5)', value: 18.5 },
-                    { name: 'Normal (18.5-25)', value: 6.5 },
-                    { name: 'Overweight (25-30)', value: 5 },
-                    { name: 'Obese (>30)', value: 10 },
-                  ]}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={100}
-                  dataKey="value"
-                  isAnimationActive={false}
+      {/* BMI Spectrum — horizontal gauge, works on all screen sizes */}
+      {result && (() => {
+        // Scale: 10 → 45  (35-pt range)
+        const BMI_MIN = 10, BMI_RANGE = 35;
+        const pct = Math.min(Math.max(((result.bmi - BMI_MIN) / BMI_RANGE) * 100, 1.5), 98.5);
+        const triangleColor =
+          result.category === 'underweight' ? '#3b82f6' :
+          result.category === 'normal'      ? '#22c55e' :
+          result.category === 'overweight'  ? '#f59e0b' :
+                                              '#ef4444';
+        return (
+          <div className="card">
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose-50 dark:bg-rose-950/40 ring-1 ring-rose-100 dark:ring-rose-900/50 flex-shrink-0">
+                <Activity className="w-4 h-4 text-rose-600 dark:text-rose-400" strokeWidth={2} aria-hidden="true" />
+              </span>
+              BMI Spectrum
+            </h2>
+
+            {/* Gauge */}
+            <div className="mb-8 px-1">
+              {/* Floating label + pointer */}
+              <div className="relative h-10 mb-1 select-none pointer-events-none">
+                <div
+                  className="absolute -translate-x-1/2 flex flex-col items-center"
+                  style={{ left: `${pct}%` }}
                 >
-                  <Cell fill="#3b82f6" opacity={result.category === 'underweight' ? 1 : 0.4} />
-                  <Cell fill="#10b981" opacity={result.category === 'normal' ? 1 : 0.4} />
-                  <Cell fill="#f59e0b" opacity={result.category === 'overweight' ? 1 : 0.4} />
-                  <Cell fill="#ef4444" opacity={result.category === 'obese' ? 1 : 0.4} />
-                </Pie>
-                <Tooltip
-                  formatter={(v) => `BMI Range: ${v}`}
-                  contentStyle={chartColors.tooltipStyle}
-                  wrapperStyle={{ outline: 'none' }}
-                />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
-            <div className="space-y-3 text-sm">
-              <div className={`flex justify-between items-center p-3 rounded-lg border ${result.category === 'underweight' ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700 shadow-lg' : 'bg-gray-50 dark:bg-gray-700/30 border-gray-200 dark:border-gray-600 opacity-60'}`}>
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full inline-block bg-blue-500" />
-                  <span className="text-gray-600 dark:text-gray-400">Underweight (&lt;18.5)</span>
-                </span>
-                <span className="font-bold text-gray-900 dark:text-white">{result.category === 'underweight' ? result.bmi.toFixed(1) : '—'}</span>
+                  <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full border shadow-sm whitespace-nowrap ${colors.bg} ${colors.border} ${colors.text}`}>
+                    You · {result.bmi.toFixed(1)}
+                  </span>
+                  <svg width="10" height="7" viewBox="0 0 10 7" aria-hidden="true" className="mt-0.5">
+                    <polygon points="0,0 10,0 5,7" fill={triangleColor} />
+                  </svg>
+                </div>
               </div>
-              <div className={`flex justify-between items-center p-3 rounded-lg border ${result.category === 'normal' ? 'bg-green-50 dark:bg-green-900/30 border-green-300 dark:border-green-700 shadow-lg' : 'bg-gray-50 dark:bg-gray-700/30 border-gray-200 dark:border-gray-600 opacity-60'}`}>
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full inline-block bg-green-500" />
-                  <span className="text-gray-600 dark:text-gray-400">Normal (18.5-25)</span>
-                </span>
-                <span className="font-bold text-gray-900 dark:text-white">{result.category === 'normal' ? result.bmi.toFixed(1) : '—'}</span>
+
+              {/* Coloured bar — widths proportional to BMI scale 10–45 */}
+              <div className="flex h-8 rounded-2xl overflow-hidden shadow-inner ring-1 ring-black/5 dark:ring-white/5">
+                {/* Underweight  10→18.5  (8.5/35 = 24.3%) */}
+                <div className="bg-blue-400 dark:bg-blue-500" style={{ width: '24.3%' }} />
+                {/* Normal       18.5→25  (6.5/35 = 18.6%) */}
+                <div className="bg-green-500" style={{ width: '18.6%' }} />
+                {/* Overweight   25→30    (5/35   = 14.3%) */}
+                <div className="bg-amber-400 dark:bg-amber-500" style={{ width: '14.3%' }} />
+                {/* Obese        30→45+               rest */}
+                <div className="bg-red-500 flex-1" />
               </div>
-              <div className={`flex justify-between items-center p-3 rounded-lg border ${result.category === 'overweight' ? 'bg-orange-50 dark:bg-orange-900/30 border-orange-300 dark:border-orange-700 shadow-lg' : 'bg-gray-50 dark:bg-gray-700/30 border-gray-200 dark:border-gray-600 opacity-60'}`}>
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full inline-block bg-orange-500" />
-                  <span className="text-gray-600 dark:text-gray-400">Overweight (25-30)</span>
-                </span>
-                <span className="font-bold text-gray-900 dark:text-white">{result.category === 'overweight' ? result.bmi.toFixed(1) : '—'}</span>
-              </div>
-              <div className={`flex justify-between items-center p-3 rounded-lg border ${result.category === 'obese' ? 'bg-red-50 dark:bg-red-900/30 border-red-300 dark:border-red-700 shadow-lg' : 'bg-gray-50 dark:bg-gray-700/30 border-gray-200 dark:border-gray-600 opacity-60'}`}>
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full inline-block bg-red-500" />
-                  <span className="text-gray-600 dark:text-gray-400">Obese (&gt;30)</span>
-                </span>
-                <span className="font-bold text-gray-900 dark:text-white">{result.category === 'obese' ? result.bmi.toFixed(1) : '—'}</span>
-              </div>
-              <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-red-50 dark:from-blue-900/20 dark:to-red-900/20 rounded-lg border-t-2 border-gray-300 dark:border-gray-700 mt-2 pt-4">
-                <span className="text-gray-600 dark:text-gray-400 font-semibold">Your BMI</span>
-                <span className="font-bold text-gray-900 dark:text-white text-lg">{result.bmi.toFixed(1)}</span>
+
+              {/* Scale ticks */}
+              <div className="flex mt-1.5 text-[10px] sm:text-xs text-gray-400 dark:text-gray-500 font-medium select-none">
+                <span style={{ width: '24.3%' }} className="text-left">10</span>
+                <span style={{ width: '18.6%' }} className="text-left">18.5</span>
+                <span style={{ width: '14.3%' }} className="text-left">25</span>
+                <span className="flex-1 text-left">30</span>
+                <span>45+</span>
               </div>
             </div>
+
+            {/* 4 category cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {([
+                { cat: 'underweight', label: 'Underweight', range: '< 18.5', bg: 'bg-blue-50 dark:bg-blue-950/30',  border: 'border-blue-200 dark:border-blue-800',  text: 'text-blue-700 dark:text-blue-400',  ring: 'ring-blue-400',  Icon: TrendingDown  },
+                { cat: 'normal',      label: 'Normal',      range: '18.5–25', bg: 'bg-green-50 dark:bg-green-950/30', border: 'border-green-200 dark:border-green-800', text: 'text-green-700 dark:text-green-400', ring: 'ring-green-400', Icon: CheckCircle2  },
+                { cat: 'overweight',  label: 'Overweight',  range: '25–30',   bg: 'bg-amber-50 dark:bg-amber-950/30', border: 'border-amber-200 dark:border-amber-800', text: 'text-amber-700 dark:text-amber-400', ring: 'ring-amber-400', Icon: AlertTriangle },
+                { cat: 'obese',       label: 'Obese',       range: '> 30',    bg: 'bg-red-50 dark:bg-red-950/30',    border: 'border-red-200 dark:border-red-800',    text: 'text-red-700 dark:text-red-400',    ring: 'ring-red-400',   Icon: AlertOctagon  },
+              ] as const).map(({ cat, label, range, bg, border, text, ring, Icon }) => {
+                const isActive = result.category === cat;
+                return (
+                  <div
+                    key={cat}
+                    className={`rounded-xl border-2 p-3 transition-all duration-200 ${bg} ${border} ${isActive ? `shadow-md ring-2 ${ring}` : 'opacity-50'}`}
+                  >
+                    <div className={`flex items-center gap-1.5 mb-1 ${text}`}>
+                      <Icon className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                      <span className="font-bold text-sm">{label}</span>
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">BMI {range}</p>
+                    {isActive && (
+                      <p className={`text-xl font-black mt-1 ${text}`}>{result.bmi.toFixed(1)}</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Health Tips */}
       {result && (
         <div className={`card border-2 ${colors.bg} ${colors.border}`}>
-          <h2 className={`text-2xl font-bold mb-4 ${colors.text}`}>💡 Health Tips for {result.category}</h2>
+          <h2 className={`text-2xl font-bold mb-4 flex items-center gap-2 ${colors.text}`}>
+            <Lightbulb className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+            Health Tips for <span className="capitalize">{result.category}</span>
+          </h2>
           <div className="grid md:grid-cols-2 gap-4">
             {result.category === 'underweight' && (
               <>
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                  <p className="font-semibold mb-2">🍎 Nutrition</p>
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="font-semibold mb-2 flex items-center gap-2 text-green-700 dark:text-green-400">
+                    <Utensils className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                    Nutrition
+                  </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Eat calorie-dense foods like nuts, avocados, and whole grains</p>
                 </div>
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                  <p className="font-semibold mb-2">🏥 Consultation</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Consult a doctor to rule out health conditions</p>
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="font-semibold mb-2 flex items-center gap-2 text-rose-600 dark:text-rose-400">
+                    <Stethoscope className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                    Consultation
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Consult a doctor to rule out underlying health conditions</p>
                 </div>
               </>
             )}
             {result.category === 'normal' && (
               <>
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                  <p className="font-semibold mb-2">✨ Maintain</p>
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="font-semibold mb-2 flex items-center gap-2 text-green-700 dark:text-green-400">
+                    <Star className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                    Maintain
+                  </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Keep your healthy lifestyle and regular exercise</p>
                 </div>
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                  <p className="font-semibold mb-2">🎯 Goal</p>
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="font-semibold mb-2 flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                    <Target className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                    Goal
+                  </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Aim for 150 minutes of moderate activity per week</p>
                 </div>
               </>
             )}
             {result.category === 'overweight' && (
               <>
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                  <p className="font-semibold mb-2">🏃 Exercise</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Increase physical activity to 150-200 minutes/week</p>
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="font-semibold mb-2 flex items-center gap-2 text-amber-600 dark:text-amber-400">
+                    <Zap className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                    Exercise
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Increase physical activity to 150–200 minutes/week</p>
                 </div>
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                  <p className="font-semibold mb-2">🥗 Diet</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Reduce calorie intake by 500-750 calories daily</p>
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="font-semibold mb-2 flex items-center gap-2 text-green-700 dark:text-green-400">
+                    <Utensils className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                    Diet
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Reduce calorie intake by 500–750 calories daily</p>
                 </div>
               </>
             )}
             {result.category === 'obese' && (
               <>
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                  <p className="font-semibold mb-2">🏥 Professional Help</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Consult healthcare professional immediately</p>
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="font-semibold mb-2 flex items-center gap-2 text-rose-600 dark:text-rose-400">
+                    <HeartPulse className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                    Professional Help
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Consult a healthcare professional for a personalised plan</p>
                 </div>
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-                  <p className="font-semibold mb-2">🏊 Start Small</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Begin with low-impact exercises like walking</p>
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
+                  <p className="font-semibold mb-2 flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                    <Activity className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                    Start Small
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Begin with low-impact exercises like walking or swimming</p>
                 </div>
               </>
             )}
@@ -580,8 +639,10 @@ export default function BMICalculatorPage() {
 
       {/* BMI Categories Chart */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <BarChart2 className="w-6 h-6 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" />
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose-50 dark:bg-rose-950/40 ring-1 ring-rose-100 dark:ring-rose-900/50 flex-shrink-0">
+            <ScaleIcon className="w-4 h-4 text-rose-600 dark:text-rose-400" strokeWidth={2} aria-hidden="true" />
+          </span>
           BMI Categories
         </h2>
         <div className="space-y-3">
@@ -695,7 +756,12 @@ export default function BMICalculatorPage() {
 
       {/* FAQ */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose-50 dark:bg-rose-950/40 ring-1 ring-rose-100 dark:ring-rose-900/50 flex-shrink-0">
+            <HelpCircle className="w-4 h-4 text-rose-600 dark:text-rose-400" strokeWidth={2} aria-hidden="true" />
+          </span>
+          Frequently Asked Questions
+        </h2>
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">

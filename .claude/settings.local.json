@@ -61,7 +61,11 @@
       "Bash(git pull *)",
       "Bash(xargs grep -l \"^'use client'\")",
       "Bash(git rm *)",
-      "Bash(git show *)"
+      "Bash(git show *)",
+      "Bash(Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue)",
+      "Bash(python -c ' *)",
+      "PowerShell(cd \"c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\"; npm run build 2>&1 | Where-Object { $_ -match \"Compiled|TypeScript|error|success|pages|static\" } | Select-Object -First 15)",
+      "Bash(powershell -Command \"Get-ChildItem -Recurse -Include *.tsx,*.ts | Select-String -Pattern '❓' | Select-Object Filename, LineNumber, Line\")"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\Downloads\\calculator\\calc"

@@ -1,1 +1,2 @@
 - [Chart refinement #7](project_chart_refinement.md) — Dark mode theming hook + AreaChart gradient fills shipped 2026-06-10; useChartColors is the canonical pattern for future charts
+- [Icon tile consistency](project_icon_tile_consistency.md) — All H1 headers/RelatedCalculators/Compare panel use rounded tile containers with category-aware colors; established 2026-06-11

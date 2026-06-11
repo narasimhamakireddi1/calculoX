@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Clock, Calendar, TrendingUp, Coins, BarChart2, BookOpen, Trash2, RefreshCw, Landmark, Lock, AlertTriangle, HelpCircle } from 'lucide-react';
+import { Clock, Calendar, TrendingUp, Coins, BarChart2, BookOpen, Trash2, RefreshCw, Landmark, Lock, AlertTriangle, HelpCircle, CheckCircle2 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
 import { useChartColors } from '@/components/charts/useChartColors';
 import { calculateFD, generateFDProjection, type PayoutType } from '@/lib/calculators/fd';
@@ -348,9 +348,9 @@ export default function FDCalculatorPage() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {type === 'years' && <Calendar className="w-3.5 h-3.5 inline" aria-hidden="true" />}
-                    {type === 'months' && <BarChart2 className="w-3.5 h-3.5 inline" aria-hidden="true" />}
-                    {type === 'days' && <Clock className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'years' && <Calendar className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" />}
+                    {type === 'months' && <BarChart2 className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" />}
+                    {type === 'days' && <Clock className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" />}
                     <span className="ml-1 text-xs">{type}</span>
                   </button>
                 ))}
@@ -477,9 +477,9 @@ export default function FDCalculatorPage() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {type === 'cumulative' && <RefreshCw className="w-3.5 h-3.5 inline" aria-hidden="true" />}
-                    {type === 'quarterly' && <BarChart2 className="w-3.5 h-3.5 inline" aria-hidden="true" />}
-                    {type === 'monthly' && <Calendar className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'cumulative' && <RefreshCw className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" />}
+                    {type === 'quarterly' && <BarChart2 className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" />}
+                    {type === 'monthly' && <Calendar className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" />}
                     <span className="ml-1 text-xs capitalize">{type}</span>
                   </button>
                 ))}
@@ -498,19 +498,21 @@ export default function FDCalculatorPage() {
                 />
                 <span className="text-sm font-bold text-gray-900 dark:text-white">Senior Citizen (Age 60+)</span>
               </label>
-              <p className="text-xs text-yellow-600 dark:text-yellow-400 font-semibold">
-                {watchValues.seniorCitizen
-                  ? `✅ +0.50% bonus rate applied to ${(watchValues.annualRate + 0.5).toFixed(2)}%`
-                  : 'Eligible senior citizens get an additional 0.50% interest rate'}
+              <p className="text-xs text-yellow-600 dark:text-yellow-400 font-semibold flex items-center gap-1">
+                {watchValues.seniorCitizen ? (
+                  <><CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> +0.50% bonus rate applied to {(watchValues.annualRate + 0.5).toFixed(2)}%</>
+                ) : (
+                  'Eligible senior citizens get an additional 0.50% interest rate'
+                )}
               </p>
             </div>
 
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
             >
-              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
           </form>
         </div>

@@ -1,7 +1,5 @@
 'use client';
 
-'use client';
-
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,7 +11,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { ShoppingCart, Package, Sparkles } from 'lucide-react';
+import { ShoppingCart, Package, Sparkles, Trash2, Percent, CheckCircle2, BookOpen, Lightbulb, BarChart2, Tag, Calculator, Info, HelpCircle } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 type GSTFormData = {
@@ -208,7 +206,7 @@ export default function GSTCalculatorPage() {
                 ))}
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">₹100 to ₹10 Crore</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 18% applies to most services. 5% for essential goods, 12% for intermediate, 28% for luxury items</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-start gap-1"><Info className="w-3.5 h-3.5 inline flex-shrink-0 mt-0.5" strokeWidth={2} aria-hidden="true" /> 18% applies to most services. 5% for essential goods, 12% for intermediate, 28% for luxury items</p>
             </div>
 
             {/* GST Rate */}
@@ -239,14 +237,14 @@ export default function GSTCalculatorPage() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
             >
-              🗑️ Clear
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
 
             {/* Formula Reference */}
             <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 Formula Reference</h4>
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-2"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
               <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
                 <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-indigo-200 dark:border-indigo-700">
                   {calculationType === 'add' ? 'Total = Base × (1 + Rate/100)' : 'Base = Total ÷ (1 + Rate/100)'}
@@ -265,22 +263,22 @@ export default function GSTCalculatorPage() {
               <h2 className="text-2xl font-bold mb-6">GST Breakdown</h2>
               <div className="grid grid-cols-1 gap-4">
                 <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/30 dark:to-gray-800/20 p-5 rounded-lg border-2 border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-gray-700 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    📦 Base Amount
+                  <p className="text-gray-700 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <Package className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Base Amount
                   </p>
                   <p className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-700 dark:text-gray-400 break-words overflow-hidden">{formatCurrency(result.baseAmount)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    💜 GST Amount ({gstRate}%)
+                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <Percent className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> GST Amount ({gstRate}%)
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">{formatCurrency(result.gstAmount)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    ✅ Total Amount
+                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Amount
                   </p>
                   <p className="text-xl sm:text-3xl md:text-4xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{formatCurrency(result.totalAmount)}</p>
                 </div>
@@ -288,7 +286,7 @@ export default function GSTCalculatorPage() {
 
               {/* Understanding GST */}
               <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding GST</h3>
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding GST</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
                   GST (Goods and Services Tax) is an indirect tax in India applied to most products and services. The rate varies based on product category (0%, 5%, 12%, 18%, or 28%).
                 </p>
@@ -302,7 +300,7 @@ export default function GSTCalculatorPage() {
 
               {/* Key Insights */}
               <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
                 <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
                   <p>
                     <strong>GST Impact:</strong> {calculationType === 'add' ? 'Your base amount increases by' : 'Your total amount reduces by'} <span className="font-bold text-green-700 dark:text-green-300">{((result.gstAmount / result.baseAmount) * 100).toFixed(1)}%</span>
@@ -352,7 +350,7 @@ export default function GSTCalculatorPage() {
       {/* GST Breakup Pie Chart */}
       {result && (
         <div className="card">
-          <h2 className="text-2xl font-bold mb-6">📊 GST Distribution</h2>
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><BarChart2 className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> GST Distribution</h2>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <MemoizedPieChart
               data={[
@@ -391,7 +389,7 @@ export default function GSTCalculatorPage() {
 
       {/* GST Rate Info */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">📋 GST Rate Categories</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Tag className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> GST Rate Categories</h2>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-4 rounded-lg border border-green-300 dark:border-green-700">
             <p className="font-bold text-green-700 dark:text-green-300 mb-2">5% GST</p>
@@ -523,7 +521,7 @@ export default function GSTCalculatorPage() {
 
       {/* FAQ */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">

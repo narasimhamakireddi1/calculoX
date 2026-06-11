@@ -1,14 +1,12 @@
 'use client';
 
-﻿'use client';
-
 import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
 
 const ProjectionTable = lazy(() => import('@/components/simple-interest/ProjectionTable').then(m => ({ default: m.default })));
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Landmark, GraduationCap, Briefcase, Coins, TrendingUp, Target, Sunrise, BarChart2, BookOpen, Sparkles, Trash2, Ruler, Calendar, HelpCircle } from 'lucide-react';
+import { Landmark, GraduationCap, Briefcase, Coins, TrendingUp, Target, Sunrise, BookOpen, Lightbulb, Trash2, Calculator, Calendar, CalendarDays, Clock, HelpCircle } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useChartColors } from '@/components/charts/useChartColors';
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
@@ -312,8 +310,8 @@ export default function SimpleInterestCalculatorPage() {
                     }`}
                   >
                     {type === 'years' && <Calendar className="w-3.5 h-3.5 inline" aria-hidden="true" />}
-                    {type === 'months' && <BarChart2 className="w-3.5 h-3.5 inline" aria-hidden="true" />}
-                    {type === 'days' && <Ruler className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'months' && <CalendarDays className="w-3.5 h-3.5 inline" aria-hidden="true" />}
+                    {type === 'days' && <Clock className="w-3.5 h-3.5 inline" aria-hidden="true" />}
                     <span className="ml-1 text-xs">{type}</span>
                   </button>
                 ))}
@@ -428,7 +426,7 @@ export default function SimpleInterestCalculatorPage() {
 
             {/* Formula Reference */}
             <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-2"><Ruler className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-2"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
               <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
                 <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-indigo-200 dark:border-indigo-700">
                   SI = (P × R × T) / 100
@@ -490,7 +488,7 @@ export default function SimpleInterestCalculatorPage() {
 
               {/* Key Insights */}
               <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Sparkles className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
                 <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
                   <p>
                     <strong>Return Multiple:</strong> <span className="font-bold text-green-700 dark:text-green-300">{(result.totalMaturityValue / result.principalAmount).toFixed(2)}x</span> - Your money will grow by {((result.totalMaturityValue / result.principalAmount - 1) * 100).toFixed(1)}%

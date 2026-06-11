@@ -13,7 +13,7 @@ import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
 import { getInternalLinks } from '@/config/internal-links.config';
 import type { LucideIcon } from 'lucide-react';
-import { TrendingUp, Target, BarChart2, RefreshCw, Search, Hash, ShoppingBag, HelpCircle } from 'lucide-react';
+import { TrendingUp, TrendingDown, Target, BarChart2, RefreshCw, Search, Hash, ShoppingBag, HelpCircle, Calculator, BookOpen, Lightbulb, Trash2, AlertTriangle } from 'lucide-react';
 
 type CalculationType = 'hike-discount' | 'percent-of' | 'what-percent' | 'percent-change' | 'reverse-percent' | 'sequential';
 
@@ -268,7 +268,7 @@ export default function PercentageCalculatorPage() {
                       : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-green-400'
                   }`}
                 >
-                  📈 Hike (Increase)
+                  <TrendingUp className="w-4 h-4 inline mr-1" aria-hidden="true" /> Hike (Increase)
                 </button>
                 <button
                   type="button"
@@ -279,7 +279,7 @@ export default function PercentageCalculatorPage() {
                       : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-red-400'
                   }`}
                 >
-                  📉 Discount (Decrease)
+                  <TrendingDown className="w-4 h-4 inline mr-1" aria-hidden="true" /> Discount (Decrease)
                 </button>
               </div>
             )}
@@ -326,7 +326,7 @@ export default function PercentageCalculatorPage() {
                   ))
                 }
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Enter the {calculationType === 'percent-of' || calculationType === 'reverse-percent' ? 'percentage value' : 'base or starting amount'} for your calculation</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1"><Lightbulb className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Enter the {calculationType === 'percent-of' || calculationType === 'reverse-percent' ? 'percentage value' : 'base or starting amount'} for your calculation</p>
             </div>
 
             {/* Value B */}
@@ -371,7 +371,7 @@ export default function PercentageCalculatorPage() {
                   ))
                 }
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 {calculationType === 'percent-of' ? 'Total or base amount' : calculationType === 'what-percent' ? 'Total amount to compare against' : calculationType === 'percent-change' ? 'Final amount after change' : calculationType === 'hike-discount' ? 'Percentage to apply' : 'Percentage value (0-200%)'}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1"><Lightbulb className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> {calculationType === 'percent-of' ? 'Total or base amount' : calculationType === 'what-percent' ? 'Total amount to compare against' : calculationType === 'percent-change' ? 'Final amount after change' : calculationType === 'hike-discount' ? 'Percentage to apply' : 'Percentage value (0-200%)'}</p>
             </div>
 
             {/* Percent C — only for Sequential */}
@@ -397,21 +397,21 @@ export default function PercentageCalculatorPage() {
                     className="w-full md:w-32 px-3 py-3 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
                   />
                 </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">💡 Second percentage in sequence. Applied after the first percentage change</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1"><Lightbulb className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Second percentage in sequence. Applied after the first percentage change</p>
               </div>
             )}
 
             <button
               type="button"
               onClick={handleReset}
-              className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-lg transition-all hover:scale-105 active:scale-95"
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
             >
-              🗑️ Clear All
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
 
             {/* Formula Reference */}
             <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 Quick Formulas</h4>
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Quick Formulas</h4>
               <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
                 <p><strong>X% of Y:</strong> (X ÷ 100) × Y</p>
                 <p><strong>What %:</strong> (Part ÷ Whole) × 100</p>
@@ -427,7 +427,7 @@ export default function PercentageCalculatorPage() {
           {calcError ? (
             <div className="card h-full flex items-center justify-center min-h-64">
               <div className="text-center">
-                <p className="text-4xl mb-3">⚠️</p>
+                <AlertTriangle className="w-10 h-10 mb-3 text-red-500 mx-auto" strokeWidth={2} aria-hidden="true" />
                 <p className="text-red-500 font-semibold">{calcError}</p>
               </div>
             </div>
@@ -503,7 +503,7 @@ export default function PercentageCalculatorPage() {
 
               {/* Understanding Percentages */}
               <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding the Calculation</h3>
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding the Calculation</h3>
                 <p className="text-sm text-blue-800 dark:text-blue-200 mb-2">
                   {calculationType === 'percent-change' && 'Percentage change shows how much a value has increased or decreased relative to the original value.'}
                   {calculationType === 'percent-of' && 'This calculates what amount represents the given percentage of the total value.'}
@@ -516,42 +516,42 @@ export default function PercentageCalculatorPage() {
 
               {/* Key Insights */}
               <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Quick Tips</h3>
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Quick Tips</h3>
                 <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
                   {calculationType === 'percent-change' && (
                     <>
-                      <p>💡 Positive % = Value increased | Negative % = Value decreased</p>
-                      <p>💡 Larger the percentage, bigger the change relative to original</p>
+                      <p>✓ Positive % = Value increased | Negative % = Value decreased</p>
+                      <p>✓ Larger the percentage, bigger the change relative to original</p>
                     </>
                   )}
                   {calculationType === 'percent-of' && (
                     <>
-                      <p>💡 Formula: (X% × Y) / 100 = Result</p>
-                      <p>💡 Useful for discounts, commissions, and portions</p>
+                      <p>✓ Formula: (X% × Y) / 100 = Result</p>
+                      <p>✓ Useful for discounts, commissions, and portions</p>
                     </>
                   )}
                   {calculationType === 'what-percent' && (
                     <>
-                      <p>💡 Formula: (Part / Whole) × 100 = Percentage</p>
-                      <p>💡 Always compare same units (both in rupees, same timeframe, etc.)</p>
+                      <p>✓ Formula: (Part / Whole) × 100 = Percentage</p>
+                      <p>✓ Always compare same units (both in rupees, same timeframe, etc.)</p>
                     </>
                   )}
                   {calculationType === 'reverse-percent' && (
                     <>
-                      <p>💡 Useful when you know the final value after percentage change</p>
-                      <p>💡 Common in reverse calculating original price before discount</p>
+                      <p>✓ Useful when you know the final value after percentage change</p>
+                      <p>✓ Common in reverse calculating original price before discount</p>
                     </>
                   )}
                   {calculationType === 'sequential' && (
                     <>
-                      <p>💡 Changes compound — second % applies to result of first %</p>
-                      <p>💡 Order doesn't always matter: 10% then 20% = 20% then 10%</p>
+                      <p>✓ Changes compound — second % applies to result of first %</p>
+                      <p>✓ Order doesn't always matter: 10% then 20% = 20% then 10%</p>
                     </>
                   )}
                   {calculationType === 'hike-discount' && (
                     <>
-                      <p>💡 Hike = Value increases | Discount = Value decreases</p>
-                      <p>💡 Formula: New Value = Original × (1 ± Percentage/100)</p>
+                      <p>✓ Hike = Value increases | Discount = Value decreases</p>
+                      <p>✓ Formula: New Value = Original × (1 ± Percentage/100)</p>
                     </>
                   )}
                 </div>
@@ -583,7 +583,7 @@ export default function PercentageCalculatorPage() {
       {/* Pie Chart — Tracks 1, 2, 5 */}
       {showPie && result?.breakdown && (
         <div className="card">
-          <h2 className="text-2xl font-bold mb-6">📊 Percentage Breakup</h2>
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><BarChart2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Percentage Breakup</h2>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <MemoizedPieChart
               data={result.breakdown.slice(0, 2).map(item => ({ name: item.label, value: item.value }))}
@@ -618,7 +618,7 @@ export default function PercentageCalculatorPage() {
       {/* Sequential Steps Visual — Track 6 */}
       {result && calculationType === 'sequential' && result.breakdown && (
         <div className="card">
-          <h2 className="text-2xl font-bold mb-6">🔢 Sequential Steps</h2>
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Hash className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Sequential Steps</h2>
           <div className="flex flex-wrap items-center gap-4">
             {result.breakdown.slice(0, 3).map((item, i) => (
               <div key={i} className="flex items-center gap-4">
@@ -792,7 +792,7 @@ export default function PercentageCalculatorPage() {
 
       {/* FAQ */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-1">
           {[
             {

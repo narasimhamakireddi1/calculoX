@@ -1,7 +1,5 @@
 'use client';
 
-'use client';
-
 import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
 
 const ProjectionTable = lazy(() => import('@/components/retirement/ProjectionTable').then(m => ({ default: m.default })));
@@ -15,7 +13,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { Sunset, UserRound, Briefcase, Calendar, Coins, BarChart2, TrendingDown, TrendingUp } from 'lucide-react';
+import { Sunset, UserRound, Briefcase, Calendar, Coins, BarChart2, TrendingUp, Target, Trash2, ClipboardList, BookOpen, Lightbulb, AlertTriangle, Calculator, HelpCircle } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import z from 'zod';
 
@@ -185,8 +183,8 @@ export default function RetirementCalculatorPage() {
         <div className="grid md:grid-cols-3 gap-4">
           {/* Monthly Expense at Retirement */}
           <div className="card bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 shadow-lg">
-            <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-bold mb-2">
-              💰 Monthly Expense at Retirement
+            <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-bold mb-2 flex items-center gap-1.5">
+              <Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly Expense at Retirement
             </p>
             <p className="text-3xl font-bold text-emerald-700 dark:text-emerald-400 mb-1">
               {formatCurrency(result.monthly_expense_at_retirement)}
@@ -198,8 +196,8 @@ export default function RetirementCalculatorPage() {
 
           {/* Total Corpus Required */}
           <div className="card bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 border-2 border-blue-300 dark:border-blue-700 shadow-lg">
-            <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-bold mb-2">
-              🎯 Total Corpus Required
+            <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-bold mb-2 flex items-center gap-1.5">
+              <Target className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Corpus Required
             </p>
             <p className="text-3xl font-bold text-blue-700 dark:text-blue-400 mb-1">
               {formatCurrency(result.total_corpus_required)}
@@ -211,8 +209,8 @@ export default function RetirementCalculatorPage() {
 
           {/* Monthly SIP Required */}
           <div className="card bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/20 border-2 border-purple-300 dark:border-purple-700 shadow-lg">
-            <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-bold mb-2">
-              📈 Monthly SIP Required
+            <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-bold mb-2 flex items-center gap-1.5">
+              <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly SIP Required
             </p>
             <p className="text-3xl font-bold text-purple-700 dark:text-purple-400 mb-1">
               {formatCurrency(result.monthly_sip_required)}
@@ -229,7 +227,7 @@ export default function RetirementCalculatorPage() {
         {/* Input Section */}
         <div className="lg:col-span-1">
           <div className="card">
-            <h2 className="text-2xl font-bold mb-4">📋 Retirement Inputs</h2>
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><ClipboardList className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Retirement Inputs</h2>
 
             {/* Quick-Start Examples */}
             <QuickStartExamples
@@ -390,7 +388,7 @@ export default function RetirementCalculatorPage() {
                     ))}
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                    💡 Enter current monthly expenses. Use the 25x rule: Corpus = 25 × Annual Expense for 4% withdrawal strategy
+                    Enter current monthly expenses. Use the 25x rule: Corpus = 25 × Annual Expense for 4% withdrawal strategy
                   </p>
                 </div>
 
@@ -587,12 +585,12 @@ export default function RetirementCalculatorPage() {
               onClick={handleReset}
               className="w-full mt-6 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
             >
-              🗑️ Clear All
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
 
             {/* Formula Reference */}
             <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 NISM Framework</h4>
+              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> NISM Framework</h4>
               <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
                 <p><strong>25x Rule:</strong> Corpus = 25 × Annual Expense Needed</p>
                 <p><strong>Corpus = FV of Savings + SIP Amount</strong></p>
@@ -608,13 +606,13 @@ export default function RetirementCalculatorPage() {
             <div className="space-y-6">
               {/* Results Cards */}
               <div className="card space-y-4">
-                <h2 className="text-2xl font-bold mb-6">📊 Detailed Breakdown</h2>
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Detailed Breakdown</h2>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* Current Savings Future Value */}
                   <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/30 dark:to-blue-900/30 p-4 rounded-lg border border-cyan-300 dark:border-cyan-700">
-                    <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                      💼 FV of Current Savings
+                    <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1.5">
+                      <Briefcase className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> FV of Current Savings
                     </p>
                     <p className="text-2xl font-bold text-cyan-700 dark:text-cyan-400">
                       {formatCurrency(result.fv_of_current_savings)}
@@ -626,8 +624,8 @@ export default function RetirementCalculatorPage() {
 
                   {/* Shortfall Corpus */}
                   <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/30 dark:to-red-900/30 p-4 rounded-lg border border-orange-300 dark:border-orange-700">
-                    <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                      ⚠️ Shortfall Corpus
+                    <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1.5">
+                      <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Shortfall Corpus
                     </p>
                     <p className="text-2xl font-bold text-orange-700 dark:text-orange-400">
                       {formatCurrency(result.net_shortfall_to_build)}
@@ -640,7 +638,7 @@ export default function RetirementCalculatorPage() {
 
                 {/* Understanding Retirement Corpus */}
                 <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                  <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Understanding Your Retirement Plan</h3>
+                  <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your Retirement Plan</h3>
                   <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
                     The NISM framework calculates how much corpus you need to retire comfortably. It accounts for inflation and ensures your money lasts throughout retirement.
                   </p>
@@ -654,7 +652,7 @@ export default function RetirementCalculatorPage() {
 
                 {/* Key Insights */}
                 <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                  <h3 className="font-bold text-green-900 dark:text-green-300 mb-3">✨ Key Insights</h3>
+                  <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
                   <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
                     <p>
                       <strong>Monthly SIP Needed:</strong> Build {formatCurrency(result.net_shortfall_to_build)} via monthly investments at {watchValues.pre_retirement_return_pct}% returns
@@ -666,13 +664,13 @@ export default function RetirementCalculatorPage() {
                       <strong>Retirement Security:</strong> Your corpus will support {watchValues.present_monthly_expenses * (1 - watchValues.expense_reduction_pct / 100) >= 0 ? 'monthly expenses' : 'inflation-adjusted expenses'} for {result.distributionYears} years
                     </p>
                     <p>
-                      💡 Start your SIP now to avoid financial stress during retirement. Every year of delay increases required monthly investment.
+                      Start your SIP now to avoid financial stress during retirement. Every year of delay increases required monthly investment.
                     </p>
                   </div>
                 </div>
 
                 <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-                  <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">📊 How Do You Compare?</h3>
+                  <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
                   <p className="text-sm text-amber-700 dark:text-amber-300">
                     Your retirement corpus target of <strong>{formatCurrency(result.net_shortfall_to_build + result.fv_of_current_savings)}</strong> is based on the NISM 25x rule. With a monthly withdrawal of ₹{(watchValues.present_monthly_expenses * (1 - watchValues.expense_reduction_pct / 100)).toFixed(0)} and a {watchValues.post_retirement_return_pct}% real return rate, your corpus is designed to last {result.distributionYears} years while beating inflation. The 4% safe withdrawal rule suggests you can sustain monthly withdrawals without depleting your corpus.
                   </p>
@@ -782,89 +780,6 @@ export default function RetirementCalculatorPage() {
         </Suspense>
       )}
 
-      {/* OLD - DELETE */}
-      {false && (
-        <div className="card">
-          <h2 className="text-2xl font-bold mb-6">📋 Year-by-Year Projection</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
-                  <th className="px-4 py-3 text-left font-bold">Year</th>
-                  <th className="px-4 py-3 text-left font-bold">Age</th>
-                  <th className="px-4 py-3 text-left font-bold">Phase</th>
-                  <th className="px-4 py-3 text-right font-bold">Corpus (₹)</th>
-                  <th className="px-4 py-3 text-right font-bold">Annual SIP/Withdrawal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(() => {
-                  const totalYears = watchValues.life_expectancy - watchValues.present_age;
-                  const shouldShowAll = totalYears <= 12 || showFullSchedule;
-                  return projections.slice(0, shouldShowAll ? projections.length : 5).map((proj, idx) => (
-                    <tr
-                      key={idx}
-                      className={`border-b border-gray-200 dark:border-gray-700 transition-colors ${
-                        idx % 2 === 0 ? 'bg-white dark:bg-gray-800/50' : 'bg-gray-50 dark:bg-gray-700/30 hover:bg-blue-50 dark:hover:bg-gray-700'
-                      }`}
-                    >
-                      <td className="px-4 py-3 font-semibold">{proj.year}</td>
-                      <td className="px-4 py-3">{proj.age} years</td>
-                      <td className="px-4 py-3">
-                        <span
-                          className={`px-2 py-1 rounded text-xs font-semibold ${
-                            proj.phase === 'accumulation'
-                              ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-                              : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300'
-                          }`}
-                        >
-                          {proj.phase === 'accumulation'
-                            ? <span className="flex items-center gap-1"><TrendingUp className="w-3 h-3" strokeWidth={2} aria-hidden="true" />Accumulating</span>
-                            : <span className="flex items-center gap-1"><TrendingDown className="w-3 h-3" strokeWidth={2} aria-hidden="true" />Distribution</span>
-                          }
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 text-right font-mono font-semibold text-blue-600 dark:text-blue-400">
-                        {formatCurrency(proj.corpus)}
-                      </td>
-                      <td className="px-4 py-3 text-right font-mono font-semibold">
-                        {proj.phase === 'accumulation' ? (
-                          <span className="text-green-600 dark:text-green-400">+{formatCurrency(proj.annualSip || 0)}</span>
-                        ) : (
-                          <span className="text-orange-600 dark:text-orange-400">−{formatCurrency(proj.annualWithdrawal || 0)}</span>
-                        )}
-                      </td>
-                    </tr>
-                  ));
-                })()}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Show All Button */}
-          {(() => {
-            const totalYears = watchValues.life_expectancy - watchValues.present_age;
-            return totalYears > 12 && !showFullSchedule ? (
-              <button
-                onClick={() => {
-                  setShowFullSchedule(true);
-                                  }}
-                className="mt-6 w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                📊 Show All {projections.length} Years
-              </button>
-            ) : showFullSchedule ? (
-              <button
-                onClick={() => setShowFullSchedule(false)}
-                className="mt-6 w-full px-6 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg transition-all duration-200"
-              >
-                ▲ Show Less
-              </button>
-            ) : null;
-          })()}
-        </div>
-      )}
-
       {/* Related Calculators */}
       <RelatedCalculators calculators={getInternalLinks('retirement-calculator')} />
 
@@ -970,7 +885,7 @@ export default function RetirementCalculatorPage() {
 
       {/* FAQ */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">❓ Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center hover:text-blue-600 dark:hover:text-blue-400">

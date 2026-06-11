@@ -18,7 +18,7 @@ import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { ShoppingBag, Diamond, Package, CheckCircle2, XCircle, Smartphone } from 'lucide-react';
+import { ShoppingBag, Diamond, Package, CheckCircle2, XCircle, Smartphone, Trash2, Coins, BarChart2, Tag, Target, TrendingUp, Percent, Receipt, AlertTriangle, BookOpen, Lightbulb, HelpCircle } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import {
   ProfitMarginGstEngine,
@@ -441,9 +441,9 @@ export default function ProfitMarginCalculator() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
             >
-              🗑️ Clear All
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
           </div>
 
@@ -453,8 +453,8 @@ export default function ProfitMarginCalculator() {
               {/* Hero Metrics */}
               <div className="grid grid-cols-3 gap-4">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    💰 Cost Price
+                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Cost Price
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
                     ₹{results.inputCostPrice.toFixed(2)}
@@ -462,8 +462,8 @@ export default function ProfitMarginCalculator() {
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-900/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    📊 Net Price (Pre-GST)
+                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <BarChart2 className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Net Price (Pre-GST)
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">
                     ₹{results.netSellingPricePreGst.toFixed(2)}
@@ -471,8 +471,8 @@ export default function ProfitMarginCalculator() {
                 </div>
 
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    💳 Final MRP
+                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <Tag className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Final MRP
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
                     ₹{results.finalConsumerMRP.toFixed(2)}
@@ -483,8 +483,8 @@ export default function ProfitMarginCalculator() {
               {/* Secondary Metrics */}
               <div className="grid grid-cols-3 gap-4">
                 <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 p-5 rounded-lg border-2 border-emerald-300 dark:border-emerald-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    🎯 Gross Profit
+                  <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <Target className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Gross Profit
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-emerald-700 dark:text-emerald-400 break-words overflow-hidden">
                     ₹{results.absoluteGrossProfit.toFixed(2)}
@@ -492,8 +492,8 @@ export default function ProfitMarginCalculator() {
                 </div>
 
                 <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-900/20 p-5 rounded-lg border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    📈 Markup
+                  <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Markup
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-orange-700 dark:text-orange-400 break-words overflow-hidden">
                     {results.calculatedMarkupPercentage.toFixed(2)}%
@@ -501,8 +501,8 @@ export default function ProfitMarginCalculator() {
                 </div>
 
                 <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/30 dark:to-blue-900/20 p-5 rounded-lg border-2 border-cyan-300 dark:border-cyan-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-wide font-semibold mb-2">
-                    💹 Margin
+                  <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
+                    <Percent className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Margin
                   </p>
                   <p className="text-lg sm:text-2xl md:text-3xl font-bold text-cyan-700 dark:text-cyan-400 break-words overflow-hidden">
                     {results.calculatedMarginPercentage.toFixed(2)}%
@@ -514,8 +514,8 @@ export default function ProfitMarginCalculator() {
               <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-900/20 p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-md">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1">
-                      🧾 GST Liability
+                    <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
+                      <Receipt className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> GST Liability
                     </p>
                     <p className="text-2xl font-bold text-red-700 dark:text-red-400">
                       ₹{results.gstTaxLiability.toFixed(2)}
@@ -544,7 +544,7 @@ export default function ProfitMarginCalculator() {
               {watchValues.gstTreatment === 'INCLUSIVE' && results.marginDilutionByGst && results.marginDilutionByGst > 0 && (
                 <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-lg p-4">
                   <p className="text-amber-800 dark:text-amber-200 text-sm">
-                    <span className="font-semibold">⚠️ Warning:</span> Inclusive GST at {watchValues.gstRatePct}% reduces your actual
+                    <span className="font-semibold"><AlertTriangle className="w-4 h-4 inline flex-shrink-0 mr-1" strokeWidth={2} aria-hidden="true" />Warning:</span> Inclusive GST at {watchValues.gstRatePct}% reduces your actual
                     margin from {results.originalMarginBeforeGst?.toFixed(2)}% to{' '}
                     {(results.originalMarginBeforeGst! - results.marginDilutionByGst).toFixed(2)}%. GST has diluted your
                     margin by <span className="font-bold">{results.marginDilutionByGst.toFixed(2)}</span> percentage points.
@@ -554,20 +554,20 @@ export default function ProfitMarginCalculator() {
 
               {/* Understanding Markup vs Margin */}
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3">📚 Markup vs Margin Explained</h3>
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Markup vs Margin Explained</h3>
                 <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-200">
                   <div>
-                    <p><strong>📈 Markup ({results.calculatedMarkupPercentage.toFixed(2)}%):</strong></p>
+                    <p className="flex items-center gap-1"><strong><TrendingUp className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Markup ({results.calculatedMarkupPercentage.toFixed(2)}%):</strong></p>
                     <p className="text-xs mt-1">Percentage increase from Cost Price to Selling Price. Formula: (Selling Price - Cost) / Cost × 100</p>
                     <p className="text-xs mt-2 text-blue-700 dark:text-blue-300"><strong>Example:</strong> If you add 50% markup to ₹100 cost, selling price = ₹150</p>
                   </div>
                   <div>
-                    <p><strong>💹 Margin ({results.calculatedMarginPercentage.toFixed(2)}%):</strong></p>
+                    <p className="flex items-center gap-1"><strong><Percent className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Margin ({results.calculatedMarginPercentage.toFixed(2)}%):</strong></p>
                     <p className="text-xs mt-1">Profit as percentage of Selling Price. Formula: Profit / Selling Price × 100</p>
                     <p className="text-xs mt-2 text-blue-700 dark:text-blue-300"><strong>Example:</strong> ₹50 profit on ₹150 sale = 33.3% margin</p>
                   </div>
                 </div>
-                <p className="text-xs mt-3 text-blue-700 dark:text-blue-300">💡 <strong>Key Insight:</strong> Same markup always gives lower margin%. Healthy retail margins: 20-50% depending on product</p>
+                <p className="text-xs mt-3 text-blue-700 dark:text-blue-300"><Lightbulb className="w-3.5 h-3.5 inline flex-shrink-0 mr-1" strokeWidth={2} aria-hidden="true" /><strong>Key Insight:</strong> Same markup always gives lower margin%. Healthy retail margins: 20-50% depending on product</p>
               </div>
 
               {/* Profitability Indicator */}
@@ -608,7 +608,7 @@ export default function ProfitMarginCalculator() {
           <div className="space-y-8">
             {/* Stacked Bar Chart - Mobile Responsive */}
             <div className="card">
-              <h2 className="text-lg font-semibold mb-6">📊 Revenue Breakdown (Stacked)</h2>
+              <h2 className="text-lg font-semibold mb-6 flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Revenue Breakdown (Stacked)</h2>
               {/* Mobile View - Compact Vertical Layout */}
               <div className="md:hidden overflow-x-auto -mx-4 px-4">
                 <div style={{ minWidth: '320px' }}>
@@ -671,7 +671,7 @@ export default function ProfitMarginCalculator() {
             {/* GST Scenario Table */}
             {gstScenarios.length > 0 && (
               <div className="card">
-                <h2 className="text-lg font-semibold mb-6">🧾 GST Rate Scenarios</h2>
+                <h2 className="text-lg font-semibold mb-6 flex items-center gap-2"><Receipt className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> GST Rate Scenarios</h2>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead className="bg-gray-100 dark:bg-gray-700">
@@ -712,7 +712,7 @@ export default function ProfitMarginCalculator() {
 
             {/* Comparison Pie Chart */}
             <div className="card">
-              <h2 className="text-lg font-semibold mb-6">💹 Markup vs Margin</h2>
+              <h2 className="text-lg font-semibold mb-6 flex items-center gap-2"><Percent className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Markup vs Margin</h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                 <strong>Markup:</strong> {results.calculatedMarkupPercentage.toFixed(2)}% |{' '}
                 <strong>Margin:</strong> {results.calculatedMarginPercentage.toFixed(2)}%
@@ -731,7 +731,7 @@ export default function ProfitMarginCalculator() {
 
         {/* FAQ Section */}
         <div className="card space-y-4">
-          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
 
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">

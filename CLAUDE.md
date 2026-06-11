@@ -1,10 +1,185 @@
-# 🧮 calculox
+﻿# 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-11 (Icon Tile Consistency: All 14 H1 headers, RelatedCalculators, MiniCalculatorPanel) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-11 (Home Loan vs Rent: Lucide icon parity + Clear All button) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-11 - Icon Tile Consistency: H1 Headers, RelatedCalculators, Compare Panel)
+## ✅ Latest (2026-06-11 - Home Loan vs Rent: Lucide Icon Consistency + Clear All Button)
+- 🎨 **Home Loan vs Rent calculator brought to full Lucide icon parity with EMI calculator:** ✅
+  - **Duplicate `'use client'` removed:** File had two directives (lines 1 and 3); cleaned to single ✅
+  - **Winner banner icons:**
+    - `🎉 Buying wins by...` → `<Trophy strokeWidth={2} />` inline in `inline-flex` span ✅
+    - `📈 Renting + investing yields...` → `<TrendingUp strokeWidth={2} />` inline ✅
+  - **"Understanding This Analysis" h3:** `📚` → `<BookOpen className="w-5 h-5" strokeWidth={2} />` ✅
+  - **Path labels inside analysis grid:**
+    - `🏠 Buyer's Path:` → `<Home className="w-3.5 h-3.5" strokeWidth={2} />` (flex row) ✅
+    - `📈 Renter's Path:` → `<TrendingUp className="w-3.5 h-3.5" strokeWidth={2} />` (flex row) ✅
+  - **Key Verdict section heading:** `<Sparkles />` → `<Lightbulb />` (matches EMI tips/insights pattern) ✅
+  - **Formula Reference h4:** `📐 Opportunity Cost Framework` → `<Calculator className="w-4 h-4" strokeWidth={2} />` ✅
+  - **Clear All button:** `🔄 Clear All Values` (basic style) → `<Trash2 />` + `Clear All` with full EMI button style (`bg-gradient-to-r from-red-500 to-red-600`, `shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform`) ✅
+  - **Imports added:** `Lightbulb, Calculator, BookOpen, Trash2, Trophy`; removed `Sparkles`
+  - **File:** `app/home-loan-vs-rent/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - Tax Calculator: Full Lucide Icon Consistency)
+- 🎨 **Income Tax calculator brought to full Lucide icon parity with EMI calculator:** ✅
+  - **Section heading h2s** (all converted to `flex items-center gap-2` with `w-5 h-5 flex-shrink-0` icons + `strokeWidth={2} aria-hidden="true"`):
+    - `👤 Personal Details` → `<UserRound />` (blue) ✅
+    - `💰 Income Details` → `<DollarSign />` (blue) ✅
+    - `🏛️ Tax Regime` → `<Landmark />` (blue) ✅
+    - `💼 NPS Employer - Sec 80CCD(2)` → `<Briefcase />` (blue) ✅
+  - **Collapsible `<details>` summary spans** (wrapped in `flex items-center gap-2`):
+    - `🏠 HRA Calculation` → `<Home />` (blue) ✅
+    - `📊 Deductions (Old Regime)` → `<BarChart2 />` (blue) ✅
+    - `📈 Slab Tax Breakdown` → `<TrendingUp />` (blue) ✅
+    - `🔍 Detailed Calculation Trace` → `<Search />` (blue) ✅
+  - **Results panel h3/h4 headings:**
+    - `📊 Regime Comparison` → `<BarChart2 />` ✅
+    - `📚 How Your Tax is Calculated` → `<BookOpen />` (h4, amber) ✅
+    - `📊 How Do You Compare?` → `<BarChart2 />` (amber context) ✅
+    - `💰 Income Breakup (...)` → `<PieChart />` (blue) ✅
+    - `💡 Tax Saving Opportunities` → `<Lightbulb />` (amber) ✅
+    - `❓ FAQs` → `<HelpCircle />` (blue) ✅
+  - **Comparison snippet h3s:**
+    - `🆕 New Regime (Default)` → `<Sparkles />` (green) ✅
+    - `🕐 Old Regime` → `<Clock />` (blue) ✅
+  - **Inline icons (non-heading):**
+    - `✓ Recommended` labels → `<CheckCircle2 className="w-3.5 h-3.5" />` (flex row) ✅
+    - `💰 You can save...` savings badge → `<Coins className="w-4 h-4 flex-shrink-0" />` (flex row) ✅
+    - `💡` tip text under Gross Salary → `<Lightbulb className="w-3 h-3 mt-0.5" />` (amber, flex row) ✅
+  - **Clear All button:** `🗑️ Clear All` → `<Trash2 />` + `flex items-center justify-center gap-2` ✅
+  - **Imports added:** `DollarSign, Home, Landmark, BarChart2, Trash2, BookOpen, Lightbulb, TrendingUp, Search, HelpCircle, Clock, Coins, CheckCircle2, PieChart, Sparkles`
+  - **Side-effect fix:** Removed stale unused import `TrendingDown` from `retirement-calculator`; cleared stale `.next`/`tsconfig.tsbuildinfo` cache that was surfacing false-positive TS errors in BMI, GST, Retirement files
+  - **File:** `app/tax-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - Scientific Calculator: Lucide Icon Consistency)
+- 🎨 **Scientific calculator brought to full Lucide icon parity with EMI calculator:** ✅
+  - **History panel header:** `📋 History` → `<ClipboardList />` ✅
+  - **"Understanding Scientific Calculations" h2:** `📚` → `<BookOpen />` ✅
+  - **Mode cards (flex + Lucide replacing emoji):**
+    - `🔢 Standard Mode` → `<Calculator />` ✅
+    - `➕ Complex Numbers` → `<Sigma />` ✅
+    - `📊 Matrix Operations` → `<LayoutGrid />` ✅
+    - `📈 Statistics` → `<BarChart2 />` ✅
+  - **"Key Features" h2:** `🎯` → `<Target />` ✅
+  - **"Real-World Applications" h2:** `💡` → `<Lightbulb />` ✅
+  - **Application cards (flex + Lucide replacing emoji):**
+    - `🏗️ Engineering` → `<Building2 />` ✅
+    - `📡 Physics` → `<Zap />` ✅
+    - `💰 Finance` → `<TrendingUp />` ✅
+    - `📊 Data Analysis` → `<BarChart2 />` ✅
+  - **"Tips for Accurate Calculations" h2:** `🔍` → `<Search />` ✅
+  - **5× checkmark spans:** `<span className="text-2xl">✓</span>` → `<CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5" />` ✅
+  - **FAQ h3:** `📋 Frequently Asked Questions` → plain text (matches EMI FAQ pattern) ✅
+  - **StatResultCard h3:** `📊 Statistical Analysis` → `<BarChart2 />` ✅
+  - **File:** `app/scientific-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - Profit Margin Calculator: Full Lucide Icon Consistency + Clear Button)
+- 🎨 **Profit Margin calculator brought to full Lucide icon parity with EMI calculator:** ✅
+  - **Clear button:** `🗑️` → `<Trash2>` Lucide icon; added `will-change-transform` (matches EMI pattern exactly) ✅
+  - **Hero metric card labels** (all converted to `flex items-center gap-1` with inline icons `w-3.5 h-3.5`):
+    - `💰 Cost Price` → `<Coins>` ✅
+    - `📊 Net Price (Pre-GST)` → `<BarChart2>` ✅
+    - `💳 Final MRP` → `<Tag>` ✅
+    - `🎯 Gross Profit` → `<Target>` ✅
+    - `📈 Markup` → `<TrendingUp>` ✅
+    - `💹 Margin` → `<Percent>` ✅
+    - `🧾 GST Liability` → `<Receipt>` ✅
+  - **Warning badge:** `⚠️ Warning:` → `<AlertTriangle className="w-4 h-4 inline mr-1">` ✅
+  - **Explanation h3:** `📚 Markup vs Margin Explained` → `<BookOpen>` (flex items-center gap-2) ✅
+  - **Inline labels:** `📈 Markup (...)` → `<TrendingUp>`; `💹 Margin (...)` → `<Percent>` ✅
+  - **Key Insight:** `💡` → `<Lightbulb className="w-3.5 h-3.5 inline mr-1">` ✅
+  - **Chart section h2 headers** (flex items-center gap-2 with `w-5 h-5` icons):
+    - `📊 Revenue Breakdown (Stacked)` → `<BarChart2>` ✅
+    - `🧾 GST Rate Scenarios` → `<Receipt>` ✅
+    - `💹 Markup vs Margin` → `<Percent>` ✅
+  - **Imports added:** `Trash2, Coins, BarChart2, Tag, Target, TrendingUp, Percent, Receipt, AlertTriangle, BookOpen, Lightbulb`
+  - **File:** `app/profit-margin-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - Percentage Calculator: Lucide Icon Consistency + Clear All Button)
+- 🎨 **Percentage calculator brought to full Lucide icon parity with EMI calculator:** ✅
+  - **Hike/Discount toggle buttons:** `📈 Hike` → `<TrendingUp />` | `📉 Discount` → `<TrendingDown />` ✅
+  - **Input helper hints (×3):** `💡` → inline `<Lightbulb />` ✅
+  - **Formula Reference h4:** `📐` → `<Calculator />` ✅
+  - **Clear All button:** `🗑️` + `hover:scale-105 active:scale-95` → `<Trash2 />` + `w-full shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform duration-200` — identical to EMI calculator ✅
+  - **Error state:** `⚠️` text paragraph → `<AlertTriangle className="w-10 h-10 mx-auto" />` ✅
+  - **Section headings in results panel:**
+    - `📚 Understanding the Calculation` h3 → `<BookOpen />` ✅
+    - `✨ Quick Tips` h3 → `<Lightbulb />` ✅
+    - Quick Tips bullets: `💡` → `✓` (matching EMI Money-Saving Tips pattern) ✅
+  - **Section headings below results:**
+    - `📊 Percentage Breakup` h2 → `<BarChart2 />` ✅
+    - `🔢 Sequential Steps` h2 → `<Hash />` ✅
+    - `❓ Frequently Asked Questions` h2 → `<HelpCircle />` ✅
+  - **Imports added:** `TrendingDown`, `Calculator`, `BookOpen`, `Lightbulb`, `Trash2`, `AlertTriangle`
+  - **File:** `app/percentage-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - GST Calculator: Lucide Icon Consistency + Clear All Button)
+- 🎨 **GST calculator brought to full Lucide icon parity with EMI calculator:** ✅
+  - **Duplicate `'use client'` removed:** File had two `'use client'` directives at lines 1 and 3; cleaned to single directive ✅
+  - **Clear button:** `🗑️ Clear` + `hover:scale-105 active:scale-95` → `<Trash2 />` + `hover:scale-[1.02] will-change-transform shadow-lg hover:shadow-xl duration-200` + label "Clear All" — identical to EMI calculator ✅
+  - **Formula Reference h4:** `📐` → `<Calculator />` ✅
+  - **Tip text:** `💡` → inline `<Info />` ✅
+  - **Result card labels** (flex + Lucide replacing emoji):
+    - `📦 Base Amount` → `<Package />` ✅
+    - `💜 GST Amount` → `<Percent />` ✅
+    - `✅ Total Amount` → `<CheckCircle2 />` ✅
+  - **Section headings:**
+    - `📚 Understanding GST` h3 → `<BookOpen />` ✅
+    - `✨ Key Insights` h3 → `<Lightbulb />` ✅
+    - `📊 GST Distribution` h2 → `<BarChart2 />` ✅
+    - `📋 GST Rate Categories` h2 → `<Tag />` ✅
+    - `❓ Frequently Asked Questions` h2 → plain text (matching EMI FAQ pattern) ✅
+  - **File:** `app/gst-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - BMI Calculator: Rose Icon Theme + Responsive Horizontal Gauge)
+- 🎨 **BMI calculator fully aligned to Health (rose) icon theme + distribution spectrum redesigned:** ✅
+  - **Unit toggle buttons:** emoji flags → `Globe`/`Ruler` Lucide icons; active state uses rose gradient matching Health category ✅
+  - **Tip hints:** `💡` text → inline `Info` icon on weight and height tip lines ✅
+  - **Reset button:** `🗑️` → `Trash2` Lucide icon ✅
+  - **Health insights panel:** `📚` header → `BookOpen`; panel background changed blue → rose; inline `💡`/`✅`/`⚠️` → `Lightbulb`/`CheckCircle2`/`AlertTriangle`/`AlertOctagon` ✅
+  - **"How Do You Compare?" header:** `📊` → `ScaleIcon` ✅
+  - **Health Tips cards:** `🍎`/`🏥`/`✨`/`🎯`/`🏃`/`🥗`/`🏊` → `Utensils`/`Stethoscope`/`Star`/`Target`/`Zap`/`Activity`/`HeartPulse`; cards upgraded to `rounded-xl border` ✅
+  - **BMI Categories header:** blue `BarChart2` → `ScaleIcon` in rose tile (`bg-rose-50 ring-rose-100`) ✅
+  - **FAQ header:** `❓` → `HelpCircle` in rose tile ✅
+  - **Distribution spectrum — full redesign (removed Recharts donut):** ✅
+    - Old: Recharts `PieChart` donut with confusing tooltip ("BMI Range: 18.5"), poor mobile layout
+    - New: Pure CSS horizontal gradient bar (blue → green → amber → red) scaled to BMI 10–45
+    - Floating label + SVG triangle pointer at the user's exact BMI value
+    - Scale ticks at 10 / 18.5 / 25 / 30 / 45+, widths proportional to actual ranges (24.3% / 18.6% / 14.3% / flex-1)
+    - 4 category cards: `grid-cols-2` mobile → `grid-cols-4` desktop; active card highlighted with ring + BMI value
+    - Recharts `PieChart` import removed entirely from BMI page
+  - **File:** `app/bmi-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - SI Calculator: Lucide Icon Consistency + Duplicate Directive Fix)
+- 🎨 **Simple Interest calculator brought to full Lucide icon parity with EMI calculator:** ✅
+  - **Duplicate `'use client'` removed:** File had both a BOM-prefixed and a normal `'use client'` at lines 1 and 3; cleaned to single directive (same pattern fixed previously in scientific, percentage, profit-margin) ✅
+  - **Tenure Type selector icons fixed (semantic correctness):**
+    - `months` → `<BarChart2>` (semantically wrong) → `<CalendarDays>` ✅
+    - `days` → `<Ruler>` (semantically wrong) → `<Clock>` ✅
+    - `years` → `<Calendar>` unchanged ✅
+  - **Formula Reference header:** `<Ruler>` → `<Calculator>` (matches formula/math context) ✅
+  - **Key Insights header:** `<Sparkles>` → `<Lightbulb>` (matches EMI tips/insights section pattern) ✅
+  - **Imports cleaned:** Removed `BarChart2`, `Sparkles`, `Ruler`; added `CalendarDays`, `Clock`, `Lightbulb`, `Calculator` ✅
+  - **File:** `app/simple-interest-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - FD Calculator: Lucide Icon Consistency + Clear All Button)
+- 🎨 **FD calculator brought to full Lucide icon parity with EMI calculator:** ✅
+  - **Tenure Type selector icons:** `<Calendar>`, `<BarChart2>`, `<Clock>` — added `strokeWidth={2}` and `flex-shrink-0` to match EMI's icon style ✅
+  - **Payout Type selector icons:** `<RefreshCw>`, `<BarChart2>`, `<Calendar>` — same fix (`strokeWidth={2}`, `flex-shrink-0`) ✅
+  - **Senior citizen `✅` emoji → `<CheckCircle2 strokeWidth={2} flex-shrink-0 />`:** Replaced last emoji in UI; `CheckCircle2` added to Lucide imports; `<p>` given `flex items-center gap-1` for proper icon alignment ✅
+  - **Clear button:** `hover:scale-105 active:scale-95` + label "Clear" → `hover:scale-[1.02] will-change-transform shadow-lg hover:shadow-xl duration-200` + label "Clear All" — now identical to EMI calculator ✅
+  - **File:** `app/fd-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - Icon Tile Consistency: H1 Headers, RelatedCalculators, Compare Panel)
 - 🎨 **Unified icon presentation across entire site to match navbar tile style:** ✅
   - **All 14 calculator page H1 headers:** Bare `<CalculatorIcon className="w-8 h-8" />` → wrapped in `inline-flex w-12 h-12 rounded-2xl` tile with category-aware color background:
     - Finance calcs (EMI, SIP, FD, RD, Tax, GST, CAGR, Simple Interest, Retirement, Home Loan, Profit Margin): blue tile (`bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-200`)

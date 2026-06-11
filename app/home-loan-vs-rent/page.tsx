@@ -1,7 +1,5 @@
 'use client';
 
-'use client';
-
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,7 +24,7 @@ import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { formatCurrency } from '@/lib/utils/format';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { Home, Building2, TrendingUp, Landmark, BarChart2, Sparkles } from 'lucide-react';
+import { Home, Building2, TrendingUp, Landmark, BarChart2, Lightbulb, Calculator, BookOpen, Trash2, Trophy, HelpCircle } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 
 // Format large numbers for Y-axis (e.g., 1000000 → 10L, 10000000 → 1Cr)
@@ -211,15 +209,17 @@ export default function HomeLoanVsRentCalculator() {
             }`}
           >
             {result.financial_verdict === 'BUYING_IS_BETTER' ? (
-              <>
-                🎉 Buying wins by <strong>{formatCurrency(result.absolute_delta)}</strong> over{' '}
+              <span className="inline-flex items-center justify-center gap-2 flex-wrap">
+                <Trophy className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                Buying wins by <strong>{formatCurrency(result.absolute_delta)}</strong> over{' '}
                 {watchValues.projection_tenure_years} years
-              </>
+              </span>
             ) : (
-              <>
-                📈 Renting + investing yields <strong>{formatCurrency(result.absolute_delta)}</strong> more (
+              <span className="inline-flex items-center justify-center gap-2 flex-wrap">
+                <TrendingUp className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                Renting + investing yields <strong>{formatCurrency(result.absolute_delta)}</strong> more (
                 {result.delta_pct.toFixed(1)}% higher net worth)
-              </>
+              </span>
             )}
           </div>
         )}
@@ -760,15 +760,16 @@ export default function HomeLoanVsRentCalculator() {
               </div>
 
               <button
+                type="button"
                 onClick={handleClearAll}
-                className="w-full mt-6 py-3 px-4 rounded-lg font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 transition-all"
+                className="w-full mt-6 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
               >
-                🔄 Clear All Values
+                <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
               </button>
 
               {/* Formula Reference */}
               <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-                <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3">📐 Opportunity Cost Framework</h4>
+                <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Opportunity Cost Framework</h4>
                 <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
                   <p><strong>Buyer NW:</strong> Property Value + Tax Benefits - Loan Balance</p>
                   <p><strong>Renter NW:</strong> (Down Pmt + EMI Savings) × Returns</p>
@@ -825,13 +826,13 @@ export default function HomeLoanVsRentCalculator() {
 
             {/* Understanding Your Analysis */}
             <div className="card mb-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-              <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 text-lg">📚 Understanding This Analysis</h3>
+              <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 text-lg flex items-center gap-2"><BookOpen className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding This Analysis</h3>
               <p className="text-sm text-blue-800 dark:text-blue-200 mb-4">
                 This calculator compares two financial paths over {watchValues.projection_tenure_years} years using the Opportunity Cost Framework: <strong>Buy with a loan</strong> vs <strong>Rent and invest the saved capital</strong>.
               </p>
               <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-200">
                 <div>
-                  <p className="font-semibold mb-2">🏠 Buyer's Path:</p>
+                  <p className="font-semibold mb-2 flex items-center gap-1.5"><Home className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Buyer's Path:</p>
                   <ul className="list-disc list-inside space-y-1 text-xs">
                     <li>Pay down payment: {formatCurrency(downPaymentAmount)}</li>
                     <li>Monthly EMI: {formatCurrency(result.monthly_emi)}</li>
@@ -841,7 +842,7 @@ export default function HomeLoanVsRentCalculator() {
                   </ul>
                 </div>
                 <div>
-                  <p className="font-semibold mb-2">📈 Renter's Path:</p>
+                  <p className="font-semibold mb-2 flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Renter's Path:</p>
                   <ul className="list-disc list-inside space-y-1 text-xs">
                     <li>Invest down payment amount</li>
                     <li>Invest EMI difference monthly</li>
@@ -857,7 +858,7 @@ export default function HomeLoanVsRentCalculator() {
             <div className={`card mb-8 ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800' : 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'}`}>
               <h3 className={`font-bold mb-3 text-lg ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-900 dark:text-emerald-300' : 'text-blue-900 dark:text-blue-300'}`}>
                 <span className="flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                  <Lightbulb className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
                   {result.financial_verdict === 'BUYING_IS_BETTER' ? 'Buying is the Better Choice' : 'Renting is the Better Choice'}
                 </span>
               </h3>
@@ -1062,7 +1063,7 @@ export default function HomeLoanVsRentCalculator() {
 
         {/* FAQ Section */}
         <div className="card mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h3>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h3>
           <div className="space-y-6">
             {[
               {

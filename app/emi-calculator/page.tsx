@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Home, BarChart2, Briefcase, Rocket, Target, Coins, BookOpen, Lightbulb, Trash2, AlertTriangle, Landmark } from 'lucide-react';
+import { Home, BarChart2, Briefcase, Rocket, Target, Coins, BookOpen, Lightbulb, Trash2, AlertTriangle, Landmark, HelpCircle } from 'lucide-react';
 import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/emi';
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -739,7 +739,7 @@ export default function EMICalculatorPage() {
 
       {/* FAQ Section */}
       <div className="card">
-        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group border-b border-gray-200 dark:border-gray-700">
             <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
