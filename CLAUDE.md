@@ -1,10 +1,23 @@
 # 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-11 (Full Lucide Icon Consistency Pass) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 pages, 0 TypeScript errors
+**Last Updated:** 2026-06-11 (Icon + Credibility Cleanup — AdSense Ready) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-11 - Full Lucide Icon Consistency Pass: Zero Emojis in UI)
+## ✅ Latest (2026-06-11 - Final Icon + Credibility Pass: Examples, Footer, Dead Code)
+- 🧹 **Completed the site-wide emoji → Lucide icon sweep + AdSense credibility fixes:** ✅
+  - **`components/mobile/SwipeHint.tsx`:** `←` / `→` Unicode arrows → `<ArrowLeft />` / `<ArrowRight />` Lucide icons ✅
+  - **`components/layout/Footer.tsx`:** `❤️` (×2) → `<Heart className="fill-red-400" />`; `⚠️` → `<AlertTriangle className="text-amber-400" />` ✅
+  - **All 21 `app/examples/*/page.tsx`:** Every emoji heading (📋 📊 ✅ ⚠️ 🧮 📈 💰 🎯 🔄 etc.) replaced with Lucide icons (`ClipboardList`, `BarChart2`, `CheckCircle2`, `AlertTriangle`, `Calculator`, `TrendingUp`, `Coins`, `Target`, `RefreshCw`…). Server components — no `'use client'` added. ✅
+  - **Dead code deleted (4 files, ~540 lines):** `components/ui/ExportButton.tsx`, `components/mobile/MobileBottomSheet.tsx`, `components/ui/InputTooltip.tsx`, `components/ui/MobileSliderInput.tsx` — zero callers confirmed before deletion ✅
+  - **Duplicate `'use client'` removed:** `scientific-calculator`, `percentage-calculator`, `profit-margin-calculator` each had it twice (one was BOM-prefixed); cleaned to single directive ✅
+  - **Homepage trust bar:** `50K+ Indians` / `⭐ 4.8 rating` (unverifiable) → `14 Free Calculators` / `0 Signup Required` (factual product stats) ✅
+  - **Homepage testimonials:** Replaced fake names/locations/savings claims (`Priya S., ₹45,000 saved`) with a "Common Use Cases" section — three credible use-case cards (Home Loan Planning, Old vs New Tax Regime, Retirement Corpus Goal) with calculator links ✅
+  - **Navbar:** Verified clean — no emoji present ✅
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors. Net diff: +164 / −626 lines ✅
+  - **Pattern note:** All LucideIcon renders in server components use `import { X } from 'lucide-react'` directly — no `'use client'` required since Lucide icons are pure SVG with no browser APIs ✅
+
+## ✅ Previous (2026-06-11 - Full Lucide Icon Consistency Pass: Zero Emojis in UI)
 - 🎨 **Replaced all remaining emoji icons site-wide with Lucide React icons matching navbar theme:** ✅
   - **`QuickStartExamples.tsx`:** `icon: string` → `icon: LucideIcon`; heading 💡 → `<Lightbulb />`; scenario render `{scenario.icon}` → `const Icon = scenario.icon; <Icon />` ✅
   - **`ConfidenceBadge.tsx`:** All badge icons (✅, 🏦, 📊, 💡) → `ShieldCheck`, `CheckCircle2`, `Landmark`, `BarChart2`, `TrendingUp`, `Search`, `Lightbulb` ✅
