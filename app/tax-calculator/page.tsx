@@ -206,7 +206,9 @@ export default function TaxCalculator() {
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
-            <CalculatorIcon idOrHref="tax" className="w-8 h-8 md:w-9 md:h-9 flex-shrink-0" />
+            <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-200 dark:ring-blue-800/40 flex-shrink-0">
+              <CalculatorIcon idOrHref="tax" className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            </span>
             <span>Income Tax Calculator</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">FY 2025-26 | AY 2026-27 | Old & New Regime</p>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Link2 } from 'lucide-react';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 
 interface RelatedCalculator {
@@ -18,7 +19,9 @@ export function RelatedCalculators({ calculators }: RelatedCalculatorsProps) {
   return (
     <nav aria-label="Related calculators" className="card bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800/50">
       <div className="flex items-center gap-3 mb-8">
-        <span aria-hidden="true" className="text-3xl">🔗</span>
+        <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/50 flex-shrink-0">
+          <Link2 className="w-5 h-5 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" />
+        </span>
         <div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Related Calculators</h2>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Explore complementary tools to enhance your calculations</p>

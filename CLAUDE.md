@@ -1,10 +1,22 @@
 # 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-11 (UX Polish: Skeleton, Category Fade, X Icon, ads.txt) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-11 (Icon Tile Consistency: All 14 H1 headers, RelatedCalculators, MiniCalculatorPanel) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-11 - UX Polish: Skeleton, Category Fade, X SVG, ads.txt Dedup)
+## ✅ Latest (2026-06-11 - Icon Tile Consistency: H1 Headers, RelatedCalculators, Compare Panel)
+- 🎨 **Unified icon presentation across entire site to match navbar tile style:** ✅
+  - **All 14 calculator page H1 headers:** Bare `<CalculatorIcon className="w-8 h-8" />` → wrapped in `inline-flex w-12 h-12 rounded-2xl` tile with category-aware color background:
+    - Finance calcs (EMI, SIP, FD, RD, Tax, GST, CAGR, Simple Interest, Retirement, Home Loan, Profit Margin): blue tile (`bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-200`)
+    - Health: BMI → rose tile (`bg-rose-50 dark:bg-rose-950/40 ring-1 ring-rose-200`)
+    - Utility: Percentage, Scientific → violet tile (`bg-violet-50 dark:bg-violet-950/40 ring-1 ring-violet-200`)
+    - Home Loan vs Rent (larger `text-5xl` heading): `w-14 h-14` tile
+  - **`components/ui/RelatedCalculators.tsx`:** `🔗` emoji header → `<Link2 />` Lucide icon in `w-10 h-10 rounded-xl` blue tile ✅
+  - **`components/compare/MiniCalculatorPanel.tsx`:** All 3 h2 headers (EMI/SIP/FD) — bare icons → `w-8 h-8 rounded-lg` blue tile matching navbar mega-menu style ✅
+  - **Pattern:** Every `CalculatorIcon` surface now uses a tile container (`rounded-lg`/`rounded-xl`/`rounded-2xl` depending on size) — consistent with the navbar’s `MegaItem` and `CalculatorCard` styles ✅
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - UX Polish: Skeleton, Category Fade, X SVG, ads.txt Dedup)
 - ✨ **Four UX + hygiene improvements:** ✅
   - **`public/Ads.txt` removed:** Case-variant duplicate deleted; `public/ads.txt` is canonical. Linux servers (Vercel) are case-sensitive — only lowercase is crawled by AdSense. ✅
   - **X logo in `ShareButtons`:** `𝕏` unicode character → official X logo inline SVG (`w-4 h-4 fill=currentColor`) matching Lucide icon size/weight exactly. ✅

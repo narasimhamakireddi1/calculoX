@@ -98,7 +98,10 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
       {calcId === 'emi' && (
         <>
           <h2 className={`text-xl font-bold mb-4 flex items-center gap-2 ${textAccent}`}>
-            <CalculatorIcon idOrHref="emi" className="w-5 h-5" /> EMI Calculator
+            <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/50 flex-shrink-0">
+              <CalculatorIcon idOrHref="emi" className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            </span>
+            EMI Calculator
           </h2>
 
           <div className="space-y-4 mb-6">
@@ -181,7 +184,10 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
       {calcId === 'sip' && (
         <>
           <h2 className={`text-xl font-bold mb-4 flex items-center gap-2 ${textAccent}`}>
-            <CalculatorIcon idOrHref="sip" className="w-5 h-5" /> SIP Calculator
+            <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/50 flex-shrink-0">
+              <CalculatorIcon idOrHref="sip" className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            </span>
+            SIP Calculator
           </h2>
 
           <div className="space-y-4 mb-6">
@@ -260,7 +266,10 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
       {calcId === 'fd' && (
         <>
           <h2 className={`text-xl font-bold mb-4 flex items-center gap-2 ${textAccent}`}>
-            <CalculatorIcon idOrHref="fd" className="w-5 h-5" /> FD Calculator
+            <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/50 flex-shrink-0">
+              <CalculatorIcon idOrHref="fd" className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            </span>
+            FD Calculator
           </h2>
 
           <div className="space-y-4 mb-6">
