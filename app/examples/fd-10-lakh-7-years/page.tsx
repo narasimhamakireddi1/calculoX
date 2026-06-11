@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils/format';
+import { ClipboardList, Coins, BarChart2, Calculator } from 'lucide-react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
@@ -32,7 +33,7 @@ export default function FD10LakhExample() {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <section className="mb-12 bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">📋 FD Details</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><ClipboardList className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> FD Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <div className="flex justify-between pb-3 border-b mb-3"><span>Principal</span><span className="font-bold">{formatCurrency(principal)}</span></div>
@@ -43,7 +44,7 @@ export default function FD10LakhExample() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">💰 Results</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><Coins className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Results</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/30 dark:to-teal-800/20 rounded-lg p-8 border-2 border-teal-200 dark:border-teal-700">
               <p className="text-gray-600 dark:text-gray-300 mb-2">Maturity Amount</p>
@@ -64,7 +65,7 @@ export default function FD10LakhExample() {
         </section>
 
         <section className="mb-12 prose dark:prose-invert max-w-none">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">📊 Understanding This FD</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding This FD</h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 space-y-4 text-gray-700 dark:text-gray-300">
             <p>
               This FD is for someone with ₹10L surplus needing long-term guaranteed returns. You'll earn ₹5.07L in interest
@@ -105,7 +106,7 @@ export default function FD10LakhExample() {
         </section>
 
         <section className="mb-12 bg-gradient-to-r from-teal-600 to-teal-700 dark:from-teal-800 dark:to-teal-900 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">🧮 Calculate Your FD</h2>
+          <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2"><Calculator className="w-7 h-7 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Calculate Your FD</h2>
           <Link href="/fd-calculator" className="inline-block bg-white text-teal-600 font-bold py-3 px-8 rounded-lg hover:bg-teal-50">
             Open FD Calculator →
           </Link>

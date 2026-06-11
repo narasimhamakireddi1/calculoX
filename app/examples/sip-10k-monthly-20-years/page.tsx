@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils/format';
+import { ClipboardList, Coins, BarChart2, Target, CheckCircle2, Calculator } from 'lucide-react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
@@ -43,8 +44,8 @@ export default function SIP10KExample() {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <section className="mb-12 bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            📋 Investment Details
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <ClipboardList className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Investment Details
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
@@ -75,8 +76,8 @@ export default function SIP10KExample() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            💰 Investment Results
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <Coins className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Investment Results
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 rounded-lg p-8 border-2 border-purple-200 dark:border-purple-700">
@@ -110,8 +111,8 @@ export default function SIP10KExample() {
         </section>
 
         <section className="mb-12 prose dark:prose-invert max-w-none">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            📊 Understanding This SIP Plan
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding This SIP Plan
           </h2>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 space-y-4 text-gray-700 dark:text-gray-300">
@@ -194,8 +195,8 @@ export default function SIP10KExample() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            🎯 Comparison with Alternative Scenarios
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <Target className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Comparison with Alternative Scenarios
           </h2>
 
           <div className="space-y-4">
@@ -265,8 +266,8 @@ export default function SIP10KExample() {
         </section>
 
         <section className="mb-12 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8 border-l-4 border-blue-500">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            ✅ Key Takeaways
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Takeaways
           </h2>
           <ul className="space-y-3 text-gray-700 dark:text-gray-300">
             <li className="flex items-start">
@@ -293,7 +294,7 @@ export default function SIP10KExample() {
         </section>
 
         <section className="mb-12 bg-gradient-to-r from-purple-600 to-purple-700 dark:from-purple-800 dark:to-purple-900 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">🧮 Start Your SIP Journey Today</h2>
+          <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2"><Calculator className="w-7 h-7 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Start Your SIP Journey Today</h2>
           <p className="text-purple-100 mb-6">
             Use our interactive SIP calculator to explore different amounts, durations, and return rates.
           </p>

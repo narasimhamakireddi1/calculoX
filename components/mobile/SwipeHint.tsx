@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface SwipeHintProps {
   hasLeft: boolean;
@@ -36,10 +37,6 @@ export function SwipeHint({ hasLeft, hasRight, calculatorName }: SwipeHintProps)
 
   if (dismissed || !isVisible) return null;
 
-  // Determine which arrows to show
-  const leftArrow = hasLeft ? '←' : '';
-  const rightArrow = hasRight ? '→' : '';
-
   if (!hasLeft && !hasRight) return null;
 
   return (
@@ -51,13 +48,9 @@ export function SwipeHint({ hasLeft, hasRight, calculatorName }: SwipeHintProps)
       aria-label="Swipe hint"
     >
       <div className="bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-4 py-2 rounded-full text-sm font-semibold shadow-lg flex items-center gap-2 whitespace-nowrap">
-        {leftArrow && (
-          <span className="text-lg animate-pulse">{leftArrow}</span>
-        )}
+        {hasLeft && <ArrowLeft className="w-4 h-4 animate-pulse" aria-hidden="true" />}
         <span>Swipe for more calculators</span>
-        {rightArrow && (
-          <span className="text-lg animate-pulse">{rightArrow}</span>
-        )}
+        {hasRight && <ArrowRight className="w-4 h-4 animate-pulse" aria-hidden="true" />}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils/format';
+import { ClipboardList, Coins, BarChart2, Calculator } from 'lucide-react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
@@ -34,7 +35,7 @@ export default function RD5000Example() {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <section className="mb-12 bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">📋 RD Details</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><ClipboardList className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> RD Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <div className="flex justify-between pb-3 border-b mb-3"><span>Monthly Deposit</span><span className="font-bold">{formatCurrency(monthlyDeposit)}</span></div>
@@ -45,7 +46,7 @@ export default function RD5000Example() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">💰 Results at Maturity</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><Coins className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Results at Maturity</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 rounded-lg p-8 border-2 border-orange-200 dark:border-orange-700">
               <p className="text-gray-600 dark:text-gray-300 mb-2">Maturity Amount</p>
@@ -66,7 +67,7 @@ export default function RD5000Example() {
         </section>
 
         <section className="mb-12 prose dark:prose-invert max-w-none">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">📊 Understanding RD</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding RD</h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 space-y-4 text-gray-700 dark:text-gray-300">
             <p>
               RD (Recurring Deposit) is perfect for salaried professionals. You deposit ₹5,000 monthly for 5 years
@@ -101,7 +102,7 @@ export default function RD5000Example() {
         </section>
 
         <section className="mb-12 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-800 dark:to-orange-900 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">🧮 Calculate Your RD</h2>
+          <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2"><Calculator className="w-7 h-7 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Calculate Your RD</h2>
           <Link href="/rd-calculator" className="inline-block bg-white text-orange-600 font-bold py-3 px-8 rounded-lg hover:bg-orange-50">
             Open RD Calculator →
           </Link>

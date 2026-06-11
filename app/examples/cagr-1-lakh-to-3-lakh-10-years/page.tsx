@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils/format';
+import { ClipboardList, TrendingUp, BarChart2, Calculator } from 'lucide-react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
@@ -31,7 +32,7 @@ export default function CAGR1LakhExample() {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <section className="mb-12 bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">📋 Investment Details</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><ClipboardList className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Investment Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <div className="flex justify-between pb-3 border-b mb-3"><span>Beginning Value</span><span className="font-bold">{formatCurrency(beginning)}</span></div>
@@ -42,7 +43,7 @@ export default function CAGR1LakhExample() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">📈 CAGR Result</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><TrendingUp className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> CAGR Result</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 rounded-lg p-8 border-2 border-blue-200 dark:border-blue-700">
               <p className="text-gray-600 dark:text-gray-300 mb-2">CAGR</p>
@@ -58,7 +59,7 @@ export default function CAGR1LakhExample() {
         </section>
 
         <section className="mb-12 prose dark:prose-invert max-w-none">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">📊 Understanding CAGR</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding CAGR</h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 space-y-4 text-gray-700 dark:text-gray-300">
             <p>
               CAGR (Compound Annual Growth Rate) is the average annual growth rate of an investment over a period.
@@ -97,7 +98,7 @@ export default function CAGR1LakhExample() {
         </section>
 
         <section className="mb-12 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-800 dark:to-blue-900 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">🧮 Calculate Your Investment CAGR</h2>
+          <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2"><Calculator className="w-7 h-7 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Calculate Your Investment CAGR</h2>
           <Link href="/cagr-calculator" className="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-blue-50">
             Open CAGR Calculator →
           </Link>

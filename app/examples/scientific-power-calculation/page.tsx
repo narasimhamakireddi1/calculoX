@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { BarChart2, FlaskConical, Calculator } from 'lucide-react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
@@ -31,7 +32,7 @@ export default function ScientificExample() {
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <section className="mb-12 bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">📊 Example Calculations</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Example Calculations</h2>
 
           <div className="space-y-6">
             <div className="bg-white dark:bg-gray-700 rounded-lg p-6 border-l-4 border-purple-500">
@@ -77,7 +78,7 @@ export default function ScientificExample() {
         </section>
 
         <section className="mb-12 prose dark:prose-invert max-w-none">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">🔬 When to Use Scientific Calculator</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2"><FlaskConical className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> When to Use Scientific Calculator</h2>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 space-y-4 text-gray-700 dark:text-gray-300">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mt-6">Engineering & Physics</h3>
@@ -122,7 +123,7 @@ export default function ScientificExample() {
         </section>
 
         <section className="mb-12 bg-gradient-to-r from-purple-600 to-purple-700 dark:from-purple-800 dark:to-purple-900 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">🧮 Use Advanced Scientific Functions</h2>
+          <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2"><Calculator className="w-7 h-7 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Use Advanced Scientific Functions</h2>
           <Link href="/scientific-calculator" className="inline-block bg-white text-purple-600 font-bold py-3 px-8 rounded-lg hover:bg-purple-50">
             Open Scientific Calculator →
           </Link>

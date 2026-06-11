@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Heart, AlertTriangle } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -36,7 +37,7 @@ export function Footer() {
             <p className="text-gray-400 text-sm leading-relaxed">
               Free premium online calculators for Indian users – finance, health & utility tools.
             </p>
-            <p className="text-gray-400 text-xs mt-3">Made with ❤️ for India</p>
+            <p className="text-gray-400 text-xs mt-3 flex items-center gap-1">Made with <Heart className="w-3 h-3 fill-red-400 text-red-400 inline" strokeWidth={0} aria-hidden="true" /> for India</p>
           </div>
 
           {/* Calculators - Column 1 */}
@@ -98,9 +99,9 @@ export function Footer() {
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm">
           <div className="text-center md:text-left">
             <p className="font-medium">&copy; {new Date().getFullYear()} <span className="text-blue-400 font-bold">calculox</span>. All rights reserved.</p>
-            <p className="text-xs text-gray-500 mt-1">Made with ❤️ for India</p>
+            <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">Made with <Heart className="w-3 h-3 fill-red-400 text-red-400 inline" strokeWidth={0} aria-hidden="true" /> for India</p>
           </div>
-          <p className="text-xs bg-gray-800 px-4 py-2 rounded-lg border border-gray-700 text-gray-300">⚠️ Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
+          <p className="text-xs bg-gray-800 px-4 py-2 rounded-lg border border-gray-700 text-gray-300 flex items-start gap-1.5"><AlertTriangle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-amber-400" strokeWidth={2} aria-hidden="true" /> Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
         </div>
       </div>
     </footer>

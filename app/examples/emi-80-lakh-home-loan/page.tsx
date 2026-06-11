@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils/format';
+import { ClipboardList, Coins, BarChart2, Target, CheckCircle2, Calculator, Home, RefreshCw } from 'lucide-react';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
@@ -48,7 +49,7 @@ export default function EMI80LakhExample() {
             Real-world scenario: 20% down payment at 8.5% for 20 years
           </p>
           <div className="inline-block bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-            ✅ RBI-Verified
+            <span className="flex items-center gap-1"><CheckCircle2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> RBI-Verified</span>
           </div>
         </div>
       </div>
@@ -56,8 +57,8 @@ export default function EMI80LakhExample() {
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Scenario Details */}
         <section className="mb-12 bg-gray-50 dark:bg-gray-800 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            📋 Scenario Details
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <ClipboardList className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Scenario Details
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
@@ -105,8 +106,8 @@ export default function EMI80LakhExample() {
 
         {/* Key Results */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            💰 Calculation Results
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <Coins className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Calculation Results
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 rounded-lg p-8 border-2 border-blue-200 dark:border-blue-700">
@@ -141,8 +142,8 @@ export default function EMI80LakhExample() {
 
         {/* Detailed Analysis */}
         <section className="mb-12 prose dark:prose-invert max-w-none">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            📊 What This Means: Detailed Analysis
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <BarChart2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> What This Means: Detailed Analysis
           </h2>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 space-y-4 text-gray-700 dark:text-gray-300">
@@ -208,8 +209,8 @@ export default function EMI80LakhExample() {
 
         {/* Optimization Strategies */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            🎯 Ways to Reduce This EMI
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <Target className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Ways to Reduce This EMI
           </h2>
 
           <div className="space-y-4">
@@ -330,8 +331,8 @@ export default function EMI80LakhExample() {
 
         {/* Key Takeaways */}
         <section className="mb-12 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8 border-l-4 border-blue-500">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            ✅ Key Takeaways
+          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Takeaways
           </h2>
           <ul className="space-y-3 text-gray-700 dark:text-gray-300">
             <li className="flex items-start">
@@ -363,7 +364,7 @@ export default function EMI80LakhExample() {
 
         {/* Try Calculator CTA */}
         <section className="mb-12 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-800 dark:to-blue-900 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">🧮 Try Our Interactive EMI Calculator</h2>
+          <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2"><Calculator className="w-7 h-7 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Try Our Interactive EMI Calculator</h2>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
             Want to calculate EMI for your own loan amount? Our interactive calculator lets you:
             adjust property price, down payment percentage, interest rate, and tenure in real-time.
@@ -379,7 +380,7 @@ export default function EMI80LakhExample() {
         {/* FAQ Section */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            ❓ Frequently Asked Questions
+            Frequently Asked Questions
           </h2>
           <div className="space-y-4">
             <details className="group border border-gray-200 dark:border-gray-700 rounded-lg p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50">
@@ -450,15 +451,15 @@ export default function EMI80LakhExample() {
         {/* Related Calculators */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            🔗 Related Calculators
+            Related Calculators
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Link
               href="/home-loan-vs-rent"
               className="block p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg border border-green-200 dark:border-green-700 hover:shadow-lg transition-shadow"
             >
-              <p className="font-bold text-lg text-gray-900 dark:text-white mb-2">
-                🏠 Home Loan vs Rent
+              <p className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                <Home className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Home Loan vs Rent
               </p>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 Compare buying vs renting with full cost analysis
@@ -468,8 +469,8 @@ export default function EMI80LakhExample() {
               href="/sip-calculator"
               className="block p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg border border-purple-200 dark:border-purple-700 hover:shadow-lg transition-shadow"
             >
-              <p className="font-bold text-lg text-gray-900 dark:text-white mb-2">
-                🔄 SIP Calculator
+              <p className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                <RefreshCw className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> SIP Calculator
               </p>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 Plan your monthly investment and future wealth
@@ -479,8 +480,8 @@ export default function EMI80LakhExample() {
               href="/tax-calculator"
               className="block p-6 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 rounded-lg border border-orange-200 dark:border-orange-700 hover:shadow-lg transition-shadow"
             >
-              <p className="font-bold text-lg text-gray-900 dark:text-white mb-2">
-                📋 Tax Calculator
+              <p className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                <ClipboardList className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Tax Calculator
               </p>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 Calculate your income tax liability for FY2025-26
