@@ -1,10 +1,18 @@
 # 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-11 (Icon + Credibility Cleanup — AdSense Ready) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 pages, 0 TypeScript errors
+**Last Updated:** 2026-06-11 (UX Polish: Skeleton, Category Fade, X Icon, ads.txt) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-11 - Final Icon + Credibility Pass: Examples, Footer, Dead Code)
+## ✅ Latest (2026-06-11 - UX Polish: Skeleton, Category Fade, X SVG, ads.txt Dedup)
+- ✨ **Four UX + hygiene improvements:** ✅
+  - **`public/Ads.txt` removed:** Case-variant duplicate deleted; `public/ads.txt` is canonical. Linux servers (Vercel) are case-sensitive — only lowercase is crawled by AdSense. ✅
+  - **X logo in `ShareButtons`:** `𝕏` unicode character → official X logo inline SVG (`w-4 h-4 fill=currentColor`) matching Lucide icon size/weight exactly. ✅
+  - **Homepage category grid fade:** Added `key={selectedCategory}` / `key="all"` so React remounts grid on category change, triggering `.animate-fade-in` (0.2s ease-out fade + 6px slide-up). `@keyframes fade-in` added to `globals.css`. ✅
+  - **Calculator loading skeletons:** Created `components/ui/CalculatorSkeleton.tsx` — two-column shimmer skeleton (header, 4 input rows, 4 result metrics, chart placeholder) using `@keyframes shimmer` CSS sweep. Added `app/[calc]/loading.tsx` for all 14 calculator routes — Next.js App Router shows skeleton during client-side navigation. `@keyframes shimmer` added to `globals.css`. ✅
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - Final Icon + Credibility Pass: Examples, Footer, Dead Code)
 - 🧹 **Completed the site-wide emoji → Lucide icon sweep + AdSense credibility fixes:** ✅
   - **`components/mobile/SwipeHint.tsx`:** `←` / `→` Unicode arrows → `<ArrowLeft />` / `<ArrowRight />` Lucide icons ✅
   - **`components/layout/Footer.tsx`:** `❤️` (×2) → `<Heart className="fill-red-400" />`; `⚠️` → `<AlertTriangle className="text-amber-400" />` ✅
