@@ -1,10 +1,26 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 28 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-12 (Homepage calculator-themed redesign) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-12 (Homepage: All 14 calculators in quick widget) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-12 - Homepage: Calculator-Themed Redesign with 4-Tab Quick Calculator)
+## ✅ Latest (2026-06-12 - Homepage: Quick Calculator Expanded to All 14 Tabs)
+- 🧮 **Quick calculator widget expanded from 4 tabs → all 14 calculators:** ✅
+  - **Tab bar:** Horizontally scrollable (`overflow-x-auto`, `w-max min-w-full`) — fits desktop, scrolls mobile ✅
+  - **RD:** Monthly Deposit · Rate · Tenure → Maturity + Invested + Interest ✅
+  - **Tax:** Annual Income → Tax (New Regime FY25-26) + Effective Rate + Monthly Tax · zero-tax shows green ✅
+  - **GST:** Base Amount · Rate (0-28%) → GST Amount + Base + Total · common rates hint ✅
+  - **PCT (violet):** Base Value · Percentage → Result + Remaining ✅
+  - **CAGR:** Invested · Current Value · Years → CAGR % + Total Return + Gain (negative handled in red) ✅
+  - **SI:** Principal · Rate · Years → Interest + Principal + Total ✅
+  - **Retire:** Monthly Expenses · Years · Return → Corpus (4% rule) + Monthly SIP needed ✅
+  - **Home:** Property Value · Down % · Rate → EMI (20yr fixed) + Loan Amount + Total Interest ✅
+  - **Profit:** Cost · Selling Price → Profit + Margin % + Markup % (loss handled in red) ✅
+  - **Sci (violet):** Number → √n + n² + log₁₀(n) ✅
+  - **14 inline calc functions** — pure Math, no imports; `formatNum` helper for non-₹ numbers ✅
+  - **File:** `app/page.tsx` | **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-12 - Homepage: Calculator-Themed Redesign with 4-Tab Quick Calculator)
 - 🧮 **Homepage fully redesigned around a calculator theme:** ✅
   - **4-tab quick calculator widget in hero (EMI | SIP | FD | BMI):** Single widget with tab switcher — each tab has isolated slider state, live result, and category-appropriate colors ✅
     - **EMI tab (blue):** Loan Amount · Interest Rate · Tenure → Monthly EMI (primary) + Total Interest + Total Payment ✅

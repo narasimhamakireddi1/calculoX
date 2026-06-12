@@ -20,7 +20,14 @@ function formatINR(n: number): string {
   return `₹${Math.round(n).toLocaleString('en-IN')}`;
 }
 
-// ── Inline calc functions (no imports, pure Math) ─────────────────────────────
+function formatNum(n: number, dec = 2): string {
+  if (n >= 10_000_000) return `${(n / 10_000_000).toFixed(dec)}Cr`;
+  if (n >= 100_000)    return `${(n / 100_000).toFixed(dec)}L`;
+  if (n >= 1_000)      return n.toLocaleString('en-IN', { maximumFractionDigits: dec });
+  return n.toFixed(dec);
+}
+
+// ── Calc functions ─────────────────────────────────────────────────────────────
 function calcEMI(principal: number, annualRate: number, years: number) {
   const n = years * 12;
   const r = annualRate / 12 / 100;
@@ -35,14 +42,12 @@ function calcSIP(monthly: number, annualReturn: number, years: number) {
   const n = years * 12;
   const r = annualReturn / 12 / 100;
   if (r === 0) return { corpus: monthly * n, invested: monthly * n, returns: 0 };
-  // Annuity due — invested at start of each month
   const corpus = monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
   const invested = monthly * n;
   return { corpus, invested, returns: corpus - invested };
 }
 
 function calcFD(principal: number, annualRate: number, years: number) {
-  // Quarterly compounding (standard cumulative FD)
   const maturity = principal * Math.pow(1 + annualRate / 400, 4 * years);
   return { maturity, interest: maturity - principal };
 }
@@ -50,10 +55,85 @@ function calcFD(principal: number, annualRate: number, years: number) {
 function calcBMI(weight: number, heightCm: number) {
   const h = heightCm / 100;
   const bmi = weight / (h * h);
-  if (bmi < 18.5) return { bmi, category: 'Underweight', color: 'text-amber-500',   bg: 'bg-amber-50   dark:bg-amber-900/20'   };
+  if (bmi < 18.5) return { bmi, category: 'Underweight', color: 'text-amber-500',   bg: 'bg-amber-50 dark:bg-amber-900/20'     };
   if (bmi < 25)   return { bmi, category: 'Normal',      color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-900/20' };
-  if (bmi < 30)   return { bmi, category: 'Overweight',  color: 'text-orange-500',  bg: 'bg-orange-50  dark:bg-orange-900/20'  };
-  return            { bmi, category: 'Obese',       color: 'text-red-600',    bg: 'bg-red-50     dark:bg-red-900/20'     };
+  if (bmi < 30)   return { bmi, category: 'Overweight',  color: 'text-orange-500',  bg: 'bg-orange-50 dark:bg-orange-900/20'   };
+  return            { bmi, category: 'Obese',       color: 'text-red-600',    bg: 'bg-red-50 dark:bg-red-900/20'         };
+}
+
+function calcRD(monthly: number, annualRate: number, years: number) {
+  const n = years * 12;
+  const r = annualRate / 12 / 100;
+  if (r === 0) return { maturity: monthly * n, invested: monthly * n, returns: 0 };
+  const maturity = monthly * ((Math.pow(1 + r, n) - 1) / r);
+  const invested = monthly * n;
+  return { maturity, invested, returns: maturity - invested };
+}
+
+function calcTax(annualIncome: number) {
+  const taxable = Math.max(0, annualIncome - 75_000); // ₹75K standard deduction
+  let tax = 0;
+  if      (taxable > 1_500_000) tax = 140_000 + (taxable - 1_500_000) * 0.30;
+  else if (taxable > 1_200_000) tax = 80_000  + (taxable - 1_200_000) * 0.20;
+  else if (taxable > 1_000_000) tax = 50_000  + (taxable - 1_000_000) * 0.15;
+  else if (taxable > 700_000)   tax = 20_000  + (taxable - 700_000)   * 0.10;
+  else if (taxable > 300_000)   tax = (taxable - 300_000) * 0.05;
+  if (taxable <= 700_000) tax = 0; // Rebate u/s 87A
+  const totalTax = Math.round(tax * 1.04); // 4% cess
+  const effectiveRate = annualIncome > 0 ? (totalTax / annualIncome) * 100 : 0;
+  return { totalTax, effectiveRate, monthlyTax: totalTax / 12 };
+}
+
+function calcGST(amount: number, rate: number) {
+  const gst = amount * rate / 100;
+  return { gst, total: amount + gst };
+}
+
+function calcPercentage(value: number, percent: number) {
+  const result = (value * percent) / 100;
+  return { result, remaining: value - result };
+}
+
+function calcCAGR(invested: number, currentValue: number, years: number) {
+  if (invested <= 0 || years <= 0) return { cagr: 0, totalReturn: 0, gain: 0 };
+  const ratio = Math.max(currentValue, 0.01) / invested;
+  const cagr = (Math.pow(ratio, 1 / years) - 1) * 100;
+  const gain = currentValue - invested;
+  return { cagr, totalReturn: (gain / invested) * 100, gain };
+}
+
+function calcSI(principal: number, rate: number, years: number) {
+  const interest = principal * rate * years / 100;
+  return { interest, total: principal + interest };
+}
+
+function calcRetirement(monthlyExpenses: number, yearsToRetirement: number, returnRate: number) {
+  const corpus = monthlyExpenses * 12 * 25; // 4% safe-withdrawal rule
+  const n = yearsToRetirement * 12;
+  const r = returnRate / 12 / 100;
+  const sipNeeded = r === 0 ? corpus / n : corpus * r / (Math.pow(1 + r, n) - 1);
+  return { corpus, sipNeeded };
+}
+
+function calcHomeLoan(propertyValue: number, downPct: number, rate: number) {
+  const loanAmount = propertyValue * (1 - downPct / 100);
+  const { emi, totalInterest } = calcEMI(loanAmount, rate, 20);
+  return { emi, loanAmount, totalInterest };
+}
+
+function calcProfitMargin(costPrice: number, sellingPrice: number) {
+  const profit = sellingPrice - costPrice;
+  const margin = sellingPrice > 0 ? (profit / sellingPrice) * 100 : 0;
+  const markup = costPrice > 0 ? (profit / costPrice) * 100 : 0;
+  return { profit, margin, markup };
+}
+
+function calcScientific(num: number) {
+  return {
+    sqrt:   num >= 0 ? Math.sqrt(num) : 0,
+    square: num * num,
+    log10:  num > 0 ? Math.log10(num) : 0,
+  };
 }
 
 // ── CountUp (scroll-triggered) ────────────────────────────────────────────────
@@ -84,7 +164,11 @@ function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {
 }
 
 // ── Tab config ────────────────────────────────────────────────────────────────
-type QuickTab = 'emi' | 'sip' | 'fd' | 'bmi';
+type QuickTab =
+  | 'emi' | 'sip' | 'fd' | 'bmi'
+  | 'rd' | 'tax' | 'gst' | 'percentage'
+  | 'cagr' | 'si' | 'retirement' | 'homeloan'
+  | 'profitmargin' | 'scientific';
 
 const TAB_META: Record<QuickTab, {
   label: string; dot: string; headerText: string;
@@ -119,6 +203,76 @@ const TAB_META: Record<QuickTab, {
     btnGrad: 'from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700',
     btnShadow: 'hover:shadow-rose-500/25',
     cta: 'See Detailed Health Analysis →', href: '/bmi-calculator',
+  },
+  rd: {
+    label: 'RD', dot: 'bg-blue-500', headerText: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-200 dark:border-blue-800/60', sliderAccent: 'accent-blue-600',
+    btnGrad: 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+    btnShadow: 'hover:shadow-blue-500/25',
+    cta: 'See Full RD Projection →', href: '/rd-calculator',
+  },
+  tax: {
+    label: 'Tax', dot: 'bg-blue-500', headerText: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-200 dark:border-blue-800/60', sliderAccent: 'accent-blue-600',
+    btnGrad: 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+    btnShadow: 'hover:shadow-blue-500/25',
+    cta: 'Calculate Full Income Tax →', href: '/tax-calculator',
+  },
+  gst: {
+    label: 'GST', dot: 'bg-blue-500', headerText: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-200 dark:border-blue-800/60', sliderAccent: 'accent-blue-600',
+    btnGrad: 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+    btnShadow: 'hover:shadow-blue-500/25',
+    cta: 'See Full GST Breakdown →', href: '/gst-calculator',
+  },
+  percentage: {
+    label: 'PCT', dot: 'bg-violet-500', headerText: 'text-violet-600 dark:text-violet-400',
+    border: 'border-violet-200 dark:border-violet-800/60', sliderAccent: 'accent-violet-600',
+    btnGrad: 'from-violet-600 to-violet-700 hover:from-violet-700 hover:to-violet-800',
+    btnShadow: 'hover:shadow-violet-500/25',
+    cta: 'Try All 6 Percentage Tracks →', href: '/percentage-calculator',
+  },
+  cagr: {
+    label: 'CAGR', dot: 'bg-blue-500', headerText: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-200 dark:border-blue-800/60', sliderAccent: 'accent-blue-600',
+    btnGrad: 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+    btnShadow: 'hover:shadow-blue-500/25',
+    cta: 'Analyse Year-by-Year CAGR →', href: '/cagr-calculator',
+  },
+  si: {
+    label: 'SI', dot: 'bg-blue-500', headerText: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-200 dark:border-blue-800/60', sliderAccent: 'accent-blue-600',
+    btnGrad: 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+    btnShadow: 'hover:shadow-blue-500/25',
+    cta: 'Compare SI vs Compound Interest →', href: '/simple-interest-calculator',
+  },
+  retirement: {
+    label: 'Retire', dot: 'bg-blue-500', headerText: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-200 dark:border-blue-800/60', sliderAccent: 'accent-blue-600',
+    btnGrad: 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+    btnShadow: 'hover:shadow-blue-500/25',
+    cta: 'See Full Retirement Roadmap →', href: '/retirement-calculator',
+  },
+  homeloan: {
+    label: 'Home', dot: 'bg-blue-500', headerText: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-200 dark:border-blue-800/60', sliderAccent: 'accent-blue-600',
+    btnGrad: 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+    btnShadow: 'hover:shadow-blue-500/25',
+    cta: 'Compare Buy vs Rent →', href: '/home-loan-vs-rent',
+  },
+  profitmargin: {
+    label: 'Profit', dot: 'bg-blue-500', headerText: 'text-blue-600 dark:text-blue-400',
+    border: 'border-blue-200 dark:border-blue-800/60', sliderAccent: 'accent-blue-600',
+    btnGrad: 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800',
+    btnShadow: 'hover:shadow-blue-500/25',
+    cta: 'See Full Profit Analysis →', href: '/profit-margin-calculator',
+  },
+  scientific: {
+    label: 'Sci', dot: 'bg-violet-500', headerText: 'text-violet-600 dark:text-violet-400',
+    border: 'border-violet-200 dark:border-violet-800/60', sliderAccent: 'accent-violet-600',
+    btnGrad: 'from-violet-600 to-violet-700 hover:from-violet-700 hover:to-violet-800',
+    btnShadow: 'hover:shadow-violet-500/25',
+    cta: 'Open Full Scientific Calculator →', href: '/scientific-calculator',
   },
 };
 
@@ -215,7 +369,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<CalculatorCategory | null>(null);
   const [activeTab, setActiveTab] = useState<QuickTab>('emi');
 
-  // Per-tab state — each tab remembers its own values
+  // ── Per-tab state ──────────────────────────────────────────────────────────
   const [emiPrincipal, setEmiPrincipal] = useState(2_000_000);
   const [emiRate,      setEmiRate]      = useState(8.5);
   const [emiYears,     setEmiYears]     = useState(20);
@@ -231,11 +385,54 @@ export default function Home() {
   const [bmiWeight, setBmiWeight] = useState(70);
   const [bmiHeight, setBmiHeight] = useState(170);
 
-  // Memoised results
-  const emiResult = useMemo(() => calcEMI(emiPrincipal, emiRate, emiYears), [emiPrincipal, emiRate, emiYears]);
-  const sipResult = useMemo(() => calcSIP(sipMonthly, sipReturn, sipYears),  [sipMonthly, sipReturn, sipYears]);
-  const fdResult  = useMemo(() => calcFD(fdPrincipal, fdRate, fdYears),      [fdPrincipal, fdRate, fdYears]);
-  const bmiResult = useMemo(() => calcBMI(bmiWeight, bmiHeight),             [bmiWeight, bmiHeight]);
+  const [rdMonthly, setRdMonthly] = useState(5_000);
+  const [rdRate,    setRdRate]    = useState(6.5);
+  const [rdYears,   setRdYears]   = useState(5);
+
+  const [taxIncome, setTaxIncome] = useState(800_000);
+
+  const [gstBaseAmount, setGstBaseAmount] = useState(100_000);
+  const [gstRate,       setGstRate]       = useState(18);
+
+  const [pctValue,   setPctValue]   = useState(50_000);
+  const [pctPercent, setPctPercent] = useState(30);
+
+  const [cagrInvested,     setCagrInvested]     = useState(100_000);
+  const [cagrCurrentValue, setCagrCurrentValue] = useState(250_000);
+  const [cagrYears,        setCagrYears]        = useState(5);
+
+  const [siPrincipal, setSiPrincipal] = useState(100_000);
+  const [siRate,      setSiRate]      = useState(7);
+  const [siYears,     setSiYears]     = useState(3);
+
+  const [retireExpenses, setRetireExpenses] = useState(50_000);
+  const [retireYears,    setRetireYears]    = useState(25);
+  const [retireReturn,   setRetireReturn]   = useState(10);
+
+  const [hlPropertyValue, setHlPropertyValue] = useState(5_000_000);
+  const [hlDownPct,       setHlDownPct]       = useState(20);
+  const [hlRate,          setHlRate]          = useState(8.5);
+
+  const [pmCostPrice,    setPmCostPrice]    = useState(500_000);
+  const [pmSellingPrice, setPmSellingPrice] = useState(750_000);
+
+  const [sciNum, setSciNum] = useState(100);
+
+  // ── Memoised results ───────────────────────────────────────────────────────
+  const emiResult    = useMemo(() => calcEMI(emiPrincipal, emiRate, emiYears),          [emiPrincipal, emiRate, emiYears]);
+  const sipResult    = useMemo(() => calcSIP(sipMonthly, sipReturn, sipYears),           [sipMonthly, sipReturn, sipYears]);
+  const fdResult     = useMemo(() => calcFD(fdPrincipal, fdRate, fdYears),               [fdPrincipal, fdRate, fdYears]);
+  const bmiResult    = useMemo(() => calcBMI(bmiWeight, bmiHeight),                      [bmiWeight, bmiHeight]);
+  const rdResult     = useMemo(() => calcRD(rdMonthly, rdRate, rdYears),                 [rdMonthly, rdRate, rdYears]);
+  const taxResult    = useMemo(() => calcTax(taxIncome),                                  [taxIncome]);
+  const gstResult    = useMemo(() => calcGST(gstBaseAmount, gstRate),                    [gstBaseAmount, gstRate]);
+  const pctResult    = useMemo(() => calcPercentage(pctValue, pctPercent),               [pctValue, pctPercent]);
+  const cagrResult   = useMemo(() => calcCAGR(cagrInvested, cagrCurrentValue, cagrYears),[cagrInvested, cagrCurrentValue, cagrYears]);
+  const siResult     = useMemo(() => calcSI(siPrincipal, siRate, siYears),               [siPrincipal, siRate, siYears]);
+  const retireResult = useMemo(() => calcRetirement(retireExpenses, retireYears, retireReturn), [retireExpenses, retireYears, retireReturn]);
+  const hlResult     = useMemo(() => calcHomeLoan(hlPropertyValue, hlDownPct, hlRate),   [hlPropertyValue, hlDownPct, hlRate]);
+  const pmResult     = useMemo(() => calcProfitMargin(pmCostPrice, pmSellingPrice),      [pmCostPrice, pmSellingPrice]);
+  const sciResult    = useMemo(() => calcScientific(sciNum),                              [sciNum]);
 
   const meta = TAB_META[activeTab];
 
@@ -311,21 +508,23 @@ export default function Home() {
         {/* ── Tabbed Quick Calculator Widget ── */}
         <div className={`relative z-10 max-w-2xl mx-auto mt-6 bg-white/90 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl border ${meta.border} shadow-xl p-6 md:p-8 text-left transition-colors duration-300`}>
 
-          {/* Tab bar */}
-          <div className="flex gap-1 mb-6 bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
-            {(Object.keys(TAB_META) as QuickTab[]).map(tab => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
-                  activeTab === tab
-                    ? `bg-white dark:bg-gray-700 shadow-sm ${TAB_META[tab].headerText}`
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
-                }`}
-              >
-                {TAB_META[tab].label}
-              </button>
-            ))}
+          {/* Tab bar — scrollable for 14 tabs */}
+          <div className="overflow-x-auto mb-6" style={{ scrollbarWidth: 'thin' }}>
+            <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-xl p-1 w-max min-w-full">
+              {(Object.keys(TAB_META) as QuickTab[]).map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+                    activeTab === tab
+                      ? `bg-white dark:bg-gray-700 shadow-sm ${TAB_META[tab].headerText}`
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  }`}
+                >
+                  {TAB_META[tab].label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Widget header */}
@@ -384,9 +583,114 @@ export default function Home() {
                 onChange={setBmiHeight} minLabel="100 cm" maxLabel="220 cm" />
             </>}
 
+            {activeTab === 'rd' && <>
+              <SliderRow label="Monthly Deposit" value={rdMonthly} display={formatINR(rdMonthly)}
+                min={500} max={50_000} step={500} accent={meta.sliderAccent}
+                onChange={setRdMonthly} minLabel="₹500" maxLabel="₹50K" />
+              <SliderRow label="Interest Rate" value={rdRate} display={`${rdRate.toFixed(1)}% p.a.`}
+                min={4} max={9} step={0.1} accent={meta.sliderAccent}
+                onChange={setRdRate} minLabel="4%" maxLabel="9%" />
+              <SliderRow label="Tenure" value={rdYears} display={`${rdYears} ${rdYears === 1 ? 'Year' : 'Years'}`}
+                min={1} max={10} step={1} accent={meta.sliderAccent}
+                onChange={setRdYears} minLabel="1 Yr" maxLabel="10 Yrs" />
+            </>}
+
+            {activeTab === 'tax' && <>
+              <SliderRow label="Annual Income" value={taxIncome} display={formatINR(taxIncome)}
+                min={300_000} max={5_000_000} step={10_000} accent={meta.sliderAccent}
+                onChange={setTaxIncome} minLabel="₹3L" maxLabel="₹50L" />
+              <p className="text-[11px] text-gray-400 dark:text-gray-500">
+                New Regime (FY 2025-26) · ₹75K std. deduction · Rebate 87A ≤ ₹7L taxable
+              </p>
+            </>}
+
+            {activeTab === 'gst' && <>
+              <SliderRow label="Base Amount (excl. GST)" value={gstBaseAmount} display={formatINR(gstBaseAmount)}
+                min={1_000} max={1_000_000} step={1_000} accent={meta.sliderAccent}
+                onChange={setGstBaseAmount} minLabel="₹1K" maxLabel="₹10L" />
+              <SliderRow label="GST Rate" value={gstRate} display={`${gstRate}%`}
+                min={0} max={28} step={1} accent={meta.sliderAccent}
+                onChange={setGstRate} minLabel="0%" maxLabel="28%" />
+              <p className="text-[11px] text-gray-400 dark:text-gray-500">
+                Common rates: 5% · 12% · 18% · 28%
+              </p>
+            </>}
+
+            {activeTab === 'percentage' && <>
+              <SliderRow label="Base Value" value={pctValue} display={formatINR(pctValue)}
+                min={1_000} max={1_000_000} step={1_000} accent={meta.sliderAccent}
+                onChange={setPctValue} minLabel="₹1K" maxLabel="₹10L" />
+              <SliderRow label="Percentage" value={pctPercent} display={`${pctPercent}%`}
+                min={1} max={100} step={1} accent={meta.sliderAccent}
+                onChange={setPctPercent} minLabel="1%" maxLabel="100%" />
+            </>}
+
+            {activeTab === 'cagr' && <>
+              <SliderRow label="Amount Invested" value={cagrInvested} display={formatINR(cagrInvested)}
+                min={50_000} max={5_000_000} step={10_000} accent={meta.sliderAccent}
+                onChange={setCagrInvested} minLabel="₹50K" maxLabel="₹50L" />
+              <SliderRow label="Current Value" value={cagrCurrentValue} display={formatINR(cagrCurrentValue)}
+                min={50_000} max={50_000_000} step={50_000} accent={meta.sliderAccent}
+                onChange={setCagrCurrentValue} minLabel="₹50K" maxLabel="₹5Cr" />
+              <SliderRow label="Years" value={cagrYears} display={`${cagrYears} ${cagrYears === 1 ? 'Year' : 'Years'}`}
+                min={1} max={30} step={1} accent={meta.sliderAccent}
+                onChange={setCagrYears} minLabel="1 Yr" maxLabel="30 Yrs" />
+            </>}
+
+            {activeTab === 'si' && <>
+              <SliderRow label="Principal" value={siPrincipal} display={formatINR(siPrincipal)}
+                min={10_000} max={5_000_000} step={10_000} accent={meta.sliderAccent}
+                onChange={setSiPrincipal} minLabel="₹10K" maxLabel="₹50L" />
+              <SliderRow label="Interest Rate" value={siRate} display={`${siRate.toFixed(1)}% p.a.`}
+                min={1} max={15} step={0.1} accent={meta.sliderAccent}
+                onChange={setSiRate} minLabel="1%" maxLabel="15%" />
+              <SliderRow label="Tenure" value={siYears} display={`${siYears} ${siYears === 1 ? 'Year' : 'Years'}`}
+                min={1} max={10} step={1} accent={meta.sliderAccent}
+                onChange={setSiYears} minLabel="1 Yr" maxLabel="10 Yrs" />
+            </>}
+
+            {activeTab === 'retirement' && <>
+              <SliderRow label="Monthly Expenses (today)" value={retireExpenses} display={formatINR(retireExpenses)}
+                min={10_000} max={200_000} step={5_000} accent={meta.sliderAccent}
+                onChange={setRetireExpenses} minLabel="₹10K" maxLabel="₹2L" />
+              <SliderRow label="Years to Retirement" value={retireYears} display={`${retireYears} Years`}
+                min={5} max={40} step={1} accent={meta.sliderAccent}
+                onChange={setRetireYears} minLabel="5 Yrs" maxLabel="40 Yrs" />
+              <SliderRow label="Expected Return" value={retireReturn} display={`${retireReturn.toFixed(1)}% p.a.`}
+                min={6} max={15} step={0.5} accent={meta.sliderAccent}
+                onChange={setRetireReturn} minLabel="6%" maxLabel="15%" />
+            </>}
+
+            {activeTab === 'homeloan' && <>
+              <SliderRow label="Property Value" value={hlPropertyValue} display={formatINR(hlPropertyValue)}
+                min={2_000_000} max={100_000_000} step={500_000} accent={meta.sliderAccent}
+                onChange={setHlPropertyValue} minLabel="₹20L" maxLabel="₹10Cr" />
+              <SliderRow label="Down Payment" value={hlDownPct} display={`${hlDownPct}%`}
+                min={10} max={50} step={5} accent={meta.sliderAccent}
+                onChange={setHlDownPct} minLabel="10%" maxLabel="50%" />
+              <SliderRow label="Interest Rate" value={hlRate} display={`${hlRate.toFixed(1)}% p.a.`}
+                min={7} max={14} step={0.1} accent={meta.sliderAccent}
+                onChange={setHlRate} minLabel="7%" maxLabel="14%" />
+            </>}
+
+            {activeTab === 'profitmargin' && <>
+              <SliderRow label="Cost Price" value={pmCostPrice} display={formatINR(pmCostPrice)}
+                min={1_000} max={1_000_000} step={1_000} accent={meta.sliderAccent}
+                onChange={setPmCostPrice} minLabel="₹1K" maxLabel="₹10L" />
+              <SliderRow label="Selling Price" value={pmSellingPrice} display={formatINR(pmSellingPrice)}
+                min={1_000} max={2_000_000} step={1_000} accent={meta.sliderAccent}
+                onChange={setPmSellingPrice} minLabel="₹1K" maxLabel="₹20L" />
+            </>}
+
+            {activeTab === 'scientific' && <>
+              <SliderRow label="Number" value={sciNum} display={sciNum.toLocaleString('en-IN')}
+                min={1} max={10_000} step={1} accent={meta.sliderAccent}
+                onChange={setSciNum} minLabel="1" maxLabel="10,000" />
+            </>}
+
           </div>
 
-          {/* ── Result panel — 1 primary + 2 secondary, no overlap ── */}
+          {/* ── Result panel ── */}
           <div className="mt-6 pt-5 border-t border-gray-100 dark:border-gray-800">
 
             {activeTab === 'emi' && (
@@ -474,6 +778,234 @@ export default function Home() {
               </>
             )}
 
+            {activeTab === 'rd' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-extrabold text-blue-600 dark:text-blue-400 tabular-nums">
+                    {formatINR(rdResult.maturity)}
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">Maturity Amount</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{formatINR(rdResult.invested)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Total Invested</p>
+                  </div>
+                  <div className="bg-emerald-50 dark:bg-emerald-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400 tabular-nums">{formatINR(rdResult.returns)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Interest Earned</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'tax' && (
+              <>
+                <div className="text-center mb-4">
+                  {taxResult.totalTax === 0 ? (
+                    <>
+                      <div className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 tabular-nums">₹0</div>
+                      <p className="text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 font-semibold uppercase tracking-widest">Zero Tax (Rebate 87A)</p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-3xl font-extrabold text-orange-500 dark:text-orange-400 tabular-nums">{formatINR(taxResult.totalTax)}</div>
+                      <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">Annual Tax (New Regime)</p>
+                    </>
+                  )}
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{taxResult.effectiveRate.toFixed(2)}%</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Effective Rate</p>
+                  </div>
+                  <div className="bg-orange-50 dark:bg-orange-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-orange-500 dark:text-orange-400 tabular-nums">{formatINR(taxResult.monthlyTax)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Monthly Tax</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'gst' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-extrabold text-blue-600 dark:text-blue-400 tabular-nums">
+                    {formatINR(gstResult.gst)}
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">GST Amount ({gstRate}%)</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{formatINR(gstBaseAmount)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Base Amount</p>
+                  </div>
+                  <div className="bg-emerald-50 dark:bg-emerald-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400 tabular-nums">{formatINR(gstResult.total)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Total Amount</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'percentage' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-extrabold text-violet-600 dark:text-violet-400 tabular-nums">
+                    {formatINR(pctResult.result)}
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">
+                    {pctPercent}% of {formatINR(pctValue)}
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-violet-50 dark:bg-violet-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-violet-600 dark:text-violet-400 tabular-nums">{pctPercent}%</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Percentage Applied</p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{formatINR(pctResult.remaining)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Remaining ({100 - pctPercent}%)</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'cagr' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className={`text-3xl font-extrabold tabular-nums ${cagrResult.cagr >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400'}`}>
+                    {cagrResult.cagr >= 0 ? '' : '−'}{Math.abs(cagrResult.cagr).toFixed(2)}%
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">CAGR (p.a.)</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{cagrResult.totalReturn.toFixed(1)}%</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Total Return</p>
+                  </div>
+                  <div className={`${cagrResult.gain >= 0 ? 'bg-emerald-50 dark:bg-emerald-900/10' : 'bg-red-50 dark:bg-red-900/10'} rounded-xl px-4 py-3 text-center`}>
+                    <div className={`text-lg font-bold tabular-nums ${cagrResult.gain >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400'}`}>
+                      {cagrResult.gain >= 0 ? '' : '−'}{formatINR(Math.abs(cagrResult.gain))}
+                    </div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">{cagrResult.gain >= 0 ? 'Total Gain' : 'Total Loss'}</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'si' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 tabular-nums">
+                    {formatINR(siResult.interest)}
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">Simple Interest Earned</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{formatINR(siPrincipal)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Principal</p>
+                  </div>
+                  <div className="bg-blue-50 dark:bg-blue-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400 tabular-nums">{formatINR(siResult.total)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Total Amount</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'retirement' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-extrabold text-blue-600 dark:text-blue-400 tabular-nums">
+                    {formatINR(retireResult.corpus)}
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">Corpus Needed (4% Rule)</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-orange-50 dark:bg-orange-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-orange-500 dark:text-orange-400 tabular-nums">{formatINR(retireResult.sipNeeded)}<span className="text-xs font-normal text-gray-400 ml-0.5">/mo</span></div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Monthly SIP to Start</p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{formatINR(retireExpenses * 12)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Annual Expenses</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'homeloan' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-extrabold text-blue-600 dark:text-blue-400 tabular-nums">
+                    {formatINR(hlResult.emi)}
+                    <span className="text-base font-normal text-gray-400 ml-1">/mo</span>
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">Monthly EMI (20 Yr Tenure)</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{formatINR(hlResult.loanAmount)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Loan Amount</p>
+                  </div>
+                  <div className="bg-orange-50 dark:bg-orange-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-orange-500 dark:text-orange-400 tabular-nums">{formatINR(hlResult.totalInterest)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Total Interest</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'profitmargin' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className={`text-3xl font-extrabold tabular-nums ${pmResult.profit >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400'}`}>
+                    {pmResult.profit >= 0 ? '' : '−'}{formatINR(Math.abs(pmResult.profit))}
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">
+                    {pmResult.profit >= 0 ? 'Gross Profit' : 'Loss'}
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className={`${pmResult.margin >= 0 ? 'bg-emerald-50 dark:bg-emerald-900/10' : 'bg-red-50 dark:bg-red-900/10'} rounded-xl px-4 py-3 text-center`}>
+                    <div className={`text-lg font-bold tabular-nums ${pmResult.margin >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400'}`}>
+                      {pmResult.margin.toFixed(1)}%
+                    </div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Profit Margin</p>
+                  </div>
+                  <div className="bg-blue-50 dark:bg-blue-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400 tabular-nums">{pmResult.markup.toFixed(1)}%</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Markup %</p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === 'scientific' && (
+              <>
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-extrabold text-violet-600 dark:text-violet-400 tabular-nums">
+                    {sciResult.sqrt.toFixed(4)}
+                  </div>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1 font-semibold uppercase tracking-widest">
+                    √{sciNum.toLocaleString('en-IN')}
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-blue-50 dark:bg-blue-900/10 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400 tabular-nums">{formatNum(sciResult.square, 0)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">{sciNum}² (Square)</p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3 text-center">
+                    <div className="text-lg font-bold text-gray-700 dark:text-gray-300 tabular-nums">{sciResult.log10.toFixed(4)}</div>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">log₁₀({sciNum})</p>
+                  </div>
+                </div>
+              </>
+            )}
+
           </div>
 
           {/* Dynamic CTA */}
@@ -534,7 +1066,6 @@ export default function Home() {
               const CategoryIcon = cfg?.Icon;
               return (
                 <div key={category} className="space-y-4 relative">
-                  {/* Finance ambient gradient */}
                   {category === 'finance' && (
                     <div className="absolute -inset-x-4 -top-4 h-28 bg-gradient-to-b from-blue-100/60 via-blue-50/30 to-transparent dark:from-blue-500/10 dark:via-blue-950/5 rounded-t-2xl pointer-events-none" aria-hidden="true" />
                   )}
