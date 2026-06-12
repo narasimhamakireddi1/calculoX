@@ -288,10 +288,20 @@ const MOTIFS: Array<{ text: string; style: CSSProperties }> = [
 
 // ── Sample results for calculator cards ───────────────────────────────────────
 const SAMPLE_RESULTS: Record<string, string> = {
-  '/emi-calculator': '₹20L · 8.5% · 20Y → ₹17,356/mo',
-  '/sip-calculator': '₹10K/mo · 12% · 15Y → ₹50.4L corpus',
-  '/fd-calculator':  '₹5L · 7% · 3Y → ₹6.2L maturity',
-  '/bmi-calculator': '70 kg · 170 cm → BMI 24.2 (Normal)',
+  '/emi-calculator':          '₹20L · 8.5% · 20Y → ₹17,356/mo',
+  '/sip-calculator':          '₹10K/mo · 12% · 15Y → ₹50.4L corpus',
+  '/fd-calculator':           '₹5L · 7% · 3Y → ₹6.2L maturity',
+  '/bmi-calculator':          '70 kg · 170 cm → BMI 24.2 (Normal)',
+  '/rd-calculator':           '₹5K/mo · 7% · 3Y → ₹2.0L maturity',
+  '/tax-calculator':          '₹12L income · New Regime → ₹90,000 tax',
+  '/gst-calculator':          '₹10,000 + 18% GST → ₹11,800 total',
+  '/percentage-calculator':   '₹800 → ₹1,000 → 25% increase',
+  '/cagr-calculator':         '₹1L → ₹2.5L · 5Y → 20.1% CAGR',
+  '/simple-interest-calculator': '₹1L · 8% · 3Y → ₹24,000 interest',
+  '/retirement-calculator':   '₹30K/mo · 25Y · 10% → ₹3.96Cr corpus',
+  '/home-loan-vs-rent':       '₹80L · 9% · 25Y — break-even: Yr 9',
+  '/profit-margin-calculator':'Cost ₹800 · MRP ₹1,200 → 33.3% margin',
+  '/scientific-calculator':   '√144 = 12 · log₁₀(1000) = 3',
 };
 
 // ── Real Scenarios ────────────────────────────────────────────────────────────
