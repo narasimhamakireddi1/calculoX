@@ -1,10 +1,24 @@
 ﻿# 🧮 calculox
 
-**Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-12 (Profit Margin: mobile card overflow fix + IndianRupee icon) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 28 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
+**Last Updated:** 2026-06-12 (Blog: category filter tabs) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-12 - Profit Margin Calculator: Mobile Card Overflow Fix + IndianRupee Icon)
+## ✅ Latest (2026-06-12 - Blog: Category Filter Tabs)
+- 🗂️ **Category filter tabs added to blog listing page for 28+ posts:** ✅
+  - **Problem:** 28 posts in a flat grid with no filtering — hard to find posts by topic ✅
+  - **Solution:** `BlogClient.tsx` client component with pill-style filter tabs above the grid ✅
+  - **Tabs:** All · Finance · Investment · Investing · Tax · Health · Business · Retirement · Savings · Personal Finance · Wealth Building (derived from actual post data, no hardcoding) ✅
+  - **Count badge:** Each tab shows post count (e.g. "Finance 8") — updates live on filter ✅
+  - **Color-coded active state:** Blue=Finance, Green=Investment, Orange=Tax, Rose=Health, Purple=Business, Amber=Retirement, Teal=Savings, Indigo=Personal Finance — matches site semantic color system ✅
+  - **Mobile:** Horizontally scrollable tab row (`overflow-x-auto`, `min-w-max`) on phones; wraps on tablet/desktop ✅
+  - **Fade animation:** `key={activeCategory}` on grid triggers existing `animate-fade-in` CSS on every filter switch ✅
+  - **Results count line:** "Showing 5 articles in Tax" displayed below tabs ✅
+  - **Architecture:** `app/blog/page.tsx` stays a server component (metadata untouched); only the interactive filter+grid extracted to `BlogClient.tsx` (`'use client'`) ✅
+  - **Files:** `app/blog/BlogClient.tsx` (new), `app/blog/page.tsx` (updated)
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-12 - Profit Margin Calculator: Mobile Card Overflow Fix + IndianRupee Icon)
 - 📱 **Metric cards fixed for mobile — text no longer overflows boxes:** ✅
   - **Root cause:** `grid-cols-3` with `p-5` left only ~69px of content width per card on mobile (390px); values like `₹1,000.00` at `text-lg` overflowed ✅
   - **Hero metrics (Cost Price / Net Price / Final MRP):** `grid-cols-3` → `grid-cols-2 sm:grid-cols-3`; 3rd card gets `col-span-2 sm:col-span-1` (full-width on mobile) ✅
