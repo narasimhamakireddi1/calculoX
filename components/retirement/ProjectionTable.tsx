@@ -1,6 +1,7 @@
 'use client';
 
 import { memo, useMemo, useState, useCallback } from 'react';
+import { TableProperties } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils/format';
 
 interface ProjectionRow {
@@ -85,7 +86,12 @@ const ProjectionTableComponent = memo(({
   return (
     <div className="card">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">📋 Year-by-Year Projection</h2>
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          <span className="inline-flex w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-200 dark:ring-blue-800/60 items-center justify-center flex-shrink-0">
+            <TableProperties className="w-5 h-5 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" />
+          </span>
+          Year-by-Year Projection
+        </h2>
         <button
           onClick={onToggle}
           className="px-4 py-2 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/70 rounded-xl text-sm font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200"
