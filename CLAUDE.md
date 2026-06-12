@@ -1,10 +1,29 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 28 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-12 (Calculator category ambient backgrounds) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-12 (Homepage calculator-themed redesign) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-12 - Calculator Category Ambient Backgrounds)
+## ✅ Latest (2026-06-12 - Homepage: Calculator-Themed Redesign with 4-Tab Quick Calculator)
+- 🧮 **Homepage fully redesigned around a calculator theme:** ✅
+  - **4-tab quick calculator widget in hero (EMI | SIP | FD | BMI):** Single widget with tab switcher — each tab has isolated slider state, live result, and category-appropriate colors ✅
+    - **EMI tab (blue):** Loan Amount · Interest Rate · Tenure → Monthly EMI (primary) + Total Interest + Total Payment ✅
+    - **SIP tab (blue):** Monthly Investment · Annual Return · Duration → Final Corpus (primary) + Invested + Est. Returns ✅
+    - **FD tab (blue):** Principal · Interest Rate · Tenure → Maturity Amount (primary) + Principal + Interest Earned ✅
+    - **BMI tab (rose):** Weight · Height → BMI value (primary, category-colored) + Category + Healthy Range ✅
+  - **Overlap fix:** Replaced `grid-cols-3` result row (caused `text-3xl` overflow) with **1 primary + 2 secondary pills** layout — primary metric gets full width centered, secondary metrics in equal 2-col pills using `formatINR` abbreviation ✅
+  - **Floating EMI formula motifs:** 6 faint `pointer-events-none` formula fragments (`EMI = P×r×(1+r)ⁿ`, `÷ [(1+r)ⁿ−1]`, etc.) scattered in hero background at 6–7% opacity ✅
+  - **Count-up trust bar:** "14+" and "100%" animate from 0 on scroll into view using `IntersectionObserver` + `requestAnimationFrame` with ease-out-cubic ✅
+  - **Finance ambient gradient:** Blue gradient strip above Finance section header in calculator grid ✅
+  - **Real Indian Scenarios section:** 3 EMI-themed cards (Mumbai home loan, Bengaluru buy-vs-rent, Delhi car loan) each with monospace result box showing actual computed output ✅
+  - **Sample result snippets on calculator cards:** `CalculatorCard` updated with optional `sampleResult?: string` prop; EMI, SIP, FD, BMI cards show monospace one-liner (e.g. `₹20L · 8.5% · 20Y → ₹17,356/mo`) ✅
+  - **`SliderRow` extracted:** Reusable inline component (`label`, `value`, `display`, `min/max/step`, `accent`, `onChange`, `minLabel/maxLabel`) eliminates repetition across 4 tabs ✅
+  - **Dynamic CTA per tab:** Button text, destination href, gradient color, and shadow color all switch per active tab ✅
+  - **Widget border changes:** Blue border for EMI/SIP/FD tabs → Rose border for BMI tab ✅
+  - **Files:** `app/page.tsx` (full rewrite), `components/ui/CalculatorCard.tsx` (optional `sampleResult` prop)
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-12 - Calculator Category Ambient Backgrounds)
 - 🎨 **Category-specific hero gradient added to all 14 calculator pages:** ✅
   - **Pattern (Option B — hero gradient fade):** Full-width absolute-positioned gradient strip, 320px tall, fades to transparent — only the H1/hero area gets the tint; cards, sliders, charts remain on the neutral body background ✅
   - **Finance (Blue) — 11 calculators:** EMI, SIP, FD, RD, Tax, GST, CAGR, Simple Interest, Retirement, Home Loan vs Rent, Profit Margin → `from-blue-100/60 via-blue-50/30 to-transparent` / `dark:from-blue-500/10 dark:via-blue-950/5` ✅
