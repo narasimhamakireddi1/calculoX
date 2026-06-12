@@ -7,6 +7,7 @@ interface CalculatorCardProps {
   href: string;
   icon?: string;
   category: string;
+  sampleResult?: string;
 }
 
 const categoryColors: Record<
@@ -52,6 +53,7 @@ export function CalculatorCard({
   description,
   href,
   category,
+  sampleResult,
 }: CalculatorCardProps) {
   const colors = categoryColors[category] || categoryColors['Finance'];
 
@@ -86,6 +88,11 @@ export function CalculatorCard({
         <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed flex-grow">
           {description}
         </p>
+        {sampleResult && (
+          <div className="mt-3 px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-800/70 border border-gray-100 dark:border-gray-700/50 font-mono text-[11px] text-gray-500 dark:text-gray-400 leading-snug">
+            {sampleResult}
+          </div>
+        )}
         <div
           className={`mt-4 pt-4 border-t border-gray-100 dark:border-gray-800/80 font-semibold text-sm inline-flex items-center gap-1.5 ${colors.text}`}
         >
