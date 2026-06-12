@@ -5,6 +5,7 @@ import {
   generateFAQSchema,
   generateBreadcrumbSchema,
 } from '@/lib/seo/schemas';
+import { CalcPageWrapper } from '@/components/layout/CalcPageWrapper';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -143,7 +144,9 @@ export default function ProfitMarginLayout({ children }: { children: React.React
       <Script id="schema-profit-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-profit-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Script id="schema-profit-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      {children}
+      <CalcPageWrapper category="Finance">
+        {children}
+      </CalcPageWrapper>
     </>
   );
 }

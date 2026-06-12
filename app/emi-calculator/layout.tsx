@@ -5,6 +5,7 @@ import {
   generateFAQSchema,
   generateBreadcrumbSchema,
 } from '@/lib/seo/schemas';
+import { CalcPageWrapper } from '@/components/layout/CalcPageWrapper';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -105,7 +106,9 @@ export default function EMILayout({ children }: { children: React.ReactNode }) {
       <Script id="schema-emi-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-emi-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Script id="schema-emi-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      {children}
+      <CalcPageWrapper category="Finance">
+        {children}
+      </CalcPageWrapper>
     </>
   );
 }

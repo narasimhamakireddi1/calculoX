@@ -1,10 +1,21 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 28 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-12 (Blog: category filter tabs) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-12 (Calculator category ambient backgrounds) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-12 - Blog: Category Filter Tabs)
+## ✅ Latest (2026-06-12 - Calculator Category Ambient Backgrounds)
+- 🎨 **Category-specific hero gradient added to all 14 calculator pages:** ✅
+  - **Pattern (Option B — hero gradient fade):** Full-width absolute-positioned gradient strip, 320px tall, fades to transparent — only the H1/hero area gets the tint; cards, sliders, charts remain on the neutral body background ✅
+  - **Finance (Blue) — 11 calculators:** EMI, SIP, FD, RD, Tax, GST, CAGR, Simple Interest, Retirement, Home Loan vs Rent, Profit Margin → `from-blue-100/60 via-blue-50/30 to-transparent` / `dark:from-blue-500/10 dark:via-blue-950/5` ✅
+  - **Health (Rose) — 1 calculator:** BMI → `from-rose-100/60 via-rose-50/30 to-transparent` / `dark:from-rose-500/10 dark:via-rose-950/5` ✅
+  - **Utility (Violet) — 2 calculators:** Percentage, Scientific → `from-violet-100/60 via-violet-50/30 to-transparent` / `dark:from-violet-500/10 dark:via-violet-950/5` ✅
+  - **Architecture:** Single `CalcPageWrapper` server component (`components/layout/CalcPageWrapper.tsx`) accepts `category` prop; gradient strings are fully static so Tailwind JIT picks them up at build time ✅
+  - **Zero JS, zero runtime cost:** pure CSS, server-rendered, `pointer-events-none aria-hidden="true"` ✅
+  - **Files:** `components/layout/CalcPageWrapper.tsx` (new); all 14 calculator `layout.tsx` files (import + children wrap)
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-12 - Blog: Category Filter Tabs)
 - 🗂️ **Category filter tabs added to blog listing page for 28+ posts:** ✅
   - **Problem:** 28 posts in a flat grid with no filtering — hard to find posts by topic ✅
   - **Solution:** `BlogClient.tsx` client component with pill-style filter tabs above the grid ✅

@@ -5,6 +5,7 @@ import {
   generateFAQSchema,
   generateBreadcrumbSchema,
 } from '@/lib/seo/schemas';
+import { CalcPageWrapper } from '@/components/layout/CalcPageWrapper';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -104,7 +105,9 @@ export default function FDCalculatorLayout({ children }: { children: React.React
       <Script id="schema-fd-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-fd-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Script id="schema-fd-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      {children}
+      <CalcPageWrapper category="Finance">
+        {children}
+      </CalcPageWrapper>
     </>
   );
 }

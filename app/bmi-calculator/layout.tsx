@@ -5,6 +5,7 @@ import {
   generateFAQSchema,
   generateBreadcrumbSchema,
 } from '@/lib/seo/schemas';
+import { CalcPageWrapper } from '@/components/layout/CalcPageWrapper';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -98,7 +99,9 @@ export default function BMILayout({ children }: { children: React.ReactNode }) {
       <Script id="schema-bmi-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-bmi-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Script id="schema-bmi-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      {children}
+      <CalcPageWrapper category="Health">
+        {children}
+      </CalcPageWrapper>
     </>
   );
 }

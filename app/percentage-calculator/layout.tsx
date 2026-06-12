@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import { generateWebApplicationSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo/schemas';
+import { CalcPageWrapper } from '@/components/layout/CalcPageWrapper';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -97,7 +98,9 @@ export default function PercentageCalculatorLayout({ children }: { children: Rea
       <Script id="schema-percentage-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-percentage-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Script id="schema-percentage-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      {children}
+      <CalcPageWrapper category="Utility">
+        {children}
+      </CalcPageWrapper>
     </>
   );
 }

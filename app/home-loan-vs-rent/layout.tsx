@@ -5,6 +5,7 @@ import {
   generateFAQSchema,
   generateBreadcrumbSchema,
 } from '@/lib/seo/schemas';
+import { CalcPageWrapper } from '@/components/layout/CalcPageWrapper';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -133,7 +134,9 @@ export default function HomeLoanVsRentLayout({ children }: { children: React.Rea
       <Script id="schema-home-vs-rent-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Script id="schema-home-vs-rent-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Script id="schema-home-vs-rent-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      {children}
+      <CalcPageWrapper category="Finance">
+        {children}
+      </CalcPageWrapper>
     </>
   );
 }
