@@ -42,6 +42,10 @@ const nextConfig = {
       headers: [{ key: 'Cache-Control', value: 'public, max-age=86400' }],
     },
   ],
+  rewrites: async () => [
+    // Serve the dynamically generated OG image at the static path all layouts reference
+    { source: '/og-image.png', destination: '/api/og' },
+  ],
   redirects: async () => [
     { source: '/calculators', destination: '/', permanent: true },
     { source: '/privacy', destination: '/privacy-policy', permanent: true },

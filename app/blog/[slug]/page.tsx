@@ -2,8 +2,87 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { blogPosts, getBlogPostBySlug } from '@/lib/blog/posts';
+import { blogPosts, getBlogPostBySlug, getRelatedPosts } from '@/lib/blog/posts';
 import { generateArticleSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo/schemas';
+import type { ReactNode } from 'react';
+
+/**
+ * Converts a plain-text content string into structured HTML.
+ *
+ * Detects three patterns that appear in posts.ts content strings:
+ *   1. Embedded numbered lists  "1. item 2. item 3. item"  → <ol><li>
+ *   2. Step sequences           "Step 1: text Step 2: text" → <ol><li>
+ *   3. Long paragraphs (>400 chars) → split every ~3 sentences for readability
+ */
+function renderContent(text: string): ReactNode {
+  const liClass = 'leading-relaxed';
+  const pClass  = 'text-gray-700 dark:text-gray-300 leading-relaxed';
+  const olClass = 'list-decimal pl-5 space-y-2 text-gray-700 dark:text-gray-300';
+
+  // 1. Embedded numbered list: "1. item 2. item 3. item"
+  if (/\b1\.\s/.test(text) && /\b2\.\s/.test(text)) {
+    const start  = text.search(/\b1\.\s/);
+    const prefix = start > 0 ? text.slice(0, start).trim() : '';
+    const items  = text
+      .slice(start)
+      .split(/(?=\b\d+\.\s)/)
+      .map((s) => s.replace(/^\d+\.\s+/, '').trim())
+      .filter(Boolean);
+
+    return (
+      <div className="space-y-3">
+        {prefix && <p className={pClass}>{prefix}</p>}
+        <ol className={olClass}>
+          {items.map((item, i) => <li key={i} className={liClass}>{item}</li>)}
+        </ol>
+      </div>
+    );
+  }
+
+  // 2. Step sequence: "Step 1: text Step 2: text"
+  if (/Step\s+1[:.]\s/.test(text) && /Step\s+2[:.]\s/.test(text)) {
+    const start  = text.search(/Step\s+1[:.]\s/);
+    const prefix = start > 0 ? text.slice(0, start).trim() : '';
+    const steps  = text
+      .slice(start)
+      .split(/(?=Step\s+\d+[:.]\s)/)
+      .map((s) => s.replace(/^Step\s+\d+[:.]\s+/, '').trim())
+      .filter(Boolean);
+
+    return (
+      <div className="space-y-3">
+        {prefix && <p className={pClass}>{prefix}</p>}
+        <ol className={olClass}>
+          {steps.map((step, i) => <li key={i} className={liClass}>{step}</li>)}
+        </ol>
+      </div>
+    );
+  }
+
+  // 3. Long plain text: split at ". " before capital letters and group into paragraphs
+  if (text.length > 400) {
+    // Split at sentence end (". ") only when followed by a capital letter.
+    // This avoids splitting on "Rs 1.5L", "e.g.", decimals, etc.
+    const chunks = text.split(/\. (?=[A-Z])/);
+    // Re-attach the stripped period to every chunk except the last
+    const sentences = chunks.map((c, i) => (i < chunks.length - 1 ? c + '.' : c));
+
+    if (sentences.length >= 3) {
+      const paras: string[] = [];
+      for (let i = 0; i < sentences.length; i += 3) {
+        paras.push(sentences.slice(i, i + 3).join(' '));
+      }
+      return (
+        <div className="space-y-4">
+          {paras.map((para, i) => <p key={i} className={pClass}>{para}</p>)}
+        </div>
+      );
+    }
+  }
+
+  // Default: single paragraph
+  return <p className={pClass}>{text}</p>;
+}
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
@@ -40,16 +119,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 const categoryColors: Record<string, string> = {
-  Finance: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  Investment: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  Tax: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-  Health: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
+  Finance:          'bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-200',
+  Investment:       'bg-green-100 text-green-800 dark:bg-green-900/60 dark:text-green-200',
+  Investing:        'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200',
+  Tax:              'bg-orange-100 text-orange-800 dark:bg-orange-900/60 dark:text-orange-200',
+  Health:           'bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-200',
+  Business:         'bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-200',
+  Retirement:       'bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200',
+  Savings:          'bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-200',
+  'Personal Finance': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-200',
+  'Wealth Building':  'bg-violet-100 text-violet-800 dark:bg-violet-900/60 dark:text-violet-200',
 };
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
   if (!post) notFound();
+
+  const relatedPosts = getRelatedPosts(slug, 3);
 
   const articleSchema = generateArticleSchema({ title: post.title, description: post.description, slug: post.slug, date: post.date, author: post.author });
   const faqSchema = generateFAQSchema(post.faqs);
@@ -124,7 +211,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {post.sections.map((section, i) => (
             <section key={i}>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{section.heading}</h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{section.content}</p>
+              {renderContent(section.content)}
             </section>
           ))}
         </div>
@@ -144,6 +231,30 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             ))}
           </div>
         </section>
+
+        {/* Related Articles */}
+        {relatedPosts.length > 0 && (
+          <section className="mb-12">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5">Related Articles</h2>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {relatedPosts.map((related) => (
+                <Link
+                  key={related.slug}
+                  href={`/blog/${related.slug}`}
+                  className="group rounded-xl border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/60 p-5 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md transition-all duration-200 flex flex-col gap-2.5"
+                >
+                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full self-start ${categoryColors[related.category] ?? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'}`}>
+                    {related.category}
+                  </span>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 leading-snug line-clamp-2 flex-1">
+                    {related.title}
+                  </p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500">{related.readTime}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Bottom CTA */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-center text-white">

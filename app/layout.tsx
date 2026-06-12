@@ -24,9 +24,10 @@ const BASE_URL =
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default:
-      "calculox - Free Online Calculators India | SIP EMI BMI Tax FD RD GST CAGR Percentage Scientific Profit Margin Retirement Home Loan Rent Simple Interest",
-    template: "%s | calculox - Free Online Calculator",
+    default: "calculox — Free Online Calculators for India | EMI, SIP, BMI & More",
+    // Individual calculator layouts already carry their own complete title + brand;
+    // passing %s through avoids double-branding ("... | calculox | calculox ...").
+    template: "%s",
   },
   description:
     "calculox - Free online calculators for India. SIP, EMI, BMI, Tax, FD, RD, GST, CAGR & 8 more calculators. Fast, accurate, mobile-friendly. No registration required. Calculate instantly online.",
@@ -112,10 +113,10 @@ export const metadata: Metadata = {
       "calculox offers 14+ free online calculators for Indian users. Calculate SIP returns, EMI, BMI, income tax, FD, RD, GST, CAGR, and more. Fast, accurate, no registration required.",
     images: [
       {
-        url: "/logo.png",
-        width: 512,
-        height: 512,
-        alt: "calculox Logo - Blue Gradient CX Icon",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "calculox - 14 Free Online Calculators for India",
         type: "image/png",
       },
     ],

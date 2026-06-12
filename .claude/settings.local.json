@@ -65,7 +65,11 @@
       "Bash(Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue)",
       "Bash(python -c ' *)",
       "PowerShell(cd \"c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\"; npm run build 2>&1 | Where-Object { $_ -match \"Compiled|TypeScript|error|success|pages|static\" } | Select-Object -First 15)",
-      "Bash(powershell -Command \"Get-ChildItem -Recurse -Include *.tsx,*.ts | Select-String -Pattern '❓' | Select-Object Filename, LineNumber, Line\")"
+      "Bash(powershell -Command \"Get-ChildItem -Recurse -Include *.tsx,*.ts | Select-String -Pattern '❓' | Select-Object Filename, LineNumber, Line\")",
+      "PowerShell(\\(Get-Content 'c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\\\\lib\\\\blog\\\\posts.ts' -Raw -Encoding UTF8\\) -replace 'â€\"', '–' | Set-Content 'c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\\\\lib\\\\blog\\\\posts.ts' -Encoding UTF8 -NoNewline)",
+      "Bash(python3 -c ' *)",
+      "Bash(git diff *)",
+      "Bash(node scripts/generate-favicon-ico.mjs)"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\Downloads\\calculator\\calc"

@@ -1194,4 +1194,52 @@ export function getBlogPostsByCategory(category: string): BlogPost[] {
   return blogPosts.filter((post) => post.category === category);
 }
 
+// Topically adjacent categories — used to fill related posts when same-category count < limit
+const ADJACENT_CATEGORIES: Record<string, string[]> = {
+  Finance: ['Investment', 'Tax', 'Retirement', 'Savings'],
+  Investment: ['Finance', 'Tax', 'Savings', 'Wealth Building', 'Retirement'],
+  Tax: ['Finance', 'Investment', 'Retirement', 'Personal Finance'],
+  Health: ['Finance', 'Personal Finance'],
+  Business: ['Finance', 'Investment'],
+  Retirement: ['Investment', 'Savings', 'Tax', 'Finance'],
+  Savings: ['Investment', 'Finance', 'Retirement', 'Personal Finance'],
+  Investing: ['Finance', 'Investment', 'Retirement'],
+  'Personal Finance': ['Investment', 'Finance', 'Tax', 'Savings', 'Retirement'],
+  'Wealth Building': ['Investment', 'Finance', 'Retirement', 'Savings'],
+};
+
+export function getRelatedPosts(currentSlug: string, limit = 3): BlogPost[] {
+  const current = getBlogPostBySlug(currentSlug);
+  if (!current) return [];
+
+  const seen = new Set<string>([currentSlug]);
+  const result: BlogPost[] = [];
+
+  // 1. Same-category posts first (maintains topical authority signals)
+  for (const post of blogPosts) {
+    if (result.length >= limit) break;
+    if (!seen.has(post.slug) && post.category === current.category) {
+      seen.add(post.slug);
+      result.push(post);
+    }
+  }
+
+  // 2. Cross-category fill when same-category count < limit
+  if (result.length < limit) {
+    const adjacent = ADJACENT_CATEGORIES[current.category] ?? [];
+    for (const cat of adjacent) {
+      for (const post of blogPosts) {
+        if (result.length >= limit) break;
+        if (!seen.has(post.slug) && post.category === cat) {
+          seen.add(post.slug);
+          result.push(post);
+        }
+      }
+      if (result.length >= limit) break;
+    }
+  }
+
+  return result;
+}
+
 

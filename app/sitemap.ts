@@ -4,16 +4,21 @@ import { blogPosts } from '@/lib/blog/posts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
 
+// Last date any calculator page was meaningfully updated (Lucide icon pass, widget, mobile fixes).
+// Update this when you ship a major content or UI change to calculator pages.
+const CALC_LAST_MODIFIED = new Date('2026-06-12');
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const calculators = getActiveCalculators();
 
   const calculatorUrls = calculators.map((calc) => ({
     url: `${BASE_URL}/${calc.slug}`,
-    lastModified: new Date(),
+    lastModified: CALC_LAST_MODIFIED,
     changeFrequency: 'monthly' as const,
     priority: 0.9,
   }));
 
+  // Blog posts already carry per-post dates from posts.ts — use them directly.
   const blogUrls = blogPosts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.date),
@@ -24,39 +29,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: BASE_URL,
-      lastModified: new Date(),
+      lastModified: new Date('2026-06-12'), // homepage redesign + 14-tab widget
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     ...calculatorUrls,
     {
       url: `${BASE_URL}/blog`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-06-12'), // blog category filter tabs added
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     ...blogUrls,
     {
       url: `${BASE_URL}/about`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-06-01'),
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
       url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-06-01'),
       changeFrequency: 'monthly',
       priority: 0.4,
     },
     {
       url: `${BASE_URL}/privacy-policy`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-05-01'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${BASE_URL}/terms-of-service`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-05-01'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },

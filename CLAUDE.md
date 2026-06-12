@@ -1,10 +1,42 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 28 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-12 (Homepage: All 14 calculators in quick widget) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-12 (OG image + favicon.ico fixes) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-12 - Homepage: Quick Calculator Expanded to All 14 Tabs)
+## ✅ Latest (2026-06-12 - SEO Fixes: Title, Blog Structure, Sitemap, OG Image, favicon.ico)
+- 📝 **Homepage title de-stuffed** — `app/layout.tsx` ✅
+  - Was: 160-char keyword dump ("... SIP EMI BMI Tax FD RD GST CAGR Percentage Scientific Profit Margin Retirement Home Loan Rent Simple Interest")
+  - Now: `"calculox — Free Online Calculators for India | EMI, SIP, BMI & More"` (68 chars) ✅
+  - `title.template` changed from `"%s | calculox - Free Online Calculator"` → `"%s"` — prevents double-branding on calculator pages which already include `| calculox` ✅
+- 📄 **Blog content now renders structured HTML instead of flat `<p>` text** — `app/blog/[slug]/page.tsx` ✅
+  - Added `renderContent(text)` function with 3 pattern detectors:
+    - **Numbered lists** `"1. item 2. item 3. item"` → `<ol><li>` (Google featured snippets target this) ✅
+    - **Step sequences** `"Step 1: text Step 2: text"` → `<ol><li>` ✅
+    - **Long plain paragraphs** (>400 chars) → split every 3 sentences at `. [Capital]` boundaries → multiple `<p>` (eliminates wall-of-text sections) ✅
+  - `{section.content}` in `<p>` replaced with `{renderContent(section.content)}` ✅
+  - **Related Articles section** also wired in (formatter discovered `getRelatedPosts` existed in `lib/blog/posts.ts`) — fixes the zero blog-to-blog internal-link issue ✅
+- 🗺️ **Sitemap `lastModified` now uses real static dates** — `app/sitemap.ts` ✅
+  - Was: `new Date()` on every entry (changes daily → misleads Google crawl budget)
+  - Now: `CALC_LAST_MODIFIED = new Date('2026-06-12')` for calculators; actual `post.date` for blog posts (unchanged); `2026-06-01` for about/contact; `2026-05-01` for legal pages ✅
+  - Update `CALC_LAST_MODIFIED` constant each time calculator pages are meaningfully changed ✅
+- **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-12 - SEO Fixes: OG Image PNG + favicon.ico)
+- 🖼️ **OG image now works on all social platforms (WhatsApp, Twitter, LinkedIn):** ✅
+  - **Problem:** All 15 layout files referenced `/og-image.png` but only `og-image.svg` existed — social shares showed no preview image ✅
+  - **Solution (zero layout changes):** Created `app/api/og/route.tsx` using `next/og` `ImageResponse` (built-in, no new deps) generating a branded 1200×630 PNG (blue→purple gradient, CX tile, brand name, 7 calculator pill tags, domain) ✅
+  - **Rewrite added** in `next.config.js`: `/og-image.png` → `/api/og` — all 15 existing references resolve transparently ✅
+  - **Design:** Blue-to-purple gradient, CX logo tile, `calculox` brand, "14 Free Online Calculators for India" tagline, EMI/SIP/FD/Tax/BMI/GST/+8 more pills, `www.calculox.in` ✅
+- 🔖 **favicon.ico now exists — no more 404 for ICO favicon:** ✅
+  - **Problem:** `app/layout.tsx` referenced `/favicon.ico` but only `favicon.svg` and `favicon.png` existed ✅
+  - **Solution:** Created `scripts/generate-favicon-ico.mjs` — pure Node.js script (zero deps) that reads `favicon.png` bytes and wraps them in the ICO binary format (ICONDIR + ICONDIRENTRY + PNG data) ✅
+  - **Output:** `public/favicon.ico` — 32×32px, modern PNG-in-ICO format (supported by all browsers, Windows, Chrome, Firefox, Safari) ✅
+  - **Script is reusable** — run `node scripts/generate-favicon-ico.mjs` any time `favicon.png` changes ✅
+- **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+- **Files:** `app/api/og/route.tsx` (new), `next.config.js` (rewrite added), `scripts/generate-favicon-ico.mjs` (new), `public/favicon.ico` (generated)
+
+## ✅ Previous (2026-06-12 - Homepage: Quick Calculator Expanded to All 14 Tabs)
 - 🧮 **Quick calculator widget expanded from 4 tabs → all 14 calculators:** ✅
   - **Tab bar:** Horizontally scrollable (`overflow-x-auto`, `w-max min-w-full`) — fits desktop, scrolls mobile ✅
   - **RD:** Monthly Deposit · Rate · Tenure → Maturity + Invested + Interest ✅
