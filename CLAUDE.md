@@ -1,10 +1,34 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 25 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-11 (DollarSign -> IndianRupee: Finance/About/Tax pages) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-12 (Profit Margin: mobile card overflow fix + IndianRupee icon) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-11 - Home Loan vs Rent: Lucide Icon Consistency + Clear All Button)
+## ✅ Latest (2026-06-12 - Profit Margin Calculator: Mobile Card Overflow Fix + IndianRupee Icon)
+- 📱 **Metric cards fixed for mobile — text no longer overflows boxes:** ✅
+  - **Root cause:** `grid-cols-3` with `p-5` left only ~69px of content width per card on mobile (390px); values like `₹1,000.00` at `text-lg` overflowed ✅
+  - **Hero metrics (Cost Price / Net Price / Final MRP):** `grid-cols-3` → `grid-cols-2 sm:grid-cols-3`; 3rd card gets `col-span-2 sm:col-span-1` (full-width on mobile) ✅
+  - **Secondary metrics (Gross Profit / Markup / % Margin):** Same 2-col mobile grid, same 3rd-card full-width pattern ✅
+  - **Padding:** `p-5` → `p-3 sm:p-5` on all 6 metric cards ✅
+  - **Value font:** `text-lg sm:text-2xl md:text-3xl` → `text-base sm:text-xl md:text-2xl lg:text-3xl` + `break-all` (prevents mid-number wrap) ✅
+  - **Labels:** Switched from `flex items-center gap-1` to inline icons (`inline align-middle`) so label text wraps naturally ✅
+  - **GST card:** `text-2xl` values → `text-base sm:text-2xl`; "EXCLUSIVE"/"INCLUSIVE" → `text-xs sm:text-base md:text-2xl` + `break-all`; gap reduced on mobile ✅
+- 💱 **Dollar symbol replaced with IndianRupee icon:** ✅
+  - `Coins` Lucide icon (renders dollar coins) → `IndianRupee` on Cost Price card label ✅
+  - Import updated: `Coins` removed, `IndianRupee` added ✅
+  - **File:** `app/profit-margin-calculator/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-12 - Home Loan vs Rent: Mobile Tab Overflow Fix)
+- 📱 **Input section tabs fixed for mobile devices:** ✅
+  - **Problem:** `flex gap-2` with `px-4` padding caused "Loan & Rent" and "Assumptions" tabs to overflow the viewport on small screens ✅
+  - **Fix:** `flex gap-2` → `grid grid-cols-3` so all 3 tabs share equal width (1/3 each); removed `px-4`; added `justify-center` to inner spans ✅
+  - **`flex-shrink-0` on icons** — prevents icons from being squished inside constrained cells ✅
+  - **Responsive labels:** `sm:hidden` shows shorter "Loan" / "Assume" on phones (< 640px); full "Loan & Rent" / "Assumptions" on tablet+ ✅
+  - **File:** `app/home-loan-vs-rent/page.tsx`
+  - **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-11 - Home Loan vs Rent: Lucide Icon Consistency + Clear All Button)
 - 🎨 **Home Loan vs Rent calculator brought to full Lucide icon parity with EMI calculator:** ✅
   - **Duplicate `'use client'` removed:** File had two directives (lines 1 and 3); cleaned to single ✅
   - **Winner banner icons:**

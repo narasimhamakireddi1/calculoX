@@ -160,8 +160,30 @@ export default function RetirementCalculatorPage() {
     return () => clearTimeout(timer);
   }, [watchValues]);
 
-  const rangeInputClasses = 'flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600';
-  const numberInputClasses = 'w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700';
+  const sliderRange = {
+    blue:    'w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600',
+    purple:  'w-full flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600',
+    green:   'w-full flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600',
+    emerald: 'w-full flex-1 h-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-lg appearance-none cursor-pointer accent-emerald-600',
+    orange:  'w-full flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600',
+    rose:    'w-full flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600',
+    cyan:    'w-full flex-1 h-3 bg-gradient-to-r from-cyan-300 to-cyan-600 rounded-lg appearance-none cursor-pointer accent-cyan-600',
+    amber:   'w-full flex-1 h-3 bg-gradient-to-r from-amber-300 to-amber-600 rounded-lg appearance-none cursor-pointer accent-amber-600',
+    indigo:  'w-full flex-1 h-3 bg-gradient-to-r from-indigo-300 to-indigo-600 rounded-lg appearance-none cursor-pointer accent-indigo-600',
+    teal:    'w-full flex-1 h-3 bg-gradient-to-r from-teal-300 to-teal-600 rounded-lg appearance-none cursor-pointer accent-teal-600',
+  };
+  const sliderNumber = {
+    blue:    'w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700',
+    purple:  'w-full md:w-28 px-3 py-3 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700',
+    green:   'w-full md:w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700',
+    emerald: 'w-full md:w-28 px-3 py-3 border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700',
+    orange:  'w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700',
+    rose:    'w-full md:w-28 px-3 py-3 border-2 border-rose-400 rounded-lg font-bold text-rose-700 bg-rose-50 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-700',
+    cyan:    'w-full md:w-28 px-3 py-3 border-2 border-cyan-400 rounded-lg font-bold text-cyan-700 bg-cyan-50 dark:bg-cyan-900/20 dark:text-cyan-400 dark:border-cyan-700',
+    amber:   'w-full md:w-28 px-3 py-3 border-2 border-amber-400 rounded-lg font-bold text-amber-700 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-700',
+    indigo:  'w-full md:w-28 px-3 py-3 border-2 border-indigo-400 rounded-lg font-bold text-indigo-700 bg-indigo-50 dark:bg-indigo-900/20 dark:text-indigo-400 dark:border-indigo-700',
+    teal:    'w-full md:w-28 px-3 py-3 border-2 border-teal-400 rounded-lg font-bold text-teal-700 bg-teal-50 dark:bg-teal-900/20 dark:text-teal-400 dark:border-teal-700',
+  };
 
   return (
     <div className="space-y-8 py-8">
@@ -236,20 +258,20 @@ export default function RetirementCalculatorPage() {
             />
 
             {/* Tab Navigation */}
-            <div className="flex gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
+            <div className="grid grid-cols-3 mb-6 border-b border-gray-200 dark:border-gray-700">
               {(['timeline', 'financials', 'returns'] as const).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-3 py-2 font-semibold text-sm transition-all ${
+                  className={`py-2 font-semibold text-sm transition-all ${
                     activeTab === tab
                       ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                   }`}
                 >
-                  {tab === 'timeline' && <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Timeline</span>}
-                  {tab === 'financials' && <span className="flex items-center gap-1.5"><Coins className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Financials</span>}
-                  {tab === 'returns' && <span className="flex items-center gap-1.5"><BarChart2 className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Returns</span>}
+                  {tab === 'timeline' && <span className="flex items-center justify-center gap-1.5"><Calendar className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />Timeline</span>}
+                  {tab === 'financials' && <span className="flex items-center justify-center gap-1.5"><Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />Financials</span>}
+                  {tab === 'returns' && <span className="flex items-center justify-center gap-1.5"><BarChart2 className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />Returns</span>}
                 </button>
               ))}
             </div>
@@ -262,14 +284,14 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Present Age (Years)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min="18"
                       max="75"
                       value={watchValues.present_age}
                       onChange={(e) => handleInputChange('present_age', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.blue}
                     />
                     <input
                       type="number"
@@ -277,7 +299,7 @@ export default function RetirementCalculatorPage() {
                       max="75"
                       value={watchValues.present_age}
                       onChange={(e) => handleInputChange('present_age', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.blue}
                     />
                   </div>
                   {errors.present_age && <p className="text-red-500 text-sm mt-1">{errors.present_age.message}</p>}
@@ -288,14 +310,14 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Retirement Age (Years)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min={watchValues.present_age + 1}
                       max="100"
                       value={watchValues.retirement_age}
                       onChange={(e) => handleInputChange('retirement_age', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.purple}
                     />
                     <input
                       type="number"
@@ -303,7 +325,7 @@ export default function RetirementCalculatorPage() {
                       max="100"
                       value={watchValues.retirement_age}
                       onChange={(e) => handleInputChange('retirement_age', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.purple}
                     />
                   </div>
                   {errors.retirement_age && <p className="text-red-500 text-sm mt-1">{errors.retirement_age.message}</p>}
@@ -314,14 +336,14 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Life Expectancy (Years)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min={watchValues.retirement_age + 1}
                       max="120"
                       value={watchValues.life_expectancy}
                       onChange={(e) => handleInputChange('life_expectancy', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.green}
                     />
                     <input
                       type="number"
@@ -329,7 +351,7 @@ export default function RetirementCalculatorPage() {
                       max="120"
                       value={watchValues.life_expectancy}
                       onChange={(e) => handleInputChange('life_expectancy', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.green}
                     />
                   </div>
                   {errors.life_expectancy && <p className="text-red-500 text-sm mt-1">{errors.life_expectancy.message}</p>}
@@ -359,7 +381,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Current Monthly Expenses (₹)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min="5000"
@@ -367,14 +389,14 @@ export default function RetirementCalculatorPage() {
                       step="5000"
                       value={watchValues.present_monthly_expenses}
                       onChange={(e) => handleInputChange('present_monthly_expenses', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.emerald}
                     />
                     <input
                       type="number"
                       min="5000"
                       value={watchValues.present_monthly_expenses}
                       onChange={(e) => handleInputChange('present_monthly_expenses', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.emerald}
                     />
                   </div>
                   <div className="flex gap-2 flex-wrap mt-3">
@@ -397,14 +419,14 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Expense Reduction Post-Retirement (%)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min="0"
                       max="50"
                       value={watchValues.expense_reduction_pct}
                       onChange={(e) => handleInputChange('expense_reduction_pct', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.orange}
                     />
                     <input
                       type="number"
@@ -412,7 +434,7 @@ export default function RetirementCalculatorPage() {
                       max="50"
                       value={watchValues.expense_reduction_pct}
                       onChange={(e) => handleInputChange('expense_reduction_pct', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.orange}
                     />
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -425,7 +447,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Long-term Inflation Rate (% p.a.)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min="0"
@@ -433,7 +455,7 @@ export default function RetirementCalculatorPage() {
                       step="0.1"
                       value={watchValues.long_term_inflation_pct}
                       onChange={(e) => handleInputChange('long_term_inflation_pct', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.rose}
                     />
                     <input
                       type="number"
@@ -442,7 +464,7 @@ export default function RetirementCalculatorPage() {
                       step="0.1"
                       value={watchValues.long_term_inflation_pct}
                       onChange={(e) => handleInputChange('long_term_inflation_pct', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.rose}
                     />
                   </div>
                 </div>
@@ -452,7 +474,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Current Retirement Savings (₹)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min="0"
@@ -460,14 +482,14 @@ export default function RetirementCalculatorPage() {
                       step="100000"
                       value={watchValues.current_savings}
                       onChange={(e) => handleInputChange('current_savings', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.cyan}
                     />
                     <input
                       type="number"
                       min="0"
                       value={watchValues.current_savings}
                       onChange={(e) => handleInputChange('current_savings', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.cyan}
                     />
                   </div>
                 </div>
@@ -477,7 +499,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Lump Sum Benefits at Retirement (₹)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min="0"
@@ -485,14 +507,14 @@ export default function RetirementCalculatorPage() {
                       step="100000"
                       value={watchValues.lump_sum_benefits}
                       onChange={(e) => handleInputChange('lump_sum_benefits', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.amber}
                     />
                     <input
                       type="number"
                       min="0"
                       value={watchValues.lump_sum_benefits}
                       onChange={(e) => handleInputChange('lump_sum_benefits', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.amber}
                     />
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -510,7 +532,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Pre-Retirement Return (% p.a.)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min="4"
@@ -518,7 +540,7 @@ export default function RetirementCalculatorPage() {
                       step="0.5"
                       value={watchValues.pre_retirement_return_pct}
                       onChange={(e) => handleInputChange('pre_retirement_return_pct', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.indigo}
                     />
                     <input
                       type="number"
@@ -527,7 +549,7 @@ export default function RetirementCalculatorPage() {
                       step="0.5"
                       value={watchValues.pre_retirement_return_pct}
                       onChange={(e) => handleInputChange('pre_retirement_return_pct', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.indigo}
                     />
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -540,7 +562,7 @@ export default function RetirementCalculatorPage() {
                   <label className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
                     Post-Retirement Return (% p.a.)
                   </label>
-                  <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
+                  <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
                       min="2"
@@ -548,7 +570,7 @@ export default function RetirementCalculatorPage() {
                       step="0.5"
                       value={watchValues.post_retirement_return_pct}
                       onChange={(e) => handleInputChange('post_retirement_return_pct', Number(e.target.value))}
-                      className={rangeInputClasses}
+                      className={sliderRange.teal}
                     />
                     <input
                       type="number"
@@ -557,7 +579,7 @@ export default function RetirementCalculatorPage() {
                       step="0.5"
                       value={watchValues.post_retirement_return_pct}
                       onChange={(e) => handleInputChange('post_retirement_return_pct', Number(e.target.value))}
-                      className={numberInputClasses}
+                      className={sliderNumber.teal}
                     />
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -583,7 +605,7 @@ export default function RetirementCalculatorPage() {
             {/* Clear Button */}
             <button
               onClick={handleReset}
-              className="w-full mt-6 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              className="w-full mt-6 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
             >
               <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>

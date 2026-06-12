@@ -18,7 +18,7 @@ import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { ShoppingBag, Diamond, Package, CheckCircle2, XCircle, Smartphone, Trash2, Coins, BarChart2, Tag, Target, TrendingUp, Percent, Receipt, AlertTriangle, BookOpen, Lightbulb, HelpCircle } from 'lucide-react';
+import { ShoppingBag, Diamond, Package, CheckCircle2, XCircle, Smartphone, Trash2, IndianRupee, BarChart2, Tag, Target, TrendingUp, Percent, Receipt, AlertTriangle, BookOpen, Lightbulb, HelpCircle } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import {
   ProfitMarginGstEngine,
@@ -451,89 +451,89 @@ export default function ProfitMarginCalculator() {
           {results && (
             <div className="lg:col-span-2 space-y-6">
               {/* Hero Metrics */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
-                    <Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Cost Price
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 p-3 sm:p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-lg transition-shadow min-w-0">
+                  <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-2 leading-tight">
+                    <IndianRupee className="w-3.5 h-3.5 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Cost Price
                   </p>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
+                  <p className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-blue-700 dark:text-blue-400 break-all">
                     ₹{results.inputCostPrice.toFixed(2)}
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-900/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
-                    <BarChart2 className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Net Price (Pre-GST)
+                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-900/20 p-3 sm:p-5 rounded-lg border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-lg transition-shadow min-w-0">
+                  <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-2 leading-tight">
+                    <BarChart2 className="w-3.5 h-3.5 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Net Price (Pre-GST)
                   </p>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">
+                  <p className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-700 dark:text-green-400 break-all">
                     ₹{results.netSellingPricePreGst.toFixed(2)}
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
-                    <Tag className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Final MRP
+                <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/20 p-3 sm:p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 shadow-md hover:shadow-lg transition-shadow min-w-0">
+                  <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-2 leading-tight">
+                    <Tag className="w-3.5 h-3.5 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Final MRP
                   </p>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
+                  <p className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-purple-700 dark:text-purple-400 break-all">
                     ₹{results.finalConsumerMRP.toFixed(2)}
                   </p>
                 </div>
               </div>
 
               {/* Secondary Metrics */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 p-5 rounded-lg border-2 border-emerald-300 dark:border-emerald-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
-                    <Target className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Gross Profit
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 p-3 sm:p-5 rounded-lg border-2 border-emerald-300 dark:border-emerald-700 shadow-md hover:shadow-lg transition-shadow min-w-0">
+                  <p className="text-emerald-700 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-2 leading-tight">
+                    <Target className="w-3.5 h-3.5 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Gross Profit
                   </p>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-emerald-700 dark:text-emerald-400 break-words overflow-hidden">
+                  <p className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-emerald-700 dark:text-emerald-400 break-all">
                     ₹{results.absoluteGrossProfit.toFixed(2)}
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-900/20 p-5 rounded-lg border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
-                    <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Markup
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-900/20 p-3 sm:p-5 rounded-lg border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-lg transition-shadow min-w-0">
+                  <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2 leading-tight">
+                    <TrendingUp className="w-3.5 h-3.5 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Markup
                   </p>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-orange-700 dark:text-orange-400 break-words overflow-hidden">
+                  <p className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-700 dark:text-orange-400 break-all">
                     {results.calculatedMarkupPercentage.toFixed(2)}%
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/30 dark:to-blue-900/20 p-5 rounded-lg border-2 border-cyan-300 dark:border-cyan-700 shadow-md hover:shadow-lg transition-shadow">
-                  <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1">
-                    <Percent className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Margin
+                <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/30 dark:to-blue-900/20 p-3 sm:p-5 rounded-lg border-2 border-cyan-300 dark:border-cyan-700 shadow-md hover:shadow-lg transition-shadow min-w-0">
+                  <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-wide font-semibold mb-2 leading-tight">
+                    <Percent className="w-3.5 h-3.5 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> % Margin
                   </p>
-                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-cyan-700 dark:text-cyan-400 break-words overflow-hidden">
+                  <p className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-cyan-700 dark:text-cyan-400 break-all">
                     {results.calculatedMarginPercentage.toFixed(2)}%
                   </p>
                 </div>
               </div>
 
               {/* GST Card */}
-              <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-900/20 p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-md">
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
-                      <Receipt className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> GST Liability
+              <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-900/20 p-3 sm:p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-md">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+                  <div className="min-w-0">
+                    <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
+                      <Receipt className="w-3.5 h-3.5 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> GST Liability
                     </p>
-                    <p className="text-2xl font-bold text-red-700 dark:text-red-400">
+                    <p className="text-base sm:text-2xl font-bold text-red-700 dark:text-red-400 break-all">
                       ₹{results.gstTaxLiability.toFixed(2)}
                     </p>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1">
                       Rate
                     </p>
-                    <p className="text-2xl font-bold text-red-700 dark:text-red-400">
+                    <p className="text-base sm:text-2xl font-bold text-red-700 dark:text-red-400">
                       {watchValues.gstRatePct}%
                     </p>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1">
                       Treatment
                     </p>
-                    <p className="text-2xl font-bold text-red-700 dark:text-red-400">
+                    <p className="text-xs sm:text-base md:text-2xl font-bold text-red-700 dark:text-red-400 break-all">
                       {watchValues.gstTreatment}
                     </p>
                   </div>

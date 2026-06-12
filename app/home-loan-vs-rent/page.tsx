@@ -355,20 +355,20 @@ export default function HomeLoanVsRentCalculator() {
         />
 
         {/* Tab Navigation */}
-        <div className="flex gap-2 mb-6 border-b border-gray-300 dark:border-gray-700">
+        <div className="grid grid-cols-3 mb-6 border-b border-gray-300 dark:border-gray-700">
           {['property', 'loan', 'assumptions'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab as any)}
-              className={`px-4 py-2 font-semibold transition-colors ${
+              className={`py-2 font-semibold text-sm transition-colors ${
                 activeTab === tab
                   ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
               }`}
             >
-              {tab === 'property' && <span className="flex items-center gap-1.5"><Home className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Property</span>}
-              {tab === 'loan' && <span className="flex items-center gap-1.5"><Landmark className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Loan & Rent</span>}
-              {tab === 'assumptions' && <span className="flex items-center gap-1.5"><BarChart2 className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />Assumptions</span>}
+              {tab === 'property' && <span className="flex items-center justify-center gap-1.5"><Home className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />Property</span>}
+              {tab === 'loan' && <span className="flex items-center justify-center gap-1.5"><Landmark className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /><span className="hidden sm:inline">Loan & Rent</span><span className="sm:hidden">Loan</span></span>}
+              {tab === 'assumptions' && <span className="flex items-center justify-center gap-1.5"><BarChart2 className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /><span className="hidden sm:inline">Assumptions</span><span className="sm:hidden">Assume</span></span>}
             </button>
           ))}
         </div>
