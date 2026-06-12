@@ -1,10 +1,29 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 28 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-12 (OG image + favicon.ico fixes) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-12 (OG image 1200×630, blog cross-linking, ads.txt verified) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-12 - SEO Fixes: Title, Blog Structure, Sitemap, OG Image, favicon.ico)
+## ✅ Latest (2026-06-12 - SEO Fixes: OG Image Dimensions, Blog Cross-Linking, ads.txt)
+- 🖼️ **Root layout OG image fixed to 1200×630 landscape (was 512×512 square logo):** ✅
+  - **Problem:** `app/layout.tsx` `openGraph.images` pointed to `/logo.png` (512×512) — WhatsApp/Twitter/LinkedIn crop square images badly; `summary_large_image` requires 1200×630 ✅
+  - **Fix:** Changed `url` → `/og-image.png`, `width` → `1200`, `height` → `630` — routes to `/api/og` (branded 1200×630 PNG via `next/og`) ✅
+  - **File:** `app/layout.tsx` ✅
+- 🔗 **Blog post cross-linking — every post now links to 3 related articles:** ✅
+  - **Problem:** Each of 28 blog posts had zero links to other blog posts — no topical authority signals for Google ✅
+  - **`getRelatedPosts(slug, limit=3)`** added to `lib/blog/posts.ts`:
+    - Same-category posts filled first (Finance → other Finance posts) ✅
+    - Cross-category fill via `ADJACENT_CATEGORIES` map when same-category count < 3 (Finance → Investment/Tax/Retirement) ✅
+    - Covers all 10 blog categories: Finance, Investment, Investing, Tax, Health, Business, Retirement, Savings, Personal Finance, Wealth Building ✅
+  - **"Related Articles" section** added to `app/blog/[slug]/page.tsx` between FAQ and bottom CTA:
+    - 3-column card grid (`sm:grid-cols-3`, 1-col on mobile) ✅
+    - Each card: category-colored badge + title (line-clamp-2) + read time; hover lifts with blue border ✅
+    - `categoryColors` map expanded from 4 → 10 categories matching site color system ✅
+  - **Files:** `lib/blog/posts.ts`, `app/blog/[slug]/page.tsx` ✅
+- ✅ **ads.txt verified correct** — `public/ads.txt`: `google.com, pub-7034746357427731, DIRECT, f08c47fec0942fa0` — matches AdSense publisher ID exactly (no `ca-` prefix in ads.txt is correct per Google spec) ✅
+- **Build:** ✅ 74 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-12 - SEO Fixes: Title, Blog Structure, Sitemap, OG Image, favicon.ico)
 - 📝 **Homepage title de-stuffed** — `app/layout.tsx` ✅
   - Was: 160-char keyword dump ("... SIP EMI BMI Tax FD RD GST CAGR Percentage Scientific Profit Margin Retirement Home Loan Rent Simple Interest")
   - Now: `"calculox — Free Online Calculators for India | EMI, SIP, BMI & More"` (68 chars) ✅
