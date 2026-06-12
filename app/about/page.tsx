@@ -161,17 +161,58 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Founder */}
+        <section className="mb-10 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-5">Built by a developer, for Indian users</h2>
+          <div className="flex items-start gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-200 dark:ring-blue-800 flex items-center justify-center flex-shrink-0">
+              <span className="text-blue-600 dark:text-blue-400 font-bold text-lg tracking-tight">NM</span>
+            </div>
+            <div className="min-w-0">
+              <Link
+                href="/author/narasimha-makireddi"
+                className="text-base font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                Narasimha Makireddi
+              </Link>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Software Developer · Founder</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300 mt-3 leading-relaxed">
+                I built calculox.in after finding that most free calculators didn&apos;t handle India&apos;s tax rules,
+                RBI guidelines, or SEBI norms correctly. All 14 calculators are built from scratch with formulas
+                sourced from official government publications. I&apos;m not a CA or CFP — this is a technology
+                platform providing tools, not financial advice.
+              </p>
+              <div className="flex items-center gap-4 mt-3">
+                <Link
+                  href="/author/narasimha-makireddi"
+                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  Full bio & formula sources →
+                </Link>
+                <a
+                  href="https://github.com/narasimhamakireddi1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact */}
         <section className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-8 text-center">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Get in Touch</h2>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            Have feedback, suggestions, or found a bug? We'd love to hear from you.
+            Have feedback, suggestions, or found a bug? I&apos;d love to hear from you.
           </p>
           <a
-            href="mailto:supportcalculox@gmail.com"
+            href="mailto:narasimha.makireddi1@gmail.com"
             className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
           >
-            supportcalculox@gmail.com
+            narasimha.makireddi1@gmail.com
           </a>
         </section>
       </div>

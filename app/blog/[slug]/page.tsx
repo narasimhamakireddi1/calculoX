@@ -182,14 +182,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </header>
 
         {/* Author Byline */}
-        <div className="flex items-center gap-3 mb-10 pb-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center gap-3 mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
           <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-200 dark:ring-blue-800 flex items-center justify-center flex-shrink-0">
-            <span className="text-blue-600 dark:text-blue-400 font-bold text-sm tracking-tight">CX</span>
+            <span className="text-blue-600 dark:text-blue-400 font-bold text-sm tracking-tight">NM</span>
           </div>
           <div>
-            <p className="text-sm font-semibold text-gray-900 dark:text-white">{post.author}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Free financial calculator tools for Indian users · calculox.in</p>
+            <Link
+              href="/author/narasimha-makireddi"
+              className="text-sm font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              {post.author}
+            </Link>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{post.authorCredentials}</p>
           </div>
+        </div>
+
+        {/* Disclaimer */}
+        <div className="mb-10 px-4 py-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
+          <strong>Not financial advice:</strong> This article is for educational purposes only. calculox provides calculation tools, not personalised advice. For decisions specific to your situation, consult a SEBI-registered advisor or Chartered Accountant.
         </div>
 
         {/* Related Calculator CTA */}

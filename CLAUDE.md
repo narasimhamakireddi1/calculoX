@@ -1,10 +1,42 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 28 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-12 (OG image 1200×630, blog cross-linking, ads.txt verified) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 74 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-12 (E-E-A-T: real author identity, Person schema, disclaimer, LinkedIn wired) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
 
-## ✅ Latest (2026-06-12 - SEO Fixes: OG Image Dimensions, Blog Cross-Linking, ads.txt)
+## ✅ Latest (2026-06-12 - E-E-A-T: Real Author Identity + Person Schema + Disclaimers)
+- 🪪 **Author E-E-A-T fully rebuilt — real person identity replacing generic "Calculox Editorial Team":** ✅
+  - **Root problem:** All 25 blog posts had `author: 'Calculox Editorial Team'` with credentials `'Free financial calculator tools for Indian users'` — zero E-E-A-T signal for YMYL finance content ✅
+  - **Strategy:** Frame as technology/tool builder (not financial advisor) — honest, verifiable, no fake credentials ✅
+- 👤 **New author bio page `/author/narasimha-makireddi`:** ✅
+  - Real name (Narasimha Makireddi), job title (Software Developer), GitHub + LinkedIn links ✅
+  - "Tools, not financial advice" amber disclaimer box — explicitly states not a CA/CFP ✅
+  - **Formula Sources table** — 5 rows mapping each calculator category to its official source (RBI, Finance Act 2025-26, GST Council, SEBI, WHO) ✅
+  - "What I built" checklist of all 14 calculators ✅
+  - **Person schema (`@type: Person`)** with `sameAs` → LinkedIn + GitHub ✅
+  - **File:** `app/author/narasimha-makireddi/page.tsx` (new) ✅
+- 🔀 **`/author` redirects to `/author/narasimha-makireddi`** — old fake page (50K+ users, 5+ years fintech expert) removed ✅
+- 📝 **All 25 blog posts updated:** ✅
+  - `author`: `'Calculox Editorial Team'` → `'Narasimha Makireddi'` ✅
+  - `authorCredentials`: generic tagline → `'Software Developer · Creator of calculox.in · Formulas verified per RBI, Finance Act 2025-26 & SEBI'` ✅
+  - **File:** `lib/blog/posts.ts` ✅
+- 📐 **Article schema upgraded from Organization → Person:** ✅
+  - `generateArticleSchema()` now sets `author['@type'] = 'Person'` with `url` → `/author/narasimha-makireddi` and `sameAs` → LinkedIn + GitHub ✅
+  - New `generateAuthorSchema()` function added for standalone author pages ✅
+  - **File:** `lib/seo/schemas.ts` ✅
+- 📰 **Blog post template updated:** ✅
+  - Author name (`CX` initials → `NM` initials) now links to `/author/narasimha-makireddi` ✅
+  - `authorCredentials` shown below name (was hardcoded generic text) ✅
+  - Amber **"Not financial advice"** disclaimer added above every article body ✅
+  - **File:** `app/blog/[slug]/page.tsx` ✅
+- 🏢 **About page — founder section added:** ✅
+  - "Built by a developer, for Indian users" section with NM initials tile, honest bio, GitHub + author bio links ✅
+  - Contact email updated from `supportcalculox@gmail.com` → `narasimha.makireddi1@gmail.com` ✅
+  - **File:** `app/about/page.tsx` ✅
+- 🔗 **LinkedIn wired into all schema `sameAs` arrays:** `linkedin.com/in/narasimha-makireddi-4807b7223` ✅
+- **Build:** ✅ 75 static pages, 0 TypeScript errors ✅
+
+## ✅ Previous (2026-06-12 - SEO Fixes: OG Image Dimensions, Blog Cross-Linking, ads.txt)
 - 🖼️ **Root layout OG image fixed to 1200×630 landscape (was 512×512 square logo):** ✅
   - **Problem:** `app/layout.tsx` `openGraph.images` pointed to `/logo.png` (512×512) — WhatsApp/Twitter/LinkedIn crop square images badly; `summary_large_image` requires 1200×630 ✅
   - **Fix:** Changed `url` → `/og-image.png`, `width` → `1200`, `height` → `630` — routes to `/api/og` (branded 1200×630 PNG via `next/og`) ✅

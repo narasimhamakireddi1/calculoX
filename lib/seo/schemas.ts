@@ -86,6 +86,24 @@ export function generateBreadcrumbSchema(items: { name: string; href: string }[]
   };
 }
 
+export function generateAuthorSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Narasimha Makireddi',
+    url: `${BASE_URL}/author/narasimha-makireddi`,
+    email: 'narasimha.makireddi1@gmail.com',
+    sameAs: [
+      'https://github.com/narasimhamakireddi1',
+      'https://www.linkedin.com/in/narasimha-makireddi-4807b7223',
+    ],
+    jobTitle: 'Software Developer',
+    description: 'Software developer and creator of calculox.in — 14 free financial calculators for India.',
+    worksFor: { '@type': 'Organization', name: 'calculox', url: BASE_URL },
+    knowsAbout: ['Financial Calculators', 'EMI', 'SIP', 'Income Tax India', 'GST', 'Web Development'],
+  };
+}
+
 export function generateArticleSchema(post: {
   title: string;
   description: string;
@@ -102,7 +120,15 @@ export function generateArticleSchema(post: {
     url: `${BASE_URL}/blog/${post.slug}`,
     datePublished: post.date,
     dateModified: post.date,
-    author: { '@type': 'Organization', name: post.author || 'calculox Team', url: BASE_URL },
+    author: {
+      '@type': 'Person',
+      name: 'Narasimha Makireddi',
+      url: `${BASE_URL}/author/narasimha-makireddi`,
+      sameAs: [
+        'https://github.com/narasimhamakireddi1',
+        'https://www.linkedin.com/in/narasimha-makireddi-4807b7223',
+      ],
+    },
     publisher: {
       '@type': 'Organization',
       name: 'calculox',
