@@ -31,7 +31,7 @@ export default function BlogPage() {
       headline: post.title,
       url: `${BASE_URL}/blog/${post.slug}`,
       datePublished: post.date,
-      author: { '@type': 'Organization', name: post.author },
+      author: { '@type': 'Person', name: post.author },
     })),
   };
 

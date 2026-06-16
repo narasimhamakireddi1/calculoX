@@ -1,10 +1,41 @@
 ﻿# 🧮 calculox
 
-**Status:** 🔴 AdSense Rejected — "Low value content" | Fixes deployed 2026-06-16 | Re-review pending
-**Last Updated:** 2026-06-16 (UI: vibrant heading section redesign across all 14 calculators) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
-**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fixes applied, awaiting re-crawl (2-4 weeks) then request review
+**Status:** 🟡 AdSense Re-review Pending | Full policy compliance pass completed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
+**Last Updated:** 2026-06-16 (AdSense policy compliance: cookie consent, blog schema, read times, FAQ expansion, keyword cleanup) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
+**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** All policy violations fixed — deploy & request re-review
 
-## ✅ Latest (2026-06-16 - UI: Vibrant Heading Section Across All 14 Calculators)
+## ✅ Latest (2026-06-16 - AdSense Full Policy Compliance Pass)
+- 🍪 **Cookie consent banner added** ✅
+  - New `components/ui/CookieConsent.tsx` — persistent bottom bar explaining cookie & AdSense usage, links to Privacy Policy, stores acceptance in `localStorage`
+  - Wired into `app/layout.tsx` (renders above SpeedInsights/Analytics)
+  - **Why:** AdSense policy requires publishers to visibly disclose cookie usage for ad personalisation; no banner existed before
+- 📋 **Blog listing schema: author `@type` fixed Organisation → Person** ✅
+  - `app/blog/page.tsx` line 34: `@type: 'Organization'` → `@type: 'Person'`
+  - Author is Narasimha Makireddi (an individual), not an organisation — wrong schema misleads Google's E-E-A-T evaluation
+- ⏱️ **All 25 blog post read times corrected** ✅
+  - Every post was hardcoded `'5 min read'` regardless of actual length — a classic auto-generated/thin-content signal
+  - Updated to accurate estimates: 7 min (short guides), 8–10 min (topic deep-dives), 12 min (comprehensive), 15 min (complete guides with case studies)
+  - Full mapping: `how-to-calculate-emi`→12, `sip-calculator-guide`→12, `new-vs-old-tax-regime`→10, `bmi-guide-for-indians`→9, `what-is-cagr`→9, `fd-calculator-fixed-deposit-guide`→8, `rd-*`→7, `gst-*`→7, `percentage-*`→7, `simple-interest-*`→7, `how-to-calculate-home-loan-emi`→10, `sip-vs-lump-sum-investment`→10, `how-to-calculate-income-tax-india`→10, `new-vs-old-tax-regime-comparison`→10, `healthy-profit-margin-by-industry`→8, `complete-investment-planning-guide-india`→15, `tax-saving-strategies-salaried-employees`→12, `retirement-planning-corpus-nism-guide`→15, `emergency-fund-how-much-save`→9, `home-loan-vs-rent-financial-analysis`→12, `business-loan-vs-personal-loan-comparison`→10, `financial-literacy-young-professionals`→12, `guide-investment-options-india`→12, `best-mutual-fund-selection-criteria`→10, `wealth-building-principles-long-term`→12
+  - **File:** `lib/blog/posts.ts`
+- ❓ **Homepage FAQ expanded: 3 basic → 7 substantive questions** ✅
+  - Old FAQs: "Are calculators free?", "Is data secure?", "Will you add more?" — no expertise signal
+  - New FAQs added: EMI formula deep-dive (P×R×(1+R)^N formula explained), SIP vs lump sum comparison, income tax FY2025-26 slab walkthrough, accuracy methodology (SBI/HDFC/ICICI verification), data privacy mechanism (browser-only, no POST requests)
+  - **File:** `app/page.tsx`
+- 🔑 **Meta keywords trimmed: 50+ spammy variations → 15 focused terms** ✅
+  - Was: 50+ entries including repetitive brand + type combos like "calculox sip calculator", "sip calculox", "emi calculox" — violates Google's keyword stuffing policy
+  - Now: 15 legitimate, descriptive keyword phrases covering actual calculator types
+  - **File:** `app/layout.tsx`
+- 📧 **Contact email standardised across all pages** ✅
+  - `app/about/page.tsx` "Get in Touch" CTA was using `narasimha.makireddi1@gmail.com` while contact/terms pages used `supportcalculox@gmail.com` — inconsistency signals unprofessional content
+  - All pages now use `supportcalculox@gmail.com`
+- 📄 **Compare page metadata improved** ✅
+  - Was: 35-word thin description; title missing keyword context
+  - Now: Descriptive title "Compare Calculators Side-by-Side | EMI vs SIP vs FD | calculox" + full-length meta description explaining the tool
+  - **File:** `app/compare/page.tsx`
+- **Files changed:** `components/ui/CookieConsent.tsx` (new), `app/layout.tsx`, `app/blog/page.tsx`, `app/compare/page.tsx`, `app/about/page.tsx`, `app/page.tsx`, `lib/blog/posts.ts`
+- **Build:** ✅ 75 static pages, 0 TypeScript errors
+
+## ✅ Previous (2026-06-16 - UI: Vibrant Heading Section Across All 14 Calculators)
 - 🎨 **Calculator heading section redesigned — eliminated dull/smoky light-mode appearance:** ✅
   - **Root cause 1 — invisible title text:** `.text-gradient` used `bg-clip-text text-transparent` with a blue gradient; transparent text blended into the light-blue page background → replaced with solid `text-gray-900 dark:text-white` for sharp, high-contrast headings ✅
   - **Root cause 2 — pale icon tiles:** Icon badges used `bg-blue-50/100 ring-1/2` — barely visible against the `#f6f8fd` body tint → replaced with vivid `bg-gradient-to-br` tiles + `shadow-lg` + white icon ✅

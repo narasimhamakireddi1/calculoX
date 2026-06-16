@@ -22,7 +22,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
-    readTime: '5 min read',
+    readTime: '12 min read',
     keywords: ['EMI calculation', 'EMI formula', 'how to calculate EMI', 'loan EMI', 'home loan EMI formula', 'EMI calculator formula'],
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
     sections: [
@@ -79,7 +79,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
-    readTime: '5 min read',
+    readTime: '12 min read',
     keywords: ['SIP calculator', 'SIP return calculation', 'systematic investment plan', 'SIP explained', 'SIP investment guide', 'mutual fund SIP'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -130,7 +130,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
-    readTime: '5 min read',
+    readTime: '10 min read',
     keywords: ['new vs old tax regime', 'tax regime comparison', 'new tax regime 2024-25', 'old tax regime benefits', 'which tax regime is better', 'income tax India'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
@@ -182,7 +182,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Health',
-    readTime: '5 min read',
+    readTime: '9 min read',
     keywords: ['BMI for Indians', 'healthy BMI India', 'normal BMI Indian adults', 'Asian BMI chart', 'BMI calculator India', 'overweight Indians BMI', 'weight management India', 'healthy weight for Indians'],
     relatedCalculator: { name: 'BMI Calculator', href: '/bmi-calculator' },
     sections: [
@@ -246,7 +246,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
-    readTime: '5 min read',
+    readTime: '9 min read',
     keywords: ['CAGR', 'compound annual growth rate', 'how to calculate CAGR', 'CAGR formula', 'CAGR calculator', 'investment growth rate', 'CAGR vs absolute return'],
     relatedCalculator: { name: 'CAGR Calculator', href: '/cagr-calculator' },
     sections: [
@@ -348,7 +348,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
-    readTime: '5 min read',
+    readTime: '7 min read',
     keywords: ['RD calculator', 'recurring deposit calculator', 'RD interest calculator', 'RD maturity', 'RD vs FD', 'bank RD rates'],
     relatedCalculator: { name: 'RD Calculator', href: '/rd-calculator' },
     sections: [
@@ -378,7 +378,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
-    readTime: '5 min read',
+    readTime: '7 min read',
     keywords: ['GST calculator', 'GST tax calculator', 'GST rates India', 'GST slab', 'SGST CGST IGST', 'how to calculate GST', 'GST formula', 'GST compliance'],
     relatedCalculator: { name: 'GST Calculator', href: '/gst-calculator' },
     sections: [
@@ -408,7 +408,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
-    readTime: '5 min read',
+    readTime: '7 min read',
     keywords: ['percentage calculator', 'percent change calculator', 'percent of calculator', 'percentage discount calculator', 'percentage increase calculator', 'percentage formula', 'how to calculate percentage'],
     relatedCalculator: { name: 'Percentage Calculator', href: '/percentage-calculator' },
     sections: [
@@ -439,7 +439,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
-    readTime: '5 min read',
+    readTime: '7 min read',
     keywords: ['simple interest calculator', 'SI calculator', 'simple interest formula', 'simple interest vs compound interest', 'SI calculation'],
     relatedCalculator: { name: 'Simple Interest Calculator', href: '/simple-interest-calculator' },
     sections: [
@@ -470,7 +470,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
-    readTime: '5 min read',
+    readTime: '10 min read',
     keywords: ['how to calculate home loan emi', 'home loan emi formula', 'emi calculation step by step', 'home loan monthly payment', 'calculate emi for home loan', 'reduce home loan emi'],
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
     sections: [
@@ -506,7 +506,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
-    readTime: '5 min read',
+    readTime: '10 min read',
     keywords: ['sip vs lump sum', 'sip vs lump sum investment', 'sip investment vs lump sum', 'which is better sip or lump sum', 'sip returns vs lump sum'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -537,7 +537,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
-    readTime: '5 min read',
+    readTime: '10 min read',
     keywords: ['how to calculate income tax india', 'income tax calculation india', 'income tax slabs 2025-26', 'income tax deduction', 'tax rebate 87a', 'hra exemption calculation'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
@@ -566,7 +566,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
-    readTime: '5 min read',
+    readTime: '10 min read',
     keywords: ['new vs old tax regime', 'new tax regime vs old regime', 'which tax regime is better', 'new income tax regime', 'old income tax regime', 'tax regime comparison'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
@@ -595,7 +595,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Business',
-    readTime: '5 min read',
+    readTime: '8 min read',
     keywords: ['healthy profit margin by industry', 'profit margin benchmarks', 'markup vs margin', 'industry profit margins', 'retail margin', 'business margin percentage'],
     relatedCalculator: { name: 'Profit Margin Calculator', href: '/profit-margin-calculator' },
     sections: [
@@ -623,7 +623,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
-    readTime: '5 min read',
+    readTime: '15 min read',
     keywords: ['investment planning', 'investment strategy India', 'asset allocation', 'portfolio management', 'wealth creation', 'investment goals', 'mutual funds vs stocks'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -678,7 +678,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
-    readTime: '5 min read',
+    readTime: '12 min read',
     keywords: ['tax saving strategies', 'income tax savings', 'section 80c', 'HRA exemption', 'tax deduction', 'salary income tax reduction'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
@@ -736,7 +736,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Retirement',
-    readTime: '5 min read',
+    readTime: '15 min read',
     keywords: ['retirement planning', 'retirement corpus', 'retirement calculator', 'how much to save for retirement', 'retirement fund calculation'],
     relatedCalculator: { name: 'Retirement Calculator', href: '/retirement-calculator' },
     sections: [
@@ -793,7 +793,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Savings',
-    readTime: '5 min read',
+    readTime: '9 min read',
     keywords: ['emergency fund', 'emergency fund calculator', 'how much emergency fund', 'months of expenses', 'emergency savings', 'financial safety net'],
     relatedCalculator: { name: 'FD Calculator', href: '/fd-calculator' },
     sections: [
@@ -846,7 +846,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investing',
-    readTime: '5 min read',
+    readTime: '12 min read',
     keywords: ['home loan vs rent', 'buy vs rent', 'should I buy a house', 'rent vs home loan cost', 'real estate investment'],
     relatedCalculator: { name: 'Home Loan vs Rent Calculator', href: '/home-loan-vs-rent-calculator' },
     sections: [
@@ -898,7 +898,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
-    readTime: '5 min read',
+    readTime: '10 min read',
     keywords: ['business loan vs personal loan', 'business loan', 'personal loan', 'loan comparison', 'entrepreneur loans', 'msme loans'],
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
     sections: [
@@ -952,7 +952,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Personal Finance',
-    readTime: '5 min read',
+    readTime: '12 min read',
     keywords: ['financial literacy', 'financial planning young professionals', 'wealth building', 'financial education', 'money management'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -1008,7 +1008,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
-    readTime: '5 min read',
+    readTime: '12 min read',
     keywords: ['investment options', 'investment types India', 'where to invest', 'asset classes', 'investment comparison'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -1064,7 +1064,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
-    readTime: '5 min read',
+    readTime: '10 min read',
     keywords: ['best mutual funds', 'mutual fund selection', 'mutual fund evaluation', 'fund selection criteria', 'how to select funds'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
@@ -1122,7 +1122,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Narasimha Makireddi',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Wealth Building',
-    readTime: '5 min read',
+    readTime: '12 min read',
     keywords: ['wealth building', 'build wealth', 'financial success', 'wealth creation principles', 'long-term wealth'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [

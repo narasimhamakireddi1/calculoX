@@ -12,6 +12,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 import {
   generateOrganizationSchema,
   generateWebSiteSchema,
@@ -32,60 +33,21 @@ export const metadata: Metadata = {
   description:
     "calculox - Free online calculators for India. SIP, EMI, BMI, Tax, FD, RD, GST, CAGR & 8 more calculators. Fast, accurate, mobile-friendly. No registration required. Calculate instantly online.",
   keywords: [
-    "calculox",
-    "calculox calculator",
-    "calculox sip calculator",
-    "calculox emi calculator",
-    "calculox bmi calculator",
-    "calculox tax calculator",
-    "calculox fd calculator",
-    "calculox rd calculator",
-    "calculox gst calculator",
-    "online calculator",
-    "free online calculators",
-    "calculator online free",
-    "free calculator india",
-    "online calculator india",
+    "free online calculators india",
     "sip calculator",
-    "sip calculox",
     "emi calculator",
-    "emi calculox",
-    "loan emi calculator",
-    "home loan emi calculator",
-    "car loan emi calculator",
-    "personal loan emi calculator",
     "bmi calculator",
-    "body mass index calculator",
-    "ideal weight calculator",
-    "tax calculator",
-    "income tax calculator",
     "income tax calculator india",
-    "tax calculator india 2024-25",
     "fd calculator",
-    "fixed deposit calculator",
     "rd calculator",
-    "recurring deposit calculator",
     "gst calculator",
-    "gst calculation tool",
     "percentage calculator",
     "cagr calculator",
     "simple interest calculator",
-    "scientific calculator online",
+    "scientific calculator",
     "profit margin calculator",
-    "retirement calculator",
+    "retirement calculator india",
     "home loan vs rent calculator",
-    "investment calculator",
-    "mutual fund calculator",
-    "financial calculator india",
-    "loan calculator",
-    "mortgage calculator",
-    "emi payment calculator",
-    "investment return calculator",
-    "calculators for students",
-    "calculators for business",
-    "calculators for finance",
-    "free calculation tools",
-    "online calculation",
   ],
   authors: [{ name: "calculox Team", url: BASE_URL }],
   creator: "calculox",
@@ -214,6 +176,7 @@ export default function RootLayout({
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <CookieConsent />
         <SpeedInsights />
         <Analytics />
         <Script id="defer-animation" strategy="afterInteractive">

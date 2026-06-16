@@ -209,10 +209,10 @@ export default function AboutPage() {
             Have feedback, suggestions, or found a bug? I&apos;d love to hear from you.
           </p>
           <a
-            href="mailto:narasimha.makireddi1@gmail.com"
+            href="mailto:supportcalculox@gmail.com"
             className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
           >
-            narasimha.makireddi1@gmail.com
+            supportcalculox@gmail.com
           </a>
         </section>
       </div>
