@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
 
@@ -346,7 +346,7 @@ export default function SimpleInterestCalculatorPage() {
                         value={watchValues.years === 0 ? '' : watchValues.years}
                         onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                         onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                       />
                     </div>
                   </div>
@@ -377,7 +377,7 @@ export default function SimpleInterestCalculatorPage() {
                         value={watchValues.months === 0 ? '' : watchValues.months}
                         onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                         onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
                       />
                     </div>
                   </div>
@@ -408,7 +408,7 @@ export default function SimpleInterestCalculatorPage() {
                         value={watchValues.days === 0 ? '' : watchValues.days}
                         onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                         onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 border-2 border-pink-400 rounded-lg text-right font-bold text-pink-700 bg-pink-50 dark:bg-gray-700 dark:border-pink-600 dark:text-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-pink-400 rounded-lg text-right font-bold text-pink-700 bg-pink-50 dark:bg-gray-700 dark:border-pink-600 dark:text-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
                       />
                     </div>
                   </div>

@@ -280,7 +280,7 @@ export default function TaxCalculator() {
                           const val = Number(e.target.value);
                           if (val < 100000) alert('Gross Salary must be at least ₹1,00,000');
                         }}
-                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full md:w-36 px-3 py-3 pl-8 md:pl-7 border-2 border-blue-400 rounded-lg text-right font-bold text-blue-700 bg-blue-50 dark:bg-gray-700 dark:border-blue-600 dark:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="0"
                       />
                     </div>
@@ -325,7 +325,7 @@ export default function TaxCalculator() {
                         min="0"
                         value={watchValues.incomeHouseProperty === 0 ? '' : watchValues.incomeHouseProperty}
                         onChange={(e) => handleInputChange('incomeHouseProperty', e.target.value === '' ? 0 : Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="w-full md:w-36 px-3 py-3 pl-8 md:pl-7 border-2 border-orange-400 rounded-lg text-right font-bold text-orange-700 bg-orange-50 dark:bg-gray-700 dark:border-orange-600 dark:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                         placeholder="0"
                       />
                     </div>
@@ -356,7 +356,7 @@ export default function TaxCalculator() {
                         min="0"
                         value={watchValues.incomeOtherSources === 0 ? '' : watchValues.incomeOtherSources}
                         onChange={(e) => handleInputChange('incomeOtherSources', e.target.value === '' ? 0 : Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full md:w-36 px-3 py-3 pl-8 md:pl-7 border-2 border-purple-400 rounded-lg text-right font-bold text-purple-700 bg-purple-50 dark:bg-gray-700 dark:border-purple-600 dark:text-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
                         placeholder="0"
                       />
                     </div>
@@ -397,7 +397,7 @@ export default function TaxCalculator() {
                         min="0"
                         value={watchValues.basicSalary === 0 ? '' : watchValues.basicSalary}
                         onChange={(e) => handleInputChange('basicSalary', e.target.value === '' ? 0 : Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 dark:bg-gray-700 dark:border-green-600 dark:text-green-400 focus:outline-none"
+                        className="w-full md:w-36 px-3 py-3 pl-8 md:pl-7 border-2 border-green-400 rounded-lg text-right font-bold text-green-700 bg-green-50 dark:bg-gray-700 dark:border-green-600 dark:text-green-400 focus:outline-none"
                         placeholder="0"
                       />
                     </div>
@@ -427,7 +427,7 @@ export default function TaxCalculator() {
                         min="0"
                         value={watchValues.hraReceived === 0 ? '' : watchValues.hraReceived}
                         onChange={(e) => handleInputChange('hraReceived', e.target.value === '' ? 0 : Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-red-400 rounded-lg text-right font-bold text-red-700 bg-red-50 dark:bg-gray-700 dark:border-red-600 dark:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-500"
+                        className="w-full md:w-36 px-3 py-3 pl-8 md:pl-7 border-2 border-red-400 rounded-lg text-right font-bold text-red-700 bg-red-50 dark:bg-gray-700 dark:border-red-600 dark:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-500"
                         placeholder="0"
                       />
                     </div>
@@ -457,7 +457,7 @@ export default function TaxCalculator() {
                         min="0"
                         value={watchValues.rentPaid === 0 ? '' : watchValues.rentPaid}
                         onChange={(e) => handleInputChange('rentPaid', e.target.value === '' ? 0 : Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-amber-400 rounded-lg text-right font-bold text-amber-700 bg-amber-50 dark:bg-gray-700 dark:border-amber-600 dark:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        className="w-full md:w-36 px-3 py-3 pl-8 md:pl-7 border-2 border-amber-400 rounded-lg text-right font-bold text-amber-700 bg-amber-50 dark:bg-gray-700 dark:border-amber-600 dark:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
                         placeholder="0"
                       />
                     </div>
@@ -508,7 +508,7 @@ export default function TaxCalculator() {
                         min="0"
                         value={watchValues.lta === 0 ? '' : watchValues.lta}
                         onChange={(e) => handleInputChange('lta', e.target.value === '' ? 0 : Number(e.target.value))}
-                        className="w-full md:w-28 px-3 py-3 pl-8 md:pl-7 border-2 border-cyan-400 rounded-lg text-right font-bold text-cyan-700 bg-cyan-50 dark:bg-gray-700 dark:border-cyan-600 dark:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        className="w-full md:w-36 px-3 py-3 pl-8 md:pl-7 border-2 border-cyan-400 rounded-lg text-right font-bold text-cyan-700 bg-cyan-50 dark:bg-gray-700 dark:border-cyan-600 dark:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
                         placeholder="0"
                       />
                     </div>

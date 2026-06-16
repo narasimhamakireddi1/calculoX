@@ -201,7 +201,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.monthlyDeposit === 0 ? "" : watchValues.monthlyDeposit}
                   onChange={(e) => handleInputChange('monthlyDeposit', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyDeposit', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full md:w-40 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
                 />
               </div>
               {errors.monthlyDeposit && <p className="text-red-500 text-sm">{errors.monthlyDeposit.message}</p>}
@@ -243,7 +243,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.annualRate === 0 ? "" : watchValues.annualRate}
                   onChange={(e) => handleInputChange('annualRate', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-32 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
                 />
               </div>
               {errors.annualRate && <p className="text-red-500 text-sm">{errors.annualRate.message}</p>}
@@ -272,7 +272,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.months === 0 ? "" : watchValues.months}
                   onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                  className="w-full md:w-32 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
                 />
               </div>
               {errors.months && <p className="text-red-500 text-sm">{errors.months.message}</p>}

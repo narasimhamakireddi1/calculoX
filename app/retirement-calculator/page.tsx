@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
 
@@ -76,6 +76,13 @@ export default function RetirementCalculatorPage() {
 
   const handleInputChange = (fieldName: keyof RetirementFormData, value: number) => {
     setValue(fieldName, value, { shouldValidate: true });
+    // Enforce ordering: present_age < retirement_age < life_expectancy
+    if (fieldName === 'present_age' && watchValues.retirement_age <= value) {
+      setValue('retirement_age', value + 1, { shouldValidate: true });
+    }
+    if (fieldName === 'retirement_age' && watchValues.life_expectancy <= value) {
+      setValue('life_expectancy', value + 1, { shouldValidate: true });
+    }
   };
 
   const handleReset = () => {
@@ -92,19 +99,52 @@ export default function RetirementCalculatorPage() {
       label: 'Early Retirement (40)',
       description: 'Retire at 40, live to 85',
       icon: Sunset,
-      values: { currentAge: 35, retirementAge: 40, lifeExpectancy: 85, monthlyExpense: 50000, currentSavings: 5000000, monthlyInvestment: 50000, investmentReturn: 12, inflationRate: 6 }
+      values: {
+        present_age: 35,
+        retirement_age: 40,
+        life_expectancy: 85,
+        present_monthly_expenses: 50000,
+        current_savings: 5000000,
+        expense_reduction_pct: 20,
+        pre_retirement_return_pct: 12,
+        post_retirement_return_pct: 7,
+        long_term_inflation_pct: 6,
+        lump_sum_benefits: 0,
+      }
     },
     {
       label: 'Standard Retirement (60)',
       description: 'Retire at 60, live to 90',
       icon: UserRound,
-      values: { currentAge: 40, retirementAge: 60, lifeExpectancy: 90, monthlyExpense: 75000, currentSavings: 10000000, monthlyInvestment: 30000, investmentReturn: 11, inflationRate: 6 }
+      values: {
+        present_age: 40,
+        retirement_age: 60,
+        life_expectancy: 90,
+        present_monthly_expenses: 75000,
+        current_savings: 1000000,
+        expense_reduction_pct: 20,
+        pre_retirement_return_pct: 11,
+        post_retirement_return_pct: 7,
+        long_term_inflation_pct: 6,
+        lump_sum_benefits: 0,
+      }
     },
     {
       label: 'Extended Work (65)',
       description: 'Work till 65, live comfortably',
       icon: Briefcase,
-      values: { currentAge: 45, retirementAge: 65, lifeExpectancy: 95, monthlyExpense: 100000, currentSavings: 20000000, monthlyInvestment: 25000, investmentReturn: 10, inflationRate: 5 }
+      values: {
+        present_age: 45,
+        retirement_age: 65,
+        life_expectancy: 95,
+        present_monthly_expenses: 100000,
+        current_savings: 2000000,
+        expense_reduction_pct: 15,
+        pre_retirement_return_pct: 10,
+        post_retirement_return_pct: 6,
+        long_term_inflation_pct: 5,
+        lump_sum_benefits: 0,
+      }
     }
   ], []);
 
@@ -173,16 +213,16 @@ export default function RetirementCalculatorPage() {
     teal:    'w-full flex-1 h-3 bg-gradient-to-r from-teal-300 to-teal-600 rounded-lg appearance-none cursor-pointer accent-teal-600',
   };
   const sliderNumber = {
-    blue:    'w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700',
-    purple:  'w-full md:w-28 px-3 py-3 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700',
-    green:   'w-full md:w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700',
-    emerald: 'w-full md:w-28 px-3 py-3 border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700',
-    orange:  'w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700',
-    rose:    'w-full md:w-28 px-3 py-3 border-2 border-rose-400 rounded-lg font-bold text-rose-700 bg-rose-50 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-700',
-    cyan:    'w-full md:w-28 px-3 py-3 border-2 border-cyan-400 rounded-lg font-bold text-cyan-700 bg-cyan-50 dark:bg-cyan-900/20 dark:text-cyan-400 dark:border-cyan-700',
-    amber:   'w-full md:w-28 px-3 py-3 border-2 border-amber-400 rounded-lg font-bold text-amber-700 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-700',
-    indigo:  'w-full md:w-28 px-3 py-3 border-2 border-indigo-400 rounded-lg font-bold text-indigo-700 bg-indigo-50 dark:bg-indigo-900/20 dark:text-indigo-400 dark:border-indigo-700',
-    teal:    'w-full md:w-28 px-3 py-3 border-2 border-teal-400 rounded-lg font-bold text-teal-700 bg-teal-50 dark:bg-teal-900/20 dark:text-teal-400 dark:border-teal-700',
+    blue:    'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700',
+    purple:  'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700',
+    green:   'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700',
+    emerald: 'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700',
+    orange:  'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700',
+    rose:    'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-rose-400 rounded-lg font-bold text-rose-700 bg-rose-50 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-700',
+    cyan:    'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-cyan-400 rounded-lg font-bold text-cyan-700 bg-cyan-50 dark:bg-cyan-900/20 dark:text-cyan-400 dark:border-cyan-700',
+    amber:   'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-amber-400 rounded-lg font-bold text-amber-700 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-700',
+    indigo:  'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-indigo-400 rounded-lg font-bold text-indigo-700 bg-indigo-50 dark:bg-indigo-900/20 dark:text-indigo-400 dark:border-indigo-700',
+    teal:    'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-teal-400 rounded-lg font-bold text-teal-700 bg-teal-50 dark:bg-teal-900/20 dark:text-teal-400 dark:border-teal-700',
   };
 
   return (
@@ -313,18 +353,24 @@ export default function RetirementCalculatorPage() {
                   <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
-                      min={watchValues.present_age + 1}
+                      min="25"
                       max="100"
                       value={watchValues.retirement_age}
-                      onChange={(e) => handleInputChange('retirement_age', Number(e.target.value))}
+                      onChange={(e) => {
+                        const val = Number(e.target.value);
+                        handleInputChange('retirement_age', Math.max(val, watchValues.present_age + 1));
+                      }}
                       className={sliderRange.purple}
                     />
                     <input
                       type="number"
-                      min={watchValues.present_age + 1}
+                      min="25"
                       max="100"
                       value={watchValues.retirement_age}
-                      onChange={(e) => handleInputChange('retirement_age', Number(e.target.value))}
+                      onChange={(e) => {
+                        const val = Number(e.target.value);
+                        handleInputChange('retirement_age', Math.max(val, watchValues.present_age + 1));
+                      }}
                       className={sliderNumber.purple}
                     />
                   </div>
@@ -339,18 +385,24 @@ export default function RetirementCalculatorPage() {
                   <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <input
                       type="range"
-                      min={watchValues.retirement_age + 1}
+                      min="30"
                       max="120"
                       value={watchValues.life_expectancy}
-                      onChange={(e) => handleInputChange('life_expectancy', Number(e.target.value))}
+                      onChange={(e) => {
+                        const val = Number(e.target.value);
+                        handleInputChange('life_expectancy', Math.max(val, watchValues.retirement_age + 1));
+                      }}
                       className={sliderRange.green}
                     />
                     <input
                       type="number"
-                      min={watchValues.retirement_age + 1}
+                      min="30"
                       max="120"
                       value={watchValues.life_expectancy}
-                      onChange={(e) => handleInputChange('life_expectancy', Number(e.target.value))}
+                      onChange={(e) => {
+                        const val = Number(e.target.value);
+                        handleInputChange('life_expectancy', Math.max(val, watchValues.retirement_age + 1));
+                      }}
                       className={sliderNumber.green}
                     />
                   </div>

@@ -191,7 +191,7 @@ export default function GSTCalculatorPage() {
                   value={watchValues.amount === 0 ? "" : watchValues.amount}
                   onChange={(e) => handleAmountChange(Number(e.target.value))}
                   onBlur={(e) => handleValidateField('amount', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-40 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               {errors.amount && <p className="text-red-500 text-sm">{errors.amount.message}</p>}

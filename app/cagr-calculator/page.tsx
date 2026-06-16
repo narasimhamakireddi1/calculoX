@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 'use client';
 
@@ -161,7 +161,7 @@ export default function CAGRCalculatorPage() {
                   value={watchValues.beginningValue === 0 ? "" : watchValues.beginningValue}
                   onChange={(e) => handleInputChange('beginningValue', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('beginningValue', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-40 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               {errors.beginningValue && <p className="text-red-500 text-sm">{errors.beginningValue.message}</p>}
@@ -202,7 +202,7 @@ export default function CAGRCalculatorPage() {
                   value={watchValues.endingValue === 0 ? "" : watchValues.endingValue}
                   onChange={(e) => handleInputChange('endingValue', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('endingValue', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full md:w-40 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               {errors.endingValue && <p className="text-red-500 text-sm">{errors.endingValue.message}</p>}
@@ -243,7 +243,7 @@ export default function CAGRCalculatorPage() {
                   value={watchValues.years === 0 ? "" : watchValues.years}
                   onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                  className="w-full md:w-40 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               {errors.years && <p className="text-red-500 text-sm">{errors.years.message}</p>}

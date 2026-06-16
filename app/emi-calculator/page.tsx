@@ -166,6 +166,7 @@ const LoanInput = memo(({
   onBlur,
   min,
   max,
+  sliderMax,
   step,
   error,
   rangeText,
@@ -182,6 +183,7 @@ const LoanInput = memo(({
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   min: number;
   max: number;
+  sliderMax?: number;
   step: number | string;
   error: any;
   rangeText: string;
@@ -202,18 +204,19 @@ const LoanInput = memo(({
   };
 
   const colors = getColorClasses();
+  const effectiveSliderMax = sliderMax ?? max;
 
   return (
     <div className="space-y-3">
       <label htmlFor={id} className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
       <div className="flex flex-col md:flex-row gap-3 items-center md:items-center">
-        {/* Slider */}
+        {/* Slider - always has a numeric value so thumb position is correct */}
         <input
           type="range"
           min={min}
-          max={max}
+          max={effectiveSliderMax}
           step={step}
-          value={value === 0 ? '' : value}
+          value={value || min}
           onChange={onChange}
           onBlur={onBlur}
           className={`flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer accent-${colorFrom.split('-')[1]}-600`}
@@ -230,7 +233,7 @@ const LoanInput = memo(({
           value={value === 0 ? '' : value}
           onChange={onChange}
           onBlur={onBlur}
-          className={`w-full md:w-28 px-3 py-3 border-2 ${colors.border} rounded-lg font-bold ${colors.text} ${colors.bg} ${colors.dark}`}
+          className={`w-full md:w-36 px-3 py-3 border-2 ${colors.border} rounded-lg font-bold ${colors.text} ${colors.bg} ${colors.dark}`}
         />
       </div>
 
@@ -444,9 +447,10 @@ export default function EMICalculatorPage() {
                 onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
                 min={10000}
                 max={100000000}
+                sliderMax={10000000}
                 step={10000}
                 error={errors.principal}
-                rangeText="₹10,000 - ₹1 Crore"
+                rangeText="₹10,000 - ₹1 Crore (type to enter more)"
                 colorFrom="from-blue-300"
                 colorTo="to-blue-600"
                 presets={[2000000, 5000000, 8000000, 10000000]}

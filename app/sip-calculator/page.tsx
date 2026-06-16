@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
@@ -309,7 +309,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.years === 0 ? "" : watchValues.years}
                   onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.years && (
@@ -353,7 +353,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.annualReturn === 0 ? "" : watchValues.annualReturn}
                   onChange={(e) => handleInputChange('annualReturn', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualReturn', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                  className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                 />
               </div>
               {errors.annualReturn && (
@@ -385,7 +385,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.stepUpPercent === 0 ? "" : watchValues.stepUpPercent}
                   onChange={(e) => handleInputChange('stepUpPercent', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('stepUpPercent', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                  className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
                 />
               </div>
               {errors.stepUpPercent && (

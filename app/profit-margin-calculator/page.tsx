@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
@@ -236,7 +236,7 @@ export default function ProfitMarginCalculator() {
                   type="number"
                   value={watchValues.costPrice === 0 ? '' : watchValues.costPrice}
                   onChange={(e) => setValue('costPrice', parseFloat(e.target.value) || 0)}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                   placeholder="0"
                 />
               </div>
@@ -301,7 +301,7 @@ export default function ProfitMarginCalculator() {
                         type="number"
                         value={watchValues.targetMarginPct === 0 ? '' : watchValues.targetMarginPct}
                         onChange={(e) => setValue('targetMarginPct', parseFloat(e.target.value) || 0)}
-                        className="w-full md:w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                         placeholder="0"
                       />
                     </div>
@@ -343,7 +343,7 @@ export default function ProfitMarginCalculator() {
                         type="number"
                         value={watchValues.targetMarkupPct === 0 ? '' : watchValues.targetMarkupPct}
                         onChange={(e) => setValue('targetMarkupPct', parseFloat(e.target.value) || 0)}
-                        className="w-full md:w-28 px-3 py-3 border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
                         placeholder="0"
                       />
                     </div>
@@ -387,7 +387,7 @@ export default function ProfitMarginCalculator() {
                     type="number"
                     value={watchValues.sellingPrice === 0 ? '' : watchValues.sellingPrice}
                     onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value) || 0)}
-                    className="w-full md:w-28 px-3 py-3 border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                    className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
                     placeholder="0"
                   />
                 </div>
