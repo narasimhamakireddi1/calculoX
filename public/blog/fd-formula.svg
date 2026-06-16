@@ -1,0 +1,42 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fixed Deposit compound interest formula diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1D4ED8"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0F7FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Fixed Deposit — Compound Interest Formula</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#93C5FD">Quarterly compounding formula · per RBI-regulated FD standards (DICGC insured up to ₹5L)</text>
+  <!-- Formula box -->
+  <rect x="30" y="84" width="740" height="104" rx="10" fill="white" stroke="#BFDBFE" stroke-width="1.5"/>
+  <text x="60" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="800" fill="#1D4ED8">A</text>
+  <text x="88" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="400" fill="#475569"> = </text>
+  <text x="130" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="700" fill="#1E3A8A">P  ×  ( 1 + </text>
+  <!-- r/n fraction -->
+  <text x="370" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="600" fill="#1E3A8A">r</text>
+  <line x1="365" y1="136" x2="392" y2="136" stroke="#2563EB" stroke-width="2"/>
+  <text x="368" y="155" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="600" fill="#1E3A8A">n</text>
+  <text x="398" y="145" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="700" fill="#1E3A8A"> )<tspan dy="-12" font-size="14" font-weight="700">n × t</tspan></text>
+  <!-- Variable legend -->
+  <rect x="30" y="202" width="740" height="54" rx="8" fill="#EFF6FF"/>
+  <text x="55" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="700">A</text>
+  <text x="64" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> = Maturity amount</text>
+  <text x="220" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="700">P</text>
+  <text x="229" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> = Principal invested</text>
+  <text x="390" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="700">r</text>
+  <text x="398" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> = Annual interest rate</text>
+  <text x="566" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="700">n</text>
+  <text x="574" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> = Compoundings/year</text>
+  <text x="55" y="244" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Quarterly: n = 4   |   Monthly: n = 12   |   Annual: n = 1</text>
+  <text x="550" y="244" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="700">t</text>
+  <text x="558" y="244" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> = Tenure in years</text>
+  <!-- Example -->
+  <rect x="30" y="270" width="740" height="92" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <text x="55" y="294" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#64748B" font-weight="600" letter-spacing="1">WORKED EXAMPLE  (Quarterly Compounding)</text>
+  <text x="55" y="316" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#334155">₹1,00,000 FD  ·  7% p.a.  ·  5 years  ·  n = 4 (quarterly)</text>
+  <rect x="55" y="327" width="300" height="24" rx="6" fill="#F0FDF4"/>
+  <text x="205" y="344" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#166534" text-anchor="middle" font-weight="600">Maturity = ₹1,41,478</text>
+  <rect x="375" y="327" width="360" height="24" rx="6" fill="#FEF9C3"/>
+  <text x="555" y="344" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#713F12" text-anchor="middle" font-weight="600">Interest Earned = ₹41,478  (senior +0.5% available)</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

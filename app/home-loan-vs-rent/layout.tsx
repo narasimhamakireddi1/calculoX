@@ -130,13 +130,41 @@ export default function HomeLoanVsRentLayout({ children }: { children: React.Rea
 
   return (
     <>
-      <Script id="schema-home-vs-rent-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-home-vs-rent-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-home-vs-rent-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-home-vs-rent-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Should You Buy a Home or Continue Renting? The Numbers</h2>
+        <p className="mb-4">
+          The buy-versus-rent decision is one of the most significant financial choices an Indian household makes. Common wisdom says &quot;buying is always better than renting,&quot; but this is not mathematically true in all cases. The correct answer depends on property price, loan interest rate, expected appreciation, current rent, and — critically — what the down payment and EMI-rent difference could earn if invested instead. This calculator uses an opportunity cost framework to compare both paths objectively.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How the Comparison Works</h3>
+        <p className="mb-4">
+          Two parallel financial tracks are simulated over your chosen timeline (typically 20 years):
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li><strong>Buyer track:</strong> Pays down payment + monthly EMI + maintenance. Property appreciates in value. Section 24(b) provides tax deduction on home loan interest up to ₹2 lakh/year.</li>
+          <li><strong>Renter track:</strong> Invests the down payment in mutual funds/equity. Invests the monthly difference between EMI and rent. Rent escalates annually.</li>
+        </ul>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example</h3>
+        <p className="mb-4">
+          Property value: ₹60,00,000. Down payment: 20% = ₹12,00,000. Home loan: ₹48,00,000 at 8.5% for 20 years. Monthly rent for equivalent property: ₹22,000.
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Monthly EMI = ₹41,688. Rent = ₹22,000. Monthly difference = ₹19,688 (renter invests this)</li>
+          <li>Renter also invests ₹12 lakh down payment at 10% p.a. in equity</li>
+          <li>After 20 years: Buyer net worth (property value minus loan) ≈ ₹1.49 crore</li>
+          <li>Renter net worth (down payment + monthly investments) ≈ ₹1.75 crore</li>
+          <li><strong>Renter wins by ≈ ₹26 lakh in this scenario</strong></li>
+        </ul>
+        <p>
+          Results reverse if property appreciates above 8% p.a. or if the investment return assumption is lowered. Change any assumption in the calculator to see how sensitive the outcome is to your specific city and property type.
+        </p>
+      </section>
     </>
   );
 }

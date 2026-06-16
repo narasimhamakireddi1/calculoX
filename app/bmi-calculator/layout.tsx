@@ -95,13 +95,44 @@ export default function BMILayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Script id="schema-bmi-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-bmi-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-bmi-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-bmi-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Health">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What Is BMI and How Is It Calculated?</h2>
+        <p className="mb-4">
+          Body Mass Index (BMI) is a numerical value derived from a person&apos;s weight and height, used by healthcare professionals worldwide to screen for weight categories that may lead to health problems. The World Health Organization (WHO) defines BMI ranges, but the Asian Body Mass Index cutoffs — adopted by the Indian Council of Medical Research (ICMR) — recommend lower thresholds because South Asian populations carry higher metabolic risk at lower BMI values compared to Western populations.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">BMI Formula</h3>
+        <p className="mb-4">
+          BMI is calculated differently depending on the unit system:
+        </p>
+        <p className="mb-2 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          Metric: BMI = Weight (kg) ÷ Height (m)²
+        </p>
+        <p className="mb-4 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          Imperial: BMI = 703 × Weight (lbs) ÷ Height (inches)²
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example</h3>
+        <p className="mb-4">
+          A person weighing 70 kg at a height of 175 cm (1.75 m):
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>BMI = 70 ÷ (1.75 × 1.75) = 70 ÷ 3.0625 = <strong>22.9</strong></li>
+          <li>WHO classification: <strong>Normal weight</strong> (18.5–24.9)</li>
+          <li>Asian/Indian classification: <strong>Normal weight</strong> (18.5–22.9)</li>
+        </ul>
+        <p className="mb-4">
+          Note that a BMI of 23 for the same person would still be &quot;Normal&quot; under WHO guidelines but shift to &quot;Overweight&quot; under Asian cutoffs. This distinction matters for Indians: cardiovascular and diabetes risk rises at lower BMI values in South Asian populations compared to those of European descent.
+        </p>
+        <p>
+          BMI is a screening tool, not a diagnostic one. Athletes may register as overweight due to high muscle mass. Consult a doctor for a complete health assessment.
+        </p>
+      </section>
     </>
   );
 }

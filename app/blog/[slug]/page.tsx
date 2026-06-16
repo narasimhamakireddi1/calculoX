@@ -172,6 +172,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <span className="text-sm text-gray-400">
               {new Date(post.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
             </span>
+            {post.lastUpdated && (
+              <span className="text-sm text-gray-400">
+                Updated: {new Date(post.lastUpdated).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </span>
+            )}
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight mb-4">
             {post.title}
@@ -215,6 +220,52 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.relatedCalculator.name} →
           </Link>
         </div>
+
+        {/* Quick Summary Box — Wikipedia-style lead paragraph */}
+        {post.quickSummary && (
+          <div className="mb-8 p-5 bg-gray-50 dark:bg-gray-800/60 border-l-4 border-blue-500 rounded-r-xl">
+            <p className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide mb-2">Quick Answer</p>
+            <p className="text-gray-800 dark:text-gray-200 leading-relaxed">{post.quickSummary}</p>
+          </div>
+        )}
+
+        {/* Key Stats Cards — at-a-glance data visual */}
+        {post.keyStats && post.keyStats.length > 0 && (
+          <div className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {post.keyStats.map((stat, i) => (
+              <div key={i} className="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 p-4 flex flex-col gap-1">
+                <p className="text-xs text-blue-600 dark:text-blue-400 font-medium leading-snug">{stat.label}</p>
+                <p className="text-xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                {stat.note && <p className="text-xs text-gray-500 dark:text-gray-400 leading-snug">{stat.note}</p>}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Comparison Table — data-first layout for comparison posts */}
+        {post.comparisonTable && (
+          <div className="mb-10 overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+            <p className="px-4 pt-4 pb-2 text-sm font-medium text-gray-500 dark:text-gray-400 italic">{post.comparisonTable.caption}</p>
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="bg-blue-600 text-white">
+                  {post.comparisonTable.headers.map((h, i) => (
+                    <th key={i} className="px-4 py-3 text-left font-semibold whitespace-nowrap">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {post.comparisonTable.rows.map((row, ri) => (
+                  <tr key={ri} className={ri % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:bg-gray-800/60'}>
+                    {row.map((cell, ci) => (
+                      <td key={ci} className={`px-4 py-3 text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-gray-700/50 ${ci === 0 ? 'font-medium' : ''}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         {/* Content Sections */}
         <div className="space-y-8 mb-12">

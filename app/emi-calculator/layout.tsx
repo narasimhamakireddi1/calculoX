@@ -102,13 +102,44 @@ export default function EMILayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Script id="schema-emi-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-emi-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-emi-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-emi-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What Is an EMI and How Is It Calculated?</h2>
+        <p className="mb-4">
+          An Equated Monthly Instalment (EMI) is the fixed amount a borrower pays to a lender every month until the loan is fully repaid. Each payment covers both principal and interest, with the interest portion being higher in early months and the principal portion rising over time — this is called a reducing-balance schedule. EMI calculators are used for home loans, car loans, personal loans, and education loans.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">EMI Formula</h3>
+        <p className="mb-4">
+          The standard EMI formula used by Indian banks (per RBI guidelines) is:
+        </p>
+        <p className="mb-4 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          EMI = P × R × (1 + R)^N ÷ [(1 + R)^N − 1]
+        </p>
+        <p className="mb-4">
+          Where <strong>P</strong> is the loan principal, <strong>R</strong> is the monthly interest rate (annual rate ÷ 12 ÷ 100), and <strong>N</strong> is the loan tenure in months.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example</h3>
+        <p className="mb-4">
+          Suppose you take a home loan of ₹20,00,000 at an annual interest rate of 8.5% for 20 years (240 months).
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Monthly rate R = 8.5 ÷ 12 ÷ 100 = 0.007083</li>
+          <li>N = 240 months</li>
+          <li>EMI = 20,00,000 × 0.007083 × (1.007083)^240 ÷ [(1.007083)^240 − 1]</li>
+          <li><strong>Monthly EMI = ₹17,356</strong></li>
+          <li>Total amount paid = ₹41,65,440</li>
+          <li>Total interest = ₹21,65,440 (the cost of borrowing)</li>
+        </ul>
+        <p>
+          Use the calculator above to adjust the loan amount, interest rate, and tenure to find the EMI that fits your monthly budget.
+        </p>
+      </section>
     </>
   );
 }

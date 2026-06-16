@@ -94,13 +94,41 @@ export default function RDCalculatorLayout({ children }: { children: React.React
 
   return (
     <>
-      <Script id="schema-rd-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-rd-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-rd-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-rd-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Recurring Deposit Maturity Is Calculated</h2>
+        <p className="mb-4">
+          A Recurring Deposit (RD) is a savings scheme where you deposit a fixed amount every month for a predetermined period. Unlike an FD where you invest once, an RD builds savings gradually — making it ideal for salaried individuals who want to save a portion of income each month. Banks compound RD interest quarterly in India, and the RBI mandates this calculation method for all scheduled commercial banks.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">RD Maturity Formula</h3>
+        <p className="mb-4">
+          The maturity value of an RD with quarterly compounding is:
+        </p>
+        <p className="mb-4 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          A = P × [(1 + r/4)^(4t) − 1] ÷ [1 − (1 + r/4)^(−1/3)]
+        </p>
+        <p className="mb-4">
+          Where <strong>P</strong> is the monthly deposit amount, <strong>r</strong> is the annual interest rate (decimal), and <strong>t</strong> is the tenure in years. Each monthly installment matures at a different point, so the total is a sum of all installment future values.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example</h3>
+        <p className="mb-4">
+          You open an RD depositing ₹5,000 per month for 5 years at 7% per annum (quarterly compounding).
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Total deposited = ₹5,000 × 60 months = <strong>₹3,00,000</strong></li>
+          <li>Interest earned through compounding = <strong>₹60,692</strong></li>
+          <li><strong>Maturity amount = ₹3,60,692</strong></li>
+        </ul>
+        <p>
+          Compare this to a savings account at 3.5%: the same ₹3 lakh deposits would earn only ₹28,000 in interest — less than half. RDs are particularly effective for goal-based saving, such as building a down payment or an emergency fund over 1–5 years.
+        </p>
+      </section>
     </>
   );
 }

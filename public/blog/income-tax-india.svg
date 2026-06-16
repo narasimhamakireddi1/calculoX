@@ -1,0 +1,53 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Income tax calculation in India diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B45309"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFBEB"/><stop offset="100%" stop-color="#FEF3C7"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Income Tax Calculation — New Regime FY 2025-26</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#FDE68A">Finance Act 2025-26 · CBDT guidelines · Default regime for most salaried employees</text>
+  <!-- Slab table -->
+  <rect x="30" y="84" width="740" height="200" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <!-- Header row -->
+  <rect x="30" y="84" width="740" height="30" rx="10" fill="#FEF9C3"/>
+  <rect x="30" y="100" width="740" height="14" fill="#FEF9C3"/>
+  <text x="215" y="104" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#713F12" text-anchor="middle" font-weight="700">Annual Income Slab</text>
+  <text x="520" y="104" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#713F12" text-anchor="middle" font-weight="700">Tax Rate</text>
+  <text x="700" y="104" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#713F12" text-anchor="middle" font-weight="700">Tax Payable on Slab</text>
+  <!-- Row 1: 0-4L -->
+  <line x1="30" y1="116" x2="770" y2="116" stroke="#FDE68A" stroke-width="1"/>
+  <text x="215" y="136" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" text-anchor="middle">₹0 – ₹4,00,000</text>
+  <text x="520" y="136" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#059669" text-anchor="middle" font-weight="700">0%  (Nil)</text>
+  <text x="700" y="136" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#059669" text-anchor="middle" font-weight="600">₹0</text>
+  <!-- Row 2: 4-8L -->
+  <line x1="30" y1="148" x2="770" y2="148" stroke="#FDE68A" stroke-width="1"/>
+  <text x="215" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" text-anchor="middle">₹4,00,001 – ₹8,00,000</text>
+  <text x="520" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" text-anchor="middle" font-weight="700">5%</text>
+  <text x="700" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569" text-anchor="middle">Up to ₹20,000</text>
+  <!-- Row 3: 8-12L -->
+  <line x1="30" y1="180" x2="770" y2="180" stroke="#FDE68A" stroke-width="1"/>
+  <text x="215" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" text-anchor="middle">₹8,00,001 – ₹12,00,000</text>
+  <text x="520" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#D97706" text-anchor="middle" font-weight="700">10%</text>
+  <text x="700" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569" text-anchor="middle">Up to ₹40,000</text>
+  <!-- Row 4: 12-16L -->
+  <line x1="30" y1="212" x2="770" y2="212" stroke="#FDE68A" stroke-width="1"/>
+  <text x="215" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" text-anchor="middle">₹12,00,001 – ₹16,00,000</text>
+  <text x="520" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#B45309" text-anchor="middle" font-weight="700">15%</text>
+  <text x="700" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569" text-anchor="middle">Up to ₹60,000</text>
+  <!-- Row 5: 16-20L -->
+  <line x1="30" y1="244" x2="770" y2="244" stroke="#FDE68A" stroke-width="1"/>
+  <text x="215" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" text-anchor="middle">₹16,00,001 – ₹24,00,000</text>
+  <text x="520" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#B45309" text-anchor="middle" font-weight="700">20–25%</text>
+  <text x="700" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569" text-anchor="middle">₹80,000 – ₹2,80,000</text>
+  <!-- Col dividers -->
+  <line x1="380" y1="84" x2="380" y2="284" stroke="#FDE68A" stroke-width="1"/>
+  <line x1="630" y1="84" x2="630" y2="284" stroke="#FDE68A" stroke-width="1"/>
+  <!-- Key note -->
+  <rect x="30" y="298" width="740" height="64" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="55" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#713F12" font-weight="600">Above ₹24L:</text>
+  <text x="148" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> 30% on the amount exceeding ₹24L  |  Surcharge on income &gt; ₹50L</text>
+  <text x="55" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Standard Deduction: ₹75,000  |  Rebate u/s 87A: Zero tax if taxable income ≤ ₹12,00,000</text>
+  <text x="55" y="356" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#92400E">Source: Finance Act 2025-26 / CBDT</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

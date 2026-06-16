@@ -1,0 +1,61 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Profit margin by industry diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5B21B6"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F5F3FF"/><stop offset="100%" stop-color="#EDE9FE"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Profit Margin — Formula &amp; Industry Benchmarks</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#C4B5FD">Net Profit Margin = (Revenue – All Costs) ÷ Revenue × 100</text>
+  <!-- Formula -->
+  <rect x="30" y="84" width="740" height="60" rx="10" fill="white" stroke="#C4B5FD" stroke-width="1.5"/>
+  <text x="400" y="122" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" fill="#1E3A8A" text-anchor="middle">Gross Margin  =  (Revenue – COGS) ÷ Revenue × 100</text>
+  <!-- Industry bars -->
+  <text x="55" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569" font-weight="600">INDUSTRY NET PROFIT MARGIN BENCHMARKS</text>
+  <!-- Software/Tech -->
+  <text x="55" y="190" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Software / SaaS</text>
+  <rect x="180" y="178" width="220" height="16" rx="4" fill="#059669"/>
+  <text x="406" y="191" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700"> 20–35%</text>
+  <!-- Pharma -->
+  <text x="55" y="215" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Pharmaceuticals</text>
+  <rect x="180" y="203" width="190" height="16" rx="4" fill="#1D4ED8"/>
+  <text x="376" y="216" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" font-weight="700"> 15–25%</text>
+  <!-- FMCG -->
+  <text x="55" y="240" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">FMCG / Consumer</text>
+  <rect x="180" y="228" width="130" height="16" rx="4" fill="#D97706"/>
+  <text x="316" y="241" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#D97706" font-weight="700"> 8–15%</text>
+  <!-- Retail -->
+  <text x="55" y="265" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Retail / E-commerce</text>
+  <rect x="180" y="253" width="70" height="16" rx="4" fill="#475569"/>
+  <text x="256" y="266" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" font-weight="700"> 2–5%</text>
+  <!-- Restaurant -->
+  <text x="55" y="290" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Restaurant / Food</text>
+  <rect x="180" y="278" width="80" height="16" rx="4" fill="#DC2626"/>
+  <text x="266" y="291" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626" font-weight="700"> 3–6%</text>
+  <!-- Real estate -->
+  <text x="430" y="190" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Real Estate</text>
+  <rect x="540" y="178" width="160" height="16" rx="4" fill="#059669"/>
+  <text x="706" y="191" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700"> 15–25%</text>
+  <!-- IT Services -->
+  <text x="430" y="215" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">IT Services (India)</text>
+  <rect x="540" y="203" width="140" height="16" rx="4" fill="#1D4ED8"/>
+  <text x="686" y="216" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" font-weight="700"> 14–20%</text>
+  <!-- Manufacturing -->
+  <text x="430" y="240" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Manufacturing</text>
+  <rect x="540" y="228" width="90" height="16" rx="4" fill="#D97706"/>
+  <text x="636" y="241" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#D97706" font-weight="700"> 5–10%</text>
+  <!-- Construction -->
+  <text x="430" y="265" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Construction</text>
+  <rect x="540" y="253" width="75" height="16" rx="4" fill="#475569"/>
+  <text x="621" y="266" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" font-weight="700"> 3–8%</text>
+  <!-- Banking -->
+  <text x="430" y="290" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Banking / NBFC</text>
+  <rect x="540" y="278" width="120" height="16" rx="4" fill="#7C3AED"/>
+  <text x="666" y="291" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#7C3AED" font-weight="700"> 10–18%</text>
+  <!-- Insight -->
+  <rect x="30" y="304" width="740" height="58" rx="10" fill="white" stroke="#EDE9FE" stroke-width="1.5"/>
+  <text x="55" y="326" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" font-weight="600">Key Formula:</text>
+  <text x="156" y="326" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> Markup% = Profit ÷ Cost × 100  |  Margin% = Profit ÷ Revenue × 100</text>
+  <text x="55" y="348" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">A 50% markup = only 33.3% margin. They are NOT the same. Always state which metric you mean.</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

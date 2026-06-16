@@ -37,7 +37,7 @@ export default function BlogPage() {
 
   return (
     <>
-      <Script id="schema-blog" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema) }} />
 
       <div className="max-w-5xl mx-auto px-4 py-12">
         <nav className="text-sm text-gray-500 mb-8">

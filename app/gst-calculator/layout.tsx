@@ -94,13 +94,45 @@ export default function GSTCalculatorLayout({ children }: { children: React.Reac
 
   return (
     <>
-      <Script id="schema-gst-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-gst-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-gst-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-gst-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How GST Is Calculated in India</h2>
+        <p className="mb-4">
+          Goods and Services Tax (GST) is a unified indirect tax levied on the supply of goods and services across India, replacing multiple earlier taxes (excise duty, service tax, VAT). It follows a dual structure: CGST (Central GST) and SGST (State GST) apply on intra-state transactions, while IGST (Integrated GST) applies on inter-state transactions. The GST Council has fixed four primary rates: 5%, 12%, 18%, and 28%, along with a 0% rate for essential goods.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">GST Calculation Formulas</h3>
+        <p className="mb-2 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          Adding GST: Total Price = Base Price × (1 + GST Rate ÷ 100)
+        </p>
+        <p className="mb-4 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          Removing GST: Base Price = Total Price ÷ (1 + GST Rate ÷ 100)
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example</h3>
+        <p className="mb-4">
+          A retailer sells a laptop bag with a base price of ₹2,500 at 18% GST (most consumer goods category):
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>GST amount = ₹2,500 × 18 ÷ 100 = <strong>₹450</strong></li>
+          <li>CGST (9%) = ₹225 | SGST (9%) = ₹225</li>
+          <li><strong>Final price to customer = ₹2,950</strong></li>
+        </ul>
+        <p className="mb-4">
+          If a customer pays ₹2,950 and wants to find the base price (reverse calculation):
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Base price = ₹2,950 ÷ 1.18 = <strong>₹2,500</strong></li>
+          <li>GST portion = ₹2,950 − ₹2,500 = ₹450</li>
+        </ul>
+        <p>
+          GST-registered businesses can claim Input Tax Credit (ITC) on purchases, making the tax system self-policing. Businesses with turnover above ₹40 lakh (₹20 lakh in special category states) are mandatorily required to register under GST.
+        </p>
+      </section>
     </>
   );
 }

@@ -1,0 +1,37 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EMI Formula diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1D4ED8"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0F7FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">EMI Formula — Equated Monthly Instalment</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#93C5FD">Standard formula used by all Indian banks · verified per RBI lending guidelines</text>
+  <!-- Formula box -->
+  <rect x="30" y="84" width="740" height="116" rx="10" fill="white" stroke="#BFDBFE" stroke-width="1.5"/>
+  <text x="76" y="152" font-family="system-ui,-apple-system,sans-serif" font-size="30" font-weight="800" fill="#1D4ED8">EMI</text>
+  <text x="140" y="152" font-family="system-ui,-apple-system,sans-serif" font-size="26" font-weight="400" fill="#475569"> = </text>
+  <!-- Numerator -->
+  <text x="220" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="600" fill="#1E3A8A">P  ×  r  ×  (1 + r)<tspan dy="-10" font-size="12" font-weight="700">N</tspan></text>
+  <!-- Division bar -->
+  <line x1="195" y1="143" x2="570" y2="143" stroke="#2563EB" stroke-width="2.5"/>
+  <!-- Denominator -->
+  <text x="235" y="166" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="600" fill="#1E3A8A">(1 + r)<tspan dy="-10" font-size="12" font-weight="700">N</tspan><tspan dy="10">  —  1</tspan></text>
+  <!-- Legend -->
+  <rect x="30" y="214" width="740" height="40" rx="8" fill="#EFF6FF"/>
+  <text x="55" y="239" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="700">P</text>
+  <text x="66" y="239" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> = Principal loan amount</text>
+  <text x="280" y="239" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="700">r</text>
+  <text x="290" y="239" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> = Annual rate ÷ 1200 (monthly)</text>
+  <text x="550" y="239" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="700">N</text>
+  <text x="561" y="239" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> = Tenure in months</text>
+  <!-- Example -->
+  <rect x="30" y="268" width="740" height="94" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <text x="55" y="293" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#64748B" font-weight="600" letter-spacing="1">WORKED EXAMPLE</text>
+  <text x="55" y="315" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#334155">₹10,00,000 loan  ·  10% p.a.  ·  5 years (60 months)</text>
+  <rect x="55" y="326" width="300" height="24" rx="6" fill="#F0FDF4"/>
+  <text x="205" y="343" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#166534" text-anchor="middle" font-weight="600">Monthly EMI = ₹21,247</text>
+  <rect x="375" y="326" width="360" height="24" rx="6" fill="#FEF2F2"/>
+  <text x="555" y="343" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#991B1B" text-anchor="middle" font-weight="600">Total Interest Paid = ₹2,74,820</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

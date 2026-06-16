@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
       </nav>
 
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Privacy Policy</h1>
-      <p className="text-gray-500 dark:text-gray-400 mb-10">Last Updated: May 26, 2026</p>
+      <p className="text-gray-500 dark:text-gray-400 mb-10">Last Updated: June 16, 2026</p>
 
       <div className="prose prose-gray dark:prose-invert max-w-none space-y-8">
 
@@ -46,7 +46,12 @@ export default function PrivacyPolicyPage() {
           </p>
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
             <strong>Cookies:</strong> We use cookies to analyze site traffic and improve your experience.
-            You can disable cookies in your browser settings.
+            Google AdSense may set cookies to serve personalized ads. You can review and manage Google&apos;s
+            use of your data at{' '}
+            <a href="https://www.google.com/settings/ads" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
+              Google Ad Settings
+            </a>.
+            You can also disable cookies in your browser settings.
           </p>
         </section>
 

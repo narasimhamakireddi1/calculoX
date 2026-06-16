@@ -1,0 +1,36 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Retirement corpus planning formula diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#92400E"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFBEB"/><stop offset="100%" stop-color="#FEF3C7"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Retirement Corpus — NISM Planning Framework</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#FDE68A">4% safe withdrawal rule · NISM certified financial planning methodology</text>
+  <!-- Step 1: Corpus needed -->
+  <rect x="30" y="84" width="355" height="112" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="55" y="108" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#92400E" font-weight="600">STEP 1: HOW MUCH CORPUS DO YOU NEED?</text>
+  <text x="207" y="140" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#1E3A8A" text-anchor="middle">Corpus = Annual Expenses</text>
+  <!-- Fraction -->
+  <text x="207" y="162" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#1E3A8A" text-anchor="middle">÷  4%  (Safe Withdrawal Rate)</text>
+  <text x="55" y="186" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B">e.g. ₹6L/yr expenses → Corpus = ₹6L ÷ 0.04 = </text>
+  <text x="365" y="186" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#059669" font-weight="700">₹1.5 Crore</text>
+  <!-- Step 2: SIP needed -->
+  <rect x="415" y="84" width="355" height="112" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="440" y="108" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#92400E" font-weight="600">STEP 2: MONTHLY SIP TO REACH CORPUS</text>
+  <text x="592" y="136" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#1E3A8A" text-anchor="middle">SIP = Corpus × r</text>
+  <!-- Division bar -->
+  <text x="592" y="155" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="700" fill="#1E3A8A" text-anchor="middle">÷ [(1+r)ⁿ – 1] × (1+r)</text>
+  <text x="440" y="186" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B">₹1.5Cr at 12% over 25Y → SIP ≈</text>
+  <text x="643" y="186" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" font-weight="700">₹9,460/month</text>
+  <!-- Inflation adjustment -->
+  <rect x="30" y="210" width="740" height="60" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="400" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" text-anchor="middle" font-weight="600">Inflation Adjustment: Future monthly expenses = Current × (1 + 6%)²⁵</text>
+  <text x="400" y="255" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569" text-anchor="middle">₹50,000/mo today → ₹2.15L/mo in 25 years at 6% inflation. Plan for inflation-adjusted corpus.</text>
+  <!-- Example timeline -->
+  <rect x="30" y="284" width="740" height="78" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="55" y="306" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#64748B" font-weight="600" letter-spacing="1">ILLUSTRATIVE EXAMPLE — Age 30 → Retire at 60</text>
+  <text x="55" y="324" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155">Current expenses: ₹50,000/month  ·  Inflation: 6%  ·  Return: 12%  ·  30 years to retirement</text>
+  <text x="55" y="344" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155">Corpus needed: ₹6.44 Crore  ·  Monthly SIP: ₹10,637  ·  Total invested: ₹38.3L  ·  Gain: ₹6.06Cr</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

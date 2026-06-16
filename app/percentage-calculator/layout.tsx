@@ -94,13 +94,41 @@ export default function PercentageCalculatorLayout({ children }: { children: Rea
 
   return (
     <>
-      <Script id="schema-percentage-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-percentage-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-percentage-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-percentage-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Utility">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Percentage Calculations Explained</h2>
+        <p className="mb-4">
+          Percentages express a quantity as a fraction of 100 and appear in everyday financial decisions — salary hikes, GST calculations, EMI interest, investment returns, discounts, and profit margins. This calculator covers six distinct percentage calculation types so you can solve any percentage problem without remembering individual formulas.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Core Percentage Formulas</h3>
+        <ul className="list-disc pl-5 mb-4 space-y-2 text-sm">
+          <li><strong>X% of Y:</strong> Result = (X ÷ 100) × Y</li>
+          <li><strong>What % is A of B:</strong> Percentage = (A ÷ B) × 100</li>
+          <li><strong>Percentage increase/decrease:</strong> Change% = ((New − Old) ÷ Old) × 100</li>
+          <li><strong>Reverse percentage (find original):</strong> Original = Final × 100 ÷ (100 ± Change%)</li>
+          <li><strong>Discount amount:</strong> Discount = (Rate ÷ 100) × Original Price</li>
+          <li><strong>Sequential %:</strong> Apply percentages one after another (e.g., 10% then 5%)</li>
+        </ul>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Examples</h3>
+        <p className="mb-3">
+          <strong>Example 1 — Salary hike:</strong> Your salary increases from ₹40,000 to ₹50,000. Percentage increase = ((50,000 − 40,000) ÷ 40,000) × 100 = <strong>25%</strong>.
+        </p>
+        <p className="mb-3">
+          <strong>Example 2 — Discount:</strong> A ₹3,200 item is offered at 15% off. Discount = (15 ÷ 100) × 3,200 = ₹480. Final price = ₹3,200 − ₹480 = <strong>₹2,720</strong>.
+        </p>
+        <p className="mb-3">
+          <strong>Example 3 — Reverse percentage:</strong> A price of ₹1,180 includes 18% GST. Original base price = 1,180 ÷ 1.18 = <strong>₹1,000</strong>.
+        </p>
+        <p>
+          Note that sequential percentage changes are not additive: a 10% increase followed by a 10% decrease does not return to the original value — it gives 99% of the original (a net −1% effect). The sequential mode in this calculator handles this correctly.
+        </p>
+      </section>
     </>
   );
 }

@@ -1,0 +1,44 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Buy vs Rent financial analysis diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1D4ED8"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0F7FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Buy vs Rent — Opportunity Cost Framework</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#93C5FD">Section 24(b) tax benefit · RBI repo rate impact · Property appreciation vs market returns</text>
+  <!-- Buy column -->
+  <rect x="30" y="84" width="365" height="210" rx="10" fill="white" stroke="#93C5FD" stroke-width="1.5"/>
+  <rect x="30" y="84" width="365" height="30" rx="10" fill="#DBEAFE"/>
+  <rect x="30" y="101" width="365" height="13" fill="#DBEAFE"/>
+  <text x="212" y="105" font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#1D4ED8" text-anchor="middle" font-weight="700">Buying a Home</text>
+  <text x="55" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B" font-weight="600">Annual costs include:</text>
+  <text x="55" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">• EMI payments (principal + interest)</text>
+  <text x="55" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">• Maintenance &amp; society charges (~1%/yr)</text>
+  <text x="55" y="186" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">• Property tax (0.5–1% of value)</text>
+  <text x="55" y="204" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">• Asset: Home appreciates ~5–7%/yr</text>
+  <text x="55" y="222" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">• Tax: 24(b) deduction up to ₹2L on interest</text>
+  <text x="55" y="240" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">• Ownership: Forced savings discipline</text>
+  <text x="55" y="262" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" font-weight="600">Net Worth: Grows via property appreciation</text>
+  <text x="55" y="278" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626">Risk: Illiquid asset, large upfront cost</text>
+  <!-- Rent column -->
+  <rect x="405" y="84" width="365" height="210" rx="10" fill="white" stroke="#0D9488" stroke-width="1.5"/>
+  <rect x="405" y="84" width="365" height="30" rx="10" fill="#CCFBF1"/>
+  <rect x="405" y="101" width="365" height="13" fill="#CCFBF1"/>
+  <text x="587" y="105" font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#0F766E" text-anchor="middle" font-weight="700">Renting + Investing</text>
+  <text x="430" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B" font-weight="600">Annual costs include:</text>
+  <text x="430" y="150" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">• Rent payments (no equity built)</text>
+  <text x="430" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">• Rent increases ~5–8% per year</text>
+  <text x="430" y="186" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">• Security deposit (opportunity cost)</text>
+  <text x="430" y="204" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">• Invest EMI difference in equity MF</text>
+  <text x="430" y="222" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">• Market returns: 12–15%/yr (long-term)</text>
+  <text x="430" y="240" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">• Flexibility: Move cities, no lock-in</text>
+  <text x="430" y="262" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#0F766E" font-weight="600">Net Worth: Grows via market investments</text>
+  <text x="430" y="278" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626">Risk: No forced savings, rent uncertainty</text>
+  <!-- Conclusion -->
+  <rect x="30" y="308" width="740" height="54" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <text x="55" y="330" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" font-weight="600">Break-even:</text>
+  <text x="148" y="330" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> When rent × years = total home ownership cost. Typically 8–15 years in Indian metro cities.</text>
+  <text x="55" y="350" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Price-to-Rent Ratio: Below 20 = buy makes sense · Above 25 = renting + investing usually wins.</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

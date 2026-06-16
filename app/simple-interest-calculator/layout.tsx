@@ -94,13 +94,38 @@ export default function SimpleInterestCalculatorLayout({ children }: { children:
 
   return (
     <>
-      <Script id="schema-si-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-si-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-si-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-si-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Simple Interest vs Compound Interest — Formula and Examples</h2>
+        <p className="mb-4">
+          Simple Interest (SI) is calculated only on the original principal amount throughout the entire loan or investment tenure. The interest does not compound — it does not earn further interest on itself. SI is used in short-term personal loans, overdraft facilities, government bonds, post-office savings schemes, and some traditional deposit products. It is transparent and easy to verify, which is why regulatory bodies often mandate SI disclosure alongside compound interest figures.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Simple Interest Formula</h3>
+        <p className="mb-4 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          SI = (P × R × T) ÷ 100
+        </p>
+        <p className="mb-4">
+          Where <strong>P</strong> is the principal amount, <strong>R</strong> is the annual interest rate (%), and <strong>T</strong> is the time in years. For months: T = M ÷ 12. For days: T = D ÷ 365 (or 366 for leap years). Total amount at maturity = P + SI.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example</h3>
+        <p className="mb-4">
+          You take a personal loan of ₹1,50,000 at 9% per annum for 2 years and 6 months (2.5 years):
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>SI = (1,50,000 × 9 × 2.5) ÷ 100 = <strong>₹33,750</strong></li>
+          <li>Total repayment = ₹1,50,000 + ₹33,750 = <strong>₹1,83,750</strong></li>
+          <li>Monthly payment = ₹1,83,750 ÷ 30 months = ₹6,125/month</li>
+        </ul>
+        <p>
+          Had this been compound interest (compounded monthly), the total interest on the same loan would be ₹36,211 — about ₹2,461 more. The difference grows larger with longer tenures, which is why banks typically use compound interest for home loans but simple interest for certain overdraft products.
+        </p>
+      </section>
     </>
   );
 }

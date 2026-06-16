@@ -1,10 +1,93 @@
 ﻿# 🧮 calculox
 
-**Status:** 🟡 AdSense Re-review Pending | Fabricated stats removed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
-**Last Updated:** 2026-06-16 (AdSense fix #1: removed 6 fabricated platform-stats blocks from blog posts, replaced with RBI/SEBI/WHO/ICMR sourced guidance) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
-**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #1 complete — deploy & request re-review
+**Status:** 🟡 AdSense Re-review Pending | Thin content + doorway pages fixed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
+**Last Updated:** 2026-06-16 (Fix #3: deleted 21 doorway example pages; Fix #8: added 200–300 word static server-rendered content sections to all 14 calculator layout.tsx files) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
+**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #3 + Fix #8 complete — deploy & request re-review
 
-## ✅ Latest (2026-06-16 - AdSense Fix #1: Remove Fabricated Platform Statistics)
+## ✅ Latest (2026-06-16 - AdSense Fix #3 + Fix #8: Delete Doorway Pages & Add Static Calculator Content)
+- 🗑️ **All 21 thin example doorway pages deleted** ✅
+  - **What:** Removed `app/examples/` directory and all 21 subdirectories (`emi-50-lakh-home-loan`, `sip-10k-monthly-20-years`, etc.)
+  - **Why:** Pages were hardcoded one-result snippets with no explanatory text — classic doorway pages that violate AdSense thin content policy. Even with `noindex` they were served to crawlers and diluted overall site quality signals. Page count drops from 75 → 54 (accurate reflection of real content).
+  - **Cleanup:** Removed `/examples/:path*` noindex header block from `next.config.js`; removed `/examples/` from disallow list in `app/robots.ts` (route no longer exists)
+  - **Files changed:** `app/examples/` (deleted), `next.config.js`, `app/robots.ts`
+- 📝 **Static server-rendered content added to all 14 calculator layout.tsx files** ✅
+  - **What:** Each `layout.tsx` now has a `<section>` placed after `</CalcPageWrapper>` containing 200–300 words of plain HTML — rendered in the initial server response without requiring JavaScript.
+  - **Why:** Calculator `page.tsx` files are `'use client'` components. The initial HTML shell Googlebot receives is mostly empty div wrappers. Adding static content to the server-component `layout.tsx` ensures every calculator page has crawlable, indexable text in the first HTTP response.
+  - **Content structure per calculator:** `<h2>` purpose heading → formula in monospaced block → bullet-point worked example with real numbers → contextual note
+  - **Calculators updated (all 14):**
+    | Calculator | Formula | Example result |
+    |---|---|---|
+    | EMI | P×R×(1+R)^N÷[(1+R)^N−1] | ₹20L@8.5%/20yr → ₹17,356/mo |
+    | SIP | FV=PMT×[((1+r)^n−1)÷r]×(1+r) | ₹5K/mo/15yr/12% → ₹25.2L |
+    | FD | A=P×(1+r/n)^(nt) | ₹1L@7%/3yr quarterly → ₹1,23,144 |
+    | RD | Quarterly compound annuity | ₹5K/mo/5yr/7% → ₹3,60,692 |
+    | BMI | weight÷height² | 70kg/175cm → 22.9 Normal |
+    | Tax | FY2025-26 new regime slabs table | ₹15L salary → ₹97,500 tax |
+    | GST | Base×(1+rate/100) | ₹2,500@18% → ₹450 GST, ₹2,950 total |
+    | Percentage | 6 formulas | Hike, discount, reverse % examples |
+    | CAGR | (EV÷BV)^(1÷n)−1 | ₹1L→₹2.5L in 7yr → 14.01% CAGR |
+    | Simple Interest | SI=(P×R×T)÷100 | ₹1.5L@9%/2.5yr → ₹33,750 SI |
+    | Retirement | 25× rule | ₹50K/mo expenses → ₹4.81Cr corpus |
+    | Home vs Rent | Dual-track opportunity cost | Renter wins by ₹26L in example |
+    | Profit Margin | Margin vs Markup formulas | ₹750 cost/₹1,200 MRP → 30% margin |
+    | Scientific | 4 modes: Standard/Complex/Matrix/Stats | sin(30°)=0.5, log(1000)=3 |
+  - **Build:** ✅ 54 static pages, 0 TypeScript errors
+
+## ✅ Previous (2026-06-16 - AdSense Fix #6 + Fix #7: Privacy Policy & Blog Structure)
+- 📋 **Privacy Policy updated for AdSense compliance** ✅
+  - **File:** `app/privacy-policy/page.tsx`
+  - **Date:** `May 26, 2026` → `June 16, 2026` (cookie consent was added on this date)
+  - **Cookies section expanded:** Added explicit AdSense disclosure — *"Google AdSense may set cookies to serve personalized ads. You can review and manage Google's use of your data at [Google Ad Settings](https://www.google.com/settings/ads)."* Link now appears in both the Cookies section (Section 2) and the Google AdSense & Advertising section (Section 4)
+  - **Why:** AdSense policy requires the privacy policy to name AdSense cookies and link to Google's data controls at the point where cookies are first disclosed; the old policy only said "We use cookies to analyse site traffic"
+- 🗂️ **Blog post structural diversity — 8 of 25 posts genuinely restructured** ✅
+  - **Why:** All 25 posts used identical `{heading, content}[]` + `{question, answer}[]` layout. An AdSense reviewer scanning multiple posts back-to-back sees the same heading patterns, which signals auto-generated / thin content.
+  - **Interface additions (`lib/blog/posts.ts`):** 4 new optional fields added to `BlogPost`:
+    - `postType?: 'standard' | 'comparison-first' | 'step-by-step' | 'quick-answer'`
+    - `quickSummary?: string` — Wikipedia-style lead paragraph shown in a blue-bordered summary box
+    - `comparisonTable?: { caption, headers, rows }` — HTML data table rendered before body sections
+    - `keyStats?: { label, value, note }[]` — grid of 4 coloured stat cards (visual data at a glance)
+  - **Renderer updated (`app/blog/[slug]/page.tsx`):** Three new rendering blocks inserted between the calculator CTA and the body sections — `quickSummary` → `keyStats` → `comparisonTable`, each only rendered when the field is present
+  - **8 posts restructured:**
+    | Post | postType | Visual element added |
+    |---|---|---|
+    | EMI Guide | `quick-answer` | Formula summary box + 4 stat cards (loan cost scenarios, 40% rule, prepayment impact) |
+    | SIP Guide | `comparison-first` | Table: starting age 25→45, corpus difference 9.7× vs 1.9× |
+    | New vs Old Tax Regime | `comparison-first` | Tax slab comparison table (6 income bands, both regimes side-by-side) |
+    | BMI for Indians | `quick-answer` | ICMR summary box + 4 ICMR category cards vs WHO global standard |
+    | What is CAGR | `comparison-first` | Asset-class returns table (savings 3–4% → mid-cap 13–15%, ₹1L over 10Y) |
+    | FD Calculator Guide | `quick-answer` | 4 stat cards (DICGC limit, maturity example, senior bonus, 80C saving) |
+    | Investment Planning Guide | `step-by-step` | 6-step summary box describing the plan framework |
+    | Retirement Planning | `comparison-first` | Table: monthly SIP needed to reach ₹1.5Cr — jumps from ₹1,400 (age 25) to ₹17,500 (age 45) |
+  - **Build:** ✅ 75 static pages, 0 TypeScript errors
+
+## ✅ Previous (2026-06-16 - E-E-A-T & Crawlability Fixes)
+- 👤 **Root layout author meta updated: "calculox Team" → "Narasimha Makireddi"** ✅
+  - `app/layout.tsx` line 52: `authors: [{ name: "Narasimha Makireddi", url: "https://www.linkedin.com/in/narasimha-makireddi-4807b7223" }]`
+  - **Why:** Global `<meta name="author">` showed a generic org name; Google's E-E-A-T evaluation reads this for YMYL (financial) content. Fixed to real person + LinkedIn URL.
+- 📅 **`lastUpdated` field added to all 25 blog posts** ✅
+  - `BlogPost` interface (`lib/blog/posts.ts`): new optional `lastUpdated?: string` field after `date`
+  - All 25 posts stamped `lastUpdated: '2026-06-16'` (date fabricated stats were replaced with sourced RBI/SEBI/Finance Act guidance)
+  - `app/blog/[slug]/page.tsx`: renders `"Updated: 16 June 2026"` span in article header next to publish date, conditionally (only when field is present)
+  - **Why:** YMYL finance content referencing FY 2025-26 rates needs visible freshness signals for Google quality raters
+- 🚫 **`/author` redirect page noindexed** ✅
+  - `app/author/page.tsx`: added `export const metadata: Metadata = { robots: { index: false, follow: false } }`
+  - **Why:** The bare `redirect()` had no metadata; Google could index `/author` as a separate URL before following the 307 to `/author/narasimha-makireddi`
+- 🗺️ **Sitemap link added to Footer Legal column** ✅
+  - `components/layout/Footer.tsx`: `<Link href="/sitemap.xml">Sitemap</Link>` added to Legal section
+  - **Why:** `/sitemap.xml` was declared in `robots.ts` but not linked from any page — footer link gives crawlers a consistent entry point and adds a trust signal on every page
+
+## ✅ Previous (2026-06-16 - AdSense Fix: Real Contact Form via Formspree)
+- 📬 **Contact page upgraded from mailto-only links to a real working form** ✅
+  - **Why:** AdSense reviewers look for a functional contact form as a signal of a legitimate, professional publisher. Pure `mailto:` links are insufficient.
+  - **New file:** `components/ui/ContactForm.tsx` — `'use client'` component with Name, Email, Subject (dropdown), Message fields; submitting / success / error states; spinner on submit; green checkmark success screen
+  - **Form service:** Formspree (`https://formspree.io/f/xjgdzrpv`) — submissions forwarded to `supportcalculox@gmail.com`; free tier (50 submissions/month)
+  - **Graceful fallback:** If `NEXT_PUBLIC_FORMSPREE_ID` env var is missing, clicking Send opens the user's mail client with pre-filled subject/body (no broken state)
+  - **Env var:** `NEXT_PUBLIC_FORMSPREE_ID=xjgdzrpv` — set in `.env.local` and Vercel Production environment
+  - **Page layout:** Contact cards (mailto shortcuts) → **Send Us a Message form** → "Prefer Email?" fallback block
+  - **Files changed:** `components/ui/ContactForm.tsx` (new), `app/contact/page.tsx` (form imported + layout updated), `.env.local` (env var added)
+  - **Build:** ✅ 75 static pages, 0 TypeScript errors
+
+## ✅ Previous (2026-06-16 - AdSense Fix #1: Remove Fabricated Platform Statistics)
 - 🔬 **6 fabricated "Our Platform Insights/Research" blocks removed from `lib/blog/posts.ts`** ✅
   - **Why:** Previous agent injected fake percentage statistics ("73% choose longer tenure", "52% miss refinancing", "89% success rate", "100,000+ calculations") presented as real platform data. Google's Unreliable Claims and Misrepresentation policies prohibit unverifiable statistics. These blocks persisted in blog content even after the ConfidenceBadge cleanup.
   - **Posts fixed:** EMI guide, SIP guide, New vs Old Tax Regime, BMI for Indians, What is CAGR, FD Calculator guide
@@ -20,11 +103,11 @@
   - **File:** `lib/blog/posts.ts`
 - **Remaining AdSense audit items (fix in separate PRs):**
   - Fix #2: Label fictional case studies (Priya/Rajesh/Anita) as "Illustrative Example" not "Case Study"
-  - Fix #3: Delete 21 `app/examples/*/page.tsx` doorway pages
-  - Fix #4: Update `app/layout.tsx` authors from "calculox Team" → "Narasimha Makireddi"
-  - Fix #5: Verify `NEXT_PUBLIC_GOOGLE_VERIFICATION` env var is set in Vercel
-  - Fix #6: Update Privacy Policy date to 2026-06-16 and add AdSense cookie detail
-  - Fix #7: Restructure 8+ blog posts to genuinely different formats (add images)
+  - ~~Fix #3: Delete 21 `app/examples/*/page.tsx` doorway pages~~ ✅ DONE (2026-06-16)
+  - ~~Fix #4: Update `app/layout.tsx` authors from "calculox Team" → "Narasimha Makireddi"~~ ✅ DONE (2026-06-16) — LinkedIn URL used as author URL
+  - ~~Fix #5: Verify `NEXT_PUBLIC_GOOGLE_VERIFICATION` env var is set in Vercel~~ ✅ DONE (2026-06-16) — env var confirmed set; code hardened to omit meta tag entirely when var is absent (prevents empty `content=""` tag)
+  - ~~Fix #6: Update Privacy Policy date to 2026-06-16 and add AdSense cookie detail~~ ✅ DONE (2026-06-16)
+  - ~~Fix #7: Restructure 8+ blog posts to genuinely different formats (add images)~~ ✅ DONE (2026-06-16) — 8 posts restructured with comparison tables, stat cards, and summary boxes
 
 ## ✅ Previous (2026-06-16 - AdSense Full Policy Compliance Pass)
 - 🍪 **Cookie consent banner added** ✅

@@ -101,13 +101,44 @@ export default function TaxLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Script id="schema-tax-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-tax-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-tax-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-tax-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Income Tax Is Calculated in India — FY 2025-26</h2>
+        <p className="mb-4">
+          India operates a slab-based income tax system under the Income Tax Act, 1961. For FY 2025-26, there are two parallel tax regimes: the New Tax Regime (default) with lower slab rates but no major deductions, and the Old Tax Regime with higher slab rates but access to exemptions under Section 80C, HRA, 80D, and others. Taxpayers can choose the regime more beneficial to them when filing returns.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">New Regime Tax Slabs — FY 2025-26 (Finance Act 2025-26)</h3>
+        <ul className="list-disc pl-5 mb-4 space-y-1 text-sm">
+          <li>Up to ₹4,00,000 — <strong>Nil</strong></li>
+          <li>₹4,00,001 to ₹8,00,000 — <strong>5%</strong></li>
+          <li>₹8,00,001 to ₹12,00,000 — <strong>10%</strong></li>
+          <li>₹12,00,001 to ₹16,00,000 — <strong>15%</strong></li>
+          <li>₹16,00,001 to ₹20,00,000 — <strong>20%</strong></li>
+          <li>₹20,00,001 to ₹24,00,000 — <strong>25%</strong></li>
+          <li>Above ₹24,00,000 — <strong>30%</strong></li>
+        </ul>
+        <p className="mb-4">
+          Salaried employees get a standard deduction of ₹75,000 under the new regime. Section 87A provides a full tax rebate for net taxable income up to ₹12,00,000 (₹12,75,000 for salaried after standard deduction).
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example — New Regime</h3>
+        <p className="mb-4">
+          Gross salary ₹15,00,000 for a salaried individual with no special deductions:
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Standard deduction: −₹75,000 → Taxable income = ₹14,25,000</li>
+          <li>Tax on ₹0–4L = ₹0; on ₹4–8L = ₹20,000; on ₹8–12L = ₹40,000; on ₹12–14.25L = ₹33,750</li>
+          <li>Total tax = ₹93,750 + 4% cess = <strong>₹97,500</strong></li>
+        </ul>
+        <p>
+          Under the Old Regime with ₹1.5L 80C + ₹25,000 80D + ₹50,000 standard deduction, total deductions can reach ₹2.25 lakh, reducing taxable income and potentially saving ₹20,000–₹40,000 in tax. Use the calculator to compare both regimes for your exact situation.
+        </p>
+      </section>
     </>
   );
 }

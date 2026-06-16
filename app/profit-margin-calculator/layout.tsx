@@ -140,13 +140,42 @@ export default function ProfitMarginLayout({ children }: { children: React.React
 
   return (
     <>
-      <Script id="schema-profit-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-profit-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-profit-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-profit-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Profit Margin vs Markup — Formulas and Differences</h2>
+        <p className="mb-4">
+          Profit margin and markup both measure how much profit a business makes on a product, but they express it as a percentage of different bases. Confusing the two is a common pricing mistake that can lead to underpricing products or misreporting profitability. For GST-registered Indian businesses, an additional consideration is whether selling price includes or excludes GST — which directly affects the margin available.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Profit Margin and Markup Formulas</h3>
+        <p className="mb-2 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          Profit Margin (%) = (Selling Price − Cost Price) ÷ Selling Price × 100
+        </p>
+        <p className="mb-4 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          Markup (%) = (Selling Price − Cost Price) ÷ Cost Price × 100
+        </p>
+        <p className="mb-4">
+          Margin is always lower than markup for the same profit amount. A 50% markup gives a 33.3% margin. A 100% markup gives a 50% margin. Retailers typically quote markup while accountants and investors focus on margin.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example with GST</h3>
+        <p className="mb-4">
+          A clothing retailer sources a kurta for ₹750 (cost price) and sells it at ₹1,200 MRP (inclusive of 12% GST).
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Net selling price (ex-GST) = ₹1,200 ÷ 1.12 = ₹1,071.43</li>
+          <li>Profit = ₹1,071.43 − ₹750 = ₹321.43</li>
+          <li>Profit Margin = ₹321.43 ÷ ₹1,071.43 × 100 = <strong>30%</strong></li>
+          <li>Markup = ₹321.43 ÷ ₹750 × 100 = <strong>42.9%</strong></li>
+        </ul>
+        <p>
+          If the retailer is not GST-registered and cannot claim Input Tax Credit, the ₹128.57 GST paid on the ₹1,200 price becomes a cost — reducing effective margin to about 17.9%. This calculator accounts for GST impact across all applicable rates so you can price products accurately.
+        </p>
+      </section>
     </>
   );
 }

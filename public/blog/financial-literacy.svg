@@ -1,0 +1,69 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Financial literacy milestones for young professionals diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1D4ED8"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0F7FF"/><stop offset="100%" stop-color="#F5F3FF"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Financial Milestones — Ages 22 to 35</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#C4B5FD">Build wealth in your 20s and 30s with these age-based financial milestones</text>
+  <!-- Timeline steps -->
+  <!-- Age 22-24 -->
+  <rect x="30" y="84" width="168" height="160" rx="10" fill="white" stroke="#BFDBFE" stroke-width="1.5"/>
+  <rect x="30" y="84" width="168" height="28" rx="10" fill="#DBEAFE"/>
+  <rect x="30" y="99" width="168" height="13" fill="#DBEAFE"/>
+  <text x="114" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" text-anchor="middle" font-weight="700">Age 22–24</text>
+  <text x="114" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" text-anchor="middle" font-weight="600">Foundation</text>
+  <text x="50" y="148" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Build emergency fund</text>
+  <text x="50" y="164" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Start EPF contributions</text>
+  <text x="50" y="180" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Get term insurance</text>
+  <text x="50" y="196" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ First ELSS SIP ₹500</text>
+  <text x="50" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Zero credit card debt</text>
+  <text x="114" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">Goal: Save 10%</text>
+  <!-- Age 25-27 -->
+  <rect x="210" y="84" width="168" height="160" rx="10" fill="white" stroke="#BFDBFE" stroke-width="1.5"/>
+  <rect x="210" y="84" width="168" height="28" rx="10" fill="#DBEAFE"/>
+  <rect x="210" y="99" width="168" height="13" fill="#DBEAFE"/>
+  <text x="294" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" text-anchor="middle" font-weight="700">Age 25–27</text>
+  <text x="294" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" text-anchor="middle" font-weight="600">Growth Mode</text>
+  <text x="230" y="148" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Increase SIP 10%/yr</text>
+  <text x="230" y="164" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Open PPF account</text>
+  <text x="230" y="180" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Health insurance ₹5L+</text>
+  <text x="230" y="196" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Track net worth</text>
+  <text x="230" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Tax return filing</text>
+  <text x="294" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">Goal: Save 20%</text>
+  <!-- Age 28-30 -->
+  <rect x="390" y="84" width="168" height="160" rx="10" fill="white" stroke="#BFDBFE" stroke-width="1.5"/>
+  <rect x="390" y="84" width="168" height="28" rx="10" fill="#DBEAFE"/>
+  <rect x="390" y="99" width="168" height="13" fill="#DBEAFE"/>
+  <text x="474" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" text-anchor="middle" font-weight="700">Age 28–30</text>
+  <text x="474" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" text-anchor="middle" font-weight="600">Acceleration</text>
+  <text x="410" y="148" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ NPS for extra 80CCD</text>
+  <text x="410" y="164" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Step-up SIP annually</text>
+  <text x="410" y="180" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Diversify: Gold 10%</text>
+  <text x="410" y="196" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Review insurance cover</text>
+  <text x="410" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Start retirement SIP</text>
+  <text x="474" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">Goal: Save 25%</text>
+  <!-- Age 31-35 -->
+  <rect x="570" y="84" width="200" height="160" rx="10" fill="white" stroke="#C4B5FD" stroke-width="2"/>
+  <rect x="570" y="84" width="200" height="28" rx="10" fill="#EDE9FE"/>
+  <rect x="570" y="99" width="200" height="13" fill="#EDE9FE"/>
+  <text x="670" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#5B21B6" text-anchor="middle" font-weight="700">Age 31–35</text>
+  <text x="670" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" text-anchor="middle" font-weight="600">Wealth Building</text>
+  <text x="590" y="148" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ ₹1Cr+ net worth target</text>
+  <text x="590" y="164" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Own home if desired</text>
+  <text x="590" y="180" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Children education fund</text>
+  <text x="590" y="196" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Will &amp; nominee update</text>
+  <text x="590" y="212" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#475569">→ Review asset allocation</text>
+  <text x="670" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#7C3AED" text-anchor="middle" font-weight="600">Goal: Save 30%+</text>
+  <!-- Rule of thumb -->
+  <rect x="30" y="258" width="740" height="104" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <text x="55" y="282" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" font-weight="600">Net Worth Benchmark:</text>
+  <text x="230" y="282" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> Age × Annual Income ÷ 10 (Thomas Stanley rule, adapted)</text>
+  <text x="55" y="302" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Age 25 · ₹8L income → target net worth = 25 × 8 ÷ 10 = </text>
+  <text x="478" y="302" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#1D4ED8" font-weight="700">₹20L</text>
+  <text x="55" y="322" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Age 35 · ₹20L income → target net worth = 35 × 20 ÷ 10 = </text>
+  <text x="495" y="322" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#7C3AED" font-weight="700">₹70L</text>
+  <text x="55" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#64748B">Compounding is most powerful at ages 22–30. Starting late costs 3–5× more to reach the same goal.</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

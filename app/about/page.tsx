@@ -84,7 +84,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <Script id="schema-about-org" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
 
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Breadcrumb */}

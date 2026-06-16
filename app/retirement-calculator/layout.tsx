@@ -140,13 +140,39 @@ export default function RetirementCalculatorLayout({ children }: { children: Rea
 
   return (
     <>
-      <Script id="schema-retirement-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-retirement-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-retirement-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-retirement-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How to Calculate the Retirement Corpus You Need</h2>
+        <p className="mb-4">
+          Retirement planning requires estimating two things: how much money you will need each month after you stop working, and how large a savings corpus will sustain those withdrawals for your full retirement period. Because inflation erodes purchasing power over time, your current monthly expenses cannot be used directly — they must be projected forward to your retirement date using an estimated annual inflation rate (typically 5–7% for India).
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">The 25× Annual Expense Rule</h3>
+        <p className="mb-4">
+          The 25× rule (based on the 4% safe withdrawal rate) states that you need a retirement corpus equal to 25 times your annual expenses at retirement. This ensures you can withdraw 4% of your corpus every year without depleting it over a 25–30 year retirement.
+        </p>
+        <p className="mb-4 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          Required Corpus = Inflation-Adjusted Annual Expenses × 25
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example</h3>
+        <p className="mb-4">
+          Current monthly expenses: ₹50,000. You plan to retire in 20 years. Assumed inflation: 6% per year.
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Monthly expenses at retirement = ₹50,000 × (1.06)^20 = <strong>₹1,60,357/month</strong></li>
+          <li>Annual expenses at retirement = ₹1,60,357 × 12 = ₹19,24,284</li>
+          <li>Required corpus = ₹19,24,284 × 25 = <strong>₹4.81 crore</strong></li>
+          <li>Monthly SIP needed (at 10% return over 20 years) = <strong>≈ ₹59,000/month</strong></li>
+        </ul>
+        <p>
+          If you already have ₹10 lakh saved and it grows at 10% over 20 years, it becomes ₹67 lakh — reducing the SIP requirement. Use the calculator above to input your exact figures and get a personalised retirement savings plan.
+        </p>
+      </section>
     </>
   );
 }

@@ -102,13 +102,43 @@ export default function SIPLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Script id="schema-sip-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-sip-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-sip-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-sip-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Finance">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What Is a SIP and How Are Returns Calculated?</h2>
+        <p className="mb-4">
+          A Systematic Investment Plan (SIP) lets you invest a fixed amount in a mutual fund every month instead of making a large lump-sum investment. Because you buy fund units at different prices each month, you benefit from rupee-cost averaging — buying more units when prices fall and fewer when they rise. Over long periods, this smooths out market volatility and compounds wealth significantly.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">SIP Future Value Formula</h3>
+        <p className="mb-4">
+          The future value of a SIP is calculated using the annuity formula:
+        </p>
+        <p className="mb-4 font-mono bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 text-sm">
+          FV = PMT × [((1 + r)^n − 1) ÷ r] × (1 + r)
+        </p>
+        <p className="mb-4">
+          Where <strong>PMT</strong> is the monthly investment, <strong>r</strong> is the monthly return rate (annual rate ÷ 12 ÷ 100), and <strong>n</strong> is the total number of months invested. The final <strong>× (1 + r)</strong> accounts for beginning-of-month investment.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Example</h3>
+        <p className="mb-4">
+          You invest ₹5,000 every month in an equity mutual fund for 15 years, expecting a 12% annual return.
+        </p>
+        <ul className="list-disc pl-5 mb-4 space-y-1">
+          <li>Monthly rate r = 12 ÷ 12 ÷ 100 = 0.01</li>
+          <li>n = 15 × 12 = 180 months</li>
+          <li>Total invested = ₹5,000 × 180 = <strong>₹9,00,000</strong></li>
+          <li>Estimated corpus at maturity = <strong>₹25,22,880</strong></li>
+          <li>Returns earned through compounding = <strong>₹16,22,880</strong></li>
+        </ul>
+        <p>
+          The power of SIP is that ₹9 lakh invested becomes ₹25 lakh — nearly 2.8× — purely through compounding. Starting early amplifies this effect dramatically; the same SIP over 25 years would grow to over ₹95 lakh.
+        </p>
+      </section>
     </>
   );
 }

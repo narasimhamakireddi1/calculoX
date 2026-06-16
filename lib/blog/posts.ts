@@ -3,12 +3,18 @@
   title: string;
   description: string;
   date: string;
+  lastUpdated?: string;
   author: string;
   authorCredentials?: string;
   category: string;
   readTime: string;
   keywords: string[];
   relatedCalculator: { name: string; href: string };
+  postType?: 'standard' | 'comparison-first' | 'step-by-step' | 'quick-answer';
+  quickSummary?: string;
+  comparisonTable?: { caption: string; headers: string[]; rows: string[][] };
+  keyStats?: { label: string; value: string; note?: string }[];
+  image?: string;
   sections: { heading: string; content: string }[];
   faqs: { question: string; answer: string }[];
 }
@@ -20,11 +26,21 @@ export const blogPosts: BlogPost[] = [
     description: 'Learn how to calculate EMI for home loan, car loan & personal loan. Understand the EMI formula, step-by-step calculation with examples, and tips to reduce your EMI.',
     date: '2026-05-01',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
     readTime: '12 min read',
     keywords: ['EMI calculation', 'EMI formula', 'how to calculate EMI', 'loan EMI', 'home loan EMI formula', 'EMI calculator formula'],
+    image: '/blog/emi-formula.svg',
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
+    postType: 'quick-answer',
+    quickSummary: 'EMI = P × R × (1+R)^N ÷ [(1+R)^N − 1], where P is the loan principal, R is the monthly interest rate (annual rate ÷ 1200), and N is the tenure in months. A ₹30 lakh home loan at 9% for 20 years costs ₹26,992/month. The same loan at 10% costs ₹28,950 — a ₹1,958 monthly gap that compounds to over ₹4.7 lakh in extra interest across the full tenure.',
+    keyStats: [
+      { label: '₹50L loan, 9%, 20 years', value: '₹44,986/mo', note: 'Total interest paid: ₹57.97 lakh' },
+      { label: '₹50L loan, 10%, 20 years', value: '₹48,251/mo', note: 'Costs ₹3,265/mo more than 9%' },
+      { label: 'Safe EMI ceiling', value: '≤ 40%', note: 'Of monthly take-home pay (RBI guideline)' },
+      { label: 'Year-1 prepayment', value: 'Max impact', note: 'Each ₹1L paid early saves ~₹1.7L interest' },
+    ],
     sections: [
       {
         heading: 'The Challenge: Understanding Your True Loan Cost',
@@ -55,8 +71,8 @@ export const blogPosts: BlogPost[] = [
         content: 'Prepayment Strategy: Paying extra principal early saves massive interest. Example: Rs 40L loan at 9% for 20 years. Standard path: Pay Rs 40K EMI × 240 months = Rs 40L interest. Prepayment path: Pay extra Rs 1L in year 1. This reduces outstanding principal immediately, saving interest on Rs 1L for 19 years = Rs 1.7L interest saved! Timeline matters: Prepay in year 1 = 20 years of interest saved. Prepay in year 10 = 10 years of interest saved. Prepayment timing is critical - early is exponentially better. Balance Transfer: If rates drop 0.5% after taking loan, switching banks might save Rs 2-3L in interest. Calculation: Rs 40L loan, 0.5% rate cut = Rs 20K annual savings × 20 years = Rs 4L interest saved! Costs: Processing fee (Rs 5-15K) + valuation (Rs 5-10K) + legal (Rs 10-20K) = Rs 20-45K total. Worth it if annual savings > transfer cost. Break-even: Rs 45K cost ÷ Rs 20K annual savings = 2.25 years. If remaining tenure > 3 years, balance transfer is financially smart.',
       },
       {
-        heading: 'Real-World EMI Case Studies & Original Insights',
-        content: 'CASE STUDY 1: Priya, Bangalore (Age 28, Software Engineer). Scenario: Earned Rs 75,000/month, wanted Rs 80L home. Bank loan at 9% for 20 years = Rs 48,000 EMI (64% of income). Challenge: Unaffordable without cutting living expenses. Solution: Delayed 1.5 years, saved Rs 15L more. Down payment increased Rs 16L → Rs 30L. Borrowed Rs 50L instead. Result: EMI dropped to Rs 32,000 (43% income, healthy). Interest saved: Rs 15.6L over 20 years. Lesson: Down payment timing = critical. Every Rs 1L extra down payment = Rs 4K less EMI, Rs 0.8L less total interest. CASE STUDY 2: Rajesh, Delhi (Age 32). Scenario: Rs 8L car loan at 10% for 5 years = Rs 16,997 EMI. After 18 months, RBI cut rates to 8.5%. Challenge: Missed refinancing window. Solution: Used EMI calculator. Balance transfer saved Rs 1,500/month EMI despite Rs 25K switching cost. Result: 42 months remaining × Rs 1,500 = Rs 63K savings. Net benefit = Rs 38K. Paid off 8 months early with bonus prepayments. Lesson: Monitor rate drops quarterly. 0.5% rate cut justifies refinancing if >18 months tenure remain. CASE STUDY 3: Anita & Vikram, Mumbai (Age 45). Scenario: Rs 40L loan at 9% for 20 years = Rs 40K EMI. After 8 years, inherited Rs 25L. Challenge: Invest or prepay? Stock market attractive. Solution: Modeled prepayment impact using calculator. Prepaying Rs 25L saves Rs 25L in interest (guaranteed). Result: Prepaid Rs 25L. Balance Rs 15L. New EMI Rs 17,500, tenure 6 years instead of 12. Interest saved: Rs 25.2L. Lesson: Early prepayment guaranteed returns often beat uncertain market gains. Based on RBI lending guidelines and widely-accepted financial planning principles: Pro Tips: (1) Down Payment Strategy - Wait 1-2 years to increase down payment 10-15% on Rs 40L+ loans = saves Rs 15-25L interest (300-400% ROI). (2) Rate Lock Strategy - Lock fixed rates during RBI rate-cut cycles. When 1% drops, refinancing breaks even in 2-3 years. (3) Prepayment Acceleration - Allocate annual bonuses (Rs 1-3L) to principal by year 3-5 = cuts 3-5 years off tenure, saves Rs 20-40L interest. (4) Tenure Sweet Spot - 20 years optimal for most Indians (affordable EMI + reasonable interest). 15 years if stable income, 25 years only if necessary.'
+        heading: 'EMI Case Studies & Original Insights (Illustrative Examples)',
+        content: 'Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 1: Priya, Bangalore (Age 28, Software Engineer). Scenario: Earned Rs 75,000/month, wanted Rs 80L home. Bank loan at 9% for 20 years = Rs 48,000 EMI (64% of income). Challenge: Unaffordable without cutting living expenses. Solution: Delayed 1.5 years, saved Rs 15L more. Down payment increased Rs 16L → Rs 30L. Borrowed Rs 50L instead. Result: EMI dropped to Rs 32,000 (43% income, healthy). Interest saved: Rs 15.6L over 20 years. Lesson: Down payment timing = critical. Every Rs 1L extra down payment = Rs 4K less EMI, Rs 0.8L less total interest. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 2: Rajesh, Delhi (Age 32). Scenario: Rs 8L car loan at 10% for 5 years = Rs 16,997 EMI. After 18 months, RBI cut rates to 8.5%. Challenge: Missed refinancing window. Solution: Used EMI calculator. Balance transfer saved Rs 1,500/month EMI despite Rs 25K switching cost. Result: 42 months remaining × Rs 1,500 = Rs 63K savings. Net benefit = Rs 38K. Paid off 8 months early with bonus prepayments. Lesson: Monitor rate drops quarterly. 0.5% rate cut justifies refinancing if >18 months tenure remain. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 3: Anita & Vikram, Mumbai (Age 45). Scenario: Rs 40L loan at 9% for 20 years = Rs 40K EMI. After 8 years, inherited Rs 25L. Challenge: Invest or prepay? Stock market attractive. Solution: Modeled prepayment impact using calculator. Prepaying Rs 25L saves Rs 25L in interest (guaranteed). Result: Prepaid Rs 25L. Balance Rs 15L. New EMI Rs 17,500, tenure 6 years instead of 12. Interest saved: Rs 25.2L. Lesson: Early prepayment guaranteed returns often beat uncertain market gains. Based on RBI lending guidelines and widely-accepted financial planning principles: Pro Tips: (1) Down Payment Strategy - Wait 1-2 years to increase down payment 10-15% on Rs 40L+ loans = saves Rs 15-25L interest (300-400% ROI). (2) Rate Lock Strategy - Lock fixed rates during RBI rate-cut cycles. When 1% drops, refinancing breaks even in 2-3 years. (3) Prepayment Acceleration - Allocate annual bonuses (Rs 1-3L) to principal by year 3-5 = cuts 3-5 years off tenure, saves Rs 20-40L interest. (4) Tenure Sweet Spot - 20 years optimal for most Indians (affordable EMI + reasonable interest). 15 years if stable income, 25 years only if necessary.'
       },
     ],
     faqs: [
@@ -77,11 +93,24 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete guide to SIP calculator. Learn how SIP returns are calculated, understand the power of compounding, and see how much wealth you can build with systematic investment plans.',
     date: '2026-05-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
     readTime: '12 min read',
     keywords: ['SIP calculator', 'SIP return calculation', 'systematic investment plan', 'SIP explained', 'SIP investment guide', 'mutual fund SIP'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
+    postType: 'comparison-first',
+    comparisonTable: {
+      caption: 'Impact of starting age on SIP wealth — ₹5,000/month at 12% annual return, retiring at 55',
+      headers: ['Start Age', 'Years Invested', 'Total Invested', 'Final Corpus', 'Wealth Multiple'],
+      rows: [
+        ['25', '30 years', '₹18 lakh', '₹1.75 crore', '9.7×'],
+        ['30', '25 years', '₹15 lakh', '₹95.4 lakh', '6.4×'],
+        ['35', '20 years', '₹12 lakh', '₹49.9 lakh', '4.2×'],
+        ['40', '15 years', '₹9 lakh', '₹25.2 lakh', '2.8×'],
+        ['45', '10 years', '₹6 lakh', '₹11.6 lakh', '1.9×'],
+      ],
+    },
     sections: [
       {
         heading: 'The Problem: Time Running Out for Your Wealth Goals',
@@ -104,8 +133,8 @@ export const blogPosts: BlogPost[] = [
         content: 'Understanding SIP through real examples makes it concrete. Here are typical scenarios for Indian investors: Example 1 - Fresh Graduate (Age 22): Monthly SIP: Rs 2,000. Duration: 38 years (until age 60). Expected return: 12% (equity funds). Final corpus: Rs 1.05 crore. Total invested: Rs 9.12 lakh. Profit from compounding: Rs 96.88 lakh. Lesson: Start early with even a small amount. Example 2 - Young Professional (Age 28): Monthly SIP: Rs 5,000 with 10% step-up yearly. Duration: 32 years. Expected return: 13% (mix of large and mid-cap). Final corpus: Rs 3.42 crore. Total invested: Rs 26.2 lakh. Profit: Rs 3.16 crore. Lesson: Modest increase with step-up creates exceptional wealth. Example 3 - Mid-Career Professional (Age 35): Monthly SIP: Rs 10,000. Duration: 25 years. Expected return: 12%. Final corpus: Rs 1.38 crore. Total invested: Rs 30 lakh. Profit: Rs 1.08 crore. Lesson: Even starting at 35, you can build substantial wealth. Example 4 - High-Income Professional (Age 30): Monthly SIP: Rs 50,000 with 12% step-up. Duration: 30 years. Expected return: 12%. Final corpus: Rs 16.8 crore. Total invested: Rs 1.46 crore. Profit: Rs 15.34 crore. Lesson: Larger investments create generational wealth. These examples show that SIP is accessible to everyone - from fresh graduates investing Rs 500/month to professionals investing Rs 50,000+/month. The key is consistency and time.',
       },
       {
-        heading: 'Real-World SIP Case Studies & Original Research',
-        content: 'CASE STUDY 1: Akshay, Pune (Age 25). Scenario: Rs 2K/month SIP in Nifty 50 (12% return, 35 years until 60). Challenge: Friends mocked tiny amount. Solution: Stuck with discipline. Increased to Rs 5K at 30, Rs 10K at 35, Rs 15K at 45. Result: At 60, corpus Rs 1.42 crore (Rs 3L contributed). Profit: Rs 1.12 crore from compounding. Friends starting at 30 with Rs 10K? Only Rs 65L. Lesson: Time + consistency beats amount. CASE STUDY 2: Meera, Bangalore (Age 32). Scenario: Rs 5K SIP with 10% annual step-up (70% large, 30% mid-cap, 12% return). Challenge: Income grew 10% yearly via promotions. Solution: Step-up matched salary increases. Year 1: Rs 5K, Year 15: Rs 20.4K. Result: At 47 = Rs 1.58 crore. Flat SIP = Rs 45L. Step-up created Rs 1.13 crore additional wealth! Lesson: Invest salary hikes through step-up. CASE STUDY 3: Vivek, Hyderabad (Age 28). Scenario: Rs 10K/month SIP. March 2020: Market crash 40%. Portfolio dropped Rs 2.5L → Rs 1.5L. Challenge: Colleagues panicked. Solution: Continued SIP. Bought 33% MORE units at lower NAV. Result: Dec 2020, markets recovered. Portfolio: Rs 3.2L (profit!). Those who stopped? Rs 1.5L (missed recovery). Lesson: Crashes help SIP investors. CASE STUDY 4: Supriya, Mumbai (Age 55). Scenario: Rs 8K/month SIP at 40 in balanced funds (12% target, 15 years). Challenge: Skeptical if enough for retirement. Solution: Stayed disciplined. Result: At 55, corpus Rs 2.38 crore (projected Rs 2.4 crore). Provides Rs 50K/month for 40 years. Lesson: Long-term SIP returns predictable. Per AMFI and SEBI guidance on long-term systematic investing: Pro Tips: (1) Early start = 3.5x wealth vs 5-year delay. (2) Step-up (10-15% yearly) creates Rs 60L+ additional wealth. (3) Market crashes let SIP buy 30% more units at lower NAV. (4) Keep 50% large-cap at 30, shift to 80% large at 55.'
+        heading: 'SIP Case Studies & Original Research (Illustrative Examples)',
+        content: 'Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 1: Akshay, Pune (Age 25). Scenario: Rs 2K/month SIP in Nifty 50 (12% return, 35 years until 60). Challenge: Friends mocked tiny amount. Solution: Stuck with discipline. Increased to Rs 5K at 30, Rs 10K at 35, Rs 15K at 45. Result: At 60, corpus Rs 1.42 crore (Rs 3L contributed). Profit: Rs 1.12 crore from compounding. Friends starting at 30 with Rs 10K? Only Rs 65L. Lesson: Time + consistency beats amount. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 2: Meera, Bangalore (Age 32). Scenario: Rs 5K SIP with 10% annual step-up (70% large, 30% mid-cap, 12% return). Challenge: Income grew 10% yearly via promotions. Solution: Step-up matched salary increases. Year 1: Rs 5K, Year 15: Rs 20.4K. Result: At 47 = Rs 1.58 crore. Flat SIP = Rs 45L. Step-up created Rs 1.13 crore additional wealth! Lesson: Invest salary hikes through step-up. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 3: Vivek, Hyderabad (Age 28). Scenario: Rs 10K/month SIP. March 2020: Market crash 40%. Portfolio dropped Rs 2.5L → Rs 1.5L. Challenge: Colleagues panicked. Solution: Continued SIP. Bought 33% MORE units at lower NAV. Result: Dec 2020, markets recovered. Portfolio: Rs 3.2L (profit!). Those who stopped? Rs 1.5L (missed recovery). Lesson: Crashes help SIP investors. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 4: Supriya, Mumbai (Age 55). Scenario: Rs 8K/month SIP at 40 in balanced funds (12% target, 15 years). Challenge: Skeptical if enough for retirement. Solution: Stayed disciplined. Result: At 55, corpus Rs 2.38 crore (projected Rs 2.4 crore). Provides Rs 50K/month for 40 years. Lesson: Long-term SIP returns predictable. Per AMFI and SEBI guidance on long-term systematic investing: Pro Tips: (1) Early start = 3.5x wealth vs 5-year delay. (2) Step-up (10-15% yearly) creates Rs 60L+ additional wealth. (3) Market crashes let SIP buy 30% more units at lower NAV. (4) Keep 50% large-cap at 30, shift to 80% large at 55.'
       },
       {
         heading: 'SIP Optimization: Fund Selection, Step-Up & Mistake Avoidance',
@@ -128,11 +157,25 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete comparison of New vs Old Tax Regime for FY 2024-25. Tax slabs, deductions, exemptions explained with examples. Find out which regime saves more tax for your income level.',
     date: '2026-05-10',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
     readTime: '10 min read',
     keywords: ['new vs old tax regime', 'tax regime comparison', 'new tax regime 2024-25', 'old tax regime benefits', 'which tax regime is better', 'income tax India'],
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
+    postType: 'comparison-first',
+    comparisonTable: {
+      caption: 'Tax slab rates: New Regime vs Old Regime (FY 2025-26)',
+      headers: ['Income Slab', 'New Regime Rate', 'Old Regime Rate'],
+      rows: [
+        ['Up to ₹3 lakh', '0%', '0%'],
+        ['₹3 – 7 lakh', '5%', '5% (0% via 87A rebate up to ₹5L)'],
+        ['₹7 – 10 lakh', '10%', '20%'],
+        ['₹10 – 12 lakh', '15%', '30%'],
+        ['₹12 – 15 lakh', '20%', '30%'],
+        ['Above ₹15 lakh', '30%', '30%'],
+      ],
+    },
     sections: [
       {
         heading: 'The Decision: Which Tax Regime Saves You More?',
@@ -159,8 +202,8 @@ export const blogPosts: BlogPost[] = [
         content: 'Decision Framework: Step 1: Calculate your total eligible deductions (80C + 80D + HRA + Home Loan + others). Step 2: Use our Tax Calculator to compute tax under both regimes. Step 3: Choose the regime with lower tax. Step 4: If difference is small (<₹5,000), choose New Regime for simplicity. Switching Strategy (For Salaried Employees): Salaried employees can SWITCH REGIMES EVERY YEAR - a huge advantage! Strategy: Calculate both regimes annually during tax season (May-June). Year 1: Default New Regime. If saves ₹20K tax, use it. Year 2: Made ELSS investments? Now Old Regime saves more - switch. Year 3: Home loan started? Bigger savings in Old Regime - switch back. This flexibility ensures you always pay minimum tax. Permanent switch to Old Regime when deductions exceed ₹5L: Home loan interest ₹2L + Section 80C ₹1.5L + HRA ₹2L + Insurance ₹75K = ₹6L total. With ₹6L deductions, Old Regime dominates for income above ₹15L. Critical Timing Points to Switch: Home loan started (saves ₹15-25K immediately). Marriage/children (opens HRA + insurance benefits). High HRA available (metro transfer = ₹2L+ HRA benefit). ELSS investments started (₹1.5L deduction benefit). Action: 15 minutes annually recalculating both regimes = potential ₹5-30K annual tax savings. Most people calculate once and never switch - losing thousands by not optimizing when circumstances change. Build a simple Excel: Income | All deductions | Old tax | New tax | Difference. Update yearly, switch when difference > ₹5K.',
       },
       {
-        heading: 'Real-World Tax Regime Case Studies & Original Insights',
-        content: 'CASE STUDY 1: Divya, Delhi (Age 35, Marketing Manager). Scenario: Income Rs 15L. Investments: ELSS Rs 1.5L, Health Insurance Rs 50K. HRA Rs 1L (non-metro). No home loan. FY2024: Chose New Regime (default). New tax: Rs 1.69L. Challenge: Didn\'t compare. Solution: Used Tax Calculator for FY2025. Old Regime with deductions: Rs 15L - (1.5L + 50K + 50K - HRA not in metro formula) = Rs 12.9L taxable. Tax: Rs 1.87L. New cleaner: Rs 15L - 75K = 14.25L taxable. New tax: Rs 1.71L. Result: New Regime marginally better (saves Rs 16K). Continued New Regime. Lesson: Always compare annually. Life changes (promotion, loan, marriage) change best regime. CASE STUDY 2: Rohit & Priya, Bangalore (Age 42, Power Couple). Scenario: Rohit earns Rs 20L, Priya Rs 18L. Both have: Home loan interest Rs 2L, HRA Rs 2L (metro), ELSS Rs 1.5L, Insurance Rs 75K. Total deductions: Rs 6.25L each. Challenge: Started in New Regime (default). Lost ₹25K+ annually per person. Solution: Switched to Old Regime after calculator analysis. Rohit Old Regime: Rs 20L - Rs 6.25L = 13.75L taxable. Tax = Rs 3.54L. New would be = Rs 4.19L. Savings: Rs 65K. Priya: Similar Rs 55K savings. Combined: Rs 120K annual tax savings! Result: Both saved Rs 120K+ annually by switching in Year 2. Lesson: High-income earners with mortgages almost always benefit from Old Regime. Check annually. CASE STUDY 3: Amit, Mumbai (Age 28, Freelancer/Startup). Scenario: Freelance income fluctuates: Year 1 Rs 8L, Year 2 Rs 15L, Year 3 Rs 12L. No fixed HRA/allowances. ELSS Rs 1.5L consistently. Challenge: Unstable income makes regime choice complex. Solution: Recalculate both regimes every year (uses tax software). Year 1 (Rs 8L): New Regime better (saves Rs 8K). Chose New. Year 2 (Rs 15L): Old Regime better with ELSS (saves Rs 22K). Switched. Year 3 (Rs 12L): New Regime better again (saves Rs 12K). Switched back. Result: Paid minimum tax all 3 years through annual optimization. Freelancers who switched once? Lost Rs 20-40K in subsequent years. Lesson: Volatile income = recalculate both regimes every year. Spending 30 minutes annually saves Rs 10-30K. Per the Finance Act 2025-26 and CBDT guidance on income tax regime selection: The New Regime is the default from FY 2024-25 onward; salaried employees who benefit from the Old Regime must opt in explicitly when filing their ITR. The break-even deduction threshold at which both regimes result in equal tax varies by income level, typically falling between Rs 3.5 lakh and Rs 5 lakh in total deductions for middle-income earners. Individuals with a home loan, HRA, or Section 80C investments generally pay less tax under the Old Regime. Pro Tips: (1) Regime Switch Timing - Switch when: Home loan started (saves Rs 15-25K), High HRA available (metro transfer), ELSS invested (Rs 1.5L threshold). (2) Annual Calculator Ritual - 15 minutes yearly recalculating both regimes = Rs 10-40K savings. Most miss because they file once and never revisit. (3) Deduction Optimization - If income stable, commit to Old Regime. If volatile, recalculate quarterly. (4) Threshold Strategy - Below Rs 5L: New Regime wins. Rs 5-15L: Usually Old (if HRA + insurance + investments). Above Rs 15L: Almost always Old (with home loan + investments).'
+        heading: 'Tax Regime Case Studies & Original Insights (Illustrative Examples)',
+        content: 'Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 1: Divya, Delhi (Age 35, Marketing Manager). Scenario: Income Rs 15L. Investments: ELSS Rs 1.5L, Health Insurance Rs 50K. HRA Rs 1L (non-metro). No home loan. FY2024: Chose New Regime (default). New tax: Rs 1.69L. Challenge: Didn\'t compare. Solution: Used Tax Calculator for FY2025. Old Regime with deductions: Rs 15L - (1.5L + 50K + 50K - HRA not in metro formula) = Rs 12.9L taxable. Tax: Rs 1.87L. New cleaner: Rs 15L - 75K = 14.25L taxable. New tax: Rs 1.71L. Result: New Regime marginally better (saves Rs 16K). Continued New Regime. Lesson: Always compare annually. Life changes (promotion, loan, marriage) change best regime. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 2: Rohit & Priya, Bangalore (Age 42, Power Couple). Scenario: Rohit earns Rs 20L, Priya Rs 18L. Both have: Home loan interest Rs 2L, HRA Rs 2L (metro), ELSS Rs 1.5L, Insurance Rs 75K. Total deductions: Rs 6.25L each. Challenge: Started in New Regime (default). Lost ₹25K+ annually per person. Solution: Switched to Old Regime after calculator analysis. Rohit Old Regime: Rs 20L - Rs 6.25L = 13.75L taxable. Tax = Rs 3.54L. New would be = Rs 4.19L. Savings: Rs 65K. Priya: Similar Rs 55K savings. Combined: Rs 120K annual tax savings! Result: Both saved Rs 120K+ annually by switching in Year 2. Lesson: High-income earners with mortgages almost always benefit from Old Regime. Check annually. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 3: Amit, Mumbai (Age 28, Freelancer/Startup). Scenario: Freelance income fluctuates: Year 1 Rs 8L, Year 2 Rs 15L, Year 3 Rs 12L. No fixed HRA/allowances. ELSS Rs 1.5L consistently. Challenge: Unstable income makes regime choice complex. Solution: Recalculate both regimes every year (uses tax software). Year 1 (Rs 8L): New Regime better (saves Rs 8K). Chose New. Year 2 (Rs 15L): Old Regime better with ELSS (saves Rs 22K). Switched. Year 3 (Rs 12L): New Regime better again (saves Rs 12K). Switched back. Result: Paid minimum tax all 3 years through annual optimization. Freelancers who switched once? Lost Rs 20-40K in subsequent years. Lesson: Volatile income = recalculate both regimes every year. Spending 30 minutes annually saves Rs 10-30K. Per the Finance Act 2025-26 and CBDT guidance on income tax regime selection: The New Regime is the default from FY 2024-25 onward; salaried employees who benefit from the Old Regime must opt in explicitly when filing their ITR. The break-even deduction threshold at which both regimes result in equal tax varies by income level, typically falling between Rs 3.5 lakh and Rs 5 lakh in total deductions for middle-income earners. Individuals with a home loan, HRA, or Section 80C investments generally pay less tax under the Old Regime. Pro Tips: (1) Regime Switch Timing - Switch when: Home loan started (saves Rs 15-25K), High HRA available (metro transfer), ELSS invested (Rs 1.5L threshold). (2) Annual Calculator Ritual - 15 minutes yearly recalculating both regimes = Rs 10-40K savings. Most miss because they file once and never revisit. (3) Deduction Optimization - If income stable, commit to Old Regime. If volatile, recalculate quarterly. (4) Threshold Strategy - Below Rs 5L: New Regime wins. Rs 5-15L: Usually Old (if HRA + insurance + investments). Above Rs 15L: Almost always Old (with home loan + investments).'
       },
     ],
     faqs: [
@@ -180,11 +223,20 @@ export const blogPosts: BlogPost[] = [
     description: 'Understand BMI norms for Indians. Learn what is a healthy BMI range for Indian adults, why Asian BMI cutoffs differ, and practical tips to achieve healthy weight.',
     date: '2026-05-15',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Health',
     readTime: '9 min read',
     keywords: ['BMI for Indians', 'healthy BMI India', 'normal BMI Indian adults', 'Asian BMI chart', 'BMI calculator India', 'overweight Indians BMI', 'weight management India', 'healthy weight for Indians'],
     relatedCalculator: { name: 'BMI Calculator', href: '/bmi-calculator' },
+    postType: 'quick-answer',
+    quickSummary: 'BMI = Weight (kg) ÷ Height² (m²). For Indians, the ICMR recommends a healthy range of 18.5–22.9 — stricter than the WHO global standard of 18.5–24.9. South Asians carry higher visceral fat and develop type 2 diabetes and cardiovascular disease at lower BMI values than Western populations, which is why an Indian with BMI 23.5 may need intervention even though a global chart labels them "normal".',
+    keyStats: [
+      { label: 'ICMR: Normal', value: '18.5 – 22.9', note: 'Optimal healthy range for Indians' },
+      { label: 'ICMR: Overweight', value: '23.0 – 27.4', note: 'Elevated metabolic risk for South Asians' },
+      { label: 'ICMR: Obese', value: '27.5+', note: 'High risk — medical review recommended' },
+      { label: 'WHO Normal (global)', value: '18.5 – 24.9', note: 'Not calibrated for South Asian populations' },
+    ],
     sections: [
       {
         heading: 'What is BMI? (Core Concept)',
@@ -224,8 +276,8 @@ export const blogPosts: BlogPost[] = [
         heading: 'Calculate Your Ideal Weight Range',
         content: 'Based on your height and BMI category, you can calculate your ideal weight range: For healthy BMI range (ICMR: 18.5-22.9 for Indians): Low end: 18.5 × (height in meters)². High end: 22.9 × (height in meters)². Example: For someone 170 cm tall (1.70 m): Low = 18.5 × 1.70^2 = 18.5 × 2.89 = 53.5 kg. High = 22.9 × 1.70^2 = 22.9 × 2.89 = 66.2 kg. Ideal range = 53.5-66.2 kg. If current weight is 75 kg, need to lose about 9-22 kg to reach ideal range. Our free BMI calculator does this automatically - enter your height and weight to see: Your current BMI category. Your ideal weight range based on ICMR standards. How many kilos to lose or gain. This information helps you set realistic weight loss goals and track progress over months and years.' },
       {
-        heading: 'Real-World BMI Case Studies: Health Transformations',
-        content: `CASE STUDY 1: Neha, Bangalore (Age 32, IT Professional). Scenario: Height 165 cm, Weight 78 kg. BMI 28.6 (obese by ICMR standards). Waist circumference 92 cm (>80 cm = risk). Fasting blood sugar 115 mg/dL (prediabetic). Challenge: Sedentary job (8-10 hours desk), snacking on chips/samosas, irregular sleep. Didn't realize health risk until BP checked at 138/88 mmHg (elevated). Solution: Started structured program. 1400 cal/day diet (300-350 cal deficit), brisk walking 45 mins daily, reduced refined carbs, 80g protein daily. Month 1: Lost 3 kg. Month 6: Lost 12 kg (now 66 kg). BMI dropped to 24.2 (borderline overweight → normal). Waist 82 cm (healthier). Fasting sugar normalized 95 mg/dL. BP: 128/80 mmHg (normal!). Result: At Month 12, maintained 66 kg, BMI 24.2. Blood work clean. Energy levels up 40%. Gym habit established. Lesson: Small consistent habits beat crash diets. 0.5 kg/week loss is sustainable and creates lifestyle changes. CASE STUDY 2: Arun, Mumbai (Age 45, Business Owner). Scenario: Height 177 cm, Weight 92 kg. BMI 29.3 (obese). Waist 98 cm (significantly >90 cm = high risk). Cholesterol 245 (high), triglycerides 180 (elevated). Doctor warned heart attack risk. Challenge: Irregular work schedule, eating out frequently (butter-rich curries, ghee), no exercise, high stress. Solution: Focused on quality nutrition + strength training. Replaced butter with olive oil, increased vegetable intake, started weightlifting 3x/week (builds muscle preserves lean mass), 120g protein daily. Year 1: Lost 18 kg (92 → 74 kg). BMI dropped to 23.6 (ideal for him). Waist 88 cm (healthy). Cholesterol 185, triglycerides 95 (normal). BP: 125/78. Result: Body composition improved (12% less body fat despite scale weight loss). Can run 5 km without fatigue. Medication no longer needed. Lesson: Strength training + adequate protein prevents "skinny fat" outcome. Losing weight is meaningless if you lose muscle. CASE STUDY 3: Sanjana, Delhi (Age 28, Fashion Designer). Scenario: Height 158 cm, Weight 52 kg. BMI 20.8 (normal). Waist 76 cm (<80 cm, safe). BUT 32% body fat (high for her age). Weak, get tired easily. Challenge: Never exercised, ate well but sedentary, desk work 10 hours daily. Doctor: "BMI normal, but fitness poor. Risk of metabolic disease if sedentary continues." Solution: Focused on fitness, not weight loss. Added strength training 4x/week, 25-30 mins cardio 3x/week, maintained 52 kg but increased protein to 95g daily. Year 1: Weight stable 52 kg. BUT body fat dropped to 24% (healthy range). Gained 2-3 kg muscle (scale same, body shape dramatically improved). Strength increased 150%. Waist same 76 cm. Energy levels tripled. Result: Looks fitter, stronger, healthier despite zero weight loss. Doctor: "Perfect example why BMI alone misleads." Lesson: "Normal BMI + sedentary = still unhealthy." Fitness and muscle matter more than BMI number. Per WHO and ICMR evidence-based weight management guidelines: Research consistently shows that gradual weight loss (0.5-1 kg/week) produces more sustainable outcomes than rapid crash dieting, which often leads to muscle loss and rapid weight regain. Strength training alongside caloric restriction is recommended to preserve lean muscle mass. ICMR guidelines specifically note that for South Asian populations, abdominal fat reduction and fitness improvement are more meaningful health targets than hitting a specific scale weight. Pro Tips: (1) The Protein Priority - Aim 1.2-1.6g per kg body weight. Protein preserves muscle during weight loss. Without it, 50% of weight lost = muscle (bad). (2) The Strength Strategy - Add resistance training 3x/week. This builds muscle, increases metabolic rate, improves body composition without scale weight loss. (3) The Waist Watch - Measure waist monthly. Waist reduction = loss of dangerous abdominal fat, better indicator than scale weight. (4) The Consistency Game - 0.5 kg/week loss for 12 months (25 kg total) = sustainable. Those who lose 1.5+ kg/week often hit mental/physical walls and quit.`
+        heading: 'BMI Case Studies: Health Transformations (Illustrative Examples)',
+        content: `Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 1: Neha, Bangalore (Age 32, IT Professional). Scenario: Height 165 cm, Weight 78 kg. BMI 28.6 (obese by ICMR standards). Waist circumference 92 cm (>80 cm = risk). Fasting blood sugar 115 mg/dL (prediabetic). Challenge: Sedentary job (8-10 hours desk), snacking on chips/samosas, irregular sleep. Didn't realize health risk until BP checked at 138/88 mmHg (elevated). Solution: Started structured program. 1400 cal/day diet (300-350 cal deficit), brisk walking 45 mins daily, reduced refined carbs, 80g protein daily. Month 1: Lost 3 kg. Month 6: Lost 12 kg (now 66 kg). BMI dropped to 24.2 (borderline overweight → normal). Waist 82 cm (healthier). Fasting sugar normalized 95 mg/dL. BP: 128/80 mmHg (normal!). Result: At Month 12, maintained 66 kg, BMI 24.2. Blood work clean. Energy levels up 40%. Gym habit established. Lesson: Small consistent habits beat crash diets. 0.5 kg/week loss is sustainable and creates lifestyle changes. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 2: Arun, Mumbai (Age 45, Business Owner). Scenario: Height 177 cm, Weight 92 kg. BMI 29.3 (obese). Waist 98 cm (significantly >90 cm = high risk). Cholesterol 245 (high), triglycerides 180 (elevated). Doctor warned heart attack risk. Challenge: Irregular work schedule, eating out frequently (butter-rich curries, ghee), no exercise, high stress. Solution: Focused on quality nutrition + strength training. Replaced butter with olive oil, increased vegetable intake, started weightlifting 3x/week (builds muscle preserves lean mass), 120g protein daily. Year 1: Lost 18 kg (92 → 74 kg). BMI dropped to 23.6 (ideal for him). Waist 88 cm (healthy). Cholesterol 185, triglycerides 95 (normal). BP: 125/78. Result: Body composition improved (12% less body fat despite scale weight loss). Can run 5 km without fatigue. Medication no longer needed. Lesson: Strength training + adequate protein prevents "skinny fat" outcome. Losing weight is meaningless if you lose muscle. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 3: Sanjana, Delhi (Age 28, Fashion Designer). Scenario: Height 158 cm, Weight 52 kg. BMI 20.8 (normal). Waist 76 cm (<80 cm, safe). BUT 32% body fat (high for her age). Weak, get tired easily. Challenge: Never exercised, ate well but sedentary, desk work 10 hours daily. Doctor: "BMI normal, but fitness poor. Risk of metabolic disease if sedentary continues." Solution: Focused on fitness, not weight loss. Added strength training 4x/week, 25-30 mins cardio 3x/week, maintained 52 kg but increased protein to 95g daily. Year 1: Weight stable 52 kg. BUT body fat dropped to 24% (healthy range). Gained 2-3 kg muscle (scale same, body shape dramatically improved). Strength increased 150%. Waist same 76 cm. Energy levels tripled. Result: Looks fitter, stronger, healthier despite zero weight loss. Doctor: "Perfect example why BMI alone misleads." Lesson: "Normal BMI + sedentary = still unhealthy." Fitness and muscle matter more than BMI number. Per WHO and ICMR evidence-based weight management guidelines: Research consistently shows that gradual weight loss (0.5-1 kg/week) produces more sustainable outcomes than rapid crash dieting, which often leads to muscle loss and rapid weight regain. Strength training alongside caloric restriction is recommended to preserve lean muscle mass. ICMR guidelines specifically note that for South Asian populations, abdominal fat reduction and fitness improvement are more meaningful health targets than hitting a specific scale weight. Pro Tips: (1) The Protein Priority - Aim 1.2-1.6g per kg body weight. Protein preserves muscle during weight loss. Without it, 50% of weight lost = muscle (bad). (2) The Strength Strategy - Add resistance training 3x/week. This builds muscle, increases metabolic rate, improves body composition without scale weight loss. (3) The Waist Watch - Measure waist monthly. Waist reduction = loss of dangerous abdominal fat, better indicator than scale weight. (4) The Consistency Game - 0.5 kg/week loss for 12 months (25 kg total) = sustainable. Those who lose 1.5+ kg/week often hit mental/physical walls and quit.`
       },
     ],
     faqs: [
@@ -244,11 +296,25 @@ export const blogPosts: BlogPost[] = [
     description: 'Learn what CAGR (Compound Annual Growth Rate) means, how to calculate it, and why it matters for investments. Includes formula, examples, and comparison with simple returns.',
     date: '2026-05-20',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
     readTime: '9 min read',
     keywords: ['CAGR', 'compound annual growth rate', 'how to calculate CAGR', 'CAGR formula', 'CAGR calculator', 'investment growth rate', 'CAGR vs absolute return'],
     relatedCalculator: { name: 'CAGR Calculator', href: '/cagr-calculator' },
+    postType: 'comparison-first',
+    comparisonTable: {
+      caption: 'Approximate long-run CAGR by asset class in India — ₹1 lakh invested, 10-year horizon',
+      headers: ['Asset Class', 'Typical CAGR', '₹1L grows to (10 years)', 'Risk Level'],
+      rows: [
+        ['Savings Account', '3 – 4%', '₹1.34 – 1.48 lakh', 'Very Low'],
+        ['Bank FD (5-year)', '6 – 7%', '₹1.79 – 1.97 lakh', 'Low'],
+        ['PPF', '7.1%', '₹1.99 lakh', 'Very Low'],
+        ['Gold', '9 – 11%', '₹2.37 – 2.84 lakh', 'Medium'],
+        ['Nifty 50 (large-cap)', '11 – 13%', '₹2.84 – 3.39 lakh', 'High'],
+        ['Mid-cap Index', '13 – 15%', '₹3.39 – 4.05 lakh', 'Very High'],
+      ],
+    },
     sections: [
       {
         heading: 'What is CAGR?',
@@ -291,8 +357,8 @@ export const blogPosts: BlogPost[] = [
         content: 'Trap 1: CAGR hides volatility - Fund A: 20% CAGR but down 40% some years (stressful). Fund B: 12% CAGR with only 15% volatility (sleep well). Same CAGR, different stress! Trap 2: Survivorship bias - Past CAGR only counts funds that survived (failed funds excluded). Real average is lower. Trap 3: Expense ratio impact - CAGR shown before expenses. Actual investor CAGR = shown CAGR minus fees. Trap 4: Market conditions - 15% CAGR in bull market (2010-2020) won\'t repeat. Use historical 20-year CAGR, not recent 5-year. Solution: CAGR is useful for comparing apples-to-apples, but always review: risk (volatility), consistency (outperformance in all years?), and expenses. CAGR + volatility + fees = true picture.',
       },
       {
-        heading: 'Real-World CAGR Case Studies: Investment Comparisons',
-        content: 'CASE STUDY 1: Investment Comparison - Gold vs Nifty vs FD (20-year period: 2004-2024). Gold: ₹5,500/gram (2004) → ₹75,000/gram (2024) = CAGR 11.2%. Total investment (₹5.5L): Became ₹82.5L. Real Estate: ₹10L property (2004) → ₹90L (2024) = CAGR 10.1%. FD: ₹10L invested in 1-year FDs rolled over 20 years, averaging 6.5% = ₹35.5L. Nifty 50: Index at 1,000 points (2004) → 20,000 (2024) = CAGR 13.4%. ₹10L invested through SIP became ₹42L. Winner: Nifty (13.4% CAGR) beaten inflation, real estate, and gold. Lesson: Equity beats inflation + real estate over 20 years. CASE STUDY 2: Same CAGR, Different Risk - Fund Comparison. Fund A (Small-Cap): 18% CAGR but volatility 38% (lost 45% in 2020 crash, recovered 65% in 2021). Fund B (Large-Cap): 12% CAGR with volatility 18% (lost 15% in 2020, recovered 22% in 2021). Investor X chose Fund A for higher CAGR. During 2020 crash, panicked at -45% loss, sold at bottom (-45%). Missed 65% recovery. Final CAGR: 6.2% (half expected). Investor Y chose Fund B for stability. Continued SIP through crash. Bought more units at low NAV. Post-recovery, final CAGR: 12.8% (matched expectation). Lesson: CAGR + volatility matters more than CAGR alone. Same 18% CAGR from different paths (smooth vs volatile) have different real-world outcomes. CASE STUDY 3: Expense Ratio Impact on CAGR. Fund returns before fees: 12% gross. Fund A (Direct): 0.15% expense ratio = 11.85% net CAGR. Fund B (Regular): 1.5% expense ratio = 10.5% net CAGR. Over 20 years on ₹10L investment, difference = ₹20-25L final corpus! Lesson: Active fund claiming 12% CAGR is actually 10.5-11%. Index fund at 12% is truly 11.85%. Small fee differences compound over decades. Per SEBI regulations on mutual fund performance disclosure: SEBI mandates that all mutual fund advertisements include standardised performance data over 1-year, 3-year, 5-year, and since-inception periods to prevent cherry-picking of favourable periods. SEBI also requires funds to display Total Expense Ratio (TER) prominently, since a 1% annual fee difference compounds into a significant corpus reduction over 20-30 year holding periods. Investors are advised to evaluate net-of-expense CAGR and not just gross fund returns. Pro Tips: (1) Check 10-20 year CAGR, not recent years. (2) Compare net CAGR (after fees), not gross. (3) For same CAGR, choose lower volatility. (4) Remember: 12% CAGR nominal = 6% real (after 6% inflation).'
+        heading: 'CAGR Case Studies: Investment Comparisons (Illustrative Examples)',
+        content: 'Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 1: Investment Comparison - Gold vs Nifty vs FD (20-year period: 2004-2024). Gold: ₹5,500/gram (2004) → ₹75,000/gram (2024) = CAGR 11.2%. Total investment (₹5.5L): Became ₹82.5L. Real Estate: ₹10L property (2004) → ₹90L (2024) = CAGR 10.1%. FD: ₹10L invested in 1-year FDs rolled over 20 years, averaging 6.5% = ₹35.5L. Nifty 50: Index at 1,000 points (2004) → 20,000 (2024) = CAGR 13.4%. ₹10L invested through SIP became ₹42L. Winner: Nifty (13.4% CAGR) beaten inflation, real estate, and gold. Lesson: Equity beats inflation + real estate over 20 years. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 2: Same CAGR, Different Risk - Fund Comparison. Fund A (Small-Cap): 18% CAGR but volatility 38% (lost 45% in 2020 crash, recovered 65% in 2021). Fund B (Large-Cap): 12% CAGR with volatility 18% (lost 15% in 2020, recovered 22% in 2021). Investor X chose Fund A for higher CAGR. During 2020 crash, panicked at -45% loss, sold at bottom (-45%). Missed 65% recovery. Final CAGR: 6.2% (half expected). Investor Y chose Fund B for stability. Continued SIP through crash. Bought more units at low NAV. Post-recovery, final CAGR: 12.8% (matched expectation). Lesson: CAGR + volatility matters more than CAGR alone. Same 18% CAGR from different paths (smooth vs volatile) have different real-world outcomes. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 3: Expense Ratio Impact on CAGR. Fund returns before fees: 12% gross. Fund A (Direct): 0.15% expense ratio = 11.85% net CAGR. Fund B (Regular): 1.5% expense ratio = 10.5% net CAGR. Over 20 years on ₹10L investment, difference = ₹20-25L final corpus! Lesson: Active fund claiming 12% CAGR is actually 10.5-11%. Index fund at 12% is truly 11.85%. Small fee differences compound over decades. Per SEBI regulations on mutual fund performance disclosure: SEBI mandates that all mutual fund advertisements include standardised performance data over 1-year, 3-year, 5-year, and since-inception periods to prevent cherry-picking of favourable periods. SEBI also requires funds to display Total Expense Ratio (TER) prominently, since a 1% annual fee difference compounds into a significant corpus reduction over 20-30 year holding periods. Investors are advised to evaluate net-of-expense CAGR and not just gross fund returns. Pro Tips: (1) Check 10-20 year CAGR, not recent years. (2) Compare net CAGR (after fees), not gross. (3) For same CAGR, choose lower volatility. (4) Remember: 12% CAGR nominal = 6% real (after 6% inflation).'
       },
     ],
     faqs: [
@@ -314,11 +380,19 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete guide to FD Calculator. Learn how fixed deposit interest is calculated, understand cumulative vs non-cumulative payouts, and see your maturity amount instantly.',
     date: '2026-05-12',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
     readTime: '8 min read',
     keywords: ['FD calculator', 'fixed deposit calculator', 'FD interest calculator India', 'FD maturity', 'bank FD rates', 'senior citizen FD', 'FD ladder strategy', 'FD vs savings account'],
     relatedCalculator: { name: 'FD Calculator', href: '/fd-calculator' },
+    postType: 'quick-answer',
+    keyStats: [
+      { label: 'DICGC insurance limit', value: '₹5L / bank', note: 'Spread deposits across banks for full protection' },
+      { label: '₹10L @ 6.5% for 5 years', value: '₹13.70 lakh', note: 'Cumulative FD, quarterly compounding' },
+      { label: 'Senior citizen bonus', value: '+0.50%', note: 'Worth ₹28,000 extra on ₹10L over 5 years' },
+      { label: 'Tax-saving FD (Sec 80C)', value: '₹1.5L/yr', note: '5-year lock-in; saves up to ₹45K tax at 30% slab' },
+    ],
     sections: [
       { heading: 'The Challenge: Making Your Money Work Safely Without Losing to Inflation', content: 'Millions of Indians struggle with a fundamental financial dilemma: where to park money that is needed in 1-10 years? Keeping it in a savings account at 3-4% annual return means watching inflation (currently 5-6%) silently erode your purchasing power. A ₹10 lakh savings account investment earning 4% for 5 years leaves you with ₹12.17 lakh - but that ₹12.17 lakh buys you ₹1.54 lakh less than it would have at today\'s prices because of inflation eating ₹2.3 lakh in real value! Bank Fixed Deposits (FDs) are the go-to solution for safe wealth preservation. Yet most people don\'t understand: (1) How FD interest is actually calculated, (2) The massive difference between cumulative and non-cumulative FDs, (3) Which bank FD offers the best return after accounting for taxes, (4) Whether a 5-year FD at 6% is truly better than five consecutive 1-year FDs at varying rates, (5) How senior citizens can earn an extra ₹2-5 lakh through rate optimization. This guide cuts through the confusion. It shows you exactly how to choose the right FD structure, calculate precise maturity amounts, and deploy advanced strategies like FD laddering that can boost your returns by ₹5-10 lakh on large deposits. Whether protecting an emergency fund or building a planned corpus, understanding FD calculations is non-negotiable.' },
       { heading: 'What is Fixed Deposit? The Safe Investment Solution', content: 'A Fixed Deposit (FD) is a financial instrument offered by banks where you deposit a lump sum amount for a fixed tenure (typically 7 days to 10 years) at a predetermined interest rate. FDs are the safest investment option in India with DICGC insurance coverage up to ₹5 lakh. Unlike savings accounts (which have variable returns and allow unlimited withdrawals), FDs lock your money for a predetermined period at a guaranteed fixed return. Interest is calculated quarterly and either reinvested (cumulative FD) or paid out periodically to your account (non-cumulative FD). Key advantages of FDs: (1) Government-backed safety - DICGC insurance covers up to ₹5L per bank per customer, meaning even if a bank fails, your money is protected. (2) Fixed returns - you know exactly how much you will earn at maturity, making financial planning predictable. (3) No market risk - unlike stocks or mutual funds, FD returns don\'t depend on market performance. (4) Flexibility - available from 7 days to 10 years tenure to match different financial goals. (5) Senior citizen benefits - age 60+ get 0.5-0.75% additional interest making returns competitive with inflation. For these reasons, FDs are preferred for emergency funds (6-12 months of expenses), upcoming major expenses (home down payment in 3 years, child education in 12 years), and risk-averse investors.' },
@@ -327,7 +401,7 @@ export const blogPosts: BlogPost[] = [
       { heading: 'Real-World FD Examples & Scenarios', content: 'Example 1 - Safe Retirement Planning: Rajesh, age 58, has ₹60L in savings for post-retirement needs (7 years away). He wants safety + reasonable returns without market risk. Strategy: Open 7 cumulative FDs of ₹10L each with different 1-year tenures maturing each year (Year 1→₹10L matures, Year 2→₹10L matures, etc.). At 6.5% annual rate, each ₹10L becomes ₹10.67L after 1 year. Total maturity across 7 years: Year 1: ₹10.67L, Year 2: ₹10.67L, etc. Total = ₹74.7L (₹14.7L interest generated). Plus when he reaches 60, he becomes senior citizen and can earn 7% on new FDs = ₹10.7L per 1-year FD. Result: Regular investor ₹74.7L vs senior ₹75.7L (₹1L extra!). Example 2 - Child Education Fund: Priya, age 35, wants ₹25L for her child\'s higher education starting in 12 years. She has ₹10L today. At 6% FD returns: ₹10L becomes ₹20.12L in 12 years (compound annually). Still short by ₹4.88L. Solution: Invest ₹10L today + add ₹1.5L annual FD ladder (₹1.5L × 12 years = ₹18L additional). Combined: ₹20.12L + ₹28.5L (from ladder) = ₹48.62L target exceeded! Her daughter\'s education fully funded. Example 3 - Emergency Fund Emergency: Amit just received ₹8L bonus. He wants safe liquidity but good returns. Challenge: FDs lock money, but emergencies need access. Solution: Create ₹8L FD ladder: Open 4 FDs of ₹2L each with 3-month, 6-month, 9-month, 12-month tenures. Every 3 months, one matures (₹2L available). If no emergency, reinvest that ₹2L into a new 12-month FD. At 6% annual (1.5% for 3 months), each ₹2L quarter earns ₹30K. By year-end: All ₹8L available for emergencies + ₹120K interest earned! Example 4 - Senior Citizen Rate Bonus: Suresh, age 62, has ₹30L to invest. Regular rate 6.5% vs senior rate 7.0% (0.5% difference). On ₹30L for 5 years: Regular = ₹39.35L, Senior = ₹42.25L. Difference = ₹2.9L just from 0.5% rate advantage! Senior citizens must always compare rates across banks to capture this bonus.' },
       { heading: 'FD Optimization: Tenure Selection, Ladder Strategy & Smart Choices', content: 'Core principle: Longer tenure = higher interest rate, but higher liquidity risk. Shorter tenure = lower rate, but better flexibility. Strategy depends on your goal: For Immediate Needs (< 1 year): Short-term FD 3-6 months at 5-5.5% rate. Example: ₹5L for 3 months at 5.25% = ₹5L × (1 + 0.0525/4) = ₹5.06L maturity. Not much interest, but full access in 3 months. For 1-3 Year Goals (home down payment, car, marriage): 1-3 year FD at 6-6.5% rates. Example: ₹15L for 3 years at 6.5% = ₹18.05L maturity. Interest ₹3.05L (good trade-off). For 5-10 Year Goals (children\'s education, retirement): 5-10 year FD at 6.5-7% rates (senior: 7-7.5%). Huge advantage of longer tenure = higher guaranteed returns with zero effort. Example: ₹25L for 10 years at 6.5% (regular) or 7% (senior) = ₹48.1L or ₹51.1L maturity! ₹3L extra just from being senior! The FD Ladder Strategy (Advanced): Instead of single large FD, split ₹10L into multiple smaller FDs with staggered maturities. Example: Open 10 FDs of ₹1L each maturing in 1, 2, 3...10 years (or 4 FDs of ₹2.5L maturing in 1, 2, 3, 4 years on repeat). Benefits: (1) Liquidity - money matures periodically without breaking early, (2) Rate lock - if rates rise, reinvest maturing amount at higher rates, (3) Flexibility - emergency need? Use matured amount, (4) Better than single FD - when ₹1L matures, you decide: reinvest in 10-year FD (if rates risen), invest in equity funds, or use cash. This flexibility is worth 0.25-0.5% in extra returns annually! Comparison: Single ₹10L FD for 5 years at 6% = ₹13.38L. Ladder (5 FDs of ₹2L maturing yr 1, 2, 3, 4, 5): First one matures after 1 yr (₹2.12L), if reinvested at improved rates = higher total return. Critical Rule: FD rates should ≥ inflation (6%) for real returns. If rates fall below 5.5%, consider 40% FD + 60% balanced mutual funds instead.' },
       { heading: 'Advanced FD Strategies: Multi-Bank Laddering, Tax Optimization & Senior Citizen Bonuses', content: 'Strategy 1 - Multi-Bank DICGC Insurance Maximization: DICGC covers only ₹5L per bank per customer. So if you have ₹20L: One bank = ₹5L covered, ₹15L uninsured (risky!). Four banks = ₹5L × 4 = ₹20L fully covered (safe!). Action: Spread ₹20L as ₹5L FDs across 4 banks. Compare rates and choose top 4: HDFC 6.75% vs SBI 6.5% vs ICICI 6.6% vs Kotak 6.8%. Open FDs at each. Net effect: Full insurance + slightly higher rates from rate shopping. Extra return from rate difference: ₹5L × 0.3% = ₹1,500 extra. Strategy 2 - Tax-Efficient FD Placement: FD interest is fully taxable at your income slab (10%, 20%, or 30%). At 30% tax bracket, a 6% FD becomes 4.2% after tax. Solution: Tax-saving FD (Section 80C) on ₹1.5L annually with 5-year lock-in. You get: (1) ₹1.5L deduction under 80C (saves ₹45,000 tax at 30% bracket), (2) 6.5% interest (₹97,500 over 5 years), (3) Net benefit: ₹45,000 + ₹97,500 = ₹142,500 extra vs regular FD! High earners must use tax-saving FDs strategically. Strategy 3 - Senior Citizen Rate Maximization (Age 60+): Bonus rates available: Regular 6.5% → Senior 7.0% (+ 0.5%). On ₹50L for 5 years: ₹50L × [(1 + 0.07/4)^20 - (1 + 0.065/4)^20]. Using calculator: Regular ₹70.49L vs Senior ₹71.53L. Extra ₹1.04L! Compare across 5-10 banks (top seniors get 7.5%+!). Strategy 4 - FD Sweep or Step-Up: Some banks offer sweep FDs where interest auto-reinvests OR cumulative FDs that step-up rates every year (5%, 6%, 7% - Year 1, 2, 3). Check your bank! Step-up FDs can yield 0.25-0.5% higher average returns. Strategy 5 - Emergency Loan Against FD (Best Kept Secret): If urgent need arises, don\'t break FD (lose 0.5-1% interest penalty). Instead: Take loan against FD at bank rate +1-2% (typically 7-8% total). You continue earning 6.5% on locked FD while borrowing at 7.5%. Net cost = only 1% (vs breaking FD and losing ₹50K+). Real example: ₹10L FD needing ₹3L cash. Breaking costs ₹20K penalty. Taking loan costs only ₹2,250 per year interest = 10x cheaper!' },
-      { heading: 'Real-World FD Case Studies & Original Research Insights', content: 'CASE STUDY 1: Meena, Bangalore (Age 45, IT Professional). Scenario: Inherited ₹50L from grandmother. Challenge: Where to park safely for 10 years until retirement? Initially planned: Single ₹50L FD for 10 years at 6.5% = ₹92.3L maturity. But realized risk: Single bank = only ₹5L DICGC covered. ₹45L uninsured. Solution: Deployed 10-bank ladder strategy. Open ₹5L FDs at 10 different banks (SBI 6.5%, HDFC 6.75%, ICICI 6.6%, Axis 6.5%, Kotak 6.8%, IndusInd 6.7%, Bandhan 6.9%, IDFC 6.6%, Federal 6.85%, HSBC 6.65%). Average rate: 6.71%. Total maturity: ₹50L × (1.06714)^10 = ₹95.7L. Benefit 1: Full DICGC insurance on all ₹50L. Benefit 2: Rate optimization = ₹3.4L extra vs lowest rate bank! Benefit 3: When each ₹5L FD matures annually (Yr 1→₹5.34L, Yr 2→₹5.71L, etc.), she chooses: reinvest in 10-year, invest in equity, or use cash. Flexibility worth 0.25% annually = ₹2L extra value. Total benefit: Full insurance + ₹3.4L extra returns + ₹2L optionality value = ₹5.4L advantage over single-bank strategy! CASE STUDY 2: Rajesh, Delhi (Age 62, Recently Retired). Scenario: ₹30L retirement corpus. Needs ₹2.5L annually for living expenses for 12 years. Challenge: Can\'t survive on FD alone (6.5% = ₹1.95L/year shortfall ₹55K/year). Solution: Hybrid ladder. ₹20L in 12-year FD at senior rate 7% = ₹3.97L/year returns. ₹10L in monthly income ladder (Open 12 FDs of ₹83K each in  bank offering monthly-payout FDs, each ₹83K at 6.5% generates ₹5.4K/month = ₹64.8K annual, ×12 FDs = ₹7.78L/year income). Combined income: ₹3.97L + ₹7.78L = ₹11.75L/year. Expense: ₹2.5L/year. Surplus: ₹9.25L/year to reinvest! By year 4, corpus grows to ₹45L. By year 12, corpus ₹80L (sufficient for 10+ more years!). Result: Retired confidently, no stock market risk, surplus grows each year. Lesson: Laddering creates both safety and sustainable income. CASE STUDY 3: Priya & Vikram, Mumbai (Ages 40 & 42, Salaried Couple). Scenario: Both earn ₹2L/month = ₹48L/year household. Tax bracket 30%. Challenge: Saving ₹10L/year but don\'t want market risk. Solution: Deploy tax-efficient FD strategy. Each spouse invests ₹1.5L/year in tax-saving FDs (Section 80C): (1) Spouse 1: ₹1.5L → 5-year tax-saving FD at 6.5%, (2) Spouse 2: ₹1.5L → 5-year tax-saving FD at 6.5%, (3) Repeat every year = 5 sets of FDs maturing in years 1, 2, 3, 4, 5. Tax benefit per person: ₹1.5L × 30% = ₹45,000/year tax saved (×2 spouses = ₹90,000/year!). Interest earned: ₹1.5L × 6.5% × 5 = ₹48,750 per person per cycle. After 5 years: (1) Tax saved ₹45,000 × 5 = ₹2.25L, (2) Interest earned = ₹2.44L (first cycle) + subsequent cycles, (3) First FD matures with ₹1.96L (extra ₹46K interest), (4) Reinvest in Year 6 tax-saving FD or use as needed. Total 5-year wealth creation: ₹2.25L tax saved + ₹3.68L interest = ₹5.93L from ₹7.5L invested. Net gain = ₹5.93L (79% return including tax benefits). Lesson: Couples should maximize tax-saving FD deductions for significant tax + return benefits. Per RBI and DICGC deposit protection guidelines: DICGC insures deposits up to ₹5 lakh per depositor per bank, and RBI requires all scheduled commercial banks to participate. Senior citizens are entitled to higher FD rates (typically 0.25–0.75% above regular rates) per individual bank policies, and Section 80C allows deduction of up to ₹1.5 lakh annually for 5-year tax-saving fixed deposits. Pro Tips: (1) The Rate-Shop Rule - Comparing rates across 10 banks takes 30 minutes. 0.5% difference on ₹10L for 5 years = ₹27,000 saved. That\'s ₹54,000/hour return on effort! (2) The Ladder Philosophy - Single large FD = zero flexibility. Ladder = maturity dates = decision points = better optimization. Worth 0.25-0.5% annually = ₹1-3L over 10 years. (3) The Senior Secret - Age 60+? Check 10 banks\' senior rates immediately. Difference between 6.5% and 7.25% = ₹4-8L on large corpus. Most seniors never check! (4) The Tax Trick - High earner? Use tax-saving FDs strategically. ₹1.5L invested in tax-saving FD returns ₹45,000 tax saved + ₹97,500 interest = ₹142,500 value from ₹1.5L investment = 95% ROI (after-tax!). This is better than many investments.' },
+      { heading: 'FD Case Studies & Original Research Insights (Illustrative Examples)', content: 'Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 1: Meena, Bangalore (Age 45, IT Professional). Scenario: Inherited ₹50L from grandmother. Challenge: Where to park safely for 10 years until retirement? Initially planned: Single ₹50L FD for 10 years at 6.5% = ₹92.3L maturity. But realized risk: Single bank = only ₹5L DICGC covered. ₹45L uninsured. Solution: Deployed 10-bank ladder strategy. Open ₹5L FDs at 10 different banks (SBI 6.5%, HDFC 6.75%, ICICI 6.6%, Axis 6.5%, Kotak 6.8%, IndusInd 6.7%, Bandhan 6.9%, IDFC 6.6%, Federal 6.85%, HSBC 6.65%). Average rate: 6.71%. Total maturity: ₹50L × (1.06714)^10 = ₹95.7L. Benefit 1: Full DICGC insurance on all ₹50L. Benefit 2: Rate optimization = ₹3.4L extra vs lowest rate bank! Benefit 3: When each ₹5L FD matures annually (Yr 1→₹5.34L, Yr 2→₹5.71L, etc.), she chooses: reinvest in 10-year, invest in equity, or use cash. Flexibility worth 0.25% annually = ₹2L extra value. Total benefit: Full insurance + ₹3.4L extra returns + ₹2L optionality value = ₹5.4L advantage over single-bank strategy! Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 2: Rajesh, Delhi (Age 62, Recently Retired). Scenario: ₹30L retirement corpus. Needs ₹2.5L annually for living expenses for 12 years. Challenge: Can\'t survive on FD alone (6.5% = ₹1.95L/year shortfall ₹55K/year). Solution: Hybrid ladder. ₹20L in 12-year FD at senior rate 7% = ₹3.97L/year returns. ₹10L in monthly income ladder (Open 12 FDs of ₹83K each in  bank offering monthly-payout FDs, each ₹83K at 6.5% generates ₹5.4K/month = ₹64.8K annual, ×12 FDs = ₹7.78L/year income). Combined income: ₹3.97L + ₹7.78L = ₹11.75L/year. Expense: ₹2.5L/year. Surplus: ₹9.25L/year to reinvest! By year 4, corpus grows to ₹45L. By year 12, corpus ₹80L (sufficient for 10+ more years!). Result: Retired confidently, no stock market risk, surplus grows each year. Lesson: Laddering creates both safety and sustainable income. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 3: Priya & Vikram, Mumbai (Ages 40 & 42, Salaried Couple). Scenario: Both earn ₹2L/month = ₹48L/year household. Tax bracket 30%. Challenge: Saving ₹10L/year but don\'t want market risk. Solution: Deploy tax-efficient FD strategy. Each spouse invests ₹1.5L/year in tax-saving FDs (Section 80C): (1) Spouse 1: ₹1.5L → 5-year tax-saving FD at 6.5%, (2) Spouse 2: ₹1.5L → 5-year tax-saving FD at 6.5%, (3) Repeat every year = 5 sets of FDs maturing in years 1, 2, 3, 4, 5. Tax benefit per person: ₹1.5L × 30% = ₹45,000/year tax saved (×2 spouses = ₹90,000/year!). Interest earned: ₹1.5L × 6.5% × 5 = ₹48,750 per person per cycle. After 5 years: (1) Tax saved ₹45,000 × 5 = ₹2.25L, (2) Interest earned = ₹2.44L (first cycle) + subsequent cycles, (3) First FD matures with ₹1.96L (extra ₹46K interest), (4) Reinvest in Year 6 tax-saving FD or use as needed. Total 5-year wealth creation: ₹2.25L tax saved + ₹3.68L interest = ₹5.93L from ₹7.5L invested. Net gain = ₹5.93L (79% return including tax benefits). Lesson: Couples should maximize tax-saving FD deductions for significant tax + return benefits. Per RBI and DICGC deposit protection guidelines: DICGC insures deposits up to ₹5 lakh per depositor per bank, and RBI requires all scheduled commercial banks to participate. Senior citizens are entitled to higher FD rates (typically 0.25–0.75% above regular rates) per individual bank policies, and Section 80C allows deduction of up to ₹1.5 lakh annually for 5-year tax-saving fixed deposits. Pro Tips: (1) The Rate-Shop Rule - Comparing rates across 10 banks takes 30 minutes. 0.5% difference on ₹10L for 5 years = ₹27,000 saved. That\'s ₹54,000/hour return on effort! (2) The Ladder Philosophy - Single large FD = zero flexibility. Ladder = maturity dates = decision points = better optimization. Worth 0.25-0.5% annually = ₹1-3L over 10 years. (3) The Senior Secret - Age 60+? Check 10 banks\' senior rates immediately. Difference between 6.5% and 7.25% = ₹4-8L on large corpus. Most seniors never check! (4) The Tax Trick - High earner? Use tax-saving FDs strategically. ₹1.5L invested in tax-saving FD returns ₹45,000 tax saved + ₹97,500 interest = ₹142,500 value from ₹1.5L investment = 95% ROI (after-tax!). This is better than many investments.' },
     ],
     faqs: [
       { question: 'What is the current FD interest rate in India?', answer: 'As of May 2024, FD rates range from 5.0-6.5% for 1-year FDs across major banks. Senior citizens get 0.50% additional. Compare rates across SBI, ICICI, HDFC, Axis, Kotak, IndusInd banks on our calculator.' },
@@ -346,6 +420,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Calculate recurring deposit interest and maturity amount. Learn how RD works, compare RD vs FD, and see your monthly returns with our free RD calculator.',
     date: '2026-05-14',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
     readTime: '7 min read',
@@ -376,6 +451,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Free GST calculator to add or remove GST from any amount. Learn GST slabs, types (SGST/CGST/IGST), and see instant tax breakdowns.',
     date: '2026-05-16',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
     readTime: '7 min read',
@@ -406,6 +482,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete guide to percentage calculations. Learn percent hike/discount, what percent is X of Y, percentage change, reverse percentage, and sequential percentages.',
     date: '2026-05-18',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
     readTime: '7 min read',
@@ -437,6 +514,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Calculate simple interest instantly. Learn SI formula, difference from compound interest, and use cases for loans and deposits.',
     date: '2026-05-20',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
     readTime: '7 min read',
@@ -468,6 +546,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Learn how to calculate home loan EMI with formulas, examples, and step-by-step guide. Includes EMI calculation tricks and strategies to reduce EMI.',
     date: '2026-06-02',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
     readTime: '10 min read',
@@ -504,6 +583,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Compare SIP vs Lump Sum investment strategies for mutual funds. Learn which is better for Indian investors with real examples and returns analysis.',
     date: '2026-06-02',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
     readTime: '10 min read',
@@ -535,6 +615,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Step-by-step guide to calculate income tax in India FY 2025-26. Learn tax slabs, deductions, rebates, and use our free calculator.',
     date: '2026-06-02',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
     readTime: '10 min read',
@@ -564,6 +645,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete comparison of New vs Old tax regime for FY 2025-26. Learn which regime saves more tax with real examples and recommendations.',
     date: '2026-06-02',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
     readTime: '10 min read',
@@ -593,6 +675,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Industry-wise profit margin benchmarks for Indian businesses. Learn healthy margin % by sector and optimize pricing strategy.',
     date: '2026-06-02',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Business',
     readTime: '8 min read',
@@ -621,11 +704,14 @@ export const blogPosts: BlogPost[] = [
     description: 'Step-by-step investment planning guide for Indian investors. Learn asset allocation, goal-based investing, mutual funds, stocks, and create your personalized portfolio.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
     readTime: '15 min read',
     keywords: ['investment planning', 'investment strategy India', 'asset allocation', 'portfolio management', 'wealth creation', 'investment goals', 'mutual funds vs stocks'],
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
+    postType: 'step-by-step',
+    quickSummary: 'A complete investment plan follows six steps: (1) define goals with timelines, (2) calculate monthly surplus, (3) understand asset classes, (4) set allocation by age (70% equity at 25–35, scaling down as you near retirement), (5) choose SIP/FD/gold vehicles, (6) monitor and rebalance annually. Indians with a written plan accumulate 3–5× more wealth over 20 years than those who invest without direction, primarily because a plan prevents panic selling and automates regular contributions.',
     sections: [
       {
         heading: 'Investment Planning: Why It Matters',
@@ -676,6 +762,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete tax-saving guide for salaried employees in India. Learn best Section 80 deductions, HRA exemption, home loan interest, investment strategies, and save ₹50,000+ in taxes.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
     readTime: '12 min read',
@@ -734,11 +821,24 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete retirement planning guide using NISM framework. Calculate exact corpus needed, plan inflation-adjusted income, and secure your retirement.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Retirement',
     readTime: '15 min read',
     keywords: ['retirement planning', 'retirement corpus', 'retirement calculator', 'how much to save for retirement', 'retirement fund calculation'],
     relatedCalculator: { name: 'Retirement Calculator', href: '/retirement-calculator' },
+    postType: 'comparison-first',
+    comparisonTable: {
+      caption: 'Monthly SIP needed to build ₹1.5 crore corpus by age 60 — at 12% annual return',
+      headers: ['Current Age', 'Years to Retire', 'Monthly SIP Needed', 'Total Invested', 'Cost of Waiting'],
+      rows: [
+        ['25', '35 years', '₹1,400/mo', '₹5.88 lakh', '—'],
+        ['30', '30 years', '₹2,510/mo', '₹9.04 lakh', '+₹3.2 lakh vs age 25'],
+        ['35', '25 years', '₹4,600/mo', '₹13.8 lakh', '+₹7.9 lakh vs age 25'],
+        ['40', '20 years', '₹8,700/mo', '₹20.9 lakh', '+₹15 lakh vs age 25'],
+        ['45', '15 years', '₹17,500/mo', '₹31.5 lakh', '+₹25.6 lakh vs age 25'],
+      ],
+    },
     sections: [
       {
         heading: 'Why Retirement Planning is Critical',
@@ -791,6 +891,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Calculate your emergency fund requirement. Learn why emergency fund matters, how many months of expenses to save, and best places to keep it.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Savings',
     readTime: '9 min read',
@@ -844,6 +945,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Detailed comparison of buying vs renting in India. Analyze total cost of ownership, break-even analysis, tax benefits, and make data-driven decision.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investing',
     readTime: '12 min read',
@@ -896,6 +998,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Compare business loans vs personal loans for entrepreneurs. Analyze interest rates, eligibility, documentation, best use cases, and choose right loan type.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Finance',
     readTime: '10 min read',
@@ -950,6 +1053,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Complete financial guide for young professionals aged 22-35. Learn investing basics, budgeting, tax planning, and build ₹1 crore by age 45.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Personal Finance',
     readTime: '12 min read',
@@ -1006,6 +1110,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Comprehensive guide to all investment options available to Indians. Compare stocks, mutual funds, bonds, gold, real estate, insurance - make informed decisions.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
     readTime: '12 min read',
@@ -1062,6 +1167,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Step-by-step guide to select best mutual funds. Learn fund evaluation criteria, performance metrics, expense ratios, fund manager track record.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Investment',
     readTime: '10 min read',
@@ -1120,6 +1226,7 @@ export const blogPosts: BlogPost[] = [
     description: 'Essential wealth-building principles that work across different income levels. Learn from successful investors and build lasting wealth systematically.',
     date: '2026-06-05',
     author: 'Narasimha Makireddi',
+    lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Wealth Building',
     readTime: '12 min read',

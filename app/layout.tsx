@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "retirement calculator india",
     "home loan vs rent calculator",
   ],
-  authors: [{ name: "calculox Team", url: BASE_URL }],
+  authors: [{ name: "Narasimha Makireddi", url: "https://www.linkedin.com/in/narasimha-makireddi-4807b7223" }],
   creator: "calculox",
   publisher: "calculox",
   category: "Finance",
@@ -105,9 +105,9 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
     shortcut: "/favicon.ico",
   },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "",
-  },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION } }
+    : {}),
   other: {
     "google-adsense-account": "ca-pub-7034746357427731",
   },

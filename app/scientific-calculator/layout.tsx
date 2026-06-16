@@ -133,13 +133,36 @@ export default function ScientificCalculatorLayout({ children }: { children: Rea
 
   return (
     <>
-      <Script id="schema-scientific-app" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <Script id="schema-scientific-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Script id="schema-scientific-breadcrumb" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <Script id="schema-scientific-howto" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <CalcPageWrapper category="Utility">
         {children}
       </CalcPageWrapper>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Scientific Calculator — Four Computation Modes Explained</h2>
+        <p className="mb-4">
+          A scientific calculator goes beyond basic arithmetic to handle trigonometry, logarithms, exponentiation, complex numbers, matrix algebra, and statistical analysis. This online scientific calculator provides four independent modes in one interface, making it suitable for high school and undergraduate mathematics, engineering problems, data analysis, and financial modelling.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">The Four Calculation Modes</h3>
+        <ul className="list-disc pl-5 mb-4 space-y-2">
+          <li><strong>Standard mode:</strong> Handles arithmetic, trigonometry (sin, cos, tan and their inverses), logarithms (log base-10, natural log), powers, roots, factorials, permutations (nPr), and combinations (nCr). Toggle between DEG and RAD for angle input.</li>
+          <li><strong>Complex mode:</strong> Performs arithmetic on complex numbers in the form a + bi. Enter numbers like 3+4i and use standard operators. Results show real and imaginary parts separately.</li>
+          <li><strong>Matrix mode:</strong> Supports 2×2 and 3×3 matrices. Calculate determinants, inverses, transposes, and perform matrix addition and multiplication.</li>
+          <li><strong>Statistics mode:</strong> Enter a dataset and compute mean, median, mode, standard deviation, variance, and quartiles in one step.</li>
+        </ul>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Worked Examples</h3>
+        <ul className="list-disc pl-5 mb-4 space-y-2">
+          <li><strong>Trigonometry:</strong> sin(30°) = 0.5 | cos(60°) = 0.5 | tan(45°) = 1</li>
+          <li><strong>Logarithms:</strong> log(1000) = 3 | ln(e²) = 2 | log₂(8) = 3</li>
+          <li><strong>Complex:</strong> (3 + 4i) × (2 − i) = 10 + 5i (real part 6+4=10; imaginary part 8−3=5)</li>
+          <li><strong>Statistics:</strong> Dataset {'{'}2, 4, 4, 4, 5, 5, 7, 9{'}'} → Mean = 5, Std Dev = 2</li>
+        </ul>
+        <p>
+          Physical keyboard input is fully supported: type numbers and operators directly, press Enter to evaluate, and Backspace to delete. The SHIFT key unlocks inverse functions — SHIFT + sin gives arcsin, SHIFT + log gives 10^x.
+        </p>
+      </section>
     </>
   );
 }

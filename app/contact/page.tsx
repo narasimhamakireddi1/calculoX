@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import { Mail, Wrench, Lightbulb, Handshake } from 'lucide-react';
+import ContactForm from '@/components/ui/ContactForm';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
@@ -47,10 +48,22 @@ export default function ContactPage() {
         ))}
       </div>
 
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Send Us a Message</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
+          Fill out the form below and we&apos;ll get back to you within 24–48 hours.
+        </p>
+        <ContactForm />
+      </div>
+
       <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8 text-center">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Response Time</h2>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Prefer Email?</h2>
         <p className="text-gray-600 dark:text-gray-300">
-          We typically respond to all emails within <strong>24-48 hours</strong> on business days.
+          Write directly to{' '}
+          <a href="mailto:supportcalculox@gmail.com" className="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+            supportcalculox@gmail.com
+          </a>
+          {' '}— we respond within <strong>24–48 hours</strong> on business days.
         </p>
       </div>
     </div>
