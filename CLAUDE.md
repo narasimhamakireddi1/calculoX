@@ -1,10 +1,23 @@
 ﻿# 🧮 calculox
 
 **Status:** 🔴 AdSense Rejected — "Low value content" | Fixes deployed 2026-06-16 | Re-review pending
-**Last Updated:** 2026-06-16 (AdSense "Low value content" fixes: noindex examples, removed affiliate banners, fixed BASE_URL, fixed meta tag) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-16 (UI: vibrant heading section redesign across all 14 calculators) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fixes applied, awaiting re-crawl (2-4 weeks) then request review
 
-## ✅ Latest (2026-06-16 - AdSense "Low value content" Fixes)
+## ✅ Latest (2026-06-16 - UI: Vibrant Heading Section Across All 14 Calculators)
+- 🎨 **Calculator heading section redesigned — eliminated dull/smoky light-mode appearance:** ✅
+  - **Root cause 1 — invisible title text:** `.text-gradient` used `bg-clip-text text-transparent` with a blue gradient; transparent text blended into the light-blue page background → replaced with solid `text-gray-900 dark:text-white` for sharp, high-contrast headings ✅
+  - **Root cause 2 — pale icon tiles:** Icon badges used `bg-blue-50/100 ring-1/2` — barely visible against the `#f6f8fd` body tint → replaced with vivid `bg-gradient-to-br` tiles + `shadow-lg` + white icon ✅
+  - **Root cause 3 — smoky background:** `CalcPageWrapper` gradient was `from-blue-200/75` — too opaque, creating a hazy wash over the hero area → dialled back to `from-blue-100/40` ✅
+- 🖼️ **Icon tile redesign (category-matched gradients):** ✅
+  - **Finance (11 calcs — EMI, SIP, FD, RD, Tax, GST, CAGR, Simple Interest, Retirement, Home Loan vs Rent, Profit Margin):** `bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg` + white icon ✅
+  - **Health (BMI):** `bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg` + white icon ✅
+  - **Utility (Percentage, Scientific):** `bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg` + white icon ✅
+- 📝 **Description text:** `text-gray-600 dark:text-gray-400` → `text-gray-700 dark:text-gray-300` (slightly more legible in both modes) ✅
+- **Files changed:** `app/globals.css`, `components/layout/CalcPageWrapper.tsx`, all 14 calculator `page.tsx` files ✅
+- **Build:** ✅ 75 static pages, 0 TypeScript errors | **Commits:** `0dece62`, `43186d2` ✅
+
+## ✅ Previous (2026-06-16 - AdSense "Low value content" Fixes)
 - 📧 **AdSense rejection diagnosed from Gmail + AdSense Sites page:** ✅
   - **Rejection reason:** "Low value content" (visible in AdSense → Sites → calculox.in)
   - **Root causes identified:** (1) 21 thin example doorway pages, (2) Affiliate banners on calculator pages, (3) Wrong BASE_URL fallback on 24 files, (4) Empty google-adsense-account meta tag, (5) Fake "50K+ users" claims in ConfidenceBadge
