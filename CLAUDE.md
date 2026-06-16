@@ -1,10 +1,37 @@
 ﻿# 🧮 calculox
 
-**Status:** 🟢 AdSense Reapplication In Progress | 14 Calculators (100% Share-Only UI) | 28 Blog Posts (100% Restructured, 100% with Case Studies) | PageSpeed 97 | WCAG 2.1 AAA | GA4 Live
-**Last Updated:** 2026-06-12 (E-E-A-T: real author identity, Person schema, disclaimer, LinkedIn wired) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
-**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **Timeline:** Ready for AdSense reapplication
+**Status:** 🔴 AdSense Rejected — "Low value content" | Fixes deployed 2026-06-16 | Re-review pending
+**Last Updated:** 2026-06-16 (AdSense "Low value content" fixes: noindex examples, removed affiliate banners, fixed BASE_URL, fixed meta tag) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
+**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fixes applied, awaiting re-crawl (2-4 weeks) then request review
 
-## ✅ Latest (2026-06-12 - E-E-A-T: Real Author Identity + Person Schema + Disclaimers)
+## ✅ Latest (2026-06-16 - AdSense "Low value content" Fixes)
+- 📧 **AdSense rejection diagnosed from Gmail + AdSense Sites page:** ✅
+  - **Rejection reason:** "Low value content" (visible in AdSense → Sites → calculox.in)
+  - **Root causes identified:** (1) 21 thin example doorway pages, (2) Affiliate banners on calculator pages, (3) Wrong BASE_URL fallback on 24 files, (4) Empty google-adsense-account meta tag, (5) Fake "50K+ users" claims in ConfidenceBadge
+- 🔒 **21 example pages noindexed** ✅
+  - Added `X-Robots-Tag: noindex, nofollow` header for `/examples/*` in `next.config.js`
+  - Added `/examples/` to disallow list in `app/robots.ts`
+  - These doorway-style pages (`/examples/emi-50-lakh-home-loan`, etc.) were lowering the site's overall content quality signal
+- 🚫 **AffiliateBanner removed from all 5 calculator pages** ✅
+  - Removed from: `emi-calculator`, `sip-calculator`, `tax-calculator`, `profit-margin-calculator`, `scientific-calculator`
+  - External links to Groww, Zerodha, BankBazaar, ClearTax on every page signalled "made for ads" to AdSense
+  - Cleaned up unused Lucide imports (`Landmark`, `Repeat`, `Smartphone`, `Mail`) left behind
+- 🌐 **BASE_URL fallback fixed in all 24 files** ✅
+  - Was: `|| 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app'` (old Vercel preview URL)
+  - Now: `|| 'https://www.calculox.in'`
+  - Files: all 14 calculator `layout.tsx`, `app/layout.tsx`, `app/robots.ts`, `app/sitemap.ts`, `lib/seo/schemas.ts`, `app/blog/[slug]/page.tsx`, all page.tsx files with canonical URLs
+  - **Critical:** Set `NEXT_PUBLIC_SITE_URL=https://www.calculox.in` in Vercel env vars to avoid relying on fallback
+- 🏷️ **`google-adsense-account` meta tag hardcoded** ✅
+  - Was: `process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || ""` → could produce empty string if env var missing
+  - Now: `"ca-pub-7034746357427731"` (hardcoded, always correct)
+  - **File:** `app/layout.tsx`
+- ✅ **ConfidenceBadge fake claims replaced with verifiable facts** ✅
+  - Removed: "Verified by 50K+ Users", "Trusted by 40K+ Investors", "Real Market Data Basis"
+  - Added: "Open-source formula, auditable", "Formula matches AMFI SIP standard", source links to incometaxindia.gov.in, sebi.gov.in
+  - **File:** `components/ui/ConfidenceBadge.tsx`
+- **Next steps:** Deploy → wait 2-4 weeks for Google re-crawl → AdSense → Sites → Request review ✅
+
+## ✅ Previous (2026-06-12 - E-E-A-T: Real Author Identity + Person Schema + Disclaimers)
 - 🪪 **Author E-E-A-T fully rebuilt — real person identity replacing generic "Calculox Editorial Team":** ✅
   - **Root problem:** All 25 blog posts had `author: 'Calculox Editorial Team'` with credentials `'Free financial calculator tools for Indian users'` — zero E-E-A-T signal for YMYL finance content ✅
   - **Strategy:** Frame as technology/tool builder (not financial advisor) — honest, verifiable, no fake credentials ✅

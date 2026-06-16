@@ -19,8 +19,8 @@ export function ConfidenceBadge({ calculatorType }: ConfidenceBadgeProps) {
       title: 'EMI Calculator - Verified & Trusted',
       items: [
         { icon: CheckCircle2, text: 'RBI-Compliant Formula', link: 'https://www.rbi.org.in/' },
-        { icon: Search, text: 'Verified by 50K+ Users' },
-        { icon: Landmark, text: 'Same as SBI, HDFC, ICICI' },
+        { icon: Search, text: 'Open-source formula, auditable' },
+        { icon: Landmark, text: 'Same method as SBI, HDFC, ICICI' },
       ],
     },
     tax: {
@@ -28,15 +28,15 @@ export function ConfidenceBadge({ calculatorType }: ConfidenceBadgeProps) {
       items: [
         { icon: CheckCircle2, text: 'FY2025-26 Official Rates', link: 'https://www.incometaxindia.gov.in/' },
         { icon: BarChart2, text: 'All 9 Deductions Included' },
-        { icon: Search, text: 'Verified by Tax Professionals' },
+        { icon: Search, text: 'Cross-checked with IT dept. slabs', link: 'https://www.incometaxindia.gov.in/' },
       ],
     },
     sip: {
       title: 'SIP Calculator - Precision Investing',
       items: [
         { icon: CheckCircle2, text: 'SEBI-Standard Calculations' },
-        { icon: TrendingUp, text: 'Real Market Data Basis' },
-        { icon: Search, text: 'Trusted by 40K+ Investors' },
+        { icon: TrendingUp, text: 'Based on standard FV formula', link: 'https://www.sebi.gov.in/' },
+        { icon: Search, text: 'Formula matches AMFI SIP standard' },
       ],
     },
   };

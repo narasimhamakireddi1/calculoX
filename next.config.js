@@ -26,6 +26,10 @@ const nextConfig = {
       ],
     },
     {
+      source: '/examples/:path*',
+      headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+    },
+    {
       source: '/sitemap.xml',
       headers: [{ key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=3600' }],
     },

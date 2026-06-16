@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
-import { Mail, ClipboardList, BookOpen, Calculator, Sigma, LayoutGrid, BarChart2, Target, Lightbulb, Building2, Zap, TrendingUp, Search, CheckCircle2, HelpCircle } from 'lucide-react';
+import { ClipboardList, BookOpen, Calculator, Sigma, LayoutGrid, BarChart2, Target, Lightbulb, Building2, Zap, TrendingUp, Search, CheckCircle2, HelpCircle } from 'lucide-react';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 import { evaluate, computeRegression, computeStats, matrixDet, matrixMul, matrixAdd, matrixTranspose, matrixInverse } from '@/lib/calculators/scientific';
 import type { AngleUnit, EngineMode } from '@/lib/calculators/scientific';
@@ -432,17 +431,6 @@ export default function ScientificCalculatorPage() {
         </div>
       </div>
 
-      {/* Affiliate Banner */}
-      <AffiliateBanner
-        icon={Mail}
-        headline="Advanced Scientific Computing"
-        subtext="Use calculox for precise mathematical calculations with professional accuracy"
-        note="Perfect for engineers, scientists, and students"
-        gradient="from-indigo-500 to-purple-600"
-        links={[
-          { label: 'Learn More →', href: '#', primary: true },
-        ]}
-      />
 
       {/* FAQ */}
       <div className="max-w-3xl mx-auto card">

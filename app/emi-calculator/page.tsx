@@ -5,11 +5,10 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Home, BarChart2, Briefcase, Rocket, Target, Coins, BookOpen, Lightbulb, Trash2, AlertTriangle, Landmark, HelpCircle } from 'lucide-react';
+import { Home, BarChart2, Briefcase, Rocket, Target, Coins, BookOpen, Lightbulb, Trash2, AlertTriangle, HelpCircle } from 'lucide-react';
 import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/emi';
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
-import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
@@ -724,18 +723,6 @@ export default function EMICalculatorPage() {
       {/* Related Calculators */}
       <RelatedCalculators calculators={getInternalLinks('emi-calculator')} />
 
-      {/* Affiliate Banner */}
-      <AffiliateBanner
-        icon={Landmark}
-        headline="Get the Lowest Loan Rate for Your EMI"
-        subtext="Compare home loan, car loan & personal loan rates from 20+ banks instantly."
-        note="Free comparison · No credit score impact · Instant eligibility check"
-        gradient="from-blue-600 to-blue-800"
-        links={[
-          { label: 'Compare Loan Rates →', href: 'https://www.bankbazaar.com/home-loan.html', primary: true },
-          { label: 'Check Eligibility', href: 'https://www.paisabazaar.com/home-loan/' },
-        ]}
-      />
 
       {/* FAQ Section */}
       <div className="card">

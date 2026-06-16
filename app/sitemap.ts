@@ -1,8 +1,8 @@
-import { MetadataRoute } from 'next';
+﻿import { MetadataRoute } from 'next';
 import { getActiveCalculators } from '@/config/calculators.config';
 import { blogPosts } from '@/lib/blog/posts';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
 // Last date any calculator page was meaningfully updated (Lucide icon pass, widget, mobile fixes).
 // Update this when you ship a major content or UI change to calculator pages.

@@ -9,7 +9,6 @@ import { ComprehensiveTaxSchema } from '@/lib/validators';
 import { calculateComprehensiveTax } from '@/lib/tax-engine/calculator';
 import { ComprehensiveTaxInput, ComprehensiveTaxResult } from '@/lib/tax-engine/types';
 import { formatCurrency } from '@/lib/utils/format';
-import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
@@ -1101,18 +1100,6 @@ export default function TaxCalculator() {
               {/* Related Calculators */}
               <RelatedCalculators calculators={getInternalLinks('tax-calculator')} />
 
-              {/* Affiliate Banner */}
-              <AffiliateBanner
-                icon={Calculator}
-                headline="File Your ITR Correctly"
-                subtext="Use ClearTax for accurate ITR filing with expert guidance"
-                note="Get personalized tax saving tips tailored to your income"
-                links={[
-                  { label: 'File ITR with ClearTax', href: 'https://cleartax.in' },
-                  { label: 'ITR Filing Guide', href: 'https://cleartax.in/s/itr-filing' },
-                ]}
-                gradient="from-orange-300 to-orange-600"
-              />
             </div>
           )}
         </div>

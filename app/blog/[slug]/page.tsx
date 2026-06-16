@@ -84,7 +84,7 @@ function renderContent(text: string): ReactNode {
   return <p className={pClass}>{text}</p>;
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));

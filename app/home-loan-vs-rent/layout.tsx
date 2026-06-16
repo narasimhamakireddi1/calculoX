@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import {
   generateWebApplicationSchema,
@@ -7,7 +7,7 @@ import {
 } from '@/lib/seo/schemas';
 import { CalcPageWrapper } from '@/components/layout/CalcPageWrapper';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
 export const metadata: Metadata = {
   title: 'Buy vs Rent Calculator India - Compare Home Loan vs Renting | calculox',

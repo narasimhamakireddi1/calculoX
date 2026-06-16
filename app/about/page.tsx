@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
@@ -17,7 +17,7 @@ const categoryColors: Record<string, { iconBg: string; iconColor: string; hoverB
   Conversion: { iconBg: 'bg-teal-50 dark:bg-teal-950/40 ring-1 ring-teal-100 dark:ring-teal-900/60',   iconColor: 'text-teal-600 dark:text-teal-400',   hoverBorder: 'hover:border-teal-300 dark:hover:border-teal-600/70',   hoverText: 'group-hover:text-teal-600 dark:group-hover:text-teal-400' },
 };
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculo-j0blqmgpy-narasimha-project135.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
 export const metadata: Metadata = {
   title: 'About calculox - Free Online Calculators for India',

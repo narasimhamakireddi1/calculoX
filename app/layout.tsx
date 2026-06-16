@@ -19,7 +19,7 @@ import {
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://calculo-j0blqmgpy-narasimha-project135.vercel.app";
+  "https://www.calculox.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -147,7 +147,7 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "",
   },
   other: {
-    "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "",
+    "google-adsense-account": "ca-pub-7034746357427731",
   },
 };
 

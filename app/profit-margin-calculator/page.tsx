@@ -16,9 +16,8 @@ import {
 import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
-import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { ShoppingBag, Diamond, Package, CheckCircle2, XCircle, Smartphone, Trash2, IndianRupee, BarChart2, Tag, Target, TrendingUp, Percent, Receipt, AlertTriangle, BookOpen, Lightbulb, HelpCircle } from 'lucide-react';
+import { ShoppingBag, Diamond, Package, CheckCircle2, XCircle, Trash2, IndianRupee, BarChart2, Tag, Target, TrendingUp, Percent, Receipt, AlertTriangle, BookOpen, Lightbulb, HelpCircle } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import {
   ProfitMarginGstEngine,
@@ -910,18 +909,6 @@ export default function ProfitMarginCalculator() {
         {/* Related Calculators */}
         <RelatedCalculators calculators={getInternalLinks('profit-margin-calculator')} />
 
-        {/* Affiliate Banner */}
-        <AffiliateBanner
-          icon={Smartphone}
-          headline="Need Pricing & Billing Software?"
-          subtext="Manage dynamic pricing, GST invoicing, and profit tracking for your e-commerce business"
-          note="Integrated pricing engine for accurate margin calculation and tax compliance"
-          gradient="from-purple-600 to-pink-600"
-          links={[
-            { label: 'Try Billin (Free)', href: 'https://billin.in' },
-            { label: 'Zoho Invoice', href: 'https://www.zoho.com/invoice/' },
-          ]}
-        />
       </div>
     </div>
   );

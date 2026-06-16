@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Shield, Rocket, Target, TrendingUp, BarChart2, Coins, BookOpen, Lightbulb, Trash2, RefreshCw, Repeat, HelpCircle } from 'lucide-react';
+import { Shield, Rocket, Target, TrendingUp, BarChart2, Coins, BookOpen, Lightbulb, Trash2, RefreshCw, HelpCircle } from 'lucide-react';
 
 const ProjectionTable = lazy(() => import('@/components/sip/ProjectionTable').then(m => ({ default: m.default })));
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
@@ -14,7 +14,6 @@ import { MemoizedPieChart } from '@/components/charts/MemoizedPieChart';
 import { calculateSIP } from '@/lib/calculators/sip';
 import { SIPSchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
-import { AffiliateBanner } from '@/components/ui/AffiliateBanner';
 import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
@@ -267,7 +266,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.monthlyInvestment === 0 ? "" : watchValues.monthlyInvestment}
                   onChange={(e) => handleInputChange('monthlyInvestment', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyInvestment', Number(e.target.value))}
-                  className="w-full md:w-28 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full md:w-36 px-3 py-3 border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
                 />
               </div>
               {errors.monthlyInvestment && (
@@ -743,18 +742,6 @@ export default function SIPCalculatorPage() {
       {/* Related Calculators */}
       <RelatedCalculators calculators={getInternalLinks('sip-calculator')} />
 
-      {/* Affiliate Banner */}
-      <AffiliateBanner
-        icon={Repeat}
-        headline="Ready to Start Your SIP Investment?"
-        subtext="Open a free demat account and start SIP from ₹500/month in top mutual funds."
-        note="Free account · ₹0 AMC · 5-minute setup · 1 Crore+ investors"
-        gradient="bg-gradient-to-r from-green-600 to-emerald-700"
-        links={[
-          { label: 'Start SIP on Groww →', href: 'https://groww.in', primary: true },
-          { label: 'Open Zerodha Account', href: 'https://zerodha.com' },
-        ]}
-      />
 
       {/* FAQ Section */}
       <div className="card">
