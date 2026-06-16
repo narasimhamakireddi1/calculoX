@@ -69,7 +69,13 @@
       "PowerShell(\\(Get-Content 'c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\\\\lib\\\\blog\\\\posts.ts' -Raw -Encoding UTF8\\) -replace 'â€\"', '–' | Set-Content 'c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\\\\lib\\\\blog\\\\posts.ts' -Encoding UTF8 -NoNewline)",
       "Bash(python3 -c ' *)",
       "Bash(git diff *)",
-      "Bash(node scripts/generate-favicon-ico.mjs)"
+      "Bash(node scripts/generate-favicon-ico.mjs)",
+      "Bash(git -C \"c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\" diff components/retirement/ProjectionTable.tsx)",
+      "Bash(git -C \"c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\" add components/retirement/ProjectionTable.tsx)",
+      "Bash(git -C 'c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc' commit -m ' *)",
+      "Bash(git -C \"c:\\\\Users\\\\trish\\\\Downloads\\\\calculator\\\\calc\" push origin main)",
+      "Bash(powershell -Command \"\\(Get-Content lib/blog/posts.ts\\) -replace \\\\\"author: 'Calculox Editorial Team'\\\\\", \\\\\"author: 'Narasimha Makireddi'\\\\\" | Set-Content lib/blog/posts.ts -Encoding utf8\")",
+      "Bash(powershell -Command \"\\(Get-Content lib/blog/posts.ts\\) -replace \\\\\"authorCredentials: 'Free financial calculator tools for Indian users \\\\| calculox.in'\\\\\", \\\\\"authorCredentials: 'Software Developer \\\\xb7 Creator of calculox.in \\\\xb7 Formulas verified per RBI, Finance Act 2025-26 \\\\& SEBI'\\\\\" | Set-Content lib/blog/posts.ts -Encoding utf8\")"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\Downloads\\calculator\\calc"

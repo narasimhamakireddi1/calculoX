@@ -13,7 +13,7 @@ export const SIPSchema = z.object({
 });
 
 export const EMISchema = z.object({
-  principal: z.number().positive('Must be greater than 0'),
+  principal: z.number().positive('Must be greater than 0').max(15000000, 'Loan amount cannot exceed ₹1.5 Crore'),
   annualRate: z.number().min(0).max(50),
   years: z.number().int().min(1).max(50),
 });

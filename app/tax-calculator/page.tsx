@@ -13,7 +13,7 @@ import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
 import { ShareButtons } from '@/components/ui/ShareButtons';
 import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
 import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
-import { Briefcase, UserRound, Calculator, IndianRupee, Home, Landmark, BarChart2, Trash2, BookOpen, Lightbulb, TrendingUp, Search, HelpCircle, Clock, Coins, CheckCircle2, PieChart, Sparkles } from 'lucide-react';
+import { Briefcase, UserRound, IndianRupee, Home, Landmark, BarChart2, Trash2, BookOpen, Lightbulb, TrendingUp, Search, HelpCircle, Clock, Coins, CheckCircle2, PieChart, Sparkles } from 'lucide-react';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
 

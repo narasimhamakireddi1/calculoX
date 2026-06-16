@@ -169,6 +169,7 @@ const LoanInput = memo(({
   sliderMax,
   step,
   error,
+  warning,
   rangeText,
   colorFrom,
   colorTo,
@@ -186,6 +187,7 @@ const LoanInput = memo(({
   sliderMax?: number;
   step: number | string;
   error: any;
+  warning?: string;
   rangeText: string;
   colorFrom: string;
   colorTo: string;
@@ -238,6 +240,12 @@ const LoanInput = memo(({
       </div>
 
       {error && <p className="text-red-500 text-sm">{error.message}</p>}
+      {warning && (
+        <p className="text-amber-600 dark:text-amber-400 text-sm flex items-center gap-1">
+          <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+          {warning}
+        </p>
+      )}
 
       {/* Quick Preset Buttons */}
       {presets && presets.length > 0 && (
@@ -270,11 +278,14 @@ const LoanInput = memo(({
 
 LoanInput.displayName = 'LoanInput';
 
+const PRINCIPAL_MAX = 15000000;
+
 export default function EMICalculatorPage() {
   const [result, setResult] = useState<EMIResultData | null>(null);
   const [schedule, setSchedule] = useState<AmortizationRow[]>([]);
   const [scheduleFirstTwelve, setScheduleFirstTwelve] = useState<AmortizationRow[]>([]);
   const [showFullSchedule, setShowFullSchedule] = useState(false);
+  const [principalWarning, setPrincipalWarning] = useState('');
 
   const defaultValues = {
     principal: 1000000,
@@ -312,7 +323,7 @@ export default function EMICalculatorPage() {
 
   const fieldRanges = useMemo(
     () => ({
-      principal: { min: 10000, max: 100000000, label: 'Loan Amount (₹)' },
+      principal: { min: 10000, max: PRINCIPAL_MAX, label: 'Loan Amount (₹)' },
       annualRate: { min: 0, max: 50, label: 'Annual Rate (%)' },
       years: { min: 1, max: 50, label: 'Years' },
     }),
@@ -324,23 +335,38 @@ export default function EMICalculatorPage() {
     setValue(fieldName, value, { shouldValidate: true });
   }, [setValue]);
 
+  const handlePrincipalChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value === '' ? 0 : Number(e.target.value);
+    if (raw > PRINCIPAL_MAX) {
+      setValue('principal', PRINCIPAL_MAX, { shouldValidate: true });
+      setPrincipalWarning('Maximum loan amount is ₹1.5 Crore. Value set to ₹1,50,00,000.');
+    } else {
+      setValue('principal', raw, { shouldValidate: true });
+      setPrincipalWarning('');
+    }
+  }, [setValue]);
+
   const handleValidateField = useCallback((fieldName: string, value: number) => {
     const range = fieldRanges[fieldName as keyof typeof fieldRanges];
-    if (range && (value < range.min || value > range.max)) {
-      alert(`${range.label} must be between ${range.min} and ${range.max}`);
+    if (!range) return;
+    if (value > range.max) {
+      setValue(fieldName as keyof EMIFormData, range.max, { shouldValidate: true });
+    } else if (value < range.min && value > 0) {
+      setValue(fieldName as keyof EMIFormData, range.min, { shouldValidate: true });
     }
-  }, [fieldRanges]);
+  }, [fieldRanges, setValue]);
 
   const haptic = useHapticFeedback();
 
   const handleReset = useCallback(() => {
     haptic.trigger('warning');
+    setPrincipalWarning('');
     reset();
     setResult(null);
     setSchedule([]);
     setScheduleFirstTwelve([]);
     setShowFullSchedule(false);
-  }, [reset, haptic]);
+  }, [reset, haptic, setPrincipalWarning]);
 
   const handleToggleSchedule = useCallback(() => {
     setShowFullSchedule(prev => !prev);
@@ -443,19 +469,19 @@ export default function EMICalculatorPage() {
                 id="principal"
                 label="Loan Amount (₹)"
                 value={watchValues.principal ?? 0}
-                onChange={(e) => handleInputChange('principal', Number(e.target.value))}
+                onChange={handlePrincipalChange}
                 onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
                 min={10000}
-                max={100000000}
-                sliderMax={10000000}
+                max={15000000}
                 step={10000}
                 error={errors.principal}
-                rangeText="₹10,000 - ₹1 Crore (type to enter more)"
+                warning={principalWarning}
+                rangeText="₹10,000 - ₹1.5 Crore"
                 colorFrom="from-blue-300"
                 colorTo="to-blue-600"
-                presets={[2000000, 5000000, 8000000, 10000000]}
-                presetLabels={['₹20L', '₹50L', '₹80L', '₹1Cr']}
-                helperText="💡 Typical home loan range: ₹10L – ₹1Cr depending on property value and down payment"
+                presets={[2000000, 5000000, 10000000, 15000000]}
+                presetLabels={['₹20L', '₹50L', '₹1Cr', '₹1.5Cr']}
+                helperText="💡 Typical home loan range: ₹10L – ₹1.5Cr depending on property value and down payment"
               />
             </div>
 
