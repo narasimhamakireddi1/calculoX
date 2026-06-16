@@ -618,10 +618,9 @@ button:disabled {
   @apply text-gray-600 dark:text-gray-400;
 }
 
-/* Text gradient - real gradient on the text; icons inside the h1 use explicit color classes that override the inherited transparent */
+/* Calculator heading title — solid high-contrast color, readable on any background */
 .text-gradient {
-  @apply bg-gradient-to-r from-blue-700 to-indigo-600 bg-clip-text text-transparent
-         dark:from-white dark:to-blue-300;
+  @apply text-gray-900 dark:text-white;
 }
 
 .text-gradient-success {

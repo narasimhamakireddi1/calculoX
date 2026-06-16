@@ -188,8 +188,8 @@ export default function HomeLoanVsRentCalculator() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-2 inline-flex items-center gap-3">
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-950/40 ring-2 ring-blue-300 dark:ring-blue-700/60 shadow-sm flex-shrink-0">
-              <CalculatorIcon idOrHref="home-loan-vs-rent" className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+            <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+              <CalculatorIcon idOrHref="home-loan-vs-rent" className="w-7 h-7 text-white" />
             </span>
             <span>Home Loan vs Rent</span>
           </h1>

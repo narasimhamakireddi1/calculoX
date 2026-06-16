@@ -209,8 +209,8 @@ export default function ScientificCalculatorPage() {
       {/* Page header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-violet-100 dark:bg-violet-950/40 ring-2 ring-violet-300 dark:ring-violet-700/60 shadow-sm flex-shrink-0">
-            <CalculatorIcon idOrHref="scientific" className="w-6 h-6 text-violet-600 dark:text-violet-400" />
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg flex-shrink-0">
+            <CalculatorIcon idOrHref="scientific" className="w-6 h-6 text-white" />
           </span>
           <span>Scientific Calculator</span>
         </h1>

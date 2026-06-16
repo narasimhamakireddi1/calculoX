@@ -204,8 +204,8 @@ export default function BMICalculatorPage() {
     <div className="space-y-8 py-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-950/40 ring-2 ring-rose-300 dark:ring-rose-700/60 shadow-sm flex-shrink-0">
-            <CalculatorIcon idOrHref="bmi" className="w-6 h-6 text-rose-600 dark:text-rose-400" />
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg flex-shrink-0">
+            <CalculatorIcon idOrHref="bmi" className="w-6 h-6 text-white" />
           </span>
           <span>BMI Calculator</span>
         </h1>
