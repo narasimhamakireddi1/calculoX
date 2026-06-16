@@ -1,10 +1,32 @@
 ﻿# 🧮 calculox
 
-**Status:** 🟡 AdSense Re-review Pending | Full policy compliance pass completed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
-**Last Updated:** 2026-06-16 (AdSense policy compliance: cookie consent, blog schema, read times, FAQ expansion, keyword cleanup) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
-**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** All policy violations fixed — deploy & request re-review
+**Status:** 🟡 AdSense Re-review Pending | Fabricated stats removed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
+**Last Updated:** 2026-06-16 (AdSense fix #1: removed 6 fabricated platform-stats blocks from blog posts, replaced with RBI/SEBI/WHO/ICMR sourced guidance) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 75 static pages, 0 TypeScript errors
+**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #1 complete — deploy & request re-review
 
-## ✅ Latest (2026-06-16 - AdSense Full Policy Compliance Pass)
+## ✅ Latest (2026-06-16 - AdSense Fix #1: Remove Fabricated Platform Statistics)
+- 🔬 **6 fabricated "Our Platform Insights/Research" blocks removed from `lib/blog/posts.ts`** ✅
+  - **Why:** Previous agent injected fake percentage statistics ("73% choose longer tenure", "52% miss refinancing", "89% success rate", "100,000+ calculations") presented as real platform data. Google's Unreliable Claims and Misrepresentation policies prohibit unverifiable statistics. These blocks persisted in blog content even after the ConfidenceBadge cleanup.
+  - **Posts fixed:** EMI guide, SIP guide, New vs Old Tax Regime, BMI for Indians, What is CAGR, FD Calculator guide
+  - **What was removed per post:**
+    - **EMI:** *"Analyzing 50,000+ EMI calculations revealed: (1) 73% choose longer tenure... (2) 52% miss refinancing..."*
+    - **SIP:** *"100,000+ SIP investors showed 89% success for 10+ year uninterrupted SIPs. 82% used step-up SIP..."*
+    - **Tax:** *"Analyzing 200,000+ tax calculations showed: (1) 67% of salaried employees... (2) Only 23% actively switch..."*
+    - **BMI:** *"Analyzing 50,000+ BMI journeys: (1) 73% who focus on losing weight fail... (2) 58% become skinny fat..."*
+    - **CAGR:** *"75,000+ investment comparisons: (1) 64% choose based on 5-year CAGR... (2) Only 18% look at 20-year..."*
+    - **FD:** *"Analyzing 100,000+ FD investments: (1) 76% choose single bank... (2) 81% don't optimize tenure..."*
+  - **What replaced them:** Factual sourced statements citing RBI lending guidelines, AMFI/SEBI regulations, Finance Act 2025-26 / CBDT guidance, WHO/ICMR weight management evidence, SEBI mutual fund disclosure rules, and RBI/DICGC deposit protection rules
+  - **Pro Tips sections preserved** — the genuine actionable advice that followed each fake block was kept intact
+  - **File:** `lib/blog/posts.ts`
+- **Remaining AdSense audit items (fix in separate PRs):**
+  - Fix #2: Label fictional case studies (Priya/Rajesh/Anita) as "Illustrative Example" not "Case Study"
+  - Fix #3: Delete 21 `app/examples/*/page.tsx` doorway pages
+  - Fix #4: Update `app/layout.tsx` authors from "calculox Team" → "Narasimha Makireddi"
+  - Fix #5: Verify `NEXT_PUBLIC_GOOGLE_VERIFICATION` env var is set in Vercel
+  - Fix #6: Update Privacy Policy date to 2026-06-16 and add AdSense cookie detail
+  - Fix #7: Restructure 8+ blog posts to genuinely different formats (add images)
+
+## ✅ Previous (2026-06-16 - AdSense Full Policy Compliance Pass)
 - 🍪 **Cookie consent banner added** ✅
   - New `components/ui/CookieConsent.tsx` — persistent bottom bar explaining cookie & AdSense usage, links to Privacy Policy, stores acceptance in `localStorage`
   - Wired into `app/layout.tsx` (renders above SpeedInsights/Analytics)
