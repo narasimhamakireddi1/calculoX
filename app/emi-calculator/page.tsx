@@ -440,12 +440,12 @@ export default function EMICalculatorPage() {
     <div className="space-y-8 py-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-gradient inline-flex items-center gap-3">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-200 dark:ring-blue-800/40 flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950/40 ring-2 ring-blue-300 dark:ring-blue-700/60 shadow-sm flex-shrink-0">
             <CalculatorIcon idOrHref="emi" className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           </span>
           <span>EMI Calculator</span>
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
+        <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg">
           Calculate your Equated Monthly Installment (EMI) for loans. View total interest, amortization schedule, and repayment breakdown.
         </p>
       </div>

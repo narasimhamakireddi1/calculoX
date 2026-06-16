@@ -5,11 +5,11 @@ type Category = 'Finance' | 'Health' | 'Utility';
 // Full class strings must be static so Tailwind JIT picks them up at build time.
 const gradients: Record<Category, string> = {
   Finance:
-    'from-blue-100/60 via-blue-50/30 to-transparent dark:from-blue-500/[0.10] dark:via-blue-950/[0.05] dark:to-transparent',
+    'from-blue-200/75 via-blue-100/40 to-transparent dark:from-blue-500/[0.10] dark:via-blue-950/[0.05] dark:to-transparent',
   Health:
-    'from-rose-100/60 via-rose-50/30 to-transparent dark:from-rose-500/[0.10] dark:via-rose-950/[0.05] dark:to-transparent',
+    'from-rose-200/75 via-rose-100/40 to-transparent dark:from-rose-500/[0.10] dark:via-rose-950/[0.05] dark:to-transparent',
   Utility:
-    'from-violet-100/60 via-violet-50/30 to-transparent dark:from-violet-500/[0.10] dark:via-violet-950/[0.05] dark:to-transparent',
+    'from-violet-200/75 via-violet-100/40 to-transparent dark:from-violet-500/[0.10] dark:via-violet-950/[0.05] dark:to-transparent',
 };
 
 interface CalcPageWrapperProps {

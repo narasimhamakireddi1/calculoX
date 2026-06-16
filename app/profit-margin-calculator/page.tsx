@@ -173,12 +173,12 @@ export default function ProfitMarginCalculator() {
       {/* Header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gradient mb-2 inline-flex items-center gap-3">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-200 dark:ring-blue-800/40 flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950/40 ring-2 ring-blue-300 dark:ring-blue-700/60 shadow-sm flex-shrink-0">
             <CalculatorIcon idOrHref="profit-margin" className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           </span>
           <span>Profit Margin & Markup Calculator</span>
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-700 dark:text-gray-300">
           Production-grade pricing calculator for Indian retail & e-commerce with GST integration
         </p>
       </div>
