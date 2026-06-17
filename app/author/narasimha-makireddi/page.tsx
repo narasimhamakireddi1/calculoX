@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import Link from 'next/link';
 import {
   Code2, Mail, ExternalLink, CheckCircle2,
@@ -84,8 +83,7 @@ const sources = [
 export default function AuthorPage() {
   return (
     <>
-      <Script
-        id="schema-author"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(authorSchema) }}
       />
