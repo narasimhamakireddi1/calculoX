@@ -94,6 +94,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getBlogPostBySlug(slug);
   if (!post) return { title: 'Post Not Found' };
 
+  const ogImage = post.image ? `${BASE_URL}${post.image}` : `${BASE_URL}/og-image.png`;
+
   return {
     title: post.title,
     description: post.description,
@@ -106,13 +108,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
-      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: post.title }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: ['/og-image.png'],
+      images: [ogImage],
     },
   };
 }
