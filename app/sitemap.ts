@@ -4,9 +4,9 @@ import { blogPosts } from '@/lib/blog/posts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
-// Last date any calculator page was meaningfully updated (Lucide icon pass, widget, mobile fixes).
+// Last date any calculator page was meaningfully updated.
 // Update this when you ship a major content or UI change to calculator pages.
-const CALC_LAST_MODIFIED = new Date('2026-06-12');
+const CALC_LAST_MODIFIED = new Date('2026-06-17');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const calculators = getActiveCalculators();
@@ -42,26 +42,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...blogUrls,
     {
+      url: `${BASE_URL}/compare`,
+      lastModified: new Date('2026-06-17'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/author/narasimha-makireddi`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
       url: `${BASE_URL}/about`,
-      lastModified: new Date('2026-06-01'),
+      lastModified: new Date('2026-06-16'),
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
       url: `${BASE_URL}/contact`,
-      lastModified: new Date('2026-06-01'),
+      lastModified: new Date('2026-06-16'),
       changeFrequency: 'monthly',
       priority: 0.4,
     },
     {
       url: `${BASE_URL}/privacy-policy`,
-      lastModified: new Date('2026-05-01'),
+      lastModified: new Date('2026-06-16'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${BASE_URL}/terms-of-service`,
-      lastModified: new Date('2026-05-01'),
+      lastModified: new Date('2026-06-16'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },

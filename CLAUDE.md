@@ -1,10 +1,19 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟡 AdSense Re-review Pending | Thin content + doorway pages fixed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
-**Last Updated:** 2026-06-17 (Fix #10: SVG hero images now rendered in all 25 blog posts; AdSense loads after cookie consent) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
-**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #3 + Fix #8 + Fix #10 complete — deploy & request re-review
+**Last Updated:** 2026-06-17 (Fix #11: GA4 now consent-gated — no tracking before cookie acceptance) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
+**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #3 + Fix #8 + Fix #10 + Fix #11 complete — deploy & request re-review
 
-## ✅ Latest (2026-06-17 - Fix #10: Blog Hero Images + AdSense Consent-Aware Loading)
+## ✅ Latest (2026-06-17 - Fix #11: GA4 Consent-Gated Loading)
+- 📊 **Google Analytics 4 now loads only after cookie consent accepted** ✅
+  - **Problem:** GA4 script (`gtag/js?id=G-GFN66QLNZP`) loaded unconditionally on every page via two hardcoded `<Script>` tags in `app/layout.tsx` — violating GDPR and inconsistent with the AdSense loader and the cookie banner's own claim that tracking is consent-based.
+  - **New file:** `components/ui/GoogleAnalyticsLoader.tsx` — `'use client'` component using the exact same pattern as `AdSenseLoader.tsx`: checks `localStorage.cookie_consent === 'accepted'` on mount, listens for the `cookie_consent_update` event, and only renders the GA4 `<Script>` tags when consent is granted.
+  - **`app/layout.tsx`:** Removed the two unconditional GA4 `<Script>` blocks from `<head>`; added `<GoogleAnalyticsLoader />` import and render in `<body>` alongside `<AdSenseLoader />`.
+  - **`app/sitemap.ts`:** Updated `CALC_LAST_MODIFIED` to `2026-06-17`; added missing `/compare` and `/author/narasimha-makireddi` entries; updated `lastModified` dates for about/contact/privacy-policy/terms-of-service to `2026-06-16`.
+  - **Why:** GDPR requires no third-party tracking before explicit consent. GA4 is a tracking script. AdSense was already consent-gated (Fix #10) but GA4 was missed, creating an inconsistency flaggable by regulators and AdSense reviewers.
+  - **Build:** ✅ 54 static pages, 0 TypeScript errors
+
+## ✅ Previous (2026-06-17 - Fix #10: Blog Hero Images + AdSense Consent-Aware Loading)
 - 🖼️ **SVG hero images now rendered in every blog post** ✅
   - **Problem:** 25 SVG files existed in `/public/blog/` but zero were rendered in the article body — AdSense reviewers see text-only articles with no visual support, a primary "low value content" signal.
   - **Template fix (`app/blog/[slug]/page.tsx`):** Added `{post.image && <img>}` block between the author byline and the disclaimer. Renders full-width, `loading="eager"`, only when the field is present.

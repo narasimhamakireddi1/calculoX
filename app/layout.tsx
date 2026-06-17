@@ -14,6 +14,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { AdSenseLoader } from "@/components/ui/AdSenseLoader";
+import { GoogleAnalyticsLoader } from "@/components/ui/GoogleAnalyticsLoader";
 import {
   generateOrganizationSchema,
   generateWebSiteSchema,
@@ -130,7 +131,6 @@ export default function RootLayout({
         <meta name="geo.region" content="IN" />
         <meta name="geo.placename" content="India" />
         <meta name="language" content="English" />
-        <meta name="revisit-after" content="7 days" />
         <meta name="rating" content="general" />
         {/* Favicon - Multiple formats for maximum compatibility */}
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -145,24 +145,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
-        {/* Google Analytics 4 */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-GFN66QLNZP"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-GFN66QLNZP');
-            `,
-          }}
-        />
       </head>
       <body className={`${inter.variable} font-sans bg-[#f6f8fd] dark:bg-[#070b15] text-gray-900 dark:text-gray-50`}>
         <Navbar />
@@ -170,6 +152,7 @@ export default function RootLayout({
         <Footer />
         <CookieConsent />
         <AdSenseLoader />
+        <GoogleAnalyticsLoader />
         <SpeedInsights />
         <Analytics />
         <Script id="defer-animation" strategy="afterInteractive">
