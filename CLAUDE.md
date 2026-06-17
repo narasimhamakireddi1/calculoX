@@ -1,10 +1,26 @@
 ﻿# 🧮 calculox
 
-**Status:** 🟡 AdSense Re-review Pending | Thin content + doorway pages fixed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
-**Last Updated:** 2026-06-17 (Fix #11: GA4 now consent-gated — no tracking before cookie acceptance) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
-**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #3 + Fix #8 + Fix #10 + Fix #11 complete — deploy & request re-review
+**Status:** 🟡 AdSense Re-review Pending | GSC indexing fixes applied 2026-06-17 | Submit sitemap in GSC → Request indexing for top 10 pages → wait 2-4 weeks → AdSense → Sites → Request Review
+**Last Updated:** 2026-06-17 (SEO: sitemap updated with missing pages + corrected dates; removed deprecated revisit-after meta tag) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
+**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #3 + Fix #8 + Fix #10 + Fix #11 + GSC fixes complete — deploy → submit sitemap → request indexing
 
-## ✅ Latest (2026-06-17 - Fix #11: GA4 Consent-Gated Loading)
+## ✅ Latest (2026-06-17 - SEO: Sitemap Completeness + Deprecated Meta Tag Removal)
+- 🗺️ **Sitemap updated with 2 missing pages + corrected lastModified dates** ✅
+  - **Added:** `/compare` (priority 0.6) and `/author/narasimha-makireddi` (priority 0.5) — real pages that were never in the sitemap
+  - **`CALC_LAST_MODIFIED`:** `2026-06-12` → `2026-06-17` (calculator layouts had static content added 2026-06-16)
+  - **Legal/About/Contact dates:** synced to `2026-06-16` to reflect actual last-update dates
+  - **Why:** Stale dates lower crawl priority; missing pages are never discovered via sitemap
+  - **File:** `app/sitemap.ts`
+- 🗑️ **Removed deprecated `revisit-after` meta tag** ✅
+  - **Removed:** `<meta name="revisit-after" content="7 days" />` from `app/layout.tsx`
+  - **Why:** Ignored by all search engines since ~2003 — pure `<head>` noise
+- **GSC action required (non-code) — only 3 pages indexed:**
+  - GSC → Sitemaps → submit `sitemap.xml` → confirm ~56 URLs discovered
+  - URL Inspection → Request Indexing for: `/`, `/emi-calculator`, `/sip-calculator`, `/tax-calculator`, `/bmi-calculator`, `/blog`, two blog posts, `/about`, `/author/narasimha-makireddi`
+  - Check Coverage report tab to see reason (Discovered vs Crawled — currently not indexed)
+  - Timeline: manually requested pages index in 1–3 days; rest follow via internal links over 2–4 weeks
+
+## ✅ Previous (2026-06-17 - Fix #11: GA4 Consent-Gated Loading)
 - 📊 **Google Analytics 4 now loads only after cookie consent accepted** ✅
   - **Problem:** GA4 script (`gtag/js?id=G-GFN66QLNZP`) loaded unconditionally on every page via two hardcoded `<Script>` tags in `app/layout.tsx` — violating GDPR and inconsistent with the AdSense loader and the cookie banner's own claim that tracking is consent-based.
   - **New file:** `components/ui/GoogleAnalyticsLoader.tsx` — `'use client'` component using the exact same pattern as `AdSenseLoader.tsx`: checks `localStorage.cookie_consent === 'accepted'` on mount, listens for the `cookie_consent_update` event, and only renders the GA4 `<Script>` tags when consent is granted.
