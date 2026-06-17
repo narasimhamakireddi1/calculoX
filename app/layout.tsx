@@ -13,6 +13,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { AdSenseLoader } from "@/components/ui/AdSenseLoader";
 import {
   generateOrganizationSchema,
   generateWebSiteSchema,
@@ -144,13 +145,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
-        {/* Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7034746357427731"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
         {/* Google Analytics 4 */}
         <Script
           async
@@ -175,6 +169,7 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
         <Footer />
         <CookieConsent />
+        <AdSenseLoader />
         <SpeedInsights />
         <Analytics />
         <Script id="defer-animation" strategy="afterInteractive">

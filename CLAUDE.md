@@ -1,10 +1,50 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟡 AdSense Re-review Pending | Thin content + doorway pages fixed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
-**Last Updated:** 2026-06-17 (Fix #9: updated stale 2024 year labels in blog post titles to 2025-26/2026) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
-**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #3 + Fix #8 complete — deploy & request re-review
+**Last Updated:** 2026-06-17 (Fix #10: SVG hero images now rendered in all 25 blog posts; AdSense loads after cookie consent) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
+**Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #3 + Fix #8 + Fix #10 complete — deploy & request re-review
 
-## ✅ Latest (2026-06-17 - Fix #9: Update Stale 2024 Year Labels in Blog Titles)
+## ✅ Latest (2026-06-17 - Fix #10: Blog Hero Images + AdSense Consent-Aware Loading)
+- 🖼️ **SVG hero images now rendered in every blog post** ✅
+  - **Problem:** 25 SVG files existed in `/public/blog/` but zero were rendered in the article body — AdSense reviewers see text-only articles with no visual support, a primary "low value content" signal.
+  - **Template fix (`app/blog/[slug]/page.tsx`):** Added `{post.image && <img>}` block between the author byline and the disclaimer. Renders full-width, `loading="eager"`, only when the field is present.
+  - **Data fix (`lib/blog/posts.ts`):** Added `image: '/blog/xxx.svg'` to all 25 posts — each gets its semantically matched SVG:
+    | Post | Image |
+    |---|---|
+    | EMI guide | `emi-formula.svg` |
+    | SIP guide | `sip-formula.svg` |
+    | New vs Old Tax Regime | `tax-regime-comparison.svg` |
+    | BMI for Indians | `bmi-formula.svg` |
+    | CAGR | `cagr-formula.svg` |
+    | FD guide | `fd-formula.svg` |
+    | RD guide | `rd-formula.svg` |
+    | GST guide | `gst-breakdown.svg` |
+    | Percentage guide | `percentage-formula.svg` |
+    | Simple Interest | `simple-interest-formula.svg` |
+    | Home Loan EMI | `home-loan-emi.svg` |
+    | SIP vs Lump Sum | `sip-vs-lumpsum.svg` |
+    | Income Tax India | `income-tax-india.svg` |
+    | Tax Regime Comparison | `tax-regime-comparison.svg` |
+    | Profit Margin by Industry | `profit-margin-industry.svg` |
+    | Investment Planning | `investment-planning.svg` |
+    | Tax Saving Strategies | `tax-saving-strategies.svg` |
+    | Retirement Corpus | `retirement-corpus.svg` |
+    | Emergency Fund | `emergency-fund.svg` |
+    | Home Loan vs Rent | `buy-vs-rent.svg` |
+    | Business vs Personal Loan | `loan-comparison.svg` |
+    | Financial Literacy | `financial-literacy.svg` |
+    | Investment Options | `investment-options.svg` |
+    | Mutual Fund Checklist | `mutual-fund-checklist.svg` |
+    | Wealth Building | `wealth-building.svg` |
+  - **Build:** ✅ 54 static pages, 0 TypeScript errors
+- 🍪 **AdSense loads only after cookie consent accepted** ✅
+  - **New file:** `components/ui/AdSenseLoader.tsx` — `'use client'` component that listens for `cookie_consent_update` event and dynamically injects the AdSense `<script>` tag only when `localStorage.cookie_consent === 'accepted'`
+  - **`CookieConsent.tsx` updated:** Accept now dispatches `cookie_consent_update` event; Decline button added; consent value changed from `'1'` to `'accepted'`/`'declined'` for clarity
+  - **`app/layout.tsx`:** Removed inline `<Script>` AdSense tag (which loaded unconditionally); wired in `<AdSenseLoader />` instead
+  - **`app/terms-of-service/page.tsx`:** Date updated May 26 → June 16, 2026
+  - **Why:** GDPR/consent compliance — AdSense personalized ads must not load before user accepts cookies. Also removes the `pagead2.googlesyndication.com` request from the initial page load, improving LCP.
+
+## ✅ Previous (2026-06-17 - Fix #9: Update Stale 2024 Year Labels in Blog Titles)
 - 📅 **Blog post titles updated from 2024 → 2025-26/2026** ✅
   - **Why:** Titles showing "2024" on a site last updated June 2026 are a prominent quality signal to both AdSense reviewers and users that content is stale/outdated.
   - **Changes (`lib/blog/posts.ts`):**

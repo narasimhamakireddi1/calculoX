@@ -201,6 +201,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
+        {/* Hero Image */}
+        {post.image && (
+          <div className="mb-8 overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
+            <img
+              src={post.image}
+              alt={`${post.title} — formula diagram`}
+              className="w-full h-auto"
+              loading="eager"
+            />
+          </div>
+        )}
+
         {/* Disclaimer */}
         <div className="mb-10 px-4 py-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
           <strong>Not financial advice:</strong> This article is for educational purposes only. calculox provides calculation tools, not personalised advice. For decisions specific to your situation, consult a SEBI-registered advisor or Chartered Accountant.

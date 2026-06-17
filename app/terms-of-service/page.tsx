@@ -20,7 +20,7 @@ export default function TermsPage() {
       </nav>
 
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Terms of Service</h1>
-      <p className="text-gray-500 dark:text-gray-400 mb-10">Last Updated: May 26, 2026</p>
+      <p className="text-gray-500 dark:text-gray-400 mb-10">Last Updated: June 16, 2026</p>
 
       <div className="space-y-8">
         {[
