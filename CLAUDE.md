@@ -56,6 +56,11 @@
     - FD FAQ answer: `As of May 2024, FD rates 5.0-6.5%` → `As of June 2026, FD rates 5.5-7.5%`
   - **Not changed:** Historical 2024 data inside case study body text (20-year investment comparisons, FY 2024-25 as a past tax year) — those are factual historical references, not date labels.
 
+- 📋 **Terms of Service date synced to Privacy Policy date** ✅
+  - **File:** `app/terms-of-service/page.tsx` line 23
+  - **Change:** `May 26, 2026` → `June 16, 2026`
+  - **Why:** Privacy Policy was updated to June 16, 2026 when AdSense cookie disclosure was added; ToS date was not updated at the same time, creating an inconsistency on legal pages.
+
 ## ✅ Previous (2026-06-16 - AdSense Fix #3 + Fix #8: Delete Doorway Pages & Add Static Calculator Content)
 - 🗑️ **All 21 thin example doorway pages deleted** ✅
   - **What:** Removed `app/examples/` directory and all 21 subdirectories (`emi-50-lakh-home-loan`, `sip-10k-monthly-20-years`, etc.)
