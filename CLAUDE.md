@@ -1,10 +1,22 @@
 ﻿# 🧮 calculox
 
 **Status:** 🟡 AdSense Re-review Pending | Thin content + doorway pages fixed 2026-06-16 | Deploy → wait 2-4 weeks → AdSense → Sites → Request Review
-**Last Updated:** 2026-06-16 (Fix #3: deleted 21 doorway example pages; Fix #8: added 200–300 word static server-rendered content sections to all 14 calculator layout.tsx files) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
+**Last Updated:** 2026-06-17 (Fix #9: updated stale 2024 year labels in blog post titles to 2025-26/2026) | **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TypeScript errors
 **Progress:** Agent 1✅, Agent 2✅, Agent 3✅, Agent 4✅(100%), Agent 5✅(100%), Agent 6✅ | **AdSense Status:** Fix #3 + Fix #8 complete — deploy & request re-review
 
-## ✅ Latest (2026-06-16 - AdSense Fix #3 + Fix #8: Delete Doorway Pages & Add Static Calculator Content)
+## ✅ Latest (2026-06-17 - Fix #9: Update Stale 2024 Year Labels in Blog Titles)
+- 📅 **Blog post titles updated from 2024 → 2025-26/2026** ✅
+  - **Why:** Titles showing "2024" on a site last updated June 2026 are a prominent quality signal to both AdSense reviewers and users that content is stale/outdated.
+  - **Changes (`lib/blog/posts.ts`):**
+    - EMI guide title: `Complete Guide 2024` → `Complete Guide 2026`
+    - Tax Regime title: `New vs Old Tax Regime 2024-25` → `New vs Old Tax Regime 2025-26`
+    - Tax Regime description: `FY 2024-25` → `FY 2025-26`
+    - Tax Regime keyword: `new tax regime 2024-25` → `new tax regime 2025-26`
+    - FD guide title: `Interest Rates & Maturity 2024` → `Interest Rates & Maturity 2026`
+    - FD FAQ answer: `As of May 2024, FD rates 5.0-6.5%` → `As of June 2026, FD rates 5.5-7.5%`
+  - **Not changed:** Historical 2024 data inside case study body text (20-year investment comparisons, FY 2024-25 as a past tax year) — those are factual historical references, not date labels.
+
+## ✅ Previous (2026-06-16 - AdSense Fix #3 + Fix #8: Delete Doorway Pages & Add Static Calculator Content)
 - 🗑️ **All 21 thin example doorway pages deleted** ✅
   - **What:** Removed `app/examples/` directory and all 21 subdirectories (`emi-50-lakh-home-loan`, `sip-10k-monthly-20-years`, etc.)
   - **Why:** Pages were hardcoded one-result snippets with no explanatory text — classic doorway pages that violate AdSense thin content policy. Even with `noindex` they were served to crawlers and diluted overall site quality signals. Page count drops from 75 → 54 (accurate reflection of real content).

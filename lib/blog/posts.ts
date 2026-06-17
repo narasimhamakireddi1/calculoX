@@ -22,7 +22,7 @@
 export const blogPosts: BlogPost[] = [
   {
     slug: 'how-to-calculate-emi',
-    title: 'How to Calculate EMI: Formula, Steps & Complete Guide 2024',
+    title: 'How to Calculate EMI: Formula, Steps & Complete Guide 2026',
     description: 'Learn how to calculate EMI for home loan, car loan & personal loan. Understand the EMI formula, step-by-step calculation with examples, and tips to reduce your EMI.',
     date: '2026-05-01',
     author: 'Narasimha Makireddi',
@@ -98,6 +98,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Investment',
     readTime: '12 min read',
     keywords: ['SIP calculator', 'SIP return calculation', 'systematic investment plan', 'SIP explained', 'SIP investment guide', 'mutual fund SIP'],
+    image: '/blog/sip-formula.svg',
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     postType: 'comparison-first',
     comparisonTable: {
@@ -153,15 +154,16 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'new-vs-old-tax-regime',
-    title: 'New vs Old Tax Regime 2024-25: Which is Better for You?',
-    description: 'Complete comparison of New vs Old Tax Regime for FY 2024-25. Tax slabs, deductions, exemptions explained with examples. Find out which regime saves more tax for your income level.',
+    title: 'New vs Old Tax Regime 2025-26: Which is Better for You?',
+    description: 'Complete comparison of New vs Old Tax Regime for FY 2025-26. Tax slabs, deductions, exemptions explained with examples. Find out which regime saves more tax for your income level.',
     date: '2026-05-10',
     author: 'Narasimha Makireddi',
     lastUpdated: '2026-06-16',
     authorCredentials: 'Software Developer \xb7 Creator of calculox.in \xb7 Formulas verified per RBI, Finance Act 2025-26 \& SEBI',
     category: 'Tax',
     readTime: '10 min read',
-    keywords: ['new vs old tax regime', 'tax regime comparison', 'new tax regime 2024-25', 'old tax regime benefits', 'which tax regime is better', 'income tax India'],
+    keywords: ['new vs old tax regime', 'tax regime comparison', 'new tax regime 2025-26', 'old tax regime benefits', 'which tax regime is better', 'income tax India'],
+    image: '/blog/tax-regime-comparison.svg',
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     postType: 'comparison-first',
     comparisonTable: {
@@ -228,6 +230,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Health',
     readTime: '9 min read',
     keywords: ['BMI for Indians', 'healthy BMI India', 'normal BMI Indian adults', 'Asian BMI chart', 'BMI calculator India', 'overweight Indians BMI', 'weight management India', 'healthy weight for Indians'],
+    image: '/blog/bmi-formula.svg',
     relatedCalculator: { name: 'BMI Calculator', href: '/bmi-calculator' },
     postType: 'quick-answer',
     quickSummary: 'BMI = Weight (kg) ÷ Height² (m²). For Indians, the ICMR recommends a healthy range of 18.5–22.9 — stricter than the WHO global standard of 18.5–24.9. South Asians carry higher visceral fat and develop type 2 diabetes and cardiovascular disease at lower BMI values than Western populations, which is why an Indian with BMI 23.5 may need intervention even though a global chart labels them "normal".',
@@ -301,6 +304,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Investment',
     readTime: '9 min read',
     keywords: ['CAGR', 'compound annual growth rate', 'how to calculate CAGR', 'CAGR formula', 'CAGR calculator', 'investment growth rate', 'CAGR vs absolute return'],
+    image: '/blog/cagr-formula.svg',
     relatedCalculator: { name: 'CAGR Calculator', href: '/cagr-calculator' },
     postType: 'comparison-first',
     comparisonTable: {
@@ -376,7 +380,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'fd-calculator-fixed-deposit-guide',
-    title: 'Fixed Deposit (FD) Calculator Guide: Interest Rates & Maturity 2024',
+    title: 'Fixed Deposit (FD) Calculator Guide: Interest Rates & Maturity 2026',
     description: 'Complete guide to FD Calculator. Learn how fixed deposit interest is calculated, understand cumulative vs non-cumulative payouts, and see your maturity amount instantly.',
     date: '2026-05-12',
     author: 'Narasimha Makireddi',
@@ -385,6 +389,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Finance',
     readTime: '8 min read',
     keywords: ['FD calculator', 'fixed deposit calculator', 'FD interest calculator India', 'FD maturity', 'bank FD rates', 'senior citizen FD', 'FD ladder strategy', 'FD vs savings account'],
+    image: '/blog/fd-formula.svg',
     relatedCalculator: { name: 'FD Calculator', href: '/fd-calculator' },
     postType: 'quick-answer',
     keyStats: [
@@ -404,7 +409,7 @@ export const blogPosts: BlogPost[] = [
       { heading: 'FD Case Studies & Original Research Insights (Illustrative Examples)', content: 'Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 1: Meena, Bangalore (Age 45, IT Professional). Scenario: Inherited ₹50L from grandmother. Challenge: Where to park safely for 10 years until retirement? Initially planned: Single ₹50L FD for 10 years at 6.5% = ₹92.3L maturity. But realized risk: Single bank = only ₹5L DICGC covered. ₹45L uninsured. Solution: Deployed 10-bank ladder strategy. Open ₹5L FDs at 10 different banks (SBI 6.5%, HDFC 6.75%, ICICI 6.6%, Axis 6.5%, Kotak 6.8%, IndusInd 6.7%, Bandhan 6.9%, IDFC 6.6%, Federal 6.85%, HSBC 6.65%). Average rate: 6.71%. Total maturity: ₹50L × (1.06714)^10 = ₹95.7L. Benefit 1: Full DICGC insurance on all ₹50L. Benefit 2: Rate optimization = ₹3.4L extra vs lowest rate bank! Benefit 3: When each ₹5L FD matures annually (Yr 1→₹5.34L, Yr 2→₹5.71L, etc.), she chooses: reinvest in 10-year, invest in equity, or use cash. Flexibility worth 0.25% annually = ₹2L extra value. Total benefit: Full insurance + ₹3.4L extra returns + ₹2L optionality value = ₹5.4L advantage over single-bank strategy! Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 2: Rajesh, Delhi (Age 62, Recently Retired). Scenario: ₹30L retirement corpus. Needs ₹2.5L annually for living expenses for 12 years. Challenge: Can\'t survive on FD alone (6.5% = ₹1.95L/year shortfall ₹55K/year). Solution: Hybrid ladder. ₹20L in 12-year FD at senior rate 7% = ₹3.97L/year returns. ₹10L in monthly income ladder (Open 12 FDs of ₹83K each in  bank offering monthly-payout FDs, each ₹83K at 6.5% generates ₹5.4K/month = ₹64.8K annual, ×12 FDs = ₹7.78L/year income). Combined income: ₹3.97L + ₹7.78L = ₹11.75L/year. Expense: ₹2.5L/year. Surplus: ₹9.25L/year to reinvest! By year 4, corpus grows to ₹45L. By year 12, corpus ₹80L (sufficient for 10+ more years!). Result: Retired confidently, no stock market risk, surplus grows each year. Lesson: Laddering creates both safety and sustainable income. Illustrative Example (hypothetical scenario based on typical Indian borrower profiles). CASE STUDY 3: Priya & Vikram, Mumbai (Ages 40 & 42, Salaried Couple). Scenario: Both earn ₹2L/month = ₹48L/year household. Tax bracket 30%. Challenge: Saving ₹10L/year but don\'t want market risk. Solution: Deploy tax-efficient FD strategy. Each spouse invests ₹1.5L/year in tax-saving FDs (Section 80C): (1) Spouse 1: ₹1.5L → 5-year tax-saving FD at 6.5%, (2) Spouse 2: ₹1.5L → 5-year tax-saving FD at 6.5%, (3) Repeat every year = 5 sets of FDs maturing in years 1, 2, 3, 4, 5. Tax benefit per person: ₹1.5L × 30% = ₹45,000/year tax saved (×2 spouses = ₹90,000/year!). Interest earned: ₹1.5L × 6.5% × 5 = ₹48,750 per person per cycle. After 5 years: (1) Tax saved ₹45,000 × 5 = ₹2.25L, (2) Interest earned = ₹2.44L (first cycle) + subsequent cycles, (3) First FD matures with ₹1.96L (extra ₹46K interest), (4) Reinvest in Year 6 tax-saving FD or use as needed. Total 5-year wealth creation: ₹2.25L tax saved + ₹3.68L interest = ₹5.93L from ₹7.5L invested. Net gain = ₹5.93L (79% return including tax benefits). Lesson: Couples should maximize tax-saving FD deductions for significant tax + return benefits. Per RBI and DICGC deposit protection guidelines: DICGC insures deposits up to ₹5 lakh per depositor per bank, and RBI requires all scheduled commercial banks to participate. Senior citizens are entitled to higher FD rates (typically 0.25–0.75% above regular rates) per individual bank policies, and Section 80C allows deduction of up to ₹1.5 lakh annually for 5-year tax-saving fixed deposits. Pro Tips: (1) The Rate-Shop Rule - Comparing rates across 10 banks takes 30 minutes. 0.5% difference on ₹10L for 5 years = ₹27,000 saved. That\'s ₹54,000/hour return on effort! (2) The Ladder Philosophy - Single large FD = zero flexibility. Ladder = maturity dates = decision points = better optimization. Worth 0.25-0.5% annually = ₹1-3L over 10 years. (3) The Senior Secret - Age 60+? Check 10 banks\' senior rates immediately. Difference between 6.5% and 7.25% = ₹4-8L on large corpus. Most seniors never check! (4) The Tax Trick - High earner? Use tax-saving FDs strategically. ₹1.5L invested in tax-saving FD returns ₹45,000 tax saved + ₹97,500 interest = ₹142,500 value from ₹1.5L investment = 95% ROI (after-tax!). This is better than many investments.' },
     ],
     faqs: [
-      { question: 'What is the current FD interest rate in India?', answer: 'As of May 2024, FD rates range from 5.0-6.5% for 1-year FDs across major banks. Senior citizens get 0.50% additional. Compare rates across SBI, ICICI, HDFC, Axis, Kotak, IndusInd banks on our calculator.' },
+      { question: 'What is the current FD interest rate in India?', answer: 'As of June 2026, FD rates range from 5.5-7.5% for 1-year FDs across major banks. Senior citizens get 0.50% additional. Compare rates across SBI, ICICI, HDFC, Axis, Kotak, IndusInd banks on our calculator.' },
       { question: 'Is FD safer than mutual funds?', answer: 'Yes, FDs are backed by DICGC insurance (₹5L coverage per bank) and have fixed returns. Mutual funds involve market risk but offer higher long-term returns (10-15% CAGR vs 5-7% FD). For emergency funds, FDs are safer. For wealth creation, diversify with both.' },
       { question: 'Should I choose cumulative or non-cumulative FD?', answer: 'Choose cumulative if you don\'t need regular income and want maximum maturity amount (best for long-term goals). Choose non-cumulative if you need regular interest payouts (retirees, income needs). Cumulative FDs typically have 0.25-0.50% higher rates.' },
       { question: 'Can I withdraw FD before maturity?', answer: 'Yes, premature withdrawal is allowed but incurs interest penalty of 0.50-1.00% below the contracted rate. Some "no-penalty FD" schemes allow penalty-free withdrawal after a lock-in period. Check terms with your bank before investing.' },
@@ -425,6 +430,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Finance',
     readTime: '7 min read',
     keywords: ['RD calculator', 'recurring deposit calculator', 'RD interest calculator', 'RD maturity', 'RD vs FD', 'bank RD rates'],
+    image: '/blog/rd-formula.svg',
     relatedCalculator: { name: 'RD Calculator', href: '/rd-calculator' },
     sections: [
       { heading: 'What is a Recurring Deposit (RD)?', content: 'A Recurring Deposit (RD) is a savings scheme offered by banks where you commit to deposit a fixed amount every month for a predetermined period (tenure ranging from 3 months to 10 years). At the end of the tenure, you receive the total of all deposits plus compounded interest earned. RDs are specifically designed for salaried individuals and anyone with monthly income who wants to build a corpus systematically without having large lump sum upfront. Unlike FDs requiring Rs 1-10 lakh, RDs allow small monthly investments (Rs 100-500) making them accessible to middle-income earners. RDs are significantly safer than mutual funds (no market risk) backed by DICGC insurance up to Rs 5 lakh. Monthly deposits combined with compound interest creates surprising wealth over 10-20 years, making RDs excellent for building emergency funds, buying car, children\'s education, or retirement corpus.' },
@@ -456,6 +462,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Tax',
     readTime: '7 min read',
     keywords: ['GST calculator', 'GST tax calculator', 'GST rates India', 'GST slab', 'SGST CGST IGST', 'how to calculate GST', 'GST formula', 'GST compliance'],
+    image: '/blog/gst-breakdown.svg',
     relatedCalculator: { name: 'GST Calculator', href: '/gst-calculator' },
     sections: [
       { heading: 'What is GST?', content: 'GST (Goods and Services Tax) is a single indirect tax levied on the supply of goods and services in India. Implemented on July 1, 2017, it replaced the complex system of multiple overlapping taxes like excise duty, sales tax, VAT, and service tax. GST is a consumption-based, destination-based tax, meaning the tax is payable in the state where goods are consumed, not where they are produced. Before GST, a product would be taxed multiple times at different stages - manufacturing, wholesale, and retail - creating “tax-on-tax” scenarios. GST eliminated this cascading effect by introducing input tax credits. Current GST rates in India are structured at four levels: 5%, 12%, 18%, and 28% depending on the type of product or service. A 0% GST rate also exists for certain essential items and exports. Registering for GST is mandatory for businesses with turnover exceeding ₹40 lakhs (₹20 lakhs for service providers in specific states). GST is administered by the Goods and Services Tax Network (GSTN), a digital platform that maintains a centralized database of all GST-registered entities and their returns.' },
@@ -487,6 +494,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Finance',
     readTime: '7 min read',
     keywords: ['percentage calculator', 'percent change calculator', 'percent of calculator', 'percentage discount calculator', 'percentage increase calculator', 'percentage formula', 'how to calculate percentage'],
+    image: '/blog/percentage-formula.svg',
     relatedCalculator: { name: 'Percentage Calculator', href: '/percentage-calculator' },
     sections: [
       { heading: 'What is Percentage?', content: 'Percentage means “per hundred” - a way to express a number as a fraction of 100. The symbol % represents this concept. Example: 25% = 25/100 = 0.25 as a decimal. Percentages are used everywhere in daily life: discounts on shopping items, salary increases and appraisals, interest rates on loans and savings, test scores and grades in schools, inflation rates affecting purchasing power, and profit margins in business. Understanding percentages is essential for making informed financial decisions. For instance, if a bank offers 7% annual interest on savings, knowing how to calculate that 7% helps you understand how much money you will earn on your deposit. Similarly, when shopping, calculating the actual discount percentage helps determine if a sale is truly worth buying. Percentages make it easy to compare different quantities and ratios, regardless of the actual numbers involved. This is why percentages are considered one of the most important mathematical tools for personal finance management.' },
@@ -519,6 +527,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Finance',
     readTime: '7 min read',
     keywords: ['simple interest calculator', 'SI calculator', 'simple interest formula', 'simple interest vs compound interest', 'SI calculation'],
+    image: '/blog/simple-interest-formula.svg',
     relatedCalculator: { name: 'Simple Interest Calculator', href: '/simple-interest-calculator' },
     sections: [
       { heading: 'What is Simple Interest?', content: 'Simple Interest (SI) is interest calculated only on the original principal amount, not on previously earned interest. This makes it straightforward and predictable - the interest amount remains the same every year. Formula: SI = (P × R × T) / 100, where P = principal (loan/savings amount), R = annual interest rate (%), T = time period in years. Example: Rs 10,000 at 5% annual interest for 3 years gives SI = (10,000 x 5 x 3) / 100 = Rs 1,500. Total amount you receive = Rs 10,000 + Rs 1,500 = Rs 11,500. In comparison, compound interest would give you Rs 11,576 (slightly more) because interest earns interest. Simple interest is used for short-term loans, personal loans, and certain government savings schemes. It is easier to calculate and understand compared to compound interest, making it popular for quick financial decisions.' },
@@ -551,6 +560,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Finance',
     readTime: '10 min read',
     keywords: ['how to calculate home loan emi', 'home loan emi formula', 'emi calculation step by step', 'home loan monthly payment', 'calculate emi for home loan', 'reduce home loan emi'],
+    image: '/blog/home-loan-emi.svg',
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
     sections: [
       { heading: 'The Challenge: Finding an EMI You Can Afford Without Overextending', content: 'Millions of Indians dream of owning a home but struggle with a critical question: Can I afford this EMI? Home loans are the largest financial commitments most Indians make - often ₹20 lakh to ₹1 crore with 15-30 year repayment periods. Yet most home buyers don\'t deeply understand how EMI is calculated, why the same loan amount at different rates results in vastly different EMIs, or how prepayments can cut decades off their loan tenure. A ₹50 lakh home loan at 8.5% costs ₹48.75 lakh in interest over 20 years - meaning you pay nearly 100% extra just in interest! But at 8%, the same loan costs ₹47.5 lakh in interest. That 0.5% difference = ₹1.25 lakh saved with no extra effort. Worse, most borrowers don\'t calculate the total cost upfront. They focus only on "Can I afford this monthly EMI?" without asking "Will I be paying more in interest than principal?" or "Could a 25-year tenure save my monthly budget while costing ₹20 lakh extra in total interest?" This guide provides complete EMI calculation understanding, practical strategies to reduce EMI, and advanced techniques like strategic prepayment that can save you ₹15-30 lakh over your loan lifetime. Whether you\'re a first-time buyer or refinancing, understanding EMI mechanics is non-negotiable.' },
@@ -588,6 +598,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Investment',
     readTime: '10 min read',
     keywords: ['sip vs lump sum', 'sip vs lump sum investment', 'sip investment vs lump sum', 'which is better sip or lump sum', 'sip returns vs lump sum'],
+    image: '/blog/sip-vs-lumpsum.svg',
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
       { heading: 'SIP vs Lump Sum Overview', content: 'SIP (Systematic Investment Plan): Fixed monthly investment reducing market timing risk. Lump Sum: One-time large investment getting maximum compound growth. SIP best for monthly income earners and beginners. Lump sum best for windfall cash (bonus, inheritance) and market confidence. Hybrid approach combines benefits of both.' },
@@ -620,6 +631,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Tax',
     readTime: '10 min read',
     keywords: ['how to calculate income tax india', 'income tax calculation india', 'income tax slabs 2025-26', 'income tax deduction', 'tax rebate 87a', 'hra exemption calculation'],
+    image: '/blog/income-tax-india.svg',
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
       { heading: 'Income Tax Calculation Overview', content: 'Income Tax is a direct tax on your income (salary, business, investments) in India. Understanding tax calculation saves thousands through smart deductions and tax planning. Two regimes available: New Regime (lower rates, no deductions) and Old Regime (higher rates, allows deductions). Choose the regime giving lower tax. In India, approximately 65% of salaried employees overpay taxes by 15-25% annually simply by not understanding these calculations. This guide walks you through step-by-step calculation, practical examples, and proven strategies to minimize your tax burden legally and ethically.' },
@@ -650,6 +662,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Tax',
     readTime: '10 min read',
     keywords: ['new vs old tax regime', 'new tax regime vs old regime', 'which tax regime is better', 'new income tax regime', 'old income tax regime', 'tax regime comparison'],
+    image: '/blog/tax-regime-comparison.svg',
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
       { heading: 'Overview of Two Tax Regimes', content: 'India offers two parallel income tax systems: New Regime (default since FY 2023-24) and Old Regime. New Regime: Simpler tax with lower tax rates but NO deductions allowed (except standard ₹75K). Ideal for employees with minimal investments and no home loans. Old Regime: Traditional tax with higher base slabs BUT allows numerous deductions (80C, 80D, HRA, home loan interest, NPS). Ideal for high earners with mortgages and investments. From FY 2023-24, New Regime is default - you automatically opt in unless you specifically choose Old Regime. You can switch between regimes every year based on your situation that year. Understanding both helps you save ₹15-50K annually depending on your income and investments.' },
@@ -680,6 +693,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Business',
     readTime: '8 min read',
     keywords: ['healthy profit margin by industry', 'profit margin benchmarks', 'markup vs margin', 'industry profit margins', 'retail margin', 'business margin percentage'],
+    image: '/blog/profit-margin-industry.svg',
     relatedCalculator: { name: 'Profit Margin Calculator', href: '/profit-margin-calculator' },
     sections: [
       { heading: 'What is Profit Margin?', content: 'Profit Margin = The percentage of profit on every ₹100 of sales. Formula: Profit Margin % = (Profit / Revenue) × 100. Example: Cost ₹100, Selling ₹150, Profit ₹50 = 33.3% margin. Healthy margin varies by industry: Retail 10-20%, SaaS 60-80%. Your margin determines business sustainability and how long you can survive during downturns. A business with 40% margin survives cost increases and market competition far better than one with 5% margin. Margin is your safety net - the larger your margin, the more flexibility you have to negotiate with suppliers, invest in growth, handle taxes and overhead, and still remain profitable.' },
@@ -709,6 +723,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Investment',
     readTime: '15 min read',
     keywords: ['investment planning', 'investment strategy India', 'asset allocation', 'portfolio management', 'wealth creation', 'investment goals', 'mutual funds vs stocks'],
+    image: '/blog/investment-planning.svg',
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     postType: 'step-by-step',
     quickSummary: 'A complete investment plan follows six steps: (1) define goals with timelines, (2) calculate monthly surplus, (3) understand asset classes, (4) set allocation by age (70% equity at 25–35, scaling down as you near retirement), (5) choose SIP/FD/gold vehicles, (6) monitor and rebalance annually. Indians with a written plan accumulate 3–5× more wealth over 20 years than those who invest without direction, primarily because a plan prevents panic selling and automates regular contributions.',
@@ -767,6 +782,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Tax',
     readTime: '12 min read',
     keywords: ['tax saving strategies', 'income tax savings', 'section 80c', 'HRA exemption', 'tax deduction', 'salary income tax reduction'],
+    image: '/blog/tax-saving-strategies.svg',
     relatedCalculator: { name: 'Tax Calculator', href: '/tax-calculator' },
     sections: [
       {
@@ -826,6 +842,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Retirement',
     readTime: '15 min read',
     keywords: ['retirement planning', 'retirement corpus', 'retirement calculator', 'how much to save for retirement', 'retirement fund calculation'],
+    image: '/blog/retirement-corpus.svg',
     relatedCalculator: { name: 'Retirement Calculator', href: '/retirement-calculator' },
     postType: 'comparison-first',
     comparisonTable: {
@@ -896,6 +913,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Savings',
     readTime: '9 min read',
     keywords: ['emergency fund', 'emergency fund calculator', 'how much emergency fund', 'months of expenses', 'emergency savings', 'financial safety net'],
+    image: '/blog/emergency-fund.svg',
     relatedCalculator: { name: 'FD Calculator', href: '/fd-calculator' },
     sections: [
       {
@@ -950,6 +968,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Investing',
     readTime: '12 min read',
     keywords: ['home loan vs rent', 'buy vs rent', 'should I buy a house', 'rent vs home loan cost', 'real estate investment'],
+    image: '/blog/buy-vs-rent.svg',
     relatedCalculator: { name: 'Home Loan vs Rent Calculator', href: '/home-loan-vs-rent-calculator' },
     sections: [
       {
@@ -1003,6 +1022,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Finance',
     readTime: '10 min read',
     keywords: ['business loan vs personal loan', 'business loan', 'personal loan', 'loan comparison', 'entrepreneur loans', 'msme loans'],
+    image: '/blog/loan-comparison.svg',
     relatedCalculator: { name: 'EMI Calculator', href: '/emi-calculator' },
     sections: [
       {
@@ -1058,6 +1078,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Personal Finance',
     readTime: '12 min read',
     keywords: ['financial literacy', 'financial planning young professionals', 'wealth building', 'financial education', 'money management'],
+    image: '/blog/financial-literacy.svg',
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
       {
@@ -1115,6 +1136,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Investment',
     readTime: '12 min read',
     keywords: ['investment options', 'investment types India', 'where to invest', 'asset classes', 'investment comparison'],
+    image: '/blog/investment-options.svg',
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
       {
@@ -1172,6 +1194,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Investment',
     readTime: '10 min read',
     keywords: ['best mutual funds', 'mutual fund selection', 'mutual fund evaluation', 'fund selection criteria', 'how to select funds'],
+    image: '/blog/mutual-fund-checklist.svg',
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
       {
@@ -1231,6 +1254,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Wealth Building',
     readTime: '12 min read',
     keywords: ['wealth building', 'build wealth', 'financial success', 'wealth creation principles', 'long-term wealth'],
+    image: '/blog/wealth-building.svg',
     relatedCalculator: { name: 'SIP Calculator', href: '/sip-calculator' },
     sections: [
       {
