@@ -75,7 +75,7 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
       {/* Hero metric */}
       <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
         <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly EMI</p>
-        <p className="text-5xl sm:text-6xl font-black text-blue-700 dark:text-blue-400 break-words overflow-hidden leading-tight">
+        <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">
           {formatCurrency(result.emi)}
         </p>
         <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">per month for {result.numberOfMonths} months</p>
@@ -85,21 +85,21 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
         <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm min-w-0">
           <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Total Payable</p>
-          <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white break-words overflow-hidden">
+          <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
             {formatCurrency(result.totalAmount)}
           </p>
         </div>
 
         <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 p-3 sm:p-4 rounded-lg border border-red-200 dark:border-red-700 shadow-sm min-w-0">
           <p className="text-red-600 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><BarChart2 className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest</p>
-          <p className="text-sm sm:text-lg font-bold text-red-700 dark:text-red-400 break-words overflow-hidden">
+          <p className="text-sm sm:text-lg font-bold text-red-700 dark:text-red-400 whitespace-nowrap">
             {formatCurrency(result.totalInterest)}
           </p>
         </div>
 
         <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
           <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1">Duration</p>
-          <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
+          <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">
             {result.numberOfMonths} <span className="font-normal text-xs">months</span>
           </p>
         </div>

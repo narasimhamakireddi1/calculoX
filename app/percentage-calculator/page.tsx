@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
@@ -48,7 +48,7 @@ const TRACKS: Array<{
     icon: TrendingUp,
     name: 'Hike / Discount',
     desc: 'Apply % increase or decrease',
-    example: '₹50K + 12% hike = ₹56K',
+    example: 'â‚¹50K + 12% hike = â‚¹56K',
   },
   {
     id: 'percent-of',
@@ -69,21 +69,21 @@ const TRACKS: Array<{
     icon: RefreshCw,
     name: '% Change',
     desc: 'Percentage change from A to B',
-    example: '1,20,000 → 1,44,200 = +20.17%',
+    example: '1,20,000 â†’ 1,44,200 = +20.17%',
   },
   {
     id: 'reverse-percent',
     icon: Search,
     name: 'Reverse %',
     desc: 'X is Y% of what total?',
-    example: '₹9K is 18% → base = ₹50K',
+    example: 'â‚¹9K is 18% â†’ base = â‚¹50K',
   },
   {
     id: 'sequential',
     icon: Hash,
     name: 'Sequential',
     desc: 'Apply two % steps in sequence',
-    example: '₹10K + 10% + 4% = ₹11,440',
+    example: 'â‚¹10K + 10% + 4% = â‚¹11,440',
   },
 ];
 
@@ -137,7 +137,7 @@ export default function PercentageCalculatorPage() {
       case 'what-percent':  return `${a} is what % of ${b}?`;
       case 'percent-change':return `% change from ${a} to ${b}?`;
       case 'reverse-percent':return `${a} is ${b}% of what total?`;
-      case 'sequential':    return `${a} → apply ${b}%, then ${c}%`;
+      case 'sequential':    return `${a} â†’ apply ${b}%, then ${c}%`;
     }
   };
 
@@ -178,19 +178,19 @@ export default function PercentageCalculatorPage() {
   const percentageScenarios: QuickStartScenario[] = useMemo(() => [
     {
       label: 'Salary Hike (10%)',
-      description: '₹50,000 → 10% increase',
+      description: 'â‚¹50,000 â†’ 10% increase',
       icon: TrendingUp,
       values: { value: 50000, percentage: 10, calculationType: 'hike-discount' }
     },
     {
       label: 'Shopping Discount (20%)',
-      description: '₹5,000 item → 20% off',
+      description: 'â‚¹5,000 item â†’ 20% off',
       icon: ShoppingBag,
       values: { value: 5000, percentage: 20, calculationType: 'hike-discount' }
     },
     {
       label: 'What Percentage (5% of 1000)',
-      description: 'Find 5% of ₹1,000',
+      description: 'Find 5% of â‚¹1,000',
       icon: HelpCircle,
       values: { value: 1000, percentage: 5, calculationType: 'percent-of' }
     }
@@ -219,7 +219,7 @@ export default function PercentageCalculatorPage() {
           <span>Percentage Calculator</span>
         </h1>
         <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg">
-          6 calculation modes — salary hike, discounts, GST reverse, sequential compounding &amp; more
+          6 calculation modes â€” salary hike, discounts, GST reverse, sequential compounding &amp; more
         </p>
       </div>
 
@@ -326,7 +326,7 @@ export default function PercentageCalculatorPage() {
                       className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
                                  bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
                                  hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
-                      ₹{val}
+                      â‚¹{val}
                     </button>
                   ))
                 }
@@ -370,7 +370,7 @@ export default function PercentageCalculatorPage() {
                       className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
                                  bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
                                  hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
-                      ₹{val >= 1000 ? `${val / 1000}K` : val}
+                      â‚¹{val >= 1000 ? `${val / 1000}K` : val}
                     </button>
                   ))
                 }
@@ -378,7 +378,7 @@ export default function PercentageCalculatorPage() {
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1"><Lightbulb className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> {calculationType === 'percent-of' ? 'Total or base amount' : calculationType === 'what-percent' ? 'Total amount to compare against' : calculationType === 'percent-change' ? 'Final amount after change' : calculationType === 'hike-discount' ? 'Percentage to apply' : 'Percentage value (0-200%)'}</p>
             </div>
 
-            {/* Percent C — only for Sequential */}
+            {/* Percent C â€” only for Sequential */}
             {calculationType === 'sequential' && (
               <div className="space-y-2">
                 <label htmlFor="percentage-value-c" className="block text-sm font-bold text-gray-900 dark:text-white">{labels.c ?? 'Second %'}</label>
@@ -416,10 +416,10 @@ export default function PercentageCalculatorPage() {
             <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
               <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Quick Formulas</h4>
               <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
-                <p><strong>X% of Y:</strong> (X ÷ 100) × Y</p>
-                <p><strong>What %:</strong> (Part ÷ Whole) × 100</p>
-                <p><strong>% Change:</strong> ((New - Old) ÷ Old) × 100</p>
-                <p><strong>Reverse %:</strong> Final ÷ (1 ± %) × 100</p>
+                <p><strong>X% of Y:</strong> (X Ã· 100) Ã— Y</p>
+                <p><strong>What %:</strong> (Part Ã· Whole) Ã— 100</p>
+                <p><strong>% Change:</strong> ((New - Old) Ã· Old) Ã— 100</p>
+                <p><strong>Reverse %:</strong> Final Ã· (1 Â± %) Ã— 100</p>
               </div>
             </div>
           </div>
@@ -453,10 +453,10 @@ export default function PercentageCalculatorPage() {
                       result.direction === 'increase' ? 'text-green-500' :
                       result.direction === 'decrease' ? 'text-red-500' : 'text-gray-400'
                     }`}>
-                      {result.direction === 'increase' ? '↑' : result.direction === 'decrease' ? '↓' : '→'}
+                      {result.direction === 'increase' ? 'â†‘' : result.direction === 'decrease' ? 'â†“' : 'â†’'}
                     </span>
                   )}
-                  <p className={`text-2xl sm:text-4xl md:text-5xl font-bold break-words overflow-hidden ${
+                  <p className={`text-2xl sm:text-4xl md:text-5xl font-bold whitespace-nowrap ${
                     calculationType === 'percent-change' && result.direction === 'decrease'
                       ? 'text-red-600 dark:text-red-400'
                       : calculationType === 'percent-change' && result.direction === 'increase'
@@ -474,8 +474,8 @@ export default function PercentageCalculatorPage() {
                     result.direction === 'increase' ? 'text-green-600 dark:text-green-400' :
                     result.direction === 'decrease' ? 'text-red-600 dark:text-red-400' : 'text-gray-500'
                   }`}>
-                    {result.direction === 'increase' ? '▲ Increased by' :
-                     result.direction === 'decrease' ? '▼ Decreased by' : 'No change —'}{' '}
+                    {result.direction === 'increase' ? 'â–² Increased by' :
+                     result.direction === 'decrease' ? 'â–¼ Decreased by' : 'No change â€”'}{' '}
                     {formatNumber(result.result, 2)}%
                   </p>
                 )}
@@ -523,38 +523,38 @@ export default function PercentageCalculatorPage() {
                 <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
                   {calculationType === 'percent-change' && (
                     <>
-                      <p>✓ Positive % = Value increased | Negative % = Value decreased</p>
-                      <p>✓ Larger the percentage, bigger the change relative to original</p>
+                      <p>âœ“ Positive % = Value increased | Negative % = Value decreased</p>
+                      <p>âœ“ Larger the percentage, bigger the change relative to original</p>
                     </>
                   )}
                   {calculationType === 'percent-of' && (
                     <>
-                      <p>✓ Formula: (X% × Y) / 100 = Result</p>
-                      <p>✓ Useful for discounts, commissions, and portions</p>
+                      <p>âœ“ Formula: (X% Ã— Y) / 100 = Result</p>
+                      <p>âœ“ Useful for discounts, commissions, and portions</p>
                     </>
                   )}
                   {calculationType === 'what-percent' && (
                     <>
-                      <p>✓ Formula: (Part / Whole) × 100 = Percentage</p>
-                      <p>✓ Always compare same units (both in rupees, same timeframe, etc.)</p>
+                      <p>âœ“ Formula: (Part / Whole) Ã— 100 = Percentage</p>
+                      <p>âœ“ Always compare same units (both in rupees, same timeframe, etc.)</p>
                     </>
                   )}
                   {calculationType === 'reverse-percent' && (
                     <>
-                      <p>✓ Useful when you know the final value after percentage change</p>
-                      <p>✓ Common in reverse calculating original price before discount</p>
+                      <p>âœ“ Useful when you know the final value after percentage change</p>
+                      <p>âœ“ Common in reverse calculating original price before discount</p>
                     </>
                   )}
                   {calculationType === 'sequential' && (
                     <>
-                      <p>✓ Changes compound — second % applies to result of first %</p>
-                      <p>✓ Order doesn't always matter: 10% then 20% = 20% then 10%</p>
+                      <p>âœ“ Changes compound â€” second % applies to result of first %</p>
+                      <p>âœ“ Order doesn't always matter: 10% then 20% = 20% then 10%</p>
                     </>
                   )}
                   {calculationType === 'hike-discount' && (
                     <>
-                      <p>✓ Hike = Value increases | Discount = Value decreases</p>
-                      <p>✓ Formula: New Value = Original × (1 ± Percentage/100)</p>
+                      <p>âœ“ Hike = Value increases | Discount = Value decreases</p>
+                      <p>âœ“ Formula: New Value = Original Ã— (1 Â± Percentage/100)</p>
                     </>
                   )}
                 </div>
@@ -583,7 +583,7 @@ export default function PercentageCalculatorPage() {
         </div>
       </div>
 
-      {/* Pie Chart — Tracks 1, 2, 5 */}
+      {/* Pie Chart â€” Tracks 1, 2, 5 */}
       {showPie && (result?.breakdown ? (
         <div className="card">
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><BarChart2 className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Percentage Breakup</h2>
@@ -618,7 +618,7 @@ export default function PercentageCalculatorPage() {
         </div>
       ) : <ChartEmptyState columns={1} />)}
 
-      {/* Sequential Steps Visual — Track 6 */}
+      {/* Sequential Steps Visual â€” Track 6 */}
       {result && calculationType === 'sequential' && result.breakdown && (
         <div className="card">
           <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><Hash className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Sequential Steps</h2>
@@ -637,7 +637,7 @@ export default function PercentageCalculatorPage() {
                     {formatNumber(item.value, 2)}
                   </div>
                 </div>
-                {i < 2 && <span className="text-gray-400 text-2xl font-bold">→</span>}
+                {i < 2 && <span className="text-gray-400 text-2xl font-bold">â†’</span>}
               </div>
             ))}
             {result.breakdown[3] && (
@@ -692,7 +692,7 @@ export default function PercentageCalculatorPage() {
       <div className="card">
         <h2 className="text-2xl font-bold mb-4">What is a Percentage?</h2>
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-          A percentage is a fraction or ratio expressed as a number out of 100, denoted by the symbol <strong>%</strong>. It represents how much of one quantity relates to another, expressed per hundred. For example, 50% means 50 out of 100 or half. The basic formula for calculating percentage is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Percentage = (Part / Whole) × 100</span>
+          A percentage is a fraction or ratio expressed as a number out of 100, denoted by the symbol <strong>%</strong>. It represents how much of one quantity relates to another, expressed per hundred. For example, 50% means 50 out of 100 or half. The basic formula for calculating percentage is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Percentage = (Part / Whole) Ã— 100</span>
         </p>
         <p className="text-gray-700 dark:text-gray-300">
           Percentages are widely used in everyday life for discounts, salary hikes, tax calculations, test scores, profit margins, and many other applications. Understanding percentages is essential for financial decisions, comparing values, and analyzing data.
@@ -714,33 +714,33 @@ export default function PercentageCalculatorPage() {
             <tbody>
               <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">X% of Y</td>
-                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">(X/100) × Y</td>
-                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">20% of ₹1000 = ₹200</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">(X/100) Ã— Y</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">20% of â‚¹1000 = â‚¹200</td>
               </tr>
               <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Percentage Hike/Discount</td>
-                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">New = Original × (1 ± %/100)</td>
-                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹500 with 10% hike = ₹550</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">New = Original Ã— (1 Â± %/100)</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹500 with 10% hike = â‚¹550</td>
               </tr>
               <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">What % is A of B</td>
-                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">(A/B) × 100</td>
-                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹250 is 25% of ₹1000</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">(A/B) Ã— 100</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹250 is 25% of â‚¹1000</td>
               </tr>
               <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Percentage Change</td>
-                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">((New - Old) / Old) × 100</td>
-                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹100 to ₹150 = 50% increase</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">((New - Old) / Old) Ã— 100</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹100 to â‚¹150 = 50% increase</td>
               </tr>
               <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Reverse Percentage</td>
-                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">Base = Part × 100 / %</td>
-                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹180 is 18% of base = ₹1000</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">Base = Part Ã— 100 / %</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹180 is 18% of base = â‚¹1000</td>
               </tr>
               <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Sequential %</td>
                 <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">Apply % one after another</td>
-                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">₹100 + 10% then + 5% = ₹115.50</td>
+                <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹100 + 10% then + 5% = â‚¹115.50</td>
               </tr>
             </tbody>
           </table>
@@ -754,25 +754,25 @@ export default function PercentageCalculatorPage() {
           <li className="flex gap-4">
             <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">1.</span>
             <div>
-              <strong>Identify the Initial and Final Values:</strong> Determine the original value (starting point) and the new value (ending point). For example, if a stock price was ₹100 and is now ₹120, the initial value is ₹100 and final value is ₹120.
+              <strong>Identify the Initial and Final Values:</strong> Determine the original value (starting point) and the new value (ending point). For example, if a stock price was â‚¹100 and is now â‚¹120, the initial value is â‚¹100 and final value is â‚¹120.
             </div>
           </li>
           <li className="flex gap-4">
             <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">2.</span>
             <div>
-              <strong>Calculate the Difference:</strong> Subtract the initial value from the final value: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Difference = Final - Initial</span>. Using the example: ₹120 - ₹100 = ₹20.
+              <strong>Calculate the Difference:</strong> Subtract the initial value from the final value: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Difference = Final - Initial</span>. Using the example: â‚¹120 - â‚¹100 = â‚¹20.
             </div>
           </li>
           <li className="flex gap-4">
             <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">3.</span>
             <div>
-              <strong>Divide by the Initial Value:</strong> Divide the difference by the initial value. This normalizes the change: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Rate of Change = Difference / Initial</span>. Using the example: ₹20 / ₹100 = 0.2.
+              <strong>Divide by the Initial Value:</strong> Divide the difference by the initial value. This normalizes the change: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Rate of Change = Difference / Initial</span>. Using the example: â‚¹20 / â‚¹100 = 0.2.
             </div>
           </li>
           <li className="flex gap-4">
             <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">4.</span>
             <div>
-              <strong>Multiply by 100:</strong> Convert the decimal to a percentage by multiplying by 100: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Percentage Change = Rate × 100</span>. Using the example: 0.2 × 100 = 20%.
+              <strong>Multiply by 100:</strong> Convert the decimal to a percentage by multiplying by 100: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">Percentage Change = Rate Ã— 100</span>. Using the example: 0.2 Ã— 100 = 20%.
             </div>
           </li>
           <li className="flex gap-4">
@@ -784,13 +784,13 @@ export default function PercentageCalculatorPage() {
           <li className="flex gap-4">
             <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0 text-lg">6.</span>
             <div>
-              <strong>Use the Complete Formula:</strong> The complete percentage change formula is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">% Change = ((Final - Initial) / Initial) × 100</span>
+              <strong>Use the Complete Formula:</strong> The complete percentage change formula is: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-1 rounded text-sm">% Change = ((Final - Initial) / Initial) Ã— 100</span>
             </div>
           </li>
         </ol>
         <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
           <p className="text-sm text-blue-800 dark:text-blue-200">
-            <strong>Example:</strong> If your salary increased from ₹30,000 to ₹36,000: % Change = ((36,000 - 30,000) / 30,000) × 100 = (6,000 / 30,000) × 100 = 20% salary increase.
+            <strong>Example:</strong> If your salary increased from â‚¹30,000 to â‚¹36,000: % Change = ((36,000 - 30,000) / 30,000) Ã— 100 = (6,000 / 30,000) Ã— 100 = 20% salary increase.
           </p>
         </div>
       </div>
@@ -802,23 +802,23 @@ export default function PercentageCalculatorPage() {
           {[
             {
               q: 'How to calculate salary hike percentage?',
-              a: 'Use Track 1 (Hike/Discount): Enter current salary as Original Value and the hike % as Change %. E.g., ₹50,000 with 12% hike = ₹50,000 × 1.12 = ₹56,000.',
+              a: 'Use Track 1 (Hike/Discount): Enter current salary as Original Value and the hike % as Change %. E.g., â‚¹50,000 with 12% hike = â‚¹50,000 Ã— 1.12 = â‚¹56,000.',
             },
             {
               q: 'What is reverse percentage? How to find base price before GST?',
-              a: 'Reverse percentage (Track 5) finds the whole when you know a part and its percentage. If ₹9,000 is 18% GST, base price = ₹9,000 × 100 ÷ 18 = ₹50,000.',
+              a: 'Reverse percentage (Track 5) finds the whole when you know a part and its percentage. If â‚¹9,000 is 18% GST, base price = â‚¹9,000 Ã— 100 Ã· 18 = â‚¹50,000.',
             },
             {
               q: 'How does sequential compounding differ from simple addition?',
-              a: 'Sequential (Track 6) applies each % on the running total. ₹10,000 with 10% then 4%: ₹10,000 × 1.10 = ₹11,000, then × 1.04 = ₹11,440. Adding 14% directly gives only ₹11,400 — a ₹40 difference.',
+              a: 'Sequential (Track 6) applies each % on the running total. â‚¹10,000 with 10% then 4%: â‚¹10,000 Ã— 1.10 = â‚¹11,000, then Ã— 1.04 = â‚¹11,440. Adding 14% directly gives only â‚¹11,400 â€” a â‚¹40 difference.',
             },
             {
               q: 'How to calculate percentage change (increase or decrease)?',
-              a: 'Track 4: % Change = ((Final − Initial) ÷ Initial) × 100. A positive result shows an increase (shown in green ↑). A negative result shows a decrease (shown in red ↓).',
+              a: 'Track 4: % Change = ((Final âˆ’ Initial) Ã· Initial) Ã— 100. A positive result shows an increase (shown in green â†‘). A negative result shows a decrease (shown in red â†“).',
             },
             {
               q: 'What is "A is what % of B"?',
-              a: 'Track 3 (Fraction Converter): Calculates what fraction A is of B, expressed as a percentage. E.g., scored 450 out of 600 marks → (450 ÷ 600) × 100 = 75%.',
+              a: 'Track 3 (Fraction Converter): Calculates what fraction A is of B, expressed as a percentage. E.g., scored 450 out of 600 marks â†’ (450 Ã· 600) Ã— 100 = 75%.',
             },
           ].map(({ q, a }) => (
             <details key={q} className="group border-b border-gray-200 dark:border-gray-700">

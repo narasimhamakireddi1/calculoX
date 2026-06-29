@@ -527,7 +527,7 @@ export default function FDCalculatorPage() {
                 <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
                   <Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maturity Amount
                 </p>
-                <p className="text-5xl sm:text-6xl font-black text-blue-700 dark:text-blue-400 break-words overflow-hidden leading-tight">{formatCurrency(result.maturityAmount)}</p>
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">{formatCurrency(result.maturityAmount)}</p>
                 <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">Principal + Interest over {result.tenure.years}Y {result.tenure.months}M</p>
               </div>
 
@@ -537,7 +537,7 @@ export default function FDCalculatorPage() {
                   <p className="text-green-600 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
                     <TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Earned
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{formatCurrency(result.totalInterest)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-green-700 dark:text-green-400 whitespace-nowrap">{formatCurrency(result.totalInterest)}</p>
                 </div>
 
                 {result.periodicPayout !== undefined && result.periodicPayout > 0 && (
@@ -545,7 +545,7 @@ export default function FDCalculatorPage() {
                     <p className="text-amber-600 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-1">
                       {watchValues.payoutType === 'quarterly' ? 'Per Quarter' : 'Per Month'}
                     </p>
-                    <p className="text-sm sm:text-lg font-bold text-amber-700 dark:text-amber-400 break-words overflow-hidden">{formatCurrency(result.periodicPayout)}</p>
+                    <p className="text-sm sm:text-lg font-bold text-amber-700 dark:text-amber-400 whitespace-nowrap">{formatCurrency(result.periodicPayout)}</p>
                   </div>
                 )}
               </div>
