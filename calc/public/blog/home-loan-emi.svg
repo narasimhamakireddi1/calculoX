@@ -1,0 +1,37 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home loan EMI breakdown diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1D4ED8"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0F7FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Home Loan EMI — What You Actually Pay</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#93C5FD">RBI floating rate loans · MCLR/EBLR linked · Section 24(b) interest deduction available</text>
+  <!-- Formula -->
+  <rect x="30" y="84" width="740" height="72" rx="10" fill="white" stroke="#BFDBFE" stroke-width="1.5"/>
+  <text x="400" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" fill="#1E3A8A" text-anchor="middle">EMI  =  P × r × (1+r)ᴺ  ÷  [(1+r)ᴺ – 1]     where  r = Annual Rate ÷ 1200</text>
+  <!-- 3 scenarios -->
+  <text x="400" y="184" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle" font-weight="600">HOME LOAN SCENARIOS  (₹50 Lakh)</text>
+  <!-- Scenario headers -->
+  <rect x="30" y="194" width="228" height="100" rx="8" fill="white" stroke="#BFDBFE" stroke-width="1.5"/>
+  <text x="144" y="216" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" text-anchor="middle" font-weight="600">8.5% · 15 Years</text>
+  <text x="144" y="244" font-family="system-ui,-apple-system,sans-serif" font-size="22" fill="#059669" text-anchor="middle" font-weight="800">₹49,228</text>
+  <text x="144" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B" text-anchor="middle">per month</text>
+  <text x="144" y="281" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#991B1B" text-anchor="middle">Total interest: ₹38.6L</text>
+  <rect x="286" y="194" width="228" height="100" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="2"/>
+  <text x="400" y="216" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" text-anchor="middle" font-weight="600">8.5% · 20 Years  ★</text>
+  <text x="400" y="244" font-family="system-ui,-apple-system,sans-serif" font-size="22" fill="#1D4ED8" text-anchor="middle" font-weight="800">₹43,391</text>
+  <text x="400" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B" text-anchor="middle">per month</text>
+  <text x="400" y="281" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#991B1B" text-anchor="middle">Total interest: ₹54.1L</text>
+  <rect x="542" y="194" width="228" height="100" rx="8" fill="white" stroke="#BFDBFE" stroke-width="1.5"/>
+  <text x="656" y="216" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" text-anchor="middle" font-weight="600">9.5% · 20 Years</text>
+  <text x="656" y="244" font-family="system-ui,-apple-system,sans-serif" font-size="22" fill="#DC2626" text-anchor="middle" font-weight="800">₹46,607</text>
+  <text x="656" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B" text-anchor="middle">per month</text>
+  <text x="656" y="281" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#991B1B" text-anchor="middle">Total interest: ₹61.9L</text>
+  <!-- Key insight -->
+  <rect x="30" y="308" width="740" height="54" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <text x="55" y="332" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" font-weight="600">Key Insight:</text>
+  <text x="150" y="332" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> 1% rate increase on ₹50L loan = ₹3,216 more per month over 20 years</text>
+  <text x="55" y="352" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Recommendation: Keep total EMIs under 40% of monthly take-home income</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

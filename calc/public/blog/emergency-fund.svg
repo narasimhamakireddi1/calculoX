@@ -1,0 +1,45 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Emergency fund calculator diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0F766E"/><stop offset="100%" stop-color="#0D9488"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0FDFA"/><stop offset="100%" stop-color="#CCFBF1"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Emergency Fund — How Much to Save?</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#99F6E4">RBI financial literacy · SEBI investor awareness guidelines</text>
+  <!-- Formula -->
+  <rect x="30" y="84" width="740" height="70" rx="10" fill="white" stroke="#99F6E4" stroke-width="1.5"/>
+  <text x="400" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="800" fill="#0F766E" text-anchor="middle">Emergency Fund  =  Monthly Expenses  ×  3 to 6 months</text>
+  <!-- 3 scenarios based on risk -->
+  <rect x="30" y="168" width="232" height="118" rx="10" fill="white" stroke="#99F6E4" stroke-width="1.5"/>
+  <rect x="30" y="168" width="232" height="30" rx="10" fill="#CCFBF1"/>
+  <rect x="30" y="185" width="232" height="13" fill="#CCFBF1"/>
+  <text x="146" y="188" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#0F766E" text-anchor="middle" font-weight="700">3 Months — Stable Job</text>
+  <text x="146" y="214" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">Government job</text>
+  <text x="146" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">Two-income household</text>
+  <text x="146" y="250" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">Easy to find new work</text>
+  <text x="146" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#0F766E" text-anchor="middle" font-weight="700">Min viable: 3×</text>
+  <rect x="284" y="168" width="232" height="118" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="2"/>
+  <rect x="284" y="168" width="232" height="30" rx="10" fill="#DBEAFE"/>
+  <rect x="284" y="185" width="232" height="13" fill="#DBEAFE"/>
+  <text x="400" y="188" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" text-anchor="middle" font-weight="700">4–5 Months — Recommended</text>
+  <text x="400" y="214" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">Salaried private sector</text>
+  <text x="400" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">Single income household</text>
+  <text x="400" y="250" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">EMIs under 40% income</text>
+  <text x="400" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#1D4ED8" text-anchor="middle" font-weight="700">Target: 4–5×  ★</text>
+  <rect x="538" y="168" width="232" height="118" rx="10" fill="white" stroke="#99F6E4" stroke-width="1.5"/>
+  <rect x="538" y="168" width="232" height="30" rx="10" fill="#CCFBF1"/>
+  <rect x="538" y="185" width="232" height="13" fill="#CCFBF1"/>
+  <text x="654" y="188" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#0F766E" text-anchor="middle" font-weight="700">6 Months — Freelancer</text>
+  <text x="654" y="214" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">Self-employed / freelance</text>
+  <text x="654" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">Commission-based income</text>
+  <text x="654" y="250" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">High volatility business</text>
+  <text x="654" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#0F766E" text-anchor="middle" font-weight="700">Safe buffer: 6×</text>
+  <!-- Example + where to keep -->
+  <rect x="30" y="300" width="740" height="62" rx="10" fill="white" stroke="#99F6E4" stroke-width="1.5"/>
+  <text x="55" y="322" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" font-weight="600">Example:</text>
+  <text x="125" y="322" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> ₹50,000/month expenses × 6 months = </text>
+  <text x="435" y="322" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#059669" font-weight="700">₹3,00,000 emergency fund</text>
+  <text x="55" y="344" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Where to keep: Liquid MF (overnight), sweep-in FD, or high-yield savings account. Never in equity.</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

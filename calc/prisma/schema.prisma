@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User calculations history
+model CalculationHistory {
+  id        String   @id @default(cuid())
+  userId    String?
+  calculator String
+  inputs    Json
+  results   Json
+  timestamp DateTime @default(now())
+  ipAddress String?
+
+  @@index([userId])
+  @@index([calculator])
+  @@index([timestamp])
+}
+
+// Analytics data
+model PageView {
+  id        String   @id @default(cuid())
+  page      String
+  timestamp DateTime @default(now())
+  ipAddress String?
+  userAgent String?
+
+  @@index([page])
+  @@index([timestamp])
+}
+
+// User feedback
+model Feedback {
+  id        String   @id @default(cuid())
+  email     String?
+  calculator String
+  message   String
+  rating    Int?
+  timestamp DateTime @default(now())
+
+  @@index([calculator])
+  @@index([timestamp])
+}
+
+// SEO metadata
+model SitemapEntry {
+  id        String   @id @default(cuid())
+  url       String   @unique
+  priority  Float    @default(0.8)
+  changefreq String  @default("weekly")
+  lastmod   DateTime @default(now()) @updatedAt
+
+  @@index([url])
+}
