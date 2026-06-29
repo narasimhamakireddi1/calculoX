@@ -1,0 +1,68 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Investment options in India risk vs return diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1D4ED8"/><stop offset="100%" stop-color="#0891B2"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0F9FF"/><stop offset="100%" stop-color="#E0F2FE"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Investment Options in India — Risk vs Return</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#BAE6FD">SEBI regulated · RBI governed · AMFI guidelines · as of FY 2025-26</text>
+  <!-- Table -->
+  <rect x="30" y="84" width="740" height="228" rx="10" fill="white" stroke="#BAE6FD" stroke-width="1.5"/>
+  <!-- Header -->
+  <rect x="30" y="84" width="740" height="28" rx="10" fill="#DBEAFE"/>
+  <rect x="30" y="99" width="740" height="13" fill="#DBEAFE"/>
+  <text x="130" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" text-anchor="middle" font-weight="700">Option</text>
+  <text x="290" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" text-anchor="middle" font-weight="700">Expected Return</text>
+  <text x="430" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" text-anchor="middle" font-weight="700">Risk</text>
+  <text x="540" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" text-anchor="middle" font-weight="700">Liquidity</text>
+  <text x="660" y="103" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" text-anchor="middle" font-weight="700">Tax Benefit</text>
+  <!-- Rows -->
+  <line x1="30" y1="115" x2="770" y2="115" stroke="#E0F2FE" stroke-width="1"/>
+  <text x="55" y="133" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Equity Mutual Fund</text>
+  <text x="290" y="133" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">12–15% (long-term)</text>
+  <text x="430" y="133" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#D97706" text-anchor="middle">Medium-High</text>
+  <text x="540" y="133" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">High (T+1)</text>
+  <text x="660" y="133" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">80C (ELSS)</text>
+  <line x1="30" y1="145" x2="770" y2="145" stroke="#E0F2FE" stroke-width="1"/>
+  <text x="55" y="163" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">PPF</text>
+  <text x="290" y="163" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" text-anchor="middle" font-weight="600">7.1% (2025)</text>
+  <text x="430" y="163" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">Zero (govt)</text>
+  <text x="540" y="163" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626" text-anchor="middle">Low (15 yr lock)</text>
+  <text x="660" y="163" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">80C + EEE</text>
+  <line x1="30" y1="175" x2="770" y2="175" stroke="#E0F2FE" stroke-width="1"/>
+  <text x="55" y="193" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">NPS</text>
+  <text x="290" y="193" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" text-anchor="middle" font-weight="600">9–11% (equity)</text>
+  <text x="430" y="193" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#D97706" text-anchor="middle">Medium</text>
+  <text x="540" y="193" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626" text-anchor="middle">Locked (retire)</text>
+  <text x="660" y="193" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">80C + 80CCD(1B)</text>
+  <line x1="30" y1="205" x2="770" y2="205" stroke="#E0F2FE" stroke-width="1"/>
+  <text x="55" y="223" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Fixed Deposit</text>
+  <text x="290" y="223" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">6.5–7.5%</text>
+  <text x="430" y="223" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">Very Low</text>
+  <text x="540" y="223" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#D97706" text-anchor="middle">Medium (penalty)</text>
+  <text x="660" y="223" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#D97706" text-anchor="middle">5yr FD: 80C</text>
+  <line x1="30" y1="235" x2="770" y2="235" stroke="#E0F2FE" stroke-width="1"/>
+  <text x="55" y="253" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Gold / Sovereign Gold Bond</text>
+  <text x="290" y="253" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">8–10% + 2.5% interest</text>
+  <text x="430" y="253" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#D97706" text-anchor="middle">Medium</text>
+  <text x="540" y="253" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#D97706" text-anchor="middle">8yr lock (exit 5+)</text>
+  <text x="660" y="253" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">CGT exempt (maturity)</text>
+  <line x1="30" y1="265" x2="770" y2="265" stroke="#E0F2FE" stroke-width="1"/>
+  <text x="55" y="283" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Direct Stocks (NSE/BSE)</text>
+  <text x="290" y="283" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">Varies (0–30%+)</text>
+  <text x="430" y="283" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626" text-anchor="middle">High</text>
+  <text x="540" y="283" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">Very High (T+1)</text>
+  <text x="660" y="283" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626" text-anchor="middle">None (LTCG 12.5%)</text>
+  <!-- Col dividers -->
+  <line x1="205" y1="84" x2="205" y2="312" stroke="#E0F2FE" stroke-width="1"/>
+  <line x1="370" y1="84" x2="370" y2="312" stroke="#E0F2FE" stroke-width="1"/>
+  <line x1="490" y1="84" x2="490" y2="312" stroke="#E0F2FE" stroke-width="1"/>
+  <line x1="600" y1="84" x2="600" y2="312" stroke="#E0F2FE" stroke-width="1"/>
+  <!-- Summary -->
+  <rect x="30" y="326" width="740" height="46" rx="8" fill="#EFF6FF"/>
+  <text x="55" y="348" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1E40AF" font-weight="600">Recommended allocation (age 30):</text>
+  <text x="300" y="348" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> 60% Equity MF · 20% PPF/NPS · 10% Gold · 10% FD (emergency)</text>
+  <text x="55" y="364" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#64748B">Source: SEBI investor awareness · AMFI India · RBI monetary policy · Finance Act 2025-26</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

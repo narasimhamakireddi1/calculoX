@@ -1,0 +1,57 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Business loan vs personal loan comparison diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5B21B6"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F5F3FF"/><stop offset="100%" stop-color="#EDE9FE"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Business Loan vs Personal Loan — Key Differences</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#C4B5FD">RBI lending norms · MSME schemes · Tax deductibility rules</text>
+  <!-- Comparison table -->
+  <rect x="30" y="84" width="740" height="220" rx="10" fill="white" stroke="#C4B5FD" stroke-width="1.5"/>
+  <!-- Table header -->
+  <rect x="30" y="84" width="740" height="30" rx="10" fill="#EDE9FE"/>
+  <rect x="30" y="101" width="740" height="13" fill="#EDE9FE"/>
+  <text x="175" y="105" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#5B21B6" text-anchor="middle" font-weight="700">Criteria</text>
+  <text x="435" y="105" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#5B21B6" text-anchor="middle" font-weight="700">Business Loan</text>
+  <text x="660" y="105" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#5B21B6" text-anchor="middle" font-weight="700">Personal Loan</text>
+  <!-- Row 1 -->
+  <line x1="30" y1="117" x2="770" y2="117" stroke="#EDE9FE" stroke-width="1"/>
+  <text x="55" y="135" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Interest Rate</text>
+  <text x="435" y="135" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">9–15% p.a.</text>
+  <text x="660" y="135" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626" text-anchor="middle" font-weight="600">11–24% p.a.</text>
+  <!-- Row 2 -->
+  <line x1="30" y1="147" x2="770" y2="147" stroke="#EDE9FE" stroke-width="1"/>
+  <text x="55" y="165" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Loan Amount</text>
+  <text x="435" y="165" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">₹1L – ₹10 Crore+</text>
+  <text x="660" y="165" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">₹50K – ₹40L</text>
+  <!-- Row 3 -->
+  <line x1="30" y1="177" x2="770" y2="177" stroke="#EDE9FE" stroke-width="1"/>
+  <text x="55" y="195" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Tax Deductibility</text>
+  <text x="435" y="195" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle" font-weight="600">✓ Interest is business expense</text>
+  <text x="660" y="195" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626" text-anchor="middle">✗ Not tax deductible</text>
+  <!-- Row 4 -->
+  <line x1="30" y1="207" x2="770" y2="207" stroke="#EDE9FE" stroke-width="1"/>
+  <text x="55" y="225" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Collateral</text>
+  <text x="435" y="225" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">May be required (secured)</text>
+  <text x="660" y="225" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" text-anchor="middle">Unsecured (no collateral)</text>
+  <!-- Row 5 -->
+  <line x1="30" y1="237" x2="770" y2="237" stroke="#EDE9FE" stroke-width="1"/>
+  <text x="55" y="255" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Tenure</text>
+  <text x="435" y="255" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">1–15 years</text>
+  <text x="660" y="255" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569" text-anchor="middle">1–7 years</text>
+  <!-- Row 6 -->
+  <line x1="30" y1="267" x2="770" y2="267" stroke="#EDE9FE" stroke-width="1"/>
+  <text x="55" y="285" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155" font-weight="600">Best for</text>
+  <text x="435" y="285" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#7C3AED" text-anchor="middle">Business expansion, equipment</text>
+  <text x="660" y="285" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#7C3AED" text-anchor="middle">Urgent personal needs</text>
+  <!-- Col dividers -->
+  <line x1="310" y1="84" x2="310" y2="304" stroke="#EDE9FE" stroke-width="1"/>
+  <line x1="560" y1="84" x2="560" y2="304" stroke="#EDE9FE" stroke-width="1"/>
+  <!-- MSME note -->
+  <rect x="30" y="318" width="740" height="44" rx="8" fill="#EDE9FE"/>
+  <text x="55" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#5B21B6" font-weight="600">MSME Scheme:</text>
+  <text x="172" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> MUDRA Loans (Shishu/Kishore/Tarun) offer 0–8% rates for small businesses up to ₹10L</text>
+  <text x="55" y="354" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569">CGTMSE scheme: Collateral-free business loans up to ₹2 Crore for MSMEs · per Govt of India notification</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

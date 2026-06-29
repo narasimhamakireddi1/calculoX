@@ -1,0 +1,81 @@
+﻿import { MetadataRoute } from 'next';
+import { getActiveCalculators } from '@/config/calculators.config';
+import { blogPosts } from '@/lib/blog/posts';
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
+
+// Last date any calculator page was meaningfully updated.
+// Update this when you ship a major content or UI change to calculator pages.
+const CALC_LAST_MODIFIED = new Date('2026-06-19');
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const calculators = getActiveCalculators();
+
+  const calculatorUrls = calculators.map((calc) => ({
+    url: `${BASE_URL}/${calc.slug}`,
+    lastModified: CALC_LAST_MODIFIED,
+    changeFrequency: 'monthly' as const,
+    priority: 0.9,
+  }));
+
+  // Blog posts already carry per-post dates from posts.ts — use them directly.
+  const blogUrls = blogPosts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.lastUpdated ?? post.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [
+    {
+      url: BASE_URL,
+      lastModified: new Date('2026-06-19'),
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+    ...calculatorUrls,
+    {
+      url: `${BASE_URL}/blog`,
+      lastModified: new Date('2026-06-12'), // blog category filter tabs added
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    ...blogUrls,
+    {
+      url: `${BASE_URL}/compare`,
+      lastModified: new Date('2026-06-17'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/author/narasimha-makireddi`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/about`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/contact`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    },
+    {
+      url: `${BASE_URL}/privacy-policy`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/terms-of-service`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ];
+}

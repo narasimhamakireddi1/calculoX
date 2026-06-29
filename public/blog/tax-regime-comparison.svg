@@ -1,0 +1,42 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="New vs Old tax regime comparison diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B45309"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFBEB"/><stop offset="100%" stop-color="#FEF3C7"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">New vs Old Tax Regime — FY 2025-26 Comparison</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#FDE68A">Finance Act 2025-26 · New regime is default · Switch at filing time · CBDT notification</text>
+  <!-- Comparison table headers -->
+  <rect x="30" y="84" width="370" height="210" rx="10" fill="white" stroke="#93C5FD" stroke-width="2"/>
+  <rect x="30" y="84" width="370" height="32" rx="10" fill="#DBEAFE"/>
+  <rect x="30" y="102" width="370" height="14" fill="#DBEAFE"/>
+  <text x="215" y="106" font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#1D4ED8" text-anchor="middle" font-weight="700">New Regime  (Default)</text>
+  <text x="80" y="132" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B" font-weight="600">Lower base rates</text>
+  <text x="80" y="152" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">✓ 0% tax up to ₹12L (with 87A rebate)</text>
+  <text x="80" y="170" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">✓ Standard deduction ₹75,000</text>
+  <text x="80" y="188" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">✓ Simpler, no investment proof</text>
+  <text x="80" y="206" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626">✗ No HRA, 80C, 80D deductions</text>
+  <text x="80" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626">✗ Less beneficial if high deductions</text>
+  <text x="80" y="250" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" font-weight="600">Best for: Income &lt; ₹15L or few deductions</text>
+  <text x="80" y="268" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#1D4ED8" font-weight="600">or no HRA (e.g. owns house)</text>
+  <!-- Old regime -->
+  <rect x="420" y="84" width="350" height="210" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <rect x="420" y="84" width="350" height="32" rx="10" fill="#FEF9C3"/>
+  <rect x="420" y="102" width="350" height="14" fill="#FEF9C3"/>
+  <text x="595" y="106" font-family="system-ui,-apple-system,sans-serif" font-size="15" fill="#713F12" text-anchor="middle" font-weight="700">Old Regime</text>
+  <text x="445" y="132" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#64748B" font-weight="600">Higher base rates + many deductions</text>
+  <text x="445" y="152" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">✓ 80C up to ₹1,50,000</text>
+  <text x="445" y="170" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">✓ 80D health insurance ₹25,000</text>
+  <text x="445" y="188" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">✓ HRA exemption if renting</text>
+  <text x="445" y="206" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669">✓ NPS 80CCD ₹50,000 extra</text>
+  <text x="445" y="224" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#DC2626">✗ Requires investment proof</text>
+  <text x="445" y="250" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#B45309" font-weight="600">Best for: High deductions (&gt;₹3L)</text>
+  <text x="445" y="268" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#B45309" font-weight="600">or paying HRA in metro cities</text>
+  <!-- Bottom insight -->
+  <rect x="30" y="308" width="740" height="54" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="55" y="330" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" font-weight="600">Quick Rule:</text>
+  <text x="143" y="330" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569"> If total deductions &gt; ₹3.75L → Old Regime may save more · Below → New Regime wins</text>
+  <text x="55" y="350" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#475569">Use our Tax Calculator to compare both regimes instantly with your exact income and deductions.</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

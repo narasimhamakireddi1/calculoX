@@ -1,0 +1,805 @@
+﻿'use client';
+
+import { useState, useMemo, useEffect, useCallback, memo, Suspense, lazy } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
+import { Home, BarChart2, Briefcase, Rocket, Target, Coins, BookOpen, Lightbulb, Trash2, AlertTriangle, HelpCircle, ChevronRight } from 'lucide-react';
+import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/emi';
+import { EMISchema } from '@/lib/validators';
+import { formatCurrency } from '@/lib/utils/format';
+import { RelatedCalculators } from '@/components/ui/RelatedCalculators';
+import { RelatedBlogPosts } from '@/components/ui/RelatedBlogPosts';
+import { getRelatedBlogPosts } from '@/lib/blog/utils';
+import { ConfidenceBadge } from '@/components/ui/ConfidenceBadge';
+import { QuickStartExamples, type QuickStartScenario } from '@/components/ui/QuickStartExamples';
+import { ShareButtons } from '@/components/ui/ShareButtons';
+import { getInternalLinks } from '@/config/internal-links.config';
+import { RangeSlider } from '@/components/ui/RangeSlider';
+import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
+
+import { ChartEmptyState } from '@/components/charts/ChartEmptyState';
+
+// Dynamic imports for charts - lazy load to improve initial page load
+const Charts = lazy(() => import('@/components/emi/ChartComponents').then(m => ({ default: m.ChartsSection })));
+const AmortizationTable = lazy(() => import('@/components/emi/AmortizationTable').then(m => ({ default: m.default })));
+
+// Fallback loader
+const ChartLoader = () => (
+  <div className="w-full h-80 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg">
+    <div className="text-center">
+      <div className="animate-pulse inline-block w-12 h-12 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+      <p className="text-gray-500 dark:text-gray-400">Loading chart...</p>
+    </div>
+  </div>
+);
+
+type EMIFormData = {
+  principal: number;
+  annualRate: number;
+  years: number;
+};
+
+interface EMIResultData {
+  emi: number;
+  totalAmount: number;
+  totalInterest: number;
+  numberOfMonths: number;
+}
+
+interface AmortizationRow {
+  month: number;
+  payment: number;
+  principal: number;
+  interest: number;
+  balance: number;
+}
+
+const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | null; watchValues: EMIFormData }) => {
+  if (!result) {
+    return (
+      <div className="card h-full flex items-center justify-center min-h-64">
+        <div className="text-center">
+          <p className="text-gray-500 dark:text-gray-400 text-lg">
+            Enter your loan details and results will appear here
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div id="emi-results" className="card space-y-4">
+      <h2 className="text-2xl font-bold mb-6">Loan Summary</h2>
+
+      {/* Hero metric */}
+      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
+        <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly EMI</p>
+        <p className="text-5xl sm:text-6xl font-black text-blue-700 dark:text-blue-400 break-words overflow-hidden leading-tight">
+          {formatCurrency(result.emi)}
+        </p>
+        <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">per month for {result.numberOfMonths} months</p>
+      </div>
+
+      {/* Secondary metrics */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm min-w-0">
+          <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Total Payable</p>
+          <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white break-words overflow-hidden">
+            {formatCurrency(result.totalAmount)}
+          </p>
+        </div>
+
+        <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 p-3 sm:p-4 rounded-lg border border-red-200 dark:border-red-700 shadow-sm min-w-0">
+          <p className="text-red-600 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><BarChart2 className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest</p>
+          <p className="text-sm sm:text-lg font-bold text-red-700 dark:text-red-400 break-words overflow-hidden">
+            {formatCurrency(result.totalInterest)}
+          </p>
+        </div>
+
+        <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
+          <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1">Duration</p>
+          <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
+            {result.numberOfMonths} <span className="font-normal text-xs">months</span>
+          </p>
+        </div>
+      </div>
+
+      {/* Result Explanation */}
+      <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+        <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your EMI</h3>
+        <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+          <p><strong>Monthly EMI:</strong> Fixed amount you pay each month. Includes both principal and interest components that change each month</p>
+          <p><strong>Total Interest:</strong> Total amount you pay as interest over the entire loan duration. Reduces with early repayment</p>
+          <p><strong>Total Payable:</strong> Principal (loan amount) + Total Interest. This is the complete amount you'll pay by maturity</p>
+          <p><strong>Interest Breakdown:</strong> Early payments have more interest, later payments have more principal (see amortization table below)</p>
+        </div>
+      </div>
+
+      {/* Helpful Tips */}
+      <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+        <h3 className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Money-Saving Tips</h3>
+        <ul className="space-y-1 text-sm text-green-800 dark:text-green-200">
+          <li>✓ <strong>Prepay Lump Sums:</strong> Pay extra in good months to reduce total interest significantly</li>
+          <li>✓ <strong>Shorter Tenure:</strong> 15 years instead of 20 can save substantial interest</li>
+          <li>✓ <strong>Better Rate:</strong> Even 0.5% lower rate saves thousands over the loan period</li>
+          <li>✓ <strong>Early Settlement:</strong> Check for prepayment penalties before clearing early</li>
+        </ul>
+      </div>
+
+      <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
+        <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
+        <p className="text-sm text-amber-700 dark:text-amber-300">
+          Your monthly EMI is <strong>{formatCurrency(result.emi)}</strong>. Financial advisors recommend keeping your EMI-to-income ratio below 40% for healthy finances. With an interest rate of 8-9%, home loans are typically more advantageous than personal loans at 12-18%.
+        </p>
+      </div>
+
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          EMI calculated using monthly reducing balance method with compounding interest.
+        </p>
+      </div>
+
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
+        {/* Share Section */}
+        <ShareButtons
+          inputs={[
+            { label: 'Principal Amount', value: `₹${watchValues.principal.toLocaleString('en-IN')}` },
+            { label: 'Interest Rate', value: `${watchValues.annualRate}% p.a.` },
+            { label: 'Loan Tenure', value: `${watchValues.years} years` },
+          ]}
+          outputs={[
+            { label: 'Monthly EMI', value: `₹${result.emi.toLocaleString('en-IN')}` },
+            { label: 'Total Payable', value: `₹${result.totalAmount.toLocaleString('en-IN')}` },
+            { label: 'Total Interest', value: `₹${result.totalInterest.toLocaleString('en-IN')}` },
+          ]}
+          calculatorName="EMI Calculator"
+        />
+      </div>
+    </div>
+  );
+});
+
+ResultCards.displayName = 'ResultCards';
+
+// Memoized input component with optimized rendering - RD design pattern
+const LoanInput = memo(({
+  id,
+  label,
+  value,
+  onChange,
+  onBlur,
+  min,
+  max,
+  sliderMax,
+  step,
+  error,
+  warning,
+  rangeText,
+  colorFrom,
+  colorTo,
+  presets,
+  presetLabels,
+  helperText
+}: {
+  id: string;
+  label: string;
+  value: number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  min: number;
+  max: number;
+  sliderMax?: number;
+  step: number | string;
+  error: any;
+  warning?: string;
+  rangeText: string;
+  colorFrom: string;
+  colorTo: string;
+  presets?: number[];
+  presetLabels?: string[];
+  helperText?: string;
+}) => {
+  // Extract color names for dynamic styling
+  const getColorClasses = () => {
+    if (colorFrom.includes('blue')) return { border: 'border-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-700 dark:text-blue-400', dark: 'dark:border-blue-700' };
+    if (colorFrom.includes('green')) return { border: 'border-green-400', bg: 'bg-green-50 dark:bg-green-900/20', text: 'text-green-700 dark:text-green-400', dark: 'dark:border-green-700' };
+    if (colorFrom.includes('orange')) return { border: 'border-orange-400', bg: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-700 dark:text-orange-400', dark: 'dark:border-orange-700' };
+    if (colorFrom.includes('purple')) return { border: 'border-purple-400', bg: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-700 dark:text-purple-400', dark: 'dark:border-purple-700' };
+    if (colorFrom.includes('red')) return { border: 'border-red-400', bg: 'bg-red-50 dark:bg-red-900/20', text: 'text-red-700 dark:text-red-400', dark: 'dark:border-red-700' };
+    return { border: 'border-gray-400', bg: 'bg-gray-50 dark:bg-gray-900/20', text: 'text-gray-700 dark:text-gray-400', dark: 'dark:border-gray-700' };
+  };
+
+  const colors = getColorClasses();
+  const effectiveSliderMax = sliderMax ?? max;
+
+  return (
+    <div className="space-y-3">
+      <label htmlFor={id} className="block text-sm font-bold text-gray-900 dark:text-white">{label}</label>
+      <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
+        {/* Slider - always has a numeric value so thumb position is correct */}
+        <RangeSlider
+          min={min}
+          max={effectiveSliderMax}
+          step={step}
+          value={value || min}
+          onChange={onChange}
+          onBlur={onBlur}
+          className={`w-full flex-1 h-3 bg-gradient-to-r ${colorFrom} ${colorTo} rounded-lg appearance-none cursor-pointer accent-${colorFrom.split('-')[1]}-600`}
+        />
+
+        {/* Number Input - matches retirement calculator design */}
+        <input
+          id={id}
+          type="number"
+          placeholder="0"
+          min={min}
+          max={max}
+          step={step}
+          value={value === 0 ? '' : value}
+          onChange={onChange}
+          onBlur={onBlur}
+          className={`w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 ${colors.border} rounded-lg font-bold ${colors.text} ${colors.bg} ${colors.dark}`}
+        />
+      </div>
+
+      {error && <p className="text-red-500 text-sm">{error.message}</p>}
+      {warning && (
+        <p className="text-amber-600 dark:text-amber-400 text-sm flex items-center gap-1">
+          <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+          {warning}
+        </p>
+      )}
+
+      {/* Quick Preset Buttons */}
+      {presets && presets.length > 0 && (
+        <div className="flex gap-2 flex-wrap mt-3">
+          {presets.map((preset, idx) => (
+            <button
+              key={preset}
+              type="button"
+              onClick={() => onChange({ target: { value: String(preset) } } as any)}
+              className={`text-xs px-3 py-1.5 rounded-full border ${colors.border} ${colors.dark}
+                ${colors.bg} hover:brightness-110 transition-colors`}
+            >
+              {presetLabels?.[idx] || preset}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Helper Text */}
+      {helperText && (
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-start gap-1">
+          <Lightbulb className="w-3 h-3 mt-0.5 flex-shrink-0" aria-hidden="true" />
+          {helperText}
+        </p>
+      )}
+
+      <p className="text-xs text-gray-500 dark:text-gray-400">{rangeText}</p>
+    </div>
+  );
+});
+
+LoanInput.displayName = 'LoanInput';
+
+const PRINCIPAL_MAX = 15000000;
+
+const DEFAULT_EMI_VALUES = { principal: 1000000, annualRate: 8.5, years: 5 };
+
+function computeEMIAll(data: EMIFormData) {
+  const result = calculateEMI(data);
+  const fullSchedule = generateAmortizationSchedule(data, result);
+  return { result, schedule: fullSchedule, scheduleFirstTwelve: fullSchedule.slice(0, 12) };
+}
+
+const INITIAL_EMI_DATA = (() => {
+  try { return computeEMIAll(DEFAULT_EMI_VALUES); } catch { return null; }
+})();
+
+export default function EMICalculatorPage() {
+  const [result, setResult] = useState<EMIResultData | null>(INITIAL_EMI_DATA?.result ?? null);
+  const [schedule, setSchedule] = useState<AmortizationRow[]>(INITIAL_EMI_DATA?.schedule ?? []);
+  const [scheduleFirstTwelve, setScheduleFirstTwelve] = useState<AmortizationRow[]>(INITIAL_EMI_DATA?.scheduleFirstTwelve ?? []);
+  const [showFullSchedule, setShowFullSchedule] = useState(false);
+  const [principalWarning, setPrincipalWarning] = useState('');
+
+  const {
+    formState: { errors },
+    watch,
+    setValue,
+    reset,
+  } = useForm<EMIFormData>({
+    resolver: zodResolver(EMISchema),
+    defaultValues: DEFAULT_EMI_VALUES,
+  });
+
+  // Restore saved calculation if available
+  useEffect(() => {
+    const savedData = sessionStorage.getItem('restore_emi-calculator');
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        Object.entries(parsed).forEach(([key, value]) => {
+          setValue(key as keyof EMIFormData, value as any, { shouldValidate: true });
+        });
+        sessionStorage.removeItem('restore_emi-calculator');
+      } catch {
+        // Ignore if invalid
+      }
+    }
+  }, [setValue]);
+
+  const watchValues = watch();
+
+  const fieldRanges = useMemo(
+    () => ({
+      principal: { min: 10000, max: PRINCIPAL_MAX, label: 'Loan Amount (₹)' },
+      annualRate: { min: 0, max: 50, label: 'Annual Rate (%)' },
+      years: { min: 1, max: 50, label: 'Years' },
+    }),
+    []
+  );
+
+  // Memoize handlers with useCallback
+  const handleInputChange = useCallback((fieldName: keyof EMIFormData, value: number) => {
+    setValue(fieldName, value, { shouldValidate: true });
+  }, [setValue]);
+
+  const handlePrincipalChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value === '' ? 0 : Number(e.target.value);
+    if (raw > PRINCIPAL_MAX) {
+      setValue('principal', PRINCIPAL_MAX, { shouldValidate: true });
+      setPrincipalWarning('Maximum loan amount is ₹1.5 Crore. Value set to ₹1,50,00,000.');
+    } else {
+      setValue('principal', raw, { shouldValidate: true });
+      setPrincipalWarning('');
+    }
+  }, [setValue]);
+
+  const handleValidateField = useCallback((fieldName: string, value: number) => {
+    const range = fieldRanges[fieldName as keyof typeof fieldRanges];
+    if (!range) return;
+    if (value > range.max) {
+      setValue(fieldName as keyof EMIFormData, range.max, { shouldValidate: true });
+    } else if (value < range.min && value > 0) {
+      setValue(fieldName as keyof EMIFormData, range.min, { shouldValidate: true });
+    }
+  }, [fieldRanges, setValue]);
+
+  const haptic = useHapticFeedback();
+
+  const handleReset = useCallback(() => {
+    haptic.trigger('warning');
+    setPrincipalWarning('');
+    reset();
+    setResult(null);
+    setSchedule([]);
+    setScheduleFirstTwelve([]);
+    setShowFullSchedule(false);
+  }, [reset, haptic, setPrincipalWarning]);
+
+  const handleToggleSchedule = useCallback(() => {
+    setShowFullSchedule(prev => !prev);
+  }, []);
+
+  // Quick-start scenarios
+  const emiScenarios: QuickStartScenario[] = useMemo(() => [
+    {
+      label: 'First-Time Homebuyer',
+      description: 'Typical home loan scenario',
+      icon: Home,
+      values: { principal: 5000000, annualRate: 8.5, years: 20 }
+    },
+    {
+      label: 'Refinance Existing',
+      description: 'Lower rate on existing loan',
+      icon: BarChart2,
+      values: { principal: 3000000, annualRate: 7.5, years: 15 }
+    },
+    {
+      label: 'Business Loan',
+      description: 'Commercial property/working capital',
+      icon: Briefcase,
+      values: { principal: 10000000, annualRate: 10.5, years: 10 }
+    }
+  ], []);
+
+  const handleSelectScenario = useCallback((values: Record<string, number | string>) => {
+    Object.entries(values).forEach(([key, value]) => {
+      setValue(key as keyof EMIFormData, Number(value), { shouldValidate: true });
+    });
+  }, [setValue]);
+
+  // Memoized calculation
+  const calculateResults = useCallback((data: EMIFormData) => {
+    const computed = computeEMIAll(data);
+    setResult(computed.result);
+    setSchedule(computed.schedule);
+    setScheduleFirstTwelve(computed.scheduleFirstTwelve);
+  }, []);
+
+  // Auto-calculate with debounce
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (watchValues.principal && watchValues.annualRate !== undefined && watchValues.years) {
+        calculateResults(watchValues);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [watchValues, calculateResults]);
+
+  return (
+    <div className="space-y-8 py-8">
+      <div className="text-center">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+            <CalculatorIcon idOrHref="emi" className="w-6 h-6 text-white" />
+          </span>
+          <span>EMI Calculator</span>
+        </h1>
+        <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg">
+          Calculate your Equated Monthly Installment (EMI) for loans. View total interest, amortization schedule, and repayment breakdown.
+        </p>
+      </div>
+
+      <ConfidenceBadge calculatorType="emi" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Form Section */}
+        <div id="emi-inputs" className="card min-w-0">
+          <h2 className="text-2xl font-bold mb-6">Loan Details</h2>
+
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={emiScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
+
+          <form className="space-y-6">
+            <div>
+              <LoanInput
+                id="principal"
+                label="Loan Amount (₹)"
+                value={watchValues.principal ?? 0}
+                onChange={handlePrincipalChange}
+                onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
+                min={10000}
+                max={15000000}
+                step={10000}
+                error={errors.principal}
+                warning={principalWarning}
+                rangeText="₹10,000 - ₹1.5 Crore"
+                colorFrom="from-blue-300"
+                colorTo="to-blue-600"
+                presets={[2000000, 5000000, 10000000, 15000000]}
+                presetLabels={['₹20L', '₹50L', '₹1Cr', '₹1.5Cr']}
+                helperText="Typical home loan range: ₹10L – ₹1.5Cr depending on property value and down payment"
+              />
+            </div>
+
+            <div>
+              <LoanInput
+                id="annual-rate"
+                label="Annual Interest Rate (%)"
+                value={watchValues.annualRate ?? 0}
+                onChange={(e) => handleInputChange('annualRate', Number(e.target.value))}
+                onBlur={(e) => handleValidateField('annualRate', Number(e.target.value))}
+                min={0}
+                max={50}
+                step={0.1}
+                error={errors.annualRate}
+                rangeText="0% - 50%"
+                colorFrom="from-orange-300"
+                colorTo="to-orange-600"
+                presets={[7.5, 8.5, 9.5]}
+                presetLabels={['7.5%', '8.5%', '9.5%']}
+                helperText="Current home loan rates: 7.5-9.5% p.a. (varies by bank and credit score)"
+              />
+            </div>
+
+            <div>
+              <LoanInput
+                id="loan-tenure"
+                label="Loan Tenure (Years)"
+                value={watchValues.years ?? 0}
+                onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                onBlur={(e) => handleValidateField('years', Number(e.target.value))}
+                min={1}
+                max={50}
+                step={1}
+                error={errors.years}
+                rangeText="1 - 50 years"
+                colorFrom="from-green-300"
+                colorTo="to-green-600"
+                presets={[10, 15, 20, 30]}
+                presetLabels={['10Y', '15Y', '20Y', '30Y']}
+                helperText="Most home loans: 15-30 years. Shorter tenure = higher EMI but less total interest"
+              />
+            </div>
+
+            <button
+              type="button"
+              onClick={handleReset}
+              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
+            >
+              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
+            </button>
+          </form>
+        </div>
+
+        {/* Results Section */}
+        <div className="min-w-0">
+          <ResultCards result={result} watchValues={watchValues} />
+        </div>
+      </div>
+
+      {/* Charts Section - Lazy loaded */}
+      {result ? (
+        <Suspense fallback={<ChartLoader />}>
+          <Charts result={result} schedule={schedule} />
+        </Suspense>
+      ) : (
+        <ChartEmptyState />
+      )}
+
+      {/* Amortization Schedule - Lazy loaded */}
+      {result && schedule.length > 0 && (
+        <Suspense fallback={<div className="card h-40 flex items-center justify-center"><p className="text-gray-500">Loading table...</p></div>}>
+          <AmortizationTable
+            schedule={schedule}
+            scheduleFirstTwelve={scheduleFirstTwelve}
+            showFullSchedule={showFullSchedule}
+            onToggle={handleToggleSchedule}
+          />
+        </Suspense>
+      )}
+
+      {/* Featured Snippet Sections for SEO */}
+      <div className="space-y-8">
+        {/* Definition Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">What is EMI?</h2>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            EMI (Equated Monthly Installment) is a fixed monthly payment made by a borrower to repay a loan. The EMI includes both principal and interest components, calculated using the formula: <span className="font-mono bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">EMI = [P×R×(1+R)^N]/[(1+R)^N-1]</span> where P is the loan amount, R is the monthly interest rate, and N is the number of months.
+          </p>
+        </div>
+
+        {/* List Snippet: How to Reduce EMI */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">How to Reduce Your Loan EMI?</h2>
+          <ol className="space-y-3 text-gray-700 dark:text-gray-300">
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">1.</span>
+              <span><strong>Make a Larger Down Payment:</strong> Increasing your down payment reduces the loan principal, which directly lowers the EMI amount.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">2.</span>
+              <span><strong>Choose a Longer Loan Tenure:</strong> Extending the loan duration spreads the payment over more months, reducing the monthly EMI (but increases total interest paid).</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">3.</span>
+              <span><strong>Negotiate a Better Interest Rate:</strong> Shopping around with different lenders or negotiating with your bank can secure a lower interest rate, reducing your EMI.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">4.</span>
+              <span><strong>Make Prepayments:</strong> Paying lump sums toward the principal reduces the outstanding balance and future EMI amounts.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">5.</span>
+              <span><strong>Switch to a Better Lender:</strong> If you have improved credit, consider refinancing with a lender offering better rates.</span>
+            </li>
+          </ol>
+        </div>
+
+        {/* Comparison Snippet */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">EMI vs Flat Rate Interest: Which is Better?</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="border-l-4 border-blue-600 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> EMI (Reducing Balance)</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Interest calculated on the reducing balance monthly. More interest is paid upfront, less later.</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Total Interest:</strong> Lower | <strong>Early Payment:</strong> Better savings</p>
+            </div>
+            <div className="border-l-4 border-orange-600 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Flat Rate Interest</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Interest calculated as a fixed percentage of the original principal throughout the loan tenure.</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Total Interest:</strong> Higher | <strong>Early Payment:</strong> Limited benefit</p>
+            </div>
+          </div>
+          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>Verdict:</strong> EMI with reducing balance is significantly better for borrowers. You pay less total interest and benefit more from early repayment. Most Indian banks use the EMI method.
+            </p>
+          </div>
+        </div>
+
+        {/* Is Your EMI Sustainable */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">Is Your EMI Sustainable? The 40% Rule</h2>
+          <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <p>
+              Financial experts recommend that your total EMI (including all loans) should not exceed 40% of your monthly gross income. This is called the "40% rule" and ensures you have sufficient funds for living expenses, savings, and emergencies.
+            </p>
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+              <p className="font-bold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-1"><Target className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Quick Assessment:</p>
+              <p className="text-sm">If your monthly EMI is ₹{result ? formatCurrency(result.emi).replace('₹', '') : 'X'}, you should have a gross monthly income of at least ₹{result ? formatCurrency(result.emi * 2.5).replace('₹', '') : 'X'} to stay within the 40% rule.</p>
+            </div>
+            <p className="text-sm">
+              <strong>Why does this matter?</strong> Keeping your EMI within 40% of income ensures you can handle unexpected expenses, maintain an emergency fund, invest for retirement, and avoid financial stress during economic downturns.
+            </p>
+            <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800 space-y-2">
+              <p className="font-bold text-amber-900 dark:text-amber-300 flex items-center gap-1"><AlertTriangle className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Income Verification Tips:</p>
+              <ul className="text-sm space-y-1 list-disc list-inside">
+                <li>Banks typically verify last 2 years of income (salary slips, IT returns)</li>
+                <li>Self-employed: 3 years of audited accounts required</li>
+                <li>Co-applicant income can be added to improve loan eligibility</li>
+                <li>Bonuses count only if received consistently for 2+ years</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* How to Reduce EMI */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">Strategic Ways to Reduce Your EMI & Save Interest</h2>
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-lg border-2 border-green-300 dark:border-green-700">
+                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maximize Down Payment</h3>
+                <p className="text-sm text-green-800 dark:text-green-200 mb-3">Increasing your down payment from 20% to 40% can reduce your loan principal by ₹{result ? formatCurrency((result.totalAmount - result.emi * (watchValues.years * 12)) * 0.2).replace('₹', '') : 'X'}, which directly lowers EMI.</p>
+                <p className="text-xs font-semibold text-green-700 dark:text-green-300">Example: ₹50L home with 20% down vs 40% down reduces EMI by ₹10,000-15,000/month</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-4 rounded-lg border-2 border-blue-300 dark:border-blue-700">
+                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><Target className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Negotiate Better Rate</h3>
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">Even 0.5% reduction in interest rate saves substantial interest. At ₹50L loan, 0.5% cut saves ₹{result ? formatCurrency((result.totalAmount - (result.emi * watchValues.years * 12)) * 0.15).replace('₹', '') : 'X'} over tenure.</p>
+                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300">Negotiation factors: CIBIL score {'>'} 750, existing customer, bulk loans</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 rounded-lg border-2 border-purple-300 dark:border-purple-700">
+                <h3 className="font-bold text-purple-900 dark:text-purple-300 mb-3">⏰ Extend Tenure Strategically</h3>
+                <p className="text-sm text-purple-800 dark:text-purple-200 mb-3">Longer tenure reduces monthly EMI but increases total interest. 20-year vs 30-year tenure reduces EMI by 30% but adds ~45% more total interest.</p>
+                <p className="text-xs font-semibold text-purple-700 dark:text-purple-300">Strategy: Balance EMI comfort with interest cost</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-4 rounded-lg border-2 border-orange-300 dark:border-orange-700">
+                <h3 className="font-bold text-orange-900 dark:text-orange-300 mb-3 flex items-center gap-2"><Rocket className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Prepay Strategically</h3>
+                <p className="text-sm text-orange-800 dark:text-orange-200 mb-3">Annual bonuses or surplus income can be prepaid toward principal. Prepaying ₹5L in year 5 saves ₹10-15L in total interest on 20-year loans.</p>
+                <p className="text-xs font-semibold text-orange-700 dark:text-orange-300">Check prepayment penalties before pursuing this strategy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Expert Tips */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Lightbulb className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Expert Insights on Loan Management</h2>
+          <div className="space-y-4">
+            <div className="border-l-4 border-blue-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">1. Understand Your Amortization Schedule</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Early EMI payments are mostly interest. In the first 5 years of a 20-year loan, 70% goes toward interest. Review the amortization table to see your exact principal-to-interest breakdown each month.</p>
+            </div>
+
+            <div className="border-l-4 border-green-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">2. Rate Lock & Market Monitoring</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Monitor RBI repo rate changes. When rates fall, refinance your loan. If rates are expected to rise, lock in fixed rates. Current home loan rates (2024): 8.0-9.5% depending on bank and credit profile.</p>
+            </div>
+
+            <div className="border-l-4 border-purple-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">3. CIBIL Score Impact</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Your credit score directly affects interest rate. Score 750+: Best rates (8.0-8.5%) | Score 700-749: Standard rates (8.5-9.2%) | Score below 700: Expect 9.5%+. Improve your score before applying to save significantly.</p>
+            </div>
+
+            <div className="border-l-4 border-orange-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">4. Floating vs Fixed Rate Trade-off</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300"><strong>Floating:</strong> 0.3-0.5% cheaper, varies with RBI rate | <strong>Fixed:</strong> Stable EMI, peace of mind. Choose floating if rates expected to fall, fixed if rates might rise.</p>
+            </div>
+
+            <div className="border-l-4 border-red-600 pl-4 py-2">
+              <p className="font-semibold text-gray-900 dark:text-white mb-1">5. Insurance & Emergency Fund</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Banks require home loan insurance. Also maintain 6-months of EMI in emergency fund. For ₹31,040 EMI, keep ₹1,86,240 emergency corpus in high-yield savings (FD/liquid funds).</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Table Snippet: EMI for Different Loan Amounts */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-4">EMI for Different Loan Amounts @ 8.5% Interest</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-gray-300 dark:border-gray-600">
+                  <th className="text-left py-3 px-4 font-bold">Loan Amount</th>
+                  <th className="text-center py-3 px-4 font-bold">5 Years (EMI)</th>
+                  <th className="text-center py-3 px-4 font-bold">10 Years (EMI)</th>
+                  <th className="text-center py-3 px-4 font-bold">20 Years (EMI)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹10 Lakh</td>
+                  <td className="text-center py-3 px-4">₹20,138</td>
+                  <td className="text-center py-3 px-4">₹11,455</td>
+                  <td className="text-center py-3 px-4">₹7,726</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹25 Lakh</td>
+                  <td className="text-center py-3 px-4">₹50,344</td>
+                  <td className="text-center py-3 px-4">₹28,638</td>
+                  <td className="text-center py-3 px-4">₹19,314</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹50 Lakh</td>
+                  <td className="text-center py-3 px-4">₹1,00,689</td>
+                  <td className="text-center py-3 px-4">₹57,275</td>
+                  <td className="text-center py-3 px-4">₹38,629</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹1 Crore</td>
+                  <td className="text-center py-3 px-4">₹2,01,378</td>
+                  <td className="text-center py-3 px-4">₹1,14,549</td>
+                  <td className="text-center py-3 px-4">₹77,258</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      {/* Related Calculators */}
+      <RelatedCalculators calculators={getInternalLinks('emi-calculator')} />
+
+      <RelatedBlogPosts posts={getRelatedBlogPosts('/emi-calculator')} />
+
+
+      {/* FAQ Section */}
+      <div className="card">
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group border-b border-gray-200 dark:border-gray-700">
+            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
+              What is EMI?
+              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0" aria-hidden="true" />
+            </summary>
+            <p className="pb-4 text-gray-600 dark:text-gray-400">
+              EMI (Equated Monthly Installment) is the fixed amount you pay every month to repay a loan. It includes both principal and interest components, structured so that the total interest is spread evenly across the loan tenure.
+            </p>
+          </details>
+
+          <details className="group border-b border-gray-200 dark:border-gray-700">
+            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
+              How is EMI calculated?
+              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0" aria-hidden="true" />
+            </summary>
+            <p className="pb-4 text-gray-600 dark:text-gray-400">
+              EMI is calculated using the formula: EMI = [P × R × (1 + R)^N] / [(1 + R)^N - 1], where P is the principal, R is the monthly interest rate, and N is the number of months. Higher principal or rate increases EMI; longer tenure decreases it.
+            </p>
+          </details>
+
+          <details className="group border-b border-gray-200 dark:border-gray-700">
+            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
+              Can I pay EMI early?
+              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0" aria-hidden="true" />
+            </summary>
+            <p className="pb-4 text-gray-600 dark:text-gray-400">
+              Yes, most loans allow prepayment or early repayment. Paying early reduces the total interest paid. Check with your lender for any prepayment penalties, as some banks charge a small fee for early closure.
+            </p>
+          </details>
+
+          <details className="group border-b border-gray-200 dark:border-gray-700">
+            <summary className="cursor-pointer py-4 font-semibold text-gray-900 dark:text-white flex justify-between items-center">
+              What affects EMI amount?
+              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0" aria-hidden="true" />
+            </summary>
+            <p className="pb-4 text-gray-600 dark:text-gray-400">
+              EMI is affected by three factors: (1) Loan amount - higher principal means higher EMI, (2) Interest rate - higher rate increases EMI, (3) Loan duration - longer tenure reduces EMI but increases total interest paid.
+            </p>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  );
+}

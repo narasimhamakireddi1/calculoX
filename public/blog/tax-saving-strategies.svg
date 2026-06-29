@@ -1,0 +1,61 @@
+<svg width="800" height="420" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tax saving strategies for salaried employees diagram">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B45309"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFBEB"/><stop offset="100%" stop-color="#FEF3C7"/></linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect width="800" height="68" fill="url(#hg)"/>
+  <text x="30" y="38" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="700" fill="white">Tax Saving Deductions — FY 2025-26 (Old Regime)</text>
+  <text x="30" y="57" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#FDE68A">Income Tax Act deductions available to salaried employees · CBDT notification</text>
+  <!-- Deduction table -->
+  <rect x="30" y="84" width="740" height="196" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <!-- Header -->
+  <rect x="30" y="84" width="740" height="30" rx="10" fill="#FEF9C3"/>
+  <rect x="30" y="101" width="740" height="13" fill="#FEF9C3"/>
+  <text x="55" y="104" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#713F12" font-weight="700">Section</text>
+  <text x="200" y="104" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#713F12" font-weight="700">What Qualifies</text>
+  <text x="540" y="104" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#713F12" font-weight="700">Max Deduction</text>
+  <text x="680" y="104" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#713F12" font-weight="700">Max Tax Saved*</text>
+  <!-- 80C -->
+  <line x1="30" y1="117" x2="770" y2="117" stroke="#FDE68A" stroke-width="1"/>
+  <text x="55" y="136" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" font-weight="700">80C</text>
+  <text x="200" y="136" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">ELSS, PPF, LIC, EPF, NSC, tuition</text>
+  <text x="540" y="136" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">₹1,50,000</text>
+  <text x="680" y="136" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">₹46,800</text>
+  <!-- 80D -->
+  <line x1="30" y1="149" x2="770" y2="149" stroke="#FDE68A" stroke-width="1"/>
+  <text x="55" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" font-weight="700">80D</text>
+  <text x="200" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Health insurance (self + parents)</text>
+  <text x="540" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">₹75,000</text>
+  <text x="680" y="168" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">₹23,400</text>
+  <!-- 80CCD(1B) -->
+  <line x1="30" y1="181" x2="770" y2="181" stroke="#FDE68A" stroke-width="1"/>
+  <text x="55" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" font-weight="700">80CCD(1B)</text>
+  <text x="200" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">NPS self contribution (additional)</text>
+  <text x="540" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">₹50,000</text>
+  <text x="680" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">₹15,600</text>
+  <!-- HRA -->
+  <line x1="30" y1="213" x2="770" y2="213" stroke="#FDE68A" stroke-width="1"/>
+  <text x="55" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" font-weight="700">HRA</text>
+  <text x="200" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">House Rent Allowance (metro: 50% basic)</text>
+  <text x="540" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">Varies</text>
+  <text x="680" y="232" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">Up to ₹30,000+</text>
+  <!-- 24b -->
+  <line x1="30" y1="245" x2="770" y2="245" stroke="#FDE68A" stroke-width="1"/>
+  <text x="55" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#1D4ED8" font-weight="700">24(b)</text>
+  <text x="200" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#334155">Home loan interest (self-occupied)</text>
+  <text x="540" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">₹2,00,000</text>
+  <text x="680" y="264" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#059669" font-weight="700">₹62,400</text>
+  <!-- Col dividers -->
+  <line x1="180" y1="84" x2="180" y2="280" stroke="#FDE68A" stroke-width="1"/>
+  <line x1="520" y1="84" x2="520" y2="280" stroke="#FDE68A" stroke-width="1"/>
+  <line x1="660" y1="84" x2="660" y2="280" stroke="#FDE68A" stroke-width="1"/>
+  <!-- Summary bar -->
+  <rect x="30" y="294" width="740" height="68" rx="10" fill="white" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="55" y="316" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#334155" font-weight="600">Maximum Possible Deduction:</text>
+  <text x="320" y="316" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#059669" font-weight="700">₹4,75,000+ combined</text>
+  <text x="600" y="316" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569">→ Saves up to ₹1.48L in tax</text>
+  <text x="55" y="338" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#475569">*Tax saved at 31.2% (30% + 4% cess) bracket  |  Standard deduction ₹50,000 additional</text>
+  <text x="55" y="354" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#92400E">Source: Income Tax Act 1961 as amended by Finance Act 2025-26</text>
+  <text x="770" y="412" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">calculox.in</text>
+</svg>

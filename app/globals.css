@@ -1,0 +1,921 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Color System — Enhanced Palette */
+:root {
+  /* Primary Colors */
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-50: #eff6ff;
+
+  /* Semantic Colors */
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+  --color-info: #3b82f6;
+  --color-info-light: #dbeafe;
+
+  /* Neutral Colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-tertiary: #6b7280;
+  --color-border: #e5e7eb;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb;
+}
+
+html.dark {
+  /* Dark mode colors */
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #e5e7eb;
+  --color-text-tertiary: #9ca3af;
+  --color-border: #374151;
+  --color-bg-primary: #111827;
+  --color-bg-secondary: #1f2937;
+}
+
+* {
+  @apply box-border;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* Calm, refined canvas — subtle cool tint instead of a loud pastel rainbow */
+  background: linear-gradient(165deg, #f7f9fc 0%, #eef3fa 45%, #f3f0fb 100%);
+  min-height: 100vh;
+}
+
+html.dark {
+  background: linear-gradient(135deg, #0a0f1f 0%, #0f1729 12%, #1a1f3a 25%, #15213f 37%, #1a1a35 50%, #231a35 62%, #2a1f38 75%, #1a1f2e 87%, #0a0f1f 100%);
+  color-scheme: dark;
+}
+
+/* Subtle noise texture for dark mode */
+html.dark::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  background-size: 100% 2px, 2px 100%;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Enhanced dark mode inputs with proper backdrop */
+html.dark input:not([type="range"]),
+html.dark textarea,
+html.dark select {
+  @apply bg-gradient-to-b from-gray-800/70 to-gray-900/60 border-gray-700/60 text-gray-50 placeholder-gray-500;
+  backdrop-filter: blur(10px);
+  background-blend-mode: overlay;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
+              0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+/* Enhanced dark mode cards with glass-morphism */
+html.dark .card {
+  @apply bg-gradient-to-br from-gray-900/60 to-gray-800/50 border-gray-700/60;
+  backdrop-filter: blur(12px);
+  background-blend-mode: overlay;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.dark .card:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4),
+              0 24px 52px -22px rgba(59, 130, 246, 0.35),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08),
+              0 0 0 1px rgba(59, 130, 246, 0.22);
+}
+
+/* Enhanced dark mode text contrast */
+html.dark p, html.dark body {
+  @apply text-gray-200;
+  color: #e5e7eb;
+}
+
+html.dark label, html.dark .label {
+  @apply text-gray-300;
+}
+
+html.dark ul, html.dark ol {
+  @apply text-gray-300;
+}
+
+body {
+  @apply antialiased;
+  overflow-x: hidden;
+  background-attachment: fixed;
+  position: relative;
+  background-color: #0f1219;
+}
+
+html.dark body {
+  background-color: #0a0f1f;
+}
+
+/* Texture layer — faint dot grid for premium depth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.04) 1px, transparent 1.6px);
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+html.dark body::before {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.028) 1px, transparent 1.6px);
+}
+
+/* Color layer — top spotlight + ambient corner glows */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(70% 55% at 50% -12%, rgba(79, 110, 247, 0.10) 0%, transparent 70%),
+    radial-gradient(55% 45% at 100% 102%, rgba(168, 130, 255, 0.08) 0%, transparent 72%),
+    radial-gradient(50% 45% at 0% 100%, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+html.dark body::after {
+  background:
+    radial-gradient(72% 58% at 50% -14%, rgba(72, 112, 226, 0.26) 0%, transparent 68%),
+    radial-gradient(58% 50% at 100% 104%, rgba(138, 99, 222, 0.20) 0%, transparent 70%),
+    radial-gradient(52% 48% at 0% 100%, rgba(45, 120, 200, 0.16) 0%, transparent 70%);
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.05) translateY(-20px);
+  }
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+main {
+  @apply container mx-auto px-4 py-8 md:py-12;
+}
+
+/* Typography — Premium Hierarchy */
+h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl font-bold tracking-tight leading-snug;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+h3 {
+  @apply text-xl md:text-2xl font-bold tracking-normal;
+  font-weight: 600;
+}
+
+h4 {
+  @apply text-lg font-semibold tracking-normal;
+  font-weight: 600;
+}
+
+/* Small headings/labels */
+.label-small, .heading-small {
+  @apply text-sm font-semibold tracking-wide uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+.dark .label-small, .dark .heading-small {
+  color: #9ca3af;
+}
+
+/* Body text improvements */
+p, body {
+  @apply leading-relaxed;
+  line-height: 1.625;
+  color: #374151;
+}
+
+.dark p, .dark body {
+  color: #d1d5db;
+}
+
+/* Lists */
+ul, ol {
+  @apply leading-relaxed;
+  list-style-position: outside;
+  margin-left: 1.25rem;
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+.dark ul, .dark ol {
+  color: #cbd5e1;
+}
+
+li {
+  @apply mb-2;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(200%); }
+}
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Phase 1 Animations: Home Page Hero & Category Navigation */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes slideUnderline {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-slide-underline {
+  animation: slideUnderline 0.3s ease-out;
+}
+
+/* Mega-menu enter animation */
+@keyframes megaIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mega-panel-enter {
+  animation: megaIn 0.15s ease-out both;
+}
+
+/* Navbar Animations - Modern & Smooth */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes navGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  }
+}
+
+@keyframes underlineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.navbar-link-glow {
+  animation: navGlow 2s ease-in-out infinite;
+}
+
+.navbar-underline {
+  animation: underlineGrow 0.3s ease-out;
+}
+
+/* Forms — Premium Spacing */
+input:not([type="range"]),
+textarea,
+select {
+  @apply px-4 py-3 border border-gray-300 dark:border-gray-600
+         rounded-lg text-base text-gray-900 dark:text-white
+         placeholder-gray-500 dark:placeholder-gray-400
+         transition-all duration-200
+         focus:outline-none
+         focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white
+         dark:focus:ring-offset-gray-900
+         focus:border-transparent focus:shadow-lg focus:shadow-blue-500/10
+         disabled:bg-gray-50 dark:disabled:bg-gray-800
+         disabled:text-gray-500 dark:disabled:text-gray-500
+         disabled:cursor-not-allowed;
+}
+
+/* Enhanced focus states for all interactive elements */
+input:focus:not([type="range"]),
+textarea:focus,
+select:focus {
+  @apply shadow-lg shadow-blue-500/10 border-blue-500;
+}
+
+/* Focus state colors per semantic type */
+.focus-success:focus {
+  @apply shadow-lg shadow-emerald-500/10 border-emerald-500;
+}
+
+.focus-warning:focus {
+  @apply shadow-lg shadow-amber-500/10 border-amber-500;
+}
+
+.focus-danger:focus {
+  @apply shadow-lg shadow-red-500/10 border-red-500;
+}
+
+/* Label styling improvements */
+label {
+  @apply text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200;
+}
+
+label:hover {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
+/* Range input specific styling */
+input[type="range"] {
+  @apply w-full cursor-pointer;
+}
+
+/* Thumb: white circle with per-calculator accent border — clean on all backgrounds */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: white;
+  border: 2.5px solid var(--thumb-color, #3b82f6);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(0.9);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: white;
+  border: 2.5px solid var(--thumb-color, #3b82f6);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  transform: scale(1.15);
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  transform: scale(0.9);
+}
+
+/* Track: thin strip with filled-left / gray-right split driven by --fill-pct + --fill-color
+   set as inline CSS custom properties by RangeSlider.tsx on each render */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--fill-color, #3b82f6) var(--fill-pct, 50%),
+    rgba(148, 163, 184, 0.45) var(--fill-pct, 50%)
+  );
+}
+
+html.dark input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    var(--fill-color, #60a5fa) var(--fill-pct, 50%),
+    rgba(100, 116, 139, 0.8) var(--fill-pct, 50%)
+  );
+}
+
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.45);
+}
+
+html.dark input[type="range"]::-moz-range-track {
+  background: rgba(51, 65, 85, 0.65);
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 6px;
+  border-radius: 9999px;
+}
+
+/* Mobile: slightly larger thumb to keep touch targets comfortable */
+@media (max-width: 640px) {
+  input[type="range"]::-webkit-slider-thumb {
+    width: 22px;
+    height: 22px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Mobile: slider value input styled as clean white card (reference retirement calculator design)
+   Two selectors cover both DOM patterns:
+   1. Direct child input (retirement, SIP, EMI, FD etc — input is a direct sibling of RangeSlider wrapper)
+   2. Nested input (tax calculator — input is inside <div class="relative"><span>₹</span><input/></div>)
+   Uses :has() — supported in all modern mobile browsers (Safari 15.4+, Chrome 105+, Firefox 121+). */
+@media (max-width: 767px) {
+  div:has(> div > input[type="range"]) > input[type="number"],
+  div:has(> div > input[type="range"]) > div > input[type="number"] {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    color: #111827;
+    border-radius: 0.75rem;
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+  }
+
+  /* Hide ₹ / % prefix spans on mobile — value is self-explanatory from the label */
+  div:has(> div > input[type="range"]) > div > span {
+    display: none;
+  }
+
+  html.dark div:has(> div > input[type="range"]) > input[type="number"],
+  html.dark div:has(> div > input[type="range"]) > div > input[type="number"] {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #f1f5f9;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+button {
+  @apply transition-all duration-300 cursor-pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Button Variants — refined: softer shadows, elegant lift (no bouncy scale) */
+.btn-primary {
+  @apply px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-purple-800 shadow-md shadow-purple-600/20 hover:shadow-lg hover:shadow-purple-600/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-purple-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+}
+
+.btn-outline {
+  @apply px-6 py-3 border-2 border-blue-600/80 text-blue-600 dark:text-blue-400 dark:border-blue-400/70 font-semibold rounded-xl hover:bg-blue-50 hover:border-blue-600 dark:hover:bg-blue-950/40 dark:hover:border-blue-400 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+}
+
+.btn-danger {
+  @apply px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg
+         shadow-md shadow-red-500/20
+         border border-red-500/20
+         transition-all duration-200
+         hover:from-red-700 hover:to-red-800
+         hover:shadow-lg hover:shadow-red-500/30
+         hover:border-red-500/40
+         active:scale-95
+         focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2
+         dark:focus:ring-offset-gray-900
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+.btn-success {
+  @apply px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700
+         text-white font-semibold rounded-xl
+         shadow-md shadow-emerald-500/20
+         border border-emerald-500/20
+         transition-all duration-200
+         hover:from-emerald-700 hover:to-emerald-800
+         hover:shadow-lg hover:shadow-emerald-500/30
+         hover:border-emerald-500/40
+         active:scale-95
+         focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2
+         dark:focus:ring-offset-gray-900
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+.btn-warning {
+  @apply px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700
+         text-white font-semibold rounded-xl
+         shadow-md shadow-amber-500/20
+         border border-amber-500/20
+         transition-all duration-200
+         hover:from-amber-700 hover:to-amber-800
+         hover:shadow-lg hover:shadow-amber-500/30
+         hover:border-amber-500/40
+         active:scale-95
+         focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2
+         dark:focus:ring-offset-gray-900
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+.btn-info {
+  @apply px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-700
+         text-white font-semibold rounded-xl
+         shadow-md shadow-cyan-500/20
+         border border-cyan-500/20
+         transition-all duration-200
+         hover:from-cyan-700 hover:to-cyan-800
+         hover:shadow-lg hover:shadow-cyan-500/30
+         hover:border-cyan-500/40
+         active:scale-95
+         focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2
+         dark:focus:ring-offset-gray-900
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+/* Cards — Premium Glass Depth & Animated Hover (light mode matched to dark) */
+.card {
+  @apply bg-white/80 dark:bg-gray-900/50
+         rounded-2xl border border-gray-200/70 dark:border-gray-800
+         backdrop-filter backdrop-blur-md
+         transition-all duration-300 ease-out
+         hover:border-blue-300/70 dark:hover:border-blue-700/60
+         hover:-translate-y-1
+         p-6;
+  /* soft drop shadow + a "lit-from-above" top inner highlight */
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04),
+              0 10px 28px -16px rgba(16, 24, 40, 0.16),
+              inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.card:hover {
+  /* blue-tinted lift + faint animated glow-ring */
+  box-shadow: 0 6px 14px rgba(16, 24, 40, 0.06),
+              0 24px 52px -22px rgba(37, 99, 235, 0.22),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9),
+              0 0 0 1px rgba(59, 130, 246, 0.14);
+}
+
+.card-compact {
+  @apply p-4;
+}
+
+.card-spacious {
+  @apply p-8;
+}
+
+.card-elevated {
+  @apply shadow-md;
+}
+
+.card-flat {
+  @apply shadow-none border-gray-200 dark:border-gray-700;
+}
+
+/* Color-coded card variants */
+.card-success {
+  @apply border-l-4 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20;
+}
+
+.card-success-text {
+  @apply text-emerald-800 dark:text-emerald-200;
+}
+
+.card-warning {
+  @apply border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-900/20;
+}
+
+.card-warning-text {
+  @apply text-amber-800 dark:text-amber-200;
+}
+
+.card-danger {
+  @apply border-l-4 border-red-500 bg-red-50 dark:bg-red-900/20;
+}
+
+.card-danger-text {
+  @apply text-red-800 dark:text-red-200;
+}
+
+.card-info {
+  @apply border-l-4 border-cyan-500 bg-cyan-50 dark:bg-cyan-900/20;
+}
+
+.card-info-text {
+  @apply text-cyan-800 dark:text-cyan-200;
+}
+
+.card-result {
+  @apply bg-gradient-to-br from-white to-gray-50
+         dark:from-gray-900 dark:to-gray-800
+         border-l-4 border-blue-500;
+}
+
+/* Utility Classes */
+.container-section {
+  @apply max-w-7xl mx-auto px-4 py-12 md:py-16;
+}
+
+/* Text Color System */
+.text-primary {
+  @apply text-gray-900 dark:text-gray-50;
+}
+
+.text-secondary {
+  @apply text-gray-700 dark:text-gray-200;
+}
+
+.text-tertiary {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
+/* Calculator heading title — solid high-contrast color, readable on any background */
+.text-gradient {
+  @apply text-gray-900 dark:text-white;
+}
+
+.text-gradient-success {
+  @apply bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent;
+}
+
+.text-gradient-warning {
+  @apply bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent;
+}
+
+.text-gradient-danger {
+  @apply bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text text-transparent;
+}
+
+/* Responsive Grid */
+.grid-auto {
+  @apply grid gap-4 md:gap-6 auto-cols-fr;
+}
+
+/* Spacing System — Unified 8px Rhythm */
+
+.section-tight {
+  @apply py-8; /* 32px */
+}
+
+.section-normal {
+  @apply py-12; /* 48px */
+}
+
+.section-generous {
+  @apply py-16; /* 64px */
+}
+
+/* Input group spacing */
+.input-group {
+  @apply space-y-3; /* 12px between elements */
+}
+
+.input-group-large {
+  @apply space-y-4; /* 16px for breathing room */
+}
+
+/* Better button behavior */
+@media (hover: hover) {
+  button:hover:not(:disabled) {
+    @apply transform translate-y-0 shadow-lg;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button:active:not(:disabled) {
+    @apply scale-95 opacity-90;
+  }
+}
+
+/* Mobile improvements */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  input:not([type="range"]),
+  textarea,
+  select {
+    @apply py-4 text-base;
+    font-size: 16px; /* Prevent iOS zoom */
+  }
+
+  button {
+    @apply min-h-12 px-4; /* 48px touch target */
+  }
+
+  .card {
+    @apply p-4;
+  }
+}
+
+/* Accessibility: Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    @apply transition-none;
+  }
+
+  button:hover {
+    @apply translate-y-0;
+  }
+}
+
+/* Badge/Pill Color System */
+.badge {
+  @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold
+         transition-colors duration-200;
+}
+
+.badge-primary {
+  @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
+}
+
+.badge-success {
+  @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300;
+}
+
+.badge-warning {
+  @apply bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300;
+}
+
+.badge-danger {
+  @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
+}
+
+.badge-info {
+  @apply bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300;
+}
+
+/* Status indicators */
+.status-dot {
+  @apply inline-block w-2.5 h-2.5 rounded-full;
+}
+
+.status-dot-success {
+  @apply bg-emerald-500;
+}
+
+.status-dot-warning {
+  @apply bg-amber-500;
+}
+
+.status-dot-danger {
+  @apply bg-red-500;
+}
+
+.status-dot-info {
+  @apply bg-cyan-500;
+}
+
+/* Refined custom scrollbars — elegant thin track site-wide */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.45);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.7);
+}
+
+html.dark * {
+  scrollbar-color: rgba(71, 85, 105, 0.6) transparent;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(71, 85, 105, 0.55);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.8);
+}
+
+/* Ad placeholders: transparent in dark mode so empty <ins> slots don't flash white */
+html.dark .adsbygoogle {
+  background: transparent !important;
+}
+
+/* Animated status dots */
+.status-dot-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
