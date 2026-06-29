@@ -1,0 +1,8 @@
+calc/node_modules/
+calc/.next/
+calc/.env
+calc/.env.local
+calc/.env*.local
+calc/tsconfig.tsbuildinfo
+calc.zip
+*.log
