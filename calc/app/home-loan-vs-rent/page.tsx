@@ -804,7 +804,7 @@ export default function HomeLoanVsRentCalculator() {
                 } p-6 sm:p-8 rounded-xl border-2 shadow-lg`}
               >
                 <div className={`text-xs uppercase tracking-widest font-semibold mb-3 ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-700 dark:text-emerald-300' : 'text-blue-700 dark:text-blue-300'}`}>Net Advantage</div>
-                <div className={`text-5xl sm:text-6xl font-black break-words overflow-hidden leading-tight ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-600 dark:text-emerald-300' : 'text-blue-600 dark:text-blue-300'}`}>
+                <div className={`text-[clamp(1.5rem,7.5vw,3.75rem)] font-black whitespace-nowrap leading-tight ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-600 dark:text-emerald-300' : 'text-blue-600 dark:text-blue-300'}`}>
                   {formatCurrency(result.absolute_delta)}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 font-medium">
@@ -816,7 +816,7 @@ export default function HomeLoanVsRentCalculator() {
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="card bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 p-3 sm:p-4 min-w-0">
                   <div className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Monthly EMI</div>
-                  <div className="text-sm sm:text-lg font-bold text-blue-600 dark:text-blue-300 break-words overflow-hidden">
+                  <div className="text-sm sm:text-lg font-bold text-blue-600 dark:text-blue-300 whitespace-nowrap">
                     {formatCurrency(result.monthly_emi)}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Buyer's monthly payment</div>
@@ -824,7 +824,7 @@ export default function HomeLoanVsRentCalculator() {
 
                 <div className="card bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 p-3 sm:p-4 min-w-0">
                   <div className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Break-Even</div>
-                  <div className="text-sm sm:text-lg font-bold text-purple-600 dark:text-purple-300 break-words overflow-hidden">
+                  <div className="text-sm sm:text-lg font-bold text-purple-600 dark:text-purple-300 whitespace-nowrap">
                     {result.break_even_year ? `Year ${result.break_even_year}` : 'Never'}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">When buying becomes better</div>

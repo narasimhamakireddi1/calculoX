@@ -42,10 +42,10 @@ export function Footer() {
 
           {/* On mobile: 2-col grid (Finance left, Company/Legal right).
               On desktop: display:contents so all 4 columns flow into the parent 5-col grid. */}
-          <div className="grid grid-cols-2 gap-8 md:contents">
+          <div className="grid grid-cols-2 gap-4 md:contents">
 
             {/* Finance — left on mobile */}
-            <div>
+            <div className="min-w-0">
               <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-gray-300">Finance</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li><Link href="/sip-calculator" className="hover:text-white transition-colors">SIP Calculator</Link></li>
@@ -61,7 +61,7 @@ export function Footer() {
             </div>
 
             {/* Company — right on mobile */}
-            <div>
+            <div className="min-w-0">
               <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-gray-300">Company</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
@@ -78,7 +78,7 @@ export function Footer() {
                 <li><Link href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</Link></li>
                 <li>
                   <address className="not-italic mt-3 text-gray-400 text-xs">
-                    <a href="mailto:supportcalculox@gmail.com" className="hover:text-white transition-colors">
+                    <a href="mailto:supportcalculox@gmail.com" className="hover:text-white transition-colors break-all">
                       supportcalculox@gmail.com
                     </a>
                   </address>
@@ -87,7 +87,7 @@ export function Footer() {
             </div>
 
             {/* Other Tools — left col, row 2 on mobile */}
-            <div>
+            <div className="min-w-0">
               <h3 className="font-semibold mb-4 text-sm uppercase tracking-wider text-gray-300">Other Tools</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li><Link href="/bmi-calculator" className="hover:text-white transition-colors">BMI Calculator</Link></li>
@@ -107,7 +107,7 @@ export function Footer() {
                 <li><Link href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</Link></li>
                 <li>
                   <address className="not-italic mt-3 text-gray-400 text-xs">
-                    <a href="mailto:supportcalculox@gmail.com" className="hover:text-white transition-colors">
+                    <a href="mailto:supportcalculox@gmail.com" className="hover:text-white transition-colors break-all">
                       supportcalculox@gmail.com
                     </a>
                   </address>

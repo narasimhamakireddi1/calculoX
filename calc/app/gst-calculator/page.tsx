@@ -271,7 +271,7 @@ export default function GSTCalculatorPage() {
                 <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Amount
                 </p>
-                <p className="text-5xl sm:text-6xl font-black text-green-700 dark:text-green-400 break-words overflow-hidden leading-tight">{formatCurrency(result.totalAmount)}</p>
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-green-700 dark:text-green-400 whitespace-nowrap leading-tight">{formatCurrency(result.totalAmount)}</p>
                 <p className="text-xs text-green-600 dark:text-green-400 mt-2 font-medium">Base + {gstRate}% GST</p>
               </div>
 
@@ -281,14 +281,14 @@ export default function GSTCalculatorPage() {
                   <p className="text-gray-600 dark:text-gray-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
                     <Package className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Base Amount
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-gray-700 dark:text-gray-400 break-words overflow-hidden">{formatCurrency(result.baseAmount)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-gray-700 dark:text-gray-400 whitespace-nowrap">{formatCurrency(result.baseAmount)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
                   <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
                     <Percent className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> GST ({gstRate}%)
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">{formatCurrency(result.gstAmount)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">{formatCurrency(result.gstAmount)}</p>
                 </div>
               </div>
 

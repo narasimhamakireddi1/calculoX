@@ -266,7 +266,7 @@ export default function RetirementCalculatorPage() {
             <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly SIP Required
             </p>
-            <p className="text-5xl sm:text-6xl font-black text-purple-700 dark:text-purple-400 break-words overflow-hidden leading-tight">
+            <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-purple-700 dark:text-purple-400 whitespace-nowrap leading-tight">
               {formatCurrency(result.monthly_sip_required)}
             </p>
             <p className="text-xs text-purple-600 dark:text-purple-300 mt-2 font-medium">
@@ -280,7 +280,7 @@ export default function RetirementCalculatorPage() {
               <p className="text-emerald-600 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
                 <Coins className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly at Retirement
               </p>
-              <p className="text-sm sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 break-words overflow-hidden">
+              <p className="text-sm sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap">
                 {formatCurrency(result.monthly_expense_at_retirement)}
               </p>
               <p className="text-xs text-emerald-600 dark:text-emerald-300 mt-0.5">in {result.accumulationYears} years</p>
@@ -290,7 +290,7 @@ export default function RetirementCalculatorPage() {
               <p className="text-blue-600 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
                 <Target className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Corpus Required
               </p>
-              <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
+              <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 whitespace-nowrap">
                 {formatCurrency(result.total_corpus_required)}
               </p>
               <p className="text-xs text-blue-600 dark:text-blue-300 mt-0.5">for {result.distributionYears} years</p>

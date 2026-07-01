@@ -463,7 +463,7 @@ export default function ProfitMarginCalculator() {
                 <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
                   <Percent className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Profit Margin
                 </p>
-                <p className="text-5xl sm:text-6xl font-black text-cyan-700 dark:text-cyan-400 break-words overflow-hidden leading-tight">
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-cyan-700 dark:text-cyan-400 whitespace-nowrap leading-tight">
                   {results.calculatedMarginPercentage.toFixed(2)}%
                 </p>
                 <p className="text-xs text-cyan-600 dark:text-cyan-400 mt-2 font-medium">on final selling price (pre-GST)</p>

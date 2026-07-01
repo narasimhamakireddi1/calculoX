@@ -690,7 +690,7 @@ export default function TaxCalculator() {
                     <p className={`${getRegimeResult()!.totalTax === 0 ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'} text-xs uppercase tracking-widest font-semibold mb-3`}>
                       Total Tax Payable
                     </p>
-                    <p className={`text-5xl sm:text-6xl font-black break-words overflow-hidden leading-tight ${getRegimeResult()!.totalTax === 0 ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
+                    <p className={`text-[clamp(1.5rem,7.5vw,3.75rem)] font-black whitespace-nowrap leading-tight ${getRegimeResult()!.totalTax === 0 ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
                       {formatCurrency(getRegimeResult()!.totalTax)}
                     </p>
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium">
@@ -702,7 +702,7 @@ export default function TaxCalculator() {
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                     <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm min-w-0">
                       <p className="text-blue-600 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1">Total Income</p>
-                      <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
+                      <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 whitespace-nowrap">
                         {formatCurrency(getRegimeResult()!.grossSalary + (getRegimeResult()!.grossTotalIncome - (getRegimeResult()!.grossSalary - getRegimeResult()!.standardDeduction)))}
                       </p>
                     </div>
@@ -711,14 +711,14 @@ export default function TaxCalculator() {
                       <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1">
                         Taxable Income
                       </p>
-                      <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
+                      <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">
                         {formatCurrency(getRegimeResult()!.taxableIncome)}
                       </p>
                     </div>
 
                     <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/30 dark:to-amber-900/30 p-3 sm:p-4 rounded-lg border border-orange-200 dark:border-orange-700 shadow-sm min-w-0">
                       <p className="text-orange-600 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-1">Slab Tax</p>
-                      <p className="text-sm sm:text-lg font-bold text-orange-700 dark:text-orange-400 break-words overflow-hidden">
+                      <p className="text-sm sm:text-lg font-bold text-orange-700 dark:text-orange-400 whitespace-nowrap">
                         {formatCurrency(getRegimeResult()!.slabTax)}
                       </p>
                     </div>

@@ -303,7 +303,7 @@ export default function RDCalculatorPage() {
                 <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
                   <Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maturity Amount
                 </p>
-                <p className="text-5xl sm:text-6xl font-black text-blue-700 dark:text-blue-400 break-words overflow-hidden leading-tight">{formatCurrency(result.maturityAmount)}</p>
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">{formatCurrency(result.maturityAmount)}</p>
                 <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">after {watchValues.months} months at {watchValues.annualRate}% p.a.</p>
               </div>
 
@@ -313,14 +313,14 @@ export default function RDCalculatorPage() {
                   <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
                     <Landmark className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Invested
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">{formatCurrency(result.totalDeposits)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">{formatCurrency(result.totalDeposits)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-3 sm:p-4 rounded-lg border border-green-200 dark:border-green-700 shadow-sm min-w-0">
                   <p className="text-green-600 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
                     <TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Earned
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-green-700 dark:text-green-400 break-words overflow-hidden">{formatCurrency(result.totalInterest)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-green-700 dark:text-green-400 whitespace-nowrap">{formatCurrency(result.totalInterest)}</p>
                 </div>
               </div>
 

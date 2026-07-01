@@ -294,7 +294,7 @@ export default function CAGRCalculatorPage() {
                 <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
                   <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> CAGR Percentage
                 </p>
-                <p className="text-5xl sm:text-6xl font-black text-blue-700 dark:text-blue-400 break-words overflow-hidden leading-tight">{result.cagrPercentage.toFixed(2)}%</p>
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">{result.cagrPercentage.toFixed(2)}%</p>
                 <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">average annual growth over {watchValues.years} year{watchValues.years > 1 ? 's' : ''}</p>
               </div>
 

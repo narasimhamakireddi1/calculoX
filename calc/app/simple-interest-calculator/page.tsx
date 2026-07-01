@@ -443,7 +443,7 @@ export default function SimpleInterestCalculatorPage() {
               {/* Hero metric */}
               <div className="bg-gradient-to-br from-green-50 to-cyan-50 dark:from-green-900/30 dark:to-cyan-900/30 p-6 sm:p-8 rounded-xl border-2 border-green-300 dark:border-green-700 shadow-lg">
                 <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Accrued</p>
-                <p className="text-5xl sm:text-6xl font-black text-green-700 dark:text-green-400 break-words overflow-hidden leading-tight">{formatCurrency(result.interestAccrued)}</p>
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-green-700 dark:text-green-400 whitespace-nowrap leading-tight">{formatCurrency(result.interestAccrued)}</p>
                 <p className="text-xs text-green-600 dark:text-green-400 mt-2 font-medium">earned at {watchValues.annualRate}% p.a.</p>
               </div>
 
@@ -451,18 +451,18 @@ export default function SimpleInterestCalculatorPage() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 p-3 sm:p-4 rounded-lg border border-emerald-200 dark:border-emerald-700 shadow-sm min-w-0">
                   <p className="text-emerald-600 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><Coins className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Principal</p>
-                  <p className="text-sm sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 break-words overflow-hidden">{formatCurrency(result.principalAmount)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap">{formatCurrency(result.principalAmount)}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm min-w-0">
                   <p className="text-blue-600 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><Target className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maturity Value</p>
-                  <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">{formatCurrency(result.totalMaturityValue)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 whitespace-nowrap">{formatCurrency(result.totalMaturityValue)}</p>
                 </div>
 
                 {result.dailyAccrual !== undefined && (
                   <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 p-3 sm:p-4 rounded-lg border border-amber-200 dark:border-amber-700 shadow-sm min-w-0">
                     <p className="text-amber-600 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><Sunrise className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Daily Accrual</p>
-                    <p className="text-sm sm:text-lg font-bold text-amber-700 dark:text-amber-400 break-words overflow-hidden">{formatCurrency(result.dailyAccrual)}</p>
+                    <p className="text-sm sm:text-lg font-bold text-amber-700 dark:text-amber-400 whitespace-nowrap">{formatCurrency(result.dailyAccrual)}</p>
                   </div>
                 )}
               </div>

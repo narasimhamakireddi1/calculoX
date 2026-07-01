@@ -67,10 +67,18 @@
       "Bash(git -C \"c:/Users/trish/Downloads/calculator/calc\" add app/emi-calculator/page.tsx)",
       "Bash(git -C c:/Users/trish/Downloads/calculator/calc commit -m ' *)",
       "Bash(git -C \"c:/Users/trish/Downloads/calculator/calc\" push origin main)",
-      "PowerShell(git add -A)"
+      "PowerShell(git add -A)",
+      "Bash(git -C \"c:/Users/trish/Downloads/calculator\" remote -v)",
+      "PowerShell(git remote add origin https://github.com/narasimhamakireddi1/calculoX.git)",
+      "PowerShell(git push -u origin master)",
+      "PowerShell(git submodule status)",
+      "PowerShell(git rm --cached calc)",
+      "PowerShell(git add calc/)",
+      "PowerShell(git push origin master)"
     ],
     "additionalDirectories": [
-      "C:\\Users\\trish\\.claude\\projects\\c--Users-trish-Downloads-calculator\\memory"
+      "C:\\Users\\trish\\.claude\\projects\\c--Users-trish-Downloads-calculator\\memory",
+      "C:\\Users\\trish\\Downloads\\calculator\\calc\\.git"
     ]
   }
 }

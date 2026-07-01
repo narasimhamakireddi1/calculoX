@@ -392,7 +392,7 @@ export default function SIPCalculatorPage() {
               {/* Hero metric */}
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 p-6 sm:p-8 rounded-xl border-2 border-green-300 dark:border-green-700 shadow-lg">
                 <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><Target className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Future Value (Maturity)</p>
-                <p className="text-5xl sm:text-6xl font-black text-green-700 dark:text-green-400 break-words overflow-hidden leading-tight">
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-green-700 dark:text-green-400 whitespace-nowrap leading-tight">
                   {formatCurrency(result.futureValue)}
                 </p>
                 <p className="text-xs text-green-600 dark:text-green-400 mt-2 font-medium">after {watchValues.years} year{watchValues.years > 1 ? 's' : ''} at {watchValues.annualReturn}% return</p>
@@ -402,21 +402,21 @@ export default function SIPCalculatorPage() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm min-w-0">
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Total Invested</p>
-                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white break-words overflow-hidden">
+                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
                     {formatCurrency(result.totalInvestment)}
                   </p>
                 </div>
 
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm min-w-0">
                   <p className="text-blue-600 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Gains</p>
-                  <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 break-words overflow-hidden">
+                  <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 whitespace-nowrap">
                     {formatCurrency(result.gainedAmount)}
                   </p>
                 </div>
 
                 <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
                   <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1">Return Rate</p>
-                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 break-words overflow-hidden">
+                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">
                     {((result.gainedAmount / result.totalInvestment) * 100).toFixed(1)}%
                   </p>
                 </div>

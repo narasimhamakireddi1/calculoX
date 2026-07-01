@@ -1,7 +1,7 @@
 # calculox
 
 **Status:** 🟡 AdSense Re-review Pending | Indexing requested 2026-06-17 — check GSC Performance for impressions → AdSense → Sites → Request Review
-**Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TS errors | **Last updated:** 2026-06-29
+**Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TS errors | **Last updated:** 2026-07-01
 **AdSense:** Ad slots live ✅, NPA soft-consent live ✅ | **GA4:** G-GFN66QLNZP | **Publisher:** ca-pub-7034746357427731
 
 ## Quick Start
@@ -94,7 +94,7 @@ app/                        lib/                        config/
 
 **ProjectionTable (SIP/FD/SI/Retirement):** First 12 rows default, "Show All" toggle, smooth `scrollIntoView` on expand, lazy load 50 rows.
 
-**Footer:** Mobile: `grid grid-cols-2 gap-8 md:contents` wrapper — 2-col mobile, dissolves to 5-col desktop. Legal links duplicated: `md:hidden` inside Company column (mobile) + `hidden md:block` standalone (desktop).
+**Footer:** Mobile: `grid grid-cols-2 gap-4 md:contents` wrapper — 2-col mobile, dissolves to 5-col desktop. All inner column `<div>`s carry `min-w-0` to prevent content blowout. Legal links duplicated: `md:hidden` inside Company column (mobile) + `hidden md:block` standalone (desktop). Email `<a>` uses `break-all` so long address wraps on narrow screens.
 
 ## SEO & Performance
 
