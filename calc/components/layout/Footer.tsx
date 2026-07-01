@@ -3,7 +3,7 @@ import { Heart, AlertTriangle } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white mt-24 border-t border-gray-800">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white mt-24 border-t border-gray-800 overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
           {/* Brand — full-width on mobile, 1 col on desktop */}
@@ -42,7 +42,7 @@ export function Footer() {
 
           {/* On mobile: 2-col grid (Finance left, Company/Legal right).
               On desktop: display:contents so all 4 columns flow into the parent 5-col grid. */}
-          <div className="grid grid-cols-2 gap-4 md:contents">
+          <div className="grid grid-cols-2 gap-4 min-w-0 overflow-hidden md:contents md:overflow-visible">
 
             {/* Finance — left on mobile */}
             <div className="min-w-0">
