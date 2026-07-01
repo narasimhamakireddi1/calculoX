@@ -1,0 +1,6 @@
+{
+  "framework": "nextjs",
+  "installCommand": "cd calc && npm ci --legacy-peer-deps",
+  "buildCommand": "cd calc && npm run build",
+  "outputDirectory": "calc/.next"
+}
