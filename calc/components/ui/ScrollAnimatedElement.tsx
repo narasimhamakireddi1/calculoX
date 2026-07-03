@@ -7,7 +7,6 @@ interface ScrollAnimatedElementProps {
   children: ReactNode;
   animation?: 'fade' | 'slide-up' | 'scale-up';
   delay?: number;
-  stagger?: boolean;
   className?: string;
 }
 
@@ -15,7 +14,6 @@ export function ScrollAnimatedElement({
   children,
   animation = 'slide-up',
   delay = 0,
-  stagger = false,
   className = '',
 }: ScrollAnimatedElementProps) {
   const { ref, isVisible } = useScrollAnimation();

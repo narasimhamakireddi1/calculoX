@@ -60,10 +60,6 @@ export function generateFeaturedImageSvg(
   const colors = categoryImageColors[category] || categoryImageColors.Finance;
   const icon = colors.icon;
 
-  // Generate a pseudo-random pattern based on slug
-  const seed = slug.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const hueShift = (seed % 60) - 30;
-
   return `
     <svg width="1200" height="675" xmlns="http://www.w3.org/2000/svg">
       <defs>

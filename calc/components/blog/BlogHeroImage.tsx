@@ -6,14 +6,12 @@ interface BlogHeroImageProps {
   src: string | null;
   title: string;
   category: string;
-  categoryColor: string;
 }
 
 export function BlogHeroImage({
   src,
   title,
   category,
-  categoryColor,
 }: BlogHeroImageProps) {
   const [offsetY, setOffsetY] = useState(0);
 

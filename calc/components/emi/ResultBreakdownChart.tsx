@@ -56,7 +56,7 @@ export function ResultBreakdownChart({ principal, interest }: ResultBreakdownCha
             animationDuration={600}
             animationEasing="ease-out"
           >
-            {data.map((entry, index) => (
+            {data.map((_, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
@@ -64,7 +64,7 @@ export function ResultBreakdownChart({ principal, interest }: ResultBreakdownCha
           <Legend
             verticalAlign="bottom"
             height={36}
-            formatter={(value, entry) => `${value}: ${formatCurrency(entry.payload.value)}`}
+            formatter={(value, entry) => `${value}: ${formatCurrency(entry?.payload?.value || 0)}`}
           />
         </PieChart>
       </ResponsiveContainer>
