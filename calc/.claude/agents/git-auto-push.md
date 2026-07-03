@@ -44,9 +44,9 @@ Example commit messages (from CLAUDE.md context):
 3. Determine the scope from affected components (e.g., 'emi-calculator', 'mobile-nav', 'chart-memoization')
 4. Create a concise subject line (50 characters or less)
 5. Add a detailed body explaining the changes, why they were made, and any relevant context
-6. Stage all changes: `git add .`
+6. Stage the specific files that changed (`git add <path> <path> ...`) — avoid `git add .`/`-A` since it can sweep in unrelated WIP or `.env` files not caught by `.gitignore`
 7. Create the commit with the semantic message
-8. Push to main branch: `git push origin main`
+8. Push to the production branch: `git push origin master` (this repo's default/deployed branch is `master`, not `main` — confirm with `git branch --show-current` if unsure)
 9. Report the commit hash, message, and confirmation of successful push
 
 **Quality Standards:**
