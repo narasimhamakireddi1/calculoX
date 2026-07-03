@@ -123,7 +123,10 @@
       "Bash(tail -100 /tmp/dev-server.log | grep -A 10 -E \"\\(error|Error|ERROR\\)\")",
       "Bash(tail -50 /tmp/dev-server.log | grep -E \"\\(Error|error|✓ Ready\\)\" | head -10)",
       "PowerShell(cd \"C:\\\\Users\\\\trish\\\\Downloads\\\\calculator\"; \\(git diff calc/components/ui/Toast.tsx\\) | Select-Object -First 30)",
-      "Bash(tail -100 /tmp/dev-server.log | tail -50)"
+      "Bash(tail -100 /tmp/dev-server.log | tail -50)",
+      "Bash(git reset *)",
+      "Bash(tail -100 /tmp/dev-server.log | grep -A 5 \"Error:\")",
+      "Bash(killall -9 node)"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\.claude\\projects\\c--Users-trish-Downloads-calculator\\memory",
