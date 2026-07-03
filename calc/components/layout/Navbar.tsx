@@ -357,25 +357,26 @@ function MegaItem({
     .replace(/ Calculator$/, '');
 
   return (
-    <Link
-      href={calc.href}
+    <div
       onClick={onClose}
-      className={`mega-calculator-item flex items-center gap-2.5 px-2.5 py-2 rounded-xl transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 ${
+      className={`mega-calculator-item flex items-center gap-2.5 px-2.5 py-2 rounded-xl transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 cursor-pointer ${
         active
           ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 shadow-sm shadow-blue-200/50 dark:shadow-blue-900/30'
           : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-100 hover:shadow-md hover:shadow-gray-300/20 dark:hover:shadow-gray-900/20'
       }`}
     >
-      <span
-        className={`flex items-center justify-center w-7 h-7 rounded-lg flex-shrink-0 transition-all duration-150 icon-hover-rotate ${
-          active
-            ? 'bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-400'
-            : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/40 group-hover:text-blue-600 dark:group-hover:text-blue-400'
-        }`}
-      >
-        <CalculatorIcon idOrHref={calc.href} className="w-4 h-4" />
-      </span>
-      <span className="text-sm font-medium truncate">{label}</span>
-    </Link>
+      <Link href={calc.href} className="flex items-center gap-2.5 flex-1 outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 rounded">
+        <span
+          className={`flex items-center justify-center w-7 h-7 rounded-lg flex-shrink-0 transition-all duration-150 icon-hover-rotate ${
+            active
+              ? 'bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-400'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/40 group-hover:text-blue-600 dark:group-hover:text-blue-400'
+          }`}
+        >
+          <CalculatorIcon idOrHref={calc.href} className="w-4 h-4" />
+        </span>
+        <span className="text-sm font-medium truncate">{label}</span>
+      </Link>
+    </div>
   );
 }
