@@ -23,6 +23,19 @@ const categoryColors: Record<string, string> = {
   'Wealth Building': 'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200',
 };
 
+const categoryImageGradients: Record<string, string> = {
+  Finance: 'from-blue-600 to-blue-400',
+  Investment: 'from-green-600 to-green-400',
+  Investing: 'from-emerald-600 to-emerald-400',
+  Tax: 'from-orange-600 to-orange-400',
+  Health: 'from-rose-600 to-rose-400',
+  Business: 'from-purple-600 to-purple-400',
+  Retirement: 'from-amber-600 to-amber-400',
+  Savings: 'from-teal-600 to-teal-400',
+  'Personal Finance': 'from-indigo-600 to-indigo-400',
+  'Wealth Building': 'from-orange-700 to-orange-500',
+};
+
 const tabActiveColors: Record<string, string> = {
   All: 'bg-blue-600 text-white shadow-lg shadow-blue-600/25',
   Finance: 'bg-blue-600 text-white shadow-lg shadow-blue-600/25',
@@ -39,10 +52,11 @@ const tabActiveColors: Record<string, string> = {
 
 interface BlogClientProps {
   posts: BlogPost[];
+  initialCategory?: string;
 }
 
-export default function BlogClient({ posts }: BlogClientProps) {
-  const [activeCategory, setActiveCategory] = useState('All');
+export default function BlogClient({ posts, initialCategory = 'All' }: BlogClientProps) {
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
 
   const categories = ['All', ...Array.from(new Set(posts.map((p) => p.category)))];
 
@@ -125,45 +139,73 @@ export default function BlogClient({ posts }: BlogClientProps) {
 }
 
 function PostCard({ post, pinned = false }: { post: BlogPost; pinned?: boolean }) {
+  const gradientClass = categoryImageGradients[post.category] || 'from-blue-600 to-blue-400';
+
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg hover:border-blue-400 transition-all"
+      className="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 flex flex-col h-full"
     >
-      <div className="p-6">
-        <div className="flex items-center gap-3 mb-3 flex-wrap">
+      {/* Featured Image Header (60% of card height) */}
+      <div className={`relative h-48 bg-gradient-to-br ${gradientClass} overflow-hidden flex-shrink-0`}>
+        {post.image ? (
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center opacity-30">
+            <svg className="w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+        )}
+
+        {/* Category Badge Overlay */}
+        <div className="absolute top-3 left-3">
           <span
-            className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+            className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm ${
               categoryColors[post.category] ?? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
             }`}
           >
             {post.category}
-          </span>
-          {pinned && (
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 flex items-center gap-1">
+            {pinned && (
               <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
-              Most Read
-            </span>
-          )}
-          <span className="text-xs text-gray-400">{post.readTime}</span>
+            )}
+          </span>
         </div>
-        <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors leading-snug">
+      </div>
+
+      {/* Content Section */}
+      <div className="p-5 flex flex-col flex-1">
+        <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug line-clamp-2">
           {post.title}
         </h2>
-        <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+
+        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3 line-clamp-2 flex-1">
           {post.description}
         </p>
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-gray-400">
+
+        {/* Metadata */}
+        <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-4">
+          <span className="font-medium">{post.readTime}</span>
+          <span>•</span>
+          <span>
             {new Date(post.date).toLocaleDateString('en-IN', {
               day: 'numeric',
               month: 'short',
               year: 'numeric',
             })}
           </span>
-          <span className="text-sm text-blue-600 font-medium group-hover:underline">Read More →</span>
+        </div>
+
+        {/* Read More Link */}
+        <div className="flex items-center justify-between">
+          <span className="text-sm text-blue-600 dark:text-blue-400 font-semibold group-hover:underline">Read More →</span>
         </div>
       </div>
     </Link>

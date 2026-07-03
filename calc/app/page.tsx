@@ -518,44 +518,60 @@ export default function Home() {
       ══════════════════════════════════════════ */}
       <section className="text-center py-12 md:py-16 space-y-8 relative">
 
-        {/* Floating formula motifs */}
+        {/* Animated floating formula motifs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
           {MOTIFS.map((m, i) => (
-            <span key={i} className="absolute font-mono text-blue-900/[0.06] dark:text-blue-200/[0.07] text-sm md:text-base font-bold" style={m.style}>
+            <span key={i} className="absolute font-mono text-blue-900/[0.06] dark:text-blue-200/[0.07] text-sm md:text-base font-bold float-animate" style={{...m.style, animationDelay: `${i * 0.1}s`}}>
               {m.text}
             </span>
           ))}
         </div>
 
-        {/* Search */}
-        <div className="mb-8 relative z-10">
+        {/* Search with animation */}
+        <div className="mb-8 relative z-10 page-transition">
           <CalculatorSearch />
         </div>
 
-        {/* Brand */}
+        {/* Hero Brand Section with Enhanced Visual Hierarchy */}
         <div className="space-y-4 relative z-10">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">calculox</span>
+          <div className="inline-flex items-center justify-center mb-4">
+            <span className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold border border-blue-200/50 dark:border-blue-800/50">
+              ✨ 14 Free Calculators
+            </span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight page-transition">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">calculox</span>
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-            Results verified against SBI, HDFC, and ICICI official calculators
+
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 font-medium tracking-wide">
+            ✓ Verified against SBI, HDFC, and ICICI official calculators
           </p>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+
+          <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             Premium online calculators for your financial, health, and daily calculations.{' '}
             <span className="font-semibold text-gray-900 dark:text-white">Fast, accurate, and completely free.</span>
           </p>
         </div>
 
-        {/* Feature pills */}
+        {/* Feature Pills with Hover Effects */}
         <div className="flex flex-wrap justify-center gap-3 md:gap-4 pt-4 relative z-10">
-          {['100% Free', 'No Registration', '14 Calculators'].map(label => (
-            <div key={label} className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-sm font-semibold border border-gray-200 dark:border-gray-700">
+          {['100% Free', 'No Registration', '14 Calculators'].map((label, idx) => (
+            <div
+              key={label}
+              className="px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800/60 text-gray-700 dark:text-gray-300 text-sm font-semibold border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-md hover:shadow-gray-400/20 dark:hover:shadow-gray-900/40 hover:-translate-y-1"
+              style={{animationDelay: `${idx * 0.05}s`}}
+            >
               {label}
             </div>
           ))}
-          <Link href="/compare" className="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-sm font-semibold border border-blue-200 dark:border-blue-800/60 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors flex items-center gap-1.5">
+          <Link
+            href="/compare"
+            className="arrow-animate px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-900/40 dark:to-blue-950/30 text-blue-700 dark:text-blue-400 text-sm font-semibold border border-blue-200 dark:border-blue-800/60 hover:from-blue-200 hover:to-blue-100 dark:hover:from-blue-900/60 dark:hover:to-blue-950/50 transition-all duration-300 flex items-center gap-1.5 hover:shadow-lg hover:shadow-blue-400/20 dark:hover:shadow-blue-900/30 hover:-translate-y-1"
+          >
             <Scale className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
-            Compare Calculators
+            <span>Compare Calculators</span>
+            <span className="arrow-icon">→</span>
           </Link>
         </div>
 
@@ -1126,7 +1142,7 @@ export default function Home() {
           CALCULATOR GRID
       ══════════════════════════════════════════ */}
       <section className="space-y-8">
-        <div className="space-y-2 mb-8">
+        <div className="space-y-2 mb-8 page-transition">
           <h2 className="text-4xl font-bold">Popular Calculators</h2>
           <p className="text-gray-600 dark:text-gray-400">
             {selectedCategory
@@ -1138,30 +1154,34 @@ export default function Home() {
         <CategoryTabs selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} />
 
         {selectedCategory ? (
-          <div key={selectedCategory} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in">
-            {filteredCalculators.map(calc => <CalculatorCard key={calc.href} {...calc} />)}
+          <div key={selectedCategory} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in page-transition">
+            {filteredCalculators.map((calc, idx) => (
+              <div key={calc.href} style={{ animationDelay: `${idx * 0.05}s` }}>
+                <CalculatorCard {...calc} />
+              </div>
+            ))}
           </div>
         ) : (
-          <div key="all" className="space-y-12 animate-fade-in">
-            {Object.entries(groupedByCategory).map(([category, calcs]) => {
+          <div key="all" className="space-y-12 animate-fade-in page-transition">
+            {Object.entries(groupedByCategory).map(([category, calcs], catIdx) => {
               const cfg = categoryConfig[category];
               const CategoryIcon = cfg?.Icon;
               return (
-                <div key={category} className="space-y-4 relative">
+                <div key={category} className="space-y-4 relative" style={{ animationDelay: `${catIdx * 0.1}s` }}>
                   {category === 'finance' && (
                     <div className="absolute -inset-x-4 -top-4 h-28 bg-gradient-to-b from-blue-100/60 via-blue-50/30 to-transparent dark:from-blue-500/10 dark:via-blue-950/5 rounded-t-2xl pointer-events-none" aria-hidden="true" />
                   )}
-                  <div className="relative flex items-center gap-3 pb-4 border-b-2 border-gray-200 dark:border-gray-700">
-                    <h3 className={`text-2xl font-bold flex items-center gap-2 ${
+                  <div className="relative flex items-center gap-3 pb-4 border-b-2 border-gray-200 dark:border-gray-700 hover:border-opacity-100 transition-all duration-300">
+                    <h3 className={`text-2xl font-bold flex items-center gap-2 transition-colors duration-300 ${
                       category === 'finance' ? 'text-blue-600 dark:text-blue-400' :
                       category === 'health'  ? 'text-rose-600 dark:text-rose-400' :
                       category === 'utility' ? 'text-violet-600 dark:text-violet-400' :
                       'text-teal-600 dark:text-teal-400'
                     }`}>
-                      {CategoryIcon && <CategoryIcon className="w-6 h-6" strokeWidth={2} aria-hidden="true" />}
+                      {CategoryIcon && <CategoryIcon className="w-6 h-6 transition-transform duration-300" strokeWidth={2} aria-hidden="true" />}
                       {cfg?.label ?? category}
                     </h3>
-                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                    <span className={`px-3 py-1 rounded-full text-sm font-semibold transition-all duration-300 ${
                       category === 'finance' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
                       category === 'health'  ? 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400' :
                       category === 'utility' ? 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400' :
@@ -1171,7 +1191,11 @@ export default function Home() {
                     </span>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {calcs.map(calc => <CalculatorCard key={calc.href} {...calc} />)}
+                    {calcs.map((calc, idx) => (
+                      <div key={calc.href} style={{ animationDelay: `${(catIdx * 0.1) + (idx * 0.05)}s` }}>
+                        <CalculatorCard {...calc} />
+                      </div>
+                    ))}
                   </div>
                 </div>
               );
@@ -1183,27 +1207,37 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           REAL SCENARIOS
       ══════════════════════════════════════════ */}
-      <section className="space-y-8">
+      <section className="space-y-8 page-transition">
         <div className="space-y-2 mb-8">
           <h2 className="text-4xl font-bold">Real Indian Scenarios</h2>
           <p className="text-gray-600 dark:text-gray-400">Actual numbers — try the calculator and see for yourself</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {REAL_SCENARIOS.map(sc => (
-            <div key={sc.tag} className={`relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl border ${sc.border} shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 p-6`}>
+          {REAL_SCENARIOS.map((sc, idx) => (
+            <div
+              key={sc.tag}
+              className={`relative overflow-hidden bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl border ${sc.border} shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 p-6 group`}
+              style={{animationDelay: `${idx * 0.1}s`}}
+            >
               <span className={`absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b ${sc.accent} rounded-l-2xl`} />
-              <div className={`inline-flex p-2.5 rounded-xl mb-3 ${sc.bg}`}>
-                <sc.Icon className={`w-5 h-5 ${sc.color}`} strokeWidth={2} aria-hidden="true" />
+              <div className={`inline-flex p-2.5 rounded-xl mb-3 ${sc.bg} transition-transform duration-300 group-hover:scale-110`}>
+                <sc.Icon className={`w-5 h-5 ${sc.color} transition-transform duration-300`} strokeWidth={2} aria-hidden="true" />
               </div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">{sc.tag}</p>
-              <div className={`${sc.bg} rounded-xl p-4 mb-4 font-mono`}>
+              <div className={`${sc.bg} rounded-xl p-4 mb-4 font-mono transition-all duration-300 group-hover:scale-105 origin-top-left`}>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-1.5">{sc.inputs}</p>
                 <p className={`text-2xl font-extrabold tabular-nums ${sc.color}`}>
                   {sc.result}<span className="text-sm font-medium text-gray-500 dark:text-gray-400 ml-1">/mo</span>
                 </p>
                 <p className="text-[11px] text-gray-400 mt-1">{sc.sub}</p>
               </div>
-              <Link href={sc.href} className={`text-sm font-semibold ${sc.color} hover:underline`}>{sc.cta} →</Link>
+              <Link
+                href={sc.href}
+                className={`text-sm font-semibold ${sc.color} hover:underline transition-all duration-300 inline-flex items-center gap-1 group/link`}
+              >
+                {sc.cta}
+                <span className="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+              </Link>
             </div>
           ))}
         </div>
@@ -1212,25 +1246,26 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           LATEST FROM THE BLOG
       ══════════════════════════════════════════ */}
-      <section className="space-y-8">
+      <section className="space-y-8 page-transition">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div className="space-y-2">
             <h2 className="text-4xl font-bold flex items-center gap-3">
-              <BookOpen className="w-8 h-8 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" />
+              <BookOpen className="w-8 h-8 text-blue-600 dark:text-blue-400 transition-transform duration-300" strokeWidth={2} aria-hidden="true" />
               Latest from the Blog
             </h2>
             <p className="text-gray-600 dark:text-gray-400">In-depth guides on EMI, SIP, tax, and more — beyond the calculators</p>
           </div>
-          <Link href="/blog" className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap">
+          <Link href="/blog" className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap transition-all duration-300 hover:-translate-y-1">
             View all articles →
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {LATEST_POSTS.map(post => (
+          {LATEST_POSTS.map((post, idx) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 p-5"
+              className="group block bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 p-5 page-transition"
+              style={{animationDelay: `${idx * 0.1}s`}}
             >
               <span className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">{post.category}</span>
               <h3 className="mt-2 text-base font-bold text-gray-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">

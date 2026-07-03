@@ -1,42 +1,13 @@
+@import url('../styles/design-tokens.css');
+@import url('../styles/animations.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Color System — Enhanced Palette */
-:root {
-  /* Primary Colors */
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-50: #eff6ff;
-
-  /* Semantic Colors */
-  --color-success: #10b981;
-  --color-success-light: #d1fae5;
-  --color-warning: #f59e0b;
-  --color-warning-light: #fef3c7;
-  --color-danger: #ef4444;
-  --color-danger-light: #fee2e2;
-  --color-info: #3b82f6;
-  --color-info-light: #dbeafe;
-
-  /* Neutral Colors */
-  --color-text-primary: #111827;
-  --color-text-secondary: #374151;
-  --color-text-tertiary: #6b7280;
-  --color-border: #e5e7eb;
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f9fafb;
-}
-
-html.dark {
-  /* Dark mode colors */
-  --color-text-primary: #f3f4f6;
-  --color-text-secondary: #e5e7eb;
-  --color-text-tertiary: #9ca3af;
-  --color-border: #374151;
-  --color-bg-primary: #111827;
-  --color-bg-secondary: #1f2937;
-}
+/* ============================================================================
+   BASE STYLES — Using Design Tokens
+   ========================================================================== */
 
 * {
   @apply box-border;
@@ -45,14 +16,17 @@ html.dark {
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  /* Calm, refined canvas — subtle cool tint instead of a loud pastel rainbow */
   background: linear-gradient(165deg, #f7f9fc 0%, #eef3fa 45%, #f3f0fb 100%);
   min-height: 100vh;
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-sans);
+  color: var(--text-primary);
 }
 
 html.dark {
   background: linear-gradient(135deg, #0a0f1f 0%, #0f1729 12%, #1a1f3a 25%, #15213f 37%, #1a1a35 50%, #231a35 62%, #2a1f38 75%, #1a1f2e 87%, #0a0f1f 100%);
   color-scheme: dark;
+  color: var(--text-primary);
 }
 
 /* Subtle noise texture for dark mode */
@@ -85,7 +59,9 @@ html.dark::before {
 html.dark input:not([type="range"]),
 html.dark textarea,
 html.dark select {
-  @apply bg-gradient-to-b from-gray-800/70 to-gray-900/60 border-gray-700/60 text-gray-50 placeholder-gray-500;
+  background: linear-gradient(to bottom, rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.6));
+  border-color: rgba(55, 65, 81, 0.6);
+  @apply text-gray-50 placeholder-gray-500 border;
   backdrop-filter: blur(10px);
   background-blend-mode: overlay;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
@@ -94,7 +70,9 @@ html.dark select {
 
 /* Enhanced dark mode cards with glass-morphism */
 html.dark .card {
-  @apply bg-gradient-to-br from-gray-900/60 to-gray-800/50 border-gray-700/60;
+  background: linear-gradient(to bottom right, rgba(17, 24, 39, 0.6), rgba(31, 41, 55, 0.5));
+  border-color: rgba(55, 65, 81, 0.6);
+  @apply border;
   backdrop-filter: blur(12px);
   background-blend-mode: overlay;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
@@ -187,66 +165,85 @@ main {
   @apply container mx-auto px-4 py-8 md:py-12;
 }
 
-/* Typography — Premium Hierarchy */
+/* ============================================================================
+   TYPOGRAPHY HIERARCHY — Using Design Scale
+   ========================================================================== */
+
 h1 {
-  @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
-  letter-spacing: -0.02em;
-  font-weight: 700;
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-sm);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-4);
 }
 
 h2 {
-  @apply text-3xl md:text-4xl font-bold tracking-tight leading-snug;
-  letter-spacing: -0.01em;
-  font-weight: 700;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-lg);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-4);
 }
 
 h3 {
-  @apply text-xl md:text-2xl font-bold tracking-normal;
-  font-weight: 600;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-lg);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-3);
 }
 
 h4 {
-  @apply text-lg font-semibold tracking-normal;
-  font-weight: 600;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-lg);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+/* Responsive typography scaling */
+@media (max-width: 768px) {
+  h1 {
+    font-size: var(--font-size-5xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+  }
 }
 
 /* Small headings/labels */
 .label-small, .heading-small {
-  @apply text-sm font-semibold tracking-wide uppercase;
-  letter-spacing: 0.05em;
-  color: #6b7280;
-}
-
-.dark .label-small, .dark .heading-small {
-  color: #9ca3af;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--text-secondary);
 }
 
 /* Body text improvements */
 p, body {
-  @apply leading-relaxed;
-  line-height: 1.625;
-  color: #374151;
-}
-
-.dark p, .dark body {
-  color: #d1d5db;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-lg);
+  color: var(--text-secondary);
 }
 
 /* Lists */
 ul, ol {
-  @apply leading-relaxed;
   list-style-position: outside;
-  margin-left: 1.25rem;
-  color: #4b5563;
-  line-height: 1.75;
-}
-
-.dark ul, .dark ol {
-  color: #cbd5e1;
+  margin-left: var(--spacing-5);
+  color: var(--text-secondary);
+  line-height: var(--line-height-xl);
 }
 
 li {
-  @apply mb-2;
+  margin-bottom: var(--spacing-2);
 }
 
 /* Animations */
@@ -367,50 +364,76 @@ li {
   animation: underlineGrow 0.3s ease-out;
 }
 
-/* Forms — Premium Spacing */
+/* ============================================================================
+   FORMS — Premium Input Styling with Tokens
+   ========================================================================== */
+
 input:not([type="range"]),
 textarea,
 select {
-  @apply px-4 py-3 border border-gray-300 dark:border-gray-600
-         rounded-lg text-base text-gray-900 dark:text-white
-         placeholder-gray-500 dark:placeholder-gray-400
-         transition-all duration-200
-         focus:outline-none
-         focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white
-         dark:focus:ring-offset-gray-900
-         focus:border-transparent focus:shadow-lg focus:shadow-blue-500/10
-         disabled:bg-gray-50 dark:disabled:bg-gray-800
-         disabled:text-gray-500 dark:disabled:text-gray-500
-         disabled:cursor-not-allowed;
+  padding: var(--component-padding-md) var(--component-padding-lg);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  transition: all var(--transition-base) var(--easing-in-out);
+  outline: none;
 }
 
-/* Enhanced focus states for all interactive elements */
-input:focus:not([type="range"]),
+input:not([type="range"])::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: var(--text-tertiary);
+}
+
+input:not([type="range"]):disabled,
+textarea:disabled,
+select:disabled {
+  background-color: var(--bg-secondary);
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Enhanced focus states */
+input:not([type="range"]):focus,
 textarea:focus,
 select:focus {
-  @apply shadow-lg shadow-blue-500/10 border-blue-500;
+  border-color: var(--color-primary-600);
+  box-shadow:
+    var(--shadow-3),
+    var(--shadow-primary-lg);
 }
 
 /* Focus state colors per semantic type */
 .focus-success:focus {
-  @apply shadow-lg shadow-emerald-500/10 border-emerald-500;
+  border-color: var(--color-success-600);
+  box-shadow: var(--shadow-success-lg);
 }
 
 .focus-warning:focus {
-  @apply shadow-lg shadow-amber-500/10 border-amber-500;
+  border-color: var(--color-warning-600);
+  box-shadow: var(--shadow-3);
 }
 
 .focus-danger:focus {
-  @apply shadow-lg shadow-red-500/10 border-red-500;
+  border-color: var(--color-error-600);
+  box-shadow: var(--shadow-error-lg);
 }
 
 /* Label styling improvements */
 label {
-  @apply text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  transition: color var(--transition-base) var(--easing-in-out);
+  display: block;
+  margin-bottom: var(--spacing-2);
 }
 
 label:hover {
-  @apply text-gray-900 dark:text-gray-100;
+  color: var(--text-primary);
 }
 
 /* Range input specific styling */
@@ -543,332 +566,496 @@ input[type="range"]::-moz-range-progress {
   }
 }
 
+/* ============================================================================
+   BUTTONS — All Variants with Tokens
+   ========================================================================== */
+
 button {
-  @apply transition-all duration-300 cursor-pointer;
+  transition: all var(--transition-base) var(--easing-in-out);
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+  font-weight: var(--font-weight-semibold);
 }
 
 button:disabled {
-  @apply opacity-50 cursor-not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-/* Button Variants — refined: softer shadows, elegant lift (no bouncy scale) */
+/* Primary Button */
 .btn-primary {
-  @apply px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+  padding: var(--component-padding-md) var(--component-padding-lg);
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-xl);
+  border: none;
+  box-shadow: var(--shadow-2), var(--shadow-primary-sm);
+  transition: all var(--transition-base) var(--easing-in-out);
 }
 
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-800));
+  box-shadow: var(--shadow-3), var(--shadow-primary-lg);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-2), var(--shadow-primary-sm);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: var(--shadow-3), var(--shadow-primary-md);
+}
+
+/* Secondary Button */
 .btn-secondary {
-  @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-purple-800 shadow-md shadow-purple-600/20 hover:shadow-lg hover:shadow-purple-600/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-purple-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+  padding: var(--component-padding-md) var(--component-padding-lg);
+  background: linear-gradient(135deg, var(--color-success-600), var(--color-success-700));
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-xl);
+  border: none;
+  box-shadow: var(--shadow-2), var(--shadow-success-sm);
+  transition: all var(--transition-base) var(--easing-in-out);
 }
 
+.btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-success-700), var(--color-success-800));
+  box-shadow: var(--shadow-3), var(--shadow-success-lg);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-2), var(--shadow-success-sm);
+}
+
+/* Outline Button */
 .btn-outline {
-  @apply px-6 py-3 border-2 border-blue-600/80 text-blue-600 dark:text-blue-400 dark:border-blue-400/70 font-semibold rounded-xl hover:bg-blue-50 hover:border-blue-600 dark:hover:bg-blue-950/40 dark:hover:border-blue-400 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+  padding: var(--component-padding-md) var(--component-padding-lg);
+  background: transparent;
+  color: var(--color-primary-600);
+  border: 2px solid var(--color-primary-600);
+  border-radius: var(--radius-xl);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-base) var(--easing-in-out);
 }
 
+.btn-outline:hover:not(:disabled) {
+  background: var(--color-primary-50);
+  border-color: var(--color-primary-700);
+  box-shadow: var(--shadow-primary-lg);
+  transform: translateY(-2px);
+}
+
+.btn-outline:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Danger Button */
 .btn-danger {
-  @apply px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg
-         shadow-md shadow-red-500/20
-         border border-red-500/20
-         transition-all duration-200
-         hover:from-red-700 hover:to-red-800
-         hover:shadow-lg hover:shadow-red-500/30
-         hover:border-red-500/40
-         active:scale-95
-         focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2
-         dark:focus:ring-offset-gray-900
-         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  padding: var(--component-padding-md) var(--component-padding-lg);
+  background: linear-gradient(135deg, var(--color-error-600), var(--color-error-700));
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-lg);
+  border: none;
+  box-shadow: var(--shadow-2), var(--shadow-error-sm);
+  transition: all var(--transition-base) var(--easing-in-out);
 }
 
+.btn-danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-error-700), var(--color-error-800));
+  box-shadow: var(--shadow-3), var(--shadow-error-lg);
+  transform: translateY(-2px);
+}
+
+.btn-danger:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Success Button */
 .btn-success {
-  @apply px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700
-         text-white font-semibold rounded-xl
-         shadow-md shadow-emerald-500/20
-         border border-emerald-500/20
-         transition-all duration-200
-         hover:from-emerald-700 hover:to-emerald-800
-         hover:shadow-lg hover:shadow-emerald-500/30
-         hover:border-emerald-500/40
-         active:scale-95
-         focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2
-         dark:focus:ring-offset-gray-900
-         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  padding: var(--component-padding-md) var(--component-padding-lg);
+  background: linear-gradient(135deg, var(--color-success-600), var(--color-success-700));
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-xl);
+  border: none;
+  box-shadow: var(--shadow-2), var(--shadow-success-sm);
+  transition: all var(--transition-base) var(--easing-in-out);
 }
 
+.btn-success:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-success-700), var(--color-success-800));
+  box-shadow: var(--shadow-3), var(--shadow-success-lg);
+  transform: translateY(-2px);
+}
+
+/* Warning Button */
 .btn-warning {
-  @apply px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700
-         text-white font-semibold rounded-xl
-         shadow-md shadow-amber-500/20
-         border border-amber-500/20
-         transition-all duration-200
-         hover:from-amber-700 hover:to-amber-800
-         hover:shadow-lg hover:shadow-amber-500/30
-         hover:border-amber-500/40
-         active:scale-95
-         focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2
-         dark:focus:ring-offset-gray-900
-         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  padding: var(--component-padding-md) var(--component-padding-lg);
+  background: linear-gradient(135deg, var(--color-warning-600), var(--color-warning-700));
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-xl);
+  border: none;
+  box-shadow: var(--shadow-2);
+  transition: all var(--transition-base) var(--easing-in-out);
 }
 
+.btn-warning:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-warning-700), var(--color-warning-800));
+  box-shadow: var(--shadow-3);
+  transform: translateY(-2px);
+}
+
+/* Info Button */
 .btn-info {
-  @apply px-6 py-3 bg-gradient-to-r from-cyan-600 to-cyan-700
-         text-white font-semibold rounded-xl
-         shadow-md shadow-cyan-500/20
-         border border-cyan-500/20
-         transition-all duration-200
-         hover:from-cyan-700 hover:to-cyan-800
-         hover:shadow-lg hover:shadow-cyan-500/30
-         hover:border-cyan-500/40
-         active:scale-95
-         focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2
-         dark:focus:ring-offset-gray-900
-         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  padding: var(--component-padding-md) var(--component-padding-lg);
+  background: linear-gradient(135deg, var(--color-info-600), var(--color-info-700));
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-xl);
+  border: none;
+  box-shadow: var(--shadow-2);
+  transition: all var(--transition-base) var(--easing-in-out);
 }
 
-/* Cards — Premium Glass Depth & Animated Hover (light mode matched to dark) */
+.btn-info:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-info-700), var(--color-info-800));
+  box-shadow: var(--shadow-3);
+  transform: translateY(-2px);
+}
+
+/* ============================================================================
+   CARDS — Premium Glass Morphism Design
+   ========================================================================== */
+
 .card {
-  @apply bg-white/80 dark:bg-gray-900/50
-         rounded-2xl border border-gray-200/70 dark:border-gray-800
-         backdrop-filter backdrop-blur-md
-         transition-all duration-300 ease-out
-         hover:border-blue-300/70 dark:hover:border-blue-700/60
-         hover:-translate-y-1
-         p-6;
-  /* soft drop shadow + a "lit-from-above" top inner highlight */
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04),
-              0 10px 28px -16px rgba(16, 24, 40, 0.16),
-              inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-2xl);
+  padding: var(--component-padding-lg);
+  backdrop-filter: blur(var(--glass-blur));
+  transition: all var(--transition-base) var(--easing-in-out);
+  box-shadow: var(--shadow-1), var(--shadow-3), var(--shadow-inner-light);
 }
 
 .card:hover {
-  /* blue-tinted lift + faint animated glow-ring */
-  box-shadow: 0 6px 14px rgba(16, 24, 40, 0.06),
-              0 24px 52px -22px rgba(37, 99, 235, 0.22),
-              inset 0 1px 0 rgba(255, 255, 255, 0.9),
-              0 0 0 1px rgba(59, 130, 246, 0.14);
+  border-color: var(--color-primary-300);
+  transform: translateY(-4px);
+  box-shadow:
+    var(--shadow-1),
+    var(--shadow-4),
+    var(--shadow-inner-highlight),
+    var(--shadow-primary-lg);
 }
 
 .card-compact {
-  @apply p-4;
+  padding: var(--component-padding-md);
 }
 
 .card-spacious {
-  @apply p-8;
+  padding: var(--component-padding-xl);
 }
 
 .card-elevated {
-  @apply shadow-md;
+  box-shadow: var(--shadow-1), var(--shadow-4), var(--shadow-inner-light);
 }
 
 .card-flat {
-  @apply shadow-none border-gray-200 dark:border-gray-700;
+  box-shadow: none;
+  border-color: var(--border-default);
 }
 
-/* Color-coded card variants */
+/* Success Card Variant */
 .card-success {
-  @apply border-l-4 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20;
+  border-left: 4px solid var(--color-success-600);
+  background: linear-gradient(135deg, var(--color-success-50), rgba(240, 253, 244, 0.5));
 }
 
 .card-success-text {
-  @apply text-emerald-800 dark:text-emerald-200;
+  color: var(--color-success-800);
 }
 
+/* Warning Card Variant */
 .card-warning {
-  @apply border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-900/20;
+  border-left: 4px solid var(--color-warning-600);
+  background: linear-gradient(135deg, var(--color-warning-50), rgba(255, 251, 235, 0.5));
 }
 
 .card-warning-text {
-  @apply text-amber-800 dark:text-amber-200;
+  color: var(--color-warning-800);
 }
 
+/* Danger Card Variant */
 .card-danger {
-  @apply border-l-4 border-red-500 bg-red-50 dark:bg-red-900/20;
+  border-left: 4px solid var(--color-error-600);
+  background: linear-gradient(135deg, var(--color-error-50), rgba(254, 242, 242, 0.5));
 }
 
 .card-danger-text {
-  @apply text-red-800 dark:text-red-200;
+  color: var(--color-error-800);
 }
 
+/* Info Card Variant */
 .card-info {
-  @apply border-l-4 border-cyan-500 bg-cyan-50 dark:bg-cyan-900/20;
+  border-left: 4px solid var(--color-info-600);
+  background: linear-gradient(135deg, var(--color-info-50), rgba(240, 249, 255, 0.5));
 }
 
 .card-info-text {
-  @apply text-cyan-800 dark:text-cyan-200;
+  color: var(--color-info-800);
 }
 
+/* Result Card — Special Style */
 .card-result {
-  @apply bg-gradient-to-br from-white to-gray-50
-         dark:from-gray-900 dark:to-gray-800
-         border-l-4 border-blue-500;
+  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+  border-left: 4px solid var(--color-primary-600);
 }
 
-/* Utility Classes */
+/* ============================================================================
+   UTILITY CLASSES — Text & Spacing Helpers
+   ========================================================================== */
+
 .container-section {
-  @apply max-w-7xl mx-auto px-4 py-12 md:py-16;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 var(--component-padding-md);
+  padding-top: var(--section-padding-normal);
+  padding-bottom: var(--section-padding-normal);
 }
 
 /* Text Color System */
 .text-primary {
-  @apply text-gray-900 dark:text-gray-50;
+  color: var(--text-primary);
 }
 
 .text-secondary {
-  @apply text-gray-700 dark:text-gray-200;
+  color: var(--text-secondary);
 }
 
 .text-tertiary {
-  @apply text-gray-600 dark:text-gray-400;
+  color: var(--text-tertiary);
 }
 
-/* Calculator heading title — solid high-contrast color, readable on any background */
+.text-disabled {
+  color: var(--text-disabled);
+}
+
+/* Gradient Text Utilities */
 .text-gradient {
-  @apply text-gray-900 dark:text-white;
+  color: var(--text-primary);
 }
 
 .text-gradient-success {
-  @apply bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent;
+  background: linear-gradient(135deg, var(--color-success-500), var(--color-success-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .text-gradient-warning {
-  @apply bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent;
+  background: linear-gradient(135deg, var(--color-warning-500), var(--color-warning-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.text-gradient-danger {
-  @apply bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text text-transparent;
+.text-gradient-error {
+  background: linear-gradient(135deg, var(--color-error-500), var(--color-error-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Responsive Grid */
 .grid-auto {
-  @apply grid gap-4 md:gap-6 auto-cols-fr;
+  display: grid;
+  gap: var(--spacing-4);
+  grid-auto-columns: 1fr;
 }
 
-/* Spacing System — Unified 8px Rhythm */
+@media (min-width: 768px) {
+  .grid-auto {
+    gap: var(--spacing-6);
+  }
+}
 
+/* Section Spacing Variants */
 .section-tight {
-  @apply py-8; /* 32px */
+  padding-top: var(--section-padding-tight);
+  padding-bottom: var(--section-padding-tight);
 }
 
 .section-normal {
-  @apply py-12; /* 48px */
+  padding-top: var(--section-padding-normal);
+  padding-bottom: var(--section-padding-normal);
 }
 
 .section-generous {
-  @apply py-16; /* 64px */
+  padding-top: var(--section-padding-generous);
+  padding-bottom: var(--section-padding-generous);
 }
 
-/* Input group spacing */
+/* Input Group Spacing */
 .input-group {
-  @apply space-y-3; /* 12px between elements */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
 }
 
 .input-group-large {
-  @apply space-y-4; /* 16px for breathing room */
+  gap: var(--spacing-4);
 }
 
-/* Better button behavior */
+/* ============================================================================
+   RESPONSIVE & ACCESSIBILITY — Media Queries
+   ========================================================================== */
+
+/* Hover-capable devices */
 @media (hover: hover) {
   button:hover:not(:disabled) {
-    @apply transform translate-y-0 shadow-lg;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-3);
   }
 }
 
+/* Touch devices */
 @media (hover: none) and (pointer: coarse) {
   button:active:not(:disabled) {
-    @apply scale-95 opacity-90;
+    transform: scale(0.95);
+    opacity: 0.9;
   }
 }
 
-/* Mobile improvements */
+/* Mobile-specific improvements */
 @media (max-width: 640px) {
   h1 {
-    @apply text-3xl;
+    font-size: var(--font-size-4xl);
   }
 
   h2 {
-    @apply text-2xl;
+    font-size: var(--font-size-2xl);
   }
 
   input:not([type="range"]),
   textarea,
   select {
-    @apply py-4 text-base;
-    font-size: 16px; /* Prevent iOS zoom */
+    padding-top: var(--component-padding-lg);
+    padding-bottom: var(--component-padding-lg);
+    font-size: var(--font-size-base);
+    /* Prevent iOS zoom on input */
   }
 
   button {
-    @apply min-h-12 px-4; /* 48px touch target */
+    min-height: 48px;
+    padding: var(--component-padding-md);
+    /* Ensure 48px minimum touch target */
   }
 
   .card {
-    @apply p-4;
+    padding: var(--component-padding-md);
+  }
+
+  main {
+    padding: var(--component-padding-md);
   }
 }
 
 /* Accessibility: Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   * {
-    @apply transition-none;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 
   button:hover {
-    @apply translate-y-0;
+    transform: none;
   }
 }
 
-/* Badge/Pill Color System */
+/* ============================================================================
+   BADGES & STATUS INDICATORS — Semantic Color System
+   ========================================================================== */
+
 .badge {
-  @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold
-         transition-colors duration-200;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  transition: colors var(--transition-base) var(--easing-in-out);
 }
 
 .badge-primary {
-  @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-800);
 }
 
 .badge-success {
-  @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300;
+  background-color: var(--color-success-100);
+  color: var(--color-success-800);
 }
 
 .badge-warning {
-  @apply bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300;
+  background-color: var(--color-warning-100);
+  color: var(--color-warning-800);
 }
 
-.badge-danger {
-  @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
+.badge-error {
+  background-color: var(--color-error-100);
+  color: var(--color-error-800);
 }
 
 .badge-info {
-  @apply bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300;
+  background-color: var(--color-info-100);
+  color: var(--color-info-800);
 }
 
-/* Status indicators */
+/* Status Indicator Dots */
 .status-dot {
-  @apply inline-block w-2.5 h-2.5 rounded-full;
+  display: inline-block;
+  width: var(--spacing-2);
+  height: var(--spacing-2);
+  border-radius: var(--radius-full);
+  animation: none;
 }
 
 .status-dot-success {
-  @apply bg-emerald-500;
+  background-color: var(--color-success-500);
 }
 
 .status-dot-warning {
-  @apply bg-amber-500;
+  background-color: var(--color-warning-500);
 }
 
-.status-dot-danger {
-  @apply bg-red-500;
+.status-dot-error {
+  background-color: var(--color-error-500);
 }
 
 .status-dot-info {
-  @apply bg-cyan-500;
+  background-color: var(--color-info-500);
 }
 
-/* Refined custom scrollbars — elegant thin track site-wide */
+/* ============================================================================
+   SCROLLBAR STYLING — Refined & Elegant
+   ========================================================================== */
+
+/* Firefox scrollbar */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
 }
 
+/* WebKit scrollbar (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -880,15 +1067,17 @@ button:disabled {
 
 ::-webkit-scrollbar-thumb {
   background-color: rgba(148, 163, 184, 0.45);
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   border: 2px solid transparent;
   background-clip: padding-box;
+  transition: background-color var(--transition-base);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(100, 116, 139, 0.7);
 }
 
+/* Dark mode scrollbar */
 html.dark * {
   scrollbar-color: rgba(71, 85, 105, 0.6) transparent;
 }
@@ -901,15 +1090,18 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(100, 116, 139, 0.8);
 }
 
-/* Ad placeholders: transparent in dark mode so empty <ins> slots don't flash white */
+/* ============================================================================
+   MISC & AD UTILITIES
+   ========================================================================== */
+
+/* Ad placeholders: transparent in dark mode */
 html.dark .adsbygoogle {
   background: transparent !important;
 }
 
-/* Animated status dots */
-.status-dot-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+/* ============================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
 
 @keyframes pulse {
   0%, 100% {
@@ -917,5 +1109,233 @@ html.dark .adsbygoogle {
   }
   50% {
     opacity: 0.5;
+  }
+}
+
+/* ============================================================================
+   PHASE 4: GLOBAL IMPROVEMENTS — Animations & Accessibility
+   ========================================================================== */
+
+/* Icon Animation on Hover */
+@keyframes iconRotateScale {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.icon-hover-rotate {
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon-hover-rotate:hover {
+  animation: iconRotateScale 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Card Elevation Animation */
+@keyframes cardElevate {
+  from {
+    transform: translateY(0) translateZ(0);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  to {
+    transform: translateY(-8px) translateZ(20px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.card-hover-elevate {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-elevate:hover {
+  animation: cardElevate 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Hero Section Floating Animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-animate {
+  animation: floatUp 4s ease-in-out infinite;
+}
+
+/* CTA Button Arrow Animation */
+@keyframes arrowSlide {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.arrow-animate:hover .arrow-icon {
+  animation: arrowSlide 0.6s ease-in-out infinite;
+}
+
+/* Smooth Page Transition */
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageIn 0.3s ease-out;
+}
+
+/* Navbar Link Active Indicator */
+@keyframes linkUnderline {
+  from {
+    width: 0;
+    left: 0;
+  }
+  to {
+    width: 100%;
+    left: 0;
+  }
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  animation: linkUnderline 0.3s ease-out;
+}
+
+/* ============================================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ========================================================================== */
+
+/* Focus Rings — WCAG AAA compliant 3px outline */
+*:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+html.dark *:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* Skip-to-Content Link */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.skip-to-content:focus {
+  top: 0;
+  outline: none;
+}
+
+/* Keyboard Focus Visible for Buttons */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+html.dark button:focus-visible,
+html.dark a:focus-visible,
+html.dark input:focus-visible,
+html.dark select:focus-visible,
+html.dark textarea:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* Enhanced Contrast for Text */
+.high-contrast-text {
+  color: #111827;
+}
+
+html.dark .high-contrast-text {
+  color: #f9fafb;
+}
+
+/* Mega Menu Keyboard Navigation Indicator */
+.mega-item:focus-visible {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+html.dark .mega-item:focus-visible {
+  background-color: rgba(96, 165, 250, 0.15);
+}
+
+/* Smooth Transitions for Keyboard Navigation */
+.nav-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-item:focus-visible {
+  transform: translateX(2px);
+}
+
+/* Card Focus States for Keyboard Users */
+.calculator-card:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: -3px;
+}
+
+html.dark .calculator-card:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* Visible Focus Indicator for Mega Menu Items */
+.mega-calculator-item:focus-visible {
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 0.75rem;
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+html.dark .mega-calculator-item:focus-visible {
+  background: rgba(96, 165, 250, 0.12);
+  outline-color: #60a5fa;
+}
+
+/* Reduced Motion Support - Already included, maintaining consistency */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

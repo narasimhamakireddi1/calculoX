@@ -1,6 +1,6 @@
 # calculox
 
-**Status:** 🟡 AdSense Re-review Pending | Fixed duplicate ad-before-content on all 14 calc pages + added homepage blog section (2026-07-03) | Next: request fresh GSC re-indexing (2026-06-17 request predates the Jun 29 build fix, so Google's cache may still show the broken pre-fix deploy) → wait for re-crawl → AdSense → Sites → Request Review
+**Status:** 🟡 AdSense Re-review Pending | Fixed duplicate ad-before-content on all 14 calc pages + added homepage blog section (2026-07-03) | PHASE 5 Advanced Animations implemented (2026-07-03) | Next: apply animations to all pages, request fresh GSC re-indexing
 **Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TS errors | **Last updated:** 2026-07-03
 **AdSense:** Ad slots live ✅, NPA soft-consent live ✅ | **GA4:** G-GFN66QLNZP | **Publisher:** ca-pub-7034746357427731
 
@@ -97,6 +97,23 @@ app/                        lib/                        config/
 **ProjectionTable (SIP/FD/SI/Retirement):** First 12 rows default, "Show All" toggle, smooth `scrollIntoView` on expand, lazy load 50 rows.
 
 **Footer:** Mobile: `grid grid-cols-2 gap-4 md:contents` wrapper — 2-col mobile, dissolves to 5-col desktop. All inner column `<div>`s carry `min-w-0` to prevent content blowout. Legal links duplicated: `md:hidden` inside Company column (mobile) + `hidden md:block` standalone (desktop). Email `<a>` uses `break-all` so long address wraps on narrow screens.
+
+**PHASE 5: ADVANCED ANIMATIONS (2026-07-03)**
+- `styles/animations.css` — 50+ keyframes for page transitions, micro-animations, scroll effects, parallax, floats, progress bars, skeletons, toasts, polish effects
+- `useScrollAnimation.ts` — IntersectionObserver hook; triggers on scroll with threshold + rootMargin tuning
+- `useParallax.ts` — Scroll-based parallax effect hook (0-1 speed multiplier)
+- `PageTransition.tsx` — Wraps pages/sections; fade (0.5s) or slide (0.6s) on load
+- `AnimatedInput.tsx` — Enhanced with `input-invalid-shake` class for error state
+- `AnimatedResultCard.tsx` — Uses `useAnimatedNumber`; adds `number-flip` + `animate-scale-in` classes
+- `RippleButton.tsx` — Ripple effect on click (0.6s), multiple variants
+- `ScrollAnimatedElement.tsx` — Reusable scroll fade-in/slide-up/scale-up wrapper
+- `ScrollAnimatedList.tsx` — Staggered animations for lists (configurable delay)
+- `ReadingProgressBar.tsx` — Fixed top bar showing scroll% with gradient colors (blue/emerald/purple/rose)
+- `ParallaxImage.tsx` — Blog images with configurable parallax speed; uses scroll listener
+- `FloatingParticles.tsx` — Animated floating particles on hero sections (15 default)
+- CSS Variables: `--animation-duration-{fast|base|slow|slower}` + `--animation-timing-{ease-*}` for consistent timing
+- Respects `prefers-reduced-motion: reduce` — all animations disabled in user's browser settings
+- See [ANIMATION_GUIDE.md](ANIMATION_GUIDE.md) for complete usage documentation and implementation checklist
 
 ## SEO & Performance
 

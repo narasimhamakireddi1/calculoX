@@ -1,0 +1,914 @@
+/* =====================================================================
+   ENHANCED SLIDER STYLING - PHASE 2 MICRO-INTERACTIONS
+   ===================================================================== */
+
+input[type='range'] {
+  --thumb-size: 20px;
+  --track-height: 8px;
+}
+
+/* Thumb styling with scale effect on hover */
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border-radius: 50%;
+  background: var(--thumb-color, #3b82f6);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+input[type='range']::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+/* Track styling */
+input[type='range']::-webkit-slider-runnable-track {
+  width: 100%;
+  height: var(--track-height);
+  background: linear-gradient(
+    to right,
+    var(--fill-color, #3b82f6) 0%,
+    var(--fill-color, #3b82f6) var(--fill-pct, 50%),
+    #e5e7eb 0%
+  );
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Firefox styling */
+input[type='range']::-moz-range-thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border-radius: 50%;
+  background: var(--thumb-color, #3b82f6);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+input[type='range']::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+input[type='range']::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+input[type='range']::-moz-range-progress {
+  background: var(--fill-color, #3b82f6);
+  height: var(--track-height);
+  border-radius: 8px;
+}
+
+/* =====================================================================
+   SHIMMER LOADING ANIMATION
+   ===================================================================== */
+
+@keyframes shimmerLoading {
+  -100% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f0f0f0 50%,
+    #e0e0e0 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmerLoading 2s infinite;
+}
+
+.dark .shimmer {
+  background: linear-gradient(
+    90deg,
+    #2a2a2a 25%,
+    #3a3a3a 50%,
+    #2a2a2a 75%
+  );
+  background-size: 1000px 100%;
+}
+
+/* =====================================================================
+   INPUT FOCUS MICRO-INTERACTIONS
+   ===================================================================== */
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+input[type='number']:focus {
+  animation: pulseSubtle 0.3s ease-out;
+}
+
+/* =====================================================================
+   BUTTON RIPPLE EFFECT INITIALIZATION
+   ===================================================================== */
+
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* =====================================================================
+   TOAST ANIMATION REFINEMENT
+   ===================================================================== */
+
+@keyframes slideUpToast {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownToast {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.toast-enter {
+  animation: slideUpToast 0.3s ease-out;
+}
+
+.toast-exit {
+  animation: slideDownToast 0.3s ease-in;
+}
+
+/* =====================================================================
+   RESULT CARD HOVER EFFECTS
+   ===================================================================== */
+
+.result-card {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.result-card:hover {
+  transform: translateY(-2px);
+}
+
+.result-card-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* =====================================================================
+   SMOOTH NUMBER COUNTER ANIMATION
+   ===================================================================== */
+
+.number-counter {
+  font-variant-numeric: tabular-nums;
+  transition: all 0.3s ease-out;
+}
+
+/* =====================================================================
+   CHART ENTRANCE ANIMATION
+   ===================================================================== */
+
+.chart-container {
+  animation: slideUp 0.6s ease-out;
+}
+
+.recharts-surface {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* =====================================================================
+   DROPDOWN & ACCORDION ANIMATIONS
+   ===================================================================== */
+
+details[open] > summary {
+  margin-bottom: 1rem;
+}
+
+details > summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* =====================================================================
+   VALIDATION STATE ANIMATIONS
+   ===================================================================== */
+
+.input-error {
+  animation: slideInLeft 0.3s ease-out;
+  color: rgb(220, 38, 38);
+}
+
+.input-success {
+  animation: slideInRight 0.3s ease-out;
+  color: rgb(34, 197, 94);
+}
+
+/* =====================================================================
+   STAGGER ANIMATIONS FOR LISTS
+   ===================================================================== */
+
+.stagger-item:nth-child(1) {
+  animation: slideUp 0.5s ease-out 0.05s backwards;
+}
+
+.stagger-item:nth-child(2) {
+  animation: slideUp 0.5s ease-out 0.1s backwards;
+}
+
+.stagger-item:nth-child(3) {
+  animation: slideUp 0.5s ease-out 0.15s backwards;
+}
+
+.stagger-item:nth-child(4) {
+  animation: slideUp 0.5s ease-out 0.2s backwards;
+}
+
+.stagger-item:nth-child(5) {
+  animation: slideUp 0.5s ease-out 0.25s backwards;
+}
+
+/* =====================================================================
+   PHASE 4: GLOBAL IMPROVEMENTS — Enhanced Animations
+   ===================================================================== */
+
+/* Icon Rotation & Scale Animation */
+@keyframes iconRotateScale {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.icon-hover-rotate {
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon-hover-rotate:hover {
+  animation: iconRotateScale 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Card Elevation Animation */
+@keyframes cardElevate {
+  from {
+    transform: translateY(0) translateZ(0);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  to {
+    transform: translateY(-8px) translateZ(20px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Hero Section Floating Animation */
+@keyframes floatUp {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.float-animate {
+  animation: floatUp 4s ease-in-out infinite;
+}
+
+/* CTA Button Arrow Animation */
+@keyframes arrowSlide {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.arrow-animate:hover .arrow-icon {
+  animation: arrowSlide 0.6s ease-in-out infinite;
+}
+
+/* Smooth Page Transition */
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageIn 0.3s ease-out;
+}
+
+/* Navbar Link Active Indicator Underline */
+@keyframes linkUnderline {
+  from {
+    width: 0;
+    left: 0;
+  }
+  to {
+    width: 100%;
+    left: 0;
+  }
+}
+
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  animation: linkUnderline 0.3s ease-out;
+}
+
+/* Mega Menu Item Hover State */
+.mega-calculator-item {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mega-calculator-item:hover {
+  transform: translateX(4px);
+}
+
+/* Stagger animations for calculator cards */
+@keyframes staggerFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-calc {
+  animation: staggerFadeUp 0.4s ease-out backwards;
+}
+
+/* =====================================================================
+   PHASE 5: ADVANCED ANIMATIONS — PAGE TRANSITIONS
+   ===================================================================== */
+
+@keyframes pageLoadFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+.page-load-fade-in {
+  animation: pageLoadFadeIn 0.5s ease-in-out;
+}
+
+.page-slide-in {
+  animation: pageSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* =====================================================================
+   PHASE 5: COMPONENT MICRO-ANIMATIONS — CHECKBOX
+   ===================================================================== */
+
+@keyframes checkboxCheck {
+  0% {
+    transform: scale(0.8) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes checkboxBounce {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.checkbox-animated {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.checkbox-animated:checked {
+  animation: checkboxCheck 0.4s ease-out, checkboxBounce 0.6s ease-out 0.2s;
+}
+
+/* =====================================================================
+   PHASE 5: ERROR SHAKE & VALIDATION ANIMATIONS
+   ===================================================================== */
+
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes errorPulse {
+  0%, 100% {
+    border-color: rgb(239, 68, 68);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    border-color: rgb(220, 38, 38);
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.1);
+  }
+}
+
+.input-invalid-shake {
+  animation: errorShake 0.4s cubic-bezier(0.36, 0, 0.66, -0.56);
+}
+
+.input-invalid-pulse {
+  animation: errorPulse 1.5s ease-in-out;
+}
+
+/* =====================================================================
+   PHASE 5: NUMBER INCREMENT ANIMATION
+   ===================================================================== */
+
+@keyframes numberFlip {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes numberSpin {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.number-flip {
+  animation: numberFlip 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-variant-numeric: tabular-nums;
+}
+
+.number-loading {
+  animation: numberSpin 1.2s ease-in-out infinite;
+}
+
+/* =====================================================================
+   PHASE 5: SCROLL ANIMATIONS — FADE-IN & SLIDE-UP
+   ===================================================================== */
+
+@keyframes fadeInOnScroll {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpOnScroll {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUpOnScroll {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scroll-fade-in {
+  animation: fadeInOnScroll 0.7s ease-out forwards;
+  opacity: 0;
+}
+
+.scroll-slide-up {
+  animation: slideUpOnScroll 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.scroll-scale-up {
+  animation: scaleUpOnScroll 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+/* =====================================================================
+   PHASE 5: PARALLAX EFFECT
+   ===================================================================== */
+
+@keyframes parallaxShift {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+.parallax-image {
+  will-change: transform;
+}
+
+/* =====================================================================
+   PHASE 5: FLOATING ELEMENTS ON PAGE
+   ===================================================================== */
+
+@keyframes floatingParticle {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+.floating-particle {
+  animation: floatingParticle 3s ease-out forwards;
+}
+
+/* =====================================================================
+   PHASE 5: PROGRESS BAR ANIMATIONS
+   ===================================================================== */
+
+@keyframes progressBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes progressPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+  }
+}
+
+.progress-bar-animated {
+  animation: progressBar 0.8s ease-out forwards;
+}
+
+.progress-bar-pulse {
+  animation: progressPulse 2s ease-in-out infinite;
+}
+
+/* =====================================================================
+   PHASE 5: SKELETON LOADER ENHANCED
+   ===================================================================== */
+
+@keyframes skeletonPulseV2 {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes skeletonShimmerV2 {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton-pulse-v2 {
+  animation: skeletonPulseV2 1.5s ease-in-out infinite;
+}
+
+.skeleton-shimmer-v2 {
+  background: linear-gradient(
+    90deg,
+    rgba(229, 231, 235, 0.4) 25%,
+    rgba(229, 231, 235, 0.7) 50%,
+    rgba(229, 231, 235, 0.4) 75%
+  );
+  background-size: 1000px 100%;
+  animation: skeletonShimmerV2 2s infinite;
+}
+
+.dark .skeleton-shimmer-v2 {
+  background: linear-gradient(
+    90deg,
+    rgba(55, 65, 81, 0.4) 25%,
+    rgba(75, 85, 99, 0.7) 50%,
+    rgba(55, 65, 81, 0.4) 75%
+  );
+  background-size: 1000px 100%;
+}
+
+/* =====================================================================
+   PHASE 5: TOAST SUCCESS ANIMATIONS (Enhanced)
+   ===================================================================== */
+
+@keyframes toastSlideUpV2 {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes toastSlideOutV2 {
+  from {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) translateX(20px);
+  }
+}
+
+.toast-success-enter-v2 {
+  animation: toastSlideUpV2 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast-success-exit-v2 {
+  animation: toastSlideOutV2 0.3s ease-in;
+}
+
+/* =====================================================================
+   PHASE 5: ACCENT & POLISH ANIMATIONS
+   ===================================================================== */
+
+@keyframes rippleEffect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+@keyframes ctaBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.ripple-effect {
+  animation: rippleEffect 0.6s ease-out;
+}
+
+.button-glow {
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+.cta-bounce {
+  animation: ctaBounce 1.5s ease-in-out infinite;
+}
+
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* =====================================================================
+   PHASE 5: UTILITY ANIMATIONS
+   ===================================================================== */
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes expandHeight {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+@keyframes collapseHeight {
+  from {
+    opacity: 1;
+    max-height: 1000px;
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+.bounce-in {
+  animation: bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.slide-left {
+  animation: slideLeft 0.5s ease-out;
+}
+
+.slide-right {
+  animation: slideRight 0.5s ease-out;
+}
+
+.rotate-in {
+  animation: rotateIn 0.4s ease-out;
+}
+
+.expand-height {
+  animation: expandHeight 0.3s ease-out;
+}
+
+.collapse-height {
+  animation: collapseHeight 0.3s ease-out;
+}

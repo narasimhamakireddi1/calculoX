@@ -8,6 +8,7 @@ import { AdUnit, AD_SLOTS } from '@/components/ui/AdUnit';
 import { Fragment, type ReactNode } from 'react';
 import { ReadingProgress } from '@/components/blog/ReadingProgress';
 import { BlogTOC } from '@/components/blog/BlogTOC';
+import { BlogHeroImage } from '@/components/blog/BlogHeroImage';
 
 /**
  * Converts a plain-text content string into structured HTML.
@@ -218,19 +219,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
-        {/* Hero Image */}
-        {post.image && (
-          <div className="mb-8 overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
-            <img
-              src={post.image}
-              alt={`${post.title} — formula diagram`}
-              className="w-full h-auto"
-              width={800}
-              height={420}
-              loading="eager"
-            />
-          </div>
-        )}
+        {/* Hero Image with Parallax */}
+        <BlogHeroImage
+          src={post.image || null}
+          title={post.title}
+          category={post.category}
+          categoryColor={categoryColors[post.category] || ''}
+        />
 
         {/* Disclaimer */}
         <div className="mb-10 px-4 py-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
@@ -337,23 +332,62 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* Related Articles */}
         {relatedPosts.length > 0 && (
           <section className="mb-12">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-5">Related Articles</h2>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {relatedPosts.map((related) => (
-                <Link
-                  key={related.slug}
-                  href={`/blog/${related.slug}`}
-                  className="group rounded-xl border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/60 p-5 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md transition-all duration-200 flex flex-col gap-2.5"
-                >
-                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full self-start ${categoryColors[related.category] ?? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'}`}>
-                    {related.category}
-                  </span>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 leading-snug line-clamp-2 flex-1">
-                    {related.title}
-                  </p>
-                  <p className="text-xs text-gray-400 dark:text-gray-500">{related.readTime}</p>
-                </Link>
-              ))}
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Related Articles</h2>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {relatedPosts.map((related) => {
+                const categoryImageGradients: Record<string, string> = {
+                  Finance: 'from-blue-600 to-blue-400',
+                  Investment: 'from-green-600 to-green-400',
+                  Investing: 'from-emerald-600 to-emerald-400',
+                  Tax: 'from-orange-600 to-orange-400',
+                  Health: 'from-rose-600 to-rose-400',
+                  Business: 'from-purple-600 to-purple-400',
+                  Retirement: 'from-amber-600 to-amber-400',
+                  Savings: 'from-teal-600 to-teal-400',
+                  'Personal Finance': 'from-indigo-600 to-indigo-400',
+                  'Wealth Building': 'from-orange-700 to-orange-500',
+                };
+                const gradientClass = categoryImageGradients[related.category] || 'from-blue-600 to-blue-400';
+
+                return (
+                  <Link
+                    key={related.slug}
+                    href={`/blog/${related.slug}`}
+                    className="group rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800 hover:shadow-xl hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 flex flex-col h-full"
+                  >
+                    {/* Image Header */}
+                    <div className={`relative h-40 bg-gradient-to-br ${gradientClass} overflow-hidden`}>
+                      {related.image ? (
+                        <img
+                          src={related.image}
+                          alt={related.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center opacity-30">
+                          <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      )}
+                      <div className="absolute top-2 left-2">
+                        <span className={`inline-flex text-xs font-bold px-2 py-1 rounded-full backdrop-blur-sm ${categoryColors[related.category] ?? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
+                          {related.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4 flex flex-col flex-1">
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 leading-snug line-clamp-2 flex-1 mb-2">
+                        {related.title}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{related.readTime}</p>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}

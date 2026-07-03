@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { blogPosts } from "@/lib/blog/posts";
-import BlogClient from "./BlogClient";
+import { BlogPageClient } from "./BlogPageClient";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.calculox.in";
 
@@ -52,7 +52,7 @@ export default function BlogPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema) }}
       />
 
-      <div className="max-w-5xl mx-auto px-4 py-12">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <nav className="text-sm text-gray-500 mb-8">
           <Link href="/" className="hover:text-blue-600">
             Home
@@ -60,19 +60,9 @@ export default function BlogPage() {
           <span className="mx-2">/</span>
           <span className="text-gray-900 dark:text-white">Blog</span>
         </nav>
-
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Finance & Calculator Guides
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
-            Expert articles on EMI, SIP, income tax, BMI & more – written for
-            Indian users.
-          </p>
-        </div>
-
-        <BlogClient posts={blogPosts} />
       </div>
+
+      <BlogPageClient posts={blogPosts} />
     </>
   );
 }

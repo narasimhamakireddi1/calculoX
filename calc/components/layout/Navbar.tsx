@@ -331,9 +331,9 @@ function NavLink({
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
-      className={`px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${
+      className={`nav-item px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 relative ${
         active
-          ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md shadow-blue-500/30'
+          ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md shadow-blue-500/30 nav-link-active'
           : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/60 dark:hover:bg-gray-800/60'
       }`}
     >
@@ -360,14 +360,14 @@ function MegaItem({
     <Link
       href={calc.href}
       onClick={onClose}
-      className={`flex items-center gap-2.5 px-2.5 py-2 rounded-xl transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 ${
+      className={`mega-calculator-item flex items-center gap-2.5 px-2.5 py-2 rounded-xl transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 ${
         active
-          ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300'
-          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-100'
+          ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 shadow-sm shadow-blue-200/50 dark:shadow-blue-900/30'
+          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-100 hover:shadow-md hover:shadow-gray-300/20 dark:hover:shadow-gray-900/20'
       }`}
     >
       <span
-        className={`flex items-center justify-center w-7 h-7 rounded-lg flex-shrink-0 transition-colors duration-150 ${
+        className={`flex items-center justify-center w-7 h-7 rounded-lg flex-shrink-0 transition-all duration-150 icon-hover-rotate ${
           active
             ? 'bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-400'
             : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/40 group-hover:text-blue-600 dark:group-hover:text-blue-400'

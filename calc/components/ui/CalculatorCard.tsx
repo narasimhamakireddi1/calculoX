@@ -60,7 +60,7 @@ export function CalculatorCard({
   return (
     <Link href={href} className="block h-full">
       <div
-        className={`card h-full flex flex-col group relative overflow-hidden border border-gray-200/70 dark:border-gray-800 transition-all duration-300 ${colors.border}`}
+        className={`calculator-card card h-full flex flex-col group relative overflow-hidden border border-gray-200/70 dark:border-gray-800 transition-all duration-300 ${colors.border} hover:shadow-xl hover:-translate-y-2`}
       >
         {/* Subtle category accent bar that grows on hover */}
         <span

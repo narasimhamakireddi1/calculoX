@@ -17,7 +17,7 @@ export function ReadingProgress() {
   return (
     <div
       aria-hidden="true"
-      className="fixed top-0 left-0 z-[60] h-[3px] bg-blue-600 dark:bg-blue-400"
+      className="fixed top-0 left-0 z-[60] h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 dark:from-blue-400 dark:via-blue-500 dark:to-blue-600 shadow-lg shadow-blue-500/50 transition-all duration-300 ease-out"
       style={{ width: `${width}%` }}
     />
   );

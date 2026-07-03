@@ -10,6 +10,7 @@ const inter = Inter({
 });
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SkipToContent } from "@/components/a11y/SkipToContent";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { CookieConsent } from "@/components/ui/CookieConsent";
@@ -149,8 +150,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} font-sans bg-[#f6f8fd] dark:bg-[#070b15] text-gray-900 dark:text-gray-50`}>
+        <SkipToContent />
         <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <main id="main-content" role="main" className="min-h-screen">{children}</main>
         <Footer />
         <ResultsScrollCue />
         <CalcFAB />

@@ -17,22 +17,16 @@ import { ShareButtons } from '@/components/ui/ShareButtons';
 import { getInternalLinks } from '@/config/internal-links.config';
 import { RangeSlider } from '@/components/ui/RangeSlider';
 import { useHapticFeedback } from '@/lib/hooks/useHapticFeedback';
+import { AnimatedResultCard } from '@/components/ui/AnimatedResultCard';
+import { ResultBreakdownChart } from '@/components/emi/ResultBreakdownChart';
+import { ToastContainer } from '@/components/ui/Toast';
+import { SkeletonChart } from '@/components/ui/SkeletonLoader';
 
 import { ChartEmptyState } from '@/components/charts/ChartEmptyState';
 
 // Dynamic imports for charts - lazy load to improve initial page load
 const Charts = lazy(() => import('@/components/emi/ChartComponents').then(m => ({ default: m.ChartsSection })));
 const AmortizationTable = lazy(() => import('@/components/emi/AmortizationTable').then(m => ({ default: m.default })));
-
-// Fallback loader
-const ChartLoader = () => (
-  <div className="w-full h-80 flex items-center justify-center bg-gray-50 dark:bg-gray-800 rounded-lg">
-    <div className="text-center">
-      <div className="animate-pulse inline-block w-12 h-12 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
-      <p className="text-gray-500 dark:text-gray-400">Loading chart...</p>
-    </div>
-  </div>
-);
 
 type EMIFormData = {
   principal: number;
@@ -58,7 +52,7 @@ interface AmortizationRow {
 const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | null; watchValues: EMIFormData }) => {
   if (!result) {
     return (
-      <div className="card h-full flex items-center justify-center min-h-64">
+      <div className="card h-full flex items-center justify-center min-h-64 animate-fade-in">
         <div className="text-center">
           <p className="text-gray-500 dark:text-gray-400 text-lg">
             Enter your loan details and results will appear here
@@ -69,39 +63,58 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
   }
 
   return (
-    <div id="emi-results" className="card space-y-4">
+    <div id="emi-results" className="card space-y-4 animate-fade-in">
       <h2 className="text-2xl font-bold mb-6">Loan Summary</h2>
 
-      {/* Hero metric */}
-      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
-        <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly EMI</p>
-        <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">
-          {formatCurrency(result.emi)}
-        </p>
-        <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">per month for {result.numberOfMonths} months</p>
-      </div>
+      {/* Hero metric with animation */}
+      <AnimatedResultCard
+        label="Monthly EMI"
+        value={result.emi}
+        icon={Coins}
+        format="currency"
+        gradient="from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30"
+        borderColor="border-blue-300 dark:border-blue-700"
+        textColor="text-blue-700 dark:text-blue-400"
+        isPrimary={true}
+        subLabel={`per month for ${result.numberOfMonths} months`}
+      />
 
-      {/* Secondary metrics */}
+      {/* Secondary metrics with stagger animation */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm min-w-0">
-          <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Total Payable</p>
-          <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
-            {formatCurrency(result.totalAmount)}
-          </p>
+        <div className="animate-stagger-1">
+          <AnimatedResultCard
+            label="Total Payable"
+            value={result.totalAmount}
+            format="currency"
+            gradient="from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30"
+            borderColor="border-gray-200 dark:border-gray-600"
+            textColor="text-gray-900 dark:text-white"
+          />
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 p-3 sm:p-4 rounded-lg border border-red-200 dark:border-red-700 shadow-sm min-w-0">
-          <p className="text-red-600 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><BarChart2 className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest</p>
-          <p className="text-sm sm:text-lg font-bold text-red-700 dark:text-red-400 whitespace-nowrap">
-            {formatCurrency(result.totalInterest)}
-          </p>
+        <div className="animate-stagger-2">
+          <AnimatedResultCard
+            label="Interest"
+            value={result.totalInterest}
+            icon={BarChart2}
+            format="currency"
+            gradient="from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30"
+            borderColor="border-red-200 dark:border-red-700"
+            textColor="text-red-700 dark:text-red-400"
+          />
         </div>
 
-        <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
-          <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1">Duration</p>
-          <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">
-            {result.numberOfMonths} <span className="font-normal text-xs">months</span>
-          </p>
+        <div className="col-span-2 sm:col-span-1 animate-stagger-3">
+          <AnimatedResultCard
+            label="Duration"
+            value={result.numberOfMonths}
+            format="number"
+            gradient="from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30"
+            borderColor="border-purple-200 dark:border-purple-700"
+            textColor="text-purple-700 dark:text-purple-400"
+          >
+            <p className="text-xs font-normal text-purple-600 dark:text-purple-300 mt-1">months</p>
+          </AnimatedResultCard>
         </div>
       </div>
 
@@ -535,9 +548,16 @@ export default function EMICalculatorPage() {
         </div>
       </div>
 
+      {/* Result Breakdown Chart - New visualization */}
+      {result && (
+        <div className="animate-slide-up">
+          <ResultBreakdownChart principal={watchValues.principal} interest={result.totalInterest} />
+        </div>
+      )}
+
       {/* Charts Section - Lazy loaded */}
       {result ? (
-        <Suspense fallback={<ChartLoader />}>
+        <Suspense fallback={<SkeletonChart />}>
           <Charts result={result} schedule={schedule} />
         </Suspense>
       ) : (
@@ -800,6 +820,7 @@ export default function EMICalculatorPage() {
         </div>
       </div>
 
+      <ToastContainer />
     </div>
   );
 }
