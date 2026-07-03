@@ -110,7 +110,11 @@
       "Bash(curl -s http://localhost:3000)",
       "Bash(pkill -f \"npm run dev\")",
       "Bash(curl -s http://localhost:3000/blog)",
-      "PowerShell(Stop-Process -Name node -Force -ErrorAction SilentlyContinue)"
+      "PowerShell(Stop-Process -Name node -Force -ErrorAction SilentlyContinue)",
+      "Bash(tail -50 /tmp/dev.log)",
+      "Bash(curl -I http://localhost:3000)",
+      "Bash(timeout 30 npm run dev)",
+      "Bash(curl -s http://localhost:3000/emi-calculator)"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\.claude\\projects\\c--Users-trish-Downloads-calculator\\memory",
