@@ -1,7 +1,7 @@
 # calculox
 
-**Status:** 🟡 AdSense Re-review Pending | Indexing requested 2026-06-17 — check GSC Performance for impressions → AdSense → Sites → Request Review
-**Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TS errors | **Last updated:** 2026-07-01
+**Status:** 🟡 AdSense Re-review Pending | Fixed duplicate ad-before-content on all 14 calc pages + added homepage blog section (2026-07-03) | Next: request fresh GSC re-indexing (2026-06-17 request predates the Jun 29 build fix, so Google's cache may still show the broken pre-fix deploy) → wait for re-crawl → AdSense → Sites → Request Review
+**Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TS errors | **Last updated:** 2026-07-03
 **AdSense:** Ad slots live ✅, NPA soft-consent live ✅ | **GA4:** G-GFN66QLNZP | **Publisher:** ca-pub-7034746357427731
 
 ## Quick Start
@@ -82,7 +82,9 @@ app/                        lib/                        config/
 
 **About page — formula verification section (`app/about/page.tsx`):** Emerald card "How We Verify Our Formulas" — 2-col grid of 5 source cards (`formulaSources` array) with `ExternalLink` icons linking to official sites. Sources: RBI (EMI/FD/RD/SI) · Finance Act 2025-26 / incometaxindia.gov.in (Tax) · SEBI/AMFI (SIP/CAGR/Retirement) · GST Council/CBIC gst.gov.in (GST) · WHO/ICMR who.int (BMI). Keep in sync with ConfidenceBadge URLs above if sources change.
 
-**CalcPageWrapper:** Server component. Renders `Home / Calculators / [title]` breadcrumb. Accepts `category: 'finance'|'health'|'utility'` for hero gradient. Breadcrumb schema: 3-item (`Home → Calculators → Calculator`). Added `title` prop; all 14 `layout.tsx` files pass display name.
+**CalcPageWrapper:** Server component. Renders `Home / Calculators / [title]` breadcrumb. Accepts `category: 'finance'|'health'|'utility'` for hero gradient. Breadcrumb schema: 3-item (`Home → Calculators → Calculator`). Added `title` prop; all 14 `layout.tsx` files pass display name. **No longer renders its own ad unit** (removed 2026-07-03) — each `*-calculator/layout.tsx` already places `calcAboveFold` + `calcBelowResult`; the wrapper duplicating `calcBelowResult` stacked 2 ad blocks before the educational content on every calc page, a likely contributor to the AdSense "low value content" rejection. Ad slots per calc page are now exactly 2.
+
+**Homepage — "Latest from the Blog" (`app/page.tsx`):** Added 2026-07-03. `LATEST_POSTS` = top 4 `blogPosts` sorted by `date` desc, rendered as cards linking to `/blog/[slug]`, placed between "Real Indian Scenarios" and "Why Choose Our Calculators" — surfaces blog depth on first paint ahead of AdSense re-review.
 
 **Navbar:** Desktop mega-menu (hover open 150ms debounce, close 200ms delay, Escape, outside-click). `megaIn` animation: 0.15s ease-out fade + 6px translateY. Inline search: auto-focus 80ms delay, filters `title`+`description`+`keywords`, collapses empty sections. Mobile: hamburger → `CalculatorBottomSheet` side drawer (CSS `translate-x-full`→`translate-x-0`, cubic-bezier). Focus rings: `focus-visible:ring-2 focus-visible:ring-blue-500` on all 6 nav elements.
 
@@ -161,11 +163,12 @@ const [chartData, setChartData] = useState(INITIAL_XYZ_DATA?.chartData ?? []);
 - **`public/ads.txt` only** — deleted `public/Ads.txt` (Linux/Vercel is case-sensitive; uppercase variant not crawled).
 - **Dark mode ad flash** — `html.dark .adsbygoogle { background: transparent !important }` in globals.css. iframe fills it once ad loads.
 - **Blog SVG text visibility** — SVG renders in document order; white `<rect>` after `<text>` paints over it. Keep text within column bounds or reorder elements.
+- **Stale nested `calc/.git`** — before the `abedfd2` gitlink fix, `calc/` had its own disconnected local git repo (same remote, HEAD frozen on an old pre-fix commit). Any git command run with cwd inside `calc/` silently operated on it instead of the real repo, showing false "modified" files for anything changed since. Removed 2026-07-03. If it reappears, delete `calc/.git` only (never touch source files) and re-run git from the repo root.
 
 ## Deployment
 
 ```bash
-git push origin main   # Auto-deploys to Vercel → https://www.calculox.in
+git push origin master   # Auto-deploys to Vercel → https://www.calculox.in
 ```
 
 **Required env vars (Vercel):**
