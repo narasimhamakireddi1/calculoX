@@ -177,25 +177,26 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
       >
         {/* ── Header ── */}
         <div className="flex items-center justify-between px-4 h-14 border-b border-gray-100 dark:border-gray-800/80 flex-shrink-0">
-          <Link
-            href="/"
-            onClick={onClose}
-            className="flex items-center gap-2 group"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-7 h-7 flex-shrink-0">
-              <defs>
-                <linearGradient id="mobileNavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#3b82f6" />
-                  <stop offset="100%" stopColor="#1d4ed8" />
-                </linearGradient>
-              </defs>
-              <rect width="32" height="32" rx="7" fill="url(#mobileNavGrad)" />
-              <text x="16" y="22" fontFamily="Arial, sans-serif" fontSize="13" fontWeight="bold" fill="white" textAnchor="middle" letterSpacing="-0.5">CX</text>
-            </svg>
-            <span className="font-bold text-base text-gray-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              calculox
-            </span>
-          </Link>
+          <div onClick={onClose} className="cursor-pointer">
+            <Link
+              href="/"
+              className="flex items-center gap-2 group"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-7 h-7 flex-shrink-0">
+                <defs>
+                  <linearGradient id="mobileNavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#1d4ed8" />
+                  </linearGradient>
+                </defs>
+                <rect width="32" height="32" rx="7" fill="url(#mobileNavGrad)" />
+                <text x="16" y="22" fontFamily="Arial, sans-serif" fontSize="13" fontWeight="bold" fill="white" textAnchor="middle" letterSpacing="-0.5">CX</text>
+              </svg>
+              <span className="font-bold text-base text-gray-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                calculox
+              </span>
+            </Link>
+          </div>
 
           <button
             onClick={onClose}
@@ -250,27 +251,31 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
               {navLinks.map((link) => {
                 const active = isActive(link.href);
                 return (
-                  <Link
+                  <div
                     key={link.href}
-                    href={link.href}
                     onClick={onClose}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 mb-0.5 group ${
-                      active
-                        ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/60'
-                    }`}
+                    className="cursor-pointer"
                   >
-                    <span className="w-7 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 duration-150">
-                      <link.Icon className="w-5 h-5" strokeWidth={2} aria-hidden="true" />
-                    </span>
-                    <div className="min-w-0">
-                      <div className={`text-sm font-semibold leading-tight ${active ? '' : ''}`}>{link.label}</div>
-                      <div className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">{link.desc}</div>
-                    </div>
-                    {active && (
-                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
-                    )}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 mb-0.5 group ${
+                        active
+                          ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/60'
+                      }`}
+                    >
+                      <span className="w-7 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 duration-150">
+                        <link.Icon className="w-5 h-5" strokeWidth={2} aria-hidden="true" />
+                      </span>
+                      <div className="min-w-0">
+                        <div className={`text-sm font-semibold leading-tight ${active ? '' : ''}`}>{link.label}</div>
+                        <div className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">{link.desc}</div>
+                      </div>
+                      {active && (
+                        <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                      )}
+                    </Link>
+                  </div>
                 );
               })}
             </div>
@@ -296,28 +301,32 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
                 {filteredCalculators.map((calc) => {
                   const active = isActive(calc.href);
                   return (
-                    <Link
+                    <div
                       key={calc.id}
-                      href={calc.href}
                       onClick={onClose}
-                      title={calc.title}
-                      className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all duration-150 group ${
-                        active
-                          ? 'bg-blue-50 dark:bg-blue-950/60 ring-1 ring-blue-200 dark:ring-blue-800/60'
-                          : 'hover:bg-gray-100/80 dark:hover:bg-gray-800/60'
-                      }`}
+                      className="cursor-pointer"
                     >
-                      <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800/80 transition-transform duration-150 group-hover:scale-110">
-                        <CalculatorIcon idOrHref={calc.id} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                      </span>
-                      <span className={`text-[10px] text-center leading-snug font-medium line-clamp-2 ${
-                        active
-                          ? 'text-blue-600 dark:text-blue-400'
-                          : 'text-gray-600 dark:text-gray-400'
-                      }`}>
-                        {calc.title.replace(' Calculator', '')}
-                      </span>
-                    </Link>
+                      <Link
+                        href={calc.href}
+                        title={calc.title}
+                        className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all duration-150 group ${
+                          active
+                            ? 'bg-blue-50 dark:bg-blue-950/60 ring-1 ring-blue-200 dark:ring-blue-800/60'
+                            : 'hover:bg-gray-100/80 dark:hover:bg-gray-800/60'
+                        }`}
+                      >
+                        <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800/80 transition-transform duration-150 group-hover:scale-110">
+                          <CalculatorIcon idOrHref={calc.id} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                        </span>
+                        <span className={`text-[10px] text-center leading-snug font-medium line-clamp-2 ${
+                          active
+                            ? 'text-blue-600 dark:text-blue-400'
+                            : 'text-gray-600 dark:text-gray-400'
+                        }`}>
+                          {calc.title.replace(' Calculator', '')}
+                        </span>
+                      </Link>
+                    </div>
                   );
                 })}
               </div>

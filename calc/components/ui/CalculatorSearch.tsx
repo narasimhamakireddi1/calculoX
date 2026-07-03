@@ -104,33 +104,37 @@ export function CalculatorSearch() {
         <div className="absolute top-full left-0 right-0 mt-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl shadow-xl z-50 overflow-hidden">
           <div className="max-h-96 overflow-y-auto">
             {results.map((result, index) => (
-              <Link
+              <div
                 key={result.href}
-                href={result.href}
                 onClick={() => {
                   setQuery('');
                   setResults([]);
                   setIsOpen(false);
                 }}
-                className={`flex items-start gap-4 px-4 py-4 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 group ${
-                  index !== results.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''
-                }`}
+                className="cursor-pointer"
               >
-                <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/50 flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
-                  <CalculatorIcon idOrHref={result.href} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                </span>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {result.title}
-                  </h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2 mt-1">
-                    {result.description}
-                  </p>
-                  <span className="inline-block mt-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full border border-blue-200 dark:border-blue-700/50">
-                    {result.category}
+                <Link
+                  href={result.href}
+                  className={`flex items-start gap-4 px-4 py-4 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200 group ${
+                    index !== results.length - 1 ? 'border-b border-gray-200 dark:border-gray-700' : ''
+                  }`}
+                >
+                  <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/40 ring-1 ring-blue-100 dark:ring-blue-900/50 flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
+                    <CalculatorIcon idOrHref={result.href} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </span>
-                </div>
-              </Link>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {result.title}
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2 mt-1">
+                      {result.description}
+                    </p>
+                    <span className="inline-block mt-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full border border-blue-200 dark:border-blue-700/50">
+                      {result.category}
+                    </span>
+                  </div>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
