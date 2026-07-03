@@ -158,8 +158,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
-        onClick={onClose}
-        aria-hidden="true"
+                aria-hidden="true"
       />
 
       {/* Drawer */}
@@ -199,8 +198,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
           </div>
 
           <button
-            onClick={onClose}
-            className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all flex-shrink-0"
+                        className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all flex-shrink-0"
             aria-label="Close menu"
           >
             <span style={{ position: 'relative', display: 'block', width: 18, height: 18, flexShrink: 0 }}>
@@ -253,8 +251,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
                 return (
                   <div
                     key={link.href}
-                    onClick={onClose}
-                    className="cursor-pointer"
+                                        className="cursor-pointer"
                   >
                     <Link
                       href={link.href}
@@ -303,8 +300,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
                   return (
                     <div
                       key={calc.id}
-                      onClick={onClose}
-                      className="cursor-pointer"
+                                            className="cursor-pointer"
                     >
                       <Link
                         href={calc.href}

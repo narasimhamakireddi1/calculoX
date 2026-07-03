@@ -106,11 +106,6 @@ export function CalculatorSearch() {
             {results.map((result, index) => (
               <div
                 key={result.href}
-                onClick={() => {
-                  setQuery('');
-                  setResults([]);
-                  setIsOpen(false);
-                }}
                 className="cursor-pointer"
               >
                 <Link
