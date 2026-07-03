@@ -297,13 +297,14 @@ export function Navbar() {
                 <span className="text-xs text-gray-500 dark:text-gray-400">
                   14 free calculators · No signup · Real-time results
                 </span>
-                <Link
-                  href="/compare"
-                  onClick={() => setMegaOpen(false)}
-                  className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1"
-                >
-                  Compare side-by-side →
-                </Link>
+                <div onClick={() => setMegaOpen(false)}>
+                  <Link
+                    href="/compare"
+                    className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1"
+                  >
+                    Compare side-by-side →
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
