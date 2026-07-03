@@ -119,7 +119,11 @@
       "Bash(curl -v http://localhost:3000/)",
       "Bash(nohup npm run dev)",
       "Bash(tail -30 /tmp/dev-server.log)",
-      "Bash(git diff-index *)"
+      "Bash(git diff-index *)",
+      "Bash(tail -100 /tmp/dev-server.log | grep -A 10 -E \"\\(error|Error|ERROR\\)\")",
+      "Bash(tail -50 /tmp/dev-server.log | grep -E \"\\(Error|error|✓ Ready\\)\" | head -10)",
+      "PowerShell(cd \"C:\\\\Users\\\\trish\\\\Downloads\\\\calculator\"; \\(git diff calc/components/ui/Toast.tsx\\) | Select-Object -First 30)",
+      "Bash(tail -100 /tmp/dev-server.log | tail -50)"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\.claude\\projects\\c--Users-trish-Downloads-calculator\\memory",
