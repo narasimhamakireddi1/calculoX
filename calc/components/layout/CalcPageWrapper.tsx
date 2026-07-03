@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
-import { AdUnit, AD_SLOTS } from '@/components/ui/AdUnit';
 
 type Category = 'Finance' | 'Health' | 'Utility';
 
@@ -48,10 +47,6 @@ export function CalcPageWrapper({ category, title, children }: CalcPageWrapperPr
         </ol>
       </nav>
       {children}
-      {/* In-content ad: natural pause between the interactive widget and the static article below */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6">
-        <AdUnit slot={AD_SLOTS.calcBelowResult} format="horizontal" />
-      </div>
     </div>
   );
 }

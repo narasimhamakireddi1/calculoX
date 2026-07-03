@@ -13,6 +13,8 @@ import { RangeSlider } from "@/components/ui/RangeSlider";
 import { CalculatorSearch } from "@/components/ui/CalculatorSearch";
 import { CategoryTabs, type CalculatorCategory } from "@/components/ui/CategoryTabs";
 import { getActiveCalculators } from "@/config/calculators.config";
+import { blogPosts } from "@/lib/blog/posts";
+import { BookOpen } from 'lucide-react';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function formatINR(n: number): string {
@@ -341,6 +343,10 @@ const REAL_SCENARIOS = [
     accent: 'from-emerald-500 to-emerald-600',
   },
 ] as const;
+
+const LATEST_POSTS = [...blogPosts]
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .slice(0, 4);
 
 const categoryConfig: Record<string, { label: string; Icon: LucideIcon }> = {
   finance:    { label: 'Finance',    Icon: IndianRupee },
@@ -1199,6 +1205,40 @@ export default function Home() {
               </div>
               <Link href={sc.href} className={`text-sm font-semibold ${sc.color} hover:underline`}>{sc.cta} →</Link>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          LATEST FROM THE BLOG
+      ══════════════════════════════════════════ */}
+      <section className="space-y-8">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div className="space-y-2">
+            <h2 className="text-4xl font-bold flex items-center gap-3">
+              <BookOpen className="w-8 h-8 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" />
+              Latest from the Blog
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">In-depth guides on EMI, SIP, tax, and more — beyond the calculators</p>
+          </div>
+          <Link href="/blog" className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap">
+            View all articles →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {LATEST_POSTS.map(post => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group block bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 p-5"
+            >
+              <span className="text-[11px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">{post.category}</span>
+              <h3 className="mt-2 text-base font-bold text-gray-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {post.title}
+              </h3>
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{post.description}</p>
+              <p className="mt-3 text-[11px] text-gray-400 dark:text-gray-500">{post.readTime}</p>
+            </Link>
           ))}
         </div>
       </section>
