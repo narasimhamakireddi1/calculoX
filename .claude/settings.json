@@ -129,7 +129,14 @@
       "Bash(killall -9 node)",
       "Bash(tail -50 /tmp/dev-fresh.log 2>/dev/null | tail -30)",
       "PowerShell(taskkill /PID 26460 /F 2>&1)",
-      "Bash(tail -100 /tmp/dev-final.log | grep -E \"Error:|error|GET /blog\")"
+      "Bash(tail -100 /tmp/dev-final.log | grep -E \"Error:|error|GET /blog\")",
+      "Bash(find . -maxdepth 3 -iname \"vercel.json\")",
+      "Bash(find . -maxdepth 4 -path \"*/.vercel/project.json\")",
+      "Bash(find . -iname \".vercel\" -not -path \"*/node_modules/*\")",
+      "Bash(find .github -type f)",
+      "Bash(ls -la .github)",
+      "Bash(git branch *)",
+      "Bash(git commit *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\.claude\\projects\\c--Users-trish-Downloads-calculator\\memory",
