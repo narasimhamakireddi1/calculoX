@@ -212,10 +212,9 @@ export default function TaxCalculator() {
   }, [watchValues]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-8">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div className="mb-8 text-center">
+    <div className="space-y-8 py-8">
+      {/* Header */}
+      <div className="text-center">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
             <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
               <CalculatorIcon idOrHref="tax" className="w-6 h-6 text-white" />
@@ -225,19 +224,19 @@ export default function TaxCalculator() {
           <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg">FY 2025-26 | AY 2026-27 | Old & New Regime</p>
         </div>
 
-        <ConfidenceBadge calculatorType="tax" />
+      <ConfidenceBadge calculatorType="tax" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Form Section */}
-          <div id="tax-inputs" className="lg:col-span-1 space-y-6 min-w-0">
-            {/* Quick-Start Examples */}
-            <QuickStartExamples
-              scenarios={taxScenarios}
-              onSelectScenario={handleSelectScenario}
-            />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Form Section */}
+        <div id="tax-inputs" className="lg:col-span-1 space-y-6 min-w-0">
+          {/* Quick-Start Examples */}
+          <QuickStartExamples
+            scenarios={taxScenarios}
+            onSelectScenario={handleSelectScenario}
+          />
 
-            {/* Personal Details */}
-            <div className="card p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+          {/* Personal Details */}
+            <div className="card">
               <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2"><UserRound className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Personal Details</h2>
 
               <div className="space-y-3">
@@ -261,7 +260,7 @@ export default function TaxCalculator() {
             </div>
 
             {/* Income Details */}
-            <div className="card p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <div className="card">
               <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2"><IndianRupee className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Income Details</h2>
 
               <div className="space-y-4">
@@ -367,7 +366,7 @@ export default function TaxCalculator() {
             </div>
 
             {/* HRA Details */}
-            <details className="card p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 cursor-pointer group" open>
+            <details className="card cursor-pointer group" open>
               <summary className="flex justify-between items-center font-bold text-lg mb-4 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
                 <span className="flex items-center gap-2"><Home className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> HRA Calculation</span>
                 <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0" aria-hidden="true" />
@@ -503,7 +502,7 @@ export default function TaxCalculator() {
             </details>
 
             {/* Tax Regime */}
-            <div className="card p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <div className="card">
               <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2"><Landmark className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Tax Regime</h2>
 
               <div className="space-y-3">
@@ -534,7 +533,7 @@ export default function TaxCalculator() {
 
             {/* Deductions (conditionally shown) */}
             {(watchValues.regime === 'old' || watchValues.regime === 'auto') && (
-              <details className="card p-6 rounded-lg border-2 border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 cursor-pointer group" open>
+              <details className="card border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 cursor-pointer group" open>
                 <summary className="flex justify-between items-center font-bold text-lg mb-4 text-gray-900 dark:text-white hover:text-blue-600">
                   <span className="flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Deductions (Old Regime)</span>
                   <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0" aria-hidden="true" />
@@ -648,7 +647,7 @@ export default function TaxCalculator() {
             )}
 
             {/* NPS Employer (Both Regimes) */}
-            <div className="card p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <div className="card">
               <h2 className="text-lg font-bold mb-3 text-gray-900 dark:text-white flex items-center gap-2"><Briefcase className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> NPS Employer - Sec 80CCD(2)</h2>
               <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">Allowed in both Old and New Regime</p>
               <div className="relative">
@@ -727,7 +726,7 @@ export default function TaxCalculator() {
               )}
 
               {/* Regime Comparison */}
-              <div id="tax-results" className="card bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700">
+              <div id="tax-results" className="card">
                 <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2"><BarChart2 className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Regime Comparison</h3>
 
                 <div className="grid sm:grid-cols-2 gap-4 mb-6">
@@ -850,7 +849,7 @@ export default function TaxCalculator() {
               )}
 
               {/* Slab Breakdown */}
-              <details className="card bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 cursor-pointer group" open>
+              <details className="card cursor-pointer group" open>
                 <summary className="flex justify-between items-center font-bold text-lg mb-4 text-gray-900 dark:text-white hover:text-blue-600">
                   <span className="flex items-center gap-2"><TrendingUp className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Slab Tax Breakdown</span>
                   <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0" aria-hidden="true" />
@@ -883,7 +882,7 @@ export default function TaxCalculator() {
               </details>
 
               {/* Calculation Trace */}
-              <details className="card bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700 cursor-pointer group">
+              <details className="card cursor-pointer group">
                 <summary className="flex justify-between items-center font-bold text-lg mb-4 text-gray-900 dark:text-white hover:text-blue-600">
                   <span className="flex items-center gap-2"><Search className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Detailed Calculation Trace</span>
                   <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90 flex-shrink-0" aria-hidden="true" />
@@ -906,7 +905,7 @@ export default function TaxCalculator() {
 
               {/* Tax Saving Tips */}
               {result.recommendations.length > 0 && (
-                <div className="card bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20">
+                <div className="card border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20">
                   <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2"><Lightbulb className="w-5 h-5 flex-shrink-0 text-amber-500 dark:text-amber-400" strokeWidth={2} aria-hidden="true" /> Tax Saving Opportunities</h3>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {result.recommendations.slice(0, 4).map((rec, idx) => (
@@ -1045,7 +1044,7 @@ export default function TaxCalculator() {
               </div>
 
               {/* FAQ */}
-              <div className="card bg-white dark:bg-gray-800 p-6 rounded-lg border-2 border-gray-200 dark:border-gray-700">
+              <div className="card">
                 <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2"><HelpCircle className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> FAQs</h3>
                 <div className="space-y-3">
                   {[
@@ -1082,9 +1081,8 @@ export default function TaxCalculator() {
 
               <RelatedBlogPosts posts={getRelatedBlogPosts('/tax-calculator')} />
 
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
