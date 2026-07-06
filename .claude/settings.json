@@ -74,11 +74,25 @@
       "PowerShell(git submodule status)",
       "PowerShell(git rm --cached calc)",
       "PowerShell(git add calc/)",
-      "PowerShell(git push origin master)"
+      "PowerShell(git push origin master)",
+      "Bash(curl -s -A 'Mozilla/5.0 \\(compatible; Googlebot/2.1; +http://www.google.com/bot.html\\)' https://www.calculox.in/?q=%7Bsearch_term_string%7D -o /tmp/searchurl.html -w 'http=%{http_code}\\\\n')",
+      "Bash(mkdir -p \"C:\\\\Users\\\\trish\\\\.claude\\\\plans\" 2>/dev/null; echo ok)",
+      "Bash(curl -s http://localhost:3000/tax-calculator)",
+      "Bash(ls -la \"c:\\\\Users\\\\trish\\\\.claude\\\\skills\\\\\" 2>/dev/null || echo \"No skills directory found\")",
+      "Read(//c/Users/trish/.claude/skills\" 2>/dev/**)",
+      "PowerShell(Get-ChildItem -Path \"$env:USERPROFILE\\\\.claude\\\\skills\\\\\" -ErrorAction SilentlyContinue | Select-Object Name)",
+      "Bash(tail -50 /tmp/dev.log 2>/dev/null || echo \"No log found\")",
+      "Bash(curl -s http://localhost:3002/tax-calculator)",
+      "Bash(curl -s http://localhost:3002/rd-calculator)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002/tax-calculator)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002/rd-calculator)",
+      "Bash(curl -s -I https://www.calculox.in/ads.txt)",
+      "Bash(curl -s https://www.calculox.in/ads.txt)"
     ],
     "additionalDirectories": [
       "C:\\Users\\trish\\.claude\\projects\\c--Users-trish-Downloads-calculator\\memory",
-      "C:\\Users\\trish\\Downloads\\calculator\\calc\\.git"
+      "C:\\Users\\trish\\Downloads\\calculator\\calc\\.git",
+      "C:\\Users\\trish\\.claude\\plans"
     ]
   }
 }
