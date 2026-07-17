@@ -51,7 +51,7 @@ function calculateCumulativeFD(principal: Decimal, r: Decimal, years: number, mo
   const fullQuarters = Math.floor(totalMonthsDecimal.toNumber() / 3);
   const leftoverMonths = totalMonthsDecimal.toNumber() % 3;
 
-  let compoundedPrincipal = principal.times(new Decimal(1).plus(r.dividedBy(4)).pow(fullQuarters));
+  const compoundedPrincipal = principal.times(new Decimal(1).plus(r.dividedBy(4)).pow(fullQuarters));
   const maturity = compoundedPrincipal.times(new Decimal(1).plus(r.times(new Decimal(leftoverMonths).dividedBy(12))));
   const interest = maturity.minus(principal);
 
@@ -200,7 +200,7 @@ export function generateFDProjection(
       const fullQuarters = Math.floor(m / 3);
       const leftoverMonths = m % 3;
 
-      let compounded = principal.times(new Decimal(1).plus(r.dividedBy(4)).pow(fullQuarters));
+      const compounded = principal.times(new Decimal(1).plus(r.dividedBy(4)).pow(fullQuarters));
       const amount = compounded.times(new Decimal(1).plus(r.times(new Decimal(leftoverMonths).dividedBy(12))));
       const interest = amount.minus(principal);
 

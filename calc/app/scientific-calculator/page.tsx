@@ -128,7 +128,7 @@ export default function ScientificCalculatorPage() {
         setMatrixLastOp('inv(A)');
         setMatrixLastResult(inv);
         setLiveResult('Inverse computed');
-      } catch (e) {
+      } catch {
         setLiveResult('Error: Singular matrix');
       }
     } else if (key === 'T') {
@@ -142,7 +142,7 @@ export default function ScientificCalculatorPage() {
         setMatrixLastOp('A+B');
         setMatrixLastResult(sum);
         setLiveResult('Addition computed');
-      } catch (e) {
+      } catch {
         setLiveResult('Error: Size mismatch');
       }
     } else if (key === 'A×B') {
@@ -151,7 +151,7 @@ export default function ScientificCalculatorPage() {
         setMatrixLastOp('A×B');
         setMatrixLastResult(prod);
         setLiveResult('Multiplication computed');
-      } catch (e) {
+      } catch {
         setLiveResult('Error: Size mismatch');
       }
     } else {

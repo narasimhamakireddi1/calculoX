@@ -12,6 +12,8 @@ npm run build  # 54 pages, 0 errors
 npm run lint && npm run type-check
 ```
 
+**Lint (2026-07-17):** `next lint` was removed in Next 16 — `npm run lint` now runs `eslint .` via `eslint.config.mjs` (flat config; extends `eslint-config-next/core-web-vitals` + `/typescript`). `.eslintrc.json` deleted. `react/no-unescaped-entities` off (prose copy); React Hooks v7 rules (`static-components`, `set-state-in-effect`) + `no-explicit-any` downgraded to warn for pre-existing code (~134 warnings, 0 errors). `npm run lint:fix` available.
+
 ## Project Structure
 ```
 app/                        lib/                        config/
@@ -36,7 +38,7 @@ app/                        lib/                        config/
 | FD | A=P×(1+r/n)^(nt) | 4 modes (cumulative/quarterly/monthly/SI), senior +0.5% |
 | RD | A=Monthly×[((1+r)^n−1)÷r]×(1+r) | Compound monthly, ProjectionTable |
 | BMI | kg/m² or 703×lbs/in² | WHO+ICMR cutoffs, CSS horizontal gauge (no Recharts) |
-| Tax | FY 2025-26 slabs | Old/New regime comparison, 9 deductions, rebate 87A |
+| Tax | FY 2025-26 slabs | Old/New regime comparison, 9 deductions, rebate 87A. 2026-07-17 compact redesign: regime/age PillGroup tabs, collapsible HRA+Deductions (hidden when regime=new), side-by-side Old/New summary card, slab/trace/tips collapsed accordions, pie chart + education below fold, SEO/FAQ moved outside `{result &&}` (survives reset), QuickStartExamples removed (scenario keys didn't match FormData — was broken) |
 | GST | Base×(1+rate/100) | 5 rates (0/5/12/18/28%), CGST/SGST/IGST breakdown |
 | Percentage | 6 independent engines | Hike/discount, X%ofY, what%, reverse, sequential |
 | CAGR | (EV÷BV)^(1÷n)−1 | Year-by-year, asset-class benchmarks |
@@ -46,7 +48,7 @@ app/                        lib/                        config/
 | Profit Margin | Cost-driven/Price-driven + GST | 2-mode, margin dilution warning, GST exclusive/inclusive |
 | Scientific | Tokenizer→Shunting-Yard→RPN | Standard/Complex/Matrix/Statistics, 4 engines, history |
 
-**All calculators:** lazy `useState` initializer (zero CLS on first paint) · 300ms debounce auto-calc · `id="[calc]-results"` on results div · `[id$="-results"]` pattern used by mobile FABs · main form+results grid uses `grid grid-cols-1 lg:grid-cols-2 gap-8` (Tax: `lg:grid-cols-3`) with `min-w-0` on both direct children · h1: `text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2`
+**All calculators:** lazy `useState` initializer (zero CLS on first paint) · 300ms debounce auto-calc · `id="[calc]-results"` on results div · `[id$="-results"]` pattern used by mobile FABs · main form+results grid uses `grid grid-cols-1 lg:grid-cols-2 gap-8` (Tax: `gap-6`, compact EMI-style layout since 2026-07-17) with `min-w-0` on both direct children · h1: `text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2`
 
 ## Component Inventory
 
@@ -147,7 +149,7 @@ const [chartData, setChartData] = useState(INITIAL_XYZ_DATA?.chartData ?? []);
 ```
 `calculateResults` calls `computeXYZAll` and sets all state together. `handleReset` clears all derived arrays.
 
-**Mobile grid layout (all calculators):** Main form+results wrapper: `grid grid-cols-1 lg:grid-cols-2 gap-8` (Tax uses `lg:grid-cols-3`). Both direct grid children carry `min-w-0` — prevents long numbers/tables from blowing out the column on mobile. Page `<h1>` pattern: `text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2` (icon + text wrap gracefully on narrow screens).
+**Mobile grid layout (all calculators):** Main form+results wrapper: `grid grid-cols-1 lg:grid-cols-2 gap-8` (Tax uses `gap-6`). Both direct grid children carry `min-w-0` — prevents long numbers/tables from blowing out the column on mobile. Page `<h1>` pattern: `text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2` (icon + text wrap gracefully on narrow screens).
 
 **Slider pattern (all calculators):** `flex flex-col md:flex-row gap-3 items-stretch md:items-center` wrapper · `w-full flex-1 h-3 accent-{color}-600` on RangeSlider · `w-full md:w-28 px-2 py-2 text-center` on number input · `dark:bg-{color}-900/20 dark:border-{color}-700`
 
