@@ -1,20 +1,28 @@
 # calculox Design System
 
-Single source of truth for visual design. Tokens live in `app/globals.css` (`:root` block); this document explains intent and usage. Last updated: 2026-07-17.
+Single source of truth for visual design. Tokens live in `app/globals.css` (`:root` block); this document explains intent and usage. Last updated: 2026-07-17 (Navy + Emerald repaint).
 
 ## Brand Personality
 
-Professional financial credibility + educational approachability. Blue anchors trust (banks, RBI-adjacent seriousness); the blue→purple gradient is reserved for the brand wordmark and hero keywords only — never for body UI.
+**Navy + Emerald** — navy carries structure and authority (headings, wordmark, nav active states, dark canvas); emerald carries action and growth (CTAs, links, focus rings, eyebrows, hover accents). The navy→emerald gradient is reserved for the brand wordmark and hero/calculator h1 keywords only — never for body UI.
 
 ## Color Tokens
 
 ### Brand
 | Token | Value | Use |
 |---|---|---|
-| `--brand-600` | `#2563eb` | Primary CTAs, links, active states |
-| `--brand-700` | `#1d4ed8` | CTA hover |
-| `--brand-500` / `--brand-400` | `#3b82f6` / `#60a5fa` | Dark-mode links, slider fills |
-| `--brand-grad-from → --brand-grad-to` | `#2563eb → #9333ea` | Wordmark + hero gradient text only |
+| `--navy-900` | `#0e2a47` | h1/h2 default color, wordmark gradient start, nav active pill start |
+| `--navy-800` | `#16324f` | h3/h4 default color |
+| `--brand-600` | `#059669` (emerald) | Primary CTAs, interactive accents |
+| `--brand-700` | `#047857` | CTA hover; AAA-large text on light canvas |
+| `--brand-500` / `--brand-400` | `#10b981` / `#34d399` | Focus borders, dark-mode accents |
+| `--brand-grad-from → --brand-grad-to` | `#0f2b46 → #047857` | Wordmark + h1 gradient text only |
+
+### Headings
+Bare `h1`–`h4` default to navy (light) / slate-100 (dark) via element rules in globals.css; explicit Tailwind `text-*` classes still win. `footer h1–h4` are forced light (footer is an always-dark surface). `.text-gradient` (all calculator + blog h1s) = navy→teal→emerald gradient text, white→emerald in dark.
+
+### Borders
+`--color-border`: `#d9e2e7` light / `#263b52` dark (navy-tinted slate) — applied to inputs and `.card` via CSS var so the whole site shifts together. Hover borders and glow-rings are emerald-tinted.
 
 ### Category accents (fixed — do not remix)
 | Category | Accent | Tailwind family |
@@ -33,9 +41,13 @@ Professional financial credibility + educational approachability. Blue anchors t
 | Teal | `teal-*` | Conversion/renter track (Home Loan vs Rent) |
 
 ### Surfaces
-Light: page `#f6f8fd` (gradient tinted), cards `white/80` + backdrop-blur.
-Dark: page `#070b15`, cards `gray-900/50` glass with inner top highlight.
-Both modes share the dot-grid texture (`body::before`) and ambient corner glows (`body::after`, reduced-motion gated).
+Light: page `#f5f9f7` (slate-mint gradient canvas), cards `white/80` + backdrop-blur.
+Dark: page `#060f1c` deep-navy canvas, cards navy glass (`#0e1f34/70 → #0b1728/55`) with inner top highlight.
+Ambient glows are navy + emerald + teal in both modes. Dot-grid texture (`body::before`) unchanged.
+Primary buttons: `.btn-primary` = emerald→teal gradient; `.btn-outline` = emerald. Category-colored buttons on calculator pages keep their accents.
+
+### Spacing (moderate-density pass)
+`main` py-5/8 · `.card` p-5 · `.container-section` py-8/12 · homepage sections `space-y-10`, hero py-8/12. One notch tighter than the original scale — don't compress further without a screenshot review.
 
 ## Typography
 

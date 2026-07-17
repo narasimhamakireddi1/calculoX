@@ -513,7 +513,7 @@ export default function Home() {
   });
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-10">
 
       {/* ══════════════════════════════════════════
           SITE-WIDE DISCLAIMER STRIP
@@ -531,7 +531,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           HERO
       ══════════════════════════════════════════ */}
-      <section className="text-center py-12 md:py-16 space-y-8 relative">
+      <section className="text-center py-8 md:py-12 space-y-8 relative">
 
         {/* Floating formula motifs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
@@ -550,11 +550,11 @@ export default function Home() {
         {/* Brand + value proposition */}
         <div className="space-y-5 relative z-10">
           <p className="text-2xl md:text-3xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">calculox</span>
+            <span className="bg-gradient-to-r from-[#0e2a47] to-emerald-600 dark:from-emerald-300 dark:to-teal-300 bg-clip-text text-transparent">calculox</span>
           </p>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.08] max-w-4xl mx-auto">
             Free, accurate calculators for{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0e2a47] via-[#0d4a44] to-emerald-600 dark:from-sky-200 dark:via-emerald-200 dark:to-emerald-400 bg-clip-text text-transparent">
               every financial decision
             </span>
           </h1>
@@ -575,7 +575,7 @@ export default function Home() {
               {label}
             </div>
           ))}
-          <Link href="/compare" className="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-sm font-semibold border border-blue-200 dark:border-blue-800/60 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors flex items-center gap-1.5">
+          <Link href="/compare" className="px-4 py-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-400 text-sm font-semibold border border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors flex items-center gap-1.5">
             <Scale className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
             Compare Calculators
           </Link>
@@ -1122,7 +1122,7 @@ export default function Home() {
         </div>
 
         {/* Count-Up Trust Bar */}
-        <div className="relative z-10 mt-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 md:p-8 border border-blue-100 dark:border-blue-800/50">
+        <div className="relative z-10 mt-6 bg-gradient-to-r from-emerald-50/80 to-teal-50/60 dark:from-emerald-900/15 dark:to-teal-900/15 rounded-2xl p-6 md:p-8 border border-emerald-100 dark:border-emerald-800/40">
           <div className="grid grid-cols-3 gap-6">
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400">
@@ -1277,7 +1277,7 @@ export default function Home() {
           WHY TRUST CALCULOX
       ══════════════════════════════════════════ */}
       <ScrollReveal>
-      <section className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 md:p-16 border border-emerald-100 dark:border-gray-700">
+      <section className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-[#0b1a2c] dark:to-[#0d2136] rounded-2xl p-8 md:p-12 border border-emerald-100 dark:border-[#1e3650]">
         <p className="section-eyebrow justify-center w-full mb-3">Trust &amp; Transparency</p>
         <h2 className="text-4xl font-bold mb-4 text-center">Why Trust calculox?</h2>
         <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
@@ -1335,7 +1335,7 @@ export default function Home() {
       </ScrollReveal>
 
       <ScrollReveal>
-      <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 md:p-16 border border-blue-100 dark:border-gray-700">
+      <section className="bg-gradient-to-br from-slate-50 to-emerald-50/50 dark:from-[#0b1a2c] dark:to-[#0d2136] rounded-2xl p-8 md:p-12 border border-emerald-100/80 dark:border-[#1e3650]">
         <p className="section-eyebrow justify-center w-full mb-3">Built for You</p>
         <h2 className="text-4xl font-bold mb-12 text-center">Why Choose Our Calculators?</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

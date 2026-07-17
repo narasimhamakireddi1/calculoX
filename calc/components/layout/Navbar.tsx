@@ -95,7 +95,7 @@ export function Navbar() {
       <nav
         ref={navRef}
         aria-label="Main navigation"
-        className="sticky top-0 z-50 backdrop-blur-xl bg-white/85 dark:bg-gray-950/85 border-b border-gray-200/50 dark:border-gray-800/50 shadow-lg shadow-blue-500/5 dark:shadow-blue-500/10"
+        className="sticky top-0 z-50 backdrop-blur-xl bg-white/85 dark:bg-[#060f1c]/85 border-b border-[#d9e2e7]/60 dark:border-[#1e3650]/60 shadow-lg shadow-emerald-500/5 dark:shadow-emerald-500/10"
         onMouseLeave={scheduleMegaClose}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,17 +104,17 @@ export function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2 font-bold text-2xl text-blue-600 hover:text-blue-700 hover:drop-shadow-lg transition-all duration-300 flex-shrink-0 group"
+              className="flex items-center gap-2 font-bold text-2xl text-[#0e2a47] dark:text-emerald-300 hover:text-emerald-700 dark:hover:text-emerald-200 hover:drop-shadow-lg transition-all duration-300 flex-shrink-0 group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
-                className="w-8 h-8 transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+                className="w-8 h-8 transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.55)]"
               >
                 <defs>
                   <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: '#1d4ed8', stopOpacity: 1 }} />
+                    <stop offset="0%" style={{ stopColor: '#0e2a47', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#047857', stopOpacity: 1 }} />
                   </linearGradient>
                 </defs>
                 <rect width="32" height="32" rx="6" fill="url(#grad)" />
@@ -150,9 +150,9 @@ export function Navbar() {
                 onClick={() => (megaOpen ? setMegaOpen(false) : openMega())}
                 aria-haspopup="true"
                 aria-expanded={megaOpen}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${
+                className={`px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm flex items-center gap-1.5 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ${
                   isCalcActive || megaOpen
-                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md shadow-blue-500/30'
+                    ? 'bg-gradient-to-r from-[#0e2a47] to-emerald-700 text-white shadow-md shadow-emerald-600/30'
                     : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/60 dark:hover:bg-gray-800/60'
                 }`}
               >
@@ -195,7 +195,7 @@ export function Navbar() {
                 <ThemeSwitcher />
               </div>
               <button
-                className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label="Toggle menu"
                 aria-expanded={mobileOpen}
@@ -233,13 +233,13 @@ export function Navbar() {
                   onChange={e => setMegaSearch(e.target.value)}
                   placeholder="Search calculators..."
                   aria-label="Search calculators"
-                  className="w-full !pl-9 !pr-8 !py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/60 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-colors"
+                  className="w-full !pl-9 !pr-8 !py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/60 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 dark:focus:ring-emerald-500 dark:focus:border-emerald-500 transition-colors"
                 />
                 {megaSearch && (
                   <button
                     onClick={() => setMegaSearch('')}
                     aria-label="Clear search"
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -308,7 +308,7 @@ export function Navbar() {
                 <Link
                   href="/compare"
                   onClick={() => setMegaOpen(false)}
-                  className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1"
+                  className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-1"
                 >
                   Compare side-by-side →
                 </Link>
@@ -339,9 +339,9 @@ function NavLink({
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
-      className={`px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${
+      className={`px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 ${
         active
-          ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md shadow-blue-500/30'
+          ? 'bg-gradient-to-r from-[#0e2a47] to-emerald-700 text-white shadow-md shadow-emerald-600/30'
           : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100/60 dark:hover:bg-gray-800/60'
       }`}
     >
@@ -368,17 +368,17 @@ function MegaItem({
     <Link
       href={calc.href}
       onClick={onClose}
-      className={`flex items-center gap-2.5 px-2.5 py-2 rounded-xl transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 ${
+      className={`flex items-center gap-2.5 px-2.5 py-2 rounded-xl transition-all duration-150 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-1 ${
         active
-          ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300'
+          ? 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300'
           : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-100'
       }`}
     >
       <span
         className={`flex items-center justify-center w-7 h-7 rounded-lg flex-shrink-0 transition-colors duration-150 ${
           active
-            ? 'bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-400'
-            : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/40 group-hover:text-blue-600 dark:group-hover:text-blue-400'
+            ? 'bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-400'
+            : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950/40 group-hover:text-emerald-700 dark:group-hover:text-emerald-400'
         }`}
       >
         <CalculatorIcon idOrHref={calc.href} className="w-4 h-4" />

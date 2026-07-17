@@ -94,7 +94,7 @@ app/                        lib/                        config/
 
 **ScrollReveal (`components/ui/ScrollReveal.tsx`):** Scroll-triggered fade+rise (18px, 600ms `--ease-out-soft`) for below-fold homepage sections. Content visible by default (SEO/no-JS safe) — `.sr-hidden` added post-mount only, skipped for reduced-motion, missing IO support, or elements already in viewport. Wraps sections: Real Scenarios, Blog, Why Trust, Why Choose, FAQ.
 
-**Homepage hero (2026-07-17 redesign):** Brand "calculox" demoted to gradient eyebrow (`<p>`); `<h1>` is now the value prop "Free, accurate calculators for every financial decision" (gradient keyword span). Bank-verification line is an emerald BadgeCheck chip. Every homepage section h2 now has a `.section-eyebrow` label (Explore / Real Numbers / Learn / Trust & Transparency / Built for You / Support) — uppercase 12px tracking-[0.18em] blue with leading dash, defined in globals.css.
+**Homepage hero (2026-07-17 redesign):** Brand "calculox" demoted to gradient eyebrow (`<p>`); `<h1>` is now the value prop "Free, accurate calculators for every financial decision" (gradient keyword span). Bank-verification line is an emerald BadgeCheck chip. Every homepage section h2 now has a `.section-eyebrow` label (Explore / Real Numbers / Learn / Trust & Transparency / Built for You / Support) — uppercase 12px tracking-[0.18em] emerald with leading dash, defined in globals.css.
 
 **Homepage — "Latest from the Blog" (`app/page.tsx`):** Added 2026-07-03. `LATEST_POSTS` = top 4 `blogPosts` sorted by `date` desc, rendered as cards linking to `/blog/[slug]`, placed between "Real Indian Scenarios" and "Why Choose Our Calculators" — surfaces blog depth on first paint ahead of AdSense re-review.
 
@@ -159,7 +159,7 @@ const [chartData, setChartData] = useState(INITIAL_XYZ_DATA?.chartData ?? []);
 
 **Slider pattern (all calculators):** `flex flex-col md:flex-row gap-3 items-stretch md:items-center` wrapper · `w-full flex-1 h-3 accent-{color}-600` on RangeSlider · `w-full md:w-28 px-2 py-2 text-center` on number input · `dark:bg-{color}-900/20 dark:border-{color}-700`
 
-**Color semantics:** Blue=brand+Finance+CTA · Rose=Health · Violet=Utility · Teal=Conversion/renter · Emerald=success states · Amber=stars
+**Color semantics (2026-07-17 Navy+Emerald repaint):** Navy (`--navy-900` #0e2a47)=headings/structure/wordmark · Emerald=CTAs/links/focus/interactive (`.btn-primary`, `.section-eyebrow`, nav active pills navy→emerald) · Blue=Finance category accent only · Rose=Health · Violet=Utility · Teal=Conversion/renter · Amber=disclaimers/stars. Borders via `--color-border` (#d9e2e7 light / #263b52 dark navy-slate), set as CSS var on inputs+`.card`. `.text-gradient` (all calc/blog h1s)=navy→emerald gradient text (white→emerald dark). Bare h1–h4 default navy light/slate dark via element rules; `footer h1-h4` forced light (always-dark surface). Canvas: light #f5f9f7 mint-slate, dark #060f1c deep navy. Footer/Navbar logo SVG stops #0e2a47→#047857. Spacing tightened one notch: `main` py-5/8, `.card` p-5, homepage `space-y-10`.
 
 **Background:** `body` bg: `#f6f8fd` light / `#070b15` dark. Spotlight + ambient glows on `body::after` (wrapped in `@media (prefers-reduced-motion: no-preference)`). Dot-grid on `body::before`.
 

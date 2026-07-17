@@ -3,7 +3,7 @@ import { Heart, AlertTriangle } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white mt-24 border-t border-gray-800 overflow-x-hidden">
+    <footer className="bg-gradient-to-br from-[#081525] via-[#0a1a2c] to-[#0d2438] text-white mt-20 border-t border-[#1e3650] overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
           {/* Brand — full-width on mobile, 1 col on desktop */}
@@ -15,8 +15,8 @@ export function Footer() {
             >
               <defs>
                 <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#1d4ed8', stopOpacity: 1 }} />
+                  <stop offset="0%" style={{ stopColor: '#0e2a47', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#047857', stopOpacity: 1 }} />
                 </linearGradient>
               </defs>
               <rect width="32" height="32" rx="6" fill="url(#grad)" />
@@ -122,7 +122,7 @@ export function Footer() {
 
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm">
           <div className="text-center md:text-left">
-            <p className="font-medium">&copy; {new Date().getFullYear()} <span className="text-blue-400 font-bold">calculox</span>. All rights reserved.</p>
+            <p className="font-medium">&copy; {new Date().getFullYear()} <span className="text-emerald-400 font-bold">calculox</span>. All rights reserved.</p>
             <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">Made with <Heart className="w-3 h-3 fill-red-400 text-red-400 inline" strokeWidth={0} aria-hidden="true" /> for India</p>
           </div>
           <p className="text-xs bg-gray-800 px-4 py-2 rounded-lg border border-gray-700 text-gray-300 flex items-start gap-1.5"><AlertTriangle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-amber-400" strokeWidth={2} aria-hidden="true" /> Disclaimer: Results are estimates only. Not financial, medical, or tax advice. Consult professionals.</p>
