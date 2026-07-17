@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   generateWebApplicationSchema,
@@ -185,6 +186,96 @@ export default function RetirementCalculatorLayout({
       <AdUnit slot={AD_SLOTS.calcBelowResult} className="max-w-3xl mx-auto px-4 py-4 text-center" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          About This Retirement Calculator
+        </h2>
+        <p className="mb-4">
+          This free retirement calculator uses the four-step NISM (National
+          Institute of Securities Markets) framework to answer the two
+          questions every earner eventually faces: how large a corpus will I
+          need on the day I retire, and how much must I save each month to
+          get there? It models both phases of retirement — the accumulation
+          years while you earn and the distribution years while you withdraw —
+          with separate return assumptions for each, plus inflation, your
+          existing savings, and life expectancy.
+        </p>
+        <p className="mb-4">
+          Retirement planning is more urgent in India than almost anywhere
+          else: there is no universal social security, joint-family support is
+          thinning, and private-sector employees retire with only EPF, which
+          alone rarely sustains three decades of expenses. Meanwhile life
+          expectancy for those who reach 60 keeps rising — planning to 85 or
+          90 is prudent, not pessimistic. A 30-year-old in Chennai spending
+          ₹50,000 a month today will need roughly ₹2.87 lakh a month at 60
+          just to maintain the same lifestyle at 6% inflation. Numbers like
+          that feel abstract until you see your own — which is what this
+          calculator is for.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Why You Need a Retirement Calculator
+        </h2>
+        <p className="mb-4">
+          The most expensive retirement mistake is starting late: because of
+          compounding, every five-year delay roughly doubles the monthly
+          saving required for the same corpus. The second is ignoring
+          inflation — savers who target "₹1 crore" as a round number discover
+          it funds barely 8–10 years of expenses at 2046 prices. The third is
+          assuming pre-retirement returns continue after retirement, when the
+          corpus must move to safer, lower-yield assets. This calculator
+          forces all three realities into the arithmetic. For the full
+          methodology, read our{" "}
+          <Link href="/blog/retirement-planning-corpus-nism-guide" className="text-blue-600 dark:text-blue-400 hover:underline">
+            NISM retirement corpus guide
+          </Link>{" "}
+          and the{" "}
+          <Link href="/blog/complete-investment-planning-guide-india" className="text-blue-600 dark:text-blue-400 hover:underline">
+            complete investment planning guide
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          How to Use This Retirement Calculator
+        </h2>
+        <ol className="list-decimal pl-5 mb-4 space-y-2">
+          <li>
+            <strong>Present Age / Retirement Age / Life Expectancy:</strong>{" "}
+            These define your accumulation years (working) and distribution
+            years (retired). When unsure, use 85–90 for life expectancy —
+            outliving your corpus is the worse error.
+          </li>
+          <li>
+            <strong>Current Monthly Expenses:</strong> What your household
+            spends today, excluding EMIs that will end and children's costs
+            that won't persist into retirement.
+          </li>
+          <li>
+            <strong>Inflation rate:</strong> 6% is a reasonable Indian
+            long-term assumption; healthcare inflation runs higher, so lean
+            conservative.
+          </li>
+          <li>
+            <strong>Expected returns (pre- and post-retirement):</strong> Use
+            10–12% for the equity-heavy accumulation phase and 7–8% for the
+            debt-heavy distribution phase. Using 12% for both is the most
+            common way people fool themselves.
+          </li>
+          <li>
+            <strong>Current savings:</strong> Existing corpus (EPF, PPF,
+            mutual funds) earmarked for retirement — its future value reduces
+            the fresh saving required.
+          </li>
+        </ol>
+        <p className="mb-4">
+          The results show your inflation-adjusted expenses at retirement, the
+          required corpus, the future value of what you already have, the
+          shortfall, and the monthly SIP needed to close it. If the SIP figure
+          looks impossible, don't close the tab — test retiring two years
+          later or trimming assumed expenses by 10%; small changes move the
+          answer dramatically.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           How to Calculate the Retirement Corpus You Need
         </h2>
         <p className="mb-4">
@@ -229,12 +320,80 @@ export default function RetirementCalculatorLayout({
             <strong>≈ ₹59,000/month</strong>
           </li>
         </ul>
-        <p>
+        <p className="mb-4">
           If you already have ₹10 lakh saved and it grows at 10% over 20 years,
           it becomes ₹67 lakh — reducing the SIP requirement. Use the calculator
           above to input your exact figures and get a personalised retirement
           savings plan.
         </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Real-World Retirement Examples
+        </h2>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Srinivas, 32, Chennai — starting from EPF alone
+        </h3>
+        <p className="mb-4">
+          Srinivas spends ₹55,000 a month and wants to retire at 60 with
+          cover till 85. With 6% inflation, his expenses at 60 will be about
+          ₹2.8 lakh a month, and the calculator puts his required corpus
+          around the ₹7 crore mark. His ₹8 lakh EPF balance grows meaningfully
+          but covers only a fraction, leaving a monthly SIP requirement of
+          roughly ₹30,000–35,000 at 11% accumulation returns. Sobering — but
+          at 32 it is achievable with step-ups; at 45 it would not be.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Meena, 45, Nagpur — late start, adjusted expectations
+        </h3>
+        <p className="mb-4">
+          Meena starts at 45 with ₹20 lakh saved and ₹40,000 monthly
+          expenses. The calculator shows that retiring at 60 needs a monthly
+          saving beyond her means — but retiring at 63 with a 10% expense
+          trim brings the required SIP within reach. Takeaway: the calculator
+          is most useful for testing trade-offs (retire later, spend less,
+          save more), not for delivering a single verdict.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Accuracy &amp; Common Questions
+        </h2>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Is this retirement calculator accurate?
+          </summary>
+          <p className="pt-2">
+            The framework follows the NISM retirement planning methodology
+            used by certified financial planners, and the arithmetic is
+            computed precisely. The projections are only as good as the
+            inflation and return assumptions you enter — revisit them yearly
+            rather than treating one run as a 30-year plan.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            When should I use this vs the SIP calculator?
+          </summary>
+          <p className="pt-2">
+            This calculator works backwards from the life you want to the
+            saving you need. Once you know the monthly figure, use the{" "}
+            <Link href="/sip-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              SIP calculator
+            </Link>{" "}
+            to model exactly how that contribution grows, including annual
+            step-ups.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Does the corpus account for pension or rental income?
+          </summary>
+          <p className="pt-2">
+            Enter only the expenses your investments must cover. If you
+            expect a pension or rent covering ₹15,000 of a ₹60,000 monthly
+            need, plan the corpus for the remaining ₹45,000 — this single
+            adjustment often cuts the required corpus by a quarter or more.
+          </p>
+        </details>
       </section>
     </>
   );

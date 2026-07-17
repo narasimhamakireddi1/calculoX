@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   generateWebApplicationSchema,
@@ -159,6 +160,77 @@ export default function GSTCalculatorLayout({
       <AdUnit slot={AD_SLOTS.calcBelowResult} className="max-w-3xl mx-auto px-4 py-4 text-center" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          About This GST Calculator
+        </h2>
+        <p className="mb-4">
+          This free GST calculator works in both directions: add GST to a base
+          price to get the final invoice amount, or extract the GST from a
+          tax-inclusive price to find the original base. It supports all five
+          GST slabs (0%, 5%, 12%, 18%, 28%) and splits the tax into CGST +
+          SGST for intra-state sales or IGST for inter-state sales — exactly
+          the breakdown a GST-compliant invoice needs.
+        </p>
+        <p className="mb-4">
+          For India's 1.4 crore registered GST businesses — and the freelancers,
+          shopkeepers, and service providers joining them every month — GST
+          arithmetic is a daily chore with legal consequences. Quote a client
+          "₹50,000 inclusive of GST" and you owe the government ₹7,627 of it
+          at 18%; quote "₹50,000 plus GST" and you invoice ₹59,000. Mixing
+          those up on even a few invoices a month quietly erodes margins or
+          triggers mismatches in GSTR filings. A Surat textile trader, a
+          Bengaluru consultant, and a Zomato-listed cloud kitchen all face the
+          same three questions — how much tax, on what base, split how — and
+          this calculator answers all three instantly.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Why You Need a GST Calculator
+        </h2>
+        <p className="mb-4">
+          The most expensive GST error is reverse-calculating with the wrong
+          method: subtracting 18% from an inclusive price instead of dividing
+          by 1.18 understates the base and misstates the tax on every line
+          item (on ₹1,18,000 the wrong method yields ₹96,760 instead of
+          ₹1,00,000). Consumers benefit too — checking whether an MRP or a
+          restaurant bill has applied the correct slab takes seconds. For slab
+          lists, ITC rules, and invoice formats, see our{" "}
+          <Link href="/blog/gst-calculator-guide-tax-calculation" className="text-blue-600 dark:text-blue-400 hover:underline">
+            complete GST calculation guide
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          How to Use This GST Calculator
+        </h2>
+        <ol className="list-decimal pl-5 mb-4 space-y-2">
+          <li>
+            <strong>Operation Type:</strong> Choose <em>Add GST</em> when you
+            have a base price and need the final amount (making an invoice),
+            or <em>Remove GST</em> when you have an inclusive price and need
+            the base (checking a bill, accounting for an MRP product).
+          </li>
+          <li>
+            <strong>Amount (₹):</strong> Enter the price. Be sure it matches
+            the operation — base price for Add, final price for Remove.
+          </li>
+          <li>
+            <strong>GST Rate (%):</strong> Pick the slab for your goods or
+            service: 5% (essentials, transport), 12% (processed foods, some
+            electronics), 18% (most services and consumer goods), or 28%
+            (luxury items, automobiles).
+          </li>
+        </ol>
+        <p className="mb-4">
+          The result shows the GST amount, the base and final prices, and the
+          CGST/SGST split (half each) alongside the IGST figure for
+          inter-state supply. Common mistakes to avoid: using the 18% default
+          without checking your actual HSN/SAC slab, and forgetting that
+          intra-state invoices must show CGST and SGST separately rather than
+          one combined line.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           How GST Is Calculated in India
         </h2>
         <p className="mb-4">
@@ -205,12 +277,79 @@ export default function GSTCalculatorLayout({
           </li>
           <li>GST portion = ₹2,950 − ₹2,500 = ₹450</li>
         </ul>
-        <p>
+        <p className="mb-4">
           GST-registered businesses can claim Input Tax Credit (ITC) on
           purchases, making the tax system self-policing. Businesses with
           turnover above ₹40 lakh (₹20 lakh in special category states) are
           mandatorily required to register under GST.
         </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Real-World GST Examples
+        </h2>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Farhan, Bengaluru — freelance developer invoicing a Delhi client
+        </h3>
+        <p className="mb-4">
+          Farhan agreed on ₹1,20,000 for a project, plus GST. Using{" "}
+          <em>Add GST</em> at 18%, the calculator shows a GST amount of{" "}
+          <strong>₹21,600</strong> and an invoice total of ₹1,41,600. Because
+          the client is in another state, the invoice carries a single IGST
+          line of ₹21,600 rather than a CGST/SGST split — a detail the
+          calculator's breakdown makes obvious.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Rekha, Surat — pricing sarees sold at MRP
+        </h3>
+        <p className="mb-4">
+          Rekha sells sarees at an MRP of ₹2,360 including 18% GST. Using{" "}
+          <em>Remove GST</em>, the base price is <strong>₹2,000</strong> and
+          the tax ₹360 (CGST ₹180 + SGST ₹180 for local sales). Knowing the
+          true base lets her calculate her real margin — many small sellers
+          mistakenly compute margin on the inclusive price and overestimate
+          profit by the full GST amount.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Accuracy &amp; Common Questions
+        </h2>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Is this GST calculator accurate?
+          </summary>
+          <p className="pt-2">
+            Yes — GST addition and extraction are exact formulas with no
+            approximation, computed with high-precision decimal arithmetic
+            and matching the GST Council's rate structure published at
+            gst.gov.in. Just confirm you've selected the correct slab for
+            your HSN/SAC code.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            How do I know whether to apply CGST+SGST or IGST?
+          </summary>
+          <p className="pt-2">
+            It depends on the place of supply: seller and buyer in the same
+            state → CGST + SGST (half the rate each); different states →
+            IGST (the full rate as one line). The total tax is identical
+            either way.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            When should I use this vs the profit margin calculator?
+          </summary>
+          <p className="pt-2">
+            Use this calculator for the tax itself — invoice amounts and
+            CGST/SGST splits. If you're setting selling prices and need
+            margin after GST, our{" "}
+            <Link href="/profit-margin-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              profit margin calculator
+            </Link>{" "}
+            handles GST-inclusive and exclusive pricing in one step.
+          </p>
+        </details>
       </section>
     </>
   );

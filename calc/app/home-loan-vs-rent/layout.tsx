@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   generateWebApplicationSchema,
@@ -174,6 +175,88 @@ export default function HomeLoanVsRentLayout({
       <AdUnit slot={AD_SLOTS.calcBelowResult} className="max-w-3xl mx-auto px-4 py-4 text-center" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          About This Home Loan vs Rent Calculator
+        </h2>
+        <p className="mb-4">
+          This calculator answers India's most emotionally loaded money
+          question with arithmetic instead of opinion: after 15–25 years, will
+          you be wealthier having bought a home or having rented and invested
+          the difference? It simulates both paths month by month — the buyer's
+          EMI, maintenance, property appreciation, and Section 24(b) tax
+          benefit against the renter's escalating rent and the investment
+          growth of the down payment plus the monthly EMI–rent gap — and shows
+          the break-even point where one path overtakes the other.
+        </p>
+        <p className="mb-4">
+          The pressure to buy is uniquely strong in India — from family,
+          from "rent is money down the drain" folk wisdom, and from watching
+          city prices climb. Yet in Mumbai, Delhi NCR, and Bengaluru,
+          rental yields run just 2.5–3.5% of property value, meaning renting
+          the same flat often costs less than half the EMI to own it. Whether
+          the difference, invested in equity, beats the property's
+          appreciation depends entirely on the numbers — city, rate,
+          appreciation, and how long you stay. That's a 13-input problem no
+          one should solve by gut feel.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Why You Need This Calculator
+        </h2>
+        <p className="mb-4">
+          The costliest version of this mistake is buying early in your
+          career, paying stamp duty and registration (7–8% of the property
+          value, unrecoverable), then relocating for work within five years —
+          the break-even on buying almost never arrives that fast. The
+          opposite error is renting for decades in a city where you'll
+          definitely stay, while property appreciation compounds beyond
+          reach. Neither wisdom is universal; run your own numbers before an
+          ₹80 lakh commitment. For the full framework, read our{" "}
+          <Link href="/blog/home-loan-vs-rent-financial-analysis" className="text-blue-600 dark:text-blue-400 hover:underline">
+            buy vs rent financial analysis
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          How to Use This Calculator
+        </h2>
+        <ol className="list-decimal pl-5 mb-4 space-y-2">
+          <li>
+            <strong>Property Value &amp; Down Payment:</strong> The full
+            purchase price and what you'd pay upfront (banks require at least
+            10–20%). The down payment matters doubly — it's also the lump sum
+            the renter track invests instead.
+          </li>
+          <li>
+            <strong>Loan Interest Rate &amp; Loan Tenure:</strong> Your home
+            loan terms; 8.25–9.5% and 20 years are typical today.
+          </li>
+          <li>
+            <strong>Initial Monthly Rent:</strong> The actual rent for an
+            equivalent home in the same locality — not a smaller flat. Rent
+            escalation (typically 5–8%/year) is applied automatically.
+          </li>
+          <li>
+            <strong>Property appreciation &amp; investment return:</strong>{" "}
+            The two assumptions that decide the verdict. Indian residential
+            property has historically appreciated 5–8% annually in most
+            cities; equity has returned 11–13%. Test both optimistic and
+            pessimistic pairs.
+          </li>
+          <li>
+            <strong>Tax Benefit:</strong> Keep Section 24(b) enabled if
+            you'll claim the home loan interest deduction (Old regime, up to
+            ₹2 lakh/year on self-occupied property).
+          </li>
+        </ol>
+        <p className="mb-4">
+          The verdict shows both net worths, the winner, and the year-by-year
+          gap. The most common misreading is treating the result as permanent
+          — a 1% change in appreciation can flip it, so check how much
+          daylight there is between the two outcomes, not just who wins.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           Should You Buy a Home or Continue Renting? The Numbers
         </h2>
         <p className="mb-4">
@@ -232,12 +315,81 @@ export default function HomeLoanVsRentLayout({
             <strong>Renter wins by ≈ ₹26 lakh in this scenario</strong>
           </li>
         </ul>
-        <p>
+        <p className="mb-4">
           Results reverse if property appreciates above 8% p.a. or if the
           investment return assumption is lowered. Change any assumption in the
           calculator to see how sensitive the outcome is to your specific city
           and property type.
         </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Real-World Scenarios
+        </h2>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Aditya, 29, Bengaluru — mobile career, expensive market
+        </h3>
+        <p className="mb-4">
+          Aditya is eyeing a ₹90 lakh flat in Whitefield that rents for
+          ₹28,000 a month — a rental yield under 4%. With 20% down, an 8.5%
+          loan, and equity returns at 12%, the renter track wins by a wide
+          margin over 15 years, and the break-even year never arrives within
+          his likely stay. Since his career may move him to Hyderabad or
+          abroad, renting and investing the ₹18 lakh down payment is the
+          clear call today.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          The Sharmas, 38, Indore — settled family, cheaper market
+        </h3>
+        <p className="mb-4">
+          In Indore the same quality home costs ₹55 lakh and rents for
+          ₹18,000 — a much higher yield — and the family will stay 25+
+          years. With rent escalating 7% annually and modest 6.5% property
+          appreciation, the buyer track overtakes the renter around year
+          11–13 and wins comfortably by year 25. Takeaway: the same
+          calculator, honestly used, gives opposite answers in different
+          cities and life stages.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Accuracy &amp; Common Questions
+        </h2>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Is this buy vs rent calculator accurate?
+          </summary>
+          <p className="pt-2">
+            The simulation is exact month-by-month arithmetic — EMI
+            amortization, rent escalation, and investment compounding are all
+            computed precisely. The verdict's reliability depends on your
+            appreciation and return assumptions, which is why testing a range
+            matters more than any single run.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            When should I use this vs the EMI calculator?
+          </summary>
+          <p className="pt-2">
+            Use this while deciding <em>whether</em> to buy. Once you've
+            decided, the{" "}
+            <Link href="/emi-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              EMI calculator
+            </Link>{" "}
+            gives you the detailed instalment and amortization schedule for
+            structuring the loan itself.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Does the comparison include stamp duty and registration?
+          </summary>
+          <p className="pt-2">
+            Factor them into your inputs — stamp duty and registration
+            typically add 7–8% to the purchase cost in most states, and
+            brokerage adds to the renter's side. Including them in the
+            property cost makes the buyer track realistic.
+          </p>
+        </details>
       </section>
     </>
   );

@@ -6,7 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.calculox.in';
 
 // Last date any calculator page was meaningfully updated.
 // Update this when you ship a major content or UI change to calculator pages.
-const CALC_LAST_MODIFIED = new Date('2026-06-19');
+const CALC_LAST_MODIFIED = new Date('2026-07-17');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const calculators = getActiveCalculators();

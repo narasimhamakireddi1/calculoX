@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   generateWebApplicationSchema,
@@ -159,6 +160,83 @@ export default function CAGRCalculatorLayout({
       <AdUnit slot={AD_SLOTS.calcBelowResult} className="max-w-3xl mx-auto px-4 py-4 text-center" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          About This CAGR Calculator
+        </h2>
+        <p className="mb-4">
+          This free CAGR calculator turns any "I invested X and now it's
+          worth Y" story into a single comparable number: the compound annual
+          growth rate. Enter the beginning value, ending value, and the number
+          of years, and it returns the annualized return along with a
+          year-by-year growth path and benchmarks against common Indian asset
+          classes.
+        </p>
+        <p className="mb-4">
+          Indians hear absolute returns constantly — "my flat doubled in ten
+          years", "this fund gave 80% in three years", "gold went up 60%" —
+          and absolute numbers are how bad investments hide. A flat that
+          doubles in 10 years grew at just 7.2% a year, barely beating an FD
+          and likely trailing inflation once maintenance and taxes are
+          counted; a fund that gained 80% in 3 years compounded at 21.6%.
+          Without annualizing, those two can't be compared at all. SEBI
+          requires mutual funds to report CAGR for exactly this reason, and
+          this calculator lets you apply the same standard to your own
+          property, gold, stocks, ULIPs, or business revenue.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Why You Need a CAGR Calculator
+        </h2>
+        <p className="mb-4">
+          The classic mistake is judging investments by total gain while
+          ignoring time — the friend who "tripled his money" in 15 years
+          earned 7.6% a year, less than many debt funds. The reverse mistake
+          is dividing total return by years (a "60% in 5 years" gain is 9.86%
+          CAGR, not 12%), which overstates every multi-year return. Checking
+          CAGR before you buy a "guaranteed doubling" insurance-linked product
+          or before you celebrate a property sale keeps your comparisons
+          honest. New to the concept? Start with our explainer{" "}
+          <Link href="/blog/what-is-cagr" className="text-blue-600 dark:text-blue-400 hover:underline">
+            What is CAGR?
+          </Link>{" "}
+          and our guide to{" "}
+          <Link href="/blog/best-mutual-fund-selection-criteria" className="text-blue-600 dark:text-blue-400 hover:underline">
+            selecting mutual funds
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          How to Use This CAGR Calculator
+        </h2>
+        <ol className="list-decimal pl-5 mb-4 space-y-2">
+          <li>
+            <strong>Beginning Value (₹):</strong> What the investment was
+            worth at the start — the purchase price or initial invested
+            amount.
+          </li>
+          <li>
+            <strong>Ending Value (₹):</strong> Its value today or at sale.
+            For property, use realistic net sale value, not the asking price.
+          </li>
+          <li>
+            <strong>Time Period (Years):</strong> The holding period. Use
+            decimals for partial years (3 years 6 months = 3.5) — rounding to
+            whole years is the most common source of inflated CAGR figures.
+          </li>
+        </ol>
+        <p className="mb-4">
+          The result is the annualized growth rate, benchmarked against
+          typical Indian asset returns (FDs ~7%, Nifty 50 ~12-13% long term,
+          gold ~9-10%). One caveat: CAGR assumes a single investment at the
+          start. If you added money along the way — like a SIP — CAGR
+          overstates or understates your true return; use the{" "}
+          <Link href="/sip-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+            SIP calculator
+          </Link>{" "}
+          for recurring investments instead.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           What Is CAGR and How to Calculate It
         </h2>
         <p className="mb-4">
@@ -197,13 +275,77 @@ export default function CAGRCalculatorLayout({
             = 1.1401 − 1 = <strong>14.01% per year</strong>
           </li>
         </ul>
-        <p>
+        <p className="mb-4">
           This 14% CAGR means your investment would have had to grow at exactly
           14% every single year to produce the same ending value. Use CAGR to
           compare a mutual fund delivering 14% CAGR over 7 years against a bank
           FD that offered 7% per year — the fund outperformed by 7 percentage
           points annually on a compounded basis.
         </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Real-World CAGR Examples
+        </h2>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Vivek, Hyderabad — was the flat a good investment?
+        </h3>
+        <p className="mb-4">
+          Vivek bought a flat for ₹45 lakh in 2014 and sold it for ₹85 lakh
+          in 2026 (12 years). The calculator shows a CAGR of about{" "}
+          <strong>5.4%</strong> — below FD rates for most of that period, and
+          before subtracting registration, maintenance, and property tax. The
+          "₹40 lakh profit" headline hid an underperforming asset; the same
+          money in a Nifty index fund at ~12% would have grown past ₹1.75
+          crore.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Nisha, Delhi — comparing two fund statements
+        </h3>
+        <p className="mb-4">
+          Nisha's ELSS grew from ₹3 lakh to ₹5.1 lakh in 4 years; her
+          friend's fund turned ₹2 lakh into ₹3.9 lakh in 6 years. The
+          calculator shows <strong>14.2%</strong> vs <strong>11.8%</strong>{" "}
+          CAGR — Nisha's fund performed better despite the friend's larger
+          multiple. Takeaway: never compare investments across different
+          periods without annualizing first.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Accuracy &amp; Common Questions
+        </h2>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Is this CAGR calculator accurate?
+          </summary>
+          <p className="pt-2">
+            Yes — the CAGR formula is a closed-form calculation with no
+            estimation involved, computed with high-precision decimal
+            arithmetic. It matches the methodology SEBI mandates for mutual
+            fund disclosures.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            What is a good CAGR for Indian investments?
+          </summary>
+          <p className="pt-2">
+            Context matters: 6.5–7.5% matches FDs (risk-free), 10–12% beats
+            inflation meaningfully, and 12–15% matches long-term Indian
+            equity. Anything claiming a sustained 20%+ CAGR deserves heavy
+            scrutiny.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            When should I use CAGR vs absolute return?
+          </summary>
+          <p className="pt-2">
+            Use absolute return only for periods under a year. For anything
+            longer, CAGR is the honest metric because it accounts for
+            compounding and lets you compare investments held for different
+            lengths of time.
+          </p>
+        </details>
       </section>
     </>
   );

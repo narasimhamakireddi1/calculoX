@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   generateWebApplicationSchema,
@@ -180,6 +181,84 @@ export default function ScientificCalculatorLayout({
       <AdUnit slot={AD_SLOTS.calcBelowResult} className="max-w-3xl mx-auto px-4 py-4 text-center" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          About This Scientific Calculator
+        </h2>
+        <p className="mb-4">
+          This free online scientific calculator brings four engines to one
+          page: a full standard scientific mode (trigonometry, logarithms,
+          powers, factorials, nPr/nCr), a complex number mode, a matrix mode
+          for 2×2 and 3×3 operations, and a statistics mode that summarises a
+          dataset in one step. It evaluates complete expressions with correct
+          operator precedence — type <code>2+3×4^2</code> and get 50, not
+          400 — and keeps a history of your recent calculations.
+        </p>
+        <p className="mb-4">
+          For lakhs of Indian students — CBSE and state-board classes 11–12,
+          JEE and NEET aspirants, B.Tech and B.Sc undergraduates — a
+          scientific calculator is daily equipment, but a physical Casio isn't
+          always at hand and phone calculator apps lack matrix or statistics
+          functions entirely. The same applies to working engineers checking
+          a quick determinant, analysts needing a standard deviation without
+          opening Excel, and teachers preparing answer keys. This page needs
+          no installation, works on any device, and its DEG/RAD toggle,
+          SHIFT-inverse functions, and keyboard input mirror the physical
+          calculators students already know.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Why You Need This Calculator
+        </h2>
+        <p className="mb-4">
+          Most calculation errors in exams and engineering work aren't
+          conceptual — they're mechanical: evaluating in the wrong order,
+          computing sin(30) in radian mode and getting −0.988 instead of 0.5,
+          or slipping a sign in a 3×3 determinant expansion. A tool that
+          evaluates the whole expression at once, shows the DEG/RAD state
+          clearly, and does matrix arithmetic natively removes that entire
+          class of mistakes. It's also a practice companion: checking each
+          step of a worked solution against a reliable evaluator is one of
+          the fastest ways to find where your method diverges. For everyday
+          percentage and financial math, our{" "}
+          <Link href="/percentage-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+            percentage calculator
+          </Link>{" "}
+          is the quicker tool.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          How to Use This Scientific Calculator
+        </h2>
+        <ol className="list-decimal pl-5 mb-4 space-y-2">
+          <li>
+            <strong>Pick a mode:</strong> Standard for everyday scientific
+            work, Complex for a+bi arithmetic, Matrix for
+            determinants/inverses/products, Statistics for dataset summaries.
+          </li>
+          <li>
+            <strong>Check DEG/RAD before any trigonometry</strong> — school
+            problems are usually degrees, calculus is radians. This single
+            toggle causes more wrong answers than any other button.
+          </li>
+          <li>
+            <strong>Type or tap the full expression</strong> — the calculator
+            follows BODMAS/PEMDAS precedence, so enter it as written in the
+            problem. Use parentheses generously when unsure.
+          </li>
+          <li>
+            <strong>Use SHIFT for inverse functions:</strong> SHIFT+sin gives
+            arcsin, SHIFT+log gives 10^x. Press Enter to evaluate and
+            Backspace to correct — full keyboard input is supported.
+          </li>
+        </ol>
+        <p className="mb-4">
+          In Statistics mode, paste or enter your values and read mean,
+          median, mode, standard deviation, variance, and quartiles together.
+          In Matrix mode, fill the grid and choose the operation — remember
+          matrix multiplication is order-sensitive (A×B ≠ B×A), so enter
+          matrices in the order the problem states.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           Scientific Calculator — Four Computation Modes Explained
         </h2>
         <p className="mb-4">
@@ -237,12 +316,81 @@ export default function ScientificCalculatorLayout({
             {"}"} → Mean = 5, Std Dev = 2
           </li>
         </ul>
-        <p>
+        <p className="mb-4">
           Physical keyboard input is fully supported: type numbers and operators
           directly, press Enter to evaluate, and Backspace to delete. The SHIFT
           key unlocks inverse functions — SHIFT + sin gives arcsin, SHIFT + log
           gives 10^x.
         </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Real-World Usage Examples
+        </h2>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Ishaan, class 12, Kanpur — board exam practice
+        </h3>
+        <p className="mb-4">
+          Working through a probability paper, Ishaan needs how many ways a
+          committee of 4 can be chosen from 10 students: nCr(10, 4) ={" "}
+          <strong>210</strong>. He then verifies a trigonometric identity by
+          evaluating both sides at 37° in DEG mode. Checking each practice
+          answer immediately — rather than at the end of a 3-hour session —
+          shows him exactly which step of his method fails.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Anjali, Hyderabad — quick statistics without a spreadsheet
+        </h3>
+        <p className="mb-4">
+          Anjali, a QA lead, has 12 test-cycle durations and needs the mean
+          and standard deviation for a report. Statistics mode returns all
+          summary measures in one paste — mean 43.2, σ 5.8, plus quartiles
+          for the outlier check — faster than opening Excel and typing
+          formulas. Takeaway: for one-off dataset summaries, a purpose-built
+          mode beats a spreadsheet.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Accuracy &amp; Common Questions
+        </h2>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Is this scientific calculator accurate?
+          </summary>
+          <p className="pt-2">
+            Yes — expressions are parsed with a proper tokenizer and
+            shunting-yard algorithm (the same approach compilers use), so
+            operator precedence is always correct, and computations use
+            high-precision arithmetic rather than error-prone repeated
+            floating-point shortcuts.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Why does sin(30) give −0.988 instead of 0.5?
+          </summary>
+          <p className="pt-2">
+            You're in RAD mode — sin of 30 radians is −0.988. Switch the
+            DEG/RAD toggle to DEG for degree-based problems. This is the
+            single most common scientific calculator mistake in exams.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            When should I use this vs the financial calculators?
+          </summary>
+          <p className="pt-2">
+            Use this for raw mathematics. For money questions — loan EMIs,
+            investment growth, tax — the dedicated tools like the{" "}
+            <Link href="/emi-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              EMI calculator
+            </Link>{" "}
+            and{" "}
+            <Link href="/sip-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              SIP calculator
+            </Link>{" "}
+            encode the formulas and Indian conventions for you.
+          </p>
+        </details>
       </section>
     </>
   );

@@ -1,7 +1,7 @@
 # calculox
 
-**Status:** 🟡 AdSense Re-review Pending | Fixed duplicate ad-before-content on all 14 calc pages + added homepage blog section (2026-07-03) | Next: request fresh GSC re-indexing (2026-06-17 request predates the Jun 29 build fix, so Google's cache may still show the broken pre-fix deploy) → wait for re-crawl → AdSense → Sites → Request Review
-**Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TS errors | **Last updated:** 2026-07-03
+**Status:** 🟡 AdSense Re-review Pending | Expanded all 14 calc layout.tsx SEO sections from ~250 to 850–1,030 words each — About / Why You Need / How to Use (real field names) / Real-World Examples (2 Indian scenarios, verified numbers) / Accuracy FAQ `<details>`, cross-linked to blog posts + sibling calculators (2026-07-17). Earlier: fixed duplicate ad-before-content + homepage blog section (2026-07-03) | Next: deploy → request fresh GSC re-indexing → wait for re-crawl → AdSense → Sites → Request Review
+**Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TS errors | **Last updated:** 2026-07-17
 **AdSense:** Ad slots live ✅, NPA soft-consent live ✅ | **GA4:** G-GFN66QLNZP | **Publisher:** ca-pub-7034746357427731
 
 ## Quick Start
@@ -118,7 +118,7 @@ app/                        lib/                        config/
 **Sitemap:** `app/sitemap.ts` — `CALC_LAST_MODIFIED` constant (update when calc pages change meaningfully). Blog uses actual `post.date`.
 **Blog hero images:** All 25 SVGs in `public/blog/`, rendered with `width={800} height={420}` (800:420 aspect ratio pre-reserved for CLS). `loading="eager"`.
 **Blog posts:** Fields: `image`, `lastUpdated: '2026-06-16'`, `readTime` (accurate), `relatedCalculator.href`, `postType?`, `quickSummary?`, `comparisonTable?`, `keyStats?`. Author: Narasimha Makireddi, `/author/narasimha-makireddi`, Person schema.
-**Static content:** Each calculator `layout.tsx` has a server-rendered `<section>` with 200-300 words (formula + worked example) — crawlable without JS.
+**Static content:** Each calculator `layout.tsx` has a server-rendered `<section>` with 850–1,030 words (About → Why You Need → How to Use with real field names → formula + worked example → 2 Real-World Examples with verified numbers → 3 Accuracy FAQs as `<details>`) — crawlable without JS. Blog links use real slugs from `lib/blog/posts.ts`; each section cross-links 1–2 sibling calculators. SIP layout's new FAQ answers were also appended to its `faqs` schema array.
 
 ## Key Implementation Patterns
 

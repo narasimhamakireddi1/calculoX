@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   generateWebApplicationSchema,
@@ -76,6 +77,16 @@ const faqs = [
     question: "What is Step-Up SIP?",
     answer:
       "Step-Up SIP is when you increase your monthly SIP amount by a fixed percentage each year (e.g., 10% annually). This is recommended to match your income growth and build wealth faster.",
+  },
+  {
+    question: "Is this SIP calculator accurate?",
+    answer:
+      "The mathematics is exact — it uses the standard annuity-due future value formula used by AMFI and fund houses. The uncertainty lies in the assumed return: actual mutual fund returns vary, so projections are estimates, not guarantees.",
+  },
+  {
+    question: "Are SIP returns taxable in India?",
+    answer:
+      "Yes. For equity funds, long-term capital gains (units held over 12 months) above ₹1.25 lakh a year are taxed at 12.5%; short-term gains at 20%. Each SIP instalment has its own holding period.",
   },
 ];
 
@@ -157,6 +168,93 @@ export default function SIPLayout({ children }: { children: React.ReactNode }) {
       <AdUnit slot={AD_SLOTS.calcBelowResult} className="max-w-3xl mx-auto px-4 py-4 text-center" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          About This SIP Calculator
+        </h2>
+        <p className="mb-4">
+          This free SIP calculator projects how much wealth your monthly mutual
+          fund investments can build over 1 to 50 years. Enter what you invest
+          each month, how long you plan to stay invested, and an expected
+          return, and it instantly shows your total invested amount, estimated
+          maturity value, and the gains earned purely from compounding — along
+          with a year-by-year projection table and growth chart.
+        </p>
+        <p className="mb-4">
+          SIPs have become the default way Indians invest in equity. AMFI data
+          shows monthly SIP contributions crossing ₹25,000 crore, driven by
+          salaried professionals who want market returns without timing the
+          market. Yet most investors underestimate what consistency achieves: a
+          28-year-old in Hyderabad putting ₹10,000 a month into an index fund
+          at 12% for 20 years invests ₹24 lakh but retires that goal with
+          roughly ₹1 crore. Seeing that number — before you start — is often
+          the difference between vague intentions and an actual direct-debit
+          mandate. This calculator also models <strong>step-up SIPs</strong>,
+          where your contribution rises each year with your salary, something
+          most basic calculators ignore.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Why You Need a SIP Calculator
+        </h2>
+        <p className="mb-4">
+          The two most expensive mistakes in SIP investing are starting late
+          and setting an amount by guesswork. Delaying a ₹10,000 monthly SIP by
+          just five years (15 years instead of 20 at 12%) shrinks the final
+          corpus from about ₹1 crore to ₹50 lakh — half the wealth for a
+          five-year delay. Guessing too low is equally costly: many investors
+          discover at 45 that their ₹3,000 SIP will never fund the goal they
+          had in mind. Running the numbers first tells you exactly what monthly
+          amount your target requires, so you can commit realistically and
+          step up when income grows. For a deeper walkthrough of how SIPs
+          work, read our{" "}
+          <Link href="/blog/sip-calculator-guide" className="text-blue-600 dark:text-blue-400 hover:underline">
+            complete SIP guide
+          </Link>{" "}
+          and our comparison of{" "}
+          <Link href="/blog/sip-vs-lump-sum-investment" className="text-blue-600 dark:text-blue-400 hover:underline">
+            SIP vs lump sum investing
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          How to Use This SIP Calculator
+        </h2>
+        <ol className="list-decimal pl-5 mb-4 space-y-2">
+          <li>
+            <strong>Monthly Investment (₹):</strong> The amount you will
+            invest every month. Most funds accept SIPs from ₹100–500; use the
+            quick-select chips (₹1K–₹25K) or the slider up to ₹10 lakh.
+          </li>
+          <li>
+            <strong>Investment Duration (Years):</strong> How long you will
+            keep the SIP running. Equity SIPs work best over 7+ years —
+            shorter horizons are exposed to market cycles.
+          </li>
+          <li>
+            <strong>Expected Annual Return (%):</strong> Use 10–12% for a
+            conservative equity estimate, 12–15% for aggressive equity funds,
+            and 6–8% if you are modelling debt funds. Avoid plugging in a
+            recent bull-market return like 25% — it will inflate the
+            projection.
+          </li>
+          <li>
+            <strong>Annual Step Up (%):</strong> The yearly percentage
+            increase in your contribution. Matching this to your typical
+            increment (5–10%) is the single easiest way to grow the final
+            corpus without feeling the pinch today.
+          </li>
+        </ol>
+        <p className="mb-4">
+          Results update automatically as you type. <strong>Future Value</strong>{" "}
+          is your projected maturity amount, <strong>Total Invested</strong> is
+          the sum of every contribution, and <strong>Total Gains</strong> is
+          the difference — money earned by compounding, not by you. A common
+          mistake is comparing the gain percentage to an FD rate; SIP returns
+          are market-linked and not guaranteed, so treat the output as a
+          planning estimate, not a promise.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           What Is a SIP and How Are Returns Calculated?
         </h2>
         <p className="mb-4">
@@ -203,12 +301,79 @@ export default function SIPLayout({ children }: { children: React.ReactNode }) {
             Returns earned through compounding = <strong>₹16,22,880</strong>
           </li>
         </ul>
-        <p>
+        <p className="mb-4">
           The power of SIP is that ₹9 lakh invested becomes ₹25 lakh — nearly
           2.8× — purely through compounding. Starting early amplifies this
           effect dramatically; the same SIP over 25 years would grow to over ₹95
           lakh.
         </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Real-World SIP Examples
+        </h2>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Priya, 32, Bengaluru — saving for a house down payment
+        </h3>
+        <p className="mb-4">
+          Priya wants ₹45–50 lakh in 12 years for a flat down payment. She sets
+          Monthly Investment to ₹15,000, Duration to 12 years, and Expected
+          Return to 12%. The calculator projects a corpus of about{" "}
+          <strong>₹48.3 lakh</strong> against ₹21.6 lakh invested — her goal is
+          achievable without a step-up. Had she assumed she needed ₹25,000 a
+          month, she might never have started.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Rohan, 25, Pune — first salary, small start
+        </h3>
+        <p className="mb-4">
+          Rohan can spare only ₹5,000 a month but adds a 10% Annual Step Up to
+          track his increments. Over 20 years at 12%, a flat ₹5,000 SIP grows
+          to roughly <strong>₹50 lakh</strong>; with the 10% yearly step-up the
+          projection rises well past ₹90 lakh. Takeaway: a modest SIP with a
+          disciplined step-up beats a larger SIP started five years later.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Accuracy &amp; Common Questions
+        </h2>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Is this SIP calculator accurate?
+          </summary>
+          <p className="pt-2">
+            The mathematics is exact — it uses the standard annuity-due future
+            value formula used by AMFI and fund houses, computed with
+            high-precision decimal arithmetic. The uncertainty lies in the
+            return you assume: actual mutual fund returns vary year to year, so
+            projections are estimates, not guarantees.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            When should I use this instead of an FD or RD calculator?
+          </summary>
+          <p className="pt-2">
+            Use this calculator for market-linked monthly investing (mutual
+            funds). If you want guaranteed returns with zero market risk,
+            compare the same monthly amount in our{" "}
+            <Link href="/rd-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              RD calculator
+            </Link>{" "}
+            — the gap between the two projections is the premium you earn for
+            accepting market risk.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Are SIP returns taxable in India?
+          </summary>
+          <p className="pt-2">
+            Yes. For equity funds, long-term capital gains (units held over 12
+            months) above ₹1.25 lakh a year are taxed at 12.5%; short-term
+            gains at 20%. Each SIP instalment has its own holding period. This
+            calculator shows pre-tax values.
+          </p>
+        </details>
       </section>
     </>
   );

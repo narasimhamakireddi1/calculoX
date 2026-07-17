@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   generateWebApplicationSchema,
@@ -156,6 +157,93 @@ export default function TaxLayout({ children }: { children: React.ReactNode }) {
       <AdUnit slot={AD_SLOTS.calcBelowResult} className="max-w-3xl mx-auto px-4 py-4 text-center" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          About This Income Tax Calculator
+        </h2>
+        <p className="mb-4">
+          This free income tax calculator computes your exact tax liability for
+          FY 2025-26 (AY 2026-27) under both the New and Old regimes
+          side-by-side, so you can see which one leaves more money in your
+          hands. It handles salary income, house property, other sources, HRA
+          exemption with metro/non-metro rules, and nine deduction categories
+          including 80C, 80D, and home loan interest — using the slab rates
+          from the Finance Act 2025.
+        </p>
+        <p className="mb-4">
+          Every April, lakhs of Indian employees are asked by their HR portal
+          to pick a tax regime for the year — and most pick blindly. The
+          choice is not trivial: for a typical ₹15 lakh salary, the gap
+          between regimes can exceed ₹40,000 a year depending on how much you
+          invest in 80C instruments, pay in rent, or pay as home loan
+          interest. A Gurgaon renter claiming full HRA may save more in the
+          Old regime, while a Bengaluru techie with no deductions is almost
+          always better off in the New regime. This calculator answers that
+          question with your actual numbers in under a minute.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Why You Need an Income Tax Calculator
+        </h2>
+        <p className="mb-4">
+          Choosing the wrong regime is a silent, recurring cost — you pay the
+          extra tax every single month through TDS and only notice (if ever)
+          at filing time. The other common mistake is investing in tax-saving
+          products you don't need: locking ₹1.5 lakh into an ELSS or PPF for
+          80C benefits is pointless if the New regime is already cheaper for
+          you. Run both regimes here before your investment declaration, not
+          after. For detailed guidance, read{" "}
+          <Link href="/blog/how-to-calculate-income-tax-india" className="text-blue-600 dark:text-blue-400 hover:underline">
+            how to calculate income tax in India
+          </Link>
+          ,{" "}
+          <Link href="/blog/new-vs-old-tax-regime-comparison" className="text-blue-600 dark:text-blue-400 hover:underline">
+            our New vs Old regime comparison
+          </Link>
+          , and{" "}
+          <Link href="/blog/tax-saving-strategies-salaried-employees" className="text-blue-600 dark:text-blue-400 hover:underline">
+            tax-saving strategies for salaried employees
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          How to Use This Tax Calculator
+        </h2>
+        <ol className="list-decimal pl-5 mb-4 space-y-2">
+          <li>
+            <strong>Gross Salary:</strong> Your total annual salary before any
+            deductions — the CTC minus employer PF and gratuity, or simply the
+            "gross" figure on your salary slip × 12.
+          </li>
+          <li>
+            <strong>House Property / Other Sources:</strong> Add rental income
+            or interest income (savings account, FDs) if any. Leaving out FD
+            interest is the most common cause of a surprise tax demand later.
+          </li>
+          <li>
+            <strong>HRA details (Old regime):</strong> Enter Basic Salary, HRA
+            Received, annual Rent Paid, and select metro or non-metro city.
+            The calculator applies the least-of-three HRA exemption rule
+            automatically.
+          </li>
+          <li>
+            <strong>Deductions (Old regime):</strong> Fill in 80C (PF, ELSS,
+            LIC — capped at ₹1.5 lakh), 80D health insurance, home loan
+            interest, NPS, and other applicable sections.
+          </li>
+          <li>
+            <strong>Age group:</strong> Select your bracket — senior citizens
+            get higher exemption limits under the Old regime.
+          </li>
+        </ol>
+        <p className="mb-4">
+          The results panel shows tax under both regimes, the effective tax
+          rate, and a clear verdict on which regime saves you more and by how
+          much. Standard deduction (₹75,000 New / ₹50,000 Old) and the 4%
+          health-and-education cess are applied automatically — do not
+          subtract them yourself before entering your salary.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           How Income Tax Is Calculated in India — FY 2025-26
         </h2>
         <p className="mb-4">
@@ -214,12 +302,81 @@ export default function TaxLayout({ children }: { children: React.ReactNode }) {
             Total tax = ₹93,750 + 4% cess = <strong>₹97,500</strong>
           </li>
         </ul>
-        <p>
+        <p className="mb-4">
           Under the Old Regime with ₹1.5L 80C + ₹25,000 80D + ₹50,000 standard
           deduction, total deductions can reach ₹2.25 lakh, reducing taxable
           income and potentially saving ₹20,000–₹40,000 in tax. Use the
           calculator to compare both regimes for your exact situation.
         </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Real-World Tax Examples
+        </h2>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Ananya, 27, Bengaluru — ₹12.75 lakh salary, no investments
+        </h3>
+        <p className="mb-4">
+          Ananya rents a flat but has no 80C investments or health insurance.
+          Under the New regime, the ₹75,000 standard deduction brings her
+          taxable income to ₹12 lakh — fully covered by the Section 87A
+          rebate, so her tax is <strong>zero</strong>. Under the Old regime
+          she would owe well over ₹1 lakh. Verdict: New regime, and no need to
+          lock money into tax-saving products she doesn't want.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Rajesh, 41, Delhi — ₹18 lakh salary, heavy deductions
+        </h3>
+        <p className="mb-4">
+          Rajesh pays ₹25,000/month rent, invests the full ₹1.5 lakh in 80C,
+          pays ₹28,000 for family health insurance (80D), and contributes
+          ₹50,000 to NPS. With HRA exemption plus ₹2.28 lakh of deductions,
+          his Old-regime taxable income drops sharply — the calculator shows
+          the Old regime beating the New by roughly ₹15,000–30,000 depending
+          on his exact HRA figures. Takeaway: high rent + maxed deductions is
+          the classic Old-regime profile; always verify with your own numbers.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Accuracy &amp; Common Questions
+        </h2>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Is this tax calculator accurate for FY 2025-26?
+          </summary>
+          <p className="pt-2">
+            Yes — slab rates, the ₹75,000 standard deduction, Section 87A
+            rebate, marginal relief, and the 4% cess follow the Finance Act
+            2025 as published by the Income Tax Department. It is an estimate
+            for planning; your final liability can differ with capital gains,
+            surcharge above ₹50 lakh, or employer-specific perquisites.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Can I switch between the New and Old regime every year?
+          </summary>
+          <p className="pt-2">
+            Salaried taxpayers can choose either regime each year when filing
+            their return, regardless of what they told their employer (the
+            employer choice only affects monthly TDS). Business income earners
+            have restrictions on switching back after opting out of the New
+            regime.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            When should I use this instead of the retirement calculator?
+          </summary>
+          <p className="pt-2">
+            Use this calculator for your current-year tax liability and regime
+            choice. For long-term planning — how much corpus you need and how
+            tax-advantaged instruments like NPS fit in — use our{" "}
+            <Link href="/retirement-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              retirement calculator
+            </Link>
+            .
+          </p>
+        </details>
       </section>
     </>
   );

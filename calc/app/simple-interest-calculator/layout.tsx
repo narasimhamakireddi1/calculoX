@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 import {
   generateWebApplicationSchema,
@@ -160,6 +161,77 @@ export default function SimpleInterestCalculatorLayout({
       <AdUnit slot={AD_SLOTS.calcBelowResult} className="max-w-3xl mx-auto px-4 py-4 text-center" />
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 text-gray-700 dark:text-gray-300">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          About This Simple Interest Calculator
+        </h2>
+        <p className="mb-4">
+          This free simple interest calculator computes the interest and total
+          repayment on any principal, for any tenure expressed in years,
+          months, or days — with automatic leap-year handling for day-based
+          calculations. Enter the principal, annual rate, and duration, and it
+          instantly shows the interest earned or owed, the maturity amount,
+          and a period-by-period projection.
+        </p>
+        <p className="mb-4">
+          Simple interest is everywhere in Indian daily life, even if the
+          label isn't: gold loans from NBFCs, informal lending between
+          relatives and in chit circles, security deposits, delayed-payment
+          penalties on invoices, court-awarded interest, and several
+          post-office schemes all use it. When a jeweller-backed lender in
+          Vijayawada quotes "1% per month" on a gold loan, most borrowers
+          cannot immediately say what that costs on ₹80,000 over 100 days —
+          and that gap is where overpaying happens. This calculator exists to
+          close it: exact interest, any duration, no mental arithmetic.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Why You Need a Simple Interest Calculator
+        </h2>
+        <p className="mb-4">
+          The two costly mistakes with simple interest are confusing monthly
+          and annual rates (a "2% per month" hand loan is 24% a year — worse
+          than most personal loans) and assuming all interest compounds. On
+          the flip side, lenders sometimes quote simple interest but compute
+          compound — verifying takes ten seconds here and can save real money
+          on a dispute. If you lend money informally, calculating the exact
+          amount due on a specific date (in days) keeps the arrangement clean.
+          For the full theory, differences from compound interest, and more
+          worked cases, read our{" "}
+          <Link href="/blog/simple-interest-calculator-guide" className="text-blue-600 dark:text-blue-400 hover:underline">
+            simple interest guide
+          </Link>
+          .
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          How to Use This Calculator
+        </h2>
+        <ol className="list-decimal pl-5 mb-4 space-y-2">
+          <li>
+            <strong>Principal Amount (₹):</strong> The amount lent, borrowed,
+            or deposited.
+          </li>
+          <li>
+            <strong>Annual Interest Rate (%):</strong> Always convert to an
+            annual rate first — if you were quoted a monthly rate, multiply
+            by 12 (1.5%/month = 18% here).
+          </li>
+          <li>
+            <strong>Tenure Type:</strong> Choose Years, Months, or Days. Use
+            Days for loans repaid on a specific date — the calculator
+            automatically uses 366 days for leap years.
+          </li>
+          <li>
+            <strong>Tenure Value:</strong> The duration in your chosen unit.
+          </li>
+        </ol>
+        <p className="mb-4">
+          The result shows interest, total amount, and effective breakdown.
+          Remember that simple interest is linear: doubling the tenure exactly
+          doubles the interest, which makes it easy to sanity-check any
+          lender's figure against this output.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           Simple Interest vs Compound Interest — Formula and Examples
         </h2>
         <p className="mb-4">
@@ -200,13 +272,80 @@ export default function SimpleInterestCalculatorLayout({
           </li>
           <li>Monthly payment = ₹1,83,750 ÷ 30 months = ₹6,125/month</li>
         </ul>
-        <p>
+        <p className="mb-4">
           Had this been compound interest (compounded monthly), the total
           interest on the same loan would be ₹36,211 — about ₹2,461 more. The
           difference grows larger with longer tenures, which is why banks
           typically use compound interest for home loans but simple interest for
           certain overdraft products.
         </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Real-World Examples
+        </h2>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Lakshmi, Vijayawada — gold loan for 100 days
+        </h3>
+        <p className="mb-4">
+          Lakshmi pledges gold for ₹80,000 at "1% per month" (12% annual) and
+          plans to repay in 100 days. Entering ₹80,000, 12%, and 100 days, the
+          calculator shows interest of about <strong>₹2,630</strong> — total
+          repayment ₹82,630. Knowing the exact figure stopped the branch's
+          rounded-up "₹3,500 interest" estimate from going unchallenged.
+        </p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+          Deepak, Indore — informal loan to a cousin
+        </h3>
+        <p className="mb-4">
+          Deepak lends ₹2 lakh to a cousin at 9% simple interest for 3 years.
+          The calculator shows interest of <strong>₹54,000</strong> and total
+          repayment of ₹2,54,000 — a figure both parties agreed to in writing
+          on day one. Takeaway: for family lending, a printed calculation
+          prevents the misunderstandings that usually sour such arrangements.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Accuracy &amp; Common Questions
+        </h2>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            Is this simple interest calculator accurate?
+          </summary>
+          <p className="pt-2">
+            Yes — SI = (P × R × T) ÷ 100 is exact arithmetic with no
+            approximation, and day-based tenures correctly use 365 or 366
+            days depending on leap years, computed with high-precision
+            decimals.
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            When should I use this vs the FD or EMI calculator?
+          </summary>
+          <p className="pt-2">
+            Use this for anything that doesn't compound: gold loans, informal
+            lending, penalties, and short-tenure deposits. Bank FDs over 6
+            months compound quarterly — use the{" "}
+            <Link href="/fd-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              FD calculator
+            </Link>{" "}
+            — and amortized bank loans need the{" "}
+            <Link href="/emi-calculator" className="text-blue-600 dark:text-blue-400 hover:underline">
+              EMI calculator
+            </Link>
+            .
+          </p>
+        </details>
+        <details className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-3">
+          <summary className="cursor-pointer font-semibold text-gray-900 dark:text-white">
+            How do I convert a monthly rate to annual?
+          </summary>
+          <p className="pt-2">
+            Multiply by 12. A moneylender's "2% monthly" is 24% per annum —
+            entering 2 instead of 24 in the rate field understates the
+            interest twelvefold, the single most common input mistake.
+          </p>
+        </details>
       </section>
     </>
   );
