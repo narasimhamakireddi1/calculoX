@@ -1,7 +1,7 @@
 # calculox
 
-**Status:** 🟡 AdSense Re-review Pending | Expanded all 14 calc layout.tsx SEO sections from ~250 to 850–1,030 words each — About / Why You Need / How to Use (real field names) / Real-World Examples (2 Indian scenarios, verified numbers) / Accuracy FAQ `<details>`, cross-linked to blog posts + sibling calculators (2026-07-17). Earlier: fixed duplicate ad-before-content + homepage blog section (2026-07-03) | Next: deploy → request fresh GSC re-indexing → wait for re-crawl → AdSense → Sites → Request Review
-**Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 54 static pages, 0 TS errors | **Last updated:** 2026-07-17
+**Status:** 🟡 AdSense Re-review Pending | 2026-07-17 (2 waves): (1) expanded all 14 calc layout.tsx SEO sections to 850–1,030 words each (About / Why / How-to / Examples / FAQ); (2) E-E-A-T + trust pass — new `/verification-methodology` page, expanded author page (expertise/process/commitment), `CalculatorDisclaimer` above every calc (via CalcPageWrapper, category-aware wording), homepage disclaimer strip + "Why Trust calculox?" section, nav/footer/blog-byline links, fixed stale FY 2024-25 tax FAQ on homepage | Next: deploy → request fresh GSC re-indexing → wait for re-crawl → AdSense → Sites → Request Review
+**Stack:** Next.js 16.2.6 + React 19 + TypeScript + Tailwind + Decimal.js | **Build:** 55 static pages, 0 TS errors | **Last updated:** 2026-07-17
 **AdSense:** Ad slots live ✅, NPA soft-consent live ✅ | **GA4:** G-GFN66QLNZP | **Publisher:** ca-pub-7034746357427731
 
 ## Quick Start
@@ -82,7 +82,11 @@ app/                        lib/                        config/
 
 **About page — formula verification section (`app/about/page.tsx`):** Emerald card "How We Verify Our Formulas" — 2-col grid of 5 source cards (`formulaSources` array) with `ExternalLink` icons linking to official sites. Sources: RBI (EMI/FD/RD/SI) · Finance Act 2025-26 / incometaxindia.gov.in (Tax) · SEBI/AMFI (SIP/CAGR/Retirement) · GST Council/CBIC gst.gov.in (GST) · WHO/ICMR who.int (BMI). Keep in sync with ConfidenceBadge URLs above if sources change.
 
-**CalcPageWrapper:** Server component. Renders `Home / Calculators / [title]` breadcrumb. Accepts `category: 'finance'|'health'|'utility'` for hero gradient. Breadcrumb schema: 3-item (`Home → Calculators → Calculator`). Added `title` prop; all 14 `layout.tsx` files pass display name. **No longer renders its own ad unit** (removed 2026-07-03) — each `*-calculator/layout.tsx` already places `calcAboveFold` + `calcBelowResult`; the wrapper duplicating `calcBelowResult` stacked 2 ad blocks before the educational content on every calc page, a likely contributor to the AdSense "low value content" rejection. Ad slots per calc page are now exactly 2.
+**CalcPageWrapper:** Server component. Renders `Home / Calculators / [title]` breadcrumb, then `<CalculatorDisclaimer category={category} />` (added 2026-07-17), then children. Accepts `category: 'Finance'|'Health'|'Utility'` for hero gradient + disclaimer wording. Breadcrumb schema: 3-item (`Home → Calculators → Calculator`). Added `title` prop; all 14 `layout.tsx` files pass display name. **No longer renders its own ad unit** (removed 2026-07-03) — each `*-calculator/layout.tsx` already places `calcAboveFold` + `calcBelowResult`; the wrapper duplicating `calcBelowResult` stacked 2 ad blocks before the educational content on every calc page, a likely contributor to the AdSense "low value content" rejection. Ad slots per calc page are now exactly 2.
+
+**CalculatorDisclaimer (`components/ui/CalculatorDisclaimer.tsx`):** Amber warning box (AlertTriangle icon) shown above every calculator via CalcPageWrapper. Category-aware copy: Finance → "not financial advice, consult CA/CFP/SEBI-registered advisor"; Health → "not medical advice"; Utility → "verify independently". Links to `/verification-methodology` + `/terms-of-service`. Homepage has a matching slim strip above the hero.
+
+**Trust/E-E-A-T pages (2026-07-17):** `/verification-methodology` — 4-step validation process, per-calculator official source cards (rbi.org.in, incometaxindia.gov.in + incometax.gov.in cross-check, gstcouncil.gov.in, sebi.gov.in, who.int; SBI/HDFC bank calculator cross-checks), `LAST_VERIFIED` constant ('July 2026' — bump on each audit), WebPage schema. `/author/narasimha-makireddi` — expanded: insurance-domain background, 4-month build framing, 90/10 accuracy-first process, tech credibility (Decimal.js/Zod/browser-only), commitment section (24h error investigation via supportcalculox@gmail.com). Linked from: Navbar ("Verification" NavLink), mobile CalculatorBottomSheet, Footer Company column ("Meet the Developer" + "Verification Methodology"), blog byline ("Learn about my expertise →" in `app/blog/[slug]/page.tsx` — note: byline lives there, NOT in BlogPostLayout.tsx which also got the link but is unused by the slug route), About page verification section, homepage "Why Trust calculox?" section (before "Why Choose", 3 cards: Verified Sources / Privacy / Transparency — no user-count claims, kept conservative).
 
 **Homepage — "Latest from the Blog" (`app/page.tsx`):** Added 2026-07-03. `LATEST_POSTS` = top 4 `blogPosts` sorted by `date` desc, rendered as cards linking to `/blog/[slug]`, placed between "Real Indian Scenarios" and "Why Choose Our Calculators" — surfaces blog depth on first paint ahead of AdSense re-review.
 
@@ -106,7 +110,7 @@ app/                        lib/                        config/
 | Accessibility | 100/100 — WCAG 2.1 AAA |
 | Best Practices + SEO | 100/100 |
 | Blog Posts | 25 (7-15 min read, accurate estimates) |
-| Pages | 54 (1 home + 14 calc + 25 blog + 3 legal + 11 other) |
+| Pages | 55 (1 home + 14 calc + 25 blog + 3 legal + 12 other) |
 | GSC | ✅ Verified, sitemap live (47 pages), manual indexing requested |
 | Schema | Organization+Website+WebApp+Calculator+FAQ+Breadcrumb+Article+HowTo+Person |
 | ads.txt | `google.com, pub-7034746357427731, DIRECT, f08c47fec0942fa0` |

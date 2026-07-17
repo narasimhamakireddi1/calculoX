@@ -215,6 +215,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.author}
             </Link>
             <p className="text-xs text-gray-500 dark:text-gray-400">{post.authorCredentials}</p>
+            <Link
+              href="/author/narasimha-makireddi"
+              className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              Learn about my expertise →
+            </Link>
           </div>
         </div>
 

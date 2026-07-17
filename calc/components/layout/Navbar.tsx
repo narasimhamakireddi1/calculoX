@@ -7,7 +7,7 @@ import { getActiveCalculators, type CalculatorConfig } from '@/config/calculator
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 import { CalculatorBottomSheet } from '@/components/mobile/CalculatorBottomSheet';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Home, BookOpen, Info, ChevronDown, Search, X } from 'lucide-react';
+import { Home, BookOpen, Info, ChevronDown, Search, X, ShieldCheck } from 'lucide-react';
 
 const FINANCE_IDS = new Set([
   'sip', 'emi', 'tax', 'fd', 'rd', 'simple-interest',
@@ -178,6 +178,14 @@ export function Navbar() {
                 icon={<Info className="w-4 h-4" strokeWidth={2} aria-hidden="true" />}
               >
                 About
+              </NavLink>
+
+              <NavLink
+                href="/verification-methodology"
+                active={isActive('/verification-methodology')}
+                icon={<ShieldCheck className="w-4 h-4" strokeWidth={2} aria-hidden="true" />}
+              >
+                Verification
               </NavLink>
             </div>
 

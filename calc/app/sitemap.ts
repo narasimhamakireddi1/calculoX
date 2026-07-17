@@ -49,7 +49,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/author/narasimha-makireddi`,
-      lastModified: new Date('2026-06-16'),
+      lastModified: new Date('2026-07-17'),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/verification-methodology`,
+      lastModified: new Date('2026-07-17'),
       changeFrequency: 'monthly',
       priority: 0.5,
     },

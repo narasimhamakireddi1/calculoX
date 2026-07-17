@@ -7,6 +7,7 @@ import {
   IndianRupee, Heart, Wrench, ArrowLeftRight,
   Zap, ShieldCheck, Smartphone, Lock, Scale,
   Landmark, ReceiptText, Target, MessageCircle, Clipboard, Check,
+  AlertTriangle, BadgeCheck, Mail,
 } from 'lucide-react';
 import { CalculatorCard } from "@/components/ui/CalculatorCard";
 import { RangeSlider } from "@/components/ui/RangeSlider";
@@ -512,6 +513,19 @@ export default function Home() {
 
   return (
     <div className="space-y-12">
+
+      {/* ══════════════════════════════════════════
+          SITE-WIDE DISCLAIMER STRIP
+      ══════════════════════════════════════════ */}
+      <div role="note" aria-label="Disclaimer" className="flex items-start sm:items-center justify-center gap-2 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20 px-4 py-2.5 text-sm text-amber-800 dark:text-amber-300 -mb-4">
+        <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5 sm:mt-0 text-amber-600 dark:text-amber-400" strokeWidth={2} aria-hidden="true" />
+        <p>
+          <strong>All results are estimates — not financial advice.</strong> Consult a qualified CA/CFP before major decisions.{' '}
+          <Link href="/verification-methodology" className="font-medium underline underline-offset-2 hover:text-amber-950 dark:hover:text-amber-100">How we verify results</Link>
+          {' · '}
+          <Link href="/terms-of-service" className="font-medium underline underline-offset-2 hover:text-amber-950 dark:hover:text-amber-100">Terms</Link>
+        </p>
+      </div>
 
       {/* ══════════════════════════════════════════
           HERO
@@ -1244,6 +1258,64 @@ export default function Home() {
       </section>
 
       {/* Features */}
+      {/* ══════════════════════════════════════════
+          WHY TRUST CALCULOX
+      ══════════════════════════════════════════ */}
+      <section className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 md:p-16 border border-emerald-100 dark:border-gray-700">
+        <h2 className="text-4xl font-bold mb-4 text-center">Why Trust calculox?</h2>
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+          Trust in a calculator comes down to three things: where the formulas come from, what happens to
+          your data, and who answers when something looks wrong. Here is our answer to all three.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Verified sources */}
+          <div className="p-6 rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur-md shadow-sm border border-gray-100 dark:border-gray-700">
+            <BadgeCheck className="w-10 h-10 mb-4 text-emerald-600 dark:text-emerald-400" strokeWidth={1.75} aria-hidden="true" />
+            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Verified Against Official Sources</h3>
+            <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2 leading-relaxed">
+              <li>• RBI lending guidelines — EMI, FD &amp; RD calculators</li>
+              <li>• Finance Act 2025-26 rates — Income Tax calculator</li>
+              <li>• SEBI &amp; AMFI norms — SIP, CAGR &amp; retirement</li>
+              <li>• GST Council rates — GST calculator</li>
+              <li>• WHO &amp; ICMR standards — BMI calculator</li>
+              <li>• Monthly accuracy audits against these sources, cross-checked with SBI &amp; HDFC bank calculators</li>
+            </ul>
+            <Link href="/verification-methodology" className="inline-block mt-4 text-sm font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
+              See our Verification Methodology →
+            </Link>
+          </div>
+
+          {/* Privacy */}
+          <div className="p-6 rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur-md shadow-sm border border-gray-100 dark:border-gray-700">
+            <Lock className="w-10 h-10 mb-4 text-blue-600 dark:text-blue-400" strokeWidth={1.75} aria-hidden="true" />
+            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Privacy &amp; Security</h3>
+            <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2 leading-relaxed">
+              <li>• Zero data storage — every calculation happens in your browser</li>
+              <li>• Your salary, loan, and health inputs are never sent to a server, tracked, or stored</li>
+              <li>• HTTPS encryption on every page</li>
+              <li>• Verifiable: open your browser&apos;s network tab — no data leaves the page when you calculate</li>
+            </ul>
+            <Link href="/privacy-policy" className="inline-block mt-4 text-sm font-semibold text-blue-700 dark:text-blue-400 hover:underline">
+              Read the full Privacy Policy →
+            </Link>
+          </div>
+
+          {/* Transparency */}
+          <div className="p-6 rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur-md shadow-sm border border-gray-100 dark:border-gray-700">
+            <Mail className="w-10 h-10 mb-4 text-violet-600 dark:text-violet-400" strokeWidth={1.75} aria-hidden="true" />
+            <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Transparency</h3>
+            <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-2 leading-relaxed">
+              <li>• Built by Narasimha Makireddi — technology background with insurance-domain fintech experience</li>
+              <li>• Every formula is published on its calculator page so you can verify results by hand</li>
+              <li>• Found an error? Email <a href="mailto:supportcalculox@gmail.com" className="text-violet-700 dark:text-violet-400 hover:underline break-all">supportcalculox@gmail.com</a> — correction reports are prioritised</li>
+            </ul>
+            <Link href="/author/narasimha-makireddi" className="inline-block mt-4 text-sm font-semibold text-violet-700 dark:text-violet-400 hover:underline">
+              Meet the Developer →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 md:p-16 border border-blue-100 dark:border-gray-700">
         <h2 className="text-4xl font-bold mb-12 text-center">Why Choose Our Calculators?</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1274,7 +1346,7 @@ export default function Home() {
             { q: 'Is my data safe and private?', a: "Yes. Every calculation runs entirely inside your browser using JavaScript — no input data is ever sent to our servers. We do not store, log, or share your financial figures. The only data collected is anonymous usage analytics via Google Analytics (page views, not calculation inputs). You can verify this by checking your browser network tab: no POST requests are made when you calculate." },
             { q: 'Which EMI calculator formula does calculox use?', a: "We use the standard reducing-balance EMI formula: EMI = [P × R × (1+R)^N] / [(1+R)^N − 1], where P = principal, R = monthly interest rate (annual rate ÷ 1200), N = loan tenure in months. This is the same formula used by all RBI-regulated banks in India for personal loans, home loans, and car loans. For edge cases like zero interest rate, we fall back to simple principal division." },
             { q: 'What is the difference between SIP and lump-sum investment?', a: "SIP (Systematic Investment Plan) spreads your investment over time with fixed monthly contributions, giving you rupee-cost averaging — you automatically buy more mutual fund units when prices are lower. Lump sum means investing the entire amount at once, which is optimal only if you can time the market perfectly. For most Indian investors, SIP over 10+ years consistently outperforms lump sum because it removes the need for market timing and enforces financial discipline. Use our SIP Calculator to compare both scenarios." },
-            { q: 'How is income tax calculated under the New Regime for FY 2025-26?', a: "Under the New Regime (default from FY 2024-25): Income up to ₹3L = 0%, ₹3–7L = 5%, ₹7–10L = 10%, ₹10–12L = 15%, ₹12–15L = 20%, above ₹15L = 30%. A ₹75,000 standard deduction applies automatically. Section 87A rebate eliminates tax entirely if net taxable income (after standard deduction) is ≤ ₹7L — making effective zero tax up to ₹7.75L gross salary. Add 4% health & education cess on the computed tax. Our Tax Calculator handles all this automatically including surcharge for incomes above ₹50L." },
+            { q: 'How is income tax calculated under the New Regime for FY 2025-26?', a: "Under the New Regime for FY 2025-26 (Finance Act 2025): Income up to ₹4L = 0%, ₹4–8L = 5%, ₹8–12L = 10%, ₹12–16L = 15%, ₹16–20L = 20%, ₹20–24L = 25%, above ₹24L = 30%. A ₹75,000 standard deduction applies automatically for salaried taxpayers. The Section 87A rebate eliminates tax entirely if net taxable income is ≤ ₹12L — making salary effectively tax-free up to ₹12.75L. Add 4% health & education cess on the computed tax. Our Tax Calculator handles all this automatically, including surcharge for incomes above ₹50L." },
             { q: 'Will you add more calculators?', a: "Yes! We actively expand the toolkit based on user requests. Planned additions include: PPF Calculator, NPS Calculator, Sukanya Samriddhi Calculator, Currency Converter, Compound Interest Calculator, and a Loan Comparison tool. Contact us at supportcalculox@gmail.com to request a specific calculator." },
           ].map(({ q, a }) => (
             <details key={q} className="group bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300 cursor-pointer">

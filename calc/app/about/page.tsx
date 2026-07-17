@@ -378,6 +378,18 @@ export default function AboutPage() {
             ))}
           </div>
 
+          <p className="text-sm text-gray-700 dark:text-gray-300 mt-5">
+            The full validation process — step-by-step methodology, monthly audit schedule, and
+            last-verified dates for every calculator — is documented on our{" "}
+            <Link
+              href="/verification-methodology"
+              className="text-emerald-700 dark:text-emerald-400 font-semibold hover:underline"
+            >
+              Verification Methodology page
+            </Link>
+            .
+          </p>
+
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-5 leading-relaxed">
             Calculations are for informational purposes only and do not
             constitute financial, tax, or medical advice. Consult a qualified

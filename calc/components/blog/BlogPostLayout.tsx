@@ -105,8 +105,18 @@ export function BlogPostLayout({
               {author.charAt(0)}
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">{author}</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                <Link href="/author/narasimha-makireddi" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  {author}
+                </Link>
+              </p>
               {authorCredentials && <p className="text-xs text-gray-500 dark:text-gray-400">{authorCredentials}</p>}
+              <Link
+                href="/author/narasimha-makireddi"
+                className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                Learn about my expertise →
+              </Link>
             </div>
           </div>
         )}

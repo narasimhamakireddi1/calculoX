@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { getActiveCalculators } from '@/config/calculators.config';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Home, BookOpen, Info, Search, type LucideIcon } from 'lucide-react';
+import { Home, BookOpen, Info, Search, ShieldCheck, type LucideIcon } from 'lucide-react';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -148,6 +148,7 @@ export function CalculatorBottomSheet({ isOpen, onClose }: MobileMenuProps) {
     { href: '/', label: 'Home', Icon: Home, desc: 'Back to homepage' },
     { href: '/blog', label: 'Blog', Icon: BookOpen, desc: '25 financial guides' },
     { href: '/about', label: 'About', Icon: Info, desc: 'Our team & mission' },
+    { href: '/verification-methodology', label: 'Verification', Icon: ShieldCheck, desc: 'How results are validated' },
   ];
 
   return (

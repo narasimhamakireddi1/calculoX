@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
+import { CalculatorDisclaimer } from '@/components/ui/CalculatorDisclaimer';
 
 type Category = 'Finance' | 'Health' | 'Utility';
 
@@ -46,6 +47,7 @@ export function CalcPageWrapper({ category, title, children }: CalcPageWrapperPr
           </li>
         </ol>
       </nav>
+      <CalculatorDisclaimer category={category} />
       {children}
     </div>
   );
