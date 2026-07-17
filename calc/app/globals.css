@@ -2,14 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Color System — Enhanced Palette */
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — single source of truth (see docs/DESIGN-SYSTEM.md)
+   Brand: professional financial (blue) + educational credibility.
+   Category accents: Finance=blue · Health=rose · Utility=violet.
+   Semantic: emerald=success · amber=caution/disclaimer · red=danger.
+   ═══════════════════════════════════════════════════════════════ */
 :root {
-  /* Primary Colors */
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-50: #eff6ff;
+  /* Brand */
+  --brand-50: #eff6ff;
+  --brand-100: #dbeafe;
+  --brand-400: #60a5fa;
+  --brand-500: #3b82f6;
+  --brand-600: #2563eb;   /* primary CTA / links */
+  --brand-700: #1d4ed8;
+  --brand-grad-from: #2563eb;
+  --brand-grad-to: #9333ea; /* brand wordmark gradient end */
 
-  /* Semantic Colors */
+  /* Semantic */
   --color-success: #10b981;
   --color-success-light: #d1fae5;
   --color-warning: #f59e0b;
@@ -19,23 +29,44 @@
   --color-info: #3b82f6;
   --color-info-light: #dbeafe;
 
-  /* Neutral Colors */
+  /* Surfaces & text (light) */
+  --surface-page: #f6f8fd;
+  --surface-card: rgba(255, 255, 255, 0.8);
   --color-text-primary: #111827;
   --color-text-secondary: #374151;
   --color-text-tertiary: #6b7280;
   --color-border: #e5e7eb;
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #f9fafb;
+
+  /* Motion — durations & easings (micro-interaction spec) */
+  --motion-fast: 150ms;      /* hovers, taps, focus rings */
+  --motion-base: 250ms;      /* card lifts, color shifts */
+  --motion-slow: 400ms;      /* panel/section transitions */
+  --motion-reveal: 600ms;    /* scroll-triggered reveals */
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);  /* decelerating, premium feel */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 28px -16px rgba(16, 24, 40, 0.16);
+  --shadow-card-hover: 0 6px 14px rgba(16, 24, 40, 0.06), 0 24px 52px -22px rgba(37, 99, 235, 0.22);
+
+  /* Radii */
+  --radius-control: 0.75rem; /* inputs, buttons */
+  --radius-card: 1rem;       /* cards, panels */
 }
 
 html.dark {
-  /* Dark mode colors */
+  --surface-page: #070b15;
+  --surface-card: rgba(17, 24, 39, 0.5);
   --color-text-primary: #f3f4f6;
   --color-text-secondary: #e5e7eb;
   --color-text-tertiary: #9ca3af;
   --color-border: #374151;
   --color-bg-primary: #111827;
   --color-bg-secondary: #1f2937;
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 6px 14px rgba(0, 0, 0, 0.4), 0 24px 52px -22px rgba(59, 130, 246, 0.35);
 }
 
 * {
@@ -311,6 +342,35 @@ li {
 
 .animate-slide-underline {
   animation: slideUnderline 0.3s ease-out;
+}
+
+/* ── Scroll-triggered reveal (ScrollReveal.tsx) ──
+   JS adds .sr-hidden only after mount (no-JS users always see content),
+   then swaps to .sr-visible when the element enters the viewport.
+   Animates opacity/transform only — zero layout shift (CLS-safe).
+   Reduced-motion users never get .sr-hidden (checked in JS). */
+.sr-hidden {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.sr-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--motion-reveal) var(--ease-out-soft),
+    transform var(--motion-reveal) var(--ease-out-soft);
+}
+
+/* ── Section header system — eyebrow + title + subtitle ── */
+.section-eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em]
+         text-blue-600 dark:text-blue-400;
+}
+
+.section-eyebrow::before {
+  content: '';
+  @apply w-6 h-px bg-blue-600/60 dark:bg-blue-400/60;
 }
 
 /* Mega-menu enter animation */
