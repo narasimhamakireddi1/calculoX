@@ -209,7 +209,7 @@ export default function ScientificCalculatorPage() {
       {/* Page header */}
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="scientific" className="w-6 h-6 text-white" />
           </span>
           <span>Scientific Calculator</span>
@@ -303,21 +303,21 @@ export default function ScientificCalculatorPage() {
             Scientific calculators are powerful tools used by engineers, mathematicians, physicists, and students to solve complex mathematical problems involving trigonometric functions, logarithms, exponentials, matrices, and statistical analysis.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-              <p className="font-bold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Standard Mode</p>
-              <p className="text-sm">Basic mathematical operations with scientific functions like trigonometry, logarithms, roots, and factorials.</p>
+            <div className="info-panel">
+              <p className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Calculator className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Standard Mode</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Basic mathematical operations with scientific functions like trigonometry, logarithms, roots, and factorials.</p>
             </div>
-            <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
-              <p className="font-bold text-purple-900 dark:text-purple-300 mb-2 flex items-center gap-2"><Sigma className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Complex Numbers</p>
-              <p className="text-sm">Advanced calculations with imaginary numbers (using i notation). Essential for electrical engineering and physics.</p>
+            <div className="info-panel">
+              <p className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Sigma className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Complex Numbers</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Advanced calculations with imaginary numbers (using i notation). Essential for electrical engineering and physics.</p>
             </div>
-            <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
-              <p className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><LayoutGrid className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Matrix Operations</p>
-              <p className="text-sm">Perform linear algebra computations: determinants, inverses, transpose, addition, and multiplication of matrices.</p>
+            <div className="info-panel">
+              <p className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><LayoutGrid className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Matrix Operations</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Perform linear algebra computations: determinants, inverses, transpose, addition, and multiplication of matrices.</p>
             </div>
-            <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
-              <p className="font-bold text-orange-900 dark:text-orange-300 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Statistics</p>
-              <p className="text-sm">Analyze data sets with statistical measures: mean, standard deviation, regression analysis, and correlation coefficients.</p>
+            <div className="info-panel">
+              <p className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Statistics</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">Analyze data sets with statistical measures: mean, standard deviation, regression analysis, and correlation coefficients.</p>
             </div>
           </div>
         </div>
@@ -363,24 +363,24 @@ export default function ScientificCalculatorPage() {
       <div className="card">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Lightbulb className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Real-World Applications</h2>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
-            <p className="font-bold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2"><Building2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Engineering</p>
-            <p className="text-sm">Calculate structural angles, forces using trigonometry. Use matrices for finite element analysis. Example: Bridge load calculations.</p>
+          <div className="info-panel">
+            <p className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Building2 className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Engineering</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Calculate structural angles, forces using trigonometry. Use matrices for finite element analysis. Example: Bridge load calculations.</p>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-lg border border-green-200 dark:border-green-700">
-            <p className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><Zap className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Physics</p>
-            <p className="text-sm">Wave equations using sin/cos. Exponential decay (radioactive materials). Logarithmic scales (decibels, Richter scale).</p>
+          <div className="info-panel">
+            <p className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Zap className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Physics</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Wave equations using sin/cos. Exponential decay (radioactive materials). Logarithmic scales (decibels, Richter scale).</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
-            <p className="font-bold text-purple-900 dark:text-purple-300 mb-2 flex items-center gap-2"><TrendingUp className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Finance</p>
-            <p className="text-sm">Compound interest using e^x. Logarithmic returns. Matrix methods for portfolio optimization.</p>
+          <div className="info-panel">
+            <p className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><TrendingUp className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Finance</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Compound interest using e^x. Logarithmic returns. Matrix methods for portfolio optimization.</p>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-700">
-            <p className="font-bold text-orange-900 dark:text-orange-300 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Data Analysis</p>
-            <p className="text-sm">Statistical measures (mean, std dev) for data insights. Linear regression for trend analysis and predictions.</p>
+          <div className="info-panel">
+            <p className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Data Analysis</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">Statistical measures (mean, std dev) for data insights. Linear regression for trend analysis and predictions.</p>
           </div>
         </div>
       </div>
@@ -537,7 +537,7 @@ function DisplayPanel({
           </span>
         )}
         {isShift && (
-          <span className="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded">
+          <span className="inline-block bg-violet-500 text-white text-xs px-2 py-1 rounded">
             SHIFT
           </span>
         )}
@@ -573,10 +573,10 @@ function ButtonGrid({
   const buttonClasses = {
     system: 'bg-gray-700 dark:bg-gray-600 text-white hover:bg-gray-600 dark:hover:bg-gray-500',
     number: 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700',
-    operator: 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800',
-    function: 'bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/30 dark:to-violet-900/30 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-700 hover:shadow-md',
-    advanced: 'bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-900/30 dark:to-cyan-900/30 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-700 hover:shadow-md',
-    execute: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-bold',
+    operator: 'bg-gradient-to-r from-violet-600 to-violet-700 text-white hover:from-violet-700 hover:to-violet-800',
+    function: 'bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-700 hover:shadow-md',
+    advanced: 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:shadow-md',
+    execute: 'bg-gradient-to-r from-violet-600 to-violet-700 text-white hover:from-violet-700 hover:to-violet-800 font-bold',
   };
 
   const Button = ({ label, onClick, className = '', disabled = false }: { label: string; onClick: () => void; className?: string; disabled?: boolean }) => (
@@ -915,12 +915,12 @@ function StatResultCard({ statData }: { statData: StatDataPoint[] }) {
         </div>
       </div>
 
-      <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-        <p className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">Linear Regression</p>
-        <p className="text-lg font-bold text-blue-700 dark:text-blue-300">
+      <div className="info-panel">
+        <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Linear Regression</p>
+        <p className="text-lg font-bold text-violet-700 dark:text-violet-300">
           y = {reg.slope.toFixed(6)}x + {reg.intercept.toFixed(6)}
         </p>
-        <p className="text-sm mt-2 text-blue-700 dark:text-blue-300">
+        <p className="text-sm mt-2 text-gray-600 dark:text-gray-300">
           r² = {(reg.r * reg.r).toFixed(6)}
         </p>
       </div>
