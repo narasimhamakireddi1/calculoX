@@ -218,29 +218,17 @@ export default function RetirementCalculatorPage() {
     return () => clearTimeout(timer);
   }, [watchValues]);
 
+  // Single blue accent for every slider (design-system: one accent per page).
+  // Keys retained so field call-sites need no change; all resolve to blue.
+  const BLUE_RANGE = 'w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600';
+  const BLUE_NUMBER = 'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700';
   const sliderRange = {
-    blue:    'w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600',
-    purple:  'w-full flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600',
-    green:   'w-full flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600',
-    emerald: 'w-full flex-1 h-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-lg appearance-none cursor-pointer accent-emerald-600',
-    orange:  'w-full flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600',
-    rose:    'w-full flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600',
-    cyan:    'w-full flex-1 h-3 bg-gradient-to-r from-cyan-300 to-cyan-600 rounded-lg appearance-none cursor-pointer accent-cyan-600',
-    amber:   'w-full flex-1 h-3 bg-gradient-to-r from-amber-300 to-amber-600 rounded-lg appearance-none cursor-pointer accent-amber-600',
-    indigo:  'w-full flex-1 h-3 bg-gradient-to-r from-indigo-300 to-indigo-600 rounded-lg appearance-none cursor-pointer accent-indigo-600',
-    teal:    'w-full flex-1 h-3 bg-gradient-to-r from-teal-300 to-teal-600 rounded-lg appearance-none cursor-pointer accent-teal-600',
+    blue: BLUE_RANGE, purple: BLUE_RANGE, green: BLUE_RANGE, emerald: BLUE_RANGE, orange: BLUE_RANGE,
+    rose: BLUE_RANGE, cyan: BLUE_RANGE, amber: BLUE_RANGE, indigo: BLUE_RANGE, teal: BLUE_RANGE,
   };
   const sliderNumber = {
-    blue:    'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700',
-    purple:  'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700',
-    green:   'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700',
-    emerald: 'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700',
-    orange:  'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700',
-    rose:    'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-rose-400 rounded-lg font-bold text-rose-700 bg-rose-50 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-700',
-    cyan:    'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-cyan-400 rounded-lg font-bold text-cyan-700 bg-cyan-50 dark:bg-cyan-900/20 dark:text-cyan-400 dark:border-cyan-700',
-    amber:   'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-amber-400 rounded-lg font-bold text-amber-700 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-700',
-    indigo:  'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-indigo-400 rounded-lg font-bold text-indigo-700 bg-indigo-50 dark:bg-indigo-900/20 dark:text-indigo-400 dark:border-indigo-700',
-    teal:    'w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-teal-400 rounded-lg font-bold text-teal-700 bg-teal-50 dark:bg-teal-900/20 dark:text-teal-400 dark:border-teal-700',
+    blue: BLUE_NUMBER, purple: BLUE_NUMBER, green: BLUE_NUMBER, emerald: BLUE_NUMBER, orange: BLUE_NUMBER,
+    rose: BLUE_NUMBER, cyan: BLUE_NUMBER, amber: BLUE_NUMBER, indigo: BLUE_NUMBER, teal: BLUE_NUMBER,
   };
 
   return (
@@ -248,7 +236,7 @@ export default function RetirementCalculatorPage() {
       {/* Page Header */}
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="retirement" className="w-6 h-6 text-white" />
           </span>
           <span>Retirement Corpus Calculator</span>
@@ -262,38 +250,38 @@ export default function RetirementCalculatorPage() {
       {result && (
         <div className="space-y-3">
           {/* Hero metric */}
-          <div className="card bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/20 border-2 border-purple-300 dark:border-purple-700 shadow-lg p-6 sm:p-8">
-            <p className="text-purple-700 dark:text-purple-300 text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-1.5">
+          <div className="card bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/20 border-2 border-blue-300 dark:border-blue-700 shadow-lg p-6 sm:p-8">
+            <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly SIP Required
             </p>
-            <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-purple-700 dark:text-purple-400 whitespace-nowrap leading-tight">
+            <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">
               {formatCurrency(result.monthly_sip_required)}
             </p>
-            <p className="text-xs text-purple-600 dark:text-purple-300 mt-2 font-medium">
+            <p className="text-xs text-blue-600 dark:text-blue-300 mt-2 font-medium">
               starting today for {result.accumulationYears} years
             </p>
           </div>
 
           {/* Secondary metrics */}
           <div className="grid grid-cols-2 gap-2 sm:gap-3">
-            <div className="card bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 border border-emerald-200 dark:border-emerald-700 shadow-sm p-3 sm:p-4 min-w-0">
-              <p className="text-emerald-600 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
+            <div className="stat-tile">
+              <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                 <Coins className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly at Retirement
               </p>
-              <p className="text-sm sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap">
+              <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
                 {formatCurrency(result.monthly_expense_at_retirement)}
               </p>
-              <p className="text-xs text-emerald-600 dark:text-emerald-300 mt-0.5">in {result.accumulationYears} years</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">in {result.accumulationYears} years</p>
             </div>
 
-            <div className="card bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 border border-blue-200 dark:border-blue-700 shadow-sm p-3 sm:p-4 min-w-0">
-              <p className="text-blue-600 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
+            <div className="stat-tile">
+              <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                 <Target className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Corpus Required
               </p>
-              <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 whitespace-nowrap">
+              <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
                 {formatCurrency(result.total_corpus_required)}
               </p>
-              <p className="text-xs text-blue-600 dark:text-blue-300 mt-0.5">for {result.distributionYears} years</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">for {result.distributionYears} years</p>
             </div>
           </div>
         </div>
@@ -662,18 +650,18 @@ export default function RetirementCalculatorPage() {
             {/* Clear Button */}
             <button
               onClick={handleReset}
-              className="w-full mt-6 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
+              className="btn-ghost w-full mt-6 inline-flex items-center justify-center gap-1.5"
             >
               <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
 
             {/* Formula Reference */}
-            <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> NISM Framework</h4>
-              <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
-                <p><strong>25x Rule:</strong> Corpus = 25 × Annual Expense Needed</p>
-                <p><strong>Corpus = FV of Savings + SIP Amount</strong></p>
-                <p><strong>Real Return:</strong> = Nominal - Inflation</p>
+            <div className="info-panel mt-6">
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> NISM Framework</h4>
+              <div className="space-y-2 text-xs text-gray-600 dark:text-gray-300">
+                <p><strong className="text-gray-900 dark:text-white">25x Rule:</strong> Corpus = 25 × Annual Expense Needed</p>
+                <p><strong className="text-gray-900 dark:text-white">Corpus = FV of Savings + SIP Amount</strong></p>
+                <p><strong className="text-gray-900 dark:text-white">Real Return:</strong> = Nominal - Inflation</p>
               </div>
             </div>
           </div>
@@ -689,50 +677,50 @@ export default function RetirementCalculatorPage() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* Current Savings Future Value */}
-                  <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/30 dark:to-blue-900/30 p-4 rounded-lg border border-cyan-300 dark:border-cyan-700">
-                    <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1.5">
-                      <Briefcase className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> FV of Current Savings
+                  <div className="info-panel">
+                    <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1.5">
+                      <Briefcase className="w-3.5 h-3.5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> FV of Current Savings
                     </p>
-                    <p className="text-2xl font-bold text-cyan-700 dark:text-cyan-400">
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {formatCurrency(result.fv_of_current_savings)}
                     </p>
-                    <p className="text-xs text-cyan-600 dark:text-cyan-300 mt-1">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                       Grown at {watchValues.pre_retirement_return_pct}% p.a. for {result.accumulationYears} years
                     </p>
                   </div>
 
                   {/* Shortfall Corpus */}
-                  <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/30 dark:to-red-900/30 p-4 rounded-lg border border-orange-300 dark:border-orange-700">
-                    <p className="text-orange-700 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1.5">
-                      <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Shortfall Corpus
+                  <div className="info-panel">
+                    <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-2 flex items-center gap-1.5">
+                      <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0 text-amber-600 dark:text-amber-400" strokeWidth={2} aria-hidden="true" /> Shortfall Corpus
                     </p>
-                    <p className="text-2xl font-bold text-orange-700 dark:text-orange-400">
+                    <p className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                       {formatCurrency(result.net_shortfall_to_build)}
                     </p>
-                    <p className="text-xs text-orange-600 dark:text-orange-300 mt-1">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                       Amount to be built via SIP from today
                     </p>
                   </div>
                 </div>
 
                 {/* Understanding Retirement Corpus */}
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                  <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your Retirement Plan</h3>
-                  <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+                <div className="info-panel">
+                  <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Understanding Your Retirement Plan</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
                     The NISM framework calculates how much corpus you need to retire comfortably. It accounts for inflation and ensures your money lasts throughout retirement.
                   </p>
-                  <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                    <p><strong>FV of Current Savings:</strong> {formatCurrency(result.fv_of_current_savings)} - How your existing savings will grow until retirement</p>
-                    <p><strong>Shortfall Corpus:</strong> {formatCurrency(result.net_shortfall_to_build)} - Additional amount needed (build via SIP)</p>
-                    <p><strong>Accumulation Phase:</strong> {result.accumulationYears} years - Time to save/grow money until retirement</p>
-                    <p><strong>Distribution Phase:</strong> {result.distributionYears} years - Years you'll live off corpus post-retirement</p>
+                  <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                    <p><strong className="text-gray-900 dark:text-white">FV of Current Savings:</strong> {formatCurrency(result.fv_of_current_savings)} - How your existing savings will grow until retirement</p>
+                    <p><strong className="text-gray-900 dark:text-white">Shortfall Corpus:</strong> {formatCurrency(result.net_shortfall_to_build)} - Additional amount needed (build via SIP)</p>
+                    <p><strong className="text-gray-900 dark:text-white">Accumulation Phase:</strong> {result.accumulationYears} years - Time to save/grow money until retirement</p>
+                    <p><strong className="text-gray-900 dark:text-white">Distribution Phase:</strong> {result.distributionYears} years - Years you'll live off corpus post-retirement</p>
                   </div>
                 </div>
 
                 {/* Key Insights */}
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                  <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
-                  <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+                <div className="info-panel">
+                  <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
+                  <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                     <p>
                       <strong>Monthly SIP Needed:</strong> Build {formatCurrency(result.net_shortfall_to_build)} via monthly investments at {watchValues.pre_retirement_return_pct}% returns
                     </p>
@@ -748,16 +736,16 @@ export default function RetirementCalculatorPage() {
                   </div>
                 </div>
 
-                <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-                  <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
-                  <p className="text-sm text-amber-700 dark:text-amber-300">
-                    Your retirement corpus target of <strong>{formatCurrency(result.net_shortfall_to_build + result.fv_of_current_savings)}</strong> is based on the NISM 25x rule. With a monthly withdrawal of ₹{(watchValues.present_monthly_expenses * (1 - watchValues.expense_reduction_pct / 100)).toFixed(0)} and a {watchValues.post_retirement_return_pct}% real return rate, your corpus is designed to last {result.distributionYears} years while beating inflation. The 4% safe withdrawal rule suggests you can sustain monthly withdrawals without depleting your corpus.
+                <div className="info-panel">
+                  <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-amber-600 dark:text-amber-400" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    Your retirement corpus target of <strong className="text-gray-900 dark:text-white">{formatCurrency(result.net_shortfall_to_build + result.fv_of_current_savings)}</strong> is based on the NISM 25x rule. With a monthly withdrawal of ₹{(watchValues.present_monthly_expenses * (1 - watchValues.expense_reduction_pct / 100)).toFixed(0)} and a {watchValues.post_retirement_return_pct}% real return rate, your corpus is designed to last {result.distributionYears} years while beating inflation. The 4% safe withdrawal rule suggests you can sustain monthly withdrawals without depleting your corpus.
                   </p>
                 </div>
 
-                <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
-                  <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                    <strong>Note:</strong> This calculator uses NISM framework with inflation-adjusted real rate of return to ensure your purchasing power is preserved during retirement.
+                <div className="info-panel border-l-4 border-amber-400">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <strong className="text-gray-900 dark:text-white">Note:</strong> This calculator uses NISM framework with inflation-adjusted real rate of return to ensure your purchasing power is preserved during retirement.
                   </p>
                 </div>
 
