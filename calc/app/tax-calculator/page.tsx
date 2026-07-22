@@ -136,35 +136,21 @@ const INITIAL_TAX_RESULT = (() => {
   try { return calculateComprehensiveTax(buildTaxInput(DEFAULT_TAX_VALUES)); } catch { return null; }
 })();
 
+// Single blue accent for every slider (design-system: one accent per page).
+// Keys retained so call sites need no change; all resolve to the blue treatment.
+const BLUE_SLIDER = {
+  track: 'bg-gradient-to-r from-blue-300 to-blue-600 accent-blue-600',
+  input: 'border-blue-400 text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700',
+} as const;
+
 const SLIDER_COLORS = {
-  blue: {
-    track: 'bg-gradient-to-r from-blue-300 to-blue-600 accent-blue-600',
-    input: 'border-blue-400 text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700',
-  },
-  orange: {
-    track: 'bg-gradient-to-r from-orange-300 to-orange-600 accent-orange-600',
-    input: 'border-orange-400 text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700',
-  },
-  purple: {
-    track: 'bg-gradient-to-r from-purple-300 to-purple-600 accent-purple-600',
-    input: 'border-purple-400 text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700',
-  },
-  green: {
-    track: 'bg-gradient-to-r from-green-300 to-green-600 accent-green-600',
-    input: 'border-green-400 text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700',
-  },
-  red: {
-    track: 'bg-gradient-to-r from-red-300 to-red-600 accent-red-600',
-    input: 'border-red-400 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 dark:border-red-700',
-  },
-  amber: {
-    track: 'bg-gradient-to-r from-amber-300 to-amber-600 accent-amber-600',
-    input: 'border-amber-400 text-amber-700 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-700',
-  },
-  cyan: {
-    track: 'bg-gradient-to-r from-cyan-300 to-cyan-600 accent-cyan-600',
-    input: 'border-cyan-400 text-cyan-700 bg-cyan-50 dark:bg-cyan-900/20 dark:text-cyan-400 dark:border-cyan-700',
-  },
+  blue: BLUE_SLIDER,
+  orange: BLUE_SLIDER,
+  purple: BLUE_SLIDER,
+  green: BLUE_SLIDER,
+  red: BLUE_SLIDER,
+  amber: BLUE_SLIDER,
+  cyan: BLUE_SLIDER,
 } as const;
 
 const SliderField = memo(({
@@ -311,7 +297,7 @@ export default function TaxCalculator() {
       {/* Header */}
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="tax" className="w-6 h-6 text-white" />
           </span>
           <span>Income Tax Calculator</span>
@@ -633,7 +619,7 @@ export default function TaxCalculator() {
           <button
             type="button"
             onClick={handleReset}
-            className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2"
+            className="btn-ghost w-full flex items-center justify-center gap-1.5"
           >
             <Trash2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Clear All
           </button>
@@ -659,17 +645,17 @@ export default function TaxCalculator() {
                     return (
                       <div
                         key={reg}
-                        className={`p-3 rounded-lg border-2 min-w-0 ${
+                        className={`p-3 rounded-xl border-2 min-w-0 ${
                           isRecommended
-                            ? 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
+                            ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-400 dark:border-emerald-600'
                             : 'bg-gray-50 dark:bg-gray-700/50 border-gray-200 dark:border-gray-600'
                         }`}
                       >
                         <p className="text-xs uppercase tracking-wide font-semibold text-gray-600 dark:text-gray-300 mb-1 flex items-center gap-1">
                           {reg === 'new' ? 'New Regime' : 'Old Regime'}
-                          {isRecommended && <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-green-600 dark:text-green-400" strokeWidth={2} aria-hidden="true" />}
+                          {isRecommended && <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" />}
                         </p>
-                        <p className={`text-lg sm:text-2xl font-black whitespace-nowrap ${isRecommended ? 'text-green-700 dark:text-green-400' : 'text-gray-800 dark:text-gray-200'}`}>
+                        <p className={`text-lg sm:text-2xl font-black whitespace-nowrap ${isRecommended ? 'text-emerald-700 dark:text-emerald-400' : 'text-gray-800 dark:text-gray-200'}`}>
                           {formatCurrency(r.totalTax)}
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Effective: {r.effectiveRate.toFixed(2)}%</p>
@@ -680,8 +666,8 @@ export default function TaxCalculator() {
 
                 {/* Recommendation */}
                 {result.savings > 0 && (
-                  <div className="mt-3 p-2.5 bg-blue-50 dark:bg-blue-900/20 border border-blue-300 dark:border-blue-700 rounded-lg">
-                    <p className="text-sm font-semibold text-blue-900 dark:text-blue-300 flex items-center gap-1.5">
+                  <div className="mt-3 p-2.5 rounded-xl border border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20">
+                    <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
                       <Sparkles className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
                       Choose {result.recommended === 'new' ? 'New' : 'Old'} Regime — save {formatCurrency(result.savings)}
                     </p>
@@ -691,21 +677,21 @@ export default function TaxCalculator() {
                 {/* Secondary metrics */}
                 {getRegimeResult() && (
                   <div className="grid grid-cols-3 gap-2 mt-3">
-                    <div className="p-2.5 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 min-w-0">
-                      <p className="text-blue-600 dark:text-blue-300 text-xs font-semibold mb-0.5">Total Income</p>
-                      <p className="text-sm font-bold text-blue-700 dark:text-blue-400 whitespace-nowrap">
+                    <div className="stat-tile p-2.5">
+                      <p className="text-gray-500 dark:text-gray-400 text-xs font-semibold mb-0.5">Total Income</p>
+                      <p className="text-sm font-bold text-gray-900 dark:text-white whitespace-nowrap">
                         {formatCurrency(getRegimeResult()!.grossSalary + (getRegimeResult()!.grossTotalIncome - (getRegimeResult()!.grossSalary - getRegimeResult()!.standardDeduction)))}
                       </p>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 min-w-0">
-                      <p className="text-purple-600 dark:text-purple-300 text-xs font-semibold mb-0.5">Taxable Income</p>
-                      <p className="text-sm font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">
+                    <div className="stat-tile p-2.5">
+                      <p className="text-gray-500 dark:text-gray-400 text-xs font-semibold mb-0.5">Taxable Income</p>
+                      <p className="text-sm font-bold text-gray-900 dark:text-white whitespace-nowrap">
                         {formatCurrency(getRegimeResult()!.taxableIncome)}
                       </p>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-700 min-w-0">
-                      <p className="text-orange-600 dark:text-orange-300 text-xs font-semibold mb-0.5">Slab Tax</p>
-                      <p className="text-sm font-bold text-orange-700 dark:text-orange-400 whitespace-nowrap">
+                    <div className="stat-tile p-2.5">
+                      <p className="text-gray-500 dark:text-gray-400 text-xs font-semibold mb-0.5">Slab Tax</p>
+                      <p className="text-sm font-bold text-gray-900 dark:text-white whitespace-nowrap">
                         {formatCurrency(getRegimeResult()!.slabTax)}
                       </p>
                     </div>
@@ -796,10 +782,10 @@ export default function TaxCalculator() {
                   </summary>
                   <div className="grid sm:grid-cols-2 gap-3 mt-3">
                     {result.recommendations.slice(0, 4).map((rec, idx) => (
-                      <div key={idx} className="p-3 bg-white dark:bg-gray-700 rounded-lg border border-blue-300 dark:border-blue-600">
+                      <div key={idx} className="p-3 bg-white dark:bg-gray-700 rounded-xl border border-gray-200 dark:border-gray-600">
                         <p className="font-semibold text-gray-900 dark:text-white text-sm">{rec.section}</p>
                         <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{rec.description}</p>
-                        <p className="text-sm font-bold text-green-700 dark:text-green-400 mt-2">
+                        <p className="text-sm font-bold text-emerald-700 dark:text-emerald-400 mt-2">
                           Save up to {formatCurrency(rec.potentialSaving)}
                         </p>
                       </div>
@@ -837,25 +823,25 @@ export default function TaxCalculator() {
                 height={300}
               />
               <div className="space-y-3 text-sm">
-                <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700">
+                <div className="flex justify-between items-center p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-700">
                   <span className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full inline-block bg-green-500" />
+                    <span className="w-3 h-3 rounded-full inline-block bg-emerald-500" />
                     <span className="text-gray-600 dark:text-gray-400">Take-Home Pay</span>
                   </span>
                   <span className="font-bold text-gray-900 dark:text-white">{formatCurrency(getRegimeResult()!.grossSalary - getRegimeResult()!.totalTax)}</span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-700">
+                <div className="flex justify-between items-center p-3 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-200 dark:border-red-700">
                   <span className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full inline-block bg-red-500" />
                     <span className="text-gray-600 dark:text-gray-400">Tax Payable</span>
                   </span>
                   <span className="font-bold text-gray-900 dark:text-white">{formatCurrency(getRegimeResult()!.totalTax)}</span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-green-50 to-red-50 dark:from-green-900/20 dark:to-red-900/20 rounded-lg border-t-2 border-gray-300 dark:border-gray-700 mt-2 pt-4">
+                <div className="flex justify-between items-center p-3 rounded-xl border-t-2 border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 mt-2 pt-4">
                   <span className="text-gray-600 dark:text-gray-400 font-semibold">Gross Income</span>
                   <span className="font-bold text-gray-900 dark:text-white text-lg">{formatCurrency(getRegimeResult()!.grossSalary)}</span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700 mt-2">
+                <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-700 mt-2">
                   <span className="text-gray-600 dark:text-gray-400 font-semibold">Effective Tax Rate</span>
                   <span className="font-bold text-blue-700 dark:text-blue-400 text-lg">{getRegimeResult()!.effectiveRate.toFixed(2)}%</span>
                 </div>
@@ -879,10 +865,10 @@ export default function TaxCalculator() {
           </div>
 
           {/* How Do You Compare */}
-          <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-            <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
-            <p className="text-sm text-amber-700 dark:text-amber-300">
-              You save <strong>{formatCurrency(result.savings)}</strong> by choosing the <strong>{result.recommended === 'new' ? 'New' : 'Old'}</strong> regime. With an effective tax rate of <strong>{getRegimeResult()!.effectiveRate.toFixed(2)}%</strong>, your deductions and income level position you well. Consider maximizing 80C (₹1.5L), 80D (health insurance), and 24(b) (₹2L home loan interest) in the Old Regime for additional tax savings.
+          <div className="info-panel">
+            <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-amber-600 dark:text-amber-400" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              You save <strong className="text-gray-900 dark:text-white">{formatCurrency(result.savings)}</strong> by choosing the <strong className="text-gray-900 dark:text-white">{result.recommended === 'new' ? 'New' : 'Old'}</strong> regime. With an effective tax rate of <strong className="text-gray-900 dark:text-white">{getRegimeResult()!.effectiveRate.toFixed(2)}%</strong>, your deductions and income level position you well. Consider maximizing 80C (₹1.5L), 80D (health insurance), and 24(b) (₹2L home loan interest) in the Old Regime for additional tax savings.
             </p>
           </div>
         </div>
@@ -912,32 +898,37 @@ export default function TaxCalculator() {
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
-                  <td className="py-3 px-4 font-semibold">Upto ₹3 Lakh</td>
+                  <td className="py-3 px-4 font-semibold">Upto ₹4 Lakh</td>
                   <td className="text-center py-3 px-4">Nil (0%)</td>
                   <td className="text-center py-3 px-4">₹0</td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
-                  <td className="py-3 px-4 font-semibold">₹3L - ₹6L</td>
+                  <td className="py-3 px-4 font-semibold">₹4L - ₹8L</td>
                   <td className="text-center py-3 px-4">5%</td>
-                  <td className="text-center py-3 px-4">₹15,000</td>
+                  <td className="text-center py-3 px-4">₹20,000</td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
-                  <td className="py-3 px-4 font-semibold">₹6L - ₹9L</td>
+                  <td className="py-3 px-4 font-semibold">₹8L - ₹12L</td>
                   <td className="text-center py-3 px-4">10%</td>
-                  <td className="text-center py-3 px-4">₹30,000</td>
+                  <td className="text-center py-3 px-4">₹40,000</td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
-                  <td className="py-3 px-4 font-semibold">₹9L - ₹12L</td>
+                  <td className="py-3 px-4 font-semibold">₹12L - ₹16L</td>
                   <td className="text-center py-3 px-4">15%</td>
-                  <td className="text-center py-3 px-4">₹45,000</td>
-                </tr>
-                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
-                  <td className="py-3 px-4 font-semibold">₹12L - ₹15L</td>
-                  <td className="text-center py-3 px-4">20%</td>
                   <td className="text-center py-3 px-4">₹60,000</td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
-                  <td className="py-3 px-4 font-semibold">Above ₹15L</td>
+                  <td className="py-3 px-4 font-semibold">₹16L - ₹20L</td>
+                  <td className="text-center py-3 px-4">20%</td>
+                  <td className="text-center py-3 px-4">₹80,000</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">₹20L - ₹24L</td>
+                  <td className="text-center py-3 px-4">25%</td>
+                  <td className="text-center py-3 px-4">₹1,00,000</td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <td className="py-3 px-4 font-semibold">Above ₹24L</td>
                   <td className="text-center py-3 px-4">30%</td>
                   <td className="text-center py-3 px-4">30% of excess</td>
                 </tr>
@@ -989,22 +980,22 @@ export default function TaxCalculator() {
         <div className="card">
           <h2 className="text-2xl font-bold mb-4">New vs Old Tax Regime: Which Should You Choose?</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="border-l-4 border-green-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Sparkles className="w-5 h-5 flex-shrink-0 text-green-600 dark:text-green-400" strokeWidth={2} aria-hidden="true" /> New Regime (Default)</h3>
+            <div className="border-l-4 border-blue-500 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Sparkles className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> New Regime (Default)</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-3"><strong>Lower tax rates, no deductions (except specific ones)</strong></p>
               <p className="text-xs text-gray-600 dark:text-gray-400 mb-2"><strong>Pros:</strong> Lower tax rates, rebate up to ₹60K, standard deduction of ₹75K</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Cons:</strong> No HRA, LTA, 80C, 80D deductions</p>
             </div>
-            <div className="border-l-4 border-blue-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Clock className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Old Regime</h3>
+            <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Clock className="w-5 h-5 flex-shrink-0 text-gray-400" strokeWidth={2} aria-hidden="true" /> Old Regime</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-3"><strong>Higher rates, but maximum deductions available</strong></p>
               <p className="text-xs text-gray-600 dark:text-gray-400 mb-2"><strong>Pros:</strong> HRA, LTA, 80C, 80D, 24b deductions allowed</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Cons:</strong> Higher tax rates, complex calculations</p>
             </div>
           </div>
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <div className="info-panel mt-6">
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              <strong>Verdict:</strong> Old Regime is better if your deductions (HRA + 80C + 80D) exceed ₹5-7 lakhs. New Regime is better for those with minimal deductions. Always calculate both and choose the one that gives lower tax!
+              <strong className="text-gray-900 dark:text-white">Verdict:</strong> The Old Regime only wins if your deductions (HRA + 80C + 80D + home loan) are very large — roughly ₹8 lakh or more at higher incomes. For most salaried people the New Regime is cheaper (income up to ₹12.75L is tax-free). Always calculate both and choose the one that gives lower tax!
             </p>
           </div>
         </div>
