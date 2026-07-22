@@ -200,7 +200,7 @@ export default function SIPCalculatorPage() {
     <div className="space-y-8 py-8">
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="sip" className="w-6 h-6 text-white" />
           </span>
           <span>SIP Calculator</span>
@@ -235,7 +235,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.monthlyInvestment === 0 ? "" : watchValues.monthlyInvestment}
                   onChange={(e) => handleInputChange('monthlyInvestment', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyInvestment', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
                   id="monthly-investment"
@@ -246,7 +246,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.monthlyInvestment === 0 ? "" : watchValues.monthlyInvestment}
                   onChange={(e) => handleInputChange('monthlyInvestment', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyInvestment', Number(e.target.value))}
-                  className="w-full min-w-0 md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full min-w-0 md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.monthlyInvestment && (
@@ -255,9 +255,9 @@ export default function SIPCalculatorPage() {
               <div className="flex gap-2 flex-wrap mt-3">
                 {[1000, 5000, 10000, 25000].map(val => (
                   <button key={val} type="button" onClick={() => handleInputChange('monthlyInvestment', val)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
-                               bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
-                               hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                     ₹{val >= 1000 ? `${val / 1000}K` : val}
                   </button>
                 ))}
@@ -322,7 +322,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.annualReturn === 0 ? "" : watchValues.annualReturn}
                   onChange={(e) => handleInputChange('annualReturn', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualReturn', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
                   id="annual-return"
@@ -333,7 +333,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.annualReturn === 0 ? "" : watchValues.annualReturn}
                   onChange={(e) => handleInputChange('annualReturn', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('annualReturn', Number(e.target.value))}
-                  className="w-full min-w-0 md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                  className="w-full min-w-0 md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.annualReturn && (
@@ -353,7 +353,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.stepUpPercent === 0 ? "" : watchValues.stepUpPercent}
                   onChange={(e) => handleInputChange('stepUpPercent', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('stepUpPercent', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
                   id="step-up"
@@ -364,7 +364,7 @@ export default function SIPCalculatorPage() {
                   value={watchValues.stepUpPercent === 0 ? "" : watchValues.stepUpPercent}
                   onChange={(e) => handleInputChange('stepUpPercent', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('stepUpPercent', Number(e.target.value))}
-                  className="w-full min-w-0 md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                  className="w-full min-w-0 md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.stepUpPercent && (
@@ -376,9 +376,9 @@ export default function SIPCalculatorPage() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              className="btn-ghost w-full inline-flex items-center justify-center gap-1.5"
             >
-              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
+              <Trash2 className="w-4 h-4" aria-hidden="true" /> Clear All
             </button>
           </form>
         </div>
@@ -390,64 +390,64 @@ export default function SIPCalculatorPage() {
               <h2 className="text-2xl font-bold mb-6">Investment Results</h2>
 
               {/* Hero metric */}
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 p-6 sm:p-8 rounded-xl border-2 border-green-300 dark:border-green-700 shadow-lg">
-                <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><Target className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Future Value (Maturity)</p>
-                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-green-700 dark:text-green-400 whitespace-nowrap leading-tight">
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/20 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
+                <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><Target className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Future Value (Maturity)</p>
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">
                   {formatCurrency(result.futureValue)}
                 </p>
-                <p className="text-xs text-green-600 dark:text-green-400 mt-2 font-medium">after {watchValues.years} year{watchValues.years > 1 ? 's' : ''} at {watchValues.annualReturn}% return</p>
+                <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 font-medium">after {watchValues.years} year{watchValues.years > 1 ? 's' : ''} at {watchValues.annualReturn}% return</p>
               </div>
 
               {/* Secondary metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm min-w-0">
+                <div className="stat-tile">
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Total Invested</p>
                   <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
                     {formatCurrency(result.totalInvestment)}
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm min-w-0">
-                  <p className="text-blue-600 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Gains</p>
-                  <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 whitespace-nowrap">
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Gains</p>
+                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
                     {formatCurrency(result.gainedAmount)}
                   </p>
                 </div>
 
-                <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
-                  <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1">Return Rate</p>
-                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">
+                <div className="stat-tile col-span-2 sm:col-span-1">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Return Rate</p>
+                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
                     {((result.gainedAmount / result.totalInvestment) * 100).toFixed(1)}%
                   </p>
                 </div>
               </div>
 
               {/* Result Explanation */}
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your Results</h3>
-                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                  <p><strong>Total Invested:</strong> The sum of all your monthly SIP contributions over {watchValues.years} year{watchValues.years > 1 ? 's' : ''} (including step-up increases)</p>
-                  <p><strong>Future Value:</strong> Your total amount after growth at {watchValues.annualReturn}% annual return - this is your maturity amount</p>
-                  <p><strong>Total Gains:</strong> The profit you'll earn = Future Value - Total Invested. This is your investment growth from compound returns</p>
-                  <p><strong>Return Rate:</strong> The percentage gain on your invested amount. Higher % = better investment performance</p>
+              <div className="info-panel">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Understanding Your Results</h3>
+                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  <p><strong className="text-gray-900 dark:text-white">Total Invested:</strong> The sum of all your monthly SIP contributions over {watchValues.years} year{watchValues.years > 1 ? 's' : ''} (including step-up increases)</p>
+                  <p><strong className="text-gray-900 dark:text-white">Future Value:</strong> Your total amount after growth at {watchValues.annualReturn}% annual return - this is your maturity amount</p>
+                  <p><strong className="text-gray-900 dark:text-white">Total Gains:</strong> The profit you'll earn = Future Value - Total Invested. This is your investment growth from compound returns</p>
+                  <p><strong className="text-gray-900 dark:text-white">Return Rate:</strong> The percentage gain on your invested amount. Higher % = better investment performance</p>
                 </div>
               </div>
 
               {/* Investment Insights */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
-                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
-                  <p>• Your money grows <strong>{((result.futureValue / result.totalInvestment) - 1).toFixed(1)}x</strong> over {watchValues.years} year{watchValues.years > 1 ? 's' : ''}</p>
-                  <p>• Monthly investment of <strong>₹{watchValues.monthlyInvestment.toLocaleString('en-IN')}</strong> becomes <strong>₹{(result.futureValue / (watchValues.years * 12)).toLocaleString('en-IN')}</strong> per month in terms of value</p>
-                  <p>• <strong>{((result.gainedAmount / result.futureValue) * 100).toFixed(0)}%</strong> of your final amount is pure profit from returns</p>
+              <div className="info-panel">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
+                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  <p>• Your money grows <strong className="text-gray-900 dark:text-white">{((result.futureValue / result.totalInvestment) - 1).toFixed(1)}x</strong> over {watchValues.years} year{watchValues.years > 1 ? 's' : ''}</p>
+                  <p>• Monthly investment of <strong className="text-gray-900 dark:text-white">₹{watchValues.monthlyInvestment.toLocaleString('en-IN')}</strong> becomes <strong className="text-gray-900 dark:text-white">₹{(result.futureValue / (watchValues.years * 12)).toLocaleString('en-IN')}</strong> per month in terms of value</p>
+                  <p>• <strong className="text-gray-900 dark:text-white">{((result.gainedAmount / result.futureValue) * 100).toFixed(0)}%</strong> of your final amount is pure profit from returns</p>
                   {watchValues.stepUpPercent > 0 && <p>• Annual {watchValues.stepUpPercent}% step-up adds ₹{((result.totalInvestment - (watchValues.monthlyInvestment * 12 * watchValues.years))).toLocaleString('en-IN')} extra over the period</p>}
                 </div>
               </div>
 
-              <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
-                <p className="text-sm text-amber-700 dark:text-amber-300">
-                  Your projected corpus of <strong>{formatCurrency(result.futureValue)}</strong> demonstrates the power of disciplined investing. Consistent SIP investments typically outperform market timing, and a 12-13% return rate (index fund average) has historically beaten inflation by 6-7% annually. Your {watchValues.stepUpPercent}% annual step-up accelerates wealth accumulation.
+              <div className="info-panel mb-6">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-amber-600 dark:text-amber-400" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Your projected corpus of <strong className="text-gray-900 dark:text-white">{formatCurrency(result.futureValue)}</strong> demonstrates the power of disciplined investing. Consistent SIP investments typically outperform market timing, and a 12-13% return rate (index fund average) has historically beaten inflation by 6-7% annually. Your {watchValues.stepUpPercent}% annual step-up accelerates wealth accumulation.
                 </p>
               </div>
 
@@ -502,9 +502,9 @@ export default function SIPCalculatorPage() {
 
       {/* Step-up Info */}
       {projections.length > 0 && (watchValues.stepUpPercent || 0) > 0 && (
-        <div className="card p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500">
-          <p className="text-sm text-purple-900 dark:text-purple-300">
-            <span className="font-semibold">Step-up Active:</span> Your monthly investment increases by <span className="font-bold text-lg">{(watchValues.stepUpPercent || 0).toFixed(1)}%</span> each year. This helps your SIP grow with your income!
+        <div className="info-panel border-l-4 border-blue-500">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
+            <span className="font-semibold text-gray-900 dark:text-white">Step-up Active:</span> Your monthly investment increases by <span className="font-bold text-lg text-blue-600 dark:text-blue-400">{(watchValues.stepUpPercent || 0).toFixed(1)}%</span> each year. This helps your SIP grow with your income!
           </p>
         </div>
       )}
@@ -618,27 +618,27 @@ export default function SIPCalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">Key Benefits of SIP Investment</h2>
           <ol className="space-y-3 text-gray-700 dark:text-gray-300">
             <li className="flex gap-3">
-              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">1.</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">1.</span>
               <span><strong>Rupee Cost Averaging:</strong> You buy more units when prices are low and fewer when prices are high, reducing the average cost per unit over time.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">2.</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">2.</span>
               <span><strong>Flexibility:</strong> Adjust or stop your SIP anytime without penalties. Most funds allow pauses and increases.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">3.</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">3.</span>
               <span><strong>Low Entry Barrier:</strong> Start with as little as ₹500/month. No lump sum needed to begin investing.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">4.</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">4.</span>
               <span><strong>Disciplined Investing:</strong> Automatic monthly deductions encourage consistent habit-building without emotional decisions.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">5.</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">5.</span>
               <span><strong>Power of Compounding:</strong> Long-term SIP investments can create substantial wealth through compound returns.</span>
             </li>
             <li className="flex gap-3">
-              <span className="font-bold text-green-600 dark:text-green-400 flex-shrink-0">6.</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 flex-shrink-0">6.</span>
               <span><strong>Less Stressful:</strong> No need to time the market. SIP works well in both bull and bear markets.</span>
             </li>
           </ol>
@@ -648,22 +648,22 @@ export default function SIPCalculatorPage() {
         <div className="card">
           <h2 className="text-2xl font-bold mb-4">SIP vs Lump Sum Investment: Which is Better?</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="border-l-4 border-green-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><RefreshCw className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> SIP (Regular Investment)</h3>
+            <div className="border-l-4 border-blue-500 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><RefreshCw className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> SIP (Regular Investment)</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Fixed amount invested monthly over extended period. Spreads risk through rupee cost averaging.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Best For:</strong> Beginners, low income, risk-averse</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Returns:</strong> Moderate, steady, lower volatility</p>
             </div>
-            <div className="border-l-4 border-blue-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Lump Sum (One-Time)</h3>
+            <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0 text-gray-400" strokeWidth={2} aria-hidden="true" /> Lump Sum (One-Time)</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Entire amount invested at once. Best if you have bulk cash available.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Best For:</strong> Downturn timing, inheritance, bonus</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Returns:</strong> Higher potential, but higher timing risk</p>
             </div>
           </div>
-          <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+          <div className="info-panel mt-6">
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              <strong>Verdict:</strong> SIP is recommended for most Indian investors as it removes the pressure of market timing and ensures disciplined wealth creation. Even small monthly amounts (₹500-1000) can grow to ₹10-20 lakhs over 20 years with 12% returns.
+              <strong className="text-gray-900 dark:text-white">Verdict:</strong> SIP is recommended for most Indian investors as it removes the pressure of market timing and ensures disciplined wealth creation. Even small monthly amounts (₹500-1000) can grow to ₹10-20 lakhs over 20 years with 12% returns.
             </p>
           </div>
         </div>
