@@ -213,7 +213,7 @@ export default function PercentageCalculatorPage() {
       {/* Header */}
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="percentage" className="w-6 h-6 text-white" />
           </span>
           <span>Percentage Calculator</span>
@@ -231,7 +231,7 @@ export default function PercentageCalculatorPage() {
             onClick={() => switchTrack(track.id)}
             className={`p-3 rounded-xl border-2 text-left transition-all hover:scale-105 active:scale-95 ${
               calculationType === track.id
-                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-md ring-2 ring-blue-300 dark:ring-blue-700'
+                ? 'border-violet-500 bg-violet-50 dark:bg-violet-900/30 shadow-md ring-2 ring-violet-300 dark:ring-violet-700'
                 : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 bg-white dark:bg-gray-800'
             }`}
           >
@@ -243,7 +243,7 @@ export default function PercentageCalculatorPage() {
       </div>
 
       {/* Dynamic Sentence Banner */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-700 text-center">
+      <div className="info-panel text-center">
         <p className="text-lg font-semibold text-blue-800 dark:text-blue-200">{getSentence()}</p>
       </div>
 
@@ -300,7 +300,7 @@ export default function PercentageCalculatorPage() {
                   step={['percent-of', 'reverse-percent'].includes(calculationType) ? '1' : '1000'}
                   value={String(valueA ?? 0)}
                   onChange={(e) => setValue('valueA', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-violet-300 to-violet-600 rounded-lg appearance-none cursor-pointer accent-violet-600"
                 />
                 <input
                   id="percentage-value-a"
@@ -308,23 +308,23 @@ export default function PercentageCalculatorPage() {
                   placeholder="0"
                   value={valueA === 0 ? '' : valueA}
                   onChange={(e) => setValue('valueA', e.target.value === '' ? 0 : Number(e.target.value))}
-                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
+                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-violet-400 rounded-lg font-bold text-violet-700 bg-violet-50 dark:bg-violet-900/20 dark:text-violet-400 dark:border-violet-700"
                 />
               </div>
               <div className="flex gap-2 flex-wrap mt-3">
                 {['percent-of', 'reverse-percent'].includes(calculationType) ?
                   [10, 25, 50, 100].map(val => (
                     <button key={val} type="button" onClick={() => setValue('valueA', val)}
-                      className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
-                                 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                      className="text-xs px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-700
+                                 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300
                                  hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                       {val}%
                     </button>
                   )) :
                   [100, 500, 1000, 5000].map(val => (
                     <button key={val} type="button" onClick={() => setValue('valueA', val)}
-                      className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
-                                 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                      className="text-xs px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-700
+                                 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300
                                  hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                       â‚¹{val}
                     </button>
@@ -344,7 +344,7 @@ export default function PercentageCalculatorPage() {
                   step={['hike-discount', 'what-percent', 'sequential', 'reverse-percent'].includes(calculationType) ? '0.5' : '1000'}
                   value={String(valueB ?? 0)}
                   onChange={(e) => setValue('valueB', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-violet-300 to-violet-600 rounded-lg appearance-none cursor-pointer accent-violet-600"
                 />
                 <input
                   id="percentage-value-b"
@@ -352,23 +352,23 @@ export default function PercentageCalculatorPage() {
                   placeholder="0"
                   value={valueB === 0 ? '' : valueB}
                   onChange={(e) => setValue('valueB', e.target.value === '' ? 0 : Number(e.target.value))}
-                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-violet-400 rounded-lg font-bold text-violet-700 bg-violet-50 dark:bg-violet-900/20 dark:text-violet-400 dark:border-violet-700"
                 />
               </div>
               <div className="flex gap-2 flex-wrap mt-3">
                 {['hike-discount', 'what-percent', 'sequential', 'reverse-percent'].includes(calculationType) ?
                   [5, 10, 20, 50].map(val => (
                     <button key={val} type="button" onClick={() => setValue('valueB', val)}
-                      className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
-                                 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                      className="text-xs px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-700
+                                 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300
                                  hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
                       {val}%
                     </button>
                   )) :
                   [1000, 5000, 10000, 50000].map(val => (
                     <button key={val} type="button" onClick={() => setValue('valueB', val)}
-                      className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
-                                 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                      className="text-xs px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-700
+                                 bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300
                                  hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
                       â‚¹{val >= 1000 ? `${val / 1000}K` : val}
                     </button>
@@ -389,7 +389,7 @@ export default function PercentageCalculatorPage() {
                     step="0.5"
                     value={String(percentC ?? 0)}
                     onChange={(e) => setValue('percentC', Number(e.target.value))}
-                    className="w-full flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                    className="w-full flex-1 h-3 bg-gradient-to-r from-violet-300 to-violet-600 rounded-lg appearance-none cursor-pointer accent-violet-600"
                   />
                   <input
                     id="percentage-value-c"
@@ -397,7 +397,7 @@ export default function PercentageCalculatorPage() {
                     placeholder="0"
                     value={percentC === 0 ? '' : percentC}
                     onChange={(e) => setValue('percentC', e.target.value === '' ? 0 : Number(e.target.value))}
-                    className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                    className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-violet-400 rounded-lg font-bold text-violet-700 bg-violet-50 dark:bg-violet-900/20 dark:text-violet-400 dark:border-violet-700"
                   />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1"><Lightbulb className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Second percentage in sequence. Applied after the first percentage change</p>
@@ -407,13 +407,13 @@ export default function PercentageCalculatorPage() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
+              className="btn-ghost w-full inline-flex items-center justify-center gap-1.5"
             >
               <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
 
             {/* Formula Reference */}
-            <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
+            <div className="info-panel mt-6">
               <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Quick Formulas</h4>
               <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
                 <p><strong>X% of Y:</strong> (X Ã· 100) Ã— Y</p>
@@ -444,7 +444,7 @@ export default function PercentageCalculatorPage() {
                   ? 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
                   : calculationType === 'percent-change' && result.direction === 'increase'
                   ? 'bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-700'
-                  : 'bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700'
+                  : 'bg-violet-50 dark:bg-violet-900/20 border-violet-300 dark:border-violet-700'
               }`}>
                 <p className="text-xs uppercase tracking-wide font-semibold mb-2 text-gray-500">Result</p>
                 <div className="flex items-center gap-3">
@@ -461,7 +461,7 @@ export default function PercentageCalculatorPage() {
                       ? 'text-red-600 dark:text-red-400'
                       : calculationType === 'percent-change' && result.direction === 'increase'
                       ? 'text-green-600 dark:text-green-400'
-                      : 'text-blue-700 dark:text-blue-400'
+                      : 'text-violet-700 dark:text-violet-400'
                   }`}>
                     {isResultPercent
                       ? `${formatNumber(result.result, 2)}%`
@@ -482,9 +482,9 @@ export default function PercentageCalculatorPage() {
               </div>
 
               {/* Explanation */}
-              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-xl border border-purple-200 dark:border-purple-700">
-                <p className="text-xs uppercase tracking-wide font-semibold mb-1 text-purple-500">Explanation</p>
-                <p className="text-purple-800 dark:text-purple-300 font-medium">{result.description}</p>
+              <div className="info-panel">
+                <p className="text-xs uppercase tracking-wide font-semibold mb-1 text-violet-600 dark:text-violet-400">Explanation</p>
+                <p className="text-gray-700 dark:text-gray-200 font-medium">{result.description}</p>
               </div>
 
               {/* Breakdown rows */}
@@ -505,9 +505,9 @@ export default function PercentageCalculatorPage() {
               )}
 
               {/* Understanding Percentages */}
-              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding the Calculation</h3>
-                <p className="text-sm text-blue-800 dark:text-blue-200 mb-2">
+              <div className="info-panel mt-6">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0 text-violet-600 dark:text-violet-400" strokeWidth={2} aria-hidden="true" /> Understanding the Calculation</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                   {calculationType === 'percent-change' && 'Percentage change shows how much a value has increased or decreased relative to the original value.'}
                   {calculationType === 'percent-of' && 'This calculates what amount represents the given percentage of the total value.'}
                   {calculationType === 'what-percent' && 'This finds what percentage one value is compared to another value.'}
@@ -518,9 +518,9 @@ export default function PercentageCalculatorPage() {
               </div>
 
               {/* Key Insights */}
-              <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Quick Tips</h3>
-                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+              <div className="info-panel mt-4">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" /> Quick Tips</h3>
+                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   {calculationType === 'percent-change' && (
                     <>
                       <p>âœ“ Positive % = Value increased | Negative % = Value decreased</p>
@@ -645,7 +645,7 @@ export default function PercentageCalculatorPage() {
                 <div className="text-xs font-semibold text-gray-500 mb-2">Total Change</div>
                 <div className={`text-xl font-bold px-4 py-3 rounded-xl ${
                   result.breakdown[3].value >= 0
-                    ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-2 border-green-300 dark:border-green-700'
+                    ? 'bg-violet-50 dark:bg-violet-900/20 text-violet-700 dark:text-violet-400 border-2 border-violet-300 dark:border-violet-700'
                     : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-2 border-red-300 dark:border-red-700'
                 }`}>
                   {result.breakdown[3].value >= 0 ? '+' : ''}{formatNumber(result.breakdown[3].value, 2)}
@@ -668,7 +668,7 @@ export default function PercentageCalculatorPage() {
                 onClick={() => switchTrack(track.id)}
                 className={`text-left p-4 rounded-xl border-2 transition-all hover:shadow-md hover:scale-102 ${
                   calculationType === track.id
-                    ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                    ? 'border-violet-400 bg-violet-50 dark:bg-violet-900/20'
                     : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
                 }`}
               >
@@ -705,39 +705,39 @@ export default function PercentageCalculatorPage() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 border-b-2 border-blue-200 dark:border-blue-800">
+              <tr className="bg-violet-50 dark:bg-violet-900/20 border-b-2 border-violet-200 dark:border-violet-800">
                 <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Calculation Type</th>
                 <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Formula</th>
                 <th className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white">Example</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-violet-50 dark:hover:bg-violet-900/10">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">X% of Y</td>
                 <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">(X/100) Ã— Y</td>
                 <td className="px-4 py-3 text-gray-600 dark:text-gray-400">20% of â‚¹1000 = â‚¹200</td>
               </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-violet-50 dark:hover:bg-violet-900/10 bg-white dark:bg-gray-800/50">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Percentage Hike/Discount</td>
                 <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">New = Original Ã— (1 Â± %/100)</td>
                 <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹500 with 10% hike = â‚¹550</td>
               </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-violet-50 dark:hover:bg-violet-900/10">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">What % is A of B</td>
                 <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">(A/B) Ã— 100</td>
                 <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹250 is 25% of â‚¹1000</td>
               </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-violet-50 dark:hover:bg-violet-900/10 bg-white dark:bg-gray-800/50">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Percentage Change</td>
                 <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">((New - Old) / Old) Ã— 100</td>
                 <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹100 to â‚¹150 = 50% increase</td>
               </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-violet-50 dark:hover:bg-violet-900/10">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Reverse Percentage</td>
                 <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">Base = Part Ã— 100 / %</td>
                 <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹180 is 18% of base = â‚¹1000</td>
               </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/10 bg-white dark:bg-gray-800/50">
+              <tr className="border-b border-gray-200 dark:border-gray-700 hover:bg-violet-50 dark:hover:bg-violet-900/10 bg-white dark:bg-gray-800/50">
                 <td className="px-4 py-3 font-bold text-gray-900 dark:text-white">Sequential %</td>
                 <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-mono text-sm">Apply % one after another</td>
                 <td className="px-4 py-3 text-gray-600 dark:text-gray-400">â‚¹100 + 10% then + 5% = â‚¹115.50</td>
@@ -788,7 +788,7 @@ export default function PercentageCalculatorPage() {
             </div>
           </li>
         </ol>
-        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+        <div className="info-panel mt-6">
           <p className="text-sm text-blue-800 dark:text-blue-200">
             <strong>Example:</strong> If your salary increased from â‚¹30,000 to â‚¹36,000: % Change = ((36,000 - 30,000) / 30,000) Ã— 100 = (6,000 / 30,000) Ã— 100 = 20% salary increase.
           </p>
