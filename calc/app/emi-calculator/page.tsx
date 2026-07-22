@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect, useCallback, memo, Suspense, lazy } from 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
-import { Home, BarChart2, Briefcase, Rocket, Target, Coins, BookOpen, Lightbulb, Trash2, AlertTriangle, HelpCircle, ChevronRight } from 'lucide-react';
+import { Home, BarChart2, Briefcase, Rocket, Target, Coins, BookOpen, Lightbulb, Trash2, AlertTriangle, HelpCircle, ChevronRight, Check, Clock } from 'lucide-react';
 import { calculateEMI, generateAmortizationSchedule } from '@/lib/calculators/emi';
 import { EMISchema } from '@/lib/validators';
 import { formatCurrency } from '@/lib/utils/format';
@@ -83,54 +83,54 @@ const ResultCards = memo(({ result, watchValues }: { result: EMIResultData | nul
 
       {/* Secondary metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/50 dark:to-gray-700/30 p-3 sm:p-4 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm min-w-0">
+        <div className="stat-tile">
           <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Total Payable</p>
           <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
             {formatCurrency(result.totalAmount)}
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 p-3 sm:p-4 rounded-lg border border-red-200 dark:border-red-700 shadow-sm min-w-0">
-          <p className="text-red-600 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><BarChart2 className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest</p>
-          <p className="text-sm sm:text-lg font-bold text-red-700 dark:text-red-400 whitespace-nowrap">
+        <div className="stat-tile">
+          <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><BarChart2 className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest</p>
+          <p className="text-sm sm:text-lg font-bold text-amber-600 dark:text-amber-400 whitespace-nowrap">
             {formatCurrency(result.totalInterest)}
           </p>
         </div>
 
-        <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
-          <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1">Duration</p>
-          <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">
-            {result.numberOfMonths} <span className="font-normal text-xs">months</span>
+        <div className="stat-tile col-span-2 sm:col-span-1">
+          <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Duration</p>
+          <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
+            {result.numberOfMonths} <span className="font-normal text-xs text-gray-500">months</span>
           </p>
         </div>
       </div>
 
-      {/* Result Explanation */}
-      <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-        <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your EMI</h3>
-        <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-          <p><strong>Monthly EMI:</strong> Fixed amount you pay each month. Includes both principal and interest components that change each month</p>
-          <p><strong>Total Interest:</strong> Total amount you pay as interest over the entire loan duration. Reduces with early repayment</p>
-          <p><strong>Total Payable:</strong> Principal (loan amount) + Total Interest. This is the complete amount you'll pay by maturity</p>
-          <p><strong>Interest Breakdown:</strong> Early payments have more interest, later payments have more principal (see amortization table below)</p>
+      {/* Understanding Your EMI */}
+      <div className="info-panel">
+        <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Understanding Your EMI</h3>
+        <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+          <p><strong className="text-gray-900 dark:text-white">Monthly EMI:</strong> Fixed amount you pay each month. Includes both principal and interest components that change each month</p>
+          <p><strong className="text-gray-900 dark:text-white">Total Interest:</strong> Total amount you pay as interest over the entire loan duration. Reduces with early repayment</p>
+          <p><strong className="text-gray-900 dark:text-white">Total Payable:</strong> Principal (loan amount) + Total Interest. This is the complete amount you'll pay by maturity</p>
+          <p><strong className="text-gray-900 dark:text-white">Interest Breakdown:</strong> Early payments have more interest, later payments have more principal (see amortization table below)</p>
         </div>
       </div>
 
-      {/* Helpful Tips */}
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
-        <h3 className="font-bold text-green-900 dark:text-green-300 mb-2 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Money-Saving Tips</h3>
-        <ul className="space-y-1 text-sm text-green-800 dark:text-green-200">
-          <li>✓ <strong>Prepay Lump Sums:</strong> Pay extra in good months to reduce total interest significantly</li>
-          <li>✓ <strong>Shorter Tenure:</strong> 15 years instead of 20 can save substantial interest</li>
-          <li>✓ <strong>Better Rate:</strong> Even 0.5% lower rate saves thousands over the loan period</li>
-          <li>✓ <strong>Early Settlement:</strong> Check for prepayment penalties before clearing early</li>
+      {/* Money-Saving Tips */}
+      <div className="info-panel">
+        <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" /> Money-Saving Tips</h3>
+        <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+          <li className="flex gap-2"><Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2.5} aria-hidden="true" /><span><strong className="text-gray-900 dark:text-white">Prepay Lump Sums:</strong> Pay extra in good months to reduce total interest significantly</span></li>
+          <li className="flex gap-2"><Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2.5} aria-hidden="true" /><span><strong className="text-gray-900 dark:text-white">Shorter Tenure:</strong> 15 years instead of 20 can save substantial interest</span></li>
+          <li className="flex gap-2"><Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2.5} aria-hidden="true" /><span><strong className="text-gray-900 dark:text-white">Better Rate:</strong> Even 0.5% lower rate saves thousands over the loan period</span></li>
+          <li className="flex gap-2"><Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2.5} aria-hidden="true" /><span><strong className="text-gray-900 dark:text-white">Early Settlement:</strong> Check for prepayment penalties before clearing early</span></li>
         </ul>
       </div>
 
-      <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-        <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
-        <p className="text-sm text-amber-700 dark:text-amber-300">
-          Your monthly EMI is <strong>{formatCurrency(result.emi)}</strong>. Financial advisors recommend keeping your EMI-to-income ratio below 40% for healthy finances. With an interest rate of 8-9%, home loans are typically more advantageous than personal loans at 12-18%.
+      <div className="info-panel mb-6">
+        <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Target className="w-4 h-4 flex-shrink-0 text-amber-600 dark:text-amber-400" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          Your monthly EMI is <strong className="text-gray-900 dark:text-white">{formatCurrency(result.emi)}</strong>. Financial advisors recommend keeping your EMI-to-income ratio below 40% for healthy finances. With an interest rate of 8-9%, home loans are typically more advantageous than personal loans at 12-18%.
         </p>
       </div>
 
@@ -491,8 +491,8 @@ export default function EMICalculatorPage() {
                 step={0.1}
                 error={errors.annualRate}
                 rangeText="0% - 50%"
-                colorFrom="from-orange-300"
-                colorTo="to-orange-600"
+                colorFrom="from-blue-300"
+                colorTo="to-blue-600"
                 presets={[7.5, 8.5, 9.5]}
                 presetLabels={['7.5%', '8.5%', '9.5%']}
                 helperText="Current home loan rates: 7.5-9.5% p.a. (varies by bank and credit score)"
@@ -511,8 +511,8 @@ export default function EMICalculatorPage() {
                 step={1}
                 error={errors.years}
                 rangeText="1 - 50 years"
-                colorFrom="from-green-300"
-                colorTo="to-green-600"
+                colorFrom="from-blue-300"
+                colorTo="to-blue-600"
                 presets={[10, 15, 20, 30]}
                 presetLabels={['10Y', '15Y', '20Y', '30Y']}
                 helperText="Most home loans: 15-30 years. Shorter tenure = higher EMI but less total interest"
@@ -522,9 +522,9 @@ export default function EMICalculatorPage() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
+              className="btn-ghost w-full inline-flex items-center justify-center gap-1.5"
             >
-              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
+              <Trash2 className="w-4 h-4" aria-hidden="true" /> Clear All
             </button>
           </form>
         </div>
@@ -597,13 +597,13 @@ export default function EMICalculatorPage() {
         <div className="card">
           <h2 className="text-2xl font-bold mb-4">EMI vs Flat Rate Interest: Which is Better?</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="border-l-4 border-blue-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> EMI (Reducing Balance)</h3>
+            <div className="border-l-4 border-blue-500 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> EMI (Reducing Balance)</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Interest calculated on the reducing balance monthly. More interest is paid upfront, less later.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Total Interest:</strong> Lower | <strong>Early Payment:</strong> Better savings</p>
             </div>
-            <div className="border-l-4 border-orange-600 pl-4">
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Flat Rate Interest</h3>
+            <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4">
+              <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0 text-gray-400" strokeWidth={2} aria-hidden="true" /> Flat Rate Interest</h3>
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">Interest calculated as a fixed percentage of the original principal throughout the loan tenure.</p>
               <p className="text-xs text-gray-600 dark:text-gray-400"><strong>Total Interest:</strong> Higher | <strong>Early Payment:</strong> Limited benefit</p>
             </div>
@@ -646,28 +646,28 @@ export default function EMICalculatorPage() {
           <h2 className="text-2xl font-bold mb-4">Strategic Ways to Reduce Your EMI & Save Interest</h2>
           <div className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-4 rounded-lg border-2 border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maximize Down Payment</h3>
-                <p className="text-sm text-green-800 dark:text-green-200 mb-3">Increasing your down payment from 20% to 40% can reduce your loan principal by ₹{result ? formatCurrency((result.totalAmount - result.emi * (watchValues.years * 12)) * 0.2).replace('₹', '') : 'X'}, which directly lowers EMI.</p>
-                <p className="text-xs font-semibold text-green-700 dark:text-green-300">Example: ₹50L home with 20% down vs 40% down reduces EMI by ₹10,000-15,000/month</p>
+              <div className="info-panel">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Coins className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Maximize Down Payment</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Increasing your down payment from 20% to 40% can reduce your loan principal by ₹{result ? formatCurrency((result.totalAmount - result.emi * (watchValues.years * 12)) * 0.2).replace('₹', '') : 'X'}, which directly lowers EMI.</p>
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">Example: ₹50L home with 20% down vs 40% down reduces EMI by ₹10,000-15,000/month</p>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-4 rounded-lg border-2 border-blue-300 dark:border-blue-700">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><Target className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Negotiate Better Rate</h3>
-                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">Even 0.5% reduction in interest rate saves substantial interest. At ₹50L loan, 0.5% cut saves ₹{result ? formatCurrency((result.totalAmount - (result.emi * watchValues.years * 12)) * 0.15).replace('₹', '') : 'X'} over tenure.</p>
-                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300">Negotiation factors: CIBIL score {'>'} 750, existing customer, bulk loans</p>
+              <div className="info-panel">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Target className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Negotiate Better Rate</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Even 0.5% reduction in interest rate saves substantial interest. At ₹50L loan, 0.5% cut saves ₹{result ? formatCurrency((result.totalAmount - (result.emi * watchValues.years * 12)) * 0.15).replace('₹', '') : 'X'} over tenure.</p>
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">Negotiation factors: CIBIL score {'>'} 750, existing customer, bulk loans</p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-4 rounded-lg border-2 border-purple-300 dark:border-purple-700">
-                <h3 className="font-bold text-purple-900 dark:text-purple-300 mb-3">⏰ Extend Tenure Strategically</h3>
-                <p className="text-sm text-purple-800 dark:text-purple-200 mb-3">Longer tenure reduces monthly EMI but increases total interest. 20-year vs 30-year tenure reduces EMI by 30% but adds ~45% more total interest.</p>
-                <p className="text-xs font-semibold text-purple-700 dark:text-purple-300">Strategy: Balance EMI comfort with interest cost</p>
+              <div className="info-panel">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Clock className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Extend Tenure Strategically</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Longer tenure reduces monthly EMI but increases total interest. 20-year vs 30-year tenure reduces EMI by 30% but adds ~45% more total interest.</p>
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">Strategy: Balance EMI comfort with interest cost</p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-4 rounded-lg border-2 border-orange-300 dark:border-orange-700">
-                <h3 className="font-bold text-orange-900 dark:text-orange-300 mb-3 flex items-center gap-2"><Rocket className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Prepay Strategically</h3>
-                <p className="text-sm text-orange-800 dark:text-orange-200 mb-3">Annual bonuses or surplus income can be prepaid toward principal. Prepaying ₹5L in year 5 saves ₹10-15L in total interest on 20-year loans.</p>
-                <p className="text-xs font-semibold text-orange-700 dark:text-orange-300">Check prepayment penalties before pursuing this strategy</p>
+              <div className="info-panel">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Rocket className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Prepay Strategically</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">Annual bonuses or surplus income can be prepaid toward principal. Prepaying ₹5L in year 5 saves ₹10-15L in total interest on 20-year loans.</p>
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">Check prepayment penalties before pursuing this strategy</p>
               </div>
             </div>
           </div>
@@ -677,27 +677,27 @@ export default function EMICalculatorPage() {
         <div className="card">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Lightbulb className="w-6 h-6 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Expert Insights on Loan Management</h2>
           <div className="space-y-4">
-            <div className="border-l-4 border-blue-600 pl-4 py-2">
+            <div className="border-l-4 border-blue-500 pl-4 py-2">
               <p className="font-semibold text-gray-900 dark:text-white mb-1">1. Understand Your Amortization Schedule</p>
               <p className="text-sm text-gray-700 dark:text-gray-300">Early EMI payments are mostly interest. In the first 5 years of a 20-year loan, 70% goes toward interest. Review the amortization table to see your exact principal-to-interest breakdown each month.</p>
             </div>
 
-            <div className="border-l-4 border-green-600 pl-4 py-2">
+            <div className="border-l-4 border-blue-500 pl-4 py-2">
               <p className="font-semibold text-gray-900 dark:text-white mb-1">2. Rate Lock & Market Monitoring</p>
-              <p className="text-sm text-gray-700 dark:text-gray-300">Monitor RBI repo rate changes. When rates fall, refinance your loan. If rates are expected to rise, lock in fixed rates. Current home loan rates (2024): 8.0-9.5% depending on bank and credit profile.</p>
+              <p className="text-sm text-gray-700 dark:text-gray-300">Monitor RBI repo rate changes. When rates fall, refinance your loan. If rates are expected to rise, lock in fixed rates. Current home loan rates: 8.0-9.5% depending on bank and credit profile.</p>
             </div>
 
-            <div className="border-l-4 border-purple-600 pl-4 py-2">
+            <div className="border-l-4 border-blue-500 pl-4 py-2">
               <p className="font-semibold text-gray-900 dark:text-white mb-1">3. CIBIL Score Impact</p>
               <p className="text-sm text-gray-700 dark:text-gray-300">Your credit score directly affects interest rate. Score 750+: Best rates (8.0-8.5%) | Score 700-749: Standard rates (8.5-9.2%) | Score below 700: Expect 9.5%+. Improve your score before applying to save significantly.</p>
             </div>
 
-            <div className="border-l-4 border-orange-600 pl-4 py-2">
+            <div className="border-l-4 border-blue-500 pl-4 py-2">
               <p className="font-semibold text-gray-900 dark:text-white mb-1">4. Floating vs Fixed Rate Trade-off</p>
               <p className="text-sm text-gray-700 dark:text-gray-300"><strong>Floating:</strong> 0.3-0.5% cheaper, varies with RBI rate | <strong>Fixed:</strong> Stable EMI, peace of mind. Choose floating if rates expected to fall, fixed if rates might rise.</p>
             </div>
 
-            <div className="border-l-4 border-red-600 pl-4 py-2">
+            <div className="border-l-4 border-blue-500 pl-4 py-2">
               <p className="font-semibold text-gray-900 dark:text-white mb-1">5. Insurance & Emergency Fund</p>
               <p className="text-sm text-gray-700 dark:text-gray-300">Banks require home loan insurance. Also maintain 6-months of EMI in emergency fund. For ₹31,040 EMI, keep ₹1,86,240 emergency corpus in high-yield savings (FD/liquid funds).</p>
             </div>
