@@ -56,13 +56,13 @@ export function ConfidenceBadge({ calculatorType }: ConfidenceBadgeProps) {
   const badge = badges[calculatorType];
 
   return (
-    <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-4 md:p-6 border-2 border-green-200 dark:border-green-800/50 mb-8">
+    <div className="rounded-2xl p-4 md:p-6 border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/70 dark:bg-emerald-950/20 mb-8">
       <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 text-emerald-600 dark:text-emerald-400">
-          <ShieldCheck className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
+        <div className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400">
+          <ShieldCheck className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 text-lg">
+          <h3 className="font-bold text-emerald-900 dark:text-emerald-200 mb-3 text-lg">
             {badge.title}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -76,12 +76,12 @@ export function ConfidenceBadge({ calculatorType }: ConfidenceBadgeProps) {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-green-700 dark:text-green-400 hover:underline font-medium"
+                      className="text-sm text-emerald-700 dark:text-emerald-400 hover:underline font-medium"
                     >
                       {item.text}
                     </a>
                   ) : (
-                    <span className="text-sm text-green-700 dark:text-green-400 font-medium">
+                    <span className="text-sm text-emerald-700 dark:text-emerald-400 font-medium">
                       {item.text}
                     </span>
                   )}
@@ -89,7 +89,7 @@ export function ConfidenceBadge({ calculatorType }: ConfidenceBadgeProps) {
               );
             })}
           </div>
-          <p className="text-xs text-green-600 dark:text-green-500 mt-3 flex items-center gap-1.5">
+          <p className="text-xs text-emerald-700/80 dark:text-emerald-500 mt-3 flex items-center gap-1.5">
             <Lightbulb className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
             {badge.footnote}
           </p>

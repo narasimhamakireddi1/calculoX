@@ -17,10 +17,10 @@ interface QuickStartExamplesProps {
 
 export function QuickStartExamples({ scenarios, onSelectScenario }: QuickStartExamplesProps) {
   return (
-    <div className="mb-6 p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl border border-blue-200 dark:border-blue-800/50">
+    <div className="info-panel mb-6">
       <div className="mb-4">
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-          <Lightbulb className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" aria-hidden="true" />
+        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 flex items-center gap-2">
+          <Lightbulb className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" aria-hidden="true" />
           Quick-Start Examples
         </h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">Select a scenario to auto-fill the form</p>
@@ -33,14 +33,11 @@ export function QuickStartExamples({ scenarios, onSelectScenario }: QuickStartEx
             <button
               key={index}
               onClick={() => onSelectScenario(scenario.values)}
-              className="group relative text-left p-2 sm:p-3 rounded-lg bg-white dark:bg-gray-800 border-2 border-blue-200 dark:border-blue-700/50 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-w-0"
+              className="group text-left p-2.5 sm:p-3 rounded-xl bg-white dark:bg-white/[0.04] border border-gray-200 dark:border-gray-700/60 hover:border-emerald-400/70 dark:hover:border-emerald-500/60 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 min-w-0"
             >
-              {/* Background gradient on hover */}
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/0 to-indigo-400/0 group-hover:from-blue-400/5 group-hover:to-indigo-400/5 transition-all duration-300 pointer-events-none" />
-
-              <div className="relative min-w-0">
+              <div className="min-w-0">
                 <div className="mb-1.5">
-                  <Icon className="w-5 h-5 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+                  <Icon className="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" aria-hidden="true" />
                 </div>
                 <h4 className="font-semibold text-gray-900 dark:text-white text-xs mb-1 leading-snug break-words">{scenario.label}</h4>
                 <p className="text-xs text-gray-600 dark:text-gray-400 leading-snug break-words">{scenario.description}</p>
