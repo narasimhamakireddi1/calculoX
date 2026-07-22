@@ -137,7 +137,7 @@ const missionSections: Array<{
     Icon: BarChart2,
     color: "text-teal-600 dark:text-teal-400",
     heading: "Tax & Business Planning",
-    body: "Optimize your finances with Income Tax Calculator (FY 2024-25 slabs, new vs old regime, 9+ deductions), GST Calculator (add/remove tax at all rates), Profit Margin Calculator (cost-driven & price-driven pricing with GST impact), and Percentage Calculator (6 modes for business calculations).",
+    body: "Optimize your finances with Income Tax Calculator (FY 2025-26 slabs, new vs old regime, 9+ deductions), GST Calculator (add/remove tax at all rates), Profit Margin Calculator (cost-driven & price-driven pricing with GST impact), and Percentage Calculator (6 modes for business calculations).",
   },
   {
     Icon: Heart,

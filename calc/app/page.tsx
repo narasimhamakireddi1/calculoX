@@ -76,14 +76,16 @@ function calcRD(monthly: number, annualRate: number, years: number) {
 }
 
 function calcTax(annualIncome: number) {
+  // New Regime, FY 2025-26 (Finance Act 2025) — mirrors lib/calculators/tax.ts
   const taxable = Math.max(0, annualIncome - 75_000); // ₹75K standard deduction
   let tax = 0;
-  if      (taxable > 1_500_000) tax = 140_000 + (taxable - 1_500_000) * 0.30;
-  else if (taxable > 1_200_000) tax = 80_000  + (taxable - 1_200_000) * 0.20;
-  else if (taxable > 1_000_000) tax = 50_000  + (taxable - 1_000_000) * 0.15;
-  else if (taxable > 700_000)   tax = 20_000  + (taxable - 700_000)   * 0.10;
-  else if (taxable > 300_000)   tax = (taxable - 300_000) * 0.05;
-  if (taxable <= 700_000) tax = 0; // Rebate u/s 87A
+  if      (taxable > 2_400_000) tax = 300_000 + (taxable - 2_400_000) * 0.30;
+  else if (taxable > 2_000_000) tax = 200_000 + (taxable - 2_000_000) * 0.25;
+  else if (taxable > 1_600_000) tax = 120_000 + (taxable - 1_600_000) * 0.20;
+  else if (taxable > 1_200_000) tax =  60_000 + (taxable - 1_200_000) * 0.15;
+  else if (taxable >   800_000) tax =  20_000 + (taxable -   800_000) * 0.10;
+  else if (taxable >   400_000) tax =           (taxable -   400_000) * 0.05;
+  if (taxable <= 1_200_000) tax = 0; // Rebate u/s 87A — income up to ₹12L taxable is tax-free
   const totalTax = Math.round(tax * 1.04); // 4% cess
   const effectiveRate = annualIncome > 0 ? (totalTax / annualIncome) * 100 : 0;
   return { totalTax, effectiveRate, monthlyTax: totalTax / 12 };
@@ -298,7 +300,7 @@ const SAMPLE_RESULTS: Record<string, string> = {
   '/fd-calculator':           '₹5L · 7% · 3Y → ₹6.2L maturity',
   '/bmi-calculator':          '70 kg · 170 cm → BMI 24.2 (Normal)',
   '/rd-calculator':           '₹5K/mo · 7% · 3Y → ₹2.0L maturity',
-  '/tax-calculator':          '₹12L income · New Regime → ₹90,000 tax',
+  '/tax-calculator':          '₹16L income · New Regime → ₹1.13L tax',
   '/gst-calculator':          '₹10,000 + 18% GST → ₹11,800 total',
   '/percentage-calculator':   '₹800 → ₹1,000 → 25% increase',
   '/cagr-calculator':         '₹1L → ₹2.5L · 5Y → 20.1% CAGR',
@@ -679,7 +681,7 @@ export default function Home() {
                 min={300_000} max={5_000_000} step={10_000} accent={meta.sliderAccent}
                 onChange={setTaxIncome} minLabel="₹3L" maxLabel="₹50L" />
               <p className="text-[11px] text-gray-400 dark:text-gray-500">
-                New Regime (FY 2025-26) · ₹75K std. deduction · Rebate 87A ≤ ₹7L taxable
+                New Regime (FY 2025-26) · ₹75K std. deduction · Rebate 87A ≤ ₹12L taxable
               </p>
             </>}
 

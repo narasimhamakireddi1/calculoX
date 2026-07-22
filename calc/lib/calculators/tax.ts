@@ -30,7 +30,7 @@ export interface TaxBreakdown {
   tax: number;
 }
 
-// Standard deduction varies by regime (FY 2024-25)
+// Standard deduction varies by regime (FY 2025-26)
 const STANDARD_DEDUCTION_NEW = 75000; // New regime: ₹75,000
 const STANDARD_DEDUCTION_OLD = 50000; // Old regime: ₹50,000
 
