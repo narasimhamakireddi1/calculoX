@@ -150,7 +150,7 @@ export default function RDCalculatorPage() {
     <div className="space-y-8 py-8">
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="rd" className="w-6 h-6 text-white" />
           </span>
           <span>RD Calculator</span>
@@ -183,7 +183,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.monthlyDeposit === 0 ? "" : watchValues.monthlyDeposit}
                   onChange={(e) => handleInputChange('monthlyDeposit', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyDeposit', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
                   id="monthly-deposit"
@@ -194,16 +194,16 @@ export default function RDCalculatorPage() {
                   value={watchValues.monthlyDeposit === 0 ? "" : watchValues.monthlyDeposit}
                   onChange={(e) => handleInputChange('monthlyDeposit', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('monthlyDeposit', Number(e.target.value))}
-                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.monthlyDeposit && <p className="text-red-500 text-sm">{errors.monthlyDeposit.message}</p>}
               <div className="flex gap-2 flex-wrap mt-3">
                 {[1000, 2000, 5000, 10000].map(val => (
                   <button key={val} type="button" onClick={() => handleInputChange('monthlyDeposit', val)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
-                               bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
-                               hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                     ₹{val / 1000}K
                   </button>
                 ))}
@@ -253,7 +253,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.months === 0 ? "" : watchValues.months}
                   onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
                   id="months-rd"
@@ -264,7 +264,7 @@ export default function RDCalculatorPage() {
                   value={watchValues.months === 0 ? "" : watchValues.months}
                   onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.months && <p className="text-red-500 text-sm">{errors.months.message}</p>}
@@ -274,20 +274,20 @@ export default function RDCalculatorPage() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all hover:scale-105 active:scale-95"
+              className="btn-ghost w-full inline-flex items-center justify-center gap-1.5"
             >
               <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear
             </button>
 
             {/* Formula Reference */}
-            <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-2"><Ruler className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
-              <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
-                <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-indigo-200 dark:border-indigo-700">
+            <div className="info-panel mt-6">
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Ruler className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
+              <div className="space-y-2 text-xs text-gray-600 dark:text-gray-300">
+                <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200">
                   A = P × [((1+r)^n-1)/r] × (1+r)
                 </p>
-                <p><strong>Where:</strong> P = Monthly Deposit | r = Monthly Rate | n = Total Months</p>
-                <p><strong>Interest:</strong> Total Interest = Maturity Amount - Total Deposits</p>
+                <p><strong className="text-gray-900 dark:text-white">Where:</strong> P = Monthly Deposit | r = Monthly Rate | n = Total Months</p>
+                <p><strong className="text-gray-900 dark:text-white">Interest:</strong> Total Interest = Maturity Amount - Total Deposits</p>
               </div>
             </div>
           </form>
@@ -309,57 +309,57 @@ export default function RDCalculatorPage() {
 
               {/* Secondary metrics */}
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/20 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
-                  <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                     <Landmark className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Invested
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 whitespace-nowrap">{formatCurrency(result.totalDeposits)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">{formatCurrency(result.totalDeposits)}</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-3 sm:p-4 rounded-lg border border-green-200 dark:border-green-700 shadow-sm min-w-0">
-                  <p className="text-green-600 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                     <TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Earned
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-green-700 dark:text-green-400 whitespace-nowrap">{formatCurrency(result.totalInterest)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">{formatCurrency(result.totalInterest)}</p>
                 </div>
               </div>
 
               {/* Understanding Your RD */}
-              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your RD Results</h3>
-                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+              <div className="info-panel mt-6">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Understanding Your RD Results</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
                   A Recurring Deposit is a savings instrument where you deposit a fixed amount monthly and earn compound interest. Your money grows through regular deposits + accumulated interest.
                 </p>
-                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                  <p><strong>Monthly Deposit:</strong> {formatCurrency(watchValues.monthlyDeposit)} - Amount you'll invest every month</p>
-                  <p><strong>Total Invested:</strong> {formatCurrency(result.totalDeposits)} - Sum of all your monthly deposits over {watchValues.months} months</p>
-                  <p><strong>Interest Earned:</strong> {formatCurrency(result.totalInterest)} - Compound interest on your deposits at {watchValues.annualRate}% p.a.</p>
-                  <p><strong>Maturity Amount:</strong> {formatCurrency(result.maturityAmount)} - Total amount you'll receive on maturity</p>
+                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  <p><strong className="text-gray-900 dark:text-white">Monthly Deposit:</strong> {formatCurrency(watchValues.monthlyDeposit)} - Amount you'll invest every month</p>
+                  <p><strong className="text-gray-900 dark:text-white">Total Invested:</strong> {formatCurrency(result.totalDeposits)} - Sum of all your monthly deposits over {watchValues.months} months</p>
+                  <p><strong className="text-gray-900 dark:text-white">Interest Earned:</strong> {formatCurrency(result.totalInterest)} - Compound interest on your deposits at {watchValues.annualRate}% p.a.</p>
+                  <p><strong className="text-gray-900 dark:text-white">Maturity Amount:</strong> {formatCurrency(result.maturityAmount)} - Total amount you'll receive on maturity</p>
                 </div>
               </div>
 
               {/* Key Insights */}
-              <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Sparkles className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
-                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+              <div className="info-panel mt-4">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Sparkles className="w-4 h-4 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
+                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <p>
-                    <strong>Growth Multiple:</strong> <span className="font-bold text-green-700 dark:text-green-300">{(result.maturityAmount / result.totalDeposits).toFixed(2)}x</span> - Your invested amount grows by {((result.maturityAmount / result.totalDeposits - 1) * 100).toFixed(1)}%
+                    <strong className="text-gray-900 dark:text-white">Growth Multiple:</strong> <span className="font-bold text-emerald-600 dark:text-emerald-400">{(result.maturityAmount / result.totalDeposits).toFixed(2)}x</span> - Your invested amount grows by {((result.maturityAmount / result.totalDeposits - 1) * 100).toFixed(1)}%
                   </p>
                   <p>
-                    <strong>Interest vs Investment:</strong> You earn {formatCurrency(result.totalInterest)} interest on {formatCurrency(result.totalDeposits)} invested
+                    <strong className="text-gray-900 dark:text-white">Interest vs Investment:</strong> You earn {formatCurrency(result.totalInterest)} interest on {formatCurrency(result.totalDeposits)} invested
                   </p>
                   <p>
-                    <strong>Monthly Returns:</strong> {formatCurrency(result.maturityAmount / watchValues.months)} average per month over your entire tenure
+                    <strong className="text-gray-900 dark:text-white">Monthly Returns:</strong> {formatCurrency(result.maturityAmount / watchValues.months)} average per month over your entire tenure
                   </p>
                   <p>
-                    <strong>Interest Rate Impact:</strong> At {watchValues.annualRate}% p.a., your money compounds monthly for maximum returns
+                    <strong className="text-gray-900 dark:text-white">Interest Rate Impact:</strong> At {watchValues.annualRate}% p.a., your money compounds monthly for maximum returns
                   </p>
                 </div>
               </div>
 
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded mt-4">
-                <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                  <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.
+              <div className="info-panel border-l-4 border-amber-400 mt-4">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <strong className="text-gray-900 dark:text-white">Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.
                 </p>
               </div>
               <div className="mt-6">
@@ -467,25 +467,25 @@ export default function RDCalculatorPage() {
         <div className="card">
           <h2 className="text-2xl font-bold mb-4">RD vs SIP vs Fixed Deposit: Which is Right for You?</h2>
           <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <div className="border-l-4 border-blue-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> RD</h3>
+            <div className="border-l-4 border-blue-500 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> RD</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly deposits, bank guaranteed, fixed returns</p>
               <p className="text-xs"><strong>Rate:</strong> 5-7% | <strong>Risk:</strong> Nil | <strong>Liquidity:</strong> Low</p>
             </div>
-            <div className="border-l-4 border-green-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><RefreshCw className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> SIP</h3>
+            <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><RefreshCw className="w-4 h-4 flex-shrink-0 text-gray-400" strokeWidth={2} aria-hidden="true" /> SIP</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly investment in mutual funds, market-linked</p>
               <p className="text-xs"><strong>Rate:</strong> 10-15% | <strong>Risk:</strong> Medium | <strong>Liquidity:</strong> High</p>
             </div>
-            <div className="border-l-4 border-orange-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Lock className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> FD</h3>
+            <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Lock className="w-4 h-4 flex-shrink-0 text-gray-400" strokeWidth={2} aria-hidden="true" /> FD</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Lump sum deposit, bank guaranteed, fixed returns</p>
               <p className="text-xs"><strong>Rate:</strong> 7-8% | <strong>Risk:</strong> Nil | <strong>Liquidity:</strong> Low</p>
             </div>
           </div>
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <div className="info-panel mt-6">
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              <strong>Best Choice:</strong> RD if you save monthly with zero risk appetite; SIP if you can afford monthly investments and want higher growth; FD if you have lump sum savings.
+              <strong className="text-gray-900 dark:text-white">Best Choice:</strong> RD if you save monthly with zero risk appetite; SIP if you can afford monthly investments and want higher growth; FD if you have lump sum savings.
             </p>
           </div>
         </div>
