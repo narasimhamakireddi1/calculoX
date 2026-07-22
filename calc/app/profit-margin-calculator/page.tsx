@@ -186,7 +186,7 @@ export default function ProfitMarginCalculator() {
       {/* Header */}
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold text-gradient mb-2 flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="profit-margin" className="w-6 h-6 text-white" />
           </span>
           <span>Profit Margin & Markup Calculator</span>
@@ -305,14 +305,14 @@ export default function ProfitMarginCalculator() {
                         step="0.1"
                         value={watchValues.targetMarginPct || 0}
                         onChange={(e) => setValue('targetMarginPct', parseFloat(e.target.value))}
-                        className="w-full flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
+                        className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                       />
                       <input
                         id="target-margin"
                         type="number"
                         value={watchValues.targetMarginPct === 0 ? '' : watchValues.targetMarginPct}
                         onChange={(e) => setValue('targetMarginPct', parseFloat(e.target.value) || 0)}
-                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700"
+                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                         placeholder="0"
                       />
                     </div>
@@ -323,7 +323,7 @@ export default function ProfitMarginCalculator() {
                       {[20, 30, 40, 50].map(val => (
                         <button key={val} type="button" onClick={() => setValue('targetMarginPct', val)}
                           className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
-                                     bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
+                                     bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
                                      hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
                           {val}%
                         </button>
@@ -346,14 +346,14 @@ export default function ProfitMarginCalculator() {
                         step="0.1"
                         value={watchValues.targetMarkupPct || 0}
                         onChange={(e) => setValue('targetMarkupPct', parseFloat(e.target.value))}
-                        className="w-full flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                        className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                       />
                       <input
                         id="target-markup"
                         type="number"
                         value={watchValues.targetMarkupPct === 0 ? '' : watchValues.targetMarkupPct}
                         onChange={(e) => setValue('targetMarkupPct', parseFloat(e.target.value) || 0)}
-                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                        className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                         placeholder="0"
                       />
                     </div>
@@ -364,7 +364,7 @@ export default function ProfitMarginCalculator() {
                       {[15, 25, 40, 50].map(val => (
                         <button key={val} type="button" onClick={() => setValue('targetMarkupPct', val)}
                           className="text-xs px-3 py-1.5 rounded-full border border-orange-200 dark:border-orange-700
-                                     bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300
+                                     bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
                                      hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors">
                           {val}%
                         </button>
@@ -389,14 +389,14 @@ export default function ProfitMarginCalculator() {
                     step="1"
                     value={watchValues.sellingPrice || 0}
                     onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value))}
-                    className="w-full flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                    className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                   />
                   <input
                     id="selling-price"
                     type="number"
                     value={watchValues.sellingPrice === 0 ? '' : watchValues.sellingPrice}
                     onChange={(e) => setValue('sellingPrice', parseFloat(e.target.value) || 0)}
-                    className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                    className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                     placeholder="0"
                   />
                 </div>
@@ -449,7 +449,7 @@ export default function ProfitMarginCalculator() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
+              className="btn-ghost w-full inline-flex items-center justify-center gap-1.5"
             >
               <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
@@ -459,41 +459,41 @@ export default function ProfitMarginCalculator() {
           {results && (
             <div id="profit-margin-results" className="lg:col-span-2 space-y-4 min-w-0">
               {/* Hero metric */}
-              <div className="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/30 dark:to-blue-900/20 p-6 sm:p-8 rounded-xl border-2 border-cyan-300 dark:border-cyan-700 shadow-lg">
-                <p className="text-cyan-700 dark:text-cyan-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/20 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
+                <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
                   <Percent className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Profit Margin
                 </p>
-                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-cyan-700 dark:text-cyan-400 whitespace-nowrap leading-tight">
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">
                   {results.calculatedMarginPercentage.toFixed(2)}%
                 </p>
-                <p className="text-xs text-cyan-600 dark:text-cyan-400 mt-2 font-medium">on final selling price (pre-GST)</p>
+                <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 font-medium">on final selling price (pre-GST)</p>
               </div>
 
               {/* Price metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-900/20 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm min-w-0">
-                  <p className="text-blue-600 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
                     <IndianRupee className="w-3 h-3 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Cost Price
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 break-all">
+                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white break-all">
                     ₹{results.inputCostPrice.toFixed(2)}
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-900/20 p-3 sm:p-4 rounded-lg border border-green-200 dark:border-green-700 shadow-sm min-w-0">
-                  <p className="text-green-600 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
                     <BarChart2 className="w-3 h-3 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Net Price
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-green-700 dark:text-green-400 break-all">
+                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white break-all">
                     ₹{results.netSellingPricePreGst.toFixed(2)}
                   </p>
                 </div>
 
-                <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-900/20 p-3 sm:p-4 rounded-lg border border-purple-200 dark:border-purple-700 shadow-sm min-w-0">
-                  <p className="text-purple-600 dark:text-purple-300 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
+                <div className="stat-tile col-span-2 sm:col-span-1">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
                     <Tag className="w-3 h-3 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Final MRP
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-purple-700 dark:text-purple-400 break-all">
+                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white break-all">
                     ₹{results.finalConsumerMRP.toFixed(2)}
                   </p>
                 </div>
@@ -501,49 +501,49 @@ export default function ProfitMarginCalculator() {
 
               {/* Profit metrics */}
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 p-3 sm:p-4 rounded-lg border border-emerald-200 dark:border-emerald-700 shadow-sm min-w-0">
-                  <p className="text-emerald-600 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
                     <Target className="w-3 h-3 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Gross Profit
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 break-all">
+                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 break-all">
                     ₹{results.absoluteGrossProfit.toFixed(2)}
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-900/20 p-3 sm:p-4 rounded-lg border border-orange-200 dark:border-orange-700 shadow-sm min-w-0">
-                  <p className="text-orange-600 dark:text-orange-300 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
                     <TrendingUp className="w-3 h-3 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> Markup
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-orange-700 dark:text-orange-400 break-all">
+                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white break-all">
                     {results.calculatedMarkupPercentage.toFixed(2)}%
                   </p>
                 </div>
               </div>
 
               {/* GST Card */}
-              <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-900/20 p-3 sm:p-5 rounded-lg border-2 border-red-300 dark:border-red-700 shadow-md">
+              <div className="rounded-xl p-3 sm:p-5 border border-amber-200 dark:border-amber-700 bg-amber-50/70 dark:bg-amber-900/20 shadow-sm">
                 <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
                   <div className="min-w-0">
-                    <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
+                    <p className="text-amber-700 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-1 leading-tight">
                       <Receipt className="w-3.5 h-3.5 inline align-middle mr-0.5" strokeWidth={2} aria-hidden="true" /> GST Liability
                     </p>
-                    <p className="text-base sm:text-2xl font-bold text-red-700 dark:text-red-400 break-all">
+                    <p className="text-base sm:text-2xl font-bold text-amber-700 dark:text-amber-400 break-all">
                       ₹{results.gstTaxLiability.toFixed(2)}
                     </p>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1">
+                    <p className="text-amber-700 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-1">
                       Rate
                     </p>
-                    <p className="text-base sm:text-2xl font-bold text-red-700 dark:text-red-400">
+                    <p className="text-base sm:text-2xl font-bold text-amber-700 dark:text-amber-400">
                       {watchValues.gstRatePct}%
                     </p>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-red-700 dark:text-red-300 text-xs uppercase tracking-wide font-semibold mb-1">
+                    <p className="text-amber-700 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-1">
                       Treatment
                     </p>
-                    <p className="text-xs sm:text-base md:text-2xl font-bold text-red-700 dark:text-red-400 break-all">
+                    <p className="text-xs sm:text-base md:text-2xl font-bold text-amber-700 dark:text-amber-400 break-all">
                       {watchValues.gstTreatment}
                     </p>
                   </div>
@@ -563,9 +563,9 @@ export default function ProfitMarginCalculator() {
               )}
 
               {/* Understanding Markup vs Margin */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Markup vs Margin Explained</h3>
-                <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-200">
+              <div className="info-panel">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Markup vs Margin Explained</h3>
+                <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300">
                   <div>
                     <p className="flex items-center gap-1"><strong><TrendingUp className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Markup ({results.calculatedMarkupPercentage.toFixed(2)}%):</strong></p>
                     <p className="text-xs mt-1">Percentage increase from Cost Price to Selling Price. Formula: (Selling Price - Cost) / Cost × 100</p>
@@ -584,7 +584,7 @@ export default function ProfitMarginCalculator() {
               <div
                 className={`rounded-lg p-4 text-center font-semibold ${
                   results.isProfitable
-                    ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200 border border-green-300 dark:border-green-700'
+                    ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-700'
                     : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 border border-red-300 dark:border-red-700'
                 }`}
               >
