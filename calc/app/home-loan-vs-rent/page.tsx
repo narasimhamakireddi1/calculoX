@@ -210,7 +210,7 @@ export default function HomeLoanVsRentCalculator() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-2 flex flex-wrap items-center justify-center gap-2">
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+            <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex-shrink-0">
               <CalculatorIcon idOrHref="home-loan-vs-rent" className="w-7 h-7 text-white" />
             </span>
             <span>Home Loan vs Rent</span>
@@ -464,7 +464,7 @@ export default function HomeLoanVsRentCalculator() {
                       key={val}
                       type="button"
                       onClick={() => setValue('down_payment_pct', val)}
-                      className="text-xs px-3 py-1.5 rounded-full border border-orange-200 dark:border-orange-700 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors"
+                      className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
                     >
                       {val}%
                     </button>
@@ -531,7 +531,7 @@ export default function HomeLoanVsRentCalculator() {
                       key={val}
                       type="button"
                       onClick={() => setValue('loan_tenure_years', val)}
-                      className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
+                      className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
                     >
                       {val}Y
                     </button>
@@ -772,18 +772,18 @@ export default function HomeLoanVsRentCalculator() {
               <button
                 type="button"
                 onClick={handleClearAll}
-                className="w-full mt-6 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
+                className="btn-ghost w-full mt-6 inline-flex items-center justify-center gap-1.5"
               >
                 <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
               </button>
 
               {/* Formula Reference */}
-              <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-                <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Opportunity Cost Framework</h4>
-                <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
-                  <p><strong>Buyer NW:</strong> Property Value + Tax Benefits - Loan Balance</p>
-                  <p><strong>Renter NW:</strong> (Down Pmt + EMI Savings) × Returns</p>
-                  <p><strong>Winner:</strong> Path with higher net worth after 20 years</p>
+              <div className="info-panel mt-6">
+                <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-1.5"><Calculator className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Opportunity Cost Framework</h4>
+                <div className="space-y-2 text-xs text-gray-600 dark:text-gray-300">
+                  <p><strong className="text-gray-900 dark:text-white">Buyer NW:</strong> Property Value + Tax Benefits - Loan Balance</p>
+                  <p><strong className="text-gray-900 dark:text-white">Renter NW:</strong> (Down Pmt + EMI Savings) × Returns</p>
+                  <p><strong className="text-gray-900 dark:text-white">Winner:</strong> Path with higher net worth after 20 years</p>
                 </div>
               </div>
             </div>
@@ -814,17 +814,17 @@ export default function HomeLoanVsRentCalculator() {
 
               {/* Secondary metrics */}
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                <div className="card bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 p-3 sm:p-4 min-w-0">
+                <div className="stat-tile">
                   <div className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Monthly EMI</div>
-                  <div className="text-sm sm:text-lg font-bold text-blue-600 dark:text-blue-300 whitespace-nowrap">
+                  <div className="text-sm sm:text-lg font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
                     {formatCurrency(result.monthly_emi)}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Buyer's monthly payment</div>
                 </div>
 
-                <div className="card bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 p-3 sm:p-4 min-w-0">
+                <div className="stat-tile">
                   <div className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Break-Even</div>
-                  <div className="text-sm sm:text-lg font-bold text-purple-600 dark:text-purple-300 whitespace-nowrap">
+                  <div className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
                     {result.break_even_year ? `Year ${result.break_even_year}` : 'Never'}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">When buying becomes better</div>
@@ -833,12 +833,12 @@ export default function HomeLoanVsRentCalculator() {
             </div>
 
             {/* Understanding Your Analysis */}
-            <div className="card mb-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-              <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 text-lg flex items-center gap-2"><BookOpen className="w-5 h-5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding This Analysis</h3>
-              <p className="text-sm text-blue-800 dark:text-blue-200 mb-4">
-                This calculator compares two financial paths over {watchValues.projection_tenure_years} years using the Opportunity Cost Framework: <strong>Buy with a loan</strong> vs <strong>Rent and invest the saved capital</strong>.
+            <div className="info-panel mb-8">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-3 text-lg flex items-center gap-2"><BookOpen className="w-5 h-5 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Understanding This Analysis</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                This calculator compares two financial paths over {watchValues.projection_tenure_years} years using the Opportunity Cost Framework: <strong className="text-gray-900 dark:text-white">Buy with a loan</strong> vs <strong className="text-gray-900 dark:text-white">Rent and invest the saved capital</strong>.
               </p>
-              <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-800 dark:text-blue-200">
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300">
                 <div>
                   <p className="font-semibold mb-2 flex items-center gap-1.5"><Home className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Buyer's Path:</p>
                   <ul className="list-disc list-inside space-y-1 text-xs">
@@ -1032,7 +1032,7 @@ export default function HomeLoanVsRentCalculator() {
                         <td className="text-right py-2 px-2 text-blue-600 dark:text-blue-400">
                           {formatCurrency(row.buyer_net_worth)}
                         </td>
-                        <td className="text-right py-2 px-2 text-purple-600 dark:text-purple-400">
+                        <td className="text-right py-2 px-2 text-teal-600 dark:text-teal-400">
                           {formatCurrency(row.renter_net_worth)}
                         </td>
                         <td className="text-right py-2 px-2 font-semibold text-gray-700 dark:text-gray-300">
