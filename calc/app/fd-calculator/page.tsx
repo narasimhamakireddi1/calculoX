@@ -229,7 +229,7 @@ export default function FDCalculatorPage() {
     <div className="space-y-8 py-8">
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="fd" className="w-6 h-6 text-white" />
           </span>
           <span>Fixed Deposit (FD) Calculator</span>
@@ -262,7 +262,7 @@ export default function FDCalculatorPage() {
                   value={watchValues.principal === 0 ? '' : watchValues.principal}
                   onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
                   id="principal-fd"
@@ -274,16 +274,16 @@ export default function FDCalculatorPage() {
                   value={watchValues.principal === 0 ? '' : watchValues.principal}
                   onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700"
+                  className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                 />
               </div>
               {errors.principal && <p className="text-red-500 text-sm">{errors.principal.message}</p>}
               <div className="flex gap-2 flex-wrap mt-3">
                 {[50000, 100000, 500000, 1000000].map(val => (
                   <button key={val} type="button" onClick={() => handleInputChange('principal', val)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-700
-                               bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300
-                               hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors">
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                     {val === 1000000 ? '₹10L' : `₹${val / 100000}L`}
                   </button>
                 ))}
@@ -298,7 +298,7 @@ export default function FDCalculatorPage() {
             <div className="space-y-3">
               <label htmlFor="rate-fd" className="block text-sm font-bold text-gray-900 dark:text-white">
                 Annual Interest Rate (%)
-                {watchValues.seniorCitizen && <span className="text-yellow-600 dark:text-yellow-400"> +0.5% (Senior)</span>}
+                {watchValues.seniorCitizen && <span className="text-amber-600 dark:text-amber-400"> +0.5% (Senior)</span>}
               </label>
               <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                 <RangeSlider
@@ -338,7 +338,7 @@ export default function FDCalculatorPage() {
                     onClick={() => handleTenureTypeChange(type)}
                     className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all capitalize ${
                       watchValues.tenureType === type
-                        ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white shadow-lg'
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
@@ -367,7 +367,7 @@ export default function FDCalculatorPage() {
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                      className="w-full flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                      className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
                     <input
                       id="tenure-years"
@@ -378,7 +378,7 @@ export default function FDCalculatorPage() {
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                      className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700"
+                      className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                     />
                   </div>
                   {errors.years && <p className="text-red-500 text-sm">{errors.years.message}</p>}
@@ -397,7 +397,7 @@ export default function FDCalculatorPage() {
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-full flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                      className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
                     <input
                       id="tenure-months"
@@ -408,7 +408,7 @@ export default function FDCalculatorPage() {
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700"
+                      className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                     />
                   </div>
                   {errors.months && <p className="text-red-500 text-sm">{errors.months.message}</p>}
@@ -427,7 +427,7 @@ export default function FDCalculatorPage() {
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-full flex-1 h-3 bg-gradient-to-r from-pink-300 to-pink-600 rounded-lg appearance-none cursor-pointer accent-pink-600"
+                      className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
                     <input
                       id="tenure-days"
@@ -438,7 +438,7 @@ export default function FDCalculatorPage() {
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-pink-400 rounded-lg font-bold text-pink-700 bg-pink-50 dark:bg-pink-900/20 dark:text-pink-400 dark:border-pink-700"
+                      className="w-full md:w-40 px-3 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700"
                     />
                   </div>
                   {errors.days && <p className="text-red-500 text-sm">{errors.days.message}</p>}
@@ -446,7 +446,7 @@ export default function FDCalculatorPage() {
               )}
 
               {isShortTerm && (
-                <p className="text-yellow-600 dark:text-yellow-400 text-xs font-semibold flex items-center gap-1">
+                <p className="text-amber-600 dark:text-amber-400 text-xs font-semibold flex items-center gap-1">
                   <AlertTriangle className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Short-term FD (under 6 months) calculated using Simple Interest method
                 </p>
               )}
@@ -485,11 +485,11 @@ export default function FDCalculatorPage() {
                   type="checkbox"
                   checked={watchValues.seniorCitizen}
                   onChange={(e) => handleSeniorCitizenChange(e.target.checked)}
-                  className="w-5 h-5 cursor-pointer accent-yellow-500"
+                  className="w-5 h-5 cursor-pointer accent-amber-500"
                 />
                 <span className="text-sm font-bold text-gray-900 dark:text-white">Senior Citizen (Age 60+)</span>
               </label>
-              <p className="text-xs text-yellow-600 dark:text-yellow-400 font-semibold flex items-center gap-1">
+              <p className="text-xs text-amber-600 dark:text-amber-400 font-semibold flex items-center gap-1">
                 {watchValues.seniorCitizen ? (
                   <><CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> +0.50% bonus rate applied to {(watchValues.annualRate + 0.5).toFixed(2)}%</>
                 ) : (
@@ -501,9 +501,9 @@ export default function FDCalculatorPage() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] will-change-transform"
+              className="btn-ghost w-full inline-flex items-center justify-center gap-1.5"
             >
-              <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
+              <Trash2 className="w-4 h-4" aria-hidden="true" /> Clear All
             </button>
           </form>
         </div>
@@ -515,9 +515,9 @@ export default function FDCalculatorPage() {
               <h2 className="text-2xl font-bold mb-6">Maturity Details</h2>
 
               {/* Tenure Info */}
-              <div className="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg border-l-4 border-indigo-500">
-                <p className="text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-1 flex items-center gap-1"><Calendar className="w-3.5 h-3.5 inline flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Tenure</p>
-                <p className="text-indigo-900 dark:text-indigo-100 font-bold">
+              <div className="info-panel border-l-4 border-blue-500 py-3">
+                <p className="text-gray-500 dark:text-gray-400 text-xs font-semibold mb-1 flex items-center gap-1"><Calendar className="w-3.5 h-3.5 inline flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Tenure</p>
+                <p className="text-gray-900 dark:text-white font-bold">
                   {result.tenure.years}Y {result.tenure.months}M {result.tenure.days}D ({result.tenure.totalDays} days)
                 </p>
               </div>
@@ -533,47 +533,47 @@ export default function FDCalculatorPage() {
 
               {/* Secondary metrics */}
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                <div className={`bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/20 p-3 sm:p-4 rounded-lg border border-green-200 dark:border-green-700 shadow-sm min-w-0 ${!(result.periodicPayout !== undefined && result.periodicPayout > 0) ? 'col-span-2' : ''}`}>
-                  <p className="text-green-600 dark:text-green-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5">
+                <div className={`stat-tile ${!(result.periodicPayout !== undefined && result.periodicPayout > 0) ? 'col-span-2' : ''}`}>
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                     <TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Earned
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-green-700 dark:text-green-400 whitespace-nowrap">{formatCurrency(result.totalInterest)}</p>
+                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">{formatCurrency(result.totalInterest)}</p>
                 </div>
 
                 {result.periodicPayout !== undefined && result.periodicPayout > 0 && (
-                  <div className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/20 p-3 sm:p-4 rounded-lg border border-amber-200 dark:border-amber-700 shadow-sm min-w-0">
-                    <p className="text-amber-600 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-1">
+                  <div className="stat-tile">
+                    <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">
                       {watchValues.payoutType === 'quarterly' ? 'Per Quarter' : 'Per Month'}
                     </p>
-                    <p className="text-sm sm:text-lg font-bold text-amber-700 dark:text-amber-400 whitespace-nowrap">{formatCurrency(result.periodicPayout)}</p>
+                    <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">{formatCurrency(result.periodicPayout)}</p>
                   </div>
                 )}
               </div>
 
               {/* Result Explanation */}
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your FD Results</h3>
-                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                  <p><strong>Maturity Amount:</strong> The total amount you'll receive at the end of the FD tenure (Principal + Interest)</p>
-                  <p><strong>Total Interest Earned:</strong> The profit you earn from your Fixed Deposit investment</p>
+              <div className="info-panel">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Understanding Your FD Results</h3>
+                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  <p><strong className="text-gray-900 dark:text-white">Maturity Amount:</strong> The total amount you'll receive at the end of the FD tenure (Principal + Interest)</p>
+                  <p><strong className="text-gray-900 dark:text-white">Total Interest Earned:</strong> The profit you earn from your Fixed Deposit investment</p>
                   {result.periodicPayout !== undefined && result.periodicPayout > 0 && (
-                    <p><strong>Periodic Payout:</strong> Interest paid to you {watchValues.payoutType === 'quarterly' ? 'every quarter' : 'every month'} while FD is active</p>
+                    <p><strong className="text-gray-900 dark:text-white">Periodic Payout:</strong> Interest paid to you {watchValues.payoutType === 'quarterly' ? 'every quarter' : 'every month'} while FD is active</p>
                   )}
-                  <p><strong>Tenure:</strong> {result.tenure.years}Y {result.tenure.months}M {result.tenure.days}D ({result.tenure.totalDays} days total)</p>
-                  <p><strong>Interest Rate:</strong> {watchValues.seniorCitizen ? watchValues.annualRate + 0.5 : watchValues.annualRate}% p.a. {watchValues.seniorCitizen && '(includes 0.5% senior citizen bonus)'}</p>
+                  <p><strong className="text-gray-900 dark:text-white">Tenure:</strong> {result.tenure.years}Y {result.tenure.months}M {result.tenure.days}D ({result.tenure.totalDays} days total)</p>
+                  <p><strong className="text-gray-900 dark:text-white">Interest Rate:</strong> {watchValues.seniorCitizen ? watchValues.annualRate + 0.5 : watchValues.annualRate}% p.a. {watchValues.seniorCitizen && '(includes 0.5% senior citizen bonus)'}</p>
                 </div>
               </div>
 
-              <div className="mb-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4">
-                <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
-                <p className="text-sm text-amber-700 dark:text-amber-300">
-                  Your effective annual yield is <strong>{((result.totalInterest / (watchValues.principal * (result.tenure.totalDays / 365))) * 100).toFixed(2)}%</strong>. Current bank FD rates range from 5-7%, so your {watchValues.annualRate}% rate {watchValues.annualRate >= 7 ? 'is competitive' : watchValues.annualRate >= 6 ? 'is reasonable' : 'is below market rates'}. {watchValues.seniorCitizen && 'Your 0.5% senior citizen bonus adds ₹' + (result.totalInterest - (watchValues.principal * (watchValues.annualRate / 100) * (result.tenure.totalDays / 365))).toFixed(0) + ' in extra returns.'} Compare with RD for monthly investment habits.
+              <div className="info-panel mb-6">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-amber-600 dark:text-amber-400" strokeWidth={2} aria-hidden="true" /> How Do You Compare?</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Your effective annual yield is <strong className="text-gray-900 dark:text-white">{((result.totalInterest / (watchValues.principal * (result.tenure.totalDays / 365))) * 100).toFixed(2)}%</strong>. Current bank FD rates range from 5-7%, so your {watchValues.annualRate}% rate {watchValues.annualRate >= 7 ? 'is competitive' : watchValues.annualRate >= 6 ? 'is reasonable' : 'is below market rates'}. {watchValues.seniorCitizen && 'Your 0.5% senior citizen bonus adds ₹' + (result.totalInterest - (watchValues.principal * (watchValues.annualRate / 100) * (result.tenure.totalDays / 365))).toFixed(0) + ' in extra returns.'} Compare with RD for monthly investment habits.
                 </p>
               </div>
 
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
-                <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                  <strong>Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.
+              <div className="info-panel border-l-4 border-amber-400">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <strong className="text-gray-900 dark:text-white">Disclaimer:</strong> This calculator provides an estimate. Actual maturity amount may vary based on the bank&apos;s terms and conditions. Please consult your bank for exact figures.
                 </p>
               </div>
               <div className="mt-6">
@@ -732,25 +732,25 @@ export default function FDCalculatorPage() {
         <div className="card">
           <h2 className="text-2xl font-bold mb-4">FD vs Savings Account vs Recurring Deposit (RD)</h2>
           <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <div className="border-l-4 border-blue-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Lock className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> FD (Fixed Deposit)</h3>
+            <div className="border-l-4 border-blue-500 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Lock className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> FD (Fixed Deposit)</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Lump sum invested for fixed tenure</p>
               <p className="text-xs"><strong>Rate:</strong> 7-8% | <strong>Tenure:</strong> 3m-10y | <strong>Safety:</strong> Very High</p>
             </div>
-            <div className="border-l-4 border-green-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Landmark className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Savings Account</h3>
+            <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><Landmark className="w-4 h-4 flex-shrink-0 text-gray-400" strokeWidth={2} aria-hidden="true" /> Savings Account</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Liquid funds with withdrawal anytime</p>
               <p className="text-xs"><strong>Rate:</strong> 2-3% | <strong>Tenure:</strong> Ongoing | <strong>Safety:</strong> Very High</p>
             </div>
-            <div className="border-l-4 border-orange-600 pl-4 py-2">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> RD (Recurring)</h3>
+            <div className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 py-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2"><BarChart2 className="w-4 h-4 flex-shrink-0 text-gray-400" strokeWidth={2} aria-hidden="true" /> RD (Recurring)</h3>
               <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">Monthly investments over fixed period</p>
               <p className="text-xs"><strong>Rate:</strong> 5-7% | <strong>Tenure:</strong> 6m-10y | <strong>Safety:</strong> Very High</p>
             </div>
           </div>
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <div className="info-panel mt-6">
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              <strong>Best Use:</strong> FD for lump sum savings, Savings Account for emergency funds, RD for monthly savings habit.
+              <strong className="text-gray-900 dark:text-white">Best Use:</strong> FD for lump sum savings, Savings Account for emergency funds, RD for monthly savings habit.
             </p>
           </div>
         </div>
