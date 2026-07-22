@@ -191,7 +191,7 @@ export default function BMICalculatorPage() {
     <div className="space-y-8 py-8">
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="bmi" className="w-6 h-6 text-white" />
           </span>
           <span>BMI Calculator</span>
@@ -250,7 +250,7 @@ export default function BMICalculatorPage() {
                   value={watchValues.weight === 0 ? "" : watchValues.weight}
                   onChange={(e) => handleInputChange('weight', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600"
                 />
                 <input
                   id="weight"
@@ -261,16 +261,16 @@ export default function BMICalculatorPage() {
                   value={watchValues.weight === 0 ? "" : watchValues.weight}
                   onChange={(e) => handleInputChange('weight', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('weight', Number(e.target.value))}
-                  className="w-full md:w-28 px-2 py-2 text-center border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-full md:w-28 px-2 py-2 text-center border-2 border-rose-400 rounded-lg font-bold text-rose-700 bg-rose-50 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               {errors.weight && <p className="text-red-500 text-sm">{errors.weight.message}</p>}
               <div className="flex gap-2 flex-wrap mt-3">
                 {(unitSystem === 'metric' ? [50, 70, 90] : [110, 154, 198]).map(val => (
                   <button key={val} type="button" onClick={() => handleInputChange('weight', val)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
-                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
-                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                    className="text-xs px-3 py-1.5 rounded-full border border-rose-200 dark:border-rose-700
+                               bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300
+                               hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors">
                     {val}{unitSystem === 'metric' ? 'kg' : 'lbs'}
                   </button>
                 ))}
@@ -292,7 +292,7 @@ export default function BMICalculatorPage() {
                   value={watchValues.height === 0 ? "" : watchValues.height}
                   onChange={(e) => handleInputChange('height', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('height', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-green-300 to-green-600 rounded-lg appearance-none cursor-pointer accent-green-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-rose-300 to-rose-600 rounded-lg appearance-none cursor-pointer accent-rose-600"
                 />
                 <input
                   id="height"
@@ -303,16 +303,16 @@ export default function BMICalculatorPage() {
                   value={watchValues.height === 0 ? "" : watchValues.height}
                   onChange={(e) => handleInputChange('height', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('height', Number(e.target.value))}
-                  className="w-full md:w-28 px-2 py-2 text-center border-2 border-green-400 rounded-lg font-bold text-green-700 bg-green-50 dark:bg-green-900/20 dark:text-green-400 dark:border-green-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-full md:w-28 px-2 py-2 text-center border-2 border-rose-400 rounded-lg font-bold text-rose-700 bg-rose-50 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-700 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
               {errors.height && <p className="text-red-500 text-sm">{errors.height.message}</p>}
               <div className="flex gap-2 flex-wrap mt-3">
                 {(unitSystem === 'metric' ? [160, 170, 180] : [64, 68, 72]).map(val => (
                   <button key={val} type="button" onClick={() => handleInputChange('height', val)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
-                               bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300
-                               hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                    className="text-xs px-3 py-1.5 rounded-full border border-rose-200 dark:border-rose-700
+                               bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300
+                               hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors">
                     {val}{unitSystem === 'metric' ? 'cm' : '\"'}
                   </button>
                 ))}
@@ -326,7 +326,7 @@ export default function BMICalculatorPage() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2"
+              className="btn-ghost w-full flex items-center justify-center gap-1.5"
             >
               <Trash2 className="w-4 h-4" strokeWidth={2} aria-hidden="true" />
               Clear All
