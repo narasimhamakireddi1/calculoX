@@ -183,11 +183,9 @@ export function generateCalculatorSchema(opts: {
       price: '0',
       priceCurrency: 'INR',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '5000',
-    },
+    // NOTE: Do NOT add aggregateRating/reviewCount here. Self-serving rating
+    // data with no real user reviews violates Google's structured-data policy
+    // and can trigger a manual action. Only add ratings backed by real reviews.
     author: {
       '@type': 'Organization',
       name: 'calculox',
@@ -237,14 +235,9 @@ export function generateProductSchema(opts: {
       priceCurrency: 'INR',
       availability: 'https://schema.org/InStock',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '5000',
-      bestRating: '5',
-      worstRating: '1',
-    },
-    reviewCount: '5000',
+    // NOTE: aggregateRating/reviewCount intentionally omitted — fabricated
+    // review data violates Google's structured-data policy. Add only if backed
+    // by real, collected user reviews.
   };
 }
 
