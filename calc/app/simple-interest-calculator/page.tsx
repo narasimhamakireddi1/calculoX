@@ -194,7 +194,7 @@ export default function SimpleInterestCalculatorPage() {
     <div className="space-y-8 py-8">
       <div className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gradient flex flex-wrap items-center justify-center gap-2">
-          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg flex-shrink-0">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex-shrink-0">
             <CalculatorIcon idOrHref="simple-interest" className="w-6 h-6 text-white" />
           </span>
           <span>Simple Interest Calculator</span>
@@ -227,7 +227,7 @@ export default function SimpleInterestCalculatorPage() {
                   value={watchValues.principal === 0 ? '' : watchValues.principal}
                   onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="w-full flex-1 h-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                  className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 />
                 <input
                   id="principal-si"
@@ -239,16 +239,16 @@ export default function SimpleInterestCalculatorPage() {
                   value={watchValues.principal === 0 ? '' : watchValues.principal}
                   onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-emerald-400 rounded-lg font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               {errors.principal && <p className="text-red-500 text-sm">{errors.principal.message}</p>}
               <div className="flex gap-2 flex-wrap mt-3">
                 {[10000, 50000, 100000, 500000].map(val => (
                   <button key={val} type="button" onClick={() => handleInputChange('principal', val)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-700
-                               bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300
-                               hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors">
+                    className="text-xs px-3 py-1.5 rounded-full border border-blue-200 dark:border-blue-700
+                               bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
+                               hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                     ₹{val >= 100000 ? `${val / 100000}L` : `${val / 1000}K`}
                   </button>
                 ))}
@@ -310,7 +310,7 @@ export default function SimpleInterestCalculatorPage() {
                     onClick={() => handleTenureTypeChange(type)}
                     className={`py-2 px-3 rounded-lg text-sm font-semibold transition-all capitalize ${
                       watchValues.tenureType === type
-                        ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white shadow-lg'
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
@@ -330,7 +330,7 @@ export default function SimpleInterestCalculatorPage() {
               {/* Years Input - Only shows when tenure type is 'years' */}
               {watchValues.tenureType === 'years' && (
                 <div>
-                  <label htmlFor="tenure-years-si" className="block text-xs uppercase tracking-wide font-semibold text-orange-700 dark:text-orange-400 mb-2">Years (0-100)</label>
+                  <label htmlFor="tenure-years-si" className="block text-xs uppercase tracking-wide font-semibold text-gray-600 dark:text-gray-400 mb-2">Years (0-100)</label>
                   <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <RangeSlider
                       min="0"
@@ -338,7 +338,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                      className="w-full flex-1 h-3 bg-gradient-to-r from-orange-300 to-orange-600 rounded-lg appearance-none cursor-pointer accent-orange-600"
+                      className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
                     <input
                       id="tenure-years-si"
@@ -349,7 +349,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.years === 0 ? '' : watchValues.years}
                       onChange={(e) => handleInputChange('years', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('years', Number(e.target.value))}
-                      className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-orange-400 rounded-lg font-bold text-orange-700 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -358,7 +358,7 @@ export default function SimpleInterestCalculatorPage() {
               {/* Months Input - Only shows when tenure type is 'months' */}
               {watchValues.tenureType === 'months' && (
                 <div>
-                  <label htmlFor="tenure-months-si" className="block text-xs uppercase tracking-wide font-semibold text-purple-700 dark:text-purple-400 mb-2">Months (0-11)</label>
+                  <label htmlFor="tenure-months-si" className="block text-xs uppercase tracking-wide font-semibold text-gray-600 dark:text-gray-400 mb-2">Months (0-11)</label>
                   <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <RangeSlider
                       min="0"
@@ -366,7 +366,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-full flex-1 h-3 bg-gradient-to-r from-purple-300 to-purple-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                      className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
                     <input
                       id="tenure-months-si"
@@ -377,7 +377,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.months === 0 ? '' : watchValues.months}
                       onChange={(e) => handleInputChange('months', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('months', Number(e.target.value))}
-                      className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-purple-400 rounded-lg font-bold text-purple-700 bg-purple-50 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -386,7 +386,7 @@ export default function SimpleInterestCalculatorPage() {
               {/* Days Input - Only shows when tenure type is 'days' */}
               {watchValues.tenureType === 'days' && (
                 <div>
-                  <label htmlFor="tenure-days-si" className="block text-xs uppercase tracking-wide font-semibold text-pink-700 dark:text-pink-400 mb-2">Days (0-30)</label>
+                  <label htmlFor="tenure-days-si" className="block text-xs uppercase tracking-wide font-semibold text-gray-600 dark:text-gray-400 mb-2">Days (0-30)</label>
                   <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center">
                     <RangeSlider
                       min="0"
@@ -394,7 +394,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-full flex-1 h-3 bg-gradient-to-r from-pink-300 to-pink-600 rounded-lg appearance-none cursor-pointer accent-pink-600"
+                      className="w-full flex-1 h-3 bg-gradient-to-r from-blue-300 to-blue-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
                     <input
                       id="tenure-days-si"
@@ -405,7 +405,7 @@ export default function SimpleInterestCalculatorPage() {
                       value={watchValues.days === 0 ? '' : watchValues.days}
                       onChange={(e) => handleInputChange('days', e.target.value === '' ? 0 : Number(e.target.value))}
                       onBlur={(e) => handleValidateField('days', Number(e.target.value))}
-                      className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-pink-400 rounded-lg font-bold text-pink-700 bg-pink-50 dark:bg-pink-900/20 dark:text-pink-400 dark:border-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                      className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -415,20 +415,20 @@ export default function SimpleInterestCalculatorPage() {
             <button
               type="button"
               onClick={handleReset}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+              className="btn-ghost w-full inline-flex items-center justify-center gap-1.5"
             >
               <Trash2 className="w-4 h-4 inline mr-1" aria-hidden="true" /> Clear All
             </button>
 
             {/* Formula Reference */}
-            <div className="mt-6 p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
-              <h4 className="text-sm font-bold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center gap-2"><Calculator className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
-              <div className="space-y-2 text-xs text-indigo-800 dark:text-indigo-200">
-                <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-indigo-200 dark:border-indigo-700">
+            <div className="info-panel mt-6">
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Calculator className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Formula Reference</h4>
+              <div className="space-y-2 text-xs text-gray-600 dark:text-gray-300">
+                <p className="font-mono bg-white dark:bg-gray-800 p-2 rounded border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200">
                   SI = (P × R × T) / 100
                 </p>
-                <p><strong>Where:</strong> P = Principal | R = Rate (% p.a.) | T = Time (years)</p>
-                <p><strong>Maturity:</strong> Amount = P + SI</p>
+                <p><strong className="text-gray-900 dark:text-white">Where:</strong> P = Principal | R = Rate (% p.a.) | T = Time (years)</p>
+                <p><strong className="text-gray-900 dark:text-white">Maturity:</strong> Amount = P + SI</p>
               </div>
             </div>
           </form>
@@ -441,66 +441,66 @@ export default function SimpleInterestCalculatorPage() {
               <h2 className="text-2xl font-bold mb-6">Maturity Details</h2>
 
               {/* Hero metric */}
-              <div className="bg-gradient-to-br from-green-50 to-cyan-50 dark:from-green-900/30 dark:to-cyan-900/30 p-6 sm:p-8 rounded-xl border-2 border-green-300 dark:border-green-700 shadow-lg">
-                <p className="text-green-700 dark:text-green-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Accrued</p>
-                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-green-700 dark:text-green-400 whitespace-nowrap leading-tight">{formatCurrency(result.interestAccrued)}</p>
-                <p className="text-xs text-green-600 dark:text-green-400 mt-2 font-medium">earned at {watchValues.annualRate}% p.a.</p>
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/20 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
+                <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Accrued</p>
+                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">{formatCurrency(result.interestAccrued)}</p>
+                <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 font-medium">earned at {watchValues.annualRate}% p.a.</p>
               </div>
 
               {/* Secondary metrics */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/30 dark:to-emerald-900/20 p-3 sm:p-4 rounded-lg border border-emerald-200 dark:border-emerald-700 shadow-sm min-w-0">
-                  <p className="text-emerald-600 dark:text-emerald-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><Coins className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Principal</p>
-                  <p className="text-sm sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap">{formatCurrency(result.principalAmount)}</p>
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><Coins className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Principal</p>
+                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">{formatCurrency(result.principalAmount)}</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 shadow-sm min-w-0">
-                  <p className="text-blue-600 dark:text-blue-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><Target className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maturity Value</p>
-                  <p className="text-sm sm:text-lg font-bold text-blue-700 dark:text-blue-400 whitespace-nowrap">{formatCurrency(result.totalMaturityValue)}</p>
+                <div className="stat-tile">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><Target className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maturity Value</p>
+                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">{formatCurrency(result.totalMaturityValue)}</p>
                 </div>
 
                 {result.dailyAccrual !== undefined && (
-                  <div className="col-span-2 sm:col-span-1 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 p-3 sm:p-4 rounded-lg border border-amber-200 dark:border-amber-700 shadow-sm min-w-0">
-                    <p className="text-amber-600 dark:text-amber-300 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-0.5"><Sunrise className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Daily Accrual</p>
-                    <p className="text-sm sm:text-lg font-bold text-amber-700 dark:text-amber-400 whitespace-nowrap">{formatCurrency(result.dailyAccrual)}</p>
+                  <div className="stat-tile col-span-2 sm:col-span-1">
+                    <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><Sunrise className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Daily Accrual</p>
+                    <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">{formatCurrency(result.dailyAccrual)}</p>
                   </div>
                 )}
               </div>
 
               {/* Understanding Your Simple Interest */}
-              <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Understanding Your Simple Interest</h3>
-                <p className="text-sm text-blue-800 dark:text-blue-200 mb-3">
+              <div className="info-panel mt-6">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><BookOpen className="w-4 h-4 flex-shrink-0 text-blue-600 dark:text-blue-400" strokeWidth={2} aria-hidden="true" /> Understanding Your Simple Interest</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
                   Simple Interest is calculated only on the principal amount throughout the tenure. Unlike compound interest, it doesn't earn interest on interest.
                 </p>
-                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                  <p><strong>Principal Amount:</strong> {formatCurrency(result.principalAmount)} - Your initial investment</p>
-                  <p><strong>Interest Earned:</strong> {formatCurrency(result.interestAccrued)} - Money earned at {watchValues.annualRate}% p.a. for {watchValues.tenureType === 'years' ? watchValues.years + ' year(s)' : watchValues.tenureType === 'months' ? watchValues.months + ' month(s)' : watchValues.days + ' day(s)'}</p>
-                  <p><strong>Maturity Amount:</strong> {formatCurrency(result.totalMaturityValue)} - Total amount you'll receive (Principal + Interest)</p>
+                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  <p><strong className="text-gray-900 dark:text-white">Principal Amount:</strong> {formatCurrency(result.principalAmount)} - Your initial investment</p>
+                  <p><strong className="text-gray-900 dark:text-white">Interest Earned:</strong> {formatCurrency(result.interestAccrued)} - Money earned at {watchValues.annualRate}% p.a. for {watchValues.tenureType === 'years' ? watchValues.years + ' year(s)' : watchValues.tenureType === 'months' ? watchValues.months + ' month(s)' : watchValues.days + ' day(s)'}</p>
+                  <p><strong className="text-gray-900 dark:text-white">Maturity Amount:</strong> {formatCurrency(result.totalMaturityValue)} - Total amount you'll receive (Principal + Interest)</p>
                 </div>
               </div>
 
               {/* Key Insights */}
-              <div className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700">
-                <h3 className="font-bold text-green-900 dark:text-green-300 mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
-                <div className="space-y-2 text-sm text-green-800 dark:text-green-200">
+              <div className="info-panel mt-4">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Lightbulb className="w-4 h-4 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" /> Key Insights</h3>
+                <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <p>
-                    <strong>Return Multiple:</strong> <span className="font-bold text-green-700 dark:text-green-300">{(result.totalMaturityValue / result.principalAmount).toFixed(2)}x</span> - Your money will grow by {((result.totalMaturityValue / result.principalAmount - 1) * 100).toFixed(1)}%
+                    <strong className="text-gray-900 dark:text-white">Return Multiple:</strong> <span className="font-bold text-emerald-600 dark:text-emerald-400">{(result.totalMaturityValue / result.principalAmount).toFixed(2)}x</span> - Your money will grow by {((result.totalMaturityValue / result.principalAmount - 1) * 100).toFixed(1)}%
                   </p>
                   <p>
-                    <strong>Interest Rate Comparison:</strong> At {watchValues.annualRate}% p.a., you earn {formatCurrency(result.interestAccrued / (watchValues.tenureType === 'years' ? watchValues.years : watchValues.tenureType === 'months' ? watchValues.months / 12 : watchValues.days / 365))} per year
+                    <strong className="text-gray-900 dark:text-white">Interest Rate Comparison:</strong> At {watchValues.annualRate}% p.a., you earn {formatCurrency(result.interestAccrued / (watchValues.tenureType === 'years' ? watchValues.years : watchValues.tenureType === 'months' ? watchValues.months / 12 : watchValues.days / 365))} per year
                   </p>
                   {result.dailyAccrual !== undefined && (
                     <p>
-                      <strong>Daily Earnings:</strong> {formatCurrency(result.dailyAccrual)} per day - Or {formatCurrency(result.dailyAccrual * 30)} per month on average
+                      <strong className="text-gray-900 dark:text-white">Daily Earnings:</strong> {formatCurrency(result.dailyAccrual)} per day - Or {formatCurrency(result.dailyAccrual * 30)} per month on average
                     </p>
                   )}
                 </div>
               </div>
 
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 rounded">
-                <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                  <strong>Disclaimer:</strong> This calculation assumes constant interest rates and regular calculations. Actual amounts may vary based on lender terms and conditions.
+              <div className="info-panel border-l-4 border-amber-400">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <strong className="text-gray-900 dark:text-white">Disclaimer:</strong> This calculation assumes constant interest rates and regular calculations. Actual amounts may vary based on lender terms and conditions.
                 </p>
               </div>
               <div className="mt-6">
