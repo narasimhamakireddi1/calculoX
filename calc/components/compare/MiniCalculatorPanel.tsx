@@ -9,7 +9,7 @@ import { formatCurrency } from '@/lib/utils/format';
 import { CalculatorIcon } from '@/components/ui/CalculatorIcon';
 
 type CalculatorId = 'emi' | 'sip' | 'fd';
-type AccentColor = 'blue' | 'purple';
+type AccentColor = 'blue' | 'violet';
 
 interface MiniCalculatorPanelProps {
   calcId: CalculatorId;
@@ -17,9 +17,9 @@ interface MiniCalculatorPanelProps {
 }
 
 export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanelProps) {
-  const borderColor = accentColor === 'blue' ? 'border-blue-500' : 'border-purple-500';
-  const bgAccent = accentColor === 'blue' ? 'bg-blue-50 dark:bg-blue-900/20' : 'bg-purple-50 dark:bg-purple-900/20';
-  const textAccent = accentColor === 'blue' ? 'text-blue-700 dark:text-blue-300' : 'text-purple-700 dark:text-purple-300';
+  const borderColor = accentColor === 'blue' ? 'border-blue-500' : 'border-violet-500';
+  const bgAccent = accentColor === 'blue' ? 'bg-blue-50 dark:bg-blue-900/20' : 'bg-violet-50 dark:bg-violet-900/20';
+  const textAccent = accentColor === 'blue' ? 'text-blue-700 dark:text-blue-300' : 'text-violet-700 dark:text-violet-300';
 
   // EMI state
   const [emiPrincipal, setEmiPrincipal] = useState(500000);
@@ -202,7 +202,7 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
                 step="100"
                 value={sipMonthly}
                 onChange={(e) => setSipMonthly(Number(e.target.value))}
-                className="w-full px-3 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white font-bold text-right focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white font-bold text-right focus:outline-none focus:ring-2 focus:ring-violet-500"
               />
             </div>
 
@@ -217,7 +217,7 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
                 step="0.5"
                 value={sipReturn}
                 onChange={(e) => setSipReturn(Number(e.target.value))}
-                className="w-full px-3 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white font-bold text-right focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white font-bold text-right focus:outline-none focus:ring-2 focus:ring-violet-500"
               />
             </div>
 
@@ -232,7 +232,7 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
                 step="1"
                 value={sipYears}
                 onChange={(e) => setSipYears(Number(e.target.value))}
-                className="w-full px-3 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white font-bold text-right focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border-2 border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white font-bold text-right focus:outline-none focus:ring-2 focus:ring-violet-500"
               />
             </div>
           </div>
@@ -241,22 +241,22 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
             <div className={`${bgAccent} rounded-lg p-4 space-y-3 mb-4`}>
               <div>
                 <p className="text-xs uppercase font-semibold text-gray-600 dark:text-gray-400">Total Invested</p>
-                <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">{formatCurrency(sipResult.totalInvestment)}</p>
+                <p className="text-2xl font-bold text-violet-700 dark:text-violet-300">{formatCurrency(sipResult.totalInvestment)}</p>
               </div>
               <div>
                 <p className="text-xs uppercase font-semibold text-gray-600 dark:text-gray-400">Future Value</p>
-                <p className="text-lg font-bold text-purple-700 dark:text-purple-300">{formatCurrency(sipResult.futureValue)}</p>
+                <p className="text-lg font-bold text-violet-700 dark:text-violet-300">{formatCurrency(sipResult.futureValue)}</p>
               </div>
               <div>
                 <p className="text-xs uppercase font-semibold text-gray-600 dark:text-gray-400">Gains</p>
-                <p className="text-lg font-bold text-purple-700 dark:text-purple-300">{formatCurrency(sipResult.gainedAmount)}</p>
+                <p className="text-lg font-bold text-violet-700 dark:text-violet-300">{formatCurrency(sipResult.gainedAmount)}</p>
               </div>
             </div>
           )}
 
           <Link
             href="/sip-calculator"
-            className="text-sm font-semibold text-purple-600 dark:text-purple-400 hover:underline flex items-center gap-1"
+            className="text-sm font-semibold text-violet-600 dark:text-violet-400 hover:underline flex items-center gap-1"
           >
             Open Full Calculator →
           </Link>
@@ -323,11 +323,11 @@ export function MiniCalculatorPanel({ calcId, accentColor }: MiniCalculatorPanel
             <div className={`${bgAccent} rounded-lg p-4 space-y-3 mb-4`}>
               <div>
                 <p className="text-xs uppercase font-semibold text-gray-600 dark:text-gray-400">Maturity Amount</p>
-                <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">{formatCurrency(fdResult.maturityAmount)}</p>
+                <p className="text-2xl font-bold text-violet-700 dark:text-violet-300">{formatCurrency(fdResult.maturityAmount)}</p>
               </div>
               <div>
                 <p className="text-xs uppercase font-semibold text-gray-600 dark:text-gray-400">Total Interest</p>
-                <p className="text-lg font-bold text-purple-700 dark:text-purple-300">{formatCurrency(fdResult.totalInterest)}</p>
+                <p className="text-lg font-bold text-violet-700 dark:text-violet-300">{formatCurrency(fdResult.totalInterest)}</p>
               </div>
             </div>
           )}

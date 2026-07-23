@@ -91,7 +91,7 @@ export function CompareClient() {
         {/* Swap Button */}
         <button
           onClick={handleSwap}
-          className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:shadow-lg transition-all active:scale-95 mt-6"
+          className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 text-white hover:shadow-lg transition-all active:scale-95 mt-6"
           title="Swap calculators"
           aria-label="Swap calculators"
         >
@@ -106,7 +106,7 @@ export function CompareClient() {
           <select
             value={calc2Id}
             onChange={(e) => handleCalc2Change(e.target.value as CalculatorId)}
-            className="w-full px-4 py-3 rounded-lg border-2 border-purple-300 dark:border-purple-700 bg-purple-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer"
+            className="w-full px-4 py-3 rounded-lg border-2 border-violet-300 dark:border-violet-700 bg-violet-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold focus:outline-none focus:ring-2 focus:ring-violet-500 cursor-pointer"
           >
             {CALCULATORS.map(cal => (
               <option key={cal.id} value={cal.id}>
@@ -120,7 +120,7 @@ export function CompareClient() {
       {/* Panel Grid */}
       <div className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-8 px-4 md:px-0">
         <MiniCalculatorPanel key={calc1Id} calcId={calc1Id} accentColor="blue" />
-        <MiniCalculatorPanel key={calc2Id} calcId={calc2Id} accentColor="purple" />
+        <MiniCalculatorPanel key={calc2Id} calcId={calc2Id} accentColor="violet" />
       </div>
 
       {/* Footer Info */}
