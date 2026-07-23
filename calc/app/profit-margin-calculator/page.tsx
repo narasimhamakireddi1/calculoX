@@ -324,7 +324,7 @@ export default function ProfitMarginCalculator() {
                         <button key={val} type="button" onClick={() => setValue('targetMarginPct', val)}
                           className="text-xs px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700
                                      bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
-                                     hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                                     hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                           {val}%
                         </button>
                       ))}
@@ -365,7 +365,7 @@ export default function ProfitMarginCalculator() {
                         <button key={val} type="button" onClick={() => setValue('targetMarkupPct', val)}
                           className="text-xs px-3 py-1.5 rounded-full border border-orange-200 dark:border-orange-700
                                      bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300
-                                     hover:bg-orange-100 dark:hover:bg-orange-900/50 transition-colors">
+                                     hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                           {val}%
                         </button>
                       ))}

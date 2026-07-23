@@ -317,7 +317,7 @@ export default function PercentageCalculatorPage() {
                     <button key={val} type="button" onClick={() => setValue('valueA', val)}
                       className="text-xs px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-700
                                  bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300
-                                 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                                 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors">
                       {val}%
                     </button>
                   )) :
@@ -325,7 +325,7 @@ export default function PercentageCalculatorPage() {
                     <button key={val} type="button" onClick={() => setValue('valueA', val)}
                       className="text-xs px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-700
                                  bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300
-                                 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                                 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors">
                       â‚¹{val}
                     </button>
                   ))
@@ -361,7 +361,7 @@ export default function PercentageCalculatorPage() {
                     <button key={val} type="button" onClick={() => setValue('valueB', val)}
                       className="text-xs px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-700
                                  bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300
-                                 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                                 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors">
                       {val}%
                     </button>
                   )) :
@@ -369,7 +369,7 @@ export default function PercentageCalculatorPage() {
                     <button key={val} type="button" onClick={() => setValue('valueB', val)}
                       className="text-xs px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-700
                                  bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300
-                                 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors">
+                                 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors">
                       â‚¹{val >= 1000 ? `${val / 1000}K` : val}
                     </button>
                   ))
