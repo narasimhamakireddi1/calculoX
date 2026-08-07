@@ -19,7 +19,8 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "declaration": true,
     "sourceMap": true,

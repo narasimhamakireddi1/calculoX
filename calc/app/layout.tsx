@@ -13,6 +13,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { HideOnEmbed } from "@/components/layout/HideOnEmbed";
 import { AdSenseLoader } from "@/components/ui/AdSenseLoader";
 import { GoogleAnalyticsLoader } from "@/components/ui/GoogleAnalyticsLoader";
 import { ResultsScrollCue } from "@/components/mobile/ResultsScrollCue";
@@ -151,12 +152,14 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans bg-[#f6f8fd] dark:bg-[#070b15] text-gray-900 dark:text-gray-50`}>
         <Navbar />
         <main className="min-h-screen">{children}</main>
-        <Footer />
-        <ResultsScrollCue />
-        <CalcFAB />
-        <CookieConsent />
-        <AdSenseLoader />
-        <GoogleAnalyticsLoader />
+        <HideOnEmbed>
+          <Footer />
+          <ResultsScrollCue />
+          <CalcFAB />
+          <CookieConsent />
+          <AdSenseLoader />
+          <GoogleAnalyticsLoader />
+        </HideOnEmbed>
         <SpeedInsights />
         <Analytics />
         <Script id="defer-animation" strategy="afterInteractive">

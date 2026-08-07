@@ -90,6 +90,11 @@ export function Navbar() {
     return () => document.removeEventListener('keydown', handleKey);
   }, []);
 
+  // Bare MCP Apps widget surface — no site chrome. Placed after all hooks (not
+  // right after usePathname above) so client-side navigation into/out of /embed/*
+  // never changes this component's hook call order.
+  if (pathname?.startsWith('/embed/')) return null;
+
   return (
     <>
       <nav

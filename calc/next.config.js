@@ -15,7 +15,11 @@ const nextConfig = {
   },
   headers: async () => [
     {
-      source: '/:path*',
+      // Excludes /embed/* (matched by its own block below) so those pages are not
+      // blocked from third-party framing — they're the MCP Apps widget surface,
+      // meant to be iframed from an AI host's origin. Everything else keeps the
+      // normal SAMEORIGIN protection.
+      source: '/((?!embed/).*)',
       headers: [
         { key: 'X-Content-Type-Options', value: 'nosniff' },
         { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
@@ -23,6 +27,18 @@ const nextConfig = {
         { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         { key: 'X-Robots-Tag', value: 'index, follow' },
+      ],
+    },
+    {
+      // Bare MCP Apps widget pages: framable by any origin (no X-Frame-Options),
+      // and kept out of search entirely (noindex here backs up the robots meta in
+      // app/embed/layout.tsx — the header is the signal engines actually trust most).
+      source: '/embed/:path*',
+      headers: [
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+        { key: 'Content-Security-Policy', value: 'frame-ancestors *' },
+        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
       ],
     },
     {
