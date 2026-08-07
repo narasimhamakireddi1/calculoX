@@ -548,12 +548,12 @@ export default function Home() {
         </div>
 
         {/* Search */}
-        <div className="mb-8 relative z-10">
+        <div className="mb-8 relative z-20">
           <CalculatorSearch />
         </div>
 
         {/* Brand + value proposition */}
-        <div className="space-y-5 relative z-10">
+        <div className="space-y-5 relative z-0">
           <p className="text-2xl md:text-3xl font-bold tracking-tight">
             <span className="bg-gradient-to-r from-[#0e2a47] to-emerald-600 dark:from-emerald-300 dark:to-teal-300 bg-clip-text text-transparent">calculox</span>
           </p>
