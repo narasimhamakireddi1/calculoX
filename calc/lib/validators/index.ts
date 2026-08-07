@@ -82,6 +82,66 @@ export const CAGRSchema = z.object({
   years: z.number().int().min(1).max(100),
 });
 
+// Profit Margin Calculator Schema — mirrors PricingInputs + OperationalModes from
+// lib/calculators/profit-margin.ts. Not centralized here originally (the page validates
+// via plain react-hook-form state, no zodResolver); added for the MCP tool so it has an
+// authoritative schema like every other calculator. Bounds match the page's RangeSlider
+// min/max attributes.
+export const ProfitMarginSchema = z.object({
+  costPrice: z.number().positive('Cost price must be greater than 0').max(100000),
+  sellingPrice: z.number().nonnegative().max(100000).optional().default(0),
+  targetMarginPct: z.number().min(0).max(99).optional().default(0),
+  targetMarkupPct: z.number().min(0).max(300).optional().default(0),
+  gstRatePct: z.number().min(0).max(28).optional().default(18),
+  calculationBasis: z.enum(['COST_DRIVEN', 'SELLING_PRICE_DRIVEN']).optional().default('COST_DRIVEN'),
+  gstTreatment: z.enum(['EXCLUSIVE', 'INCLUSIVE']).optional().default('EXCLUSIVE'),
+  marginOrMarkup: z.enum(['margin', 'markup']).optional().default('margin'),
+});
+
+// Retirement Calculator Schema — mirrors the flat form shape used by
+// app/retirement-calculator/page.tsx (its own local RetirementSchema), which the page
+// maps into the nested NismInputs shape lib/calculators/nism-retirement.ts expects.
+// Centralized here so the MCP tool has the same bounds as the live page.
+export const RetirementSchema = z.object({
+  present_age: z.number().min(18).max(75),
+  retirement_age: z.number().min(25).max(100),
+  life_expectancy: z.number().min(30).max(120),
+  present_monthly_expenses: z.number().min(5000),
+  expense_reduction_pct: z.number().min(0).max(50),
+  long_term_inflation_pct: z.number().min(0).max(15),
+  current_savings: z.number().min(0),
+  lump_sum_benefits: z.number().min(0),
+  pre_retirement_return_pct: z.number().min(4).max(25),
+  post_retirement_return_pct: z.number().min(2).max(15),
+});
+
+// Home Loan vs Rent Calculator Schema — mirrors the flat form shape used by
+// app/home-loan-vs-rent/page.tsx (its own local buyVsRentSchema), which the page maps
+// into the nested BuyVsRentInputs shape lib/calculators/buy-vs-rent.ts expects.
+export const BuyVsRentSchema = z.object({
+  property_value: z.number().min(100000).max(100000000),
+  down_payment_pct: z.number().min(5).max(100),
+  loan_interest_rate_pct: z.number().min(2).max(15),
+  loan_tenure_years: z.number().min(1).max(40),
+  property_growth_rate_pct: z.number().min(-5).max(15),
+  annual_maintenance_pct: z.number().min(0).max(3),
+  initial_monthly_rent: z.number().min(1000).max(500000),
+  annual_rent_increase_pct: z.number().min(0).max(15),
+  opportunity_return_pct: z.number().min(0).max(30),
+  inflation_rate_pct: z.number().min(0).max(15),
+  projection_tenure_years: z.number().min(1).max(40),
+  apply_tax_benefit: z.boolean().optional().default(false),
+  income_tax_rate_pct: z.number().min(0).max(45).optional().default(0),
+});
+
+// Scientific Calculator — expression evaluation only (the MCP-tool-shaped subset of
+// lib/calculators/scientific.ts; matrix/statistics/complex modes need array-shaped
+// inputs and are out of scope for a single "calculate" tool).
+export const ScientificExpressionSchema = z.object({
+  expression: z.string().min(1, 'Expression must not be empty').max(200),
+  angleUnit: z.enum(['DEG', 'RAD']).optional().default('DEG'),
+});
+
 // Comprehensive Tax Calculator Schema (FY 2025-26)
 export const ComprehensiveTaxSchema = z.object({
   // Personal Profile

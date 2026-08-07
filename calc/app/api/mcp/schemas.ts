@@ -30,6 +30,108 @@ export const BMIInputSchemaV4 = z.object({
   height: z.number().positive().max(300).describe('Height in centimeters'),
 });
 
+export const FDInputSchemaV4 = z.object({
+  principal: z.number().positive().max(100000000).describe('FD principal amount in INR'),
+  annualRate: z.number().min(0).max(20).describe('Annual interest rate as a percentage'),
+  years: z.number().int().min(0).max(30).describe('Tenure — whole years'),
+  months: z.number().int().min(0).max(11).optional().describe('Tenure — additional months (default 0)'),
+  days: z.number().int().min(0).max(31).optional().describe('Tenure — additional days (default 0)'),
+  payoutType: z.enum(['cumulative', 'quarterly', 'monthly']).optional().describe('Interest payout mode (default cumulative)'),
+  seniorCitizen: z.boolean().optional().describe('Senior citizen rate bonus (default false)'),
+});
+
+export const RDInputSchemaV4 = z.object({
+  monthlyDeposit: z.number().positive().max(10000000).describe('Monthly RD deposit amount in INR'),
+  annualRate: z.number().min(0).max(20).describe('Annual interest rate as a percentage'),
+  months: z.number().int().min(1).max(600).describe('Tenure in months'),
+});
+
+export const GSTInputSchemaV4 = z.object({
+  amount: z.number().positive().max(100000000).describe('Amount in INR'),
+  gstRate: z.enum(['5', '12', '18', '28']).describe('GST rate percentage'),
+  calculationType: z.enum(['add', 'remove']).describe("'add' to add GST on top, 'remove' to extract GST from an inclusive amount"),
+});
+
+export const CAGRInputSchemaV4 = z.object({
+  beginningValue: z.number().positive().describe('Initial investment value in INR'),
+  endingValue: z.number().positive().describe('Final investment value in INR'),
+  years: z.number().int().min(1).max(100).describe('Number of years'),
+});
+
+export const SimpleInterestInputSchemaV4 = z.object({
+  principal: z.number().positive().max(100000000).describe('Principal amount in INR'),
+  annualRate: z.number().min(0).max(50).describe('Annual interest rate as a percentage'),
+  tenureValue: z.number().positive().describe('Tenure duration (interpreted per tenureType)'),
+  tenureType: z.enum(['years', 'months', 'days']).describe('Unit for tenureValue'),
+});
+
+export const PercentageInputSchemaV4 = z.object({
+  valueA: z.number().describe('First value (meaning depends on calculationType)'),
+  valueB: z.number().describe('Second value (meaning depends on calculationType)'),
+  percentC: z.number().optional().describe('Percentage value, used by hike-discount and sequential modes (default 0)'),
+  hikeDirection: z.enum(['hike', 'discount']).optional().describe("Direction for 'hike-discount' mode (default hike)"),
+  calculationType: z
+    .enum(['percent-of', 'what-percent', 'percent-change', 'hike-discount', 'reverse-percent', 'sequential'])
+    .describe(
+      "'percent-of': valueA% of valueB. 'what-percent': valueA as a % of valueB. 'percent-change': % change from valueA to valueB. 'hike-discount': apply percentC as hike/discount to valueA. 'reverse-percent': find original value before a percentC change. 'sequential': apply valueB% then percentC% sequentially to valueA."
+    ),
+});
+
+export const ProfitMarginInputSchemaV4 = z.object({
+  costPrice: z.number().positive().max(100000).describe('Cost price per unit in INR'),
+  sellingPrice: z.number().nonnegative().max(100000).optional().describe('Selling price in INR (required when calculationBasis is SELLING_PRICE_DRIVEN)'),
+  targetMarginPct: z.number().min(0).max(99).optional().describe('Target profit margin percentage (COST_DRIVEN + margin mode)'),
+  targetMarkupPct: z.number().min(0).max(300).optional().describe('Target markup percentage (COST_DRIVEN + markup mode)'),
+  gstRatePct: z.number().min(0).max(28).optional().describe('GST rate percentage (default 18)'),
+  calculationBasis: z.enum(['COST_DRIVEN', 'SELLING_PRICE_DRIVEN']).optional().describe('Whether to compute forward from cost or backward from selling price (default COST_DRIVEN)'),
+  gstTreatment: z.enum(['EXCLUSIVE', 'INCLUSIVE']).optional().describe('Whether GST is added on top or already included (default EXCLUSIVE)'),
+  marginOrMarkup: z.enum(['margin', 'markup']).optional().describe('Which target field to use in COST_DRIVEN mode (default margin)'),
+});
+
+export const RetirementInputSchemaV4 = z.object({
+  present_age: z.number().min(18).max(75).describe('Current age in years'),
+  retirement_age: z.number().min(25).max(100).describe('Planned retirement age in years'),
+  life_expectancy: z.number().min(30).max(120).describe('Life expectancy in years'),
+  present_monthly_expenses: z.number().min(5000).describe('Current monthly expenses in INR'),
+  expense_reduction_pct: z.number().min(0).max(50).describe('Expected reduction in expenses after retirement, percentage'),
+  long_term_inflation_pct: z.number().min(0).max(15).describe('Assumed long-term annual inflation percentage'),
+  current_savings: z.number().min(0).describe('Current retirement savings in INR'),
+  lump_sum_benefits: z.number().min(0).describe('Expected lump-sum retirement benefits (gratuity, PF, etc.) in INR'),
+  pre_retirement_return_pct: z.number().min(4).max(25).describe('Expected annual investment return before retirement, percentage'),
+  post_retirement_return_pct: z.number().min(2).max(15).describe('Expected annual investment return after retirement, percentage'),
+});
+
+export const BuyVsRentInputSchemaV4 = z.object({
+  property_value: z.number().min(100000).max(100000000).describe('Property purchase price in INR'),
+  down_payment_pct: z.number().min(5).max(100).describe('Down payment as a percentage of property value'),
+  loan_interest_rate_pct: z.number().min(2).max(15).describe('Home loan annual interest rate percentage'),
+  loan_tenure_years: z.number().min(1).max(40).describe('Home loan tenure in years'),
+  property_growth_rate_pct: z.number().min(-5).max(15).describe('Expected annual property value appreciation percentage'),
+  annual_maintenance_pct: z.number().min(0).max(3).describe('Annual maintenance cost as a percentage of property value'),
+  initial_monthly_rent: z.number().min(1000).max(500000).describe('Current monthly rent for an equivalent property in INR'),
+  annual_rent_increase_pct: z.number().min(0).max(15).describe('Expected annual rent increase percentage'),
+  opportunity_return_pct: z.number().min(0).max(30).describe('Expected annual return if the down payment/savings were invested instead'),
+  inflation_rate_pct: z.number().min(0).max(15).describe('Assumed annual inflation percentage'),
+  projection_tenure_years: z.number().min(1).max(40).describe('Number of years to project the comparison over'),
+  apply_tax_benefit: z.boolean().optional().describe('Whether to apply Section 24(b) home loan interest tax deduction (default false)'),
+  income_tax_rate_pct: z.number().min(0).max(45).optional().describe('Income tax slab rate percentage, used only if apply_tax_benefit is true'),
+});
+
+export const ScientificExpressionInputSchemaV4 = z.object({
+  expression: z
+    .string()
+    .min(1)
+    .max(200)
+    .describe(
+      'Math expression to evaluate, e.g. "45*(12+3)^2", "sin(30)+sqrt(16)", "fact(5)". ' +
+        'Use fact(n), not the "n!" postfix form (postfix "!" is parsed but silently ignored ' +
+        'by the underlying engine as of this writing). Multi-argument functions like nCr/nPr ' +
+        'are not usable through this expression form — the parser does not support ' +
+        'comma-separated function arguments.'
+    ),
+  angleUnit: z.enum(['DEG', 'RAD']).optional().describe('Angle unit for trig functions (default DEG)'),
+});
+
 export const IncomeTaxInputSchemaV4 = z.object({
   age: z.enum(['below60', 'between60to80', 'above80']).describe('Age bracket'),
   residentialStatus: z.enum(['resident', 'nri']).describe('Residential status'),
