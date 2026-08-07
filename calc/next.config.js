@@ -51,6 +51,9 @@ const nextConfig = {
     { source: '/privacy', destination: '/privacy-policy', permanent: true },
     { source: '/terms', destination: '/terms-of-service', permanent: true },
     { source: '/disclaimer', destination: '/terms-of-service', permanent: true },
+    // Merged duplicate blog post (2026-08-07) — same topic/keywords as new-vs-old-tax-regime,
+    // was splitting ranking signal between two near-identical pages.
+    { source: '/blog/new-vs-old-tax-regime-comparison', destination: '/blog/new-vs-old-tax-regime', permanent: true },
   ],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
 };

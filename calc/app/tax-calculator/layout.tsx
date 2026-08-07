@@ -195,7 +195,7 @@ export default function TaxLayout({ children }: { children: React.ReactNode }) {
             how to calculate income tax in India
           </Link>
           ,{" "}
-          <Link href="/blog/new-vs-old-tax-regime-comparison" className="text-blue-600 dark:text-blue-400 hover:underline">
+          <Link href="/blog/new-vs-old-tax-regime" className="text-blue-600 dark:text-blue-400 hover:underline">
             our New vs Old regime comparison
           </Link>
           , and{" "}
