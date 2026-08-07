@@ -71,7 +71,7 @@ export function CalculatorSearch() {
     <div ref={searchRef} className="w-full max-w-2xl mx-auto relative mb-8">
       <div className="relative">
         <Search
-          className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 pointer-events-none"
+          className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-300 pointer-events-none"
           strokeWidth={2}
           aria-hidden="true"
         />
