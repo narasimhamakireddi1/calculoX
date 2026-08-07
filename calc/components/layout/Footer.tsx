@@ -68,6 +68,7 @@ export function Footer() {
                 <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
                 <li><Link href="/author/narasimha-makireddi" className="hover:text-white transition-colors">Meet the Developer</Link></li>
                 <li><Link href="/verification-methodology" className="hover:text-white transition-colors">Verification Methodology</Link></li>
+                <li><Link href="/mcp" className="hover:text-white transition-colors">MCP Server (AI Tools)</Link></li>
                 <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>

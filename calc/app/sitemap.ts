@@ -60,6 +60,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     {
+      url: `${BASE_URL}/mcp`,
+      lastModified: new Date('2026-08-07'),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
       url: `${BASE_URL}/about`,
       lastModified: new Date('2026-06-16'),
       changeFrequency: 'monthly',
