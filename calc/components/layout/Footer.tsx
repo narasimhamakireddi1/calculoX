@@ -14,12 +14,12 @@ export function Footer() {
               className="w-8 h-8 mb-2"
             >
               <defs>
-                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" style={{ stopColor: '#0e2a47', stopOpacity: 1 }} />
                   <stop offset="100%" style={{ stopColor: '#047857', stopOpacity: 1 }} />
                 </linearGradient>
               </defs>
-              <rect width="32" height="32" rx="6" fill="url(#grad)" />
+              <rect width="32" height="32" rx="6" fill="url(#footerLogoGrad)" />
               <text
                 x="16"
                 y="22"

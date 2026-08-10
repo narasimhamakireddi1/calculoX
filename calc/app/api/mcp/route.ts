@@ -147,4 +147,29 @@ const handler = createMcpHandler(
   }
 );
 
-export { handler as GET, handler as POST };
+// mcp-handler only attaches CORS headers to its own OAuth-metadata endpoints, not to
+// the main tool-call handler — so a browser-side MCP client (e.g. ChatGPT's connector
+// setup, which validates the connection from the browser before saving it) gets no
+// Access-Control-Allow-Origin on the response and the request is silently blocked by
+// the browser, even though the server itself answered 200. Wrap the handler so every
+// response (including streamed SSE bodies) carries permissive CORS headers, matching
+// the "unauthenticated public server" posture documented on /mcp.
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': '*',
+  'Access-Control-Max-Age': '86400',
+};
+
+async function withCors(request: Request): Promise<Response> {
+  const res = await handler(request);
+  const headers = new Headers(res.headers);
+  for (const [key, value] of Object.entries(CORS_HEADERS)) headers.set(key, value);
+  return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+}
+
+function OPTIONS() {
+  return new Response(null, { status: 204, headers: CORS_HEADERS });
+}
+
+export { withCors as GET, withCors as POST, OPTIONS };

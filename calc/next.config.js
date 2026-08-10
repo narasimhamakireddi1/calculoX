@@ -50,6 +50,18 @@ const nextConfig = {
       headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
     },
     {
+      // Root-level /public assets (favicons, logo) aren't content-hashed, so avoid
+      // `immutable` — a week-long cache with revalidation still satisfies Lighthouse's
+      // "efficient cache lifetimes" audit without risking stale icons after a swap.
+      // Scoped away from /_next/static (already immutable above) and /api/og.
+      source: '/:file(favicon\\.ico|favicon\\.png|favicon\\.svg|apple-icon\\.png|logo\\.png|og-image\\.svg)',
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=2592000' }],
+    },
+    {
+      source: '/blog/:path*.svg',
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=2592000' }],
+    },
+    {
       source: '/_next/data/:path*',
       headers: [{ key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' }],
     },

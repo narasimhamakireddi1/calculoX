@@ -47,9 +47,9 @@ export function CookieConsent() {
         <p className="flex-1 text-sm text-gray-300 leading-relaxed">
           We use cookies to serve ads and analyse site traffic. Accept to enable{' '}
           <strong className="text-white">personalised ads</strong> and analytics
-          (Google AdSense &amp; GA4).{' '}
+          (Google AdSense &amp; GA4). Read our{' '}
           <Link href="/privacy-policy" className="underline text-blue-400 hover:text-blue-300">
-            Learn more
+            Privacy Policy
           </Link>
           .
         </p>
