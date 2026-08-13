@@ -605,7 +605,7 @@ export function TaxCalculatorCore({ embed = false, initialValues }: { embed?: bo
                     return (
                       <div
                         key={reg}
-                        className={`p-3 rounded-xl border-2 min-w-0 ${
+                        className={`p-3 rounded-xl border-2 min-w-0 [container-type:inline-size] ${
                           isRecommended
                             ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-400 dark:border-emerald-600'
                             : 'bg-gray-50 dark:bg-gray-700/50 border-gray-200 dark:border-gray-600'
@@ -615,7 +615,7 @@ export function TaxCalculatorCore({ embed = false, initialValues }: { embed?: bo
                           {reg === 'new' ? 'New Regime' : 'Old Regime'}
                           {isRecommended && <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-emerald-600 dark:text-emerald-400" strokeWidth={2} aria-hidden="true" />}
                         </p>
-                        <p className={`text-lg sm:text-2xl font-black whitespace-nowrap ${isRecommended ? 'text-emerald-700 dark:text-emerald-400' : 'text-gray-800 dark:text-gray-200'}`}>
+                        <p className={`text-[clamp(1.125rem,9cqw,1.5rem)] font-black break-all leading-tight ${isRecommended ? 'text-emerald-700 dark:text-emerald-400' : 'text-gray-800 dark:text-gray-200'}`}>
                           {formatCurrency(r.totalTax)}
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Effective: {r.effectiveRate.toFixed(2)}%</p>

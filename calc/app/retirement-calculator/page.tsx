@@ -250,11 +250,11 @@ export default function RetirementCalculatorPage() {
       {result && (
         <div className="space-y-3">
           {/* Hero metric */}
-          <div className="card bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/20 border-2 border-blue-300 dark:border-blue-700 shadow-lg p-6 sm:p-8">
+          <div className="card bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/20 border-2 border-blue-300 dark:border-blue-700 shadow-lg p-6 sm:p-8 [container-type:inline-size]">
             <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly SIP Required
             </p>
-            <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">
+            <p className="text-[clamp(1.5rem,7.5cqw,3.75rem)] font-black text-blue-700 dark:text-blue-400 break-all leading-tight">
               {formatCurrency(result.monthly_sip_required)}
             </p>
             <p className="text-xs text-blue-600 dark:text-blue-300 mt-2 font-medium">

@@ -801,10 +801,10 @@ export default function HomeLoanVsRentCalculator() {
                   result.financial_verdict === 'BUYING_IS_BETTER'
                     ? 'from-emerald-50 to-emerald-100 dark:from-emerald-900 dark:to-emerald-800 border-emerald-300 dark:border-emerald-700'
                     : 'from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 border-blue-300 dark:border-blue-700'
-                } p-6 sm:p-8 rounded-xl border-2 shadow-lg`}
+                } p-6 sm:p-8 rounded-xl border-2 shadow-lg [container-type:inline-size]`}
               >
                 <div className={`text-xs uppercase tracking-widest font-semibold mb-3 ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-700 dark:text-emerald-300' : 'text-blue-700 dark:text-blue-300'}`}>Net Advantage</div>
-                <div className={`text-[clamp(1.5rem,7.5vw,3.75rem)] font-black whitespace-nowrap leading-tight ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-600 dark:text-emerald-300' : 'text-blue-600 dark:text-blue-300'}`}>
+                <div className={`text-[clamp(1.5rem,7.5cqw,3.75rem)] font-black break-all leading-tight ${result.financial_verdict === 'BUYING_IS_BETTER' ? 'text-emerald-600 dark:text-emerald-300' : 'text-blue-600 dark:text-blue-300'}`}>
                   {formatCurrency(result.absolute_delta)}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 font-medium">

@@ -290,11 +290,11 @@ export default function CAGRCalculatorPage() {
             <div id="cagr-results" className="card space-y-4">
               <h2 className="text-2xl font-bold mb-6">CAGR Results</h2>
               {/* Hero metric */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg [container-type:inline-size]">
                 <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
                   <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> CAGR Percentage
                 </p>
-                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">{result.cagrPercentage.toFixed(2)}%</p>
+                <p className="text-[clamp(1.5rem,7.5cqw,3.75rem)] font-black text-blue-700 dark:text-blue-400 break-all leading-tight">{result.cagrPercentage.toFixed(2)}%</p>
                 <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">average annual growth over {watchValues.years} year{watchValues.years > 1 ? 's' : ''}</p>
               </div>
 

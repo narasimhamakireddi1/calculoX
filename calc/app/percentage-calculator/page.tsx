@@ -439,7 +439,7 @@ export default function PercentageCalculatorPage() {
               <h2 className="text-2xl font-bold mb-4">Result</h2>
 
               {/* Main result */}
-              <div className={`p-5 rounded-xl border-2 ${
+              <div className={`p-5 rounded-xl border-2 [container-type:inline-size] ${
                 calculationType === 'percent-change' && result.direction === 'decrease'
                   ? 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
                   : calculationType === 'percent-change' && result.direction === 'increase'
@@ -447,16 +447,16 @@ export default function PercentageCalculatorPage() {
                   : 'bg-violet-50 dark:bg-violet-900/20 border-violet-300 dark:border-violet-700'
               }`}>
                 <p className="text-xs uppercase tracking-wide font-semibold mb-2 text-gray-500">Result</p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0">
                   {calculationType === 'percent-change' && (
-                    <span className={`text-2xl sm:text-3xl md:text-4xl font-bold ${
+                    <span className={`text-2xl sm:text-3xl md:text-4xl font-bold flex-shrink-0 ${
                       result.direction === 'increase' ? 'text-green-500' :
                       result.direction === 'decrease' ? 'text-red-500' : 'text-gray-400'
                     }`}>
                       {result.direction === 'increase' ? 'â†‘' : result.direction === 'decrease' ? 'â†“' : 'â†’'}
                     </span>
                   )}
-                  <p className={`text-2xl sm:text-4xl md:text-5xl font-bold whitespace-nowrap ${
+                  <p className={`text-[clamp(1.25rem,8cqw,3rem)] font-bold break-all leading-tight min-w-0 ${
                     calculationType === 'percent-change' && result.direction === 'decrease'
                       ? 'text-red-600 dark:text-red-400'
                       : calculationType === 'percent-change' && result.direction === 'increase'

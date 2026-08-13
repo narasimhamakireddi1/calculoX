@@ -523,11 +523,11 @@ export default function FDCalculatorPage() {
               </div>
 
               {/* Hero metric */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/20 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg [container-type:inline-size]">
                 <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5">
                   <Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maturity Amount
                 </p>
-                <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">{formatCurrency(result.maturityAmount)}</p>
+                <p className="text-[clamp(1.5rem,7.5cqw,3.75rem)] font-black text-blue-700 dark:text-blue-400 break-all leading-tight">{formatCurrency(result.maturityAmount)}</p>
                 <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">Principal + Interest over {result.tenure.years}Y {result.tenure.months}M</p>
               </div>
 

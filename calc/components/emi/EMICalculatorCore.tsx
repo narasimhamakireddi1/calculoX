@@ -69,9 +69,9 @@ const ResultCards = memo(({ result, watchValues, embed }: { result: EMIResultDat
       <h2 className="text-2xl font-bold mb-6">Loan Summary</h2>
 
       {/* Hero metric */}
-      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
+      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 p-6 sm:p-8 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg [container-type:inline-size]">
         <p className="text-blue-700 dark:text-blue-300 text-xs uppercase tracking-widest font-semibold mb-3 flex items-center gap-1.5"><Coins className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly EMI</p>
-        <p className="text-[clamp(1.5rem,7.5vw,3.75rem)] font-black text-blue-700 dark:text-blue-400 whitespace-nowrap leading-tight">
+        <p className="text-[clamp(1.5rem,7.5cqw,3.75rem)] font-black text-blue-700 dark:text-blue-400 break-all leading-tight">
           {formatCurrency(result.emi)}
         </p>
         <p className="text-xs text-blue-500 dark:text-blue-400 mt-2 font-medium">per month for {result.numberOfMonths} months</p>
