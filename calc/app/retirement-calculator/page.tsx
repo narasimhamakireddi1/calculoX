@@ -268,7 +268,7 @@ export default function RetirementCalculatorPage() {
               <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                 <Coins className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Monthly at Retirement
               </p>
-              <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
+              <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">
                 {formatCurrency(result.monthly_expense_at_retirement)}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">in {result.accumulationYears} years</p>
@@ -278,7 +278,7 @@ export default function RetirementCalculatorPage() {
               <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                 <Target className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Corpus Required
               </p>
-              <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
+              <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-emerald-600 dark:text-emerald-400 break-all leading-tight">
                 {formatCurrency(result.total_corpus_required)}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">for {result.distributionYears} years</p>

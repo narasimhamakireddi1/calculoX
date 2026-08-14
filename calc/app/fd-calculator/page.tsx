@@ -537,7 +537,7 @@ export default function FDCalculatorPage() {
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                     <TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest Earned
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">{formatCurrency(result.totalInterest)}</p>
+                  <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-emerald-600 dark:text-emerald-400 break-all leading-tight">{formatCurrency(result.totalInterest)}</p>
                 </div>
 
                 {result.periodicPayout !== undefined && result.periodicPayout > 0 && (
@@ -545,7 +545,7 @@ export default function FDCalculatorPage() {
                     <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">
                       {watchValues.payoutType === 'quarterly' ? 'Per Quarter' : 'Per Month'}
                     </p>
-                    <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">{formatCurrency(result.periodicPayout)}</p>
+                    <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">{formatCurrency(result.periodicPayout)}</p>
                   </div>
                 )}
               </div>

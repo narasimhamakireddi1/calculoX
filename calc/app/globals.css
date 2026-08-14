@@ -820,8 +820,9 @@ button:disabled {
 /* Secondary metric tile — neutral card that sits beneath the result hero so the
    hero stays the single focal point. */
 .stat-tile {
-  @apply rounded-xl border p-3 sm:p-4 bg-white/70 dark:bg-white/[0.03] min-w-0 transition-colors;
+  @apply rounded-xl border p-3 sm:p-4 bg-white/70 dark:bg-white/[0.03] min-w-0 overflow-hidden transition-colors;
   border-color: var(--color-border);
+  container-type: inline-size;
 }
 
 /* Utility Classes */

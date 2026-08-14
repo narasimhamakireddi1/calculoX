@@ -399,21 +399,21 @@ export function SIPCalculatorCore({ embed = false, initialValues }: { embed?: bo
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 <div className="stat-tile">
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Total Invested</p>
-                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
+                  <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">
                     {formatCurrency(result.totalInvestment)}
                   </p>
                 </div>
 
                 <div className="stat-tile">
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><TrendingUp className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Total Gains</p>
-                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
+                  <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-emerald-600 dark:text-emerald-400 break-all leading-tight">
                     {formatCurrency(result.gainedAmount)}
                   </p>
                 </div>
 
                 <div className="stat-tile col-span-2 sm:col-span-1">
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Return Rate</p>
-                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
+                  <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-emerald-600 dark:text-emerald-400 break-all leading-tight">
                     {((result.gainedAmount / result.totalInvestment) * 100).toFixed(1)}%
                   </p>
                 </div>

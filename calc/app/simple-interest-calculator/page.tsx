@@ -239,7 +239,7 @@ export default function SimpleInterestCalculatorPage() {
                   value={watchValues.principal === 0 ? '' : watchValues.principal}
                   onChange={(e) => handleInputChange('principal', e.target.value === '' ? 0 : Number(e.target.value))}
                   onBlur={(e) => handleValidateField('principal', Number(e.target.value))}
-                  className="w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full md:w-40 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-blue-400 rounded-lg font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               {errors.principal && <p className="text-red-500 text-sm">{errors.principal.message}</p>}
@@ -451,18 +451,18 @@ export default function SimpleInterestCalculatorPage() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 <div className="stat-tile">
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><Coins className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Principal</p>
-                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">{formatCurrency(result.principalAmount)}</p>
+                  <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">{formatCurrency(result.principalAmount)}</p>
                 </div>
 
                 <div className="stat-tile">
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><Target className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Maturity Value</p>
-                  <p className="text-sm sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">{formatCurrency(result.totalMaturityValue)}</p>
+                  <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-emerald-600 dark:text-emerald-400 break-all leading-tight">{formatCurrency(result.totalMaturityValue)}</p>
                 </div>
 
                 {result.dailyAccrual !== undefined && (
                   <div className="stat-tile col-span-2 sm:col-span-1">
                     <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><Sunrise className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Daily Accrual</p>
-                    <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">{formatCurrency(result.dailyAccrual)}</p>
+                    <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">{formatCurrency(result.dailyAccrual)}</p>
                   </div>
                 )}
               </div>

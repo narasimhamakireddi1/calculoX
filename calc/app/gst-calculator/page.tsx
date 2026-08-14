@@ -281,14 +281,14 @@ export default function GSTCalculatorPage() {
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                     <Package className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Base Amount
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">{formatCurrency(result.baseAmount)}</p>
+                  <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">{formatCurrency(result.baseAmount)}</p>
                 </div>
 
                 <div className="stat-tile">
                   <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1">
                     <Percent className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> GST ({gstRate}%)
                   </p>
-                  <p className="text-sm sm:text-lg font-bold text-amber-600 dark:text-amber-400 whitespace-nowrap">{formatCurrency(result.gstAmount)}</p>
+                  <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-amber-600 dark:text-amber-400 break-all leading-tight">{formatCurrency(result.gstAmount)}</p>
                 </div>
               </div>
 

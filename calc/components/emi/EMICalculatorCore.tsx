@@ -81,21 +81,21 @@ const ResultCards = memo(({ result, watchValues, embed }: { result: EMIResultDat
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
         <div className="stat-tile">
           <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Total Payable</p>
-          <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
+          <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">
             {formatCurrency(result.totalAmount)}
           </p>
         </div>
 
         <div className="stat-tile">
           <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1 flex items-center gap-1"><BarChart2 className="w-3 h-3 flex-shrink-0" strokeWidth={2} aria-hidden="true" /> Interest</p>
-          <p className="text-sm sm:text-lg font-bold text-amber-600 dark:text-amber-400 whitespace-nowrap">
+          <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-amber-600 dark:text-amber-400 break-all leading-tight">
             {formatCurrency(result.totalInterest)}
           </p>
         </div>
 
         <div className="stat-tile col-span-2 sm:col-span-1">
           <p className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Duration</p>
-          <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-white whitespace-nowrap">
+          <p className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">
             {result.numberOfMonths} <span className="font-normal text-xs text-gray-500">months</span>
           </p>
         </div>
@@ -237,7 +237,7 @@ const LoanInput = memo(({
           value={value === 0 ? '' : value}
           onChange={onChange}
           onBlur={onBlur}
-          className={`w-full md:w-28 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 ${colors.border} rounded-lg font-bold ${colors.text} ${colors.bg} ${colors.dark}`}
+          className={`w-full md:w-36 px-2 py-2 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 ${colors.border} rounded-lg font-bold ${colors.text} ${colors.bg} ${colors.dark}`}
         />
       </div>
 

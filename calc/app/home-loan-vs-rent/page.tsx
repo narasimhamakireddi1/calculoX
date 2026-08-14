@@ -816,7 +816,7 @@ export default function HomeLoanVsRentCalculator() {
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="stat-tile">
                   <div className="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wide font-semibold mb-1">Monthly EMI</div>
-                  <div className="text-sm sm:text-lg font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                  <div className="text-[clamp(0.8rem,7.5cqw,1.125rem)] font-bold text-blue-600 dark:text-blue-400 break-all leading-tight">
                     {formatCurrency(result.monthly_emi)}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Buyer's monthly payment</div>

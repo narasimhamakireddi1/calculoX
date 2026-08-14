@@ -152,7 +152,7 @@ const SliderField = memo(({
           value={value === 0 ? '' : value}
           onChange={(e) => onChange(e.target.value === '' ? 0 : Number(e.target.value))}
           onBlur={onBlur}
-          className={`w-full md:w-28 px-2 py-1.5 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 ${c.input} rounded-lg font-bold text-sm`}
+          className={`w-full md:w-36 px-2 py-1.5 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 ${c.input} rounded-lg font-bold text-sm`}
           placeholder="0"
         />
       </div>
@@ -639,19 +639,19 @@ export function TaxCalculatorCore({ embed = false, initialValues }: { embed?: bo
                   <div className="grid grid-cols-3 gap-2 mt-3">
                     <div className="stat-tile p-2.5">
                       <p className="text-gray-500 dark:text-gray-400 text-xs font-semibold mb-0.5">Total Income</p>
-                      <p className="text-sm font-bold text-gray-900 dark:text-white whitespace-nowrap">
+                      <p className="text-[clamp(0.7rem,9cqw,0.875rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">
                         {formatCurrency(getRegimeResult()!.grossSalary + (getRegimeResult()!.grossTotalIncome - (getRegimeResult()!.grossSalary - getRegimeResult()!.standardDeduction)))}
                       </p>
                     </div>
                     <div className="stat-tile p-2.5">
                       <p className="text-gray-500 dark:text-gray-400 text-xs font-semibold mb-0.5">Taxable Income</p>
-                      <p className="text-sm font-bold text-gray-900 dark:text-white whitespace-nowrap">
+                      <p className="text-[clamp(0.7rem,9cqw,0.875rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">
                         {formatCurrency(getRegimeResult()!.taxableIncome)}
                       </p>
                     </div>
                     <div className="stat-tile p-2.5">
                       <p className="text-gray-500 dark:text-gray-400 text-xs font-semibold mb-0.5">Slab Tax</p>
-                      <p className="text-sm font-bold text-gray-900 dark:text-white whitespace-nowrap">
+                      <p className="text-[clamp(0.7rem,9cqw,0.875rem)] font-bold text-gray-900 dark:text-white break-all leading-tight">
                         {formatCurrency(getRegimeResult()!.slabTax)}
                       </p>
                     </div>
